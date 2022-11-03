@@ -1,18 +1,24 @@
-let Home = () => import('../pages/Home')
-let ProductDetails = () => import('../pages/ProductDetails')
-let ProductListing = () => import('../pages/ProductListing')
-let TrackOrder = () => import('../pages/TrackOrder')
-let AllCategories = () =>  import('../pages/AllCategories')
-let AllBrands = () =>  import('../pages/AllBrands')
-let AllOffers = () =>  import('../pages/AllOffers')
-let OfferDetails = () =>  import('../pages/OfferDetails')
-let AllBlogs = () =>  import('../pages/AllBlogs')
-let BlogDetails = () =>  import('../pages/BlogDetails')
-
+let Home = () => import("../pages/Home");
+let ProductDetails = () => import("../pages/ProductDetails");
+let ProductListing = () => import("../pages/ProductListing");
+let TrackOrder = () => import("../pages/TrackOrder");
+let AllCategories = () => import("../pages/AllCategories");
+let AllBrands = () => import("../pages/AllBrands");
+let AllOffers = () => import("../pages/AllOffers");
+let OfferDetails = () => import("../pages/OfferDetails");
+let AllBlogs = () => import("../pages/AllBlogs");
+let BlogDetails = () => import("../pages/BlogDetails");
+let TempLanding = () => import("../pages/TempLanding");
 
 export default [
     {
         path: "/",
+        component: TempLanding,
+        name: "TempLading",
+        meta: { requiresAuth: false },
+    },
+    {
+        path: "/home",
         component: Home,
         name: "Home",
         meta: { requiresAuth: false },
