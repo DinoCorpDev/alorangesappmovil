@@ -9,6 +9,7 @@
           <p class="primer-parrafo">Idovela como estudio de diseño y desarrollo estamos creando una solución tecnológica efectiva 
               para el mercado Colombiano que conecte a clientes con espacios habitables.</p>
         </div>
+        
         <servicios 
         servicio="Diseño de espacios"
         introduccion="Buscamos que los espacios sean únicos y consistentes"
@@ -35,7 +36,7 @@
         />
 
         <!--<registro/>-->
-
+        
         <div class="contenedor-info">
           <div class="info-adicional">
             <a href="https://www.instagram.com/idovelaco/" target="_blank" rel="noopener noreferrer" class="letra">@IDOVELA 2022</a>
@@ -45,6 +46,7 @@
             <a href="#" class="letra">PRIVACIDAD Y COOKIES</a>
           </div>
         </div>
+        
      </div>
 </template>
 <script>
@@ -134,8 +136,124 @@ p.letra{
   align-items: center;
 }
 
+@media (min-width: 1200px)
+{
 
-
-
+}
+@media (max-width: 1199px)
+{
+  .general{
+    background-color: #242526;
+    padding-top: 50px;
+    padding-bottom: 106.5px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .logo-idovela { 
+   width: 250.07px;
+   height: 250.07px;
+   
+  }
+  .bienvenida{
+    width: 679px;
+    height: 165.3px;
+    margin-bottom: 90.8px;
+  }
+  p.saludo {
+    font-size: 48px;
+  }
+  p.primer-parrafo{
+    font-size: 16px;
+    margin-bottom: 0; 
+  }
+  .contenedor-info{
+    margin-top: 48px;
+  }   
+  .info-adicional{
+    width: 308px;
+    height: 43px;
+  }
+  .letra{
+    font-family: 'Overpass' ;
+    font-weight: 700;
+    font-size: 8px;
+  }
+}
+@media (max-width: 991px)
+{
+  .general{
+    background-color: #242526;
+    padding-top: 50px;
+    padding-bottom: 106.5px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .logo-idovela { 
+   width: 250.07px;
+   height: 250.07px;
+   
+  }
+  .bienvenida{
+    width: 679px;
+    height: 165.3px;
+    margin-bottom: 90.8px;
+  }
+  p.saludo {
+    font-size: 48px;
+  }
+  p.primer-parrafo{
+    font-size: 16px;
+    margin-bottom: 0; 
+  }
+  .contenedor-info{
+    margin-top: 48px;
+  }   
+  .info-adicional{
+    width: 308px;
+    height: 43px;
+  }
+  .letra{
+    font-family: 'Overpass' ;
+    font-weight: 700;
+    font-size: 8px;
+  }
+}
+@media (max-width: 767px)
+{
+  .general{
+    background-color: #242526;
+    padding-top: 46px;
+    padding-bottom: 24px;
+  }
+  .logo-idovela { 
+   width: 241.4px;
+   height: 241.4px;
+   
+  }
+  .bienvenida{
+    width: 276px;
+    height: 233.8px;
+    margin-bottom: 46.3px;
+  }
+  p.saludo {
+    font-size: 24px;
+  }
+  p.primer-parrafo{
+    font-size: 16px;
+    margin-bottom: 0; 
+  }
+  .contenedor-info{
+    margin-top: 48px;
+  }   
+  .info-adicional{
+    width: 308px;
+    height: 43px;
+  }
+  .letra{
+    font-family: 'Overpass' ;
+    font-weight: 700;
+    font-size: 7px;
+  }
+}
 
 </style>
