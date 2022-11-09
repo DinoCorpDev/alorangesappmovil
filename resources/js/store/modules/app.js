@@ -6,6 +6,7 @@ const loadState = () => ({
     appLogo: shopSetting.appLogo,
     appUrl: shopSetting.appUrl,
     demoMode: shopSetting.demoMode,
+    maintenanceMode: shopSetting.maintenanceMode,
     appLanguage: shopSetting.appLanguage,
     paymentMethods: shopSetting.paymentMethods,
     offlinePaymentMethods: shopSetting.offlinePaymentMethods,
@@ -24,7 +25,7 @@ const loadState = () => ({
     routerLoading: true,
     refundSettings: shopSetting.refundSettings,
     productQuerries: [],
-    unseenProductQuerries: 0
+    unseenProductQuerries: 0,
 });
 export default {
     namespaced: true,
@@ -46,6 +47,9 @@ export default {
         },
         demoMode(state) {
             return state.demoMode;
+        },
+        maintenanceMode(state) {
+            return state.maintenanceMode;
         },
         apiPath(state) {
             return state.apiPath;

@@ -66,9 +66,10 @@ class HomeController extends Controller
             'appLogo' => get_setting('header_logo') ? api_asset(get_setting('header_logo')) : static_asset('assets/img/logo.svg'),
             'appUrl' => getBaseURL(),
             'demoMode' => env('DEMO_MODE') == "On" ? true : false,
+            'maintenanceMode' => env('MAINTENANCE_MODE') == "On" ? true : false,
             'cacheVersion' => get_setting('force_cache_clear_version'),
             'appLanguage' => env('DEFAULT_LANGUAGE'),
-            'allLanguages' => Language::where('status',1)->get(['name', 'code', 'flag', 'rtl']),
+            'allLanguages' => Language::where('status', 1)->get(['name', 'code', 'flag', 'rtl']),
             // 'allCurrencies' => Currency::all(),
             'availableCountries' => Country::where('status', 1)->pluck('code')->toArray(),
             'paymentMethods' => [
@@ -141,7 +142,7 @@ class HomeController extends Controller
             ],
             'offlinePaymentMethods' => [],
             'addons' => Cache::remember('web_addons', 86400, function () {
-                return Addon::select('unique_identifier','version','activated')->get();
+                return Addon::select('unique_identifier', 'version', 'activated')->get();
             }),
             'general_settings' => [
                 'wallet_system' => get_setting('wallet_system'),
@@ -209,20 +210,20 @@ class HomeController extends Controller
                 ],
             ],
             'refundSettings' => [
-                'refund_request_time_period' => get_setting('refund_request_time_period')*86400,
+                'refund_request_time_period' => get_setting('refund_request_time_period') * 86400,
                 'refund_request_order_status' => json_decode(get_setting('refund_request_order_status')),
                 'refund_reason_types' => json_decode(get_setting('refund_reason_types'))
             ],
-            'authSettings' =>[
+            'authSettings' => [
                 'customer_login_with' => get_setting('customer_login_with'),
                 'customer_otp_with' => get_setting('customer_otp_with'),
             ]
         ];
 
-        if(get_setting('offline_payment') == 1){
+        if (get_setting('offline_payment') == 1) {
             $settings['offlinePaymentMethods'] = json_decode(ManualPaymentResource::collection(ManualPaymentMethod::all())->toJson());
         }
-                
+
         return view('frontend.app', compact('settings', 'meta'));
     }
 }

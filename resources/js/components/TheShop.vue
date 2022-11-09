@@ -1,20 +1,23 @@
 <template>
     <div>
         <v-app class="d-flex flex-column">
-            <Header />
+            <Header v-if="!maintenanceMode" />
 
             <v-main class="aiz-main-wrap">
+                <!-- prettier-ignore -->
                 <router-view :key="['ShopDetails','ShopCoupons','ShopProducts'].includes($route.name) ? null : $route.path"></router-view>
             </v-main>
 
-            <Footer :class="['mt-auto', { 'd-none': routerLoading }]" />
+            <template v-if="!maintenanceMode">
+                <Footer :class="['mt-auto', { 'd-none': routerLoading }]" />
 
-            <BottomChat />
-            <SidebarCart />
-            <AddToCartDialog />
-            <LoginDialog v-if="!isAuthenticated" />
-            <MobileMenu class="d-lg-none" />
-            <SnackBar />
+                <BottomChat />
+                <SidebarCart />
+                <AddToCartDialog />
+                <LoginDialog v-if="!isAuthenticated" />
+                <MobileMenu class="d-lg-none" />
+                <SnackBar />
+            </template>
         </v-app>
     </div>
 </template>
@@ -27,13 +30,13 @@ import BottomChat from "./inc/BottomChat";
 import SnackBar from "./inc/SnackBar";
 import MobileMenu from "./inc/MobileMenu";
 import LoginDialog from "./auth/LoginDialog.vue";
-import AddToCartDialog from './product/AddToCartDialog'; 
+import AddToCartDialog from "./product/AddToCartDialog";
 import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
     metaInfo() {
         return {
             title: this.appMetaTitle,
-        }
+        };
     },
     components: {
         Header,
@@ -43,11 +46,16 @@ export default {
         SnackBar,
         LoginDialog,
         MobileMenu,
-        AddToCartDialog
+        AddToCartDialog,
     },
     computed: {
         ...mapGetters("auth", ["isAuthenticated"]),
-        ...mapGetters("app", ["appMetaTitle", "userLanguageObj", "routerLoading"]),
+        ...mapGetters("app", [
+            "appMetaTitle",
+            "userLanguageObj",
+            "routerLoading",
+            "maintenanceMode",
+        ]),
     },
     methods: {
         ...mapActions("auth", ["getUser", "checkSocialLoginStatus"]),
