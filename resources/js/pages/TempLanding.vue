@@ -46,7 +46,29 @@
         />
       </v-col>
     </v-row>
+    <custom-button
+        text="Enviar"
+        variant="purple"
+        class="white--text"
+    ></custom-button>
 
+    <carousel no-dots no-arrows>
+
+    </carousel>
+
+
+    <item-product
+    title="Producto 1"
+    descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+    idItem="1"
+    ></item-product>
+
+    <banner-category-product
+    title="Titulo"
+    descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+    idItem="100"
+    >
+    </banner-category-product>
     <v-row tag="footer" justify="center">
       <v-col cols="10">
         <div class="info-adicional">
@@ -63,10 +85,18 @@
 
 <script>
 import Servicios from "../components/temp-landing/Servicios.vue";
+import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vue";
+import Carousel from "../components/global/Carousel.vue";
+import CustomButton from "../components/global/CustomButton.vue";
+import ItemProduct from "../components/global/ItemProduct.vue";
 
 export default {
   name: "TempLanding",
   components: {
+    BannerCategoryProduct,
+    Carousel,
+    CustomButton,
+    ItemProduct,
     Servicios,
   },
 };
