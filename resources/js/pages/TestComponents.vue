@@ -12,8 +12,9 @@
         outlined="outlined"   
     ></custom-button>
 
-    <carousel no-dots no-arrows>
-
+    <carousel no-dots NoArrows=false
+        class="ancho" 
+    >   
     </carousel>
 
     <div class="prueba">
@@ -76,5 +77,10 @@ export default {
         display: flex;
         padding: 20px;
     }
+    .ancho
+    {
+        width: 500px;
+    }
+    
 
 </style>
