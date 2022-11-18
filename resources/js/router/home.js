@@ -9,12 +9,19 @@ let OfferDetails = () => import("../pages/OfferDetails");
 let AllBlogs = () => import("../pages/AllBlogs");
 let BlogDetails = () => import("../pages/BlogDetails");
 let TempLanding = () => import("../pages/TempLanding");
+let TestComponents = () => import("../pages/TestComponents");
 
 export default [
     {
         path: "/",
         component: TempLanding,
         name: "TempLading",
+        meta: { requiresAuth: false },
+    },
+    {
+        path: "/test-components",
+        component: TestComponents,
+        name: "TestComponents",
         meta: { requiresAuth: false },
     },
     {
