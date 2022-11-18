@@ -112,7 +112,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     title: String,
     descripcion: String,
-    idItem: String
+    idItem: String,
+    textColor: String,
+    colorCard: String
   }
 });
 
@@ -260,14 +262,22 @@ var render = function render() {
   return _c("v-card", {
     staticClass: "mx-auto",
     attrs: {
-      "max-width": "344"
+      "max-width": "33.33%",
+      color: _vm.colorCard,
+      height: "auto"
     }
   }, [_c("v-img", {
     attrs: {
       src: _vm.img,
       height: "200px"
     }
-  }), _vm._v(" "), _c("v-card-title", [_vm._v(_vm._s(_vm.title))]), _vm._v(" "), _c("v-card-text", [_vm._v(_vm._s(_vm.descripcion))]), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
+  }), _vm._v(" "), _c("v-card-title", {
+    staticClass: "pt-6",
+    "class": _vm.textColor
+  }, [_vm._v(_vm._s(_vm.title))]), _vm._v(" "), _c("v-card-text", {
+    staticClass: "pr-16",
+    "class": _vm.textColor
+  }, [_vm._v(_vm._s(_vm.descripcion))]), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
     attrs: {
       color: "orange lighten-2",
       text: ""
@@ -301,28 +311,46 @@ var render = function render() {
     attrs: {
       text: "Ir a tienda",
       variant: "#E2E6EA",
-      icon: "la-store-alt",
-      margen: "2"
+      icon: "la-store-alt"
     }
   }), _vm._v(" "), _c("custom-button", {
     attrs: {
       text: "Comunicarse con ventas",
       variant: "#F8F9FA",
-      outlined: "outlined",
-      margen: "2"
+      outlined: "outlined"
     }
   }), _vm._v(" "), _c("carousel", {
     attrs: {
       "no-dots": "",
       "no-arrows": ""
     }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "prueba"
+  }, [_c("item-product", {
+    attrs: {
+      title: "Producto 1",
+      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
+      idItem: "1",
+      textColor: "white--text",
+      colorCard: "#23272B"
+    }
   }), _vm._v(" "), _c("item-product", {
     attrs: {
       title: "Producto 1",
       descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
-      idItem: "1"
+      idItem: "1",
+      textColor: "white--text",
+      colorCard: "#23272B"
     }
-  }), _vm._v(" "), _c("banner-category-product", {
+  }), _vm._v(" "), _c("item-product", {
+    attrs: {
+      title: "Producto 1",
+      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
+      idItem: "1",
+      textColor: "white--text",
+      colorCard: "#23272B"
+    }
+  })], 1), _vm._v(" "), _c("banner-category-product", {
     attrs: {
       title: "Titulo",
       descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
@@ -367,7 +395,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.fondo{\n    background-color: black;\n    width: 100%;\n    height: 100%;\n}\n\n", ""]);
+exports.push([module.i, "\n.fondo{\n    background-color: black;\n    width: 100%;\n    height: 100%;\n}\n.prueba\n{\n    display: flex;\n    padding: 20px;\n}\n\n", ""]);
 
 // exports
 

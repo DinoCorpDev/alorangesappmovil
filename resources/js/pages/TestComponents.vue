@@ -4,27 +4,43 @@
         text="Ir a tienda"   
         variant="#E2E6EA"
         icon="la-store-alt"
-        margen="2"
         class="black--text"
     ></custom-button>
     <custom-button 
         text="Comunicarse con ventas"
         variant="#F8F9FA"
         outlined="outlined"   
-        margen="2"
     ></custom-button>
 
     <carousel no-dots no-arrows>
 
     </carousel>
 
+    <div class="prueba">
+        <item-product
+            title="Producto 1"
+            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+            idItem="1"
+            textColor="white--text"
+            colorCard="#23272B"
+        ></item-product>
 
-    <item-product
-        title="Producto 1"
-        descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-        idItem="1"
-    ></item-product>
+        <item-product
+            title="Producto 1"
+            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+            idItem="1"
+            textColor="white--text"
+            colorCard="#23272B"
+        ></item-product>
 
+        <item-product
+            title="Producto 1"
+            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+            idItem="1"
+            textColor="white--text"
+            colorCard="#23272B"
+        ></item-product>
+    </div>
     <banner-category-product
         title="Titulo"
         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
@@ -54,6 +70,11 @@ export default {
         background-color: black;
         width: 100%;
         height: 100%;
+    }
+    .prueba
+    {
+        display: flex;
+        padding: 20px;
     }
 
 </style>
