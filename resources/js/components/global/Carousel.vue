@@ -1,6 +1,5 @@
 <template>
-    <!--Hay que revisar cómo pasar el tamaño como propiedad, por ahora se deja una clase en TestComponents para trabajar ese estilo-->
-    <v-carousel style="border-radius: 5px;"
+    <v-carousel style="border-radius: 5px; width: 100%"
         :show-arrows="NoArrows"
         :hide-delimiters="NoDots"
         >
@@ -39,7 +38,7 @@ export default {
         //Analizar bien este caso del NoArrrows
         // el tipo puede ser String o Boolean
         NoArrows: {
-            type:String,
+            type:Boolean,
         },
         NoDots:String,
     },
@@ -56,9 +55,9 @@ export default {
 
 <style>
 .v-application--is-ltr .v-window__next {
-    margin-top: 200px;
+    margin-top: 14.5em;
 }
 .v-application--is-ltr .v-window__prev {
-    margin-top: 200px;
+    margin-top: 14.5em;
 }
 </style>

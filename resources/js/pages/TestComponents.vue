@@ -12,8 +12,7 @@
         outlined="outlined"   
     ></custom-button>
 
-    <carousel no-dots NoArrows=false
-        class="ancho" 
+    <carousel no-dots :NoArrows="true"
     >   
     </carousel>
 
@@ -24,6 +23,7 @@
             idItem="1"
             textColor="white--text"
             colorCard="#23272B"
+            img="/public/assets/img/idovela-banner.png"
         ></item-product>
 
         <item-product
@@ -77,10 +77,5 @@ export default {
         display: flex;
         padding: 20px;
     }
-    .ancho
-    {
-        width: 500px;
-    }
-    
 
 </style>

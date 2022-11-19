@@ -43,7 +43,7 @@ __webpack_require__.r(__webpack_exports__);
     //Analizar bien este caso del NoArrrows
     // el tipo puede ser String o Boolean
     NoArrows: {
-      type: String
+      type: Boolean
     },
     NoDots: String
   },
@@ -200,7 +200,8 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("v-carousel", {
     staticStyle: {
-      "border-radius": "5px"
+      "border-radius": "5px",
+      width: "100%"
     },
     attrs: {
       "show-arrows": _vm.NoArrows,
@@ -373,10 +374,9 @@ var render = function render() {
       outlined: "outlined"
     }
   }), _vm._v(" "), _c("carousel", {
-    staticClass: "ancho",
     attrs: {
       "no-dots": "",
-      NoArrows: "false"
+      NoArrows: true
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "prueba"
@@ -386,7 +386,8 @@ var render = function render() {
       descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
       idItem: "1",
       textColor: "white--text",
-      colorCard: "#23272B"
+      colorCard: "#23272B",
+      img: "/public/assets/img/idovela-banner.png"
     }
   }), _vm._v(" "), _c("item-product", {
     attrs: {
@@ -449,7 +450,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.v-application--is-ltr .v-window__next {\r\n    margin-top: 200px;\n}\n.v-application--is-ltr .v-window__prev {\r\n    margin-top: 200px;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-application--is-ltr .v-window__next {\r\n    margin-top: 14.5em;\n}\n.v-application--is-ltr .v-window__prev {\r\n    margin-top: 14.5em;\n}\r\n", ""]);
 
 // exports
 
@@ -468,7 +469,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.fondo{\n    background-color: black;\n    width: 100%;\n    height: 100%;\n}\n.prueba\n{\n    display: flex;\n    padding: 20px;\n}\n.ancho\n{\n    width: 500px;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.fondo{\n    background-color: black;\n    width: 100%;\n    height: 100%;\n}\n.prueba\n{\n    display: flex;\n    padding: 20px;\n}\n\n", ""]);
 
 // exports
 
