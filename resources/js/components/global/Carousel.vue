@@ -1,10 +1,31 @@
 <template>
-    <v-carousel
+    <v-carousel style="border-radius: 5px; width: 100%"
         :show-arrows="NoArrows"
-        v-bind:hide-delimiters="NoDots"
+        :hide-delimiters="NoDots"
         >
+        <template v-slot:prev="{ on, attrs }">
+            <v-btn small
+                style="font-size: 20px; height: 35px; min-width: 35px; padding: 0px"
+                color="#26272B"
+                v-bind="attrs"
+                v-on="on"
+            ><i class="las la-angle-left"></i></v-btn>
+        </template>
+        <template v-slot:next="{ on, attrs }">
+            <v-btn small
+                style="font-size: 20px; height: 35px; min-width: 35px; padding: 0px"
+                color="#26272B"
+                v-bind="attrs"
+                v-on="on"
+            ><i class="las la-angle-right"></i></v-btn>
+        </template>
         <v-carousel-item
-        :src="image"
+            v-for="(imagen, i) in imagenes"
+            :key="i"
+            :src="imagen.src"
+            cycle
+
+
         >
         </v-carousel-item>
     </v-carousel>
@@ -17,13 +38,26 @@ export default {
         //Analizar bien este caso del NoArrrows
         // el tipo puede ser String o Boolean
         NoArrows: {
-            type:String,
+            type:Boolean,
         },
         NoDots:String,
-        image: {
-            type:String,
-            default:"/public/assets/img/placeholder-rect.jpg",
-        }
     },
+    data (){
+        return{
+            imagenes: [
+            {src:"/public/assets/img/placeholder-rect.jpg"},
+            {src:"/public/assets/img/placeholder-rect.jpg"}
+        ]
+        }
+    }
 };
 </script>
+
+<style>
+.v-application--is-ltr .v-window__next {
+    margin-top: 14.5em;
+}
+.v-application--is-ltr .v-window__prev {
+    margin-top: 14.5em;
+}
+</style>

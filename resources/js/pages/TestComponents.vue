@@ -12,8 +12,8 @@
         outlined="outlined"   
     ></custom-button>
 
-    <carousel no-dots no-arrows>
-
+    <carousel no-dots :NoArrows="true"
+    >   
     </carousel>
 
     <div class="prueba">
@@ -23,6 +23,7 @@
             idItem="1"
             textColor="white--text"
             colorCard="#23272B"
+            img="/public/assets/img/idovela-banner.png"
         ></item-product>
 
         <item-product
