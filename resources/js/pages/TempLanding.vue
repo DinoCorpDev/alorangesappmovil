@@ -46,9 +46,7 @@
         />
       </v-col>
     </v-row>
-    <!-- -------------------------------------------------------------------------------------------------------- -->
-    
-    <!-- ---------------------------------------------------------------------------------------------------------------- -->
+
     <v-row tag="footer" justify="center">
       <v-col cols="10">
         <div class="info-adicional">
@@ -65,7 +63,6 @@
 
 <script>
 import Servicios from "../components/temp-landing/Servicios.vue";
-
 
 export default {
   name: "TempLanding",
