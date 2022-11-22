@@ -10,6 +10,7 @@ let AllBlogs = () => import("../pages/AllBlogs");
 let BlogDetails = () => import("../pages/BlogDetails");
 let TempLanding = () => import("../pages/TempLanding");
 let TestComponents = () => import("../pages/TestComponents");
+let Home2 = () => import("../pages/Home2");
 
 export default [
     {
@@ -22,6 +23,12 @@ export default [
         path: "/test-components",
         component: TestComponents,
         name: "TestComponents",
+        meta: { requiresAuth: false },
+    },
+    {
+        path: "/home2",
+        component: Home2,
+        name: "Home2",
         meta: { requiresAuth: false },
     },
     {

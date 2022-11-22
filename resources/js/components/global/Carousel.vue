@@ -1,5 +1,5 @@
 <template>
-    <v-carousel style="border-radius: 5px; width: 100%"
+    <v-carousel style="border-radius: 5px; width: 100%;"
         :show-arrows="NoArrows"
         :hide-delimiters="NoDots"
         >
@@ -24,7 +24,7 @@
             :key="i"
             :src="imagen.src"
             cycle
-
+            style="height: 786px"
 
         >
         </v-carousel-item>
@@ -44,7 +44,7 @@ export default {
     },
     data (){
         return{
-            imagenes: [
+            imagenes: [ 
             {src:"/public/assets/img/placeholder-rect.jpg"},
             {src:"/public/assets/img/placeholder-rect.jpg"}
         ]

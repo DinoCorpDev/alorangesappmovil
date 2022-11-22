@@ -52,12 +52,14 @@ import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vu
 import Carousel from "../components/global/Carousel.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import ItemProduct from "../components/global/ItemProduct.vue";
+
 export default {
   components: {
     BannerCategoryProduct,
     Carousel,
     CustomButton,
     ItemProduct,
+
   },
 };
 </script>
