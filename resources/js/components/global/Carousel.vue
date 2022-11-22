@@ -24,8 +24,6 @@
             :key="i"
             :src="imagen.src"
             cycle
-
-
         >
         </v-carousel-item>
     </v-carousel>
@@ -35,8 +33,6 @@
 export default {
     name: "Carousel",
     props: {
-        //Analizar bien este caso del NoArrrows
-        // el tipo puede ser String o Boolean
         NoArrows: {
             type:Boolean,
         },
@@ -45,8 +41,12 @@ export default {
     data (){
         return{
             imagenes: [
-            {src:"/public/assets/img/placeholder-rect.jpg"},
-            {src:"/public/assets/img/placeholder-rect.jpg"}
+            {
+                src:"/public/assets/img/placeholder-rect.jpg"
+            },
+            {
+                src:"/public/assets/img/placeholder-rect.jpg"
+            }
         ]
         }
     }
