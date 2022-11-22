@@ -6,9 +6,18 @@
         <v-carousel-item
         :src="img"
         >
-        <h1>{{ title }}</h1>
-        <p>{{ descripcion }}</p>
-        <p>{{ idItem }}</p>
+        <v-row
+            class="justify-content-between"
+            style="margin: 64px 0px 10px 10px;"
+        >
+            <v-col cols="6">
+                <h1 class="text-uppercase">{{ title }}</h1>
+            </v-col>
+            <v-col cols="6">
+                <p>{{ descripcion }}</p>
+                <p>{{ idItem }}</p>
+            </v-col>
+        </v-row>
         </v-carousel-item>
     </v-carousel>
 </template>
