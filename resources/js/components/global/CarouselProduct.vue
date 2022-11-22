@@ -1,6 +1,6 @@
 <template>
-    <v-row style="flex-wrap: wrap;">
-        <v-col cols="4" :class="orientation">
+    <v-row class="d-flex flex-lg-wrap">
+        <v-col class="col-lg-4" :class="orientation">
             <v-card color="#26272B">
                     <v-img
                         :src="imagenes"
@@ -13,7 +13,7 @@
                     </v-card-actions>
                 </v-card>
         </v-col>
-        <v-col cols="8">
+        <v-col class="col-lg-8">
             <v-card
                 color="black"
                 dark
