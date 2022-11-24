@@ -55,7 +55,7 @@
 
                 <div class="mb-4">
                     <h2>Item Producto</h2>
-                    <div class="d-flex justify-start flex-wrap">
+                    <div class="d-flex justify-center flex-wrap">
                         <item-product
                             title="Producto 1"
                             descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
@@ -72,16 +72,22 @@
                     </div>
                 </div>
 
-                <!-- <div class="mb-4">
+                <div class="mb-4">
                     <h2>Banner Categoria</h2>
                     <banner-category-product
                         title="Titulo"
                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                         idItem="100"
                     ></banner-category-product>
+                    <banner-category-product
+                        title="Titulo"
+                        descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+                        idItem="100"
+                        img="/public/assets/img/idovela-banner.png"
+                    ></banner-category-product>
                 </div>
 
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <h2>Carousel de Productos</h2>
                     <carousel-products
                     no-dots
