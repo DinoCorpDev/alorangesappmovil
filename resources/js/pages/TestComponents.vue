@@ -6,26 +6,35 @@
                     <h2>Botones</h2>
                     <custom-button
                         text="Ir a tienda"
-                        variant="light"
                         icon="la-store-alt"
-                        class="black--text"
                     ></custom-button>
                     <custom-button
                         text="Comunicarse con ventas"
-                        variant="light"
+                        variant="blue darken-4"
                         outlined
+                        variant-text="white--text"
+                    ></custom-button>
+                    <custom-button
+                        text="Comprar"
+                        variant="blue darken-4"
+                        variant-text="white--text"
+                        disabled
                     ></custom-button>
                 </div>
 
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <h2>Carousel</h2>
                     <carousel
+                        no-arrows="true"
+                    ></carousel>
+                    <carousel
+                        class="mt-2"
                         no-dots
                         no-arrows="true"
                     ></carousel>
-                </div>
+                </div> -->
 
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <h2>Selector</h2>
                     <select-custom
                     ></select-custom>
@@ -42,21 +51,28 @@
                         idItem="1"
                         orientation="order-1"
                     ></carousel-product>
-                </div>
+                </div> -->
 
                 <div class="mb-4">
                     <h2>Item Producto</h2>
-                    <item-product
-                        title="Producto 1"
-                        descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                        idItem="1"
-                        textColor="white--text"
-                        colorCard="#23272B"
-                        img="/public/assets/img/idovela-banner.png"
-                    ></item-product>
+                    <div class="d-flex justify-start flex-wrap">
+                        <item-product
+                            title="Producto 1"
+                            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+                            idItem="1"
+                            class="mt-5 mb-4 ms-3 me-3"
+                        ></item-product>
+                        <item-product
+                            title="Producto 1"
+                            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+                            idItem="1"
+                            img="/public/assets/img/landing/Pacto-Ambiental.jpg"
+                            class="mt-5 mb-4 ms-3 me-3"
+                        ></item-product>
+                    </div>
                 </div>
 
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <h2>Banner Categoria</h2>
                     <banner-category-product
                         title="Titulo"
@@ -71,7 +87,7 @@
                     no-dots
                     no-arrows="true"
                     ></carousel-products>
-                </div>
+                </div> -->
 
             </v-col>
         </v-row>
