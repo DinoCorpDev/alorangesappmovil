@@ -1,14 +1,16 @@
 <template>
-    <div class="div-select">
+    <div>
         <v-select
-            :items="['Foo', 'Bar', 'Fizz', 'Buzz']"
-            label="Fizzbuzz"
+            class="text-uppercase"
+            :items="['COLOMBIA', 'DEUTSCHLAND', 'ENGLAND', 'Buzz']"
+            label="Seleccionar país"
             color="#343A40"
+            solo
         >
             <template v-slot:item="{ item, attrs, on }">
                 <v-list-item
-                v-bind="attrs"
-                v-on="on"
+                    v-bind="attrs"
+                    v-on="on"
                 >
                     <v-list-item-title
                         :id="attrs['aria-labelledby']"
