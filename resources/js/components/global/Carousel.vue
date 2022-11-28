@@ -1,10 +1,15 @@
 <template>
-    <v-carousel style="border-radius: 5px; width: 100%"
-        :show-arrows="NoArrows"
-        :hide-delimiters="NoDots"
+    <v-carousel
+            class="rounded"
+            :style="`height: ${height}`"
+            style="width: 100%"
+            :show-arrows="NoArrows"
+            :hide-delimiters="NoDots"
+            hide-delimiter-background
         >
         <template v-slot:prev="{ on, attrs }">
-            <v-btn small
+            <v-btn
+                small
                 style="font-size: 20px; height: 35px; min-width: 35px; padding: 0px"
                 color="#26272B"
                 v-bind="attrs"
@@ -22,9 +27,11 @@
         <v-carousel-item
             v-for="(imagen, i) in imagenes"
             :key="i"
-            :src="imagen.src"
-            cycle
         >
+            <v-img
+                style="height: 100%; width: 100%;"
+                :src="imagenes"
+            ></v-img>
         </v-carousel-item>
     </v-carousel>
 </template>
@@ -37,27 +44,35 @@ export default {
             type:Boolean,
         },
         NoDots:String,
-    },
-    data (){
-        return{
-            imagenes: [
-            {
-                src:"/public/assets/img/placeholder-rect.jpg"
-            },
-            {
-                src:"/public/assets/img/placeholder-rect.jpg"
-            }
-        ]
+        height: {
+            type:String,
+            default: "100%",
+        },
+        imagenes: {
+            type: Array,
+            default: "/public/assets/img/placeholder-rect.jpg",
         }
-    }
+    },
+    // data (){
+    //     return{
+    //         imagenes: [
+    //             {
+    //                 src:"/public/assets/img/placeholder-rect.jpg"
+    //             },
+    //             {
+    //                 src:"/public/assets/img/shop-confirmation.jpg"
+    //             }
+    //         ]
+    //     }
+    // }
 };
 </script>
 
 <style>
-.v-application--is-ltr .v-window__next {
-    margin-top: 14.5em;
+/* .v-application--is-ltr .v-window__next {
+    margin-top: 13.5em;
 }
 .v-application--is-ltr .v-window__prev {
-    margin-top: 14.5em;
-}
+    margin-top: 13.5em;
+} */
 </style>

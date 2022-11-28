@@ -22,25 +22,26 @@
                     ></custom-button>
                 </div>
 
-                <!-- <div class="mb-4">
+                <div class="mb-4">
                     <h2>Carousel</h2>
                     <carousel
                         no-arrows="true"
+                        imagenes="{`/public/assets/img/shop-confirmation.jpg`}"
                     ></carousel>
                     <carousel
                         class="mt-2"
-                        no-dots
                         no-arrows="true"
+                        height="300px"
                     ></carousel>
-                </div> -->
+                </div>
 
-                <!-- <div class="mb-4">
+                <div class="mb-4">
                     <h2>Selector</h2>
                     <select-custom
                     ></select-custom>
                 </div>
 
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <h2>Producto con Carousel</h2>
                     <carousel-product
                         no-dots
