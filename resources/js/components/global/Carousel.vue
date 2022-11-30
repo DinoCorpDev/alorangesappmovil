@@ -1,35 +1,26 @@
 <template>
   <v-carousel
-    style="border-radius: 5px; width: 100%"
-    :show-arrows="NoArrows"
-    :hide-delimiters="NoDots"
+    :hide-delimiters="hideDelimiters"
+    :show-arrows="showArrows"
+    height="100%"
   >
     <template v-slot:prev="{ on, attrs }">
-      <v-btn
-        small
-        style="font-size: 20px; height: 35px; min-width: 35px; padding: 0px"
-        color="#26272B"
-        v-bind="attrs"
-        v-on="on"
-        ><i class="las la-angle-left"></i
-      ></v-btn>
+      <v-btn small color="#000000" v-bind="attrs" v-on="on">
+        <i class="las la-angle-left"></i>
+      </v-btn>
     </template>
     <template v-slot:next="{ on, attrs }">
-      <v-btn
-        small
-        style="font-size: 20px; height: 35px; min-width: 35px; padding: 0px"
-        color="#26272B"
-        v-bind="attrs"
-        v-on="on"
-        ><i class="las la-angle-right"></i
-      ></v-btn>
+      <v-btn small color="#000000" v-bind="attrs" v-on="on">
+        <i class="las la-angle-right"></i>
+      </v-btn>
     </template>
-    <v-carousel-item
-      v-for="(imagen, i) in imagenes"
-      :key="i"
-      :src="imagen.src"
-      cycle
-    >
+    <template v-if="slides.length > 0">
+      <v-carousel-item v-for="(slide, i) in slides" :key="i">
+        <v-img :src="slide.src" :aspect-ratio="aspectRatio" />
+      </v-carousel-item>
+    </template>
+    <v-carousel-item v-else>
+      <v-img :src="itemPlaceholderUrl" :aspect-ratio="aspectRatio" />
     </v-carousel-item>
   </v-carousel>
 </template>
@@ -38,27 +29,81 @@
 export default {
   name: "Carousel",
   props: {
-    NoArrows: {
+    showArrows: {
       type: Boolean,
+      default: true,
     },
-    NoDots: String,
+    hideDelimiters: {
+      type: Boolean,
+      default: false,
+    },
+    aspectRatio: {
+      type: String,
+      default: "1.5",
+    },
+    slides: {
+      type: Array,
+      default: [],
+    },
   },
   data() {
     return {
-      imagenes: [
-        { src: "/public/assets/img/placeholder-rect.jpg" },
-        { src: "/public/assets/img/placeholder-rect.jpg" },
-      ],
+      itemPlaceholderUrl: "/public/assets/img/carousel-item-placeholder.png",
     };
   },
 };
 </script>
 
-<style>
-.v-application--is-ltr .v-window__next {
-  margin-top: 14.5em;
-}
-.v-application--is-ltr .v-window__prev {
-  margin-top: 14.5em;
+<style lang="scss" scoped>
+.v-carousel {
+  border-radius: 10px;
+  background-color: #242526;
+
+  &::v-deep {
+    .v-window__next,
+    .v-window__prev {
+      top: calc(100% - 52px);
+      z-index: 2;
+      background: transparent;
+      border-radius: 0;
+
+      .v-btn {
+        font-size: 20px;
+        height: 38px;
+        min-width: 38px;
+        padding: 0px;
+        border-radius: 5px;
+        opacity: 0.5;
+      }
+    }
+
+    .v-carousel__controls {
+      background: transparent;
+
+      .v-item-group {
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .v-carousel__controls__item {
+        height: 8px;
+        width: 8px;
+        color: #000000;
+
+        &.v-item--active {
+          color: #18191a;
+
+          &:before {
+            opacity: 1;
+          }
+        }
+
+        &:before {
+          opacity: 0.1;
+        }
+      }
+    }
+  }
 }
 </style>

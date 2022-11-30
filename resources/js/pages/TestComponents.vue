@@ -19,7 +19,7 @@
 
         <div class="mb-4">
           <h2>Carousel</h2>
-          <carousel no-dots no-arrows="true"></carousel>
+          <carousel />
         </div>
 
         <div class="mb-4">
