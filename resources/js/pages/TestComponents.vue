@@ -31,7 +31,7 @@
 
         <!-- <div class="mb-4">
                     <h2>Producto con Carousel</h2>
-                    <carousel-product
+                    <presentation-banner
                         no-dots
                         no-arrows="true"
                         category="Preambulo"
@@ -39,7 +39,7 @@
                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                         idItem="1"
                         orientation="order-1"
-                    ></carousel-product>
+                    ></presentation-banner>
                 </div> -->
 
         <div class="mb-4">
@@ -91,16 +91,17 @@
 <script>
 import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vue";
 import Carousel from "../components/global/Carousel.vue";
-import CarouselProduct from "../components/global/CarouselProduct.vue";
+import PresentationBanner from "../components/global/PresentationBanner.vue";
 import CarouselProducts from "../components/global/CarouselProducts.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import ItemProduct from "../components/global/ItemProduct.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
+
 export default {
   components: {
     BannerCategoryProduct,
     Carousel,
-    CarouselProduct,
+    PresentationBanner,
     CarouselProducts,
     CustomButton,
     ItemProduct,

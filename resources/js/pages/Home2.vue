@@ -31,7 +31,7 @@
     </v-card>
     <v-container fluid>
       <v-row align="center">
-        <v-col cols="5">
+        <v-col cols="12" md="5">
           <h1 class="mb-8">
             iDOVELA <br />
             Para un mundo más habitable
@@ -44,26 +44,19 @@
           <custom-button
             style="width: 422px"
             text="Comunicarse con ventas"
-            variant="light"
+            variant="white"
             outlined
           />
           <!-- <select-custom></select-custom> -->
         </v-col>
-        <v-col cols="7">
+        <v-col cols="12" md="7">
           <carousel />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col cols="12">
-          <carousel-product
-            no-dots
-            no-arrows="true"
-            category="Preambulo"
-            title="Producto 1"
-            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-            idItem="1"
-          ></carousel-product>
+          <presentation-banner />
         </v-col>
       </v-row>
 
@@ -79,15 +72,7 @@
 
       <v-row>
         <v-col cols="12">
-          <carousel-product
-            no-dots
-            no-arrows="true"
-            category="Preambulo"
-            title="Producto 1"
-            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-            idItem="1"
-            orientation="order-1"
-          ></carousel-product>
+          <presentation-banner />
         </v-col>
       </v-row>
 
@@ -99,28 +84,13 @@
 
       <v-row>
         <v-col cols="12">
-          <carousel-product
-            no-dots
-            no-arrows="true"
-            category="Preambulo"
-            title="Producto 1"
-            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-            idItem="1"
-          ></carousel-product>
+          <presentation-banner />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col cols="12">
-          <carousel-product
-            no-dots
-            no-arrows="true"
-            category="Preambulo"
-            title="Producto 1"
-            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-            idItem="1"
-            orientation="order-1"
-          ></carousel-product>
+          <presentation-banner />
         </v-col>
       </v-row>
 
@@ -143,7 +113,7 @@ import Carousel from "../components/global/Carousel.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import ItemProduct from "../components/global/ItemProduct.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
-import CarouselProduct from "../components/global/CarouselProduct.vue";
+import PresentationBanner from "../components/global/PresentationBanner.vue";
 import CarouselProducts from "../components/global/CarouselProducts.vue";
 
 export default {
@@ -153,7 +123,7 @@ export default {
     CustomButton,
     ItemProduct,
     SelectCustom,
-    CarouselProduct,
+    PresentationBanner,
     CarouselProducts,
   },
 };
@@ -161,13 +131,10 @@ export default {
 
 <style>
 .v-main {
-  background-color: #242526;
+  background-color: #000000;
 }
 
 @media (min-width: 1264px) {
-  .v-main {
-    background-color: #000000;
-  }
   .tamaño-boton-desktop {
     width: 221px;
     height: 38px;

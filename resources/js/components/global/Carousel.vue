@@ -2,7 +2,7 @@
   <v-carousel
     :hide-delimiters="hideDelimiters"
     :show-arrows="showArrows"
-    height="100%"
+    height="auto"
   >
     <template v-slot:prev="{ on, attrs }">
       <v-btn small color="#000000" v-bind="attrs" v-on="on">
@@ -20,7 +20,7 @@
       </v-carousel-item>
     </template>
     <v-carousel-item v-else>
-      <v-img :src="itemPlaceholderUrl" :aspect-ratio="aspectRatio" />
+      <v-img :src="itemPlaceholderUrl" :aspect-ratio="aspectRatio" contain />
     </v-carousel-item>
   </v-carousel>
 </template>
@@ -37,19 +37,52 @@ export default {
       type: Boolean,
       default: false,
     },
-    aspectRatio: {
-      type: String,
-      default: "1.5",
-    },
     slides: {
       type: Array,
-      default: [],
+      default: () => [],
+    },
+    type: {
+      type: String,
+      default: "single",
     },
   },
   data() {
     return {
       itemPlaceholderUrl: "/public/assets/img/carousel-item-placeholder.png",
     };
+  },
+  computed: {
+    aspectRatio() {
+      if (this.type === "single") {
+        switch (this.$vuetify.breakpoint.name) {
+          case "xs":
+            return "0.8";
+          case "sm":
+            return "1.6";
+          case "md":
+            return "1.4";
+          case "lg":
+            return "1.4";
+          case "xl":
+            return "1.4";
+        }
+      }
+
+      if (this.type === "banner") {
+        switch (this.$vuetify.breakpoint.name) {
+          case "xs":
+            return "1";
+          case "sm":
+            return "1.6";
+          case "md":
+            return "2.1";
+          case "lg":
+            return "2.1";
+          case "xl":
+            return "2.1";
+        }
+      }
+    },
   },
 };
 </script>
