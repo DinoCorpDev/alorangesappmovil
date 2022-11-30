@@ -1,42 +1,55 @@
 <template>
-    <v-carousel
-        :show-arrows="false"
-        hide-delimiters
+    <v-banner
+    >
+        <v-img
+            class="rounded"
+            :src="img"
+            aspect-ratio="3.12"
         >
-        <v-carousel-item
-        :src="img"
-        >
-        <v-row
-            class="justify-content-between"
-            style="margin: 64px 0px 10px 10px;"
-        >
-            <v-col cols="6">
-                <h1 class="text-uppercase">{{ title }}</h1>
-            </v-col>
-            <v-col cols="6">
-                <p>{{ descripcion }}</p>
-                <p>{{ idItem }}</p>
-            </v-col>
-        </v-row>
-        </v-carousel-item>
-    </v-carousel>
+            <div class="cols">
+                <div class="col1">
+                    <h1 class="text-uppercase white--text">{{ title }}</h1>
+                </div>
+                <div class="col2">
+                    <span class="white--text">{{ descripcion }}</span>
+                    <br>
+                    <span class="white--text">{{ idItem }}</span>
+                </div>
+            </div>
+        </v-img>
+    </v-banner>
 </template>
 
 <script>
 export default {
     name: "BannerCategoryProduct",
     props: {
-        title:String,
-        descripcion:String,
+        title: String,
+        descripcion: String,
         img: {
-            type:String,
-            default:"/public/assets/img/placeholder-rect.jpg",
+            type: String,
+            default: "/public/assets/img/placeholder-rect.jpg",
         },
-        idItem:String,
+        idItem: String,
         variant: {
-            type:String,
-            default: "black"
+            type: String,
+            default: "black",
         },
     },
 };
 </script>
+
+<style>
+.cols {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0px 10px 20px 20px;
+}
+.col1 {
+    width: 50%;
+}
+.col2 {
+    width: 50%;
+}
+</style>

@@ -1,13 +1,14 @@
 <template>
-    <v-card class="mx-auto" max-width="33.33%" :color="colorCard" height="auto" >
+    <v-card class="dark" max-width="344">
         <v-img
             :src="img"
-            height="200px"
+            class="img-fluid"
+            aspect-ratio="2.15"
         ></v-img>
-        <v-card-title class="pt-6" :class="textColor">{{ title }}</v-card-title>
-        <v-card-text class="pr-16" :class="textColor" >{{ descripcion }}</v-card-text>
+        <v-card-title class="white--text text-uppercase">{{ title }}</v-card-title>
+        <v-card-text class="white--text">{{ descripcion }}</v-card-text>
         <v-card-actions>
-            <v-btn color="orange lighten-2" text> {{ idItem }} </v-btn>
+            <v-btn>{{ idItem }}</v-btn>
         </v-card-actions>
     </v-card>
 </template>
@@ -23,8 +24,6 @@ export default {
         title:String,
         descripcion:String,
         idItem:String,
-        textColor:String,
-        colorCard:String,
     },
 };
 </script>

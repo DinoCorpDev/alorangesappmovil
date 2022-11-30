@@ -1,55 +1,55 @@
 <template>
-  <v-btn
-    class="text-uppercase custom-button"
-    :color="variant"
-    :outlined="outlined"
-    :disabled="disabled"
-    :small="small"
-    :large="large"
-    :block="block"
-  >
-    <i
-      v-if="icon"
-      :class="`las ${icon}`"
-      :style="`font-size: ${sizeIcon}; ${stylesIcon}`"
-    ></i>
-    <span>{{ text }}</span>
-  </v-btn>
+    <v-btn
+        class="text-uppercase"
+        :color="variant"
+        :outlined="outlined"
+        :disabled="disabled"
+        :small="small"
+        :large="large"
+        :block="block"
+    >
+        <i
+            v-if="icon"
+            :class="`las ${icon}`"
+            :style="`font-size: ${sizeIcon}; ${stylesIcon}`"
+        ></i>
+        <span :class="VariantText">{{ text }}</span>
+    </v-btn>
 </template>
 
 <script>
 export default {
-  name: "CustomButton",
-  props: {
-    text: String,
-    icon: {
-      type: String,
+    name: "CustomButton",
+    props: {
+        text: String,
+        VariantText: String,
+        icon: {
+            type: String,
+        },
+        variant: {
+            type: String,
+            default: "light",
+        },
+        outlined: {
+            type: Boolean,
+            default: false,
+        },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+        small: String,
+        large: String,
+        block: String,
+        sizeIcon: {
+            type: String,
+            default: "20px",
+        },
+        stylesIcon: {
+            type: String,
+            default: "margin-right: 10px;",
+        },
     },
-    variant: {
-      type: String,
-      default: "light",
-    },
-    outlined: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    small: String,
-    large: String,
-    block: String,
-    ml: String,
-    sizeIcon: {
-      type: String,
-      default: "20px",
-    },
-    stylesIcon: {
-      type: String,
-      default: "margin-right: 10px;",
-    },
-  },
 };
 </script>
 

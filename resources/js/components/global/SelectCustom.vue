@@ -1,52 +1,46 @@
 <template>
-    <div>
-        <v-select
-            class="text-uppercase"
-            :items="['COLOMBIA', 'DEUTSCHLAND', 'ENGLAND', 'Buzz']"
-            label="Seleccionar país"
-            color="#343A40"
-            solo
-        >
-            <template v-slot:item="{ item, attrs, on }">
-                <v-list-item
-                    v-bind="attrs"
-                    v-on="on"
-                >
-                    <v-list-item-title
-                        :id="attrs['aria-labelledby']"
-                        v-text="item"
-                    ></v-list-item-title>
-                </v-list-item>
-            </template>
-        </v-select>
-    </div>
+  <v-select
+    class="text-uppercase"
+    :items="['COLOMBIA', 'DEUTSCHLAND', 'ENGLAND']"
+    label="Seleccionar país"
+    solo
+  >
+    <template v-slot:item="{ item, attrs, on }">
+      <v-list-item v-bind="attrs" v-on="on">
+        <v-list-item-title
+          :id="attrs['aria-labelledby']"
+          v-text="item"
+        ></v-list-item-title>
+      </v-list-item>
+    </template>
+  </v-select>
 </template>
 
 <script>
 export default {
-    name: "SelectCustom",
+  name: "SelectCustom",
 };
 </script>
 
 <style>
 .div-select {
-    background: #343A40;
-    padding: 0rem 1rem;
-    border-radius: 0.3rem;
+  background: #343a40;
+  padding: 0rem 1rem;
+  border-radius: 0.3rem;
 }
 .v-list-item__title {
-    color: #F8F9FA ;
+  color: #f8f9fa;
 }
 .v-label {
-    color: #F8F9FA !important;
+  color: #f8f9fa !important;
 }
 
 .v-select__selections {
-    color: #F8F9FA;
+  color: #f8f9fa;
 }
 
 .theme--light.v-list {
-    background: #343A40
+  background: #343a40;
 }
 </style>
 
