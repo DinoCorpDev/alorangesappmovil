@@ -11,14 +11,11 @@ const vuetify = new Vuetify({
                 white: "#f8f9fa",
                 black: "#343A40",
             },
+            light: {
+                light: "#F8F9FA",
+                dark: "#343A40",
+            },
         },
-        // themes: {
-        //     light: {
-        //         light: "#F8F9FA",
-        //         dark: "#343A40",
-        //     },
-        // },
-        // disable: true,
     },
 });
 
