@@ -1,5 +1,5 @@
 <template>
-    <v-card class="dark" max-width="344">
+    <v-card class="dark" height="100%">
         <v-img
             :src="img"
             class="img-fluid"

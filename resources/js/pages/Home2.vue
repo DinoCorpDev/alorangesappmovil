@@ -56,7 +56,7 @@
 
       <v-row>
         <v-col cols="12">
-          <presentation-banner />
+          <presentation-banner :slidesCarousel="slides2" />
         </v-col>
       </v-row>
 
@@ -72,7 +72,7 @@
 
       <v-row>
         <v-col cols="12">
-          <presentation-banner />
+          <presentation-banner :slidesCarousel="slides" />
         </v-col>
       </v-row>
 
@@ -91,6 +91,12 @@
       <v-row>
         <v-col cols="12">
           <presentation-banner />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols="12">
+          <carousel-multiple-items :slides="slidesMultiple"/>
         </v-col>
       </v-row>
 
@@ -115,6 +121,7 @@ import ItemProduct from "../components/global/ItemProduct.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
 import CarouselProducts from "../components/global/CarouselProducts.vue";
+import CarouselMultipleItems from "../components/global/CarouselMultipleItems.vue";
 
 export default {
   components: {
@@ -125,7 +132,111 @@ export default {
     SelectCustom,
     PresentationBanner,
     CarouselProducts,
+    CarouselMultipleItems,
   },
+  data: () => ({
+    slides: [
+        {
+          name: "test1",
+          src: "/public/assets/img/placeholder.jpg",
+
+        },
+        {
+          name: "test2",
+          src: "/public/assets/img/play_store.png",
+
+        },
+        {
+          name: "test3",
+          src: "/public/assets/img/verified.png",
+
+        }
+        
+      ],
+      slides2: [
+        {
+          name: "test1",
+          src: "/public/assets/img/placeholder.jpg",
+
+        },
+        {
+          name: "test2",
+          src: "/public/assets/img/play_store.png",
+
+        },
+        {
+          name: "test3",
+          src: "/public/assets/img/verified.png",
+
+        }
+      ],
+      slidesMultiple: [
+        {
+                    component: ItemProduct,
+                    title: 'Titulo',
+                    descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.',
+                    img: 'https://picsum.photos/500/300?random=1',
+                    idItem: "1"
+                },
+                {
+                    component: ItemProduct,
+                    title: 'Titulo 2',
+                    descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.',
+                    img: 'https://picsum.photos/500/300?random=2',
+                    idItem: "2"
+                },
+                {
+                    component: ItemProduct,
+                    title: 'Titulo 3',
+                    descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.',
+                    img: 'https://picsum.photos/500/300?random=3',
+                    idItem: "3"
+                    
+                },
+                {
+                    component: ItemProduct,
+                    title: 'Titulo 4',
+                    descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.',
+                    img: 'https://picsum.photos/500/300?random=4',
+                    idItem: "4"
+                },
+                {
+                    component: ItemProduct,
+                    title: 'Titulo 5',
+                    descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.',
+                    img: 'https://picsum.photos/500/300?random=5',
+                    idItem: "5"
+                },
+                {
+                    component: ItemProduct,
+                    title: 'Titulo 6',
+                    descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.',
+                    img: 'https://picsum.photos/500/300?random=6',
+                    idItem: "6"
+                },
+                {
+                    component: ItemProduct,
+                    title: 'Titulo 7',
+                    descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.',
+                    img: 'https://picsum.photos/500/300?random=7',
+                    idItem: "7"
+                },
+                {
+                    component: ItemProduct,
+                    title: 'Titulo 8',
+                    descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.',
+                    img: 'https://picsum.photos/500/300?random=8',
+                    idItem: "8"
+                },
+                {
+                    component: ItemProduct,
+                    title: 'Titulo 9',
+                    descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.',
+                    img: 'https://picsum.photos/500/300?random=9',
+                    idItem: "9"
+                },
+      ]
+  })
 };
 </script>
 

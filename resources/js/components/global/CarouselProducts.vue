@@ -20,7 +20,7 @@
         </template>
         <v-carousel-item
         >
-            <v-card class="mx-auto" max-width="33.33%" :color="colorCard" height="auto" >
+           <v-card class="mx-auto" max-width="33.33%" :color="colorCard" height="auto" >
                 <v-img
                     :src="img"
                     height="200px"

@@ -32,7 +32,7 @@
       </div>
     </v-col>
     <v-col cols="12" md="8">
-      <carousel type="banner" />
+      <carousel type="banner" :slides="slidesCarousel" />
     </v-col>
   </v-row>
 </template>
@@ -62,11 +62,18 @@ export default {
       type: String,
       default: "left",
     },
+    slidesCarousel: {
+      type: Array,
+      default: () => [],
+  
+    }
   },
   data() {
     return {
       presetationBannerLogoUrl:
         "/public/assets/img/presentation-banner-logo.png",
+      
+      
     };
   },
   components: {

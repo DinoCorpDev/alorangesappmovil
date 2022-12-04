@@ -26,6 +26,7 @@ export default [
         name: "TestComponents",
         meta: { requiresAuth: false },
     },
+   
     {
         path: "/home3",
         component: Home3,
