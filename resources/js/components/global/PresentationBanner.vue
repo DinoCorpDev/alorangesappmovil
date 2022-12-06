@@ -28,15 +28,15 @@
 </template>
 
 <script>
-import Carousel from './Carousel';
-import CustomButton from './CustomButton.vue';
+import Carousel from "./Carousel";
+import CustomButton from "./CustomButton.vue";
 
 export default {
-  name: 'PresentationBanner',
+  name: "PresentationBanner",
   props: {
     title: {
       type: String,
-      default: 'Titulo'
+      default: "Titulo"
     },
     description: {
       type: String,
@@ -46,11 +46,11 @@ export default {
     idItem: String,
     categories: {
       type: Array,
-      default: () => ['Preámbulo']
+      default: () => ["Preámbulo"]
     },
     orientation: {
       type: String,
-      default: 'left'
+      default: "left"
     },
     slidesCarousel: {
       type: Array,
@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      presetationBannerLogoUrl: '/public/assets/img/presentation-banner-logo.png'
+      presetationBannerLogoUrl: "/public/assets/img/presentation-banner-logo.png"
     };
   },
   components: {
