@@ -11,12 +11,7 @@
             outlined
             variant-text="white--text"
           ></custom-button>
-          <custom-button
-            text="Comprar"
-            variant="blue darken-4"
-            variant-text="white--text"
-            disabled
-          ></custom-button>
+          <custom-button text="Comprar" variant="blue darken-4" variant-text="white--text" disabled></custom-button>
         </div>
 
         <div class="mb-4">
@@ -44,21 +39,26 @@
 
         <div class="mb-4">
           <h2>Item Producto</h2>
-          <div class="d-flex justify-center flex-wrap">
-            <item-product
-              title="Producto 1"
-              descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-              idItem="1"
-              class="mt-5 mb-4 ms-3 me-3"
-            ></item-product>
-            <item-product
-              title="Producto 1"
-              descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-              idItem="1"
-              img="/public/assets/img/landing/Pacto-Ambiental.jpg"
-              class="mt-5 mb-4 ms-3 me-3"
-            ></item-product>
-          </div>
+          <v-row>
+            <v-col cols="4">
+              <product-item />
+            </v-col>
+            <v-col cols="4">
+              <product-item
+                title="Producto 1"
+                descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+                idItem="1"
+              ></product-item>
+            </v-col>
+            <v-col cols="4">
+              <product-item
+                title="Producto 1"
+                descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+                idItem="1"
+                img="/public/assets/img/landing/Pacto-Ambiental.jpg"
+              ></product-item>
+            </v-col>
+          </v-row>
         </div>
 
         <div class="mb-4">
@@ -89,13 +89,13 @@
 </template>
 
 <script>
-import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vue";
-import Carousel from "../components/global/Carousel.vue";
-import PresentationBanner from "../components/global/PresentationBanner.vue";
-import CarouselProducts from "../components/global/CarouselProducts.vue";
-import CustomButton from "../components/global/CustomButton.vue";
-import ItemProduct from "../components/global/ItemProduct.vue";
-import SelectCustom from "../components/global/SelectCustom.vue";
+import BannerCategoryProduct from '../components/global/BannerCategoryProduct.vue';
+import Carousel from '../components/global/Carousel.vue';
+import PresentationBanner from '../components/global/PresentationBanner.vue';
+import CarouselProducts from '../components/global/CarouselProducts.vue';
+import CustomButton from '../components/global/CustomButton.vue';
+import ProductItem from '../components/global/ProductItem.vue';
+import SelectCustom from '../components/global/SelectCustom.vue';
 
 export default {
   components: {
@@ -104,9 +104,9 @@ export default {
     PresentationBanner,
     CarouselProducts,
     CustomButton,
-    ItemProduct,
-    SelectCustom,
-  },
+    ProductItem,
+    SelectCustom
+  }
 };
 </script>
 

@@ -1,22 +1,12 @@
 <template>
-  <v-row
-    :class="orientation === 'left' ? 'panel-left' : 'panel-rigth'"
-    no-gutters
-  >
+  <v-row :class="orientation === 'left' ? 'panel-left' : 'panel-rigth'" no-gutters>
     <v-col cols="12" md="4">
       <div class="panel pa-4">
         <div>
-          <v-img
-            :src="presetationBannerLogoUrl"
-            class="mt-md-6 mb-5"
-            width="48"
-          />
+          <v-img :src="presetationBannerLogoUrl" class="mt-md-6 mb-5" width="48" />
           <div class="mb-3">
             <template v-for="category in categories">
-              <span
-                class="subtitle1 text-uppercase font-weight-bold"
-                :key="`category-${category}`"
-              >
+              <span class="subtitle1 text-uppercase font-weight-bold" :key="`category-${category}`">
                 {{ category }}
               </span>
             </template>
@@ -38,48 +28,44 @@
 </template>
 
 <script>
-import Carousel from "./Carousel";
-import CustomButton from "./CustomButton.vue";
+import Carousel from './Carousel';
+import CustomButton from './CustomButton.vue';
 
 export default {
-  name: "PresentationBanner",
+  name: 'PresentationBanner',
   props: {
     title: {
       type: String,
-      default: "Titulo",
+      default: 'Titulo'
     },
     description: {
       type: String,
       default:
-        "Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text. Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text.",
+        "Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text. Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text."
     },
     idItem: String,
     categories: {
       type: Array,
-      default: () => ["Preámbulo"],
+      default: () => ['Preámbulo']
     },
     orientation: {
       type: String,
-      default: "left",
+      default: 'left'
     },
     slidesCarousel: {
       type: Array,
-      default: () => [],
-  
+      default: () => []
     }
   },
   data() {
     return {
-      presetationBannerLogoUrl:
-        "/public/assets/img/presentation-banner-logo.png",
-      
-      
+      presetationBannerLogoUrl: '/public/assets/img/presentation-banner-logo.png'
     };
   },
   components: {
     Carousel,
-    CustomButton,
-  },
+    CustomButton
+  }
 };
 </script>
 
