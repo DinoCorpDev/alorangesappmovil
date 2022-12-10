@@ -4,6 +4,7 @@
     :items="['COLOMBIA', 'DEUTSCHLAND', 'ENGLAND']"
     label="Seleccionar país"
     solo
+    append-icon="las la-angle-down"
   >
     <template v-slot:item="{ item, attrs, on }">
       <v-list-item v-bind="attrs" v-on="on">

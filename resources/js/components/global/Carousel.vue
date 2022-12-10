@@ -20,7 +20,7 @@
       </v-carousel-item>
     </template>
     <v-carousel-item v-else>
-      <v-img :src="itemPlaceholderUrl" :aspect-ratio="aspectRatio" contain />
+      <v-img :src="itemPlaceholderUrl" :aspect-ratio="aspectRatio" contain/>
     </v-carousel-item>
   </v-carousel>
 </template>
@@ -88,6 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .v-carousel {
   border-radius: 10px;
   background-color: #242526;

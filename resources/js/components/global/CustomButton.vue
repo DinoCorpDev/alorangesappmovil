@@ -6,7 +6,8 @@
     :disabled="disabled"
     :large="large"
     :block="block"
-    small
+    :small="small"
+    :width="width"
   >
     <i
       v-if="icon"
@@ -22,6 +23,7 @@ export default {
   name: "CustomButton",
   props: {
     text: String,
+    width: String,
     VariantText: String,
     icon: {
       type: String,
