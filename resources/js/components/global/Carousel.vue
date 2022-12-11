@@ -2,7 +2,9 @@
   <v-carousel
     :hide-delimiters="hideDelimiters"
     :show-arrows="showArrows"
+    style="height: 100%"
     height="auto"
+    
   >
     <template v-slot:prev="{ on, attrs }">
       <v-btn small color="#000000" v-bind="attrs" v-on="on">
@@ -89,6 +91,10 @@ export default {
 
 <style lang="scss" scoped>
 
+.v-carousel .v-window-item {
+    display: flex;
+    align-items: center;
+}
 .v-carousel {
   border-radius: 10px;
   background-color: #242526;
@@ -110,7 +116,9 @@ export default {
         opacity: 0.5;
       }
     }
-
+    .v-window__container {
+     height: 100% !important;
+    }
     .v-carousel__controls {
       background: transparent;
 
@@ -140,4 +148,5 @@ export default {
     }
   }
 }
+
 </style>
