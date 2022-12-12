@@ -70,27 +70,27 @@
             <v-row class="d-flex justify-center">
               <v-col cols="2">
                 <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4">Usuario</span>
+                  <span class="body1 mt-4 text">Usuario</span>
                 </div>
               </v-col>
               <v-col cols="2">
                 <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4">Organizar</span>
+                  <span class="body1 mt-4 text">Organizar</span>
                 </div>
               </v-col>
               <v-col cols="2">
                 <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4">Evaluar</span>
+                  <span class="body1 mt-4 text">Evaluar</span>
                 </div>
               </v-col>
               <v-col cols="2">
                 <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4">Guardar</span>
+                  <span class="body1 mt-4 text">Guardar</span>
                 </div>
               </v-col>
               <v-col cols="2">
                 <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4">Crear</span>
+                  <span class="body1 mt-4 text">Crear</span>
                 </div>
               </v-col>
             </v-row>
@@ -265,7 +265,8 @@ export default {
     margin-top: 0px;
   }
 }
-@media (min-width: 834px) {
+
+@media (max-width: 834px) {
   .poligon {
     width: 100%;
     height: 208px;
@@ -275,7 +276,7 @@ export default {
   }
 }
 
-@media (max-width: 834px) {
+@media (min-width: 429px) {
   .poligon {
     height: 196px;
     background: #242526 0% 0% no-repeat padding-box;
@@ -283,6 +284,16 @@ export default {
     border-radius: 8px;
   }
 }
+
+@media (max-width: 428px) {
+  .text {
+    display:none;
+  }
+  .poligon {
+    background: #18191a 0% 0% no-repeat padding-box;
+  }
+}
+
 
 .div-map {
   width: 100%;
