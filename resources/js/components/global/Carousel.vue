@@ -1,11 +1,5 @@
 <template>
-  <v-carousel
-    :hide-delimiters="hideDelimiters"
-    :show-arrows="showArrows"
-    style="height: 100%"
-    height="auto"
-    
-  >
+  <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" style="height: 100%" height="auto">
     <template v-slot:prev="{ on, attrs }">
       <v-btn small color="#000000" v-bind="attrs" v-on="on">
         <i class="las la-angle-left"></i>
@@ -22,7 +16,7 @@
       </v-carousel-item>
     </template>
     <v-carousel-item v-else>
-      <v-img :src="itemPlaceholderUrl" :aspect-ratio="aspectRatio" contain/>
+      <v-img :src="itemPlaceholderUrl" :aspect-ratio="aspectRatio" contain />
     </v-carousel-item>
   </v-carousel>
 </template>
@@ -33,24 +27,24 @@ export default {
   props: {
     showArrows: {
       type: Boolean,
-      default: true,
+      default: true
     },
     hideDelimiters: {
       type: Boolean,
-      default: false,
+      default: false
     },
     slides: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     type: {
       type: String,
-      default: "single",
-    },
+      default: "single"
+    }
   },
   data() {
     return {
-      itemPlaceholderUrl: "/public/assets/img/carousel-item-placeholder.png",
+      itemPlaceholderUrl: "/public/assets/img/carousel-item-placeholder.png"
     };
   },
   computed: {
@@ -84,16 +78,15 @@ export default {
             return "2.1";
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-
 .v-carousel .v-window-item {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .v-carousel {
   border-radius: 10px;
@@ -117,7 +110,7 @@ export default {
       }
     }
     .v-window__container {
-     height: 100% !important;
+      height: 100% !important;
     }
     .v-carousel__controls {
       background: transparent;
@@ -148,5 +141,4 @@ export default {
     }
   }
 }
-
 </style>

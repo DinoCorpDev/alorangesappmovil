@@ -22,7 +22,7 @@
       </div>
     </v-col>
     <v-col cols="12" md="8" height="100px">
-      <carousel type="banner" :slides="slidesCarousel"/>
+      <carousel type="banner" :slides="slidesCarousel" />
     </v-col>
   </v-row>
 </template>

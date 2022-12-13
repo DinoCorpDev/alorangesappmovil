@@ -9,11 +9,7 @@
     :small="small"
     :width="width"
   >
-    <i
-      v-if="icon"
-      :class="`las ${icon}`"
-      :style="`font-size: ${sizeIcon}; ${stylesIcon}`"
-    ></i>
+    <i v-if="icon" :class="`las ${icon}`" :style="`font-size: ${sizeIcon}; ${stylesIcon}`"></i>
     <span :class="VariantText">{{ text }}</span>
   </v-btn>
 </template>
@@ -26,34 +22,34 @@ export default {
     width: String,
     VariantText: String,
     icon: {
-      type: String,
+      type: String
     },
     variant: {
       type: String,
-      default: "white",
+      default: "white"
     },
     outlined: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     large: String,
     block: {
       type: Boolean,
-      default: false,
+      default: false
     },
     sizeIcon: {
       type: String,
-      default: "20px",
+      default: "20px"
     },
     stylesIcon: {
       type: String,
-      default: "margin-right: 10px;",
-    },
-  },
+      default: "margin-right: 10px;"
+    }
+  }
 };
 </script>
 

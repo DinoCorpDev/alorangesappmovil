@@ -8,10 +8,7 @@
   >
     <template v-slot:item="{ item, attrs, on }">
       <v-list-item v-bind="attrs" v-on="on">
-        <v-list-item-title
-          :id="attrs['aria-labelledby']"
-          v-text="item"
-        ></v-list-item-title>
+        <v-list-item-title :id="attrs['aria-labelledby']" v-text="item"></v-list-item-title>
       </v-list-item>
     </template>
   </v-select>
@@ -19,7 +16,7 @@
 
 <script>
 export default {
-  name: "SelectCustom",
+  name: "SelectCustom"
 };
 </script>
 
