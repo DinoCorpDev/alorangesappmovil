@@ -1,16 +1,18 @@
 <template>
   <v-btn
     class="text-uppercase"
-    :color="variant"
+    :color="color"
     :outlined="outlined"
     :disabled="disabled"
-    :large="large"
     :block="block"
     :small="small"
     :width="width"
+    :dark="dark || this.$vuetify.theme.dark ? false : true"
+    :light="light || this.$vuetify.theme.dark ? true : false"
+    :ripple="false"
   >
-    <i v-if="icon" :class="`las ${icon}`" :style="`font-size: ${sizeIcon}; ${stylesIcon}`"></i>
-    <span :class="VariantText">{{ text }}</span>
+    <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
+    {{ text }}
   </v-btn>
 </template>
 
@@ -20,13 +22,19 @@ export default {
   props: {
     text: String,
     width: String,
-    VariantText: String,
     icon: {
       type: String
     },
-    variant: {
-      type: String,
-      default: "white"
+    dark: {
+      type: Boolean,
+      default: false
+    },
+    light: {
+      type: Boolean,
+      default: false
+    },
+    color: {
+      type: String
     },
     outlined: {
       type: Boolean,
@@ -36,62 +44,74 @@ export default {
       type: Boolean,
       default: false
     },
-    large: String,
     block: {
       type: Boolean,
       default: false
-    },
-    sizeIcon: {
-      type: String,
-      default: "20px"
-    },
-    stylesIcon: {
-      type: String,
-      default: "margin-right: 10px;"
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.theme--dark.v-btn {
-  color: #000000;
-  font-family: "Overpass";
-  font-size: 13px;
+.v-btn {
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 1.25px;
+
+  border-radius: 5px;
+
+  i {
+    font-size: 20px;
+  }
+
+  &:hover:before,
+  &:focus:before {
+    opacity: 1;
+  }
+
+  &.v-size--default {
+    height: 38px !important;
+  }
 }
-.v-size--small {
-  height: 38px !important;
+
+.theme--light {
+  &.v-btn {
+    color: #000000;
+
+    &.v-btn--has-bg {
+      background-color: #dfdfdf;
+
+      &:before {
+        background-color: #ffffff;
+      }
+
+      &.v-btn--disabled {
+        color: #000000 !important;
+
+        &.v-btn--has-bg {
+          background-color: #fafcfc !important;
+        }
+      }
+    }
+
+    &.v-btn--outlined {
+      color: #ffffff;
+
+      &:hover,
+      &:focus {
+        color: #000000;
+      }
+
+      &:before {
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      &:focus {
+        &:before {
+          background-color: #ffffff;
+        }
+      }
+    }
+  }
 }
-// .theme--light.v-btn.light:hover {
-//   background-color: #e2e6ea;
-
-//   &:before {
-//     background-color: #e2e6ea !important;
-//     opacity: 1;
-//   }
-// }
-// .theme--light.v-btn--outlined {
-//   &.custom-button:hover {
-//     color: black !important;
-//   }
-// }
-
-// -------------------
-
-// .theme--light.v-btn {
-//   &:before {
-//     opacity: 1 !important;
-//     background-color: unset;
-//   }
-
-//   &:hover:before {
-//     background-color: #e2e6ea;
-//   }
-
-//   &.v-btn--disabled.v-btn--has-bg {
-//     background-color: #fafcfc !important;
-//   }
-// }
 </style>

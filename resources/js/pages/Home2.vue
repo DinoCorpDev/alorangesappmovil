@@ -6,19 +6,9 @@
           <v-img src="../../public/assets/img/Logo-idovela-sin-fondo.png" max-width="72px" height="auto" />
         </a>
         <v-spacer></v-spacer>
-        <custom-button
-          text="Ir a tienda"
-          variant="#E2E6EA"
-          icon="la-store-alt"
-          class="black--text tamaño-boton-desktop"
-          small
-        ></custom-button>
-        <custom-button
-          text="Iniciar Sesión"
-          variant="#E2E6EA"
-          class="black--text ml-4 tamaño-boton-desktop"
-          small
-        ></custom-button>
+        <custom-button light class="tamaño-boton-desktop" icon="la-store-alt" text="Ir a tienda" />
+        <custom-button light class="ml-4 tamaño-boton-desktop" text="Iniciar Sesión" />
+        <v-btn @click="toggleTheme()">🌛</v-btn>
       </v-toolbar>
     </v-card>
     <v-container>
@@ -29,21 +19,18 @@
             Para un mundo más habitable
           </h1>
           <h5 class="mb-8">
-            Mejores espacios conducen a modelos más eficaces de vida. <br />
-            Las habitats eficientes conducen a una implementación más rápida. Genere valor en su vida con mejores
-            espacios habitables.
+            Mejores espacios conducen a modelos más eficaces de vida. Las habitats eficientes conducen a una
+            implementación más rápida. Genere valor en su vida con mejores espacios habitables.
           </h5>
-          <div class="customB_select">
-            <div class="customButton">
-              <custom-button width="100%" text="Comunicarse con ventas" variant="white" outlined />
-            </div>
-            <div class="selectCustom">
+          <v-row>
+            <v-col cols="8">
+              <custom-button light text="Comunicarse con ventas" outlined class="mb-10" block />
               <select-custom></select-custom>
-            </div>
-          </div>
+            </v-col>
+          </v-row>
         </v-col>
         <v-col cols="12" md="7">
-          <carousel />
+          <carousel :slides="sliderSeeder" />
         </v-col>
       </v-row>
 
@@ -100,7 +87,7 @@
 
       <v-row class="mb-6">
         <v-col cols="12">
-          <presentation-banner />
+          <presentation-banner :slidesCarousel="sliderSeeder" />
         </v-col>
       </v-row>
 
@@ -118,7 +105,7 @@
 
       <v-row class="mb-6">
         <v-col cols="12">
-          <presentation-banner orientation="right" />
+          <presentation-banner orientation="right" :slidesCarousel="sliderSeeder" />
         </v-col>
       </v-row>
 
@@ -136,7 +123,7 @@
 
       <v-row class="mb-6">
         <v-col cols="12">
-          <presentation-banner orientation="right" />
+          <presentation-banner orientation="right" :slidesCarousel="sliderSeeder" />
         </v-col>
       </v-row>
 
@@ -206,7 +193,7 @@ import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
 import CarouselProducts from "../components/global/CarouselProducts.vue";
 
-import productsSeeder from "../seeders/products";
+import { productsSeeder, sliderSeeder } from "../seeders/products";
 
 export default {
   components: {
@@ -220,21 +207,25 @@ export default {
   },
   data() {
     return {
-      productsSeeder
+      productsSeeder,
+      sliderSeeder
     };
+  },
+  mounted() {
+    this.$vuetify.theme.dark = true;
+  },
+  methods: {
+    toggleTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    }
   }
 };
 </script>
 
 <style>
-.v-main {
-  background-color: #000000;
-}
-
 @media (min-width: 1264px) {
   .tamaño-boton-desktop {
     width: 221px;
-    height: 38px;
   }
   .v-toolbar__content,
   .v-toolbar__extension {
@@ -243,26 +234,8 @@ export default {
 }
 
 @media (min-width: 835px) {
-  .customB_select {
-    width: 422px;
-  }
-  .selectCustom {
-    margin-top: 30px;
-  }
   .container {
     max-width: 1920px;
-  }
-}
-@media (max-width: 834px) {
-  .customB_select {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-  .customButton,
-  .selectCustom {
-    width: 186px;
-    margin-top: 0px;
   }
 }
 
@@ -287,13 +260,12 @@ export default {
 
 @media (max-width: 428px) {
   .text {
-    display:none;
+    display: none;
   }
   .poligon {
     background: #18191a 0% 0% no-repeat padding-box;
   }
 }
-
 
 .div-map {
   width: 100%;

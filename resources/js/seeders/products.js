@@ -1,3 +1,9 @@
+const sliderSeeder = [
+  { src: "https://picsum.photos/1920/1080?random=1" },
+  { src: "https://picsum.photos/1920/1080?random=2" },
+  { src: "https://picsum.photos/1920/1080?random=3" }
+];
+
 const productsSeeder = [
   {
     id: "1",
@@ -64,4 +70,4 @@ const productsSeeder = [
   }
 ];
 
-export default productsSeeder;
+export { sliderSeeder, productsSeeder };

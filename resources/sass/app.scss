@@ -11,7 +11,21 @@
 
 @import "~vuetify/dist/vuetify.min.css";
 
-@import "main";
+// @import "main";
+
+// Theme overrides
+.v-application {
+  font-family: "Overpass", sans-serif;
+
+  &.theme--light {
+    background: #fafcfc;
+    color: #000000;
+  }
+
+  &.theme--dark {
+    background: #000000;
+  }
+}
 
 h1 {
   font-size: 96px;
@@ -44,7 +58,6 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Overpass";
   line-height: 1.1;
 }
 
@@ -59,7 +72,6 @@ h5 {
 }
 
 .subtitle1 {
-  font-family: "Overpass";
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.15px;
@@ -70,12 +82,10 @@ h5 {
 }
 
 .subtitle2 {
-  font-family: "Overpass";
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.15px;
 }
-
 
 .body1 {
   font-family: "Roboto";
