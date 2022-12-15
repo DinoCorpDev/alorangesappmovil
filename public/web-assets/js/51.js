@@ -59,7 +59,7 @@ var render = function render() {
     }
   }, [_c("div", {
     staticClass: "mb-4"
-  }, [_c("h2", [_vm._v("Botones")]), _vm._v(" "), _c("custom-button", {
+  }, [_c("h5", [_vm._v("Botones")]), _vm._v(" "), _c("custom-button", {
     attrs: {
       text: "Ir a tienda",
       icon: "la-store-alt"
@@ -80,11 +80,23 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "mb-4"
-  }, [_c("h2", [_vm._v("Carousel")]), _vm._v(" "), _c("carousel")], 1), _vm._v(" "), _c("div", {
+  }, [_c("h5", [_vm._v("Carousel")]), _vm._v(" "), _c("carousel")], 1), _vm._v(" "), _c("div", {
     staticClass: "mb-4"
-  }, [_c("h2", [_vm._v("Selector")]), _vm._v(" "), _c("select-custom")], 1), _vm._v(" "), _c("div", {
+  }, [_c("h5", [_vm._v("Selector")]), _vm._v(" "), _c("select-custom")], 1), _vm._v(" "), _c("div", {
     staticClass: "mb-4"
-  }, [_c("h2", [_vm._v("Item Producto")]), _vm._v(" "), _c("v-row", [_c("v-col", {
+  }, [_c("h5", [_vm._v("Producto con Carousel")]), _vm._v(" "), _c("presentation-banner", {
+    attrs: {
+      "no-dots": "",
+      "no-arrows": "true",
+      category: "Preambulo",
+      title: "Producto 1",
+      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
+      idItem: "1",
+      orientation: "order-1"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "mb-4"
+  }, [_c("h5", [_vm._v("Item Producto")]), _vm._v(" "), _c("v-row", [_c("v-col", {
     attrs: {
       cols: "4"
     }
@@ -111,18 +123,18 @@ var render = function render() {
     }
   })], 1)], 1)], 1), _vm._v(" "), _c("div", {
     staticClass: "mb-4"
-  }, [_c("h2", [_vm._v("Banner Categoria")]), _vm._v(" "), _c("banner-category-product", {
+  }, [_c("h5", [_vm._v("Banner Categoria")]), _vm._v(" "), _c("banner-category-product", {
     attrs: {
       title: "Titulo",
       descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
       idItem: "100"
     }
-  }), _vm._v(" "), _c("banner-category-product", {
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "mb-4"
+  }, [_c("h5", [_vm._v("Carousel de Productos")]), _vm._v(" "), _c("carousel-products", {
     attrs: {
-      title: "Titulo",
-      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
-      idItem: "100",
-      img: "/public/assets/img/idovela-banner.png"
+      "no-dots": "",
+      "no-arrows": "true"
     }
   })], 1)])], 1)], 1);
 };
