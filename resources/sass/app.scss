@@ -35,6 +35,14 @@
   }
 }
 
+.rounded-section {
+  border-radius: 10px;
+}
+
+.v-divider {
+  border-color: #dfdfdf !important;
+}
+
 h1 {
   font-size: 96px;
   letter-spacing: -1.5px;
@@ -97,7 +105,19 @@ h5 {
 
 .body1 {
   font-family: "Roboto";
-  font-size: 15px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 18px;
+}
+
+.body2 {
+  font-family: "Roboto";
+  font-size: 12px;
+
+  @media (min-width: 960px) {
+    font-size: 14px;
+    letter-spacing: 0.25px;
+  }
 }
 
 @media (max-width: 834px) {

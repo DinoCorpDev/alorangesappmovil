@@ -3,6 +3,11 @@
     <v-row>
       <v-col cols="12">
         <div class="mb-4">
+          <h5>Modo Oscuro</h5>
+          <v-btn @click="toggleTheme()">🌛</v-btn>
+        </div>
+
+        <div class="mb-4">
           <h5>Botones</h5>
           <custom-button text="Ir a tienda" icon="la-store-alt"></custom-button>
           <custom-button
@@ -22,6 +27,15 @@
         <div class="mb-4">
           <h5>Selector</h5>
           <select-custom></select-custom>
+        </div>
+
+        <div class="mb-4">
+          <h5>Polygon Element</h5>
+          <v-row>
+            <v-col v-for="i in 5" :key="i">
+              <polygon-element />
+            </v-col>
+          </v-row>
         </div>
 
         <div class="mb-4">
@@ -87,6 +101,7 @@ import CarouselProducts from "../components/global/CarouselProducts.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
+import PolygonElement from "../components/global/PolygonElement.vue";
 
 export default {
   components: {
@@ -96,16 +111,16 @@ export default {
     CarouselProducts,
     CustomButton,
     ProductItem,
-    SelectCustom
+    SelectCustom,
+    PolygonElement
+  },
+  mounted() {
+    this.$vuetify.theme.dark = true;
+  },
+  methods: {
+    toggleTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    }
   }
 };
 </script>
-
-<style>
-.v-main {
-  background-color: #000000;
-}
-h2 {
-  color: #ffffff;
-}
-</style>

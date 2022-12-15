@@ -13,7 +13,7 @@
           </div>
           <h2 class="text-uppercase">{{ title }}</h2>
           <v-divider class="mb-5" />
-          <p>{{ description }}</p>
+          <p class="body1">{{ description }}</p>
         </div>
         <div>
           <custom-button text="Agregar a Compras" block class="mb-4" />
@@ -82,10 +82,6 @@ export default {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
-}
-
-.v-divider {
-  border-color: #dfdfdf !important;
 }
 
 .v-carousel {

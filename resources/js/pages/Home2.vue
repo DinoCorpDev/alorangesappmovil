@@ -34,54 +34,67 @@
         </v-col>
       </v-row>
 
-      <v-row class="mb-6">
+      <v-row tag="section" class="mb-6">
         <v-col cols="12">
-          <v-banner color="#18191A" class="rounded white--text">
-            <div>
-              <div class="mb-3">
-                <template>
-                  <span class="subtitle1 text-uppercase font-weight-bold"> Preambulo </span>
-                </template>
-              </div>
-              <h2 class="text-uppercase">Titulo</h2>
-              <v-divider />
+          <div class="primary rounded-section px-5 py-8">
+            <div class="mb-3">
+              <span class="subtitle1 text-uppercase font-weight-bold"> Preámbulo </span>
             </div>
-            <div>
-              <p class="body1 mt-4">
-                Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor
-                consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do
-                occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet
-                aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.
-              </p>
-            </div>
-            <v-row class="d-flex justify-center">
-              <v-col cols="2">
-                <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4 text">Usuario</span>
-                </div>
-              </v-col>
-              <v-col cols="2">
-                <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4 text">Organizar</span>
-                </div>
-              </v-col>
-              <v-col cols="2">
-                <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4 text">Evaluar</span>
-                </div>
-              </v-col>
-              <v-col cols="2">
-                <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4 text">Guardar</span>
-                </div>
-              </v-col>
-              <v-col cols="2">
-                <div class="poligon d-flex justify-center">
-                  <span class="body1 mt-4 text">Crear</span>
-                </div>
+            <h2 class="text-uppercase mb-3 mb-md-0">Titulo</h2>
+            <v-divider class="mb-5" />
+            <p class="body1 mb-8">
+              Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye
+              Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem
+              Ipsum is simply dummy text. Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
+              beenthe industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
+              industry's • Incluye Lorem Ipsum is simply dummy text.
+            </p>
+            <v-row justify="center">
+              <v-col cols="12" lg="10">
+                <v-img
+                  src="/public/assets/img/home/curved-arrows-top-xs.svg"
+                  contain
+                  width="80%"
+                  class="mb-5 mx-auto d-sm-none"
+                />
+                <v-img
+                  src="/public/assets/img/home/curved-arrows-top-md.svg"
+                  contain
+                  width="80%"
+                  class="mb-5 mx-auto d-none d-sm-block"
+                />
+                <v-row :no-gutters="$vuetify.breakpoint.name == 'md' ? false : true">
+                  <v-col>
+                    <polygon-element text="Usuario" icon="/public/assets/img/home/icon-usuario.svg" />
+                  </v-col>
+                  <v-col>
+                    <polygon-element text="Organizar" icon="/public/assets/img/home/icon-organizar.svg" />
+                  </v-col>
+                  <v-col>
+                    <polygon-element text="Evaluar" icon="/public/assets/img/home/icon-evaluar.svg" />
+                  </v-col>
+                  <v-col>
+                    <polygon-element text="Guardar" icon="/public/assets/img/home/icon-guardar.svg" />
+                  </v-col>
+                  <v-col>
+                    <polygon-element text="Crear" icon="/public/assets/img/home/icon-crear.svg" />
+                  </v-col>
+                </v-row>
+                <v-img
+                  src="/public/assets/img/home/curved-arrows-bottom-xs.svg"
+                  contain
+                  width="80%"
+                  class="mt-5 mx-auto d-sm-none"
+                />
+                <v-img
+                  src="/public/assets/img/home/curved-arrows-bottom-md.svg"
+                  contain
+                  width="80%"
+                  class="mt-5 mx-auto d-none d-sm-block"
+                />
               </v-col>
             </v-row>
-          </v-banner>
+          </div>
         </v-col>
       </v-row>
 
@@ -192,6 +205,7 @@ import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
 import CarouselProducts from "../components/global/CarouselProducts.vue";
+import PolygonElement from "../components/global/PolygonElement.vue";
 
 import { productsSeeder, sliderSeeder } from "../seeders/products";
 
@@ -203,7 +217,8 @@ export default {
     ProductItem,
     SelectCustom,
     PresentationBanner,
-    CarouselProducts
+    CarouselProducts,
+    PolygonElement
   },
   data() {
     return {
@@ -223,7 +238,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 @media (min-width: 1264px) {
   .tamaño-boton-desktop {
     width: 221px;
@@ -237,34 +252,6 @@ export default {
 @media (min-width: 835px) {
   .container {
     max-width: 1920px;
-  }
-}
-
-@media (max-width: 834px) {
-  .poligon {
-    width: 100%;
-    height: 208px;
-    background: #242526 0% 0% no-repeat padding-box;
-    clip-path: polygon(75% 0%, 100% 48%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
-    border-radius: 15px;
-  }
-}
-
-@media (min-width: 429px) {
-  .poligon {
-    height: 196px;
-    background: #242526 0% 0% no-repeat padding-box;
-    clip-path: polygon(75% 0%, 100% 48%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
-    border-radius: 8px;
-  }
-}
-
-@media (max-width: 428px) {
-  .text {
-    display: none;
-  }
-  .poligon {
-    background: #18191a 0% 0% no-repeat padding-box;
   }
 }
 
