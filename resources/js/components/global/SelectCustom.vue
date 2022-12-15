@@ -1,8 +1,10 @@
 <template>
   <v-select
     class="text-uppercase"
-    :items="['COLOMBIA', 'DEUTSCHLAND', 'ENGLAND']"
-    label="Seleccionar país"
+    :items="items"
+    :label="label"
+    :dark="dark"
+    :light="light"
     solo
     append-icon="las la-angle-down"
   >
@@ -16,29 +18,56 @@
 
 <script>
 export default {
-  name: "SelectCustom"
+  name: "SelectCustom",
+  props: {
+    dark: {
+      type: Boolean,
+      default: false
+    },
+    light: {
+      type: Boolean,
+      default: false
+    },
+    label: {
+      type: String
+    },
+    items: {
+      type: Array
+    }
+  }
 };
 </script>
 
-<style>
-.div-select {
-  background: #343a40;
-  padding: 0rem 1rem;
-  border-radius: 0.3rem;
-}
-.v-list-item__title {
-  color: #f8f9fa;
-}
-.v-label {
-  color: #f8f9fa !important;
-}
+<style lang="scss" scoped>
+.v-select {
+  border-radius: 5px;
 
-.v-select__selections {
-  color: #f8f9fa;
-}
+  &::v-deep {
+    .v-input__control {
+      min-height: 38px;
 
-.theme--light.v-list {
-  background: #343a40;
+      .v-input__slot {
+        background: #18191a;
+        padding: 0 18px !important;
+      }
+    }
+
+    .v-label {
+      font-family: "Roboto", sans-serif;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .v-icon {
+      font-size: 15px;
+    }
+
+    .theme--dark {
+      &.v-list {
+        background: #18191a;
+      }
+    }
+  }
 }
 </style>
 

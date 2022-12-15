@@ -27,6 +27,14 @@
   }
 }
 
+.v-menu__content {
+  &.theme--dark {
+    .v-list {
+      background: #18191a;
+    }
+  }
+}
+
 h1 {
   font-size: 96px;
   letter-spacing: -1.5px;

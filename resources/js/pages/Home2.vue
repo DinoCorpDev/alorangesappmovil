@@ -25,7 +25,7 @@
           <v-row>
             <v-col cols="8">
               <custom-button light text="Comunicarse con ventas" outlined class="mb-10" block />
-              <select-custom></select-custom>
+              <select-custom dark label="Seleccionar país" :items="langSelectItems" />
             </v-col>
           </v-row>
         </v-col>
@@ -208,7 +208,8 @@ export default {
   data() {
     return {
       productsSeeder,
-      sliderSeeder
+      sliderSeeder,
+      langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"]
     };
   },
   mounted() {

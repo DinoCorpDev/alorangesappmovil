@@ -5,10 +5,9 @@
     :outlined="outlined"
     :disabled="disabled"
     :block="block"
-    :small="small"
     :width="width"
-    :dark="dark || this.$vuetify.theme.dark ? false : true"
-    :light="light || this.$vuetify.theme.dark ? true : false"
+    :dark="dark"
+    :light="light"
     :ripple="false"
   >
     <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
