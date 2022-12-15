@@ -1,87 +1,116 @@
 <template>
-    <v-btn
-        class="text-uppercase"
-        :color="variant"
-        :outlined="outlined"
-        :disabled="disabled"
-        :small="small"
-        :large="large"
-        :block="block"
-    >
-        <i
-            v-if="icon"
-            :class="`las ${icon}`"
-            :style="`font-size: ${sizeIcon}; ${stylesIcon}`"
-        ></i>
-        <span :class="VariantText">{{ text }}</span>
-    </v-btn>
+  <v-btn
+    class="text-uppercase"
+    :color="color"
+    :outlined="outlined"
+    :disabled="disabled"
+    :block="block"
+    :width="width"
+    :dark="dark"
+    :light="light"
+    :ripple="false"
+  >
+    <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
+    {{ text }}
+  </v-btn>
 </template>
 
 <script>
 export default {
-    name: "CustomButton",
-    props: {
-        text: String,
-        VariantText: String,
-        icon: {
-            type: String,
-        },
-        variant: {
-            type: String,
-            default: "light",
-        },
-        outlined: {
-            type: Boolean,
-            default: false,
-        },
-        disabled: {
-            type: Boolean,
-            default: false,
-        },
-        small: String,
-        large: String,
-        block: String,
-        sizeIcon: {
-            type: String,
-            default: "20px",
-        },
-        stylesIcon: {
-            type: String,
-            default: "margin-right: 10px;",
-        },
+  name: "CustomButton",
+  props: {
+    text: String,
+    width: String,
+    icon: {
+      type: String
     },
+    dark: {
+      type: Boolean,
+      default: false
+    },
+    light: {
+      type: Boolean,
+      default: false
+    },
+    color: {
+      type: String
+    },
+    outlined: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    block: {
+      type: Boolean,
+      default: false
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-// .theme--light.v-btn.light:hover {
-//   background-color: #e2e6ea;
+.v-btn {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.25px;
 
-//   &:before {
-//     background-color: #e2e6ea !important;
-//     opacity: 1;
-//   }
-// }
-// .theme--light.v-btn--outlined {
-//   &.custom-button:hover {
-//     color: black !important;
-//   }
-// }
+  border-radius: 5px;
 
-// -------------------
+  i {
+    font-size: 20px;
+  }
 
-// .theme--light.v-btn {
-//   &:before {
-//     opacity: 1 !important;
-//     background-color: unset;
-//   }
+  &:hover:before,
+  &:focus:before {
+    opacity: 1;
+  }
 
-//   &:hover:before {
-//     background-color: #e2e6ea;
-//   }
+  &.v-size--default {
+    height: 38px !important;
+  }
+}
 
-//   &.v-btn--disabled.v-btn--has-bg {
-//     background-color: #fafcfc !important;
-//   }
-// }
+.theme--light {
+  &.v-btn {
+    color: #000000;
+
+    &.v-btn--has-bg {
+      background-color: #dfdfdf;
+
+      &:before {
+        background-color: #ffffff;
+      }
+
+      &.v-btn--disabled {
+        color: #000000 !important;
+
+        &.v-btn--has-bg {
+          background-color: #fafcfc !important;
+        }
+      }
+    }
+
+    &.v-btn--outlined {
+      color: #ffffff;
+
+      &:hover,
+      &:focus {
+        color: #000000;
+      }
+
+      &:before {
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      &:focus {
+        &:before {
+          background-color: #ffffff;
+        }
+      }
+    }
+  }
+}
 </style>

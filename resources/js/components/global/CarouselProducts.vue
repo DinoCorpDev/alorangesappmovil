@@ -1,67 +1,121 @@
 <template>
-    <v-carousel style="border-radius: 5px; width: 100%"
-        :hide-delimiters="NoDots"
-        >
-        <template v-slot:prev="{ on, attrs }">
-            <v-btn small
-                style="font-size: 20px; height: 35px; min-width: 35px; padding: 0px"
-                color="#26272B"
-                v-bind="attrs"
-                v-on="on"
-            ><i class="las la-angle-left"></i></v-btn>
-        </template>
-        <template v-slot:next="{ on, attrs }">
-            <v-btn small
-                style="font-size: 20px; height: 35px; min-width: 35px; padding: 0px"
-                color="#26272B"
-                v-bind="attrs"
-                v-on="on"
-            ><i class="las la-angle-right"></i></v-btn>
-        </template>
-        <v-carousel-item
-        >
-            <v-card class="mx-auto" max-width="33.33%" :color="colorCard" height="auto" >
-                <v-img
-                    :src="img"
-                    height="200px"
-                ></v-img>
-                <v-card-title class="pt-6" :class="textColor">{{ title }}</v-card-title>
-                <v-card-text class="pr-16" :class="textColor" >{{ descripcion }}</v-card-text>
-                <v-card-actions>
-                    <v-btn color="orange lighten-2" text> {{ idItem }} </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-carousel-item>
-    </v-carousel>
+  <div>
+    <h5 class="mb-3">{{ title }}</h5>
+    <swiper :options="swiperOptions">
+      <swiper-slide v-for="product in products" :key="`slide-product-${product.id}`">
+        <product-item :data="product" />
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+    </swiper>
+  </div>
 </template>
 
 <script>
+import ProductItem from './ProductItem.vue';
+
 export default {
-    name: "CarouselProducts",
-    props: {
-        NoDots:String,
-        title:String,
-        descripcion:String,
-        idItem:String,
-        textColor:String,
-        colorCard:String,
-        img: {
-            type:String,
-            default:"/public/assets/img/placeholder-rect.jpg"
-        },
+  name: 'CarouselProducts',
+  components: {
+    ProductItem
+  },
+  props: {
+    img: {
+      type: String,
+      default: '/public/assets/img/placeholder-rect.jpg'
     },
-    data (){
-        return{
-            imagenes: [
-                {
-                    src:"/public/assets/img/placeholder-rect.jpg"
-                },
-                {
-                    src:"/public/assets/img/placeholder-rect.jpg"
-                }
-            ]
-        }
+    title: {
+      type: String,
+      default: 'H5'
+    },
+    products: {
+      type: Array,
+      default: () => []
     }
+  },
+  data() {
+    return {
+      swiperOptions: {
+        slidesPerView: 2,
+        spaceBetween: 12,
+        // loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        breakpoints: {
+          960: {
+            slidesPerView: 3,
+            spaceBetween: 20
+          }
+        }
+      }
+    };
+  }
 };
 </script>
+
+<style lang="scss" scoped>
+.swiper-container {
+  @media (max-width: 960px) {
+    padding-bottom: 5rem;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: calc(100% - 25px);
+
+    &::after {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .swiper-button-prev {
+      left: 20%;
+    }
+
+    .swiper-button-next {
+      right: 20%;
+    }
+  }
+
+  &::v-deep {
+    .swiper-pagination-bullet {
+      background: #18191a;
+      opacity: 0.6;
+
+      &-active {
+        opacity: 1;
+      }
+    }
+  }
+
+  .swiper-pagination-bullets {
+    width: 75%;
+    left: 12.5%;
+    display: flex;
+    justify-content: space-around;
+    bottom: 4%;
+
+    @media (min-width: 600px) {
+      width: 40%;
+      left: 30%;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .swiper-pagination,
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none;
+    }
+  }
+}
+</style>
 

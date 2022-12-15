@@ -4,14 +4,13 @@ import Vuetify from "vuetify";
 Vue.use(Vuetify);
 
 const vuetify = new Vuetify({
-    theme: {
-        themes: {
-            light: {
-                light: "#F8F9FA",
-                dark: "#343A40",
-            },
-        },
-    },
+  theme: {
+    themes: {
+      dark: {
+        primary: "#18191A"
+      }
+    }
+  }
 });
 
 export { vuetify };

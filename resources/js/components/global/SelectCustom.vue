@@ -1,50 +1,73 @@
 <template>
-    <div class="div-select">
-        <v-select
-            :items="['Foo', 'Bar', 'Fizz', 'Buzz']"
-            label="Fizzbuzz"
-            color="#343A40"
-        >
-            <template v-slot:item="{ item, attrs, on }">
-                <v-list-item
-                v-bind="attrs"
-                v-on="on"
-                >
-                    <v-list-item-title
-                        :id="attrs['aria-labelledby']"
-                        v-text="item"
-                    ></v-list-item-title>
-                </v-list-item>
-            </template>
-        </v-select>
-    </div>
+  <v-select
+    class="text-uppercase"
+    :items="items"
+    :label="label"
+    :dark="dark"
+    :light="light"
+    solo
+    append-icon="las la-angle-down"
+  >
+    <template v-slot:item="{ item, attrs, on }">
+      <v-list-item v-bind="attrs" v-on="on">
+        <v-list-item-title :id="attrs['aria-labelledby']" v-text="item"></v-list-item-title>
+      </v-list-item>
+    </template>
+  </v-select>
 </template>
 
 <script>
 export default {
-    name: "SelectCustom",
+  name: "SelectCustom",
+  props: {
+    dark: {
+      type: Boolean,
+      default: false
+    },
+    light: {
+      type: Boolean,
+      default: false
+    },
+    label: {
+      type: String
+    },
+    items: {
+      type: Array
+    }
+  }
 };
 </script>
 
-<style>
-.div-select {
-    background: #343A40;
-    padding: 0rem 1rem;
-    border-radius: 0.3rem;
-}
-.v-list-item__title {
-    color: #F8F9FA ;
-}
-.v-label {
-    color: #F8F9FA !important;
-}
+<style lang="scss" scoped>
+.v-select {
+  border-radius: 5px;
 
-.v-select__selections {
-    color: #F8F9FA;
-}
+  &::v-deep {
+    .v-input__control {
+      min-height: 38px;
 
-.theme--light.v-list {
-    background: #343A40
+      .v-input__slot {
+        background: #18191a;
+        padding: 0 18px !important;
+      }
+    }
+
+    .v-label {
+      font-family: "Roboto", sans-serif;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .v-icon {
+      font-size: 15px;
+    }
+
+    .theme--dark {
+      &.v-list {
+        background: #18191a;
+      }
+    }
+  }
 }
 </style>
 
