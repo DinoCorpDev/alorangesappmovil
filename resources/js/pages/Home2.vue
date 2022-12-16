@@ -156,6 +156,14 @@
         </v-col>
       </v-row>
 
+      <v-row>
+        <v-col>
+            <cards-custom
+            title="Titulo"
+            />
+        </v-col>
+      </v-row>
+
       <v-row class="mb-6">
         <v-col cols="12">
           <v-banner color="#242526" class="rounded">
@@ -204,6 +212,7 @@ import CustomButton from "../components/global/CustomButton.vue";
 import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
+import CardsCustom from "../components/global/CardsCustom.vue";
 import CarouselProducts from "../components/global/CarouselProducts.vue";
 import PolygonElement from "../components/global/PolygonElement.vue";
 
@@ -217,6 +226,7 @@ export default {
     ProductItem,
     SelectCustom,
     PresentationBanner,
+    CardsCustom,
     CarouselProducts,
     PolygonElement
   },
