@@ -1,16 +1,6 @@
 <template>
   <div>
-    <v-card>
-      <v-toolbar color="#000000" style="height: 100px">
-        <a href="#">
-          <v-img src="../../public/assets/img/Logo-idovela-sin-fondo.png" max-width="72px" height="auto" />
-        </a>
-        <v-spacer></v-spacer>
-        <custom-button light class="tamaño-boton-desktop" icon="la-store-alt" text="Ir a tienda" />
-        <custom-button light class="ml-4 tamaño-boton-desktop" text="Iniciar Sesión" />
-        <v-btn @click="toggleTheme()">🌛</v-btn>
-      </v-toolbar>
-    </v-card>
+    <layout-navbar />
     <v-container>
       <v-row class="mb-6" align="center">
         <v-col cols="12" md="5">
@@ -63,7 +53,9 @@
                   width="80%"
                   class="mb-5 mx-auto d-none d-sm-block"
                 />
-                <v-row :no-gutters="$vuetify.breakpoint.name == 'md' ? false : true">
+                <v-row
+                  :no-gutters="$vuetify.breakpoint.name == 'md' || $vuetify.breakpoint.name == 'lg' ? false : true"
+                >
                   <v-col>
                     <polygon-element text="Usuario" icon="/public/assets/img/home/icon-usuario.svg" />
                   </v-col>
@@ -206,6 +198,7 @@ import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
 import CarouselProducts from "../components/global/CarouselProducts.vue";
 import PolygonElement from "../components/global/PolygonElement.vue";
+import LayoutNavbar from "../components/global/LayoutNavbar.vue";
 
 import { productsSeeder, sliderSeeder } from "../seeders/products";
 
@@ -218,7 +211,8 @@ export default {
     SelectCustom,
     PresentationBanner,
     CarouselProducts,
-    PolygonElement
+    PolygonElement,
+    LayoutNavbar
   },
   data() {
     return {
@@ -229,26 +223,11 @@ export default {
   },
   mounted() {
     this.$vuetify.theme.dark = true;
-  },
-  methods: {
-    toggleTheme() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@media (min-width: 1264px) {
-  .tamaño-boton-desktop {
-    width: 221px;
-  }
-  .v-toolbar__content,
-  .v-toolbar__extension {
-    padding: 14px 24px;
-  }
-}
-
 @media (min-width: 835px) {
   .container {
     max-width: 1920px;

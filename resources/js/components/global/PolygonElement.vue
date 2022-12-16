@@ -1,5 +1,5 @@
 <template>
-  <div class="polygon">
+  <a class="polygon" :href="href">
     <div class="wrap">
       <span class="text-uppercase body2 d-none d-sm-block">
         {{ text }}
@@ -8,7 +8,7 @@
         <v-img :src="icon" contain />
       </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -22,6 +22,10 @@ export default {
     icon: {
       type: String,
       default: "/public/assets/img/home/icon-usuario.svg"
+    },
+    href: {
+      type: String,
+      default: "#"
     }
   }
 };
@@ -36,6 +40,7 @@ export default {
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
+  display: block;
 
   @media (min-width: 960px) {
     background-image: url("/public/assets/img/home/img-polygon-md.svg");

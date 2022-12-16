@@ -1,7 +1,9 @@
 const sliderSeeder = [
-  { src: "https://picsum.photos/1920/1080?random=1" },
-  { src: "https://picsum.photos/1920/1080?random=2" },
-  { src: "https://picsum.photos/1920/1080?random=3" }
+  { src: "https://picsum.photos/1920/1080?random=1", type: "image" },
+  { src: "https://picsum.photos/1920/1080?random=2", type: "image" },
+  { src: "https://picsum.photos/1920/1080?random=3", type: "image" },
+  { src: "/public/assets/video/product-example.mp4", type: "video" },
+  { src: "https://www.youtube.com/embed/UWtzv9-b6yI", type: "iframe" }
 ];
 
 const productsSeeder = [

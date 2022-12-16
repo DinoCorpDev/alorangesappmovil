@@ -1,5 +1,5 @@
 <template>
-  <v-row :class="orientation === 'left' ? 'panel-left' : 'panel-rigth'" no-gutters>
+  <v-row class="primary rounded-section" :class="orientation === 'left' ? 'panel-left' : 'panel-rigth'" no-gutters>
     <v-col cols="12" md="4">
       <div class="panel pa-4">
         <div>
@@ -16,8 +16,8 @@
           <p class="body1">{{ description }}</p>
         </div>
         <div>
-          <custom-button text="Agregar a Compras" block class="mb-4" />
-          <custom-button text="Compartir" block />
+          <custom-button light text="Agregar a Compras" block class="mb-4" />
+          <custom-button light text="Compartir" block />
         </div>
       </div>
     </v-col>
@@ -71,8 +71,6 @@ export default {
 
 <style lang="scss" scoped>
 .panel {
-  background-color: #18191a;
-  border-radius: 10px;
   height: 100%;
   display: flex;
   flex-direction: column;
