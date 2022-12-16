@@ -12,7 +12,19 @@
     </template>
     <template v-if="slides.length > 0">
       <v-carousel-item v-for="(slide, i) in slides" :key="i">
-        <v-img :src="slide.src" :aspect-ratio="aspectRatio" />
+        <v-img v-if="slide.type === 'image'" :src="slide.src" :aspect-ratio="aspectRatio" />
+        <v-responsive v-if="slide.type === 'video'" :aspect-ratio="aspectRatio">
+          <video autoplay>
+            <source :src="slide.src" type="video/mp4" />
+          </video>
+        </v-responsive>
+        <v-responsive v-if="slide.type === 'iframe'" :aspect-ratio="aspectRatio">
+          <iframe
+            :src="`${slide.src}?controls=0&autoplay=1&fs=0&modestbranding&rel=0&showinfo=0&disablekb=0`"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </v-responsive>
       </v-carousel-item>
     </template>
     <v-carousel-item v-else>
@@ -84,10 +96,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-carousel .v-window-item {
-  display: flex;
-  align-items: center;
+.v-carousel {
+  .v-window-item {
+    display: flex;
+    align-items: center;
+
+    video,
+    iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
+
 .v-carousel {
   border-radius: 10px;
   background-color: #242526;
