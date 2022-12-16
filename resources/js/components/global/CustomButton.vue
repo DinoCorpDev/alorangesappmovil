@@ -9,6 +9,7 @@
     :dark="dark"
     :light="light"
     :ripple="false"
+    :plain="plain"
   >
     <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
     {{ text }}
@@ -44,6 +45,10 @@ export default {
       default: false
     },
     block: {
+      type: Boolean,
+      default: false
+    },
+    plain: {
       type: Boolean,
       default: false
     }
