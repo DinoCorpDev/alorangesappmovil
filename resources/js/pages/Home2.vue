@@ -53,7 +53,9 @@
                   width="80%"
                   class="mb-5 mx-auto d-none d-sm-block"
                 />
-                <v-row :no-gutters="$vuetify.breakpoint.name == 'md' ? false : true">
+                <v-row
+                  :no-gutters="$vuetify.breakpoint.name == 'md' || $vuetify.breakpoint.name == 'lg' ? false : true"
+                >
                   <v-col>
                     <polygon-element text="Usuario" icon="/public/assets/img/home/icon-usuario.svg" />
                   </v-col>
