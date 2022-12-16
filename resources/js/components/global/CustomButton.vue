@@ -53,9 +53,13 @@ export default {
 
 <style lang="scss" scoped>
 .v-btn {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.25px;
+
+  @media (min-width: 960px) {
+    font-size: 14px;
+  }
 
   border-radius: 5px;
 
