@@ -1,28 +1,15 @@
 <template>
-  <v-app-bar elevation="2" dark>
-    <a href="#">
-      <v-img
-        src="../../public/assets/img/Logo-idovela-sin-fondo.png"
-        max-width="90px"
-        height="auto"
-      />
-    </a>
-    <v-spacer></v-spacer>
-    <div>
-      <custom-button
-        text="Ir a tienda"
-        variant="white"
-        icon="la-store-alt"
-        class="black--text"
-        small="small"
-      ></custom-button>
-      <custom-button
-        text="Iniciar Sesión"
-        variant="white"
-        class="black--text"
-        small="small"
-      ></custom-button>
-    </div>
+  <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="100">
+    <v-container class="pa-0 fill-height justify-space-between" fluid>
+      <router-link :to="{ name: 'TempLanding' }" class="navbar-brand">
+        <v-img src="/public/assets/img/logo-idovela-white.png" max-width="117" />
+      </router-link>
+      <div>
+        <custom-button light class="mr-4" icon="la-store-alt" text="Ir a tienda" />
+        <custom-button light class="mr-4" text="Iniciar Sesión" />
+        <v-btn @click="toggleTheme()">🌛</v-btn>
+      </div>
+    </v-container>
   </v-app-bar>
 </template>
 
@@ -31,17 +18,28 @@ import CustomButton from "./CustomButton.vue";
 
 export default {
   components: {
-    CustomButton,
+    CustomButton
   },
+  methods: {
+    toggleTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.theme--light.v-app-bar.v-toolbar.v-sheet {
-  background-color: #ffffff;
-}
+.navbar-brand {
+  .v-image {
+    width: 60px;
 
-.v-btn {
-  width: 160px;
+    @media (min-width: 600px) {
+      width: 90px;
+    }
+
+    @media (min-width: 960px) {
+      width: 117px;
+    }
+  }
 }
 </style>

@@ -43,24 +43,6 @@
     <!-- Scripts -->
     <script src="{{ mix('web-assets/js/app.js') }}" defer></script>
 
-    <style>
-        body,
-        .v-application {
-            font-weight: 400;
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        .header-sticky {
-            z-index: 8;
-        }
-
-        :root {
-            --primary: {{ get_setting('base_color', '#e62d04') }};
-            --soft-primary: {{ hex2rgba(get_setting('base_color', '#e62d04'), 0.15) }};
-        }
-    </style>
-
     @include('frontend.inc.pwa')
 
     <script>
