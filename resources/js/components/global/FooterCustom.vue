@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-footer color="#18191A" class="px-5 py-5">
-      <v-row class="d-flex justify-space-between flex-wrap">
+      <v-row class="d-flex justify-center flex-wrap">
         <v-col cols="6" sm="3" md="3">
           <span class="subtitle1 bold text-uppercase">© Idovela 2022</span>
         </v-col>

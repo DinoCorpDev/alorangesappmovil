@@ -160,6 +160,7 @@
         <v-col>
             <cards-custom
             title="Titulo"
+            title-card1="Cocina"
             />
         </v-col>
       </v-row>
