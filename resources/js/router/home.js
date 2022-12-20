@@ -12,6 +12,8 @@ let TempLanding = () => import("../pages/TempLanding");
 let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
 let Home3 = () => import("../pages/Home3");
+let Login2 = () => import("../pages/auth/Login2");
+let ForgotPassword2 = () => import("../pages/auth/ForgotPassword2");
 
 export default [
   {
@@ -26,7 +28,18 @@ export default [
     name: "TestComponents",
     meta: { requiresAuth: false }
   },
-
+  {
+    path: "/forgot-password2",
+    component: ForgotPassword2,
+    name: "ForgotPassword2",
+    meta: { requiresAuth: false }
+  },
+  {
+    path: "/login2",
+    component: Login2,
+    name: "Login2",
+    meta: { requiresAuth: false }
+  },
   {
     path: "/home3",
     component: Home3,
