@@ -11,7 +11,7 @@
       <div>
         <custom-button light text="Iniciar Sesión" />
         <custom-button light text="00" icon="la-cart-arrow-down" />
-        <v-btn @click="toggleTheme()">🌛</v-btn>
+        <theme-toggle-switch />
       </div>
     </v-container>
   </v-app-bar>
@@ -19,15 +19,12 @@
 
 <script>
 import CustomButton from "./CustomButton.vue";
+import ThemeToggleSwitch from "./ThemeToggleSwitch.vue";
 
 export default {
   components: {
-    CustomButton
-  },
-  methods: {
-    toggleTheme() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-    }
+    CustomButton,
+    ThemeToggleSwitch
   }
 };
 </script>

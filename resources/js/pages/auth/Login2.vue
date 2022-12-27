@@ -65,9 +65,6 @@ export default {
     CarouselDescription,
     CustomButton,
     LayoutNavbarAuth
-  },
-  mounted() {
-    this.$vuetify.theme.dark = true;
   }
 };
 </script>
