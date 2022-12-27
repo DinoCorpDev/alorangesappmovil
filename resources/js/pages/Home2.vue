@@ -148,6 +148,12 @@
         </v-col>
       </v-row>
 
+      <v-row>
+        <v-col>
+          <cards-custom title="Titulo" title-card1="Cocina" />
+        </v-col>
+      </v-row>
+
       <v-row class="mb-6">
         <v-col cols="12">
           <v-banner color="#242526" class="rounded">
@@ -161,31 +167,7 @@
       </v-row>
     </v-container>
 
-    <v-card>
-      <v-footer color="#18191A" class="px-5 py-5">
-        <v-row class="d-flex justify-space-between flex-wrap">
-          <v-col cols="2" sm="3">
-            <span class="subtitle1 bold text-uppercase">© Idovela 2022</span>
-          </v-col>
-          <v-col cols="4" sm="3">
-            <span class="subtitle1 bold text-uppercase"><i class="las la-globe"></i> Bogota, Colombia</span>
-          </v-col>
-          <v-col cols="6" sm="6">
-            <v-row>
-              <v-col cols="4">
-                <span class="subtitle1 bold text-uppercase">Información</span>
-              </v-col>
-              <v-col cols="4">
-                <span class="subtitle1 bold text-uppercase">Solicitudes</span>
-              </v-col>
-              <v-col cols="4">
-                <span class="subtitle1 bold text-uppercase">Contacto</span>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-footer>
-    </v-card>
+    <footer-custom />
   </div>
 </template>
 
@@ -196,7 +178,9 @@ import CustomButton from "../components/global/CustomButton.vue";
 import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
+import CardsCustom from "../components/global/CardsCustom.vue";
 import CarouselProducts from "../components/global/CarouselProducts.vue";
+import FooterCustom from "../components/global/FooterCustom.vue";
 import PolygonElement from "../components/global/PolygonElement.vue";
 import LayoutNavbar from "../components/global/LayoutNavbar.vue";
 
@@ -210,9 +194,11 @@ export default {
     ProductItem,
     SelectCustom,
     PresentationBanner,
+    CardsCustom,
     CarouselProducts,
     PolygonElement,
-    LayoutNavbar
+    LayoutNavbar,
+    FooterCustom
   },
   data() {
     return {
