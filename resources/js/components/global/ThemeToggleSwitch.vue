@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="toggleTheme()">🌛</v-btn>
+  <v-btn @click="toggleTheme()" class="px-2">🌛</v-btn>
 </template>
 
 <script>
@@ -12,3 +12,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.v-btn {
+  min-width: auto !important;
+}
+</style>

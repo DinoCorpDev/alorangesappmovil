@@ -2,7 +2,7 @@
   <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="100">
     <v-container class="pa-0 fill-height justify-space-between" fluid>
       <router-link :to="{ name: 'TempLanding' }" class="navbar-brand">
-        <v-img src="/public/assets/img/logo-idovela-white.png" max-width="117" />
+        <v-img src="/public/assets/img/idovela-logo-dark.png" max-width="117" />
       </router-link>
       <div class="d-flex align-center">
         <v-text-field label="Escribe para buscar" class="mt-7" outlined dense></v-text-field>

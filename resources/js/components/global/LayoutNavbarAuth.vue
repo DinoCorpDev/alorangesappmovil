@@ -2,17 +2,25 @@
   <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="60">
     <v-container class="pa-0 fill-height justify-space-between" fluid>
       <router-link :to="{ name: 'TempLanding' }" class="navbar-brand">
-        <v-img v-if="$vuetify.theme.dark" src="/public/assets/img/idovela-large-logo-dark.png" max-width="158" />
-        <v-img v-else src="/public/assets/img/idovela-large-logo.png" max-width="158" />
+        <span class="d-none d-sm-block">
+          <v-img v-if="$vuetify.theme.dark" src="/public/assets/img/idovela-large-logo-dark.png" max-width="158" />
+          <v-img v-else src="/public/assets/img/idovela-large-logo.png" max-width="158" />
+        </span>
+        <span class="d-sm-none">
+          <v-img v-if="$vuetify.theme.dark" src="/public/assets/img/idovela-logo-dark.png" max-width="48" />
+          <v-img v-else src="/public/assets/img/idovela-logo.png" max-width="48" />
+        </span>
       </router-link>
       <div class="d-flex">
         <div class="double-button d-flex mr-4">
-          <custom-button class="btn-login" dark color="#888989" text="Iniciar Sesión"></custom-button>
-          <custom-button class="btn-cart" dark color="#888989">
-            <span class="d-block">
-              <i class="las la-shopping-cart" />
-              <span>{{ getCartCount }}</span>
-            </span>
+          <custom-button class="btn-login" dark :to="{ name: 'Login' }">
+            <template v-if="currentUser.name"> {{ shortName }} </template>
+            <template v-else> Iniciar Sesión </template>
+          </custom-button>
+          <custom-button class="btn-cart" dark>
+            <shop-cart-icon class="mr-2 mr-sm-3" />
+            <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
+            <span class="status-indicator" :class="currentUser.name ? 'active' : ''"></span>
           </custom-button>
         </div>
         <theme-toggle-switch />
@@ -25,15 +33,24 @@
 import CustomButton from "./CustomButton.vue";
 import ThemeToggleSwitch from "./ThemeToggleSwitch.vue";
 
+import ShopCartIcon from "../icons/ShopCart.vue";
+
 import { mapGetters } from "vuex";
 
 export default {
   components: {
     CustomButton,
-    ThemeToggleSwitch
+    ThemeToggleSwitch,
+
+    // Icons
+    ShopCartIcon
   },
   computed: {
-    ...mapGetters("cart", ["getCartCount"])
+    ...mapGetters("cart", ["getCartCount"]),
+    ...mapGetters("auth", ["currentUser"]),
+    shortName() {
+      return this.currentUser.name.split(" ")[0];
+    }
   }
 };
 </script>
@@ -43,20 +60,12 @@ export default {
   text-decoration: none;
 
   .v-image {
-    width: 60px;
+    width: 48px;
 
     @media (min-width: 600px) {
-      width: 90px;
-    }
-
-    @media (min-width: 960px) {
       width: 158px;
     }
   }
-}
-
-.logo {
-  line-height: 60px;
 }
 
 .btn-login {
@@ -67,32 +76,57 @@ export default {
     content: "";
     display: block;
     width: 1px;
-    height: 60%;
+    height: 55%;
     background-color: #ffffff;
     position: absolute;
-    right: 0px;
+    right: -1px;
     z-index: 2;
-  }
-
-  &:hover {
-    &::after {
-      opacity: 0;
-    }
   }
 }
 
 .btn-cart {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  @media (min-width: 960px) {
+    font-size: 15px;
+  }
+
+  svg {
+    width: 20px;
+
+    @media (min-width: 600px) {
+      width: 24px;
+    }
+  }
 }
 
 .double-button {
+  .v-btn {
+    background-color: rgba(#161616, 0.5);
+  }
+
   &:hover {
-    .btn-login {
-      &::after {
-        opacity: 0;
-      }
+    .v-btn {
+      background-color: rgba(#161616, 0.8);
     }
+  }
+}
+
+.status-indicator {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(#000000, 0.35);
+  display: block;
+  border-radius: 50%;
+
+  &.active {
+    background-color: #00ff3a;
   }
 }
 </style>

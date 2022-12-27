@@ -10,6 +10,8 @@
     :light="light"
     :ripple="false"
     :plain="plain"
+    :href="href"
+    :to="to"
     depressed
   >
     <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
@@ -55,6 +57,12 @@ export default {
     plain: {
       type: Boolean,
       default: false
+    },
+    href: {
+      type: String
+    },
+    to: {
+      type: String
     }
   }
 };
@@ -65,6 +73,11 @@ export default {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.25px;
+  transition: all 0.2s ease-in-out;
+
+  &:before {
+    content: unset;
+  }
 
   @media (min-width: 960px) {
     font-size: 14px;
