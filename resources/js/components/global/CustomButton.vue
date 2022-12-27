@@ -10,9 +10,13 @@
     :light="light"
     :ripple="false"
     :plain="plain"
+    depressed
   >
     <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
-    {{ text }}
+    <template v-if="text">{{ text }}</template>
+    <template v-else>
+      <slot></slot>
+    </template>
   </v-btn>
 </template>
 
