@@ -1,5 +1,5 @@
 <template>
-  <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" style="height: 100%" height="auto">
+  <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" height="auto">
     <template v-slot:prev="{ on, attrs }">
       <v-btn small color="#000000" v-bind="attrs" v-on="on">
         <i class="las la-angle-left"></i>
@@ -126,6 +126,10 @@ export default {
   border-radius: 10px;
   background: rgb(0, 0, 0);
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.05) 100%);
+
+  @media (min-width: 960px) {
+    height: 100% !important;
+  }
 
   &::v-deep {
     .v-window__next,

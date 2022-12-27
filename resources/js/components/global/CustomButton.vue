@@ -59,10 +59,10 @@ export default {
       default: false
     },
     href: {
-      type: String
+      type: [String, Object]
     },
     to: {
-      type: String
+      type: [String, Object]
     }
   }
 };
