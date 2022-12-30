@@ -1,6 +1,7 @@
 <template>
     <div>
         <layout-navbar-auth />
+        <bar />
         <div class="all">
             <v-container class="container">
                 <h6 class="black--text">¿Olvidó su contraseña?</h6>
@@ -10,7 +11,7 @@
                     been the industry's • Incluye Lorem Ipsum is simply dummy text.</span>
                 <div class="inputs">
                     <span class="black--text body-2 text-uppercase">Correo Electronico</span>
-                    <v-text-field class="input"></v-text-field>
+                    <custom-input></custom-input>
                 </div>
                 <custom-button block class="mt-5" text="Enviar" />
             </v-container>
@@ -19,14 +20,18 @@
 </template>
 
 <script>
+import Bar from "../../components/global/Bar.vue";
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
+import CustomInput from "../../components/global/CustomInput.vue";
 import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
+        Bar,
         CarouselDescription,
         CustomButton,
+        CustomInput,
         LayoutNavbarAuth
     },
     mounted() {
@@ -59,14 +64,6 @@ export default {
 
 .inputs {
     margin-top: 20px;
-}
-
-.input {
-    background-color: #f5f5f5;
-    height: 38px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    padding: 0 10px;
 }
 
 @media (max-width: 959px) {

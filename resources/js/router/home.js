@@ -12,7 +12,11 @@ let TempLanding = () => import("../pages/TempLanding");
 let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
 let Home3 = () => import("../pages/Home3");
+let Brand = () => import("../pages/Brand");
+let ListProducts = () => import("../pages/ListProducts");
 let Login2 = () => import("../pages/auth/Login2");
+let Registration2 = () => import("../pages/auth/Registration2");
+let RegistrationSuccess = () => import("../pages/auth/RegistrationSuccess");
 let ForgotPassword2 = () => import("../pages/auth/ForgotPassword2");
 
 export default [
@@ -35,9 +39,33 @@ export default [
     meta: { requiresAuth: false }
   },
   {
+    path: "/registration2",
+    component: Registration2,
+    name: "Registration2",
+    meta: { requiresAuth: false }
+  },
+  {
+    path: "/registrationsuccess",
+    component: RegistrationSuccess,
+    name: "RegistrationSuccess",
+    meta: { requiresAuth: false }
+  },
+  {
     path: "/login2",
     component: Login2,
     name: "Login2",
+    meta: { requiresAuth: false }
+  },
+  {
+    path: "/listproducts",
+    component: ListProducts,
+    name: "ListProducts",
+    meta: { requiresAuth: false }
+  },
+  {
+    path: "/brand",
+    component: Brand,
+    name: "Brand",
     meta: { requiresAuth: false }
   },
   {
