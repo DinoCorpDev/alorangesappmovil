@@ -1,6 +1,6 @@
 <template>
   <div class="product-item">
-    <div class="text-right pa-2">
+    <div class="text-right pa-1">
       <v-icon right> la-bookmark </v-icon>
     </div>
       <v-row>
@@ -8,8 +8,8 @@
           <v-col cols="12">
             <v-hover v-slot:default="{ hover }">
               <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
-                <v-img :src="data.img" height="350px"/>
-                <div class="pb-8">
+                <v-img :src="data.img" height="150px"/>
+                <div class="pb-5">
                         <custom-button text="Ver Detalles" block :class="{ 'show-btns': hover }" color="transparent" />
                       </div>
               </v-card>
@@ -20,12 +20,8 @@
     <div class="product-item-body pa-5">
       <h5 class="subtitle2 text-uppercase mb-3">{{ data.ref }}</h5>
       <h5 class="subtitle1 text-uppercase font-weight-bold mb-3">{{ data.name }}</h5>
-      <div class="d-flex justify-space-between">
       <h5 class="subtitle1 mb-3">{{ data.brand }}</h5>
       <h5 class="subtitle1 mb-3">{{ data.val }}</h5>
-      </div>
-      <v-divider></v-divider>
-      <p class="mt-5 mb-5">{{ data.description }}</p>
       <custom-button text="Agregar a Compras" block class="px-0" />
     </div>
   </div>
@@ -48,13 +44,11 @@ export default {
       type: Object,
       default: () => ({
         id: "0",
-        name: "Colección",
+        name: "Objeto",
         ref: "REFERENCIA",
         brand: "Marca",
         val: "000.000.000 COP",
         img: "/public/assets/img/item-placeholder.png",
-        description:
-          "Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text.",
         transparent: "rgba(255, 255, 255, 0)"
       })
     }
