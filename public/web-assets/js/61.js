@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[59],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[61],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/global/Products.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
@@ -51,6 +51,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_global_CustomButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/global/CustomButton.vue */ "./resources/js/components/global/CustomButton.vue");
 /* harmony import */ var _components_global_Products_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/global/Products.vue */ "./resources/js/components/global/Products.vue");
 /* harmony import */ var _components_global_LayoutNavbarAuth_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/global/LayoutNavbarAuth.vue */ "./resources/js/components/global/LayoutNavbarAuth.vue");
+/* harmony import */ var _components_global_PresentationBanner_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/global/PresentationBanner.vue */ "./resources/js/components/global/PresentationBanner.vue");
+/* harmony import */ var _components_global_ProductItem_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/global/ProductItem.vue */ "./resources/js/components/global/ProductItem.vue");
+
+
 
 
 
@@ -60,7 +64,9 @@ __webpack_require__.r(__webpack_exports__);
     Bar: _components_global_Bar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     CustomButton: _components_global_CustomButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     Products: _components_global_Products_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    LayoutNavbarAuth: _components_global_LayoutNavbarAuth_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    LayoutNavbarAuth: _components_global_LayoutNavbarAuth_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    PresentationBanner: _components_global_PresentationBanner_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    ProductItem: _components_global_ProductItem_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   mounted: function mounted() {
     this.$vuetify.theme.dark = true;
@@ -84,7 +90,8 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "div-card"
+    staticClass: "div-card",
+    style: _vm.style
   }, [_c("v-col", {
     staticClass: "col"
   }, [_c("div", {
@@ -118,6 +125,7 @@ var render = function render() {
     staticClass: "black--text subtitle1"
   }, [_vm._v(_vm._s(_vm.price) + " COP")])]), _vm._v(" "), _c("custom-button", {
     attrs: {
+      block: "",
       light: "",
       text: "Agregar a compras"
     }
@@ -148,7 +156,84 @@ var render = function render() {
       text2: "Compartir",
       icon2: "la-share-alt-square"
     }
+  }), _vm._v(" "), _c("v-row", {
+    staticClass: "mr-6 ms-6 mb-5"
+  }, [_c("v-col", {
+    staticClass: "brand",
+    attrs: {
+      cols: "12",
+      md: "5"
+    }
+  }, [_c("div", {
+    staticClass: "div-container"
+  }, [_c("div", {
+    staticClass: "col1"
+  }, [_c("v-img", {
+    staticClass: "img",
+    attrs: {
+      "max-width": "90px",
+      src: "../../public/assets/img/carousel-item-placeholder.png"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "col2"
+  }, [_c("h5", {
+    staticClass: "black--text bold"
+  }, [_vm._v("Marcas")]), _vm._v(" "), _c("span", {
+    staticClass: "black--text body-2 text-uppercase"
+  }, [_vm._v("# Marcas")])]), _vm._v(" "), _c("div", {
+    staticClass: "divider"
   }), _vm._v(" "), _c("div", {
+    staticClass: "col3"
+  }, [_c("p", {
+    staticClass: "black--text"
+  }, [_vm._v("Incluye Lorem Ipsum is simply dummy text of the printing • Lorem\n                        Ipsum has\n                        been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem\n                        Ipsum has\n                        been the industry's • Incluye Lorem Ipsum is simply dummy text.")])])]), _vm._v(" "), _c("v-row", {
+    staticClass: "d-flex justify-center"
+  }, [_c("v-col", {
+    attrs: {
+      cols: "12",
+      lg: "6"
+    }
+  }, [_c("custom-button", {
+    attrs: {
+      block: "",
+      light: "",
+      text: "Ir a colección"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      lg: "6"
+    }
+  }, [_c("custom-button", {
+    attrs: {
+      block: "",
+      light: "",
+      text: "Descargar catalogo"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      lg: "6"
+    }
+  }, [_c("custom-button", {
+    attrs: {
+      block: "",
+      light: "",
+      text: "Conocer historia de marca"
+    }
+  })], 1)], 1)], 1), _vm._v(" "), _c("v-col", {
+    staticClass: "banner",
+    attrs: {
+      cols: "10",
+      md: "7",
+      height: "100%"
+    }
+  }, [_c("v-img", {
+    staticClass: "img-banner",
+    attrs: {
+      src: "../../public/assets/img/carousel-item-placeholder.png"
+    }
+  })], 1)], 1), _vm._v(" "), _c("div", {
     staticClass: "bar"
   }, [_c("custom-button", {
     staticClass: "mr-2 ms-2",
@@ -247,7 +332,52 @@ var render = function render() {
       brand: "BMW",
       price: "123.123123.12"
     }
-  }), _vm._v(" "), _c("products", {
+  }), _vm._v(" "), _c("products")], 1)], 1), _vm._v(" "), _c("v-row", {
+    staticClass: "d-flex justify-center"
+  }, [_c("v-col", {
+    attrs: {
+      cols: "10",
+      md: "6",
+      lg: "5"
+    }
+  }, [_c("custom-button", {
+    staticClass: "mb-5",
+    attrs: {
+      block: "",
+      light: "",
+      text: "Ver más"
+    }
+  })], 1)], 1), _vm._v(" "), _c("div", {
+    staticClass: "bar2"
+  }, [_c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "cards"
+  }, [_c("v-row", {
+    staticClass: "d-flex justify-space-around flex-wrap"
+  }, [_c("products", {
     attrs: {
       reference: "QWEEQE",
       name: "Lorem",
@@ -261,7 +391,226 @@ var render = function render() {
       brand: "BMW",
       price: "123.123123.12"
     }
-  }), _vm._v(" "), _c("products")], 1)], 1)], 1);
+  }), _vm._v(" "), _c("products", {
+    attrs: {
+      reference: "QWEEQE",
+      name: "Lorem",
+      brand: "BMW",
+      price: "123.123123.12"
+    }
+  }), _vm._v(" "), _c("products")], 1)], 1), _vm._v(" "), _c("v-row", {
+    staticClass: "d-flex justify-center"
+  }, [_c("v-col", {
+    attrs: {
+      cols: "10",
+      md: "6",
+      lg: "5"
+    }
+  }, [_c("custom-button", {
+    staticClass: "mb-5",
+    attrs: {
+      block: "",
+      light: "",
+      text: "Ver más"
+    }
+  })], 1)], 1), _vm._v(" "), _c("div", {
+    staticClass: "bar2"
+  }, [_c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "cards"
+  }, [_c("v-row", {
+    staticClass: "d-flex justify-space-around flex-wrap"
+  }, [_c("v-col", [_c("product-item")], 1), _vm._v(" "), _c("products", {
+    attrs: {
+      reference: "QWEEQE",
+      name: "Lorem",
+      brand: "BMW",
+      price: "123.123123.12"
+    }
+  }), _vm._v(" "), _c("products", {
+    attrs: {
+      reference: "QWEEQE",
+      name: "Lorem",
+      brand: "BMW",
+      price: "123.123123.12"
+    }
+  }), _vm._v(" "), _c("products")], 1)], 1), _vm._v(" "), _c("v-row", {
+    staticClass: "d-flex justify-center"
+  }, [_c("v-col", {
+    attrs: {
+      cols: "10",
+      md: "6",
+      lg: "5"
+    }
+  }, [_c("custom-button", {
+    staticClass: "mb-5",
+    attrs: {
+      block: "",
+      light: "",
+      text: "Ver más"
+    }
+  })], 1)], 1), _vm._v(" "), _c("div", {
+    staticClass: "bar2"
+  }, [_c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "cards"
+  }, [_c("v-row", {
+    staticClass: "d-flex justify-space-around flex-wrap"
+  }, [_c("v-col", [_c("product-item")], 1), _vm._v(" "), _c("products", {
+    attrs: {
+      reference: "QWEEQE",
+      name: "Lorem",
+      brand: "BMW",
+      price: "123.123123.12"
+    }
+  }), _vm._v(" "), _c("products", {
+    attrs: {
+      reference: "QWEEQE",
+      name: "Lorem",
+      brand: "BMW",
+      price: "123.123123.12"
+    }
+  }), _vm._v(" "), _c("products")], 1)], 1), _vm._v(" "), _c("v-row", {
+    staticClass: "d-flex justify-center"
+  }, [_c("v-col", {
+    attrs: {
+      cols: "10",
+      md: "6",
+      lg: "5"
+    }
+  }, [_c("custom-button", {
+    staticClass: "mb-5",
+    attrs: {
+      block: "",
+      light: "",
+      text: "Ver más"
+    }
+  })], 1)], 1), _vm._v(" "), _c("div", {
+    staticClass: "bar2"
+  }, [_c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  }), _vm._v(" "), _c("custom-button", {
+    staticClass: "mr-2 ms-2",
+    attrs: {
+      light: "",
+      text: "Nuevo"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "cards"
+  }, [_c("v-row", {
+    staticClass: "d-flex justify-space-around flex-wrap"
+  }, [_c("products", {
+    staticStyle: {
+      width: "298px"
+    },
+    attrs: {
+      reference: "QWEEQE",
+      name: "Lorem",
+      brand: "BMW",
+      price: "123.123123.12"
+    }
+  }), _vm._v(" "), _c("products", {
+    staticStyle: {
+      width: "298px"
+    },
+    attrs: {
+      reference: "QWEEQE",
+      name: "Lorem",
+      brand: "BMW",
+      price: "123.123123.12"
+    }
+  }), _vm._v(" "), _c("products", {
+    staticStyle: {
+      width: "298px"
+    },
+    attrs: {
+      reference: "QWEEQE",
+      name: "Lorem",
+      brand: "BMW",
+      price: "123.123123.12"
+    }
+  }), _vm._v(" "), _c("products", {
+    staticStyle: {
+      width: "298px"
+    }
+  })], 1)], 1), _vm._v(" "), _c("v-row", {
+    staticClass: "d-flex justify-center"
+  }, [_c("v-col", {
+    attrs: {
+      cols: "10",
+      md: "6",
+      lg: "5"
+    }
+  }, [_c("custom-button", {
+    staticClass: "mb-5",
+    attrs: {
+      block: "",
+      light: "",
+      text: "Ver más"
+    }
+  })], 1)], 1)], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -300,7 +649,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".img[data-v-1db9ccfc] {\n  background-color: #dfdfdf;\n  border-radius: 50%;\n  padding: 10px 0;\n}\n.cards[data-v-1db9ccfc] {\n  margin: 10px;\n  padding: 10px 0;\n}\n.bar[data-v-1db9ccfc] {\n  margin: 20px;\n  display: flex;\n  justify-content: flex-start;\n  overflow: auto;\n}", ""]);
+exports.push([module.i, ".img[data-v-1db9ccfc] {\n  background-color: #dfdfdf;\n  border-radius: 50%;\n  padding: 10px 0;\n}\n.img-banner[data-v-1db9ccfc] {\n  height: 100%;\n}\n.cards[data-v-1db9ccfc] {\n  margin: 10px;\n  padding: 10px 0;\n}\n.bar[data-v-1db9ccfc] {\n  margin: 20px;\n  display: flex;\n  justify-content: flex-start;\n  overflow: auto;\n}\n.bar2[data-v-1db9ccfc] {\n  margin: 20px;\n  display: flex;\n  justify-content: flex-end;\n  overflow: auto;\n}\n.brand[data-v-1db9ccfc] {\n  background-color: #F5F5F5;\n  padding: 10px;\n  border-end-start-radius: 10px;\n  border-top-left-radius: 10px;\n}\n.div-container[data-v-1db9ccfc] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.col1[data-v-1db9ccfc],\n.col2[data-v-1db9ccfc] {\n  max-width: 300px;\n  padding: 5px 10px 5px 10px;\n}\n.col3[data-v-1db9ccfc] {\n  width: 100%;\n  padding: 5px 10px 5px 10px;\n}\n.divider[data-v-1db9ccfc] {\n  background-color: #DFDFDF;\n  width: 100%;\n  height: 2px;\n  margin: 10px 10px 10px 10px;\n}\n.banner[data-v-1db9ccfc] {\n  background-color: #E4E4E4;\n  border-end-end-radius: 10px;\n  border-top-right-radius: 10px;\n}\n@media (max-width: 959px) {\n.brand[data-v-1db9ccfc] {\n    order: 2;\n    border-end-start-radius: 0px;\n    border-top-left-radius: 0px;\n}\n.banner[data-v-1db9ccfc] {\n    order: 1;\n    border-end-end-radius: 0px;\n    border-top-right-radius: 0px;\n    height: 250px;\n    width: 100%;\n}\n}", ""]);
 
 // exports
 

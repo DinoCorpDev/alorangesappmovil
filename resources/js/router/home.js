@@ -12,6 +12,7 @@ let TempLanding = () => import("../pages/TempLanding");
 let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
 let Home3 = () => import("../pages/Home3");
+let Home4 = () => import("../pages/Home4");
 let Brand = () => import("../pages/Brand");
 let ListProducts = () => import("../pages/ListProducts");
 let Login2 = () => import("../pages/auth/Login2");
@@ -66,6 +67,12 @@ export default [
     path: "/brand",
     component: Brand,
     name: "Brand",
+    meta: { requiresAuth: false }
+  },
+  {
+    path: "/home4",
+    component: Home4,
+    name: "Home4",
     meta: { requiresAuth: false }
   },
   {

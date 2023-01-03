@@ -1,5 +1,5 @@
 <template>
-    <div class="div-card">
+    <div class="div-card" :style="style">
         <v-col class="col">
             <div class="header">
                 <div class="figure"></div>
@@ -22,7 +22,7 @@
                 <div class="space">
                     <span class="black--text subtitle1">{{ price }} COP</span>
                 </div>
-                <custom-button light text="Agregar a compras" />
+                <custom-button block light text="Agregar a compras" />
             </div>
         </v-col>
     </div>
