@@ -34,7 +34,7 @@
                     </v-col>
                 </v-row>
             </v-col>
-            <v-col cols="10" md="7" class="banner" height="100%">
+            <v-col cols="12" md="7" class="banner" height="100%">
                 <v-img class="img-banner" src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
             </v-col>
         </v-row>
@@ -55,71 +55,18 @@
         <v-divider></v-divider>
         <div class="cards">
             <v-row class="d-flex justify-space-around flex-wrap">
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products />
-            </v-row>
-        </div>
-        <v-row class="d-flex justify-center">
-            <v-col cols="10" md="6" lg="5">
-                <custom-button block class="mb-5" light text="Ver más" />
-            </v-col>
-        </v-row>
-        <div class="bar2">
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-        </div>
-        <div class="cards">
-            <v-row class="d-flex justify-space-around flex-wrap">
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products />
-            </v-row>
-        </div>
-        <v-row class="d-flex justify-center">
-            <v-col cols="10" md="6" lg="5">
-                <custom-button block class="mb-5" light text="Ver más" />
-            </v-col>
-        </v-row>
-        <div class="bar2">
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-        </div>
-        <div class="cards">
-            <v-row class="d-flex justify-space-around flex-wrap">
-                <v-col>
-                    <product-item />
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
                 </v-col>
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products />
-            </v-row>
-        </div>
-        <v-row class="d-flex justify-center">
-            <v-col cols="10" md="6" lg="5">
-                <custom-button block class="mb-5" light text="Ver más" />
-            </v-col>
-        </v-row>
-        <div class="bar2">
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-            <custom-button class="mr-2 ms-2" light text="Nuevo" />
-        </div>
-        <div class="cards">
-            <v-row class="d-flex justify-space-around flex-wrap">
-                <v-col>
-                    <product-item />
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
                 </v-col>
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products />
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
             </v-row>
         </div>
         <v-row class="d-flex justify-center">
@@ -135,10 +82,99 @@
         </div>
         <div class="cards">
             <v-row class="d-flex justify-space-around flex-wrap">
-                <products style="width: 298px;" reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products style="width: 298px;" reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products style="width: 298px;" reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                <products style="width: 298px;" />
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+            </v-row>
+        </div>
+        <v-row class="d-flex justify-center">
+            <v-col cols="10" md="6" lg="5">
+                <custom-button block class="mb-5" light text="Ver más" />
+            </v-col>
+        </v-row>
+        <div class="bar2">
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+        </div>
+        <div class="cards">
+            <v-row class="d-flex justify-space-around flex-wrap">
+                <v-col cols="12" sm="6" md="5" lg="4" xl="3">
+                    <product-item4 />
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+            </v-row>
+        </div>
+        <v-row class="d-flex justify-center">
+            <v-col cols="10" md="6" lg="5">
+                <custom-button block class="mb-5" light text="Ver más" />
+            </v-col>
+        </v-row>
+        <div class="bar2">
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+        </div>
+        <div class="cards">
+            <v-row class="d-flex justify-space-around flex-wrap">
+                <v-col cols="12" sm="6" md="5" lg="4" xl="3">
+                    <product-item4 />
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+            </v-row>
+        </div>
+        <v-row class="d-flex justify-center">
+            <v-col cols="10" md="6" lg="5">
+                <custom-button block class="mb-5" light text="Ver más" />
+            </v-col>
+        </v-row>
+        <div class="bar2">
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+            <custom-button class="mr-2 ms-2" light text="Nuevo" />
+        </div>
+        <div class="cards">
+            <v-row class="d-flex justify-space-around flex-wrap">
+                <v-col cols="12" sm="12" md="6" lg="4" xl="3">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="12" md="6" lg="4" xl="3">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="12" md="6" lg="4" xl="3">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="12" md="6" lg="4" xl="3">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
             </v-row>
         </div>
         <v-row class="d-flex justify-center">
@@ -155,7 +191,7 @@ import CustomButton from "../components/global/CustomButton.vue";
 import Products from "../components/global/Products.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
-import ProductItem from "../components/global/ProductItem.vue";
+import ProductItem4 from "../components/global/ProductItem4.vue";
 
 export default {
     components: {
@@ -164,7 +200,7 @@ export default {
         Products,
         LayoutNavbarAuth,
         PresentationBanner,
-        ProductItem,
+        ProductItem4,
     },
     mounted() {
         this.$vuetify.theme.dark = true;
@@ -184,7 +220,7 @@ export default {
 }
 
 .cards {
-    margin: 10px;
+    margin: 20px;
     padding: 10px 0;
 }
 

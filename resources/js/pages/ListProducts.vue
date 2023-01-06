@@ -14,13 +14,25 @@
 
         <v-divider></v-divider>
         <div class="cards">
-            <v-row class="d-flex justify-space-around flex-wrap">
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
-                <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
-                <products />
+            <v-row class="d-flex flex-wrap">
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12"/>
+                </v-col>
             </v-row>
         </div>
     </div>
@@ -54,8 +66,8 @@ export default {
 }
 
 .cards {
-    margin: 10px;
     padding: 10px 0;
+    margin: 20px;
 }
 
 .bar {

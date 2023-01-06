@@ -1,6 +1,6 @@
 <template>
     <div class="div-card">
-        <v-col class="col">
+        <div class="col">
             <div class="header">
                 <div class="figure"></div>
             </div>
@@ -12,7 +12,7 @@
             <div class="div-btn">
                 <custom-button light text="Ver Detalles" />
             </div>
-        </v-col>
+        </div>
     </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .div-card {
-    margin: 20px;
+    height: 100%;
 }
 
 .col {

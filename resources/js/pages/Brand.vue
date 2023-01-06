@@ -21,21 +21,31 @@
             </div>
         </div>
         <div class="cards">
-            <v-row class="d-flex justify-space-around flex-wrap">
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
-                <card-brand />
+            <v-row class="d-flex flex-wrap">
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <card-brand />
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <card-brand />
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <card-brand />
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <card-brand />
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <card-brand />
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <card-brand />
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <card-brand />
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
+                    <card-brand />
+                </v-col>
             </v-row>
         </div>
     </div>
@@ -90,7 +100,7 @@ export default {
 }
 
 .cards {
-    margin: 10px;
+    margin: 20px;
     padding: 10px 0;
 }
 

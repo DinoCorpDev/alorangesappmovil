@@ -1,6 +1,6 @@
 <template>
-    <div class="div-card" :style="style">
-        <v-col class="col">
+    <div class="div-card">
+        <div class="col">
             <div class="header">
                 <div class="figure"></div>
             </div>
@@ -24,7 +24,7 @@
                 </div>
                 <custom-button block light text="Agregar a compras" />
             </div>
-        </v-col>
+        </div>
     </div>
 </template>
 
@@ -53,13 +53,29 @@ export default {
             type: String,
             default: "Sin Asignar"
         },
+    },
+    computed: {
+    aspectRatio() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "1.2";
+        case "sm":
+          return "1.9";
+        case "md":
+          return "2.2";
+        case "lg":
+          return "2.2";
+        case "xl":
+          return "2.2";
+      }
     }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .div-card {
-    margin: 20px;
+    height: 100%;
 }
 
 .col {
