@@ -7,9 +7,19 @@
                     <v-img src="/public/assets/img/carousel-item-placeholder.png" max-width="117" />
                 </div>
             </router-link>
-            <div class="search">
-                <input type="search" class="input" placeholder="Escribe para buscar"><custom-button icon="la-search" he color="#DFDFDF" text="Buscar" />
-            </div>
+            <form class="form">
+                <input type="search" class="input" placeholder="Escribe para buscar">
+                <div class="input-button">
+                    <input type="button" value="Buscar" class="search">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search icon-search"
+                        width="20" height="20" viewBox="0 0 24 24" stroke-width="3" stroke="#2c3e50" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <circle cx="10" cy="10" r="7" />
+                        <line x1="21" y1="21" x2="15" y2="15" />
+                    </svg>
+                </div>
+            </form>
             <div>
                 <custom-button dark color="#888989" class="mr-4" text="Iniciar Sesión | " />
                 <v-btn @click="toggleTheme()">🌛</v-btn>
@@ -54,16 +64,43 @@ export default {
     line-height: 110px;
 }
 
-.search {
+.form {
     display: flex;
     justify-content: center;
     width: 60%;
 }
 
+.search {
+    color: #000000;
+    font-weight: 700;
+    height: 100%;
+    font-size: 18px;
+}
+
 .input {
     border: 1px solid #DFDFDF;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     padding: 7px;
     width: 80%;
+    outline: none;
+}
+
+.input-button {
+    position: relative;
+    padding: 0px 30px 0px 60px;
+    background-color: #DFDFDF;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.icon-search {
+    color: #191919;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 25px;
+    top: 45%;
+    transform: translateY(-50%);
 }
 </style>
