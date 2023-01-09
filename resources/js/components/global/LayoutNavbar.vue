@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="100">
+  <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="auto">
     <v-container class="pa-0 fill-height justify-space-between" fluid>
       <router-link :to="{ name: 'TempLanding' }" class="navbar-brand">
         <v-img src="/public/assets/img/carousel-item-placeholder.png" max-width="117" />

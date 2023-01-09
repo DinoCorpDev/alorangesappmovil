@@ -1,53 +1,57 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <bar text2="Compartir" icon2="la-share-alt-square" />
-        <div class="brand">
-            <div class="div-container">
-                <div class="col1">
-                    <v-img class="img" max-width="90px"
-                        src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
-                </div>
-                <div class="col2">
-                    <h5 class="black--text bold">Marcas</h5>
-                    <span class="black--text body-2 text-uppercase"># Marcas</span>
-                </div>
-                <div class="divider"></div>
-                <div class="col3">
-                    <p class="black--text">Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
-                        been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
-                        been the industry's • Incluye Lorem Ipsum is simply dummy text.</p>
+        <v-container fluid>
+            <bar text2="Compartir" icon2="la-share-alt-square" />
+            <div class="brand">
+                <div class="div-container">
+                    <div class="col1">
+                        <v-img class="img" max-width="90px"
+                            src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
+                    </div>
+                    <div class="col2">
+                        <h5 class="black--text bold">Marcas</h5>
+                        <span class="black--text body-2 text-uppercase"># Marcas</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="col3">
+                        <p class="black--text">Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
+                            has
+                            been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
+                            has
+                            been the industry's • Incluye Lorem Ipsum is simply dummy text.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="cards">
-            <v-row class="d-flex flex-wrap">
-                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-                    <card-brand />
-                </v-col>
-            </v-row>
-        </div>
+            <div class="cards">
+                <v-row class="d-flex flex-wrap">
+                    <v-col cols="6" sm="6" md="4" lg="3" xl="2">
+                        <card-brand />
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" lg="3" xl="2">
+                        <card-brand />
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" lg="3" xl="2">
+                        <card-brand />
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" lg="3" xl="2">
+                        <card-brand />
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" lg="3" xl="2">
+                        <card-brand />
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" lg="3" xl="2">
+                        <card-brand />
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" lg="3" xl="2">
+                        <card-brand />
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" lg="3" xl="2">
+                        <card-brand />
+                    </v-col>
+                </v-row>
+            </div>
+        </v-container>
     </div>
 </template>
 
@@ -70,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 .brand {
-    margin: 20px;
+    margin: 20px 0px;
     background-color: #F5F5F5;
     padding: 10px;
     border-radius: 10px;
@@ -100,7 +104,7 @@ export default {
 }
 
 .cards {
-    margin: 20px;
+    margin: 20px 0px;
     padding: 10px 0;
 }
 

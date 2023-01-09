@@ -13,6 +13,7 @@ let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
 let Home3 = () => import("../pages/Home3");
 let Home4 = () => import("../pages/Home4");
+let About = () => import("../pages/About");
 let Brand = () => import("../pages/Brand");
 let ListProducts = () => import("../pages/ListProducts");
 let Login2 = () => import("../pages/auth/Login2");
@@ -61,6 +62,12 @@ export default [
     path: "/listproducts",
     component: ListProducts,
     name: "ListProducts",
+    meta: { requiresAuth: false }
+  },
+  {
+    path: "/about",
+    component: About,
+    name: "About",
     meta: { requiresAuth: false }
   },
   {

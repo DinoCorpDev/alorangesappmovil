@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="div-btn">
-                <custom-button light text="Ver Detalles" />
+                <custom-button block light text="Ver Detalles" />
             </div>
         </div>
     </div>
