@@ -1,33 +1,31 @@
 <template>
   <div class="product-item">
-    <div class="text-right pa-2">
-      <v-icon right> la-bookmark </v-icon>
+    <div class="text-right pa-1 mb-2">
+      <v-icon right > la-bookmark </v-icon>
     </div>
       <v-row>
         <template>
           <v-col cols="12">
             <v-hover v-slot:default="{ hover }">
               <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
-                <v-img :src="data.img" height="350px"/>
-                <div class="pb-8">
-                        <custom-button text="Ver Detalles" block :class="{ 'show-btns': hover }" color="transparent" />
-                      </div>
+                <v-card style="background:gray;" height="250px">
+                  <v-row>
+                  <v-img :src="data.img" height="120px" class="mt-16"/>
+                  </v-row>
+                </v-card>
+                <v-row justify="center">
+                <v-card class="rounded-circle" height="70%" width="70%" style="background:white;margin-top:-30%">
+                  <v-img :src="data.img" height="150px" justify="center"/>
+                </v-card>
+                </v-row>
+                <div class="product-item-body pa-4 mt-8">
+                  <custom-button text="Ver Detalles" block :class="{ 'show-btns': hover }" color="transparent" />
+                </div>
               </v-card>
             </v-hover>
           </v-col>
         </template>
       </v-row>
-    <div class="product-item-body pa-5">
-      <h5 class="subtitle2 text-uppercase mb-3">{{ data.ref }}</h5>
-      <h5 class="subtitle1 text-uppercase font-weight-bold mb-3">{{ data.name }}</h5>
-      <div class="d-flex justify-space-between">
-      <h5 class="subtitle1 mb-3">{{ data.brand }}</h5>
-      <h5 class="subtitle1 mb-3">{{ data.val }}</h5>
-      </div>
-      <v-divider></v-divider>
-      <p class="mt-5 mb-5">{{ data.description }}</p>
-      <custom-button text="Agregar a Compras" block class="px-0" />
-    </div>
   </div>
 </template>
 
@@ -35,22 +33,27 @@
 import CustomButton from "./CustomButton.vue";
 
 export default {
+  data: () => ({
+    icons: ["mdi-rewind", "mdi-play", "mdi-fast-forward"],
+    transparent: "rgba(255, 255, 255, 0)"
+  }),
   name: "ProductItem",
   components: {
     CustomButton
   },
   props: {
+    headerPr:{
+      type:Boolean
+    },
     data: {
       type: Object,
       default: () => ({
         id: "0",
-        name: "Colección",
+        name: "Objeto",
         ref: "REFERENCIA",
         brand: "Marca",
         val: "000.000.000 COP",
         img: "/public/assets/img/item-placeholder.png",
-        description:
-          "Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text.",
         transparent: "rgba(255, 255, 255, 0)"
       })
     }

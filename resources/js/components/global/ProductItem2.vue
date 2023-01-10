@@ -1,7 +1,11 @@
 <template>
   <div class="product-item">
-    <div class="text-right pa-1">
-      <v-icon right> la-bookmark </v-icon>
+    <div class="text-right pa-2" v-if="headerPr">
+      <v-icon right > la-bookmark </v-icon>
+    </div>
+    <div class="text-right pa-2 d-flex justify-space-between" v-else>
+      <h5 class="subtitle1"> 01 </h5>
+      <v-icon right > la-wine-glass </v-icon>
     </div>
       <v-row>
         <template>
@@ -40,6 +44,9 @@ export default {
     CustomButton
   },
   props: {
+    headerPr:{
+      type:Boolean
+    },
     data: {
       type: Object,
       default: () => ({
@@ -89,11 +96,12 @@ export default {
 }
 
 .v-card {
+  opacity: 0.3;
   transition: opacity 0.4s ease-in-out;
 }
 
 .v-card:not(.on-hover) {
-  opacity: 0.4;
+  opacity: 1;
 }
 
 .show-btns {

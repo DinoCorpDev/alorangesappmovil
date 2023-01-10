@@ -1,18 +1,22 @@
 <template>
-  <div class="product-item pa-10">
-    <v-row align="center">
-      <v-col cols="3">
-        <div class="product-item-image">
-          <v-img :src="data.img" :aspect-ratio="1" height="100%" />
-        </div>
-      </v-col>
-      <v-col cols="9" class="pl-6">
-        <h5 class="subtitle1 text-uppercase font-weight-bold mb-3">{{ data.name }}</h5>
-        <p class="mb-4">{{ data.description }}</p>
-        <custom-button text="Acción" plain class="px-0" />
-      </v-col>
-    </v-row>
-  </div>
+  <v-hover v-slot:default="{ hover }">
+    <v-card  :class="{ 'on-hover': hover }">
+      <div class="product-item pa-10">
+        <v-row align="center">
+          <v-col cols="3">
+            <div class="product-item-image">
+              <v-img :src="data.img" :aspect-ratio="1" height="100%" />
+            </div>
+          </v-col>
+          <v-col cols="9" class="pl-6">
+            <h5 class="subtitle1 text-uppercase font-weight-bold mb-3">{{ data.name }}</h5>
+            <p class="mb-4">{{ data.description }}</p>
+            <custom-button text="Acción" plain class="px-0" />
+          </v-col>
+        </v-row>
+      </div>
+    </v-card>
+  </v-hover>
 </template>
 
 <script>
@@ -46,5 +50,14 @@ export default {
   &-image {
     background-color: #242526;
   }
+}
+
+.v-card {
+  opacity: 0.4;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.v-card:not(.on-hover) {
+  opacity: 1;
 }
 </style>
