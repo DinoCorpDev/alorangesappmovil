@@ -9,8 +9,11 @@
                         <div class="information">
                             <div class="title">
                                 <div>
-                                    <v-img class="img" max-width="90px"
-                                        src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
+                                    <v-img
+                                        class="img"
+                                        max-width="90px"
+                                        src="../../public/assets/img/carousel-item-placeholder.png"
+                                    ></v-img>
                                 </div>
                                 <div>
                                     <h6 class="text-uppercase black--text">Información</h6>
@@ -18,65 +21,34 @@
                             </div>
                             <v-divider></v-divider>
                             <div class="text">
-                                <span class="body1 black--text">Incluye Lorem Ipsum is simply dummy text of the printing
-                                    •
-                                    Lorem Ipsum has been the
-                                    industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                                    has
-                                    been
-                                    the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply
-                                    dummy
-                                    text of the printing • Lorem Ipsum has been the industry's Incluye Lorem Ipsum is
-                                    simply
-                                    dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem
-                                    Ipsum
-                                    is
-                                    simply dummy text of the printing • Lorem Ipsum has been the industry's • Lorem
-                                    Ipsum
-                                    has
-                                    been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing •
-                                    Lorem
-                                    Ipsum
-                                    has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum
-                                    is
-                                    simply dummy text of the printing • Lorem Ipsum has been the industry's Incluye
-                                    Lorem
-                                    Ipsum
-                                    is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye
-                                    Lorem
-                                    Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
-                                    Lorem
-                                    Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the
-                                    printing
-                                    •
-                                    Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of
-                                    the
-                                    printing • Lorem Ipsum has been the industry's • Lorem Ipsum has been the industry's
-                                    •
+                                <span class="body1 black--text">
                                     Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
-                                    industry's Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                                    has
-                                    been
-                                    the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem
-                                    Ipsum
-                                    has
-                                    been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is
-                                    simply
-                                    dummy text of the printing • Lorem Ipsum has been the industry's • Lorem Ipsum has
-                                    been
-                                    the
                                     industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                                    has
-                                    been
-                                    the industry's Incluye Lorem Ipsum is simply dummy text of the printing • Lorem
-                                    Ipsum
-                                    has
-                                    been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing •
-                                    Lorem
-                                    Ipsum
                                     has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum
-                                    is
-                                    simply dummy text of the printing • Lorem Ipsum has been the industry's</span>
+                                    is simply dummy text of the printing • Lorem Ipsum has been the industry's Incluye
+                                    Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
+                                    industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
+                                    has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum
+                                    is simply dummy text of the printing • Lorem Ipsum has been the industry's • Lorem
+                                    Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the
+                                    printing • Lorem Ipsum has been the industry's Incluye Lorem Ipsum is simply dummy
+                                    text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is
+                                    simply dummy text of the printing • Lorem Ipsum has been the industry's • Lorem
+                                    Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the
+                                    printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy
+                                    text of the printing • Lorem Ipsum has been the industry's • Lorem Ipsum has been
+                                    the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem
+                                    Ipsum has been the industry's Incluye Lorem Ipsum is simply dummy text of the
+                                    printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy
+                                    text of the printing • Lorem Ipsum has been the industry's • Lorem Ipsum has been
+                                    the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem
+                                    Ipsum has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem
+                                    Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's
+                                    Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
+                                    industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
+                                    has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum
+                                    is simply dummy text of the printing • Lorem Ipsum has been the industry's
+                                </span>
                             </div>
                             <v-divider></v-divider>
                         </div>
@@ -101,7 +73,7 @@ export default {
     components: {
         Bar,
         CarouselDescription,
-        LayoutNavbar,
+        LayoutNavbar
     },
     mounted() {
         this.$vuetify.theme.dark = true;
@@ -111,14 +83,14 @@ export default {
 
 <style lang="scss" scoped>
 .div-carousel {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     padding: 10px;
     height: 100%;
 }
 
 @media (max-width: 599px) {
     .div-carousel {
-        background-color: #F5F5F5;
+        background-color: #f5f5f5;
         padding: 0px;
         height: 100%;
         border-end-end-radius: 10px;
@@ -134,7 +106,7 @@ export default {
 }
 
 .information {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     padding: 20px;
     height: 100%;
 }

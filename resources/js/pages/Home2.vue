@@ -34,47 +34,73 @@
                         <v-divider class="mb-5" />
                         <p class="body1 mb-8">
                             Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
-                            industry's • Incluye
-                            Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
-                            Incluye Lorem
-                            Ipsum is simply dummy text. Incluye Lorem Ipsum is simply dummy text of the printing • Lorem
-                            Ipsum has
-                            beenthe industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                            has been the
-                            industry's • Incluye Lorem Ipsum is simply dummy text.
+                            industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been
+                            the industry's • Incluye Lorem Ipsum is simply dummy text. Incluye Lorem Ipsum is simply
+                            dummy text of the printing • Lorem Ipsum has beenthe industry's • Incluye Lorem Ipsum is
+                            simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem
+                            Ipsum is simply dummy text.
                         </p>
                         <v-row justify="center">
                             <v-col cols="12" lg="10">
-                                <v-img src="/public/assets/img/home/curved-arrows-top-xs.svg" contain width="80%"
-                                    class="mb-5 mx-auto d-sm-none" />
-                                <v-img src="/public/assets/img/home/curved-arrows-top-md.svg" contain width="80%"
-                                    class="mb-5 mx-auto d-none d-sm-block" />
+                                <v-img
+                                    src="/public/assets/img/home/curved-arrows-top-xs.svg"
+                                    contain
+                                    width="80%"
+                                    class="mb-5 mx-auto d-sm-none"
+                                />
+                                <v-img
+                                    src="/public/assets/img/home/curved-arrows-top-md.svg"
+                                    contain
+                                    width="80%"
+                                    class="mb-5 mx-auto d-none d-sm-block"
+                                />
                                 <v-row
-                                    :no-gutters="$vuetify.breakpoint.name == 'md' || $vuetify.breakpoint.name == 'lg' ? false : true">
+                                    :no-gutters="
+                                        $vuetify.breakpoint.name == 'md' || $vuetify.breakpoint.name == 'lg'
+                                            ? false
+                                            : true
+                                    "
+                                >
                                     <v-col>
-                                        <polygon-element text="Usuario"
-                                            icon="/public/assets/img/home/icon-usuario.svg" />
+                                        <polygon-element
+                                            text="Usuario"
+                                            icon="/public/assets/img/home/icon-usuario.svg"
+                                        />
                                     </v-col>
                                     <v-col>
-                                        <polygon-element text="Organizar"
-                                            icon="/public/assets/img/home/icon-organizar.svg" />
+                                        <polygon-element
+                                            text="Organizar"
+                                            icon="/public/assets/img/home/icon-organizar.svg"
+                                        />
                                     </v-col>
                                     <v-col>
-                                        <polygon-element text="Evaluar"
-                                            icon="/public/assets/img/home/icon-evaluar.svg" />
+                                        <polygon-element
+                                            text="Evaluar"
+                                            icon="/public/assets/img/home/icon-evaluar.svg"
+                                        />
                                     </v-col>
                                     <v-col>
-                                        <polygon-element text="Guardar"
-                                            icon="/public/assets/img/home/icon-guardar.svg" />
+                                        <polygon-element
+                                            text="Guardar"
+                                            icon="/public/assets/img/home/icon-guardar.svg"
+                                        />
                                     </v-col>
                                     <v-col>
                                         <polygon-element text="Crear" icon="/public/assets/img/home/icon-crear.svg" />
                                     </v-col>
                                 </v-row>
-                                <v-img src="/public/assets/img/home/curved-arrows-bottom-xs.svg" contain width="80%"
-                                    class="mt-5 mx-auto d-sm-none" />
-                                <v-img src="/public/assets/img/home/curved-arrows-bottom-md.svg" contain width="80%"
-                                    class="mt-5 mx-auto d-none d-sm-block" />
+                                <v-img
+                                    src="/public/assets/img/home/curved-arrows-bottom-xs.svg"
+                                    contain
+                                    width="80%"
+                                    class="mt-5 mx-auto d-sm-none"
+                                />
+                                <v-img
+                                    src="/public/assets/img/home/curved-arrows-bottom-md.svg"
+                                    contain
+                                    width="80%"
+                                    class="mt-5 mx-auto d-none d-sm-block"
+                                />
                             </v-col>
                         </v-row>
                     </div>
@@ -89,9 +115,13 @@
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <banner-category-product title="Titulo"
+                    <banner-category-product
+                        title="Titulo"
                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                        idItem="100" variant="#e9e9e9" variant-text="black--text"></banner-category-product>
+                        idItem="100"
+                        variant="#e9e9e9"
+                        variant-text="black--text"
+                    ></banner-category-product>
                 </v-col>
             </v-row>
 
@@ -121,9 +151,11 @@
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <banner-category-product title="Titulo"
+                    <banner-category-product
+                        title="Titulo"
                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                        idItem="100"></banner-category-product>
+                        idItem="100"
+                    ></banner-category-product>
                 </v-col>
             </v-row>
 
