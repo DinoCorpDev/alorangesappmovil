@@ -1,29 +1,19 @@
 <template>
     <div class="product-item">
-        <div class="text-right pa-1 mb-2">
+        <div class="text-right pa-2" v-if="headerPr">
             <v-icon right> la-bookmark </v-icon>
+        </div>
+        <div class="text-right pa-2 d-flex justify-space-between" v-else>
+            <h5 class="subtitle1">01</h5>
+            <v-icon right> la-wine-glass </v-icon>
         </div>
         <v-row>
             <template>
                 <v-col cols="12">
                     <v-hover v-slot:default="{ hover }">
                         <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
-                            <v-card style="background: gray" height="250px">
-                                <v-row>
-                                    <v-img :src="data.img" height="120px" class="mt-16" />
-                                </v-row>
-                            </v-card>
-                            <v-row justify="center">
-                                <v-card
-                                    class="rounded-circle"
-                                    height="70%"
-                                    width="70%"
-                                    style="background: white; margin-top: -30%"
-                                >
-                                    <v-img :src="data.img" height="150px" justify="center" />
-                                </v-card>
-                            </v-row>
-                            <div class="product-item-body pa-4 mt-8">
+                            <v-img :src="data.img" height="150px" />
+                            <div class="pb-5">
                                 <custom-button
                                     text="Ver Detalles"
                                     block
@@ -36,6 +26,13 @@
                 </v-col>
             </template>
         </v-row>
+        <div class="product-item-body pa-5">
+            <h5 class="subtitle2 text-uppercase mb-3">{{ data.ref }}</h5>
+            <h5 class="subtitle1 text-uppercase font-weight-bold mb-3">{{ data.name }}</h5>
+            <h5 class="subtitle1 mb-3">{{ data.brand }}</h5>
+            <h5 class="subtitle1 mb-3">{{ data.val }}</h5>
+            <custom-button text="Agregar a Compras" block class="px-0" />
+        </div>
     </div>
 </template>
 
@@ -91,6 +88,16 @@ export default {
 .product-item {
     border-radius: 10px;
     background-color: #18191a;
+
+    &-image {
+        background-color: #242526;
+    }
+
+    &-image,
+    &-image .v-image {
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
 }
 
 .v-card {
