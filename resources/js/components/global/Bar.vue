@@ -1,12 +1,9 @@
 <template>
-    <div>
-        <div class="bar">
-            <h6 class="text-uppercase"> <i :class="`las ${icon1}`"></i> {{ text1 }}</h6>
-            <h6 class="text-uppercase">{{ text2 }} <i :class="`las ${icon2}`"></i></h6>
-        </div>
+    <div class="bar">
+        <h6 class="text-uppercase"><i :class="`las ${icon1}`"></i> {{ text1 }}</h6>
+        <h6 class="text-uppercase">{{ text2 }} <i :class="`las ${icon2}`"></i></h6>
     </div>
 </template>
-
 
 <script>
 export default {
@@ -27,7 +24,7 @@ export default {
         icon2: {
             type: String,
             default: "la-lock"
-        },
+        }
     }
 };
 </script>

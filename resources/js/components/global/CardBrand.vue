@@ -16,7 +16,6 @@
     </div>
 </template>
 
-
 <script>
 import CustomButton from "./CustomButton.vue";
 export default {
@@ -27,7 +26,7 @@ export default {
     props: {
         img: {
             type: String,
-            default: "/public/assets/img/presentation-banner-logo.png",
+            default: "/public/assets/img/presentation-banner-logo.png"
         }
     }
 };
@@ -39,7 +38,7 @@ export default {
 }
 
 .col {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     border-radius: 10px;
     padding: 0;
 }

@@ -9,7 +9,7 @@
             <div class="texts">
                 <h4 class="white--text text-uppercase">{{ title }}</h4>
                 <span class="body1 white--text">{{ description }}</span>
-                <br>
+                <br />
                 <span class="body2 white--text text-uppercase">{{ description2 }}</span>
             </div>
         </template>
@@ -27,8 +27,11 @@
                     </video>
                 </v-responsive>
                 <v-responsive v-if="slide.type === 'iframe'" :aspect-ratio="aspectRatio">
-                    <iframe :src="`${slide.src}?controls=0&autoplay=1&fs=0&modestbranding&rel=0&showinfo=0&disablekb=0`"
-                        frameborder="0" allowfullscreen></iframe>
+                    <iframe
+                        :src="`${slide.src}?controls=0&autoplay=1&fs=0&modestbranding&rel=0&showinfo=0&disablekb=0`"
+                        frameborder="0"
+                        allowfullscreen
+                    ></iframe>
                 </v-responsive>
             </v-carousel-item>
         </template>
@@ -127,7 +130,6 @@ export default {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.05) 100%);
 
     &::v-deep {
-
         .v-window__next,
         .v-window__prev {
             top: calc(100% - 52px);

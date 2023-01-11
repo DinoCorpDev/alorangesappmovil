@@ -28,7 +28,6 @@
     </div>
 </template>
 
-
 <script>
 import CustomButton from "./CustomButton.vue";
 export default {
@@ -52,24 +51,24 @@ export default {
         price: {
             type: String,
             default: "Sin Asignar"
-        },
+        }
     },
     computed: {
-    aspectRatio() {
-      switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return "1.2";
-        case "sm":
-          return "1.9";
-        case "md":
-          return "2.2";
-        case "lg":
-          return "2.2";
-        case "xl":
-          return "2.2";
-      }
+        aspectRatio() {
+            switch (this.$vuetify.breakpoint.name) {
+                case "xs":
+                    return "1.2";
+                case "sm":
+                    return "1.9";
+                case "md":
+                    return "2.2";
+                case "lg":
+                    return "2.2";
+                case "xl":
+                    return "2.2";
+            }
+        }
     }
-  }
 };
 </script>
 
@@ -79,7 +78,7 @@ export default {
 }
 
 .col {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     border-radius: 10px;
     padding: 0;
 }

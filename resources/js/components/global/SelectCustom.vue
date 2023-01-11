@@ -1,7 +1,14 @@
 <template>
     <div>
-        <v-select class="text-uppercase" :items="items" :label="label" :dark="dark" :light="light" solo
-            append-icon="las la-angle-down">
+        <v-select
+            class="text-uppercase"
+            :items="items"
+            :label="label"
+            :dark="dark"
+            :light="light"
+            solo
+            append-icon="las la-angle-down"
+        >
             <template v-slot:item="{ item, attrs, on }">
                 <v-list-item v-bind="attrs" v-on="on">
                     <v-list-item-title :id="attrs['aria-labelledby']" v-text="item"></v-list-item-title>
@@ -65,4 +72,3 @@ export default {
     }
 }
 </style>
-

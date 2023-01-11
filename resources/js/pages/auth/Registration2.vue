@@ -31,13 +31,15 @@
                                 <v-row>
                                     <v-col cols="12" md="6">
                                         <label class="label">
-                                            <input type="checkbox"> <span class="body-1 black--text text">Registrar como persona natural</span>
+                                            <input type="checkbox" />
+                                            <span class="body-1 black--text text">Registrar como persona natural</span>
                                             <span class="checkmark"></span>
                                         </label>
                                     </v-col>
                                     <v-col cols="12" md="6">
                                         <label class="label">
-                                            <input type="checkbox"> <span class="body-1 black--text text">Registrar como persona jurídica</span>
+                                            <input type="checkbox" />
+                                            <span class="body-1 black--text text">Registrar como persona jurídica</span>
                                             <span class="checkmark"></span>
                                         </label>
                                     </v-col>
@@ -50,8 +52,9 @@
                                                 <custom-input></custom-input>
                                             </v-col>
                                             <v-col cols="12" sm="6">
-                                                <span class="black--text body-2 text-uppercase">Segundo Nombre
-                                                    (Opcional)</span>
+                                                <span class="black--text body-2 text-uppercase"
+                                                    >Segundo Nombre (Opcional)</span
+                                                >
                                                 <custom-input></custom-input>
                                             </v-col>
                                         </v-row>
@@ -59,13 +62,15 @@
                                         <select-custom light label="--" :items="DocumentType" />
                                         <v-row>
                                             <v-col cols="12" md="6">
-                                                <span class="black--text body-2 text-uppercase">Nombre De Direccion
-                                                    (Casa / Oficina)</span>
+                                                <span class="black--text body-2 text-uppercase"
+                                                    >Nombre De Direccion (Casa / Oficina)</span
+                                                >
                                                 <custom-input></custom-input>
                                             </v-col>
                                             <v-col cols="12" md="6">
-                                                <span class="black--text body-2 text-uppercase">Direccion (Calle /
-                                                    Carrera)</span>
+                                                <span class="black--text body-2 text-uppercase"
+                                                    >Direccion (Calle / Carrera)</span
+                                                >
                                                 <custom-input></custom-input>
                                             </v-col>
                                         </v-row>
@@ -76,11 +81,18 @@
                                         <span class="black--text body-2 text-uppercase">Pais</span>
                                         <custom-input></custom-input>
                                         <label class="label">
-                                            <input type="checkbox"> <span class="body-1 black--text text">He podido leer y entiendo la política de privacidad y cookies</span>
+                                            <input type="checkbox" />
+                                            <span class="body-1 black--text text">
+                                                He podido leer y entiendo la política de privacidad y cookies
+                                            </span>
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="label">
-                                            <input type="checkbox"> <span class="body-1 black--text text">Quiero recibir comunicaciones comerciales personalizadas de idovela a través de email.</span>
+                                            <input type="checkbox" />
+                                            <span class="body-1 black--text text">
+                                                Quiero recibir comunicaciones comerciales personalizadas de idovela a
+                                                través de email.
+                                            </span>
                                             <span class="checkmark"></span>
                                         </label>
                                     </v-col>
@@ -97,8 +109,9 @@
                                         </v-row>
                                         <span class="black--text body-2 text-uppercase">Numero de Documento</span>
                                         <custom-input></custom-input>
-                                        <span class="black--text body-2 text-uppercase">Direccion Adicional (Piso /
-                                            Apartamento / Oficina)</span>
+                                        <span class="black--text body-2 text-uppercase">
+                                            Direccion Adicional (Piso / Apartamento / Oficina)
+                                        </span>
                                         <custom-input></custom-input>
                                         <span class="black--text body-2 text-uppercase">Departamento</span>
                                         <select-custom light label="--" :items="DocumentType" />
@@ -116,7 +129,6 @@
                                         <custom-button block color="#000000" class="mt-3" text="Guardar" />
                                     </v-col>
                                 </v-row>
-
                             </div>
                             <div class="footer">
                                 <v-row>
@@ -126,12 +138,14 @@
                                     <v-col cols="6">
                                         <v-row class="d-flex justify-space-between">
                                             <v-col cols="4">
-                                                <span
-                                                    class="subtitle1 bold text-uppercase black--text">Información</span>
+                                                <span class="subtitle1 bold text-uppercase black--text">
+                                                    Información
+                                                </span>
                                             </v-col>
                                             <v-col cols="4">
-                                                <span
-                                                    class="subtitle1 bold text-uppercase black--text">Solicitudes</span>
+                                                <span class="subtitle1 bold text-uppercase black--text">
+                                                    Solicitudes
+                                                </span>
                                             </v-col>
                                             <v-col cols="4">
                                                 <p class="subtitle1 bold text-uppercase black--text">Contacto</p>
@@ -151,7 +165,7 @@
 <script>
 import Bar from "../../components/global/Bar.vue";
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
-import CustomButton from "../../components/global/CustomButton.vue"
+import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
@@ -249,11 +263,11 @@ export default {
     background-color: #eee;
 }
 
-.label:hover input~.checkmark {
-    background-color: #F5F5F5;
+.label:hover input ~ .checkmark {
+    background-color: #f5f5f5;
 }
 
-.label input:checked~.checkmark {
+.label input:checked ~ .checkmark {
     background-color: #000000;
     border-radius: 5px;
 }
@@ -264,7 +278,7 @@ export default {
     display: none;
 }
 
-.label input:checked~.checkmark:after {
+.label input:checked ~ .checkmark:after {
     display: block;
 }
 

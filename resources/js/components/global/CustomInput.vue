@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <input class="input" type="text" :placeholder="placeholder">
-    </div>
+    <input class="input" type="text" :placeholder="placeholder" />
 </template>
 
 <script>
@@ -14,7 +12,6 @@ export default {
         }
     }
 };
-
 </script>
 
 <style lang="scss" scoped>

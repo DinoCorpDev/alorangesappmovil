@@ -8,12 +8,21 @@
                 </div>
             </router-link>
             <form class="form">
-                <input type="search" class="input" placeholder="Escribe para buscar">
+                <input type="search" class="input" placeholder="Escribe para buscar" />
                 <div class="input-button">
-                    <input type="button" value="Buscar" class="search">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search icon-search"
-                        width="20" height="20" viewBox="0 0 24 24" stroke-width="3" stroke="#2c3e50" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
+                    <input type="button" value="Buscar" class="search" />
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-search icon-search"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        stroke-width="3"
+                        stroke="#2c3e50"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <circle cx="10" cy="10" r="7" />
                         <line x1="21" y1="21" x2="15" y2="15" />
@@ -78,7 +87,7 @@ export default {
 }
 
 .input {
-    border: 1px solid #DFDFDF;
+    border: 1px solid #dfdfdf;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     padding: 7px;
@@ -89,7 +98,7 @@ export default {
 .input-button {
     position: relative;
     padding: 0px 30px 0px 60px;
-    background-color: #DFDFDF;
+    background-color: #dfdfdf;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 }

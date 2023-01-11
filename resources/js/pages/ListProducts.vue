@@ -51,7 +51,7 @@ export default {
         Bar,
         CustomButton,
         Products,
-        LayoutNavbarAuth,
+        LayoutNavbarAuth
     },
     mounted() {
         this.$vuetify.theme.dark = true;

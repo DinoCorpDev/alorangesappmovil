@@ -4,11 +4,15 @@
         <bar />
         <div class="all">
             <v-container class="container">
-                <h6 class="black--text"><span class="success"><i class="las la-check"></i></span> Gracias por registrarse</h6>
+                <h6 class="black--text">
+                    <span class="success"><i class="las la-check"></i></span> Gracias por registrarse
+                </h6>
                 <v-divider class="divider"></v-divider>
-                <span class="black--text body2">Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                    has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
-                    been the industry's • Incluye Lorem Ipsum is simply dummy text.</span>
+                <span class="black--text body2">
+                    Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                    Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                    Incluye Lorem Ipsum is simply dummy text.
+                </span>
             </v-container>
         </div>
     </div>
@@ -42,7 +46,7 @@ export default {
         top: calc(50% - (60px));
         background-color: #fafcfc;
         border-radius: 10px;
-        left: calc(50% - (589px/2));
+        left: calc(50% - (589px / 2));
         padding: 10px;
     }
 }
@@ -54,8 +58,8 @@ export default {
 }
 
 .success {
-    background-color: #06C167;
-    color: #FFFFFF;
+    background-color: #06c167;
+    color: #ffffff;
     border-radius: 50%;
     padding: 5px 5px 0px 5px;
 }

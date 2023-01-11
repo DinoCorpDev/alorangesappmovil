@@ -6,9 +6,11 @@
             <v-container class="container">
                 <h6 class="black--text">¿Olvidó su contraseña?</h6>
                 <v-divider class="divider"></v-divider>
-                <span class="black--text body2">Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                    has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
-                    been the industry's • Incluye Lorem Ipsum is simply dummy text.</span>
+                <span class="black--text body2">
+                    Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                    Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                    Incluye Lorem Ipsum is simply dummy text.
+                </span>
                 <div class="inputs">
                     <span class="black--text body-2 text-uppercase">Correo Electronico</span>
                     <custom-input></custom-input>
@@ -47,7 +49,7 @@ export default {
         top: calc(50% - (150px));
         background-color: #fafcfc;
         border-radius: 10px;
-        left: calc(50% - (589px/2));
+        left: calc(50% - (589px / 2));
         padding: 10px;
     }
 }

@@ -6,8 +6,11 @@
             <div class="brand">
                 <div class="div-container">
                     <div class="col1">
-                        <v-img class="img" max-width="90px"
-                            src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
+                        <v-img
+                            class="img"
+                            max-width="90px"
+                            src="../../public/assets/img/carousel-item-placeholder.png"
+                        ></v-img>
                     </div>
                     <div class="col2">
                         <h5 class="black--text bold">Marcas</h5>
@@ -15,11 +18,11 @@
                     </div>
                     <div class="divider"></div>
                     <div class="col3">
-                        <p class="black--text">Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                            has
-                            been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                            has
-                            been the industry's • Incluye Lorem Ipsum is simply dummy text.</p>
+                        <p class="black--text">
+                            Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
+                            industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been
+                            the industry's • Incluye Lorem Ipsum is simply dummy text.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -64,7 +67,7 @@ export default {
     components: {
         Bar,
         CardBrand,
-        LayoutNavbarAuth,
+        LayoutNavbarAuth
     },
     mounted() {
         this.$vuetify.theme.dark = true;
@@ -75,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 .brand {
     margin: 20px 0px;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     padding: 10px;
     border-radius: 10px;
 }
@@ -109,7 +112,7 @@ export default {
 }
 
 .divider {
-    background-color: #DFDFDF;
+    background-color: #dfdfdf;
     width: 2px;
     height: 120px;
     margin: 5px 25px 5px 25px;
@@ -127,14 +130,13 @@ export default {
         padding: 5px 10px 5px 10px;
     }
 
-
     .col3 {
         width: 100%;
         padding: 5px 10px 5px 10px;
     }
 
     .divider {
-        background-color: #DFDFDF;
+        background-color: #dfdfdf;
         width: 100%;
         height: 2px;
         margin: 10px 10px 10px 10px;

@@ -3,5 +3,5 @@ module.exports = {
   printWidth: 120,
   singleQuote: false,
   trailingComma: "none",
-  tabWidth: 2
+  tabWidth: 4
 };
