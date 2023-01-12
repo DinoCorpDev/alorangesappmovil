@@ -1,5 +1,13 @@
 <template>
-    <input class="input" type="text" :placeholder="placeholder" />
+    <v-text-field
+        class="input"
+        :placeholder="placeholder"
+        :type="type"
+        :required="required"
+        :error-messages="errorMessages"
+        :value="value"
+        @input="$emit('input', $event)"
+    />
 </template>
 
 <script>
@@ -9,6 +17,22 @@ export default {
         placeholder: {
             type: String,
             default: "--"
+        },
+        type: {
+            type: String,
+            default: "text"
+        },
+        required: {
+            type: Boolean,
+            default: false
+        },
+        value: {
+            type: String,
+            required: true
+        },
+        errorMessages: {
+            type: Array,
+            default: () => []
         }
     }
 };
