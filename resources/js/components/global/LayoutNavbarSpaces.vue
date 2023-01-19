@@ -1,13 +1,10 @@
 <template>
-    <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="100" app>
+    <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="100" app elevation="0">
         <v-container class="pa-0 fill-height justify-space-between" fluid>
             <router-link :to="{ name: 'TempLanding' }" class="navbar-brand">
                 <v-img src="/public/assets/img/idovela-logo-dark.png" max-width="117" />
             </router-link>
-            <div class="d-flex align-center">
-                <v-text-field label="Escribe para buscar" class="mt-7" outlined dense></v-text-field>
-                <custom-button light text="Buscar" icon="la-search" />
-            </div>
+            <search-input />
             <div>
                 <custom-button light text="Iniciar Sesión" />
                 <custom-button light text="00" icon="la-cart-arrow-down" />
@@ -20,11 +17,13 @@
 <script>
 import CustomButton from "./CustomButton.vue";
 import ThemeToggleSwitch from "./ThemeToggleSwitch.vue";
+import SearchInput from "./SearchInput.vue";
 
 export default {
     components: {
         CustomButton,
-        ThemeToggleSwitch
+        ThemeToggleSwitch,
+        SearchInput
     }
 };
 </script>
