@@ -2,7 +2,7 @@
     <div>
         <layout-navbar-auth />
         <v-container fluid>
-            <bar text2="Compartir" icon2="la-share-alt-square" />
+            <nabvar-bottom-bar text2="Compartir" icon2="la-share-alt-square" />
             <div class="bar">
                 <h5 class="filter">Filtro</h5>
                 <custom-button class="mr-2 ms-2" light text="Nuevo" />
@@ -41,14 +41,14 @@
 </template>
 
 <script>
-import Bar from "../components/global/Bar.vue";
+import NabvarBottomBar from "../components/global/NabvarBottomBar.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import Products from "../components/global/Products.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
-        Bar,
+        NabvarBottomBar,
         CustomButton,
         Products,
         LayoutNavbarAuth
@@ -69,13 +69,6 @@ export default {
 .cards {
     padding: 10px 0;
     margin: 20px 0px;
-}
-
-.bar {
-    margin: 20px 0px;
-    display: flex;
-    justify-content: flex-start;
-    overflow: auto;
 }
 
 .filter {

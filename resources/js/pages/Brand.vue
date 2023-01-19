@@ -2,7 +2,7 @@
     <div>
         <layout-navbar-auth />
         <v-container fluid>
-            <bar text2="Compartir" icon2="la-share-alt-square" />
+            <nabvar-bottom-bar text2="Compartir" icon2="la-share-alt-square" />
             <div class="brand">
                 <div class="div-container">
                     <div class="col1">
@@ -59,13 +59,13 @@
 </template>
 
 <script>
-import Bar from "../components/global/Bar.vue";
+import NabvarBottomBar from "../components/global/NabvarBottomBar.vue";
 import CardBrand from "../components/global/CardBrand.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
-        Bar,
+        NabvarBottomBar,
         CardBrand,
         LayoutNavbarAuth
     },

@@ -2,7 +2,7 @@
     <div>
         <layout-navbar />
         <v-container fluid>
-            <bar text2="Compartir" icon2="la-share-alt-square" />
+            <nabvar-bottom-bar text2="Compartir" icon2="la-share-alt-square" />
             <div class="div-about">
                 <v-row no-gutters>
                     <v-col cols="12" md="4">
@@ -65,13 +65,13 @@
 </template>
 
 <script>
-import Bar from "../components/global/Bar.vue";
+import NabvarBottomBar from "../components/global/NabvarBottomBar.vue";
 import LayoutNavbar from "../components/global/LayoutNavbar.vue";
 import CarouselDescription from "../components/global/CarouselDescription.vue";
 
 export default {
     components: {
-        Bar,
+        NabvarBottomBar,
         CarouselDescription,
         LayoutNavbar
     },

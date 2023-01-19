@@ -2,7 +2,7 @@
     <div>
         <layout-navbar-auth />
         <v-container fluid>
-            <bar text2="Compartir" icon2="la-share-alt-square" />
+            <nabvar-bottom-bar text2="Compartir" icon2="la-share-alt-square" />
             <v-row class="mr-1 ms-1 mb-5">
                 <v-col cols="12" md="5" class="brand">
                     <div class="div-container">
@@ -182,7 +182,7 @@
 </template>
 
 <script>
-import Bar from "../components/global/Bar.vue";
+import NabvarBottomBar from "../components/global/NabvarBottomBar.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import Products from "../components/global/Products.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
@@ -191,7 +191,7 @@ import ProductItem4 from "../components/global/ProductItem4.vue";
 
 export default {
     components: {
-        Bar,
+        NabvarBottomBar,
         CustomButton,
         Products,
         LayoutNavbarAuth,
@@ -218,13 +218,6 @@ export default {
 .cards {
     margin: 20px 0px;
     padding: 10px 0;
-}
-
-.bar {
-    margin: 20px 0px;
-    display: flex;
-    justify-content: flex-start;
-    overflow: auto;
 }
 
 .bar2 {
