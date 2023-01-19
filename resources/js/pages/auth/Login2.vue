@@ -1,7 +1,6 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <nabvar-bottom-bar />
         <v-container>
             <v-row class="wrap pa-5" no-gutters>
                 <v-col cols="12" md="6">
@@ -98,7 +97,6 @@
 </template>
 
 <script>
-import NabvarBottomBar from "../../components/global/NabvarBottomBar.vue";
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
@@ -109,7 +107,6 @@ import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
     components: {
-        NabvarBottomBar,
         CarouselDescription,
         CustomButton,
         CustomInput,

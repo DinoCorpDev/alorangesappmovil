@@ -2,10 +2,14 @@
     <v-container class="bar" fluid>
         <router-link class="bar-item" :to="{ name: backTo }">
             <back-arrow-icon />
-            <span class="bar-label ml-3">{{ text1 }}</span>
+            <span class="bar-label ml-3"> Volver </span>
         </router-link>
-        <div class="bar-item">
-            <span class="bar-label mr-3">{{ text2 }}</span>
+        <a v-if="share" class="bar-item" href="#">
+            <span class="bar-label mr-3"> Compartir </span>
+            <share-icon />
+        </a>
+        <div v-else class="bar-item">
+            <span class="bar-label mr-3"> Seguro </span>
             <pad-lock-icon />
         </div>
     </v-container>
@@ -13,34 +17,24 @@
 
 <script>
 import BackArrowIcon from "../icons/BackArrow.vue";
+import ShareIcon from "../icons/Share.vue";
 import PadLockIcon from "../icons/PadLock.vue";
 
 export default {
     name: "NabvarBottomBar",
     props: {
-        text1: {
-            type: String,
-            default: "Volver"
-        },
-        text2: {
-            type: String,
-            default: "Seguro"
-        },
-        icon1: {
-            type: String,
-            default: "la-arrow-left"
-        },
-        icon2: {
-            type: String,
-            default: "la-lock"
-        },
         backTo: {
             type: String
+        },
+        share: {
+            type: Boolean,
+            default: false
         }
     },
     components: {
         BackArrowIcon,
-        PadLockIcon
+        PadLockIcon,
+        ShareIcon
     }
 };
 </script>
