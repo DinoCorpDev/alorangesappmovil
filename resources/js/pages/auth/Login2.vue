@@ -1,7 +1,7 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <bar />
+        <nabvar-bottom-bar />
         <v-container>
             <v-row class="wrap pa-5" no-gutters>
                 <v-col cols="12" md="6">
@@ -40,7 +40,7 @@
                                         required
                                     />
                                 </div>
-                                <router-link :to="{ name: 'ForgotPassword' }" class="black--text link-custom">
+                                <router-link :to="{ name: 'ForgotPassword2' }" class="black--text link-custom">
                                     {{ $t("forgot_password") }}?
                                 </router-link>
                                 <custom-button
@@ -54,8 +54,17 @@
                                     @click="login"
                                 />
                             </v-form>
-                            <a href="#" class="black--text link-custom">¿No tienes ninguna cuenta?</a>
-                            <custom-button block light color="#DFDFDF" class="mt-3" text="Registrarse" />
+                            <router-link :to="{ name: 'Registration2' }" class="black--text link-custom">
+                                ¿No tienes ninguna cuenta?
+                            </router-link>
+                            <custom-button
+                                block
+                                light
+                                color="#DFDFDF"
+                                class="mt-3"
+                                text="Registrarse"
+                                :to="{ name: 'Registration2' }"
+                            />
                         </div>
                         <div class="footer">
                             <v-row>
@@ -89,7 +98,7 @@
 </template>
 
 <script>
-import Bar from "../../components/global/Bar.vue";
+import NabvarBottomBar from "../../components/global/NabvarBottomBar.vue";
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
@@ -100,7 +109,7 @@ import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
     components: {
-        Bar,
+        NabvarBottomBar,
         CarouselDescription,
         CustomButton,
         CustomInput,

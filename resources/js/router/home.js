@@ -16,9 +16,7 @@ let Home4 = () => import("../pages/Home4");
 let About = () => import("../pages/About");
 let Brand = () => import("../pages/Brand");
 let ListProducts = () => import("../pages/ListProducts");
-let Registration2 = () => import("../pages/auth/Registration2");
 let RegistrationSuccess = () => import("../pages/auth/RegistrationSuccess");
-let ForgotPassword2 = () => import("../pages/auth/ForgotPassword2");
 
 export default [
     {
@@ -31,18 +29,6 @@ export default [
         path: "/test-components",
         component: TestComponents,
         name: "TestComponents",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/forgot-password2",
-        component: ForgotPassword2,
-        name: "ForgotPassword2",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/registration2",
-        component: Registration2,
-        name: "Registration2",
         meta: { requiresAuth: false }
     },
     {
