@@ -6,7 +6,7 @@
             </div>
             <div class="body">
                 <div>
-                    <v-img :src="img" width="200px"></v-img>
+                    <v-img :src="img" width="400px"></v-img>
                 </div>
             </div>
             <div class="div-body2">
@@ -16,11 +16,21 @@
                 <div class="space">
                     <h6 class="black--text">{{ name }}</h6>
                 </div>
-                <div class="space">
-                    <span class="black--text body1">{{ brand }}</span>
+                <div class="brand-price">
+                    <div class="space">
+                        <span class="black--text body1">{{ brand }}</span>
+                    </div>
+                    <div class="space">
+                        <span class="black--text subtitle1">{{ price }} COP</span>
+                    </div>
                 </div>
-                <div class="space">
-                    <span class="black--text subtitle1">{{ price }} COP</span>
+                <v-divider></v-divider>
+                <div class="text">
+                    <p class="black--text">
+                        Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                        Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                        Incluye Lorem Ipsum is simply dummy text.
+                    </p>
                 </div>
                 <custom-button block light text="Agregar a compras" />
             </div>
@@ -100,7 +110,7 @@ export default {
 }
 
 .body {
-    height: 200px;
+    height: 350px;
     background-color: #dfdfdf;
     display: flex;
     justify-content: center;
@@ -111,11 +121,20 @@ export default {
     padding: 15px;
 }
 
+.text {
+    padding-top: 15px;
+}
+
 .body3 {
     font-size: 10px;
 }
 
 .space {
     margin-bottom: 10px;
+}
+
+.brand-price {
+    display: flex;
+    justify-content: space-between;
 }
 </style>
