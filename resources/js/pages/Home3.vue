@@ -17,7 +17,7 @@
                 <v-container fluid>
                     <v-row class="mb-2">
                         <v-col cols="12">
-                            <carousel-tabs  :slides="sliderSeeder" />
+                            <carousel-tabs :slides="sliderSeeder" />
                         </v-col>
                     </v-row>
 
@@ -93,7 +93,7 @@
                 <v-container fluid>
                     <v-row>
                         <v-col cols="12">
-                            <carousel-tabs  :slides="sliderSeeder" />
+                            <carousel-tabs :slides="sliderSeeder" />
                         </v-col>
                     </v-row>
                     <div class="mb-2">
@@ -223,7 +223,7 @@
                 <v-container fluid>
                     <v-row>
                         <v-col cols="12">
-                            <carousel-tabs  :slides="sliderSeeder" :showbutton="false"/>
+                            <carousel-tabs :slides="sliderSeeder" :showbutton="false" />
                         </v-col>
                     </v-row>
                     <div class="mb-2">
@@ -368,7 +368,7 @@
                 <v-container fluid>
                     <v-row>
                         <v-col cols="12">
-                            <carousel-tabs  :slides="sliderSeeder" :showbutton="false"/>
+                            <carousel-tabs :slides="sliderSeeder" :showbutton="false" />
                         </v-col>
                     </v-row>
                     <v-row>

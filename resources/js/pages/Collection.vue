@@ -6,20 +6,52 @@
             <v-col cols="8" class="positionColbuttons">
                 <v-row dense justify>
                     <v-col>
-                        <v-img src="https://picsum.photos/1920/1080?random=1" v-show="overlay" height="700px" width="100%"/>
-                        <carousel :slides="sliderSeeder" v-show="overlay1" height="700px" width="100%"/>
-                        <carousel v-show="overlay2" height="700px" width="100%"/>
+                        <v-img
+                            src="https://picsum.photos/1920/1080?random=1"
+                            v-show="overlay"
+                            height="700px"
+                            width="100%"
+                        />
+                        <carousel :slides="sliderSeeder" v-show="overlay1" height="700px" width="100%" />
+                        <carousel v-show="overlay2" height="700px" width="100%" />
                     </v-col>
                 </v-row>
                 <v-row class="buttonsAct px-4">
                     <v-col cols="4">
-                        <v-btn   light block  @click="overlay = true; overlay1 = false; overlay2 = false">Especificación </v-btn>
+                        <v-btn
+                            light
+                            block
+                            @click="
+                                overlay = true;
+                                overlay1 = false;
+                                overlay2 = false;
+                            "
+                            >Especificación
+                        </v-btn>
                     </v-col>
                     <v-col cols="4">
-                        <v-btn   light block  @click="overlay = false; overlay1 = true; overlay2 = false">Imágenes </v-btn>
+                        <v-btn
+                            light
+                            block
+                            @click="
+                                overlay = false;
+                                overlay1 = true;
+                                overlay2 = false;
+                            "
+                            >Imágenes
+                        </v-btn>
                     </v-col>
                     <v-col cols="4">
-                        <v-btn   light block  @click="overlay = false; overlay1 = false; overlay2 = true">Videos </v-btn>
+                        <v-btn
+                            light
+                            block
+                            @click="
+                                overlay = false;
+                                overlay1 = false;
+                                overlay2 = true;
+                            "
+                            >Videos
+                        </v-btn>
                     </v-col>
                 </v-row>
             </v-col>
@@ -33,21 +65,19 @@
                     <h5 class="subtitle1 mb-2">{{ brand }}</h5>
                     <div class="d-flex">
                         <h5 class="subtitle1 mb-2 mr-2">{{ val }}</h5>
-                        <h5 class="caption mb-2"><del>{{ val }}</del></h5>
+                        <h5 class="caption mb-2">
+                            <del>{{ val }}</del>
+                        </h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="caption mb-3">{{ iva }}</h5>
                         <div class="d-flex justify-space-around align-center">
                             <v-btn icon @click="model = Math.max(model - 1, 0)">
-                                <v-icon small>
-                                    la-minus
-                                </v-icon>
+                                <v-icon small> la-minus </v-icon>
                             </v-btn>
                             {{ model }}
                             <v-btn icon @click="model = Math.min(model + 1, 8)">
-                                <v-icon small>
-                                    la-plus
-                                </v-icon>
+                                <v-icon small> la-plus </v-icon>
                             </v-btn>
                         </div>
                     </div>
@@ -58,10 +88,10 @@
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">{{ varia }}</h5>
                         <v-btn-toggle>
-                            <v-btn class="blue toggle-btn"/>
-                            <v-btn class="ml-2 white toggle-btn"/>
-                            <v-btn class="ml-2 black toggle-btn"/>
-                            <v-btn class="ml-2 red toggle-btn"/>
+                            <v-btn class="blue toggle-btn" />
+                            <v-btn class="ml-2 white toggle-btn" />
+                            <v-btn class="ml-2 black toggle-btn" />
+                            <v-btn class="ml-2 red toggle-btn" />
                         </v-btn-toggle>
                     </div>
                 </div>
@@ -76,7 +106,7 @@
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">Pago</h5>
-                        <h5 class="subtitle1 mb-2">Payu  Visa  PSE  MC</h5>
+                        <h5 class="subtitle1 mb-2">Payu Visa PSE MC</h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase">Envío</h5>
@@ -87,17 +117,17 @@
                 <v-divider />
                 <product-item-5 />
             </v-col>
-        </v-row>   
+        </v-row>
 
         <v-row class="mb-6">
             <v-col cols="12">
                 <div class="d-flex justify-space-between mb-8">
                     <h5 class="mt-1">H5</h5>
                     <div style="width: 38%">
-                    <custom-button light text="Nuevo" style="width: 23%"/>
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
+                        <custom-button light text="Nuevo" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                     </div>
                 </div>
                 <v-row>
@@ -138,10 +168,10 @@
             <div class="d-flex justify-space-between mb-8">
                 <h5 class="mt-1">H5</h5>
                 <div style="width: 38%">
-                <custom-button light text="Nuevo" style="width: 23%"/>
-                <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
-                <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
-                <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
+                    <custom-button light text="Nuevo" style="width: 23%" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                 </div>
             </div>
             <v-row>
@@ -209,24 +239,20 @@ import { sliderSeeder } from "../seeders/products";
 
 export default {
     data: () => ({
-      overlay: true,
-      overlay1: false,
-      overlay2: false,
-      sliderSeeder,
-      id: "0",
-      name: "Colección",
-      ref: "REFERENCIA",
-      brand: "Marcas",
-      val: "000.000.000 COP",
-      img: "/public/assets/img/item-placeholder.png",
-      iva: "* Iva Incluido",
-      varia: "Variación",
-      model: 0,
-      tags: [
-        '1',
-        '2',
-        '3',
-      ],
+        overlay: true,
+        overlay1: false,
+        overlay2: false,
+        sliderSeeder,
+        id: "0",
+        name: "Colección",
+        ref: "REFERENCIA",
+        brand: "Marcas",
+        val: "000.000.000 COP",
+        img: "/public/assets/img/item-placeholder.png",
+        iva: "* Iva Incluido",
+        varia: "Variación",
+        model: 0,
+        tags: ["1", "2", "3"]
     }),
     components: {
         ProductItem3,
@@ -245,96 +271,96 @@ export default {
 
 <style lang="scss" scoped>
 .v-btn {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.25px;
 
-  @media (min-width: 960px) {
-    font-size: 14px;
-  }
+    @media (min-width: 960px) {
+        font-size: 14px;
+    }
 
-  border-radius: 5px;
+    border-radius: 5px;
 
-  i {
-    font-size: 20px;
-  }
+    i {
+        font-size: 20px;
+    }
 
-  &:hover:before,
-  &:focus:before {
-    opacity: 1;
-  }
+    &:hover:before,
+    &:focus:before {
+        opacity: 1;
+    }
 
-  &.v-size--default {
-    height: 38px;
-  }
+    &.v-size--default {
+        height: 38px;
+    }
 }
 
 .theme--light {
-  &.v-btn {
-    color: #000000;
-
-    &.v-btn--has-bg {
-      background-color: #dfdfdf;
-
-      &:before {
-        background-color: #ffffff;
-      }
-
-      &.v-btn--disabled {
-        color: #000000 !important;
+    &.v-btn {
+        color: #000000;
 
         &.v-btn--has-bg {
-          background-color: #fafcfc !important;
+            background-color: #dfdfdf;
+
+            &:before {
+                background-color: #ffffff;
+            }
+
+            &.v-btn--disabled {
+                color: #000000 !important;
+
+                &.v-btn--has-bg {
+                    background-color: #fafcfc !important;
+                }
+            }
         }
-      }
-    }
 
-    &.v-btn--outlined {
-      color: #ffffff;
+        &.v-btn--outlined {
+            color: #ffffff;
 
-      &:hover,
-      &:focus {
-        color: #000000;
-      }
+            &:hover,
+            &:focus {
+                color: #000000;
+            }
 
-      &:before {
-        background-color: rgba(255, 255, 255, 0.8);
-      }
+            &:before {
+                background-color: rgba(255, 255, 255, 0.8);
+            }
 
-      &:focus {
-        &:before {
-          background-color: #ffffff;
+            &:focus {
+                &:before {
+                    background-color: #ffffff;
+                }
+            }
         }
-      }
     }
-  }
 }
 
-.buttonsAct{
-    top:30px;
-    position:absolute;
+.buttonsAct {
+    top: 30px;
+    position: absolute;
     width: 100%;
 }
 
-.positionColbuttons{
+.positionColbuttons {
     position: relative;
 }
 
-.la-border{
+.la-border {
     border-radius: 0.5em;
 }
 
-.v-btn-toggle{
+.v-btn-toggle {
     border-radius: 0px;
-    height:20px!important;
+    height: 20px !important;
 }
 
-.toggle-btn{
-    height:20px!important;
-    min-width:20px!important;
+.toggle-btn {
+    height: 20px !important;
+    min-width: 20px !important;
 }
 
-.v-divider{
+.v-divider {
     border-width: thin 0 0;
     max-width: 94%;
 }
