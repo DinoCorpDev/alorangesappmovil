@@ -89,7 +89,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
         CoreComponentRepository::instantiateShopRepository();
         if ($request->has('is_variant') && !$request->has('variations')) {
             flash(translate('Invalid product variations'))->error();
@@ -267,53 +266,59 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function import(Request $request){
+    public function import(Request $request)
+    {
         $the_file = $request->file('uploaded_file');
-        try{
+
+        try {
             $spreadsheet = IOFactory::load($the_file->getRealPath());
             $sheet        = $spreadsheet->getActiveSheet();
             $row_limit    = $sheet->getHighestDataRow();
             $column_limit = $sheet->getHighestDataColumn();
-            $row_range    = range( 2, $row_limit );
-            $column_range = range( 'O', $column_limit );
+            $row_range    = range(2, $row_limit);
+            $column_range = range('O', $column_limit);
             $startcount = 2;
             $data = array();
-            //referencia,categoria,subcategoria,marca,precio,descuento,divisa,stock,garantia,envio,consumo,material,medida_de_producto,si1,medida_de_engaste
-            foreach ( $row_range as $row ) {
+
+            // referencia,categoria,subcategoria,marca,precio,descuento,divisa,stock,garantia,envio,consumo,material,medida_de_producto,si1,medida_de_engaste
+
+            foreach ($row_range as $row) {
                 $data[] = [
-                    'referencia' =>$sheet->getCell( 'A' . $row )->getValue(),
-                    'categoria' =>$sheet->getCell( 'B' . $row )->getValue(),
-                    'subcategoria' =>$sheet->getCell( 'C' . $row )->getValue(),
-                    'marca' =>$sheet->getCell( 'D' . $row )->getValue(),
-                    'precio' => preg_replace('/[^0-9]/', '', $sheet->getCell( 'E' . $row )->getValue()),
-                    'descuento' => preg_replace('/[^0-9]/', '', $sheet->getCell( 'F' . $row )->getValue()),
-                    'divisa' =>$sheet->getCell( 'G' . $row )->getValue(),
-                    'stock' => preg_replace('/[^0-9]/', '', $sheet->getCell( 'H' . $row )->getValue()),
-                    'garantia' =>$sheet->getCell( 'I' . $row )->getValue(),
-                    'envio' =>$sheet->getCell( 'J' . $row )->getValue(),
-                    'consumo' =>$sheet->getCell( 'K' . $row )->getValue(),
-                    'material' =>$sheet->getCell( 'L' . $row )->getValue(),
-                    'medida_de_producto' =>$sheet->getCell( 'M' . $row )->getValue(),
-                    'si1' =>$sheet->getCell( 'N' . $row )->getValue(),
-                    'medida_de_engaste' =>$sheet->getCell( 'O' . $row )->getValue(),
+                    'referencia' => $sheet->getCell('A' . $row)->getValue(),
+                    'categoria' => $sheet->getCell('B' . $row)->getValue(),
+                    'subcategoria' => $sheet->getCell('C' . $row)->getValue(),
+                    'marca' => $sheet->getCell('D' . $row)->getValue(),
+                    'precio' => preg_replace('/[^0-9]/', '', $sheet->getCell('E' . $row)->getValue()),
+                    'descuento' => preg_replace('/[^0-9]/', '', $sheet->getCell('F' . $row)->getValue()),
+                    'divisa' => $sheet->getCell('G' . $row)->getValue(),
+                    'stock' => preg_replace('/[^0-9]/', '', $sheet->getCell('H' . $row)->getValue()),
+                    'garantia' => $sheet->getCell('I' . $row)->getValue(),
+                    'envio' => $sheet->getCell('J' . $row)->getValue(),
+                    'consumo' => $sheet->getCell('K' . $row)->getValue(),
+                    'material' => $sheet->getCell('L' . $row)->getValue(),
+                    'medida_de_producto' => $sheet->getCell('M' . $row)->getValue(),
+                    'si1' => $sheet->getCell('N' . $row)->getValue(),
+                    'medida_de_engaste' => $sheet->getCell('O' . $row)->getValue(),
                 ];
+
                 $startcount++;
             }
 
-            if(count($data) > 0){
-                foreach ( $data as $row_data ) {
+            if (count($data) > 0) {
+                foreach ($data as $row_data) {
                     $product = new Product;
                     $product->name = $row_data["categoria"];
-                    $product->shop_id= auth()->user()->shop_id;
+                    $product->shop_id = auth()->user()->shop_id;
                     $product->unit = 1;
-                    if($row_data["stock"]){
-                        $unidades = explode(" ",$row_data["stock"]);
+
+                    if ($row_data["stock"]) {
+                        $unidades = explode(" ", $row_data["stock"]);
                         $product->stock = $unidades[0];
                     }
-                    
+
                     $product->min_qty = 1;
                     $product->max_qty = 100;
-                    $product->description = $row_data["referencia"] . " " . $row_data["subcategoria"] . " marca:". $row_data["marca"] . " medidas:". $row_data["medida_de_producto"] ;
+                    $product->description = $row_data["referencia"] . " " . $row_data["subcategoria"] . " marca:" . $row_data["marca"] . " medidas:" . $row_data["medida_de_producto"];
                     $product->published = 0;
 
                     $product->lowest_price  =  $row_data["precio"];
@@ -323,17 +328,13 @@ class ProductController extends Controller
                     $product->slug              = Str::slug($row_data["categoria"], '-') . '-' . strtolower(Str::random(5));
 
                     $product->save();
-                }    
-
+                }
             }
-            
-           //dd($data);
-
         } catch (Exception $e) {
             $error_code = $e->errorInfo[1];
             return back()->withErrors('There was a problem uploading the data!');
         }
-        
+
         flash(translate('Products has been inserted successfully'))->success();
         return redirect()->route('product.index');
     }
@@ -360,6 +361,7 @@ class ProductController extends Controller
     public function edit(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+
         if ($product->shop_id != auth()->user()->shop_id) {
             abort(403);
         }

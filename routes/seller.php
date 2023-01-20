@@ -11,7 +11,7 @@ use App\Addons\Multivendor\Http\Controllers\Seller\ShopController;
 use App\Addons\Multivendor\Http\Controllers\Seller\CommissionController;
 use App\Addons\Multivendor\Http\Controllers\Seller\CouponController;
 use App\Addons\Multivendor\Http\Controllers\Seller\SellerPackageController;
-use App\Addons\Multivendor\Http\Controllers\Seller\SellerPayoutController; 
+use App\Addons\Multivendor\Http\Controllers\Seller\SellerPayoutController;
 use App\Addons\Multivendor\Http\Controllers\Seller\ConversationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InvoiceController;
@@ -42,7 +42,7 @@ Route::group([
     Route::post('/language', [LanguageController::class, 'changeLanguage'])->name('language.change');
 
     // Shop Setting
-    Route::resource('/shop', ShopController::class); 
+    Route::resource('/shop', ShopController::class);
 
     // Seller products
     Route::group(['prefix' => 'product'], function () {
@@ -75,14 +75,14 @@ Route::group([
     Route::post('/coupon/get_form', [CouponController::class, 'get_coupon_form'])->name('coupons.get_coupon_form');
     Route::post('/coupon/get_form_edit', [CouponController::class, 'get_coupon_form_edit'])->name('coupons.get_coupon_form_edit');
     Route::get('/coupon/destroy/{id}', [CouponController::class, 'destroy'])->name('coupons.destroy');
- 
+
     # conversation
     Route::controller(ConversationController::class)->group(function () {
         Route::get('/product-querries', 'index')->name('querries.index');
         Route::post('/new-query', 'storeMessage')->name('querries.store');
         Route::post('/product-querries/refresh', 'refresh')->name('querries.refresh');
         Route::get('/product-querries/show/{id}', 'show')->name('querries.show');
-    }); 
+    });
 
     // Orders
     Route::get('/orders', [SellerController::class, 'orders'])->name('orders');

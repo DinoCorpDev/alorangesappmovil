@@ -233,7 +233,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::post('/new-query', 'storeMessage')->name('querries.store');
         Route::post('/product-querries/refresh', 'refresh')->name('querries.refresh');
         Route::get('/product-querries/show/{id}', 'show')->name('querries.show');
-    }); 
+    });
 
     //Reviews
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
