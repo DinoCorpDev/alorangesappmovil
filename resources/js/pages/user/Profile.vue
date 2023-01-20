@@ -23,10 +23,10 @@
 
                         <label>{{ $t("new_password") }}</label>
                         <v-text-field placeholder="******" type="password" v-model="form.password" :error-messages="passwordErrors" @blur="$v.form.password.$touch()" outlined hide-details="auto" class="mb-3"></v-text-field>
-                        
+
                         <label>{{ $t("confirm_password") }}</label>
                         <v-text-field placeholder="******" type="password" v-model="form.confirmPassword" :error-messages="confirmPasswordErrors" @blur="$v.form.confirmPassword.$touch()" outlined hide-details="auto" class="mb-3"></v-text-field>
-                        
+
                         <label>{{ $t("profile_image") }}</label>
                         <div class="d-flex flex-column align-center justify-center border rounded pa-6 mb-3">
                             <div class="avatar-upload">
@@ -282,16 +282,16 @@ export default {
             //     });
             //     return;
             // }
-    
+
             this.$v.form.$touch();
             if (this.$v.form.$anyError) {
                 return;
             }
-            
+
             // this.form.phone = this.form.phone.replace(/\s/g, '')
             this.infoUpdateLoading = true;
 
-            
+
             let formData = new FormData();
             for ( var key in this.form ) {
                 formData.append(key, this.form[key]);

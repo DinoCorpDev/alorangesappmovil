@@ -7,11 +7,12 @@
                 <v-col cols="12" md="5" class="brand">
                     <div class="div-container">
                         <div class="col1">
-                            <v-img
-                                class="img"
-                                max-width="90px"
-                                src="../../public/assets/img/carousel-item-placeholder.png"
-                            ></v-img>
+                            <div class="div-img">
+                                <div>
+                                    <v-img max-width="100px"
+                                        src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
+                                </div>
+                            </div>
                         </div>
                         <div class="col2">
                             <h5 class="black--text bold">Marcas</h5>
@@ -207,10 +208,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.img {
+.div-img {
     background-color: #dfdfdf;
     border-radius: 50%;
-    padding: 10px 0;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .img-banner {
@@ -238,6 +243,7 @@ export default {
 .div-container {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .col1,
@@ -267,14 +273,16 @@ export default {
 @media (max-width: 959px) {
     .brand {
         order: 2;
-        border-end-start-radius: 0px;
-        border-top-left-radius: 0px;
+        border-end-start-radius: 10px;
+        border-start-start-radius: 0px;
+        border-end-end-radius: 10px;
     }
 
     .banner {
         order: 1;
         border-end-end-radius: 0px;
-        border-top-right-radius: 0px;
+        border-start-start-radius: 10px;
+        border-start-end-radius: 10px;
         height: 250px;
         width: 100%;
     }
