@@ -16,7 +16,6 @@ let Home4 = () => import("../pages/Home4");
 let About = () => import("../pages/About");
 let Brands = () => import("../pages/Brands");
 let ListProducts = () => import("../pages/ListProducts");
-let RegistrationSuccess = () => import("../pages/auth/RegistrationSuccess");
 
 export default [
     {
@@ -32,15 +31,9 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/registrationsuccess",
-        component: RegistrationSuccess,
-        name: "RegistrationSuccess",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/listproducts",
+        path: "/search/:keyword?",
         component: ListProducts,
-        name: "ListProducts",
+        name: "SearchProducts",
         meta: { requiresAuth: false }
     },
     {

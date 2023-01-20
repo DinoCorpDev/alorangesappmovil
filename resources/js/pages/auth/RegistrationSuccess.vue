@@ -1,7 +1,6 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <nabvar-bottom-bar />
         <div class="all">
             <v-container class="container">
                 <h6 class="black--text">
@@ -19,7 +18,6 @@
 </template>
 
 <script>
-import NabvarBottomBar from "../../components/global/NabvarBottomBar.vue";
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
@@ -27,14 +25,10 @@ import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
-        NabvarBottomBar,
         CarouselDescription,
         CustomButton,
         CustomInput,
         LayoutNavbarAuth
-    },
-    mounted() {
-        this.$vuetify.theme.dark = true;
     }
 };
 </script>

@@ -1,7 +1,6 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <nabvar-bottom-bar back-to="Login2" />
         <v-container>
             <v-row>
                 <v-col cols="12">
@@ -125,7 +124,13 @@
                                             <custom-input></custom-input>
                                         </v-col>
                                     </v-row>
-                                    <custom-button block color="#000000" class="mt-3" text="Guardar" />
+                                    <custom-button
+                                        block
+                                        color="black"
+                                        class="mt-3"
+                                        text="Guardar"
+                                        :to="{ name: 'RegistrationSuccess' }"
+                                    />
                                 </v-col>
                             </v-row>
                         </div>
@@ -157,7 +162,6 @@
 </template>
 
 <script>
-import NabvarBottomBar from "../../components/global/NabvarBottomBar.vue";
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
@@ -166,7 +170,6 @@ import SelectCustom from "../../components/global/SelectCustom.vue";
 
 export default {
     components: {
-        NabvarBottomBar,
         CarouselDescription,
         CustomButton,
         CustomInput,

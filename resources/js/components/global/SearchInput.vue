@@ -1,10 +1,10 @@
 <template>
     <div class="search-input">
         <input type="search" class="search-input-input" :placeholder="placeholder" />
-        <button class="search-input-button" type="button">
+        <router-link class="search-input-button" type="button" :to="{ name: 'SearchProducts' }">
             <search-icon class="mr-2" />
             <span>{{ buttonLabel }}</span>
-        </button>
+        </router-link>
     </div>
 </template>
 

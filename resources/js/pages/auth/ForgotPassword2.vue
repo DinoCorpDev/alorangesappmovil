@@ -1,7 +1,6 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <nabvar-bottom-bar back-to="Login2" />
         <v-container class="container">
             <v-row justify="center">
                 <v-col cols="6">
@@ -17,7 +16,7 @@
                             <span class="black--text body-2 text-uppercase">Correo Electronico</span>
                             <custom-input></custom-input>
                         </div>
-                        <custom-button block class="mt-5" text="Enviar" />
+                        <custom-button block class="mt-5" text="Enviar" :to="{ name: 'Login2' }" />
                     </div>
                 </v-col>
             </v-row>
@@ -26,7 +25,6 @@
 </template>
 
 <script>
-import NabvarBottomBar from "../../components/global/NabvarBottomBar.vue";
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
@@ -34,7 +32,6 @@ import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
-        NabvarBottomBar,
         CarouselDescription,
         CustomButton,
         CustomInput,

@@ -2,7 +2,6 @@
     <div>
         <layout-navbar-auth />
         <v-container fluid>
-            <nabvar-bottom-bar text2="Compartir" icon2="la-share-alt-square" />
             <div class="bar">
                 <h5 class="filter">Filtro</h5>
                 <custom-button class="mr-2 ms-2" light text="Nuevo" />
@@ -41,20 +40,15 @@
 </template>
 
 <script>
-import NabvarBottomBar from "../components/global/NabvarBottomBar.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import Products from "../components/global/Products.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
-        NabvarBottomBar,
         CustomButton,
         Products,
         LayoutNavbarAuth
-    },
-    mounted() {
-        this.$vuetify.theme.dark = true;
     }
 };
 </script>
@@ -74,5 +68,6 @@ export default {
 .filter {
     line-height: 42px;
     padding-right: 30px;
+    display: inline-block;
 }
 </style>
