@@ -14,7 +14,7 @@ let Home2 = () => import("../pages/Home2");
 let Home3 = () => import("../pages/Home3");
 let Home4 = () => import("../pages/Home4");
 let About = () => import("../pages/About");
-let Brand = () => import("../pages/Brand");
+let Brands = () => import("../pages/Brands");
 let ListProducts = () => import("../pages/ListProducts");
 let RegistrationSuccess = () => import("../pages/auth/RegistrationSuccess");
 
@@ -50,9 +50,9 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/brand",
-        component: Brand,
-        name: "Brand",
+        path: "/brands",
+        component: Brands,
+        name: "Brands",
         meta: { requiresAuth: false }
     },
     {
