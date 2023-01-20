@@ -6,11 +6,12 @@
             <div class="brand">
                 <div class="div-container">
                     <div class="col1">
-                        <v-img
-                            class="img"
-                            max-width="90px"
-                            src="../../public/assets/img/carousel-item-placeholder.png"
-                        ></v-img>
+                        <div class="div-img">
+                            <div>
+                                <v-img max-width="100px"
+                                    src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
+                            </div>
+                        </div>
                     </div>
                     <div class="col2">
                         <h5 class="black--text bold">Marcas</h5>
@@ -100,10 +101,14 @@ export default {
     padding: 5px 20px 5px 20px;
 }
 
-.img {
+.div-img {
     background-color: #dfdfdf;
     border-radius: 50%;
-    padding: 10px 0;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cards {

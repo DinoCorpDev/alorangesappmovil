@@ -6,7 +6,14 @@
             </div>
             <div class="body">
                 <div>
-                    <v-img :src="img" width="100px"></v-img>
+                    <v-img :src="img" max-width="110px"></v-img>
+                </div>
+            </div>
+            <div class="body2">
+                <div class="div-img">
+                    <div>
+                        <v-img :src="img2" max-width="170px"></v-img>
+                    </div>
                 </div>
             </div>
             <div class="div-btn">
@@ -26,7 +33,11 @@ export default {
     props: {
         img: {
             type: String,
-            default: "/public/assets/img/presentation-banner-logo.png"
+            default: "/public/assets/img/idovela-logo-dark.png"
+        },
+        img2: {
+            type: String,
+            default: "public/assets/img/carousel-item-placeholder.png"
         }
     }
 };
@@ -64,8 +75,24 @@ export default {
     align-items: center;
 }
 
+.body2 {
+    display: flex;
+    justify-content: center;
+}
+
+.div-img {
+    background-color: #ffffff;
+    height: 170px;
+    border-radius: 50%;
+    margin-top: -85px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .div-btn {
-    height: 150px;
-    padding: 100px 15px 20px 15px;
+    height: 100px;
+    padding: 50px 15px 20px 15px;
 }
 </style>

@@ -114,7 +114,7 @@
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
                     <v-col cols="12" sm="6" md="5" lg="4" xl="3">
-                        <product-item4 />
+                        <product-item5 />
                     </v-col>
                     <v-col cols="6" sm="6" md="4" lg="3" xl="2">
                         <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
@@ -138,7 +138,7 @@
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
                     <v-col cols="12" sm="6" md="5" lg="4" xl="3">
-                        <product-item4 />
+                        <product-item5 />
                     </v-col>
                     <v-col cols="6" sm="6" md="4" lg="3" xl="2">
                         <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
@@ -162,13 +162,13 @@
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
                     <v-col cols="12" sm="12" md="6" lg="4" xl="3">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                        <products2 reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
                     </v-col>
                     <v-col cols="12" sm="12" md="6" lg="4" xl="3">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                        <products2 reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
                     </v-col>
                     <v-col cols="12" sm="12" md="6" lg="4" xl="3">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                        <products2 reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
                     </v-col>
                 </v-row>
             </div>
@@ -185,18 +185,20 @@
 import NabvarBottomBar from "../components/global/NabvarBottomBar.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import Products from "../components/global/Products.vue";
+import Products2 from "../components/global/Products2.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
-import ProductItem4 from "../components/global/ProductItem4.vue";
+import ProductItem5 from "../components/global/ProductItem5.vue";
 
 export default {
     components: {
         NabvarBottomBar,
         CustomButton,
         Products,
+        Products2,
         LayoutNavbarAuth,
         PresentationBanner,
-        ProductItem4
+        ProductItem5
     },
     mounted() {
         this.$vuetify.theme.dark = true;
