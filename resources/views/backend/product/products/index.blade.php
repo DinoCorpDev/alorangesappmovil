@@ -6,9 +6,24 @@
             <div class="col-md-4">
                 <h1 class="h3">{{ translate('All products') }}</h1>
             </div>
-            <div class="col-md-8 text-md-right">
+            <div class="col-md-3 offset-md-2 text-md-right">
                 @can('add_products')
-                    <a href="{{ route('product.create') }}" class="btn btn-primary">
+                    <label for="openCSV" href="#" class="btn btn-secondary w-100 mb-0">
+                        <span id="span-btn-excel">{{ translate('Import Products') }}</span>
+                        <div id="spinner-excel" class="spinner-border m-auto" role="status" style="width: 20px; height: 20px; display: none">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </label>
+                    <form id="formCSV" class="d-none" action="{{ route('product.import') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input 
+                            onchange="document.getElementById('formCSV').submit();document.getElementById('span-btn-excel').style.display = 'none';document.getElementById('spinner-excel').style.display = 'block'" id="openCSV" type="file" required class="form-control" name="uploaded_file" id="uploaded_file">
+                    </form>
+                @endcan
+            </div>
+            <div class="col-md-3 text-md-right">
+                @can('add_products')
+                    <a href="{{ route('product.create') }}" class="btn btn-primary w-100">
                         <span>{{ translate('Add New Product') }}</span>
                     </a>
                 @endcan

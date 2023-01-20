@@ -21,6 +21,11 @@ use App\Utility\CategoryUtility;
 use CoreComponentRepository;
 use Artisan;
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 class ProductController extends Controller
 {
     public function __construct()
@@ -253,6 +258,83 @@ class ProductController extends Controller
         $product->save();
 
         flash(translate('Product has been inserted successfully'))->success();
+        return redirect()->route('product.index');
+    }
+
+    /**
+     * Stores a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function import(Request $request){
+        $the_file = $request->file('uploaded_file');
+        try{
+            $spreadsheet = IOFactory::load($the_file->getRealPath());
+            $sheet        = $spreadsheet->getActiveSheet();
+            $row_limit    = $sheet->getHighestDataRow();
+            $column_limit = $sheet->getHighestDataColumn();
+            $row_range    = range( 2, $row_limit );
+            $column_range = range( 'O', $column_limit );
+            $startcount = 2;
+            $data = array();
+            //referencia,categoria,subcategoria,marca,precio,descuento,divisa,stock,garantia,envio,consumo,material,medida_de_producto,si1,medida_de_engaste
+            foreach ( $row_range as $row ) {
+                $data[] = [
+                    'referencia' =>$sheet->getCell( 'A' . $row )->getValue(),
+                    'categoria' =>$sheet->getCell( 'B' . $row )->getValue(),
+                    'subcategoria' =>$sheet->getCell( 'C' . $row )->getValue(),
+                    'marca' =>$sheet->getCell( 'D' . $row )->getValue(),
+                    'precio' =>$sheet->getCell( 'E' . $row )->getValue(),
+                    'descuento' =>$sheet->getCell( 'F' . $row )->getValue(),
+                    'divisa' =>$sheet->getCell( 'G' . $row )->getValue(),
+                    'stock' =>$sheet->getCell( 'H' . $row )->getValue(),
+                    'garantia' =>$sheet->getCell( 'I' . $row )->getValue(),
+                    'envio' =>$sheet->getCell( 'J' . $row )->getValue(),
+                    'consumo' =>$sheet->getCell( 'K' . $row )->getValue(),
+                    'material' =>$sheet->getCell( 'L' . $row )->getValue(),
+                    'medida_de_producto' =>$sheet->getCell( 'M' . $row )->getValue(),
+                    'si1' =>$sheet->getCell( 'N' . $row )->getValue(),
+                    'medida_de_engaste' =>$sheet->getCell( 'O' . $row )->getValue(),
+                ];
+                $startcount++;
+            }
+
+            if(count($data) > 0){
+                foreach ( $data as $row_data ) {
+                    $product = new Product;
+                    $product->name = $row_data["categoria"];
+                    $product->shop_id= auth()->user()->shop_id;
+                    $product->unit = 1;
+                    if($row_data["stock"]){
+                        $unidades = explode(" ",$row_data["stock"]);
+                        $product->stock = $unidades[0];
+                    }
+                    
+                    $product->min_qty = 1;
+                    $product->max_qty = 100;
+                    $product->description = $row_data["referencia"] . " " . $row_data["subcategoria"] . " marca:". $row_data["marca"] . " medidas:". $row_data["medida_de_producto"] ;
+                    $product->published = 0;
+
+                    $product->lowest_price  =  $row_data["precio"];
+                    $product->highest_price =  $row_data["precio"];
+                    $product->discount =  $row_data["descuento"];
+                    $product->has_warranty = 1;
+                    $product->slug              = Str::slug($row_data["categoria"], '-') . '-' . strtolower(Str::random(5));
+
+                    $product->save();
+                }    
+
+            }
+            
+           //dd($data);
+
+        } catch (Exception $e) {
+            $error_code = $e->errorInfo[1];
+            return back()->withErrors('There was a problem uploading the data!');
+        }
+        
+        flash(translate('Products has been inserted successfully'))->success();
         return redirect()->route('product.index');
     }
 

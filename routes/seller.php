@@ -56,6 +56,7 @@ Route::group([
         Route::get('/duplicate/{id}', [SellerController::class, 'seller_product_duplicate'])->name('product.duplicate');
         Route::get('/destroy/{id}', [SellerController::class, 'seller_product_destroy'])->name('product.destroy');
 
+        Route::post('/import', [ProductController::class, 'import'])->name('product.import');
 
         Route::post('/new-attribte', [ProductController::class, 'new_attribute'])->name('product.new_attribute');
         Route::post('/get-attribte-value', [ProductController::class, 'get_attribute_values'])->name('product.get_attribute_values');

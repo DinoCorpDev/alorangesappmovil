@@ -109,6 +109,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
         Route::post('/sku-combination', [ProductController::class, 'sku_combination'])->name('product.sku_combination');
 
+        Route::post('/import', [ProductController::class, 'import'])->name('product.import');
 
         Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
         Route::get('/duplicate/{id}', [ProductController::class, 'duplicate'])->name('product.duplicate');
