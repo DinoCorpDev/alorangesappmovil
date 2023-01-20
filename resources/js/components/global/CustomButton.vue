@@ -99,7 +99,7 @@ export default {
     }
 
     &.grey {
-        color: #ffffff;
+        color: #ffffff !important;
 
         &:hover {
             background-color: rgba(#161616, 0.8) !important;
@@ -109,14 +109,27 @@ export default {
             background-color: #161616 !important;
         }
     }
+
+    &.black {
+        color: #ffffff !important;
+        background-color: rgba(#000000, 0.5) !important;
+
+        &:hover {
+            background-color: rgba(#000000, 0.8) !important;
+        }
+
+        &:focus {
+            background-color: #000000 !important;
+        }
+    }
 }
 
 .theme--light {
     &.v-btn {
-        // color: #000000;
+        color: #000000;
 
         &.v-btn--has-bg {
-            // background-color: #dfdfdf;
+            background-color: #dfdfdf;
 
             &:before {
                 background-color: #ffffff;
