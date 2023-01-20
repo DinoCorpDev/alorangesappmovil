@@ -1,27 +1,18 @@
 <template>
     <div>
-        <layout-navbar />
-        <v-container fluid>
-            <nabvar-bottom-bar text2="Compartir" icon2="la-share-alt-square" />
-            <div class="div-about">
-                <v-row no-gutters>
+        <layout-navbar-auth />
+        <v-container class="about my-4" fluid>
+            <div class="main-wrapper">
+                <v-row>
                     <v-col cols="12" md="4">
-                        <div class="information">
-                            <div class="title">
-                                <div>
-                                    <v-img
-                                        class="img"
-                                        max-width="90px"
-                                        src="../../public/assets/img/carousel-item-placeholder.png"
-                                    ></v-img>
-                                </div>
-                                <div>
-                                    <h6 class="text-uppercase black--text">Información</h6>
-                                </div>
+                        <aside class="about-info">
+                            <div class="about-info-header">
+                                <v-img class="mr-4" aspect-ratio="1" src="/public/assets/img/bio-placeholder.png" />
+                                <h1 class="text-uppercase black--text">Información</h1>
                             </div>
-                            <v-divider></v-divider>
-                            <div class="text">
-                                <span class="body1 black--text">
+                            <v-divider class="my-5" />
+                            <div class="about-info-content pr-4">
+                                <p class="black--text">
                                     Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
                                     industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
                                     has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum
@@ -48,15 +39,14 @@
                                     industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
                                     has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum
                                     is simply dummy text of the printing • Lorem Ipsum has been the industry's
-                                </span>
+                                </p>
                             </div>
-                            <v-divider></v-divider>
-                        </div>
+                            <v-divider class="my-5" />
+                            <custom-button text="Perfil" block color="grey" />
+                        </aside>
                     </v-col>
                     <v-col cols="12" md="8">
-                        <div class="div-carousel">
-                            <carousel-description />
-                        </div>
+                        <carousel-description />
                     </v-col>
                 </v-row>
             </div>
@@ -65,93 +55,95 @@
 </template>
 
 <script>
-import NabvarBottomBar from "../components/global/NabvarBottomBar.vue";
-import LayoutNavbar from "../components/global/LayoutNavbar.vue";
+import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import CarouselDescription from "../components/global/CarouselDescription.vue";
+import CustomButton from "../components/global/CustomButton.vue";
 
 export default {
     components: {
-        NabvarBottomBar,
         CarouselDescription,
-        LayoutNavbar
-    },
-    mounted() {
-        this.$vuetify.theme.dark = true;
+        LayoutNavbarAuth,
+        CustomButton
     }
 };
 </script>
 
 <style lang="scss" scoped>
-.div-carousel {
-    background-color: #f5f5f5;
-    padding: 10px;
-    height: 100%;
+.main-wrapper {
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 10px;
+    width: 97.5%;
+    margin: 0 auto;
 }
 
-@media (max-width: 599px) {
-    .div-carousel {
-        background-color: #f5f5f5;
-        padding: 0px;
-        height: 100%;
-        border-end-end-radius: 10px;
-        border-end-start-radius: 10px;
-    }
-}
+.about {
+    &-info {
+        &-header {
+            display: flex;
+            align-items: center;
 
-.title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 10px;
-}
+            .v-image {
+                background-color: #dfdfdf;
+                border-radius: 50%;
 
-.information {
-    background-color: #f5f5f5;
-    padding: 20px;
-    height: 100%;
-}
+                max-width: 60px;
 
-.img {
-    background-color: #dfdfdf;
-    border-radius: 50%;
-    padding: 10px 0;
-}
+                @media (min-width: 600px) {
+                    max-width: 80px;
+                }
 
-.text {
-    margin: 20px 0;
-}
+                @media (min-width: 960px) {
+                    max-width: 100px;
+                }
+            }
 
-@media (max-width: 959px) {
-    .text {
-        overflow: auto;
-        height: 230px;
-    }
+            h1 {
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: 0;
+            }
+        }
 
-    .information {
-        border-start-start-radius: 10px;
-        border-start-end-radius: 10px;
-    }
+        &-content {
+            overflow: auto;
+            height: 250px;
 
-    .div-carousel {
-        border-end-start-radius: 10px;
-        border-end-end-radius: 10px;
-    }
-}
+            @media (min-width: 960px) {
+                height: 600px;
+            }
 
-@media (min-width: 960px) {
-    .text {
-        overflow: auto;
-        height: 600px;
-    }
+            p {
+                font-family: "Roboto";
+                font-size: 12px;
 
-    .information {
-        border-start-start-radius: 10px;
-        border-end-start-radius: 10px;
-    }
+                @media (min-width: 600px) {
+                    font-size: 15px;
+                }
+            }
 
-    .div-carousel {
-        border-end-end-radius: 10px;
-        border-start-end-radius: 10px;
+            /* width */
+            &::-webkit-scrollbar {
+                width: 3px;
+            }
+
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: #b5b5b5;
+                border-radius: 1px;
+            }
+
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: rgba(#5a5a5a, 0.8);
+                border-radius: 1px;
+            }
+
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: #5a5a5a;
+            }
+        }
     }
 }
 </style>

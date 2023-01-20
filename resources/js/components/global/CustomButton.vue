@@ -1,142 +1,154 @@
 <template>
-  <v-btn
-    class="text-uppercase"
-    :color="color"
-    :outlined="outlined"
-    :disabled="disabled"
-    :block="block"
-    :width="width"
-    :dark="dark"
-    :light="light"
-    :ripple="false"
-    :plain="plain"
-    :href="href"
-    :to="to"
-    depressed
-  >
-    <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
-    <template v-if="text">{{ text }}</template>
-    <template v-else>
-      <slot></slot>
-    </template>
-  </v-btn>
+    <v-btn
+        class="text-uppercase"
+        :color="color"
+        :outlined="outlined"
+        :disabled="disabled"
+        :block="block"
+        :width="width"
+        :dark="dark"
+        :light="light"
+        :ripple="false"
+        :plain="plain"
+        :href="href"
+        :to="to"
+        depressed
+    >
+        <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
+        <template v-if="text">{{ text }}</template>
+        <template v-else>
+            <slot></slot>
+        </template>
+    </v-btn>
 </template>
 
 <script>
 export default {
-  name: "CustomButton",
-  props: {
-    text: String,
-    width: String,
-    icon: {
-      type: String
-    },
-    dark: {
-      type: Boolean,
-      default: false
-    },
-    light: {
-      type: Boolean,
-      default: false
-    },
-    color: {
-      type: String
-    },
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    block: {
-      type: Boolean,
-      default: false
-    },
-    plain: {
-      type: Boolean,
-      default: false
-    },
-    href: {
-      type: [String, Object]
-    },
-    to: {
-      type: [String, Object]
+    name: "CustomButton",
+    props: {
+        text: String,
+        width: String,
+        icon: {
+            type: String
+        },
+        dark: {
+            type: Boolean,
+            default: false
+        },
+        light: {
+            type: Boolean,
+            default: false
+        },
+        color: {
+            type: String
+        },
+        outlined: {
+            type: Boolean,
+            default: false
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        block: {
+            type: Boolean,
+            default: false
+        },
+        plain: {
+            type: Boolean,
+            default: false
+        },
+        href: {
+            type: [String, Object]
+        },
+        to: {
+            type: [String, Object]
+        }
     }
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .v-btn {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.25px;
-  transition: all 0.2s ease-in-out;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.25px;
+    transition: all 0.2s ease-in-out;
 
-  &:before {
-    content: unset;
-  }
+    &:before {
+        content: unset;
+    }
 
-  @media (min-width: 960px) {
-    font-size: 14px;
-  }
+    @media (min-width: 960px) {
+        font-size: 14px;
+    }
 
-  border-radius: 5px;
+    border-radius: 5px;
 
-  i {
-    font-size: 20px;
-  }
+    i {
+        font-size: 20px;
+    }
 
-  &:hover:before,
-  &:focus:before {
-    opacity: 1;
-  }
+    &:hover:before,
+    &:focus:before {
+        opacity: 1;
+    }
 
-  &.v-size--default {
-    height: 38px !important;
-  }
+    &.v-size--default {
+        height: 38px !important;
+    }
+
+    &.grey {
+        color: #ffffff;
+
+        &:hover {
+            background-color: rgba(#161616, 0.8) !important;
+        }
+
+        &:focus {
+            background-color: #161616 !important;
+        }
+    }
 }
 
 .theme--light {
-  &.v-btn {
-    color: #000000;
-
-    &.v-btn--has-bg {
-      background-color: #dfdfdf;
-
-      &:before {
-        background-color: #ffffff;
-      }
-
-      &.v-btn--disabled {
-        color: #000000 !important;
+    &.v-btn {
+        // color: #000000;
 
         &.v-btn--has-bg {
-          background-color: #fafcfc !important;
+            // background-color: #dfdfdf;
+
+            &:before {
+                background-color: #ffffff;
+            }
+
+            &.v-btn--disabled {
+                color: #000000 !important;
+
+                &.v-btn--has-bg {
+                    background-color: #fafcfc !important;
+                }
+            }
         }
-      }
-    }
 
-    &.v-btn--outlined {
-      color: #ffffff;
+        &.v-btn--outlined {
+            color: #ffffff;
 
-      &:hover,
-      &:focus {
-        color: #000000;
-      }
+            &:hover,
+            &:focus {
+                color: #000000;
+            }
 
-      &:before {
-        background-color: rgba(255, 255, 255, 0.8);
-      }
+            &:before {
+                background-color: rgba(255, 255, 255, 0.8);
+            }
 
-      &:focus {
-        &:before {
-          background-color: #ffffff;
+            &:focus {
+                &:before {
+                    background-color: #ffffff;
+                }
+            }
         }
-      }
     }
-  }
 }
 </style>
