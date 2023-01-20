@@ -52,11 +52,11 @@ export default {
 <style lang="scss" scoped>
 .product-item {
     border-radius: 10px;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     color: #000000;
     height: 100%;
     &-image {
-        background-color: #DFDFDF;
+        background-color: #dfdfdf;
     }
     &-image,
     &-image .v-image {

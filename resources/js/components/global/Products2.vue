@@ -26,9 +26,11 @@
                 </div>
                 <v-divider></v-divider>
                 <div class="text">
-                    <p class="black--text">Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                    <p class="black--text">
                         Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
-                        Incluye Lorem Ipsum is simply dummy text.</p>
+                        Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                        Incluye Lorem Ipsum is simply dummy text.
+                    </p>
                 </div>
                 <custom-button block light text="Agregar a compras" />
             </div>

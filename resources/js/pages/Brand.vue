@@ -8,8 +8,10 @@
                     <div class="col1">
                         <div class="div-img">
                             <div>
-                                <v-img max-width="100px"
-                                    src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
+                                <v-img
+                                    max-width="100px"
+                                    src="../../public/assets/img/carousel-item-placeholder.png"
+                                ></v-img>
                             </div>
                         </div>
                     </div>

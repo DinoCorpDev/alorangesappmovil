@@ -17,15 +17,12 @@
 import sidemenu from "./SideMenu";
 import NabvarBottomBar from "../../components/global/NabvarBottomBar.vue";
 import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
+
 export default {
     components: {
         sidemenu,
         NabvarBottomBar,
-        LayoutNavbarAuth,
+        LayoutNavbarAuth
     }
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>

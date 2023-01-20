@@ -5,56 +5,135 @@
             <v-col xl="8">
                 <v-card elevation="0" class="mb-6">
                     <v-card-title class="pa-0 fs-16 fw-700">{{ $t("profile_information") }}</v-card-title>
-                    <v-form class="py-4" lazy-validation v-on:submit.prevent="updateBasic()" enctype="multipart/form-data">
+                    <v-form
+                        class="py-4"
+                        lazy-validation
+                        v-on:submit.prevent="updateBasic()"
+                        enctype="multipart/form-data"
+                    >
                         <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
 
                         <label>{{ $t("full_name") }}</label>
-                        <v-text-field :placeholder="$t('full_name')" v-model="form.name" :error-messages="nameErrors" outlined hide-details="auto" class="mb-3"></v-text-field>
+                        <v-text-field
+                            :placeholder="$t('full_name')"
+                            v-model="form.name"
+                            :error-messages="nameErrors"
+                            outlined
+                            hide-details="auto"
+                            class="mb-3"
+                        ></v-text-field>
 
                         <label>{{ $t("email") }}</label>
-                        <v-text-field :placeholder="$t('email_address')" v-model="form.email" outlined hide-details="auto" class="mb-3" disabled></v-text-field>
+                        <v-text-field
+                            :placeholder="$t('email_address')"
+                            v-model="form.email"
+                            outlined
+                            hide-details="auto"
+                            class="mb-3"
+                            disabled
+                        ></v-text-field>
 
                         <label>{{ $t("phone_number") }}</label>
-                        <vue-tel-input v-model="form.phone" v-bind="mobileInputProps" :onlyCountries="availableCountries" class="mb-3 opacity-80" @validate="phoneValidate" disabled></vue-tel-input>
+                        <vue-tel-input
+                            v-model="form.phone"
+                            v-bind="mobileInputProps"
+                            :onlyCountries="availableCountries"
+                            class="mb-3 opacity-80"
+                            @validate="phoneValidate"
+                            disabled
+                        ></vue-tel-input>
 
                         <label>{{ $t("old_password") }}</label>
-                        <v-text-field placeholder="******" type="password" v-model="form.oldPassword" :error-messages="oldPasswordErrors" outlined hide-details="auto" class="mb-3"></v-text-field>
+                        <v-text-field
+                            placeholder="******"
+                            type="password"
+                            v-model="form.oldPassword"
+                            :error-messages="oldPasswordErrors"
+                            outlined
+                            hide-details="auto"
+                            class="mb-3"
+                        ></v-text-field>
 
                         <label>{{ $t("new_password") }}</label>
-                        <v-text-field placeholder="******" type="password" v-model="form.password" :error-messages="passwordErrors" @blur="$v.form.password.$touch()" outlined hide-details="auto" class="mb-3"></v-text-field>
+                        <v-text-field
+                            placeholder="******"
+                            type="password"
+                            v-model="form.password"
+                            :error-messages="passwordErrors"
+                            @blur="$v.form.password.$touch()"
+                            outlined
+                            hide-details="auto"
+                            class="mb-3"
+                        ></v-text-field>
 
                         <label>{{ $t("confirm_password") }}</label>
-                        <v-text-field placeholder="******" type="password" v-model="form.confirmPassword" :error-messages="confirmPasswordErrors" @blur="$v.form.confirmPassword.$touch()" outlined hide-details="auto" class="mb-3"></v-text-field>
+                        <v-text-field
+                            placeholder="******"
+                            type="password"
+                            v-model="form.confirmPassword"
+                            :error-messages="confirmPasswordErrors"
+                            @blur="$v.form.confirmPassword.$touch()"
+                            outlined
+                            hide-details="auto"
+                            class="mb-3"
+                        ></v-text-field>
 
                         <label>{{ $t("profile_image") }}</label>
                         <div class="d-flex flex-column align-center justify-center border rounded pa-6 mb-3">
                             <div class="avatar-upload">
                                 <v-avatar size="160" class="">
-                                    <img :src="form.previewAvatar" @error="imageFallback($event)">
+                                    <img :src="form.previewAvatar" @error="imageFallback($event)" />
                                 </v-avatar>
                                 <label>
-                                    <input type="file" id="avatar-input" accept="image/png, image/jpg, image/jpeg" @change="previewThumbnail">
+                                    <input
+                                        type="file"
+                                        id="avatar-input"
+                                        accept="image/png, image/jpg, image/jpeg"
+                                        @change="previewThumbnail"
+                                    />
                                     <i class="las la-image"></i>
                                 </label>
                             </div>
-                            <label for="avatar-input" class="border border-gray-300 fs-14 fw-500 grey lighten-4 mt-3 opacity-50 px-4 py-1 rounded c-pointer">{{ $t("select_image") }}</label>
+                            <label
+                                for="avatar-input"
+                                class="border border-gray-300 fs-14 fw-500 grey lighten-4 mt-3 opacity-50 px-4 py-1 rounded c-pointer"
+                                >{{ $t("select_image") }}</label
+                            >
                         </div>
-                        <v-btn type="submit" :loading="infoUpdateLoading" :disabled="infoUpdateLoading" color="primary" elevation="0" class="px-10" @click="updateBasic">{{ $t("update") }}</v-btn>
+                        <v-btn
+                            type="submit"
+                            :loading="infoUpdateLoading"
+                            :disabled="infoUpdateLoading"
+                            color="primary"
+                            elevation="0"
+                            class="px-10"
+                            @click="updateBasic"
+                            >{{ $t("update") }}</v-btn
+                        >
                     </v-form>
                 </v-card>
                 <v-card elevation="0">
-                    <address-dialog :show="addDialogShow" @close="addressDialogClosed" :old-address="addressSelectedForEdit" />
+                    <address-dialog
+                        :show="addDialogShow"
+                        @close="addressDialogClosed"
+                        :old-address="addressSelectedForEdit"
+                    />
                     <v-card-title class="pa-0 fs-16 fw-700 mb-4">
                         <span class="">{{ $t("addresses") }}</span>
-                        <v-btn color="primary" elevation="0"  class="ms-auto" @click.stop="addDialogShow = true">{{ $t("add_new") }}</v-btn>
+                        <v-btn color="primary" elevation="0" class="ms-auto" @click.stop="addDialogShow = true">{{
+                            $t("add_new")
+                        }}</v-btn>
                     </v-card-title>
                     <v-row class="mb-4 row-cols-1 row-cols-sm-2 gutters-10">
                         <v-col>
                             <div class="fs-13 fw-600 opacity-80 mb-2">{{ $t("default_shipping_address") }}</div>
                             <div class="border rounded pa-4 fs-13" v-if="getDefaultShippingAddress">
                                 <div>{{ getDefaultShippingAddress.address }}</div>
-                                <div>{{ getDefaultShippingAddress.postal_code }}, {{ getDefaultShippingAddress.city }}, {{ getDefaultShippingAddress.state }}</div>
+                                <div>
+                                    {{ getDefaultShippingAddress.postal_code }}, {{ getDefaultShippingAddress.city }},
+                                    {{ getDefaultShippingAddress.state }}
+                                </div>
                                 <div>{{ getDefaultShippingAddress.country }}</div>
                                 <div>{{ getDefaultShippingAddress.phone }}</div>
                             </div>
@@ -63,7 +142,10 @@
                             <div class="fs-13 fw-600 opacity-80 mb-2">{{ $t("default_billing_address") }}</div>
                             <div class="border rounded pa-4 fs-13" v-if="getDefaultBillingAddress">
                                 <div>{{ getDefaultBillingAddress.address }}</div>
-                                <div>{{ getDefaultBillingAddress.postal_code }}, {{ getDefaultBillingAddress.city }}, {{ getDefaultBillingAddress.state }}</div>
+                                <div>
+                                    {{ getDefaultBillingAddress.postal_code }}, {{ getDefaultBillingAddress.city }},
+                                    {{ getDefaultBillingAddress.state }}
+                                </div>
                                 <div>{{ getDefaultBillingAddress.country }}</div>
                                 <div>{{ getDefaultBillingAddress.phone }}</div>
                             </div>
@@ -73,7 +155,10 @@
                 <v-card elevation="0">
                     <v-card-title class="pa-0 fs-16 fw-700 mb-4">{{ $t("all_addresses") }}</v-card-title>
                     <div>
-                        <v-row class="row-cols-1 row-cols-sm-2 gutters-10" v-if="addressesLoaded && getAddresses.length > 0">
+                        <v-row
+                            class="row-cols-1 row-cols-sm-2 gutters-10"
+                            v-if="addressesLoaded && getAddresses.length > 0"
+                        >
                             <v-col v-for="(address, i) in getAddresses" :key="i">
                                 <div class="border rounded py-4 ps-4 pe-9 fs-13 position-relative">
                                     <div>{{ address.address }}</div>
@@ -97,16 +182,20 @@
                                         <v-list class="">
                                             <v-list-item class="c-pointer" @click="editAddress(address)">
                                                 <v-list-item-title>{{ $t("edit") }}</v-list-item-title>
-                                                </v-list-item>
+                                            </v-list-item>
                                             <v-list-item class="c-pointer" @click="markDefaultShipping(address.id)">
-                                                <v-list-item-title>{{ $t("mark_as_default_shipping_address") }}</v-list-item-title>
-                                                </v-list-item>
+                                                <v-list-item-title>{{
+                                                    $t("mark_as_default_shipping_address")
+                                                }}</v-list-item-title>
+                                            </v-list-item>
                                             <v-list-item class="c-pointer" @click="markDefaultBilling(address.id)">
-                                                <v-list-item-title>{{ $t("mark_as_default_billing_address") }}</v-list-item-title>
-                                                </v-list-item>
+                                                <v-list-item-title>{{
+                                                    $t("mark_as_default_billing_address")
+                                                }}</v-list-item-title>
+                                            </v-list-item>
                                             <v-list-item class="c-pointer" @click="deleteAddress(address.id)">
                                                 <v-list-item-title>{{ $t("delete") }}</v-list-item-title>
-                                                </v-list-item>
+                                            </v-list-item>
                                         </v-list>
                                     </v-menu>
                                 </div>
@@ -118,8 +207,7 @@
                     </div>
                 </v-card>
             </v-col>
-            <v-col cols="auto">
-            </v-col>
+            <v-col cols="auto"> </v-col>
         </v-row>
     </div>
 </template>
@@ -127,23 +215,23 @@
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
 import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
-import { VueTelInput } from 'vue-tel-input'
-import AddressDialog from '../../components/address/AddressDialog.vue';
+import { VueTelInput } from "vue-tel-input";
+import AddressDialog from "../../components/address/AddressDialog.vue";
 export default {
     data: () => ({
-        mobileInputProps:{
+        mobileInputProps: {
             inputOptions: {
-                type: 'tel',
-                placeholder: 'phone number',
+                type: "tel",
+                placeholder: "phone number"
             },
-            dropdownOptions:{
+            dropdownOptions: {
                 showDialCodeInSelection: false,
                 showFlags: true,
                 showDialCodeInList: true
             },
             autoDefaultCountry: false,
             validCharactersOnly: true,
-            mode: 'international',
+            mode: "international"
         },
         form: {
             name: "",
@@ -154,7 +242,7 @@ export default {
             previewAvatar: "",
             oldPassword: "",
             password: "",
-            confirmPassword: "",
+            confirmPassword: ""
         },
         passwordShow: false,
         addDialogShow: false,
@@ -163,7 +251,7 @@ export default {
     }),
     components: {
         VueTelInput,
-        AddressDialog,
+        AddressDialog
     },
     validations: {
         form: {
@@ -172,19 +260,15 @@ export default {
             //     email,
             //     required
             // },
-            oldPassword: { required},
+            oldPassword: { required },
             password: { minLength: minLength(6) },
-            confirmPassword: { sameAsPassword: sameAs('password') }
+            confirmPassword: { sameAsPassword: sameAs("password") }
         }
     },
     computed: {
-        ...mapGetters( "auth",[
-            "currentUser"
-        ]),
-        ...mapGetters('app',[
-            'availableCountries'
-        ]),
-        ...mapGetters("address",[
+        ...mapGetters("auth", ["currentUser"]),
+        ...mapGetters("app", ["availableCountries"]),
+        ...mapGetters("address", [
             "getAddresses",
             "addressesLoaded",
             "getDefaultShippingAddress",
@@ -193,31 +277,26 @@ export default {
         nameErrors() {
             const errors = [];
             if (!this.$v.form.name.$dirty) return errors;
-            !this.$v.form.name.required &&
-                errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.name.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         emailErrors() {
             const errors = [];
             if (!this.$v.form.email.$dirty) return errors;
-            !this.$v.form.email.required &&
-                errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.email.email &&
-                errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
             return errors;
         },
         oldPasswordErrors() {
             const errors = [];
             if (!this.$v.form.oldPassword.$dirty) return errors;
-            !this.$v.form.oldPassword.required &&
-                errors.push(this.$i18n.t("this_field_is_required"))
+            !this.$v.form.oldPassword.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         passwordErrors() {
             const errors = [];
             if (!this.$v.form.password.$dirty) return errors;
-            !this.$v.form.password.minLength &&
-                errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
+            !this.$v.form.password.minLength && errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
             return errors;
         },
         confirmPasswordErrors() {
@@ -228,39 +307,32 @@ export default {
             return errors;
         }
     },
-    created(){
-        this.form.name = this.currentUser.name
-        this.form.email = this.currentUser.email
-        this.form.phone = this.currentUser.phone
-        this.form.previewAvatar = this.currentUser.avatar
+    created() {
+        this.form.name = this.currentUser.name;
+        this.form.email = this.currentUser.email;
+        this.form.phone = this.currentUser.phone;
+        this.form.previewAvatar = this.currentUser.avatar;
 
         this.fetchAddresses();
     },
     methods: {
-        ...mapMutations("auth",[
-            "setUser"
-        ]),
-        ...mapMutations("address",[
-            "setAddresses"
-        ]),
-        ...mapActions("address",[
-            "fetchAddresses",
-        ]),
-		previewThumbnail(event) {
-            this.form.avatar = event.target.files[0]
-			if (event.target.files && event.target.files[0]) {
-				const reader = new FileReader();
-				reader.onload = (e) => {
-					this.form.previewAvatar = e.target.result;
-				};
-				reader.readAsDataURL(event.target.files[0]);
-			}
-		},
-        phoneValidate(phone){
-            this.form.invalidPhone = (phone.valid) ? false : true ;
+        ...mapMutations("auth", ["setUser"]),
+        ...mapMutations("address", ["setAddresses"]),
+        ...mapActions("address", ["fetchAddresses"]),
+        previewThumbnail(event) {
+            this.form.avatar = event.target.files[0];
+            if (event.target.files && event.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    this.form.previewAvatar = e.target.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        },
+        phoneValidate(phone) {
+            this.form.invalidPhone = phone.valid ? false : true;
         },
         async updateBasic() {
-
             // if(this.form.email == ""){
             //     this.snack({
             //         message: "Email is required.",
@@ -291,60 +363,59 @@ export default {
             // this.form.phone = this.form.phone.replace(/\s/g, '')
             this.infoUpdateLoading = true;
 
-
             let formData = new FormData();
-            for ( var key in this.form ) {
+            for (var key in this.form) {
                 formData.append(key, this.form[key]);
             }
 
-            const res = await this.call_api("post", "user/info/update", formData,true);
+            const res = await this.call_api("post", "user/info/update", formData, true);
             if (res.data.success) {
-                this.setUser(res.data.user)
-                this.snack({ message: res.data.message, });
+                this.setUser(res.data.user);
+                this.snack({ message: res.data.message });
             } else {
                 this.snack({ message: res.data.message, color: "red" });
             }
             this.infoUpdateLoading = false;
         },
-        async deleteAddress(id){
+        async deleteAddress(id) {
             const res = await this.call_api("get", `user/address/delete/${id}`);
-            if(res.data.success){
-                this.setAddresses(res.data.data)
+            if (res.data.success) {
+                this.setAddresses(res.data.data);
                 this.snack({ message: res.data.message });
             }
         },
-        editAddress(address){
-            this.addressSelectedForEdit = address
-            this.addDialogShow = true
+        editAddress(address) {
+            this.addressSelectedForEdit = address;
+            this.addDialogShow = true;
         },
-        async markDefaultShipping(id){
+        async markDefaultShipping(id) {
             const res = await this.call_api("get", `user/address/default-shipping/${id}`);
-            if(res.data.success){
-                this.setAddresses(res.data.data)
+            if (res.data.success) {
+                this.setAddresses(res.data.data);
                 this.snack({ message: res.data.message });
-            }else{
+            } else {
                 this.snack({
                     message: this.$i18n.t("something_went_wrong"),
                     color: "red"
                 });
             }
         },
-        async markDefaultBilling(id){
+        async markDefaultBilling(id) {
             const res = await this.call_api("get", `user/address/default-billing/${id}`);
-            if(res.data.success){
-                this.setAddresses(res.data.data)
+            if (res.data.success) {
+                this.setAddresses(res.data.data);
                 this.snack({ message: res.data.message });
-            }else{
+            } else {
                 this.snack({
                     message: this.$i18n.t("something_went_wrong"),
                     color: "red"
                 });
             }
         },
-        addressDialogClosed(){
-            this.addressSelectedForEdit = {}
+        addressDialogClosed() {
+            this.addressSelectedForEdit = {};
             this.addDialogShow = false;
-        },
-	},
-}
+        }
+    }
+};
 </script>

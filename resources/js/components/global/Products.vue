@@ -36,7 +36,7 @@ export default {
         CustomButton
     },
     props: {
-        img : {
+        img: {
             default: "/public/assets/img/carousel-item-placeholder.png"
         },
         reference: {
