@@ -15,9 +15,9 @@
 
             <v-tab-item>
                 <v-container fluid>
-                    <v-row class="mb-6">
+                    <v-row class="mb-2">
                         <v-col cols="12">
-                            <carousel />
+                            <carousel-tabs :slides="sliderSeeder" />
                         </v-col>
                     </v-row>
 
@@ -93,7 +93,7 @@
                 <v-container fluid>
                     <v-row>
                         <v-col cols="12">
-                            <carousel />
+                            <carousel-tabs :slides="sliderSeeder" />
                         </v-col>
                     </v-row>
                     <div class="mb-2">
@@ -223,7 +223,7 @@
                 <v-container fluid>
                     <v-row>
                         <v-col cols="12">
-                            <carousel />
+                            <carousel-tabs :slides="sliderSeeder" :showbutton="false" />
                         </v-col>
                     </v-row>
                     <div class="mb-2">
@@ -368,7 +368,7 @@
                 <v-container fluid>
                     <v-row>
                         <v-col cols="12">
-                            <carousel />
+                            <carousel-tabs :slides="sliderSeeder" :showbutton="false" />
                         </v-col>
                     </v-row>
                     <v-row>
@@ -425,6 +425,7 @@
 <script>
 import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vue";
 import Carousel from "../components/global/Carousel.vue";
+import CarouselTabs from "../components/global/CarouselTabs.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
@@ -465,7 +466,8 @@ export default {
         ProductItem3,
         LayoutNavbarSpaces,
         ProductItem2,
-        ProductItem4
+        ProductItem4,
+        CarouselTabs
     },
     mounted() {
         this.$vuetify.theme.dark = true;

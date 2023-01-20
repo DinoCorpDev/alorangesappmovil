@@ -16,6 +16,7 @@ let Home4 = () => import("../pages/Home4");
 let About = () => import("../pages/About");
 let Brands = () => import("../pages/Brands");
 let ListProducts = () => import("../pages/ListProducts");
+let Collection = () => import("../pages/Collection");
 
 export default [
     {
@@ -154,6 +155,12 @@ export default [
         path: "/blog-details/:slug",
         component: BlogDetails,
         name: "BlogDetails",
+        meta: { requiresAuth: false }
+    },
+    {
+        path: "/collection",
+        component: Collection,
+        name: "Collection",
         meta: { requiresAuth: false }
     }
 ];

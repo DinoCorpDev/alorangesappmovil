@@ -13,8 +13,9 @@
 
 <script>
 import CustomButton from "./CustomButton.vue";
+
 export default {
-    name: "ProductItem4",
+    name: "ProductItem5",
     components: {
         CustomButton
     },
