@@ -4,7 +4,7 @@
         <v-container fluid>
             <v-row no-gutters>
                 <v-col lg="3" class="d-none d-lg-block">
-                    <sidemenu></sidemenu>
+                    <SideMenu2 />
                 </v-col>
                 <v-col cols="12" lg="9" class="pt-0">
                     <router-view></router-view>
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import SideMenu from "./SideMenu";
+import SideMenu2 from "./SideMenu2";
 import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
-        SideMenu,
+        SideMenu2,
         LayoutNavbarAuth
     }
 };

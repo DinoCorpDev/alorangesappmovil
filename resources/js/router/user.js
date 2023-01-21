@@ -1,3 +1,4 @@
+let Cart = () => import("../pages/user/Cart");
 let DashBoard = () => import("../pages/user/Dashboard");
 let PurchaseHistory = () => import("../pages/user/PurchaseHistory");
 let OrderDetails = () => import("../pages/user/OrderDetails");
@@ -19,6 +20,12 @@ export default [
         component: UserLayout,
         redirect: "/user/dashboard",
         children: [
+            {
+                path: "cart",
+                component: Cart,
+                name: "Cart",
+                meta: { requiresAuth: true },
+            },
             {
                 path: "dashboard",
                 component: DashBoard,
