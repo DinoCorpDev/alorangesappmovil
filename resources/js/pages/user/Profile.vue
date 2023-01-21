@@ -1,213 +1,290 @@
 <template>
     <div class="ps-lg-7 pt-4">
-        <h1 class="fs-21 fw-700 opacity-80 mb-5">{{ $t("profile") }}</h1>
         <v-row>
-            <v-col xl="8">
-                <v-card elevation="0" class="mb-6">
-                    <v-card-title class="pa-0 fs-16 fw-700">{{ $t("profile_information") }}</v-card-title>
+            <v-col cols="6" class="text-start">
+                <div class="avatar-upload">
+                    <custom-button
+                        light
+                        text="CAMBIAR FOTO"
+                        type="file"
+                        id="avatar-input"
+                        accept="image/png, image/jpg, image/jpeg"
+                        @change="previewThumbnail"
+                    />
+                </div>
+            </v-col>
+            <v-col cols="6" class="text-end">
+                <div>
+                    <label class="date">Se unio en febrero de 2022 </label>
+                </div>
+            </v-col>
+        </v-row>
+        <v-divider class="my-6" />
+
+        <v-row>
+            <v-col cols="12" md="6">
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                    <h5 class="bold">Usuario principal</h5>
+                    <v-divider class="my-4" />
                     <v-form
-                        class="py-4"
+                        class="form-profile"
                         lazy-validation
                         v-on:submit.prevent="updateBasic()"
                         enctype="multipart/form-data"
                     >
                         <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">CORREO ELECTRONICO</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                <label>{{ $t("email_address") }}</label>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">TIPO DE PERSONA</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                <label>Natural</label>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">NOMBRE</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                <label>{{ $t("full_name") }}</label>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">DOCUMENTO</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                <label>C.C 1010236398</label>
+                            </v-col>
+                        </v-row>
 
-                        <label>{{ $t("full_name") }}</label>
-                        <v-text-field
-                            :placeholder="$t('full_name')"
-                            v-model="form.name"
-                            :error-messages="nameErrors"
-                            outlined
-                            hide-details="auto"
-                            class="mb-3"
-                        ></v-text-field>
+                        <v-divider class="my-4" />
 
-                        <label>{{ $t("email") }}</label>
-                        <v-text-field
-                            :placeholder="$t('email_address')"
-                            v-model="form.email"
-                            outlined
-                            hide-details="auto"
-                            class="mb-3"
-                            disabled
-                        ></v-text-field>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">NOMBRE DE DIRECCION</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                <label>Casa 1</label>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">DIRECCION</label>
+                            </v-col>
+                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
+                                <div>{{ address.address }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">DESCRIPCION DE DIRECCION</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                <label>Casa de tejado verde y con patio cercado.</label>
+                            </v-col>
+                        </v-row>
 
-                        <label>{{ $t("phone_number") }}</label>
-                        <vue-tel-input
-                            v-model="form.phone"
-                            v-bind="mobileInputProps"
-                            :onlyCountries="availableCountries"
-                            class="mb-3 opacity-80"
-                            @validate="phoneValidate"
-                            disabled
-                        ></vue-tel-input>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">CODIGO POSTAL</label>
+                            </v-col>
+                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
+                                <div>{{ address.postal_code }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">DEPARTAMENTO</label>
+                            </v-col>
+                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
+                                <div>{{ address.state }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">MUNICIPIO</label>
+                            </v-col>
+                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
+                                <div>{{ address.city }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">BARRIO</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                <div>Galerias</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="bold">NOMBRE DE QUIEN VA A RECIBIR</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                <div>Felipe Ramirez</div>
+                            </v-col>
+                        </v-row>
+                        <v-row class="mb-3">
+                            <v-col class="text-start">
+                                <label class="bold">TELÉFONO / MOBIL</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                <div>{{ $t("phone_number") }}</div>
+                            </v-col>
+                        </v-row>
 
-                        <label>{{ $t("old_password") }}</label>
-                        <v-text-field
-                            placeholder="******"
-                            type="password"
-                            v-model="form.oldPassword"
-                            :error-messages="oldPasswordErrors"
-                            outlined
-                            hide-details="auto"
-                            class="mb-3"
-                        ></v-text-field>
-
-                        <label>{{ $t("new_password") }}</label>
-                        <v-text-field
-                            placeholder="******"
-                            type="password"
-                            v-model="form.password"
-                            :error-messages="passwordErrors"
-                            @blur="$v.form.password.$touch()"
-                            outlined
-                            hide-details="auto"
-                            class="mb-3"
-                        ></v-text-field>
-
-                        <label>{{ $t("confirm_password") }}</label>
-                        <v-text-field
-                            placeholder="******"
-                            type="password"
-                            v-model="form.confirmPassword"
-                            :error-messages="confirmPasswordErrors"
-                            @blur="$v.form.confirmPassword.$touch()"
-                            outlined
-                            hide-details="auto"
-                            class="mb-3"
-                        ></v-text-field>
-
-                        <label>{{ $t("profile_image") }}</label>
-                        <div class="d-flex flex-column align-center justify-center border rounded pa-6 mb-3">
-                            <div class="avatar-upload">
-                                <v-avatar size="160" class="">
-                                    <img :src="form.previewAvatar" @error="imageFallback($event)" />
-                                </v-avatar>
-                                <label>
-                                    <input
-                                        type="file"
-                                        id="avatar-input"
-                                        accept="image/png, image/jpg, image/jpeg"
-                                        @change="previewThumbnail"
-                                    />
-                                    <i class="las la-image"></i>
-                                </label>
-                            </div>
-                            <label
-                                for="avatar-input"
-                                class="border border-gray-300 fs-14 fw-500 grey lighten-4 mt-3 opacity-50 px-4 py-1 rounded c-pointer"
-                                >{{ $t("select_image") }}</label
-                            >
-                        </div>
-                        <v-btn
-                            type="submit"
-                            :loading="infoUpdateLoading"
-                            :disabled="infoUpdateLoading"
-                            color="primary"
-                            elevation="0"
-                            class="px-10"
-                            @click="updateBasic"
-                            >{{ $t("update") }}</v-btn
-                        >
+                        <custom-button light text="EDITAR" />
                     </v-form>
                 </v-card>
-                <v-card elevation="0">
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                    <h5 class="bold">Otras direcciones</h5>
+                    <v-divider class="my-4" />
+                    <div>
+                        <custom-button class="my-4" block light @click.stop="addDialogShow = true"
+                            >AÑADIR DIRECCION</custom-button
+                        >
+                        <div class="cards">
+                            Puedes registrar otras direcciones para los envios de facturacion, entregas de productos y
+                            solicitudes de servicio.
+                        </div>
+                    </div>
+                </v-card>
+                <!-- <v-btn
+                    type="submit"
+                    :loading="infoUpdateLoading"
+                    :disabled="infoUpdateLoading"
+                    color="primary"
+                    elevation="0"
+                    class="px-10"
+                    @click="updateBasic"
+                    >{{ $t("update") }}</v-btn
+                > -->
+            </v-col>
+            <v-col cols="12" md="6">
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                    <h5 class="bold">Empresa</h5>
+                    <v-divider class="my-4" />
+                    <div>
+                        <custom-button class="my-4" block light @click.stop="addDialogShow = true"
+                            >AÑADIR MI EMPRESA</custom-button
+                        >
+                        <div class="cards">
+                            Realiza las compras como persona juridica agregando los datos de facturación como empresa.
+                        </div>
+                    </div>
+                </v-card>
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                    <h5 class="bold">Contraseña</h5>
+                    <v-divider class="my-4" />
                     <address-dialog
                         :show="addDialogShow"
                         @close="addressDialogClosed"
                         :old-address="addressSelectedForEdit"
                     />
+                    <div>
+                        <!-- <v-btn light block elevation="0" class="ms-auto" @click.stop="addDialogShow = true"
+                            >CAMBIAR CONTRASEÑA</v-btn
+                        > -->
+                        <custom-button class="my-4" block light @click.stop="addDialogShow = true"
+                            >CAMBIAR CONTRASEÑA</custom-button
+                        >
+                    </div>
+                </v-card>
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                    <h5 class="bold">Terminos y condiciones</h5>
+                    <v-divider class="my-4" />
+                    <div class="tyc">
+                        <label class="label">
+                            <input type="checkbox" />
+                            <span class="body-1 black--text text cards">
+                                Quiero recibir comunicaciones comerciales personalizadas de idovela a través de email.
+                                <b>Conocer newsletter.</b>
+                            </span>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="label">
+                            <input type="checkbox" />
+                            <span class="body-1 black--text text cards">
+                                He podido leer y entiendo la <b>Política de privacidad y cookies.</b>
+                            </span>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="label">
+                            <input type="checkbox" />
+                            <span class="body-1 black--text text cards">
+                                Acepto los <b>Terminos y condiciones para la compra con idovela.</b>
+                            </span>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="label">
+                            <input type="checkbox" />
+                            <span class="body-1 black--text text cards"> Acepto las <b>Polizas de garantia.</b> </span>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="label">
+                            <input type="checkbox" />
+                            <span class="body-1 black--text text cards">
+                                Acepto los terminos de <b>La logistica de envió.</b>
+                            </span>
+                            <span class="checkmark"></span>
+                        </label>
+                        <custom-button light text="SABER MÁS" />
+                    </div>
+                </v-card>
+                <!-- <v-card elevation="0">
                     <v-card-title class="pa-0 fs-16 fw-700 mb-4">
-                        <span class="">{{ $t("addresses") }}</span>
-                        <v-btn color="primary" elevation="0" class="ms-auto" @click.stop="addDialogShow = true">{{
-                            $t("add_new")
-                        }}</v-btn>
+                        <span class="">Contraseña</span>
                     </v-card-title>
                     <v-row class="mb-4 row-cols-1 row-cols-sm-2 gutters-10">
                         <v-col>
-                            <div class="fs-13 fw-600 opacity-80 mb-2">{{ $t("default_shipping_address") }}</div>
-                            <div class="border rounded pa-4 fs-13" v-if="getDefaultShippingAddress">
-                                <div>{{ getDefaultShippingAddress.address }}</div>
-                                <div>
-                                    {{ getDefaultShippingAddress.postal_code }}, {{ getDefaultShippingAddress.city }},
-                                    {{ getDefaultShippingAddress.state }}
-                                </div>
-                                <div>{{ getDefaultShippingAddress.country }}</div>
-                                <div>{{ getDefaultShippingAddress.phone }}</div>
-                            </div>
-                        </v-col>
-                        <v-col>
-                            <div class="fs-13 fw-600 opacity-80 mb-2">{{ $t("default_billing_address") }}</div>
-                            <div class="border rounded pa-4 fs-13" v-if="getDefaultBillingAddress">
-                                <div>{{ getDefaultBillingAddress.address }}</div>
-                                <div>
-                                    {{ getDefaultBillingAddress.postal_code }}, {{ getDefaultBillingAddress.city }},
-                                    {{ getDefaultBillingAddress.state }}
-                                </div>
-                                <div>{{ getDefaultBillingAddress.country }}</div>
-                                <div>{{ getDefaultBillingAddress.phone }}</div>
-                            </div>
+                            <label>{{ $t("old_password") }}</label>
+                            <v-text-field
+                                placeholder="******"
+                                type="password"
+                                v-model="form.oldPassword"
+                                :error-messages="oldPasswordErrors"
+                                outlined
+                                hide-details="auto"
+                                class="mb-3"
+                            ></v-text-field>
+
+                            <label>{{ $t("new_password") }}</label>
+                            <v-text-field
+                                placeholder="******"
+                                type="password"
+                                v-model="form.password"
+                                :error-messages="passwordErrors"
+                                @blur="$v.form.password.$touch()"
+                                outlined
+                                hide-details="auto"
+                                class="mb-3"
+                            ></v-text-field>
+
+                            <label>{{ $t("confirm_password") }}</label>
+                            <v-text-field
+                                placeholder="******"
+                                type="password"
+                                v-model="form.confirmPassword"
+                                :error-messages="confirmPasswordErrors"
+                                @blur="$v.form.confirmPassword.$touch()"
+                                outlined
+                                hide-details="auto"
+                                class="mb-3"
+                            ></v-text-field>
                         </v-col>
                     </v-row>
-                </v-card>
-                <v-card elevation="0">
-                    <v-card-title class="pa-0 fs-16 fw-700 mb-4">{{ $t("all_addresses") }}</v-card-title>
-                    <div>
-                        <v-row
-                            class="row-cols-1 row-cols-sm-2 gutters-10"
-                            v-if="addressesLoaded && getAddresses.length > 0"
-                        >
-                            <v-col v-for="(address, i) in getAddresses" :key="i">
-                                <div class="border rounded py-4 ps-4 pe-9 fs-13 position-relative">
-                                    <div>{{ address.address }}</div>
-                                    <div>{{ address.postal_code }}, {{ address.city }}, {{ address.state }}</div>
-                                    <div>{{ address.country }}</div>
-                                    <div>{{ address.phone }}</div>
-                                    <v-menu offset-y left>
-                                        <template v-slot:activator="{ on, attrs }">
-                                            <v-btn
-                                                class="absolute-top-right"
-                                                color="transparent"
-                                                elevation="0"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                fab
-                                                small
-                                            >
-                                                <i class="las la-ellipsis-v fs-18"></i>
-                                            </v-btn>
-                                        </template>
-                                        <v-list class="">
-                                            <v-list-item class="c-pointer" @click="editAddress(address)">
-                                                <v-list-item-title>{{ $t("edit") }}</v-list-item-title>
-                                            </v-list-item>
-                                            <v-list-item class="c-pointer" @click="markDefaultShipping(address.id)">
-                                                <v-list-item-title>{{
-                                                    $t("mark_as_default_shipping_address")
-                                                }}</v-list-item-title>
-                                            </v-list-item>
-                                            <v-list-item class="c-pointer" @click="markDefaultBilling(address.id)">
-                                                <v-list-item-title>{{
-                                                    $t("mark_as_default_billing_address")
-                                                }}</v-list-item-title>
-                                            </v-list-item>
-                                            <v-list-item class="c-pointer" @click="deleteAddress(address.id)">
-                                                <v-list-item-title>{{ $t("delete") }}</v-list-item-title>
-                                            </v-list-item>
-                                        </v-list>
-                                    </v-menu>
-                                </div>
-                            </v-col>
-                        </v-row>
-                        <div class="text-center" v-else>
-                            <div>{{ $t("no_saved_address") }}</div>
-                        </div>
-                    </div>
-                </v-card>
+                </v-card> -->
             </v-col>
-            <v-col cols="auto"> </v-col>
         </v-row>
     </div>
 </template>
@@ -215,6 +292,7 @@
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
 import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
+import CustomButton from "../../components/global/CustomButton.vue";
 import { VueTelInput } from "vue-tel-input";
 import AddressDialog from "../../components/address/AddressDialog.vue";
 export default {
@@ -251,7 +329,8 @@ export default {
     }),
     components: {
         VueTelInput,
-        AddressDialog
+        AddressDialog,
+        CustomButton
     },
     validations: {
         form: {
@@ -419,3 +498,92 @@ export default {
     }
 };
 </script>
+
+<style scoped lang="scss">
+.form-profile {
+    line-height: 13px;
+}
+
+@media (max-width: 600px) {
+    .form-profile {
+        line-height: 14px;
+        font-size: 12px;
+    }
+    .tyc {
+        line-height: 20px;
+    }
+    .date {
+        font-size: 12px;
+    }
+    .cards {
+        font-size: 12px !important;
+    }
+}
+
+.form-border {
+    border: 1px solid #e4e4e4;
+}
+
+//Estilos de input checkbox
+
+.label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.label:hover input ~ .checkmark {
+    background-color: #f5f5f5;
+}
+
+.label input:checked ~ .checkmark {
+    background-color: #000000;
+    border-radius: 5px;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.label .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+</style>
