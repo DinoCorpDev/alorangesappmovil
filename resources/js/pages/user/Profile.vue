@@ -32,8 +32,8 @@
                         v-on:submit.prevent="updateBasic()"
                         enctype="multipart/form-data"
                     >
-                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
-                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
+                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
                             <v-col class="text-start">
                                 <label class="bold">CORREO ELECTRONICO</label>
@@ -288,94 +288,7 @@
         </v-row>
     </div>
 </template>
-<style scoped lang="scss">
-.form-profile {
-    line-height: 13px;
-}
 
-@media (max-width: 600px) {
-    .form-profile {
-        line-height: 14px;
-        font-size: 12px;
-    }
-    .tyc {
-        line-height: 20px;
-    }
-    .date {
-        font-size: 12px;
-    }
-    .cards {
-        font-size: 12px !important;
-    }
-}
-
-.form-border {
-    border: 1px solid #e4e4e4;
-}
-
-//Estilos de input checkbox
-
-.label {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.label input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-}
-
-.label:hover input ~ .checkmark {
-    background-color: #f5f5f5;
-}
-
-.label input:checked ~ .checkmark {
-    background-color: #000000;
-    border-radius: 5px;
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.label input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.label .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 7px;
-    height: 12px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-</style>
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
 import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
@@ -585,3 +498,92 @@ export default {
     }
 };
 </script>
+
+<style scoped lang="scss">
+.form-profile {
+    line-height: 13px;
+}
+
+@media (max-width: 600px) {
+    .form-profile {
+        line-height: 14px;
+        font-size: 12px;
+    }
+    .tyc {
+        line-height: 20px;
+    }
+    .date {
+        font-size: 12px;
+    }
+    .cards {
+        font-size: 12px !important;
+    }
+}
+
+.form-border {
+    border: 1px solid #e4e4e4;
+}
+
+//Estilos de input checkbox
+
+.label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.label:hover input ~ .checkmark {
+    background-color: #f5f5f5;
+}
+
+.label input:checked ~ .checkmark {
+    background-color: #000000;
+    border-radius: 5px;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.label .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+</style>
