@@ -59,8 +59,7 @@
                                     <input type="checkbox" />
                                     <span class="body-1 black--text text">
                                         Usar la misma Dirección de envió para que Idovela preste los servicio de
-                                        instalación,
-                                        mantenimiento y más.
+                                        instalación, mantenimiento y más.
                                     </span>
                                     <span class="checkmark"></span>
                                 </label>
@@ -137,13 +136,15 @@
                                 <h6 class="black--text bold">Costo logístico</h6>
                                 <v-divider class="my-3" />
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 text-uppercase bold">Fleta adicional de envio a todo el
-                                        pais</span>
+                                    <span class="subtitle1 text-uppercase bold">
+                                        Fleta adicional de envio a todo el país
+                                    </span>
                                     <span class="body1">+000.000.000 COP</span>
                                 </div>
                                 <div class="d-flex justify-end mb-2">
-                                    <span class="body2 text-uppercase grey--text">( Envió sin costos desde 500.000 COP
-                                        )</span>
+                                    <span class="body2 text-uppercase grey--text">
+                                        ( Envió sin costos desde 500.000 COP )
+                                    </span>
                                 </div>
                             </div>
                         </v-col>
@@ -178,17 +179,16 @@ export default {
         return {
             langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"]
         };
-    },
+    }
 };
 </script>
 
 <style lang="scss" scoped>
-
 .container {
     background-color: #ffffff;
 }
 .figure {
-    background-color: #DFDFDF;
+    background-color: #dfdfdf;
     padding: 3px 0px;
 }
 
@@ -228,11 +228,11 @@ export default {
     background-color: #eee;
 }
 
-.label:hover input~.checkmark {
+.label:hover input ~ .checkmark {
     background-color: #f5f5f5;
 }
 
-.label input:checked~.checkmark {
+.label input:checked ~ .checkmark {
     background-color: #000000;
     border-radius: 5px;
 }
@@ -243,7 +243,7 @@ export default {
     display: none;
 }
 
-.label input:checked~.checkmark:after {
+.label input:checked ~ .checkmark:after {
     display: block;
 }
 

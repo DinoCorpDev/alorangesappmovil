@@ -23,23 +23,20 @@
 
 <script>
 import { mapGetters } from "vuex";
-import UserMenu2 from './UserMenu2';
+import UserMenu2 from "./UserMenu2";
 import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     components: {
         UserMenu2,
-        CustomButton,
+        CustomButton
     },
-    data: () => ({
-
-    }),
+    data: () => ({}),
     computed: {
-        ...mapGetters("auth", ["currentUser"]),
-    },
+        ...mapGetters("auth", ["currentUser"])
+    }
 };
 </script>
-
 
 <style lang="scss" scoped>
 .div-img {
