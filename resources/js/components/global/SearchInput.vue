@@ -2,8 +2,10 @@
     <div class="search-input">
         <input type="search" class="search-input-input" :placeholder="placeholder" />
         <router-link class="search-input-button" type="button" :to="{ name: 'SearchProducts' }">
-            <search-icon class="mr-2" />
-            <span>{{ buttonLabel }}</span>
+            <search-icon />
+            <span class="ml-2 d-none d-md-block">
+                {{ buttonLabel }}
+            </span>
         </router-link>
     </div>
 </template>
@@ -90,11 +92,10 @@ export default {
         border: 1px solid #dfdfdf;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
+        outline: none;
 
         width: 100%;
         padding: 0.5rem 1rem;
-
-        outline: none;
 
         transition: all 0.2s ease-in-out;
 
@@ -113,9 +114,13 @@ export default {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
 
-        padding: 0.5rem 2rem;
+        padding: 0.5rem 1rem;
 
         transition: all 0.2s ease-in-out;
+
+        @media (min-width: 600px) {
+            padding: 0.5rem 2rem;
+        }
 
         &::v-deep {
             svg {
