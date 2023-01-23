@@ -2,24 +2,26 @@
     <div style="width: 100%">
         <div class="buttons">
             <h6 class="black--text bold">Compras</h6>
-            <custom-button block class="mb-3 mt-3" light text="Carrito" to="dashboard" />
-            <custom-button block class="mb-3" light text="Favoritos" to="Wishlist" />
-            <custom-button block class="mb-3" light text="Facturas" to="Wallet" />
+            <custom-button block class="mb-3 mt-3" light text="Carrito" :to="{ name: 'Cart' }" />
+            <custom-button block class="mb-3" light text="Favoritos" :to="{ name: 'Wishlist' }" />
+            <custom-button block class="mb-3" light text="Facturas" :to="{ name: 'Wallet' }" />
             <div class="divider"></div>
         </div>
         <div class="buttons">
             <h6 class="black--text bold">Usuario</h6>
-            <custom-button block class="mb-3 mt-3" dark text="Perfil" to="profile" />
+            <custom-button block class="mb-3 mt-3" dark text="Perfil" :to="{ name: 'Profile' }" />
             <custom-button block class="mb-3" light text="Notificaciones" />
             <div class="divider"></div>
-            <custom-button block class="mb-5 mt-5" plain text="Cerrar Sesión" />
+            <custom-button block class="mb-5 mt-5" plain @click="logout">
+                {{ $t("logout") }}
+            </custom-button>
             <div class="divider"></div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import CustomButton from "../../components/global/CustomButton.vue";
 export default {
     components: {
@@ -32,6 +34,16 @@ export default {
         }
     },
     methods: {
+        ...mapActions(["auth/logout"]),
+        ...mapActions("cart", ["resetCart"]),
+        ...mapActions("wishlist", ["resetWishlist"]),
+        async logout() {
+            const res = await this.call_api("get", "auth/logout");
+            this["auth/logout"]();
+            this.resetCart();
+            this.resetWishlist();
+            this.$router.push({ name: "Home2" }).catch(() => {});
+        },
         getMenuItems() {
             let items = [
                 {

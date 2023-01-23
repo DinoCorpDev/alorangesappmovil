@@ -75,8 +75,8 @@ class DemoController extends Controller
             $result = fgets($fn);
 
             $lang_key = preg_replace('/[^A-Za-z0-9\_]/', '', str_replace(' ', '_', strtolower($result)));
-            
-            if($lang_key){
+
+            if ($lang_key) {
                 Translation::updateOrCreate(
                     ['lang' => 'en', 'lang_key' => $lang_key],
                     ['lang_value' => $result]

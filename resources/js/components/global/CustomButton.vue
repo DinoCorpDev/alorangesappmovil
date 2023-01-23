@@ -1,5 +1,6 @@
 <template>
     <v-btn
+        @click.stop="$emit('click')"
         class="text-uppercase"
         :color="color"
         :outlined="outlined"
