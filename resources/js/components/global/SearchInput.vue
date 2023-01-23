@@ -30,13 +30,48 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-application.theme--dark {
-    .search-input {
-        &-input {
-            color: #ffffff;
+.v-application {
+    &.theme--light {
+        .search-input {
+            &:hover {
+                .search-input-input {
+                    border-color: #000000;
+                }
 
-            &::placeholder {
-                color: rgba(#ffffff, 0.5);
+                .search-input-button {
+                    background-color: #000000;
+                    border-color: #000000;
+
+                    &::v-deep {
+                        svg {
+                            path {
+                                fill: #ffffff;
+                            }
+                        }
+                    }
+
+                    span {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+
+    &.theme--dark {
+        .search-input {
+            &:hover {
+                .search-input-button {
+                    background-color: #ffffff;
+                }
+            }
+
+            &-input {
+                color: #ffffff;
+
+                &::placeholder {
+                    color: rgba(#ffffff, 0.5);
+                }
             }
         }
     }
@@ -44,7 +79,7 @@ export default {
 
 .search-input {
     display: flex;
-    width: 100%;
+    flex: 1;
     max-width: 836px;
 
     &-input {
@@ -60,6 +95,8 @@ export default {
         padding: 0.5rem 1rem;
 
         outline: none;
+
+        transition: all 0.2s ease-in-out;
 
         &::placeholder {
             color: rgba(#000000, 0.5);
@@ -86,10 +123,6 @@ export default {
                     fill: #040405;
                 }
             }
-        }
-
-        &:hover {
-            background-color: #ffffff;
         }
 
         span {
