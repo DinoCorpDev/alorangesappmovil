@@ -1,0 +1,318 @@
+<template>
+    <div class="container">
+        <v-container>
+            <v-row>
+                <v-col cols="2">
+                    <span>imagen</span>
+                </v-col>
+                <v-col cols="8">
+                    <h5>Renovación UpGrade</h5>
+                    <span>Actualizado 02 de Julio de 2022</span>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col sm="12">
+                    <v-row>
+                        <span>Subtitulo 2</span>
+                        <span>
+                            Si cuentas con un perfil y tienes un equipo en buenas condiciones comprado en Idovela, pero
+                            deseas reemplazar a uno más actual, te brindamos la posibilidad de cámbialo y mejorar el
+                            confort del espacio.
+                        </span>
+                    </v-row>
+                </v-col>
+                <v-col sm="12">
+                    <v-row>
+                        <span class="modaSpan">
+                            SELECCIONA EL PRODUCTO QUE DESEA RENOVAR
+                        </span>
+                        <transition name="selectorModal" >
+                            <div class="modal-overlay" v-if="showModalOld"></div>
+                        </transition>
+                        <transition name="selectorModal" >
+                            <div class="modal" v-if="showModalOld">
+                                <h6>contenido</h6>
+                                <p>cont</p>
+                                <p>cont</p>
+                                <p>cont</p>
+                                <!-- <custom-button text="Aceptar" @click="showModalOld = false"/> -->
+                                <button class="modalButtonClose" @click="showModalOld = false">Cancelar</button>
+                                <button class="modalButtonClose" @click="showModalOld = false">Seleccionar</button>
+                            </div>
+                        </transition>
+                        
+                        <button class="modalButton" @click="showModalOld = true">+ AÑADIR PRODUCTO</button>
+                    </v-row>
+                </v-col>
+                <v-col sm="12">
+                    <v-row>
+                        <span class="modaSpan">
+                            SELECCIONA EL PRODUCTO QUE DESEA ACTUALIZAR
+                        </span>
+                        <transition name="selectorModal" >
+                            <div class="modal-overlay" v-if="showModalNew"></div>
+                        </transition>
+                        <transition name="selectorModal" >
+                            <div class="modal" v-if="showModalNew">
+                                <h6>contenido</h6>
+                                <p>cont</p>
+                                <p>cont</p>
+                                <p>cont</p>
+                                <!-- <custom-button text="Aceptar" @click="showModalOld = false"/> -->
+                                <button class="modalButtonClose" @click="showModalNew = false">Cancelar</button>
+                                <button class="modalButtonClose" @click="showModalNew = false">Seleccionar</button>
+                            </div>
+                        </transition>
+                        <button class="modalButton" @click="showModalNew = true">+ AÑADIR PRODUCTO</button>
+                    </v-row>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col sm="12">
+                    <v-row>
+                        <v-col cols="12" md="6">
+                            <v-row>
+                                <v-col cols="12">
+                                    <div class="form">
+                                        <h6 class="black--text bold">Dirección de envio</h6>
+                                        <v-divider class="my-3" />
+                                        <select-custom dark label="Usuario Principal" :items="langSelectItems" />
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                            <span class="body1">Casa 1</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                            <span class="body1">Avenida siempre viva 123</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Descripcion de Dirección</span>
+                                            <span class="body1">Casa de tejado con color café y patio verde</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                            <span class="body1">110611</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                            <span class="body1">Cundinamarca</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                            <span class="body1">Bogota d.c</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                            <span class="body1"> -- </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold"
+                                                >Nombre de quien lo va a recibir</span
+                                            >
+                                            <span class="body1">Alejandro Ramirez</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                            <span class="body1">+57 300 544 3300</span>
+                                        </div>
+                                        <custom-button class="mr-3" text="Editar" />
+                                        <custom-button text="Añadir" />
+                                    </div>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <v-row>
+                                <v-col cols="12">
+                                    <div class="form">
+                                        <h6 class="black--text bold">Dirección de servicio</h6>
+                                        <v-divider class="my-3" />
+                                        <label class="label">
+                                            <input type="checkbox" />
+                                            <span class="body-1 black--text text">
+                                                Usar la misma Dirección de envió para que Idovela preste los servicio de
+                                                instalación, mantenimiento y más.
+                                            </span>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <v-divider class="my-3" />
+                                        <custom-button block text="Añadir Dirección" />
+                                    </div>
+                                </v-col>
+                                <v-col cols="12">
+                                    <div class="form">
+                                        <h6 class="black--text bold">Dirección de facturacion</h6>
+                                        <v-divider class="my-3" />
+                                        <label class="label">
+                                            <input type="checkbox" />
+                                            <span class="body-1 black--text text">
+                                                Usar la misma Dirección de envió para que Idovela entreguela factura
+                                                física.
+                                            </span>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <v-divider class="my-3" />
+                                        <custom-button block text="Añadir Dirección" />
+                                    </div>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-col>
+            </v-row>
+        </v-container>
+    </div>
+</template>
+
+<script>
+import SelectCustom from "../../components/global/SelectCustom.vue";
+import CustomButton from "../../components/global/CustomButton.vue";
+
+export default {
+    components: {
+        SelectCustom,
+        CustomButton
+    },
+    data() {
+        return {
+            langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"],
+            showModalOld: false,
+            showModalNew: false,
+        };
+    }
+};
+</script>
+
+<style lang="scss" scoped>
+.container {
+    background-color: #ffffff;
+}
+.figure {
+    background-color: #dfdfdf;
+    padding: 3px 0px;
+}
+
+.form {
+    border: 1px solid #e4e4e4;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.label:hover input ~ .checkmark {
+    background-color: #f5f5f5;
+}
+
+.label input:checked ~ .checkmark {
+    background-color: #000000;
+    border-radius: 5px;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.label .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+h5{
+    text-align: left;
+    font: normal normal 600 24px/30px Overpass;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1
+}
+
+span{
+    padding: 10px;
+    text-align: left;
+    font: normal normal normal 15px/24px Roboto;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+}
+.modalButton{
+    top: 415px;
+    left: 518px;
+    width: 1106px;
+    height: 99px;
+    border: 1px dashed #D7D7D7;
+    border-radius: 10px;
+    color: #040405;
+    opacity: 1; 
+}
+.modaSpan{
+    text-align: left;
+    font: normal normal normal 12px/20px Roboto;
+    letter-spacing: 0px;
+    color: #000000;
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
+selectorModal-enter{
+
+}
+
+.modal{
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    z-index: 101;
+}
+.modal-overlay{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.4);
+}
+</style>
