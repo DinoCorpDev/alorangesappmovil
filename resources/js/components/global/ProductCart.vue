@@ -14,18 +14,24 @@
                 </div>
                 <div class="divider"></div>
                 <div>
-                    <h6 class="black--text text-uppercase">{{ price }}</h6>
+                    <span class="black--text text-uppercase bold body1">{{ price }}</span>
                 </div>
                 <div class="divider"></div>
                 <div>
                     <div class="quantity">
-                        <h6>+ {{ quantity }} -</h6>
+                        <custom-button text="+" plain />
+                        <h6 class="quantity2"> {{ quantity }} </h6>
+                        <custom-button text="-" plain />
                     </div>
                 </div>
                 <div class="divider"></div>
-                <div>
-                    <i width="64px" class="las la-trash"></i>
-                    <i class="las la-eye"></i>
+                <div class="d-none d-md-block">
+                    <custom-button plain icon="la-trash" />
+                    <custom-button plain icon="las la-eye" />
+                    <custom-button plain icon="las la-eye" />
+                </div>
+                <div class="d-md-none">
+                    <custom-button plain icon="la-ellipsis-v" />
                 </div>
             </div>
         </div>
@@ -33,9 +39,13 @@
 </template>
 
 <script>
+import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     name: "ProductItem",
+    components: {
+        CustomButton,
+    },
     props: {
         img: {
             type: String,
@@ -69,9 +79,9 @@ export default {
 .div-container {
     display: flex;
 }
+
 .div-body {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 0px 10px;
@@ -102,7 +112,27 @@ export default {
 
 .quantity {
     background-color: #FAFAFA;
-    padding: 10px 15px;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.quantity2 {
+    line-height: 40px;
+}
+
+@media (max-width: 959px) {
+    .quantity {
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+    .quantity2 {
+        line-height: normal;
+        display: flex;
+        justify-content: center;
+    }
 }
 </style>

@@ -20,6 +20,7 @@
                             <span class="text-uppercase bold">Resumen</span>
                         </v-stepper-step>
                     </v-stepper-header>
+                    <v-divider></v-divider>
                     <v-stepper-content step="1">
                         <h6>Productos</h6>
                         <v-row>
@@ -225,9 +226,15 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep {
+
+    .v-stepper__header {
+        box-shadow: none;
+    }
     .v-stepper__step--editable {
         background-color: #dfdfdf;
-        color: #000000;
+        height: 50%;
+        box-shadow: none;
+        border-radius: 10px;
     }
 
     .v-stepper__step .v-stepper__label {
