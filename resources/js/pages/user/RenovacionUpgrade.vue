@@ -2,12 +2,21 @@
     <div class="container">
         <v-container>
             <v-row>
-                <v-col cols="2">
+                <v-col cols="2" sm="3">
                     <span>imagen</span>
                 </v-col>
-                <v-col cols="8">
-                    <h5>Renovación UpGrade</h5>
-                    <span>Actualizado 02 de Julio de 2022</span>
+                <v-col cols="8" sm="9">
+                    <v-row>
+                        <h5 class="d-none d-sm-block" style="font: normal normal 600 24px/30px Overpass">
+                            Renovación UpGrade
+                        </h5>
+                        <h5 class="d-sm-none" style="font: normal normal 600 17px/22px Overpass">Renovación UpGrade</h5>
+                    </v-row>
+                    <v-row>
+                        <span class="d-sm-none">Fecha </span>
+                        <span class="d-none d-sm-block">Actualizado </span>
+                        <span class="d-inline"> 02 de Julio de 2022</span>
+                    </v-row>
                 </v-col>
             </v-row>
             <v-row>
@@ -23,15 +32,14 @@
                 </v-col>
                 <v-col sm="12">
                     <v-row>
-                        <span class="modaSpan">
-                            SELECCIONA EL PRODUCTO QUE DESEA RENOVAR
-                        </span>
-                        <transition name="selectorModal" >
+                        <span class="modaSpan"> SELECCIONA EL PRODUCTO QUE DESEA RENOVAR </span>
+                        <transition name="selectorModal">
                             <div class="modal-overlay" v-if="showModalOld"></div>
                         </transition>
-                        <transition name="selectorModal" >
+                        <transition name="selectorModal">
                             <div class="modal" v-if="showModalOld">
                                 <h6>contenido</h6>
+                                <p>cont</p>
                                 <p>cont</p>
                                 <p>cont</p>
                                 <p>cont</p>
@@ -40,19 +48,20 @@
                                 <button class="modalButtonClose" @click="showModalOld = false">Seleccionar</button>
                             </div>
                         </transition>
-                        
-                        <button class="modalButton" @click="showModalOld = true">+ AÑADIR PRODUCTO</button>
+
+                        <button class="box modalButton" @click="showModalOld = true">
+                            <span style="font-size: xx-large; padding-right: 20px">+</span
+                            ><span style="font-weight: bold; font-weight: bold">AÑADIR PRODUCTO</span>
+                        </button>
                     </v-row>
                 </v-col>
                 <v-col sm="12">
                     <v-row>
-                        <span class="modaSpan">
-                            SELECCIONA EL PRODUCTO QUE DESEA ACTUALIZAR
-                        </span>
-                        <transition name="selectorModal" >
+                        <span class="modaSpan"> SELECCIONA EL PRODUCTO QUE DESEA ACTUALIZAR </span>
+                        <transition name="selectorModal">
                             <div class="modal-overlay" v-if="showModalNew"></div>
                         </transition>
-                        <transition name="selectorModal" >
+                        <transition name="selectorModal">
                             <div class="modal" v-if="showModalNew">
                                 <h6>contenido</h6>
                                 <p>cont</p>
@@ -63,7 +72,10 @@
                                 <button class="modalButtonClose" @click="showModalNew = false">Seleccionar</button>
                             </div>
                         </transition>
-                        <button class="modalButton" @click="showModalNew = true">+ AÑADIR PRODUCTO</button>
+                        <button class="box modalButton" @click="showModalNew = true">
+                            <span style="font-size: xx-large; padding-right: 20px">+</span
+                            ><span style="font-weight: bold; font-weight: bold">AÑADIR PRODUCTO</span>
+                        </button>
                     </v-row>
                 </v-col>
             </v-row>
@@ -177,7 +189,7 @@ export default {
         return {
             langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"],
             showModalOld: false,
-            showModalNew: false,
+            showModalNew: false
         };
     }
 };
@@ -259,33 +271,56 @@ export default {
     transform: rotate(45deg);
 }
 
-h5{
+h5 {
     text-align: left;
-    font: normal normal 600 24px/30px Overpass;
     letter-spacing: 0px;
     color: #000000;
-    opacity: 1
+    opacity: 1;
 }
 
-span{
-    padding: 10px;
+span {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 2px;
     text-align: left;
     font: normal normal normal 15px/24px Roboto;
     letter-spacing: 0px;
     color: #000000;
     opacity: 1;
 }
-.modalButton{
+
+.modalButton {
     top: 415px;
     left: 518px;
     width: 1106px;
     height: 99px;
-    border: 1px dashed #D7D7D7;
     border-radius: 10px;
     color: #040405;
-    opacity: 1; 
+    opacity: 1;
+    font-weight: bold;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
-.modaSpan{
+
+.box {
+    background-image: repeating-linear-gradient(
+            0deg,
+            #d7d7d7,
+            #d7d7d7 16px,
+            transparent 16px,
+            transparent 26px,
+            #d7d7d7 26px
+        ),
+        repeating-linear-gradient(90deg, #d7d7d7, #d7d7d7 16px, transparent 16px, transparent 26px, #d7d7d7 26px),
+        repeating-linear-gradient(180deg, #d7d7d7, #d7d7d7 16px, transparent 16px, transparent 26px, #d7d7d7 26px),
+        repeating-linear-gradient(270deg, #d7d7d7, #d7d7d7 16px, transparent 16px, transparent 26px, #d7d7d7 26px);
+    background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
+    background-position: 0 0, 0 0, 100% 0, 0 100%;
+    background-repeat: no-repeat;
+    background-color: #eee;
+}
+.modaSpan {
     text-align: left;
     font: normal normal normal 12px/20px Roboto;
     letter-spacing: 0px;
@@ -294,11 +329,10 @@ span{
     opacity: 0.5;
 }
 
-selectorModal-enter{
+// selectorModal-enter {
+// }
 
-}
-
-.modal{
+.modal {
     position: fixed;
     top: 50%;
     right: 50%;
@@ -306,7 +340,7 @@ selectorModal-enter{
     background: white;
     z-index: 101;
 }
-.modal-overlay{
+.modal-overlay {
     position: absolute;
     top: 0;
     right: 0;
