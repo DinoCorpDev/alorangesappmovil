@@ -20,7 +20,7 @@
                 <div>
                     <div class="quantity">
                         <custom-button text="+" plain />
-                        <h6 class="quantity2"> {{ quantity }} </h6>
+                        <h6 class="quantity2">{{ quantity }}</h6>
                         <custom-button text="-" plain />
                     </div>
                 </div>
@@ -44,7 +44,7 @@ import CustomButton from "../../components/global/CustomButton.vue";
 export default {
     name: "ProductItem",
     components: {
-        CustomButton,
+        CustomButton
     },
     props: {
         img: {
@@ -89,7 +89,7 @@ export default {
 }
 
 .cart {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     border-radius: 10px;
 }
 
@@ -105,13 +105,13 @@ export default {
 }
 
 .divider {
-    background-color: #DFDFDF;
+    background-color: #dfdfdf;
     width: 2px;
     height: 80px;
 }
 
 .quantity {
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     border-radius: 10px;
     display: flex;
     justify-content: center;

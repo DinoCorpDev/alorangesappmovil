@@ -84,8 +84,7 @@
                                                 <input type="checkbox" />
                                                 <span class="body-1 black--text text">
                                                     Usar la misma Dirección de envió para que Idovela preste los
-                                                    servicio de
-                                                    instalación, mantenimiento y más.
+                                                    servicio de instalación, mantenimiento y más.
                                                 </span>
                                                 <span class="checkmark"></span>
                                             </label>
@@ -127,8 +126,9 @@
                                                 <span class="body1">Avenida siempre viva 123</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Descripcion de
-                                                    Dirección</span>
+                                                <span class="subtitle1 text-uppercase bold">
+                                                    Descripción de Dirección
+                                                </span>
                                                 <span class="body1">Casa de tejado con color café y patio verde</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
@@ -148,8 +148,9 @@
                                                 <span class="body1"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Nombre de quien lo va a
-                                                    recibir</span>
+                                                <span class="subtitle1 text-uppercase bold">
+                                                    Nombre de quien lo va a recibir
+                                                </span>
                                                 <span class="body1">Alejandro Ramirez</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
@@ -171,7 +172,7 @@
                                                 <span class="body1">+000.000.000 COP</span>
                                             </div>
                                             <div class="d-flex justify-end mb-2">
-                                                <span class="body2 text-uppercase grey- -text">
+                                                <span class="body2 text-uppercase grey--text">
                                                     ( Envió sin costos desde 500.000 COP )
                                                 </span>
                                             </div>
@@ -251,9 +252,10 @@
                                         </div>
                                         <div>
                                             <h6 class="font-weight-bold">Gracias por registrarse</h6>
-                                            <p class="body-1">Enviaremos al e-mail de facturación un correo de
-                                                verificación
-                                                por la compra</p>
+                                            <p class="body-1">
+                                                Enviaremos al e-mail de facturación un correo de verificación por la
+                                                compra
+                                            </p>
                                         </div>
                                     </div>
                                     <div>
@@ -320,8 +322,7 @@
                                                 <input type="checkbox" />
                                                 <span class="body-1 black--text text">
                                                     Usar la misma Dirección de envió para que Idovela preste los
-                                                    servicio de
-                                                    instalación, mantenimiento y más.
+                                                    servicio de instalación, mantenimiento y más.
                                                 </span>
                                                 <span class="checkmark"></span>
                                             </label>
@@ -363,8 +364,9 @@
                                                 <span class="body1">Avenida siempre viva 123</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Descripcion de
-                                                    Dirección</span>
+                                                <span class="subtitle1 text-uppercase bold">
+                                                    Descripción de Dirección
+                                                </span>
                                                 <span class="body1">Casa de tejado con color café y patio verde</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
@@ -384,8 +386,9 @@
                                                 <span class="body1"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Nombre de quien lo va a
-                                                    recibir</span>
+                                                <span class="subtitle1 text-uppercase bold">
+                                                    Nombre de quien lo va a recibir
+                                                </span>
                                                 <span class="body1">Alejandro Ramirez</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
@@ -472,15 +475,14 @@ export default {
     },
     data() {
         return {
-            langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"],
+            langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"]
         };
-    },
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 ::v-deep {
-
     .v-stepper__header {
         box-shadow: none;
     }
@@ -549,11 +551,11 @@ export default {
     background-color: #eee;
 }
 
-.label:hover input~.checkmark {
+.label:hover input ~ .checkmark {
     background-color: #f5f5f5;
 }
 
-.label input:checked~.checkmark {
+.label input:checked ~ .checkmark {
     background-color: #000000;
     border-radius: 5px;
 }
@@ -564,7 +566,7 @@ export default {
     display: none;
 }
 
-.label input:checked~.checkmark:after {
+.label input:checked ~ .checkmark:after {
     display: block;
 }
 
@@ -595,7 +597,7 @@ export default {
 }
 
 .div-alert {
-    background-color: #DFDFDF;
+    background-color: #dfdfdf;
     border-radius: 10px;
     padding: 10px;
     display: flex;
@@ -635,6 +637,5 @@ export default {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-
 }
 </style>

@@ -14,14 +14,14 @@ export default {
             type: String,
             default: "/public/assets/img/carousel-item-placeholder.png"
         },
-        text: String,
+        text: String
     }
 };
 </script>
 
 <style lang="scss" scoped>
 .payment {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     border-radius: 10px;
     text-align: center;
     padding-top: 10px;
