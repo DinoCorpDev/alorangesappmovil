@@ -106,7 +106,7 @@ export default [
                 component: RenovacionUpgrade,
                 name: "RenovacionUpgrade",
                 meta: { requiresAuth: true }
-            },
+            }
         ]
     }
 ];

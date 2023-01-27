@@ -1,179 +1,171 @@
 <template>
-    <div class="container">
-        <v-container>
-            <v-row>
-                <v-col cols="2" sm="3">
-                    <span>imagen</span>
-                </v-col>
-                <v-col cols="8" sm="9">
-                    <v-row>
-                        <h5 class="d-none d-sm-block" style="font: normal normal 600 24px/30px Overpass">
-                            Renovación UpGrade
-                        </h5>
-                        <h5 class="d-sm-none" style="font: normal normal 600 17px/22px Overpass">Renovación UpGrade</h5>
-                    </v-row>
-                    <v-row>
-                        <span class="d-sm-none">Fecha </span>
-                        <span class="d-none d-sm-block">Actualizado </span>
-                        <span class="d-inline"> 02 de Julio de 2022</span>
-                    </v-row>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col sm="12">
-                    <v-row>
-                        <span>Subtitulo 2</span>
-                        <span>
-                            Si cuentas con un perfil y tienes un equipo en buenas condiciones comprado en Idovela, pero
-                            deseas reemplazar a uno más actual, te brindamos la posibilidad de cámbialo y mejorar el
-                            confort del espacio.
-                        </span>
-                    </v-row>
-                </v-col>
-                <v-col sm="12">
-                    <v-row>
-                        <span class="modaSpan"> SELECCIONA EL PRODUCTO QUE DESEA RENOVAR </span>
-                        <transition name="selectorModal">
-                            <div class="modal-overlay" v-if="showModalOld"></div>
-                        </transition>
-                        <transition name="selectorModal">
-                            <div class="modal" v-if="showModalOld">
-                                <h6>contenido</h6>
-                                <p>cont</p>
-                                <p>cont</p>
-                                <p>cont</p>
-                                <p>cont</p>
-                                <!-- <custom-button text="Aceptar" @click="showModalOld = false"/> -->
-                                <button class="modalButtonClose" @click="showModalOld = false">Cancelar</button>
-                                <button class="modalButtonClose" @click="showModalOld = false">Seleccionar</button>
-                            </div>
-                        </transition>
+    <v-container>
+        <v-row>
+            <v-col cols="12">
+                <div class="upgrade-header">
+                    <div class="upgrade-header-icon mr-10">
+                        <v-img width="64" aspect-ratio="1" src="/public/assets/img/upgrade-icon.png" />
+                    </div>
+                    <div class="upgrade-header-content">
+                        <h1>Renovación UpGrade</h1>
+                        <span>Actualización 02 de Julio de 2022</span>
+                    </div>
+                </div>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col sm="12">
+                <v-row>
+                    <span>Subtitulo 2</span>
+                    <span>
+                        Si cuentas con un perfil y tienes un equipo en buenas condiciones comprado en Idovela, pero
+                        deseas reemplazar a uno más actual, te brindamos la posibilidad de cámbialo y mejorar el confort
+                        del espacio.
+                    </span>
+                </v-row>
+            </v-col>
+            <v-col sm="12">
+                <v-row>
+                    <span class="modaSpan"> SELECCIONA EL PRODUCTO QUE DESEA RENOVAR </span>
+                    <transition name="selectorModal">
+                        <div class="modal-overlay" v-if="showModalOld"></div>
+                    </transition>
+                    <transition name="selectorModal">
+                        <div class="modal" v-if="showModalOld">
+                            <h6>contenido</h6>
+                            <p>cont</p>
+                            <p>cont</p>
+                            <p>cont</p>
+                            <p>cont</p>
+                            <!-- <custom-button text="Aceptar" @click="showModalOld = false"/> -->
+                            <button class="modalButtonClose" @click="showModalOld = false">Cancelar</button>
+                            <button class="modalButtonClose" @click="showModalOld = false">Seleccionar</button>
+                        </div>
+                    </transition>
 
-                        <button class="box modalButton" @click="showModalOld = true">
-                            <span style="font-size: xx-large; padding-right: 20px">+</span
-                            ><span style="font-weight: bold; font-weight: bold">AÑADIR PRODUCTO</span>
-                        </button>
-                    </v-row>
-                </v-col>
-                <v-col sm="12">
-                    <v-row>
-                        <span class="modaSpan"> SELECCIONA EL PRODUCTO QUE DESEA ACTUALIZAR </span>
-                        <transition name="selectorModal">
-                            <div class="modal-overlay" v-if="showModalNew"></div>
-                        </transition>
-                        <transition name="selectorModal">
-                            <div class="modal" v-if="showModalNew">
-                                <h6>contenido</h6>
-                                <p>cont</p>
-                                <p>cont</p>
-                                <p>cont</p>
-                                <!-- <custom-button text="Aceptar" @click="showModalOld = false"/> -->
-                                <button class="modalButtonClose" @click="showModalNew = false">Cancelar</button>
-                                <button class="modalButtonClose" @click="showModalNew = false">Seleccionar</button>
-                            </div>
-                        </transition>
-                        <button class="box modalButton" @click="showModalNew = true">
-                            <span style="font-size: xx-large; padding-right: 20px">+</span
-                            ><span style="font-weight: bold; font-weight: bold">AÑADIR PRODUCTO</span>
-                        </button>
-                    </v-row>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col sm="12">
-                    <v-row>
-                        <v-col cols="12" md="6">
-                            <v-row>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Dirección de envio</h6>
-                                        <v-divider class="my-3" />
-                                        <select-custom dark label="Usuario Principal" :items="langSelectItems" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                            <span class="body1">Casa 1</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">Avenida siempre viva 123</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Descripcion de Dirección</span>
-                                            <span class="body1">Casa de tejado con color café y patio verde</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">110611</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">Cundinamarca</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">Bogota d.c</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                            <span class="body1"> -- </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold"
-                                                >Nombre de quien lo va a recibir</span
-                                            >
-                                            <span class="body1">Alejandro Ramirez</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">+57 300 544 3300</span>
-                                        </div>
-                                        <custom-button class="mr-3" text="Editar" />
-                                        <custom-button text="Añadir" />
+                    <button class="box modalButton" @click="showModalOld = true">
+                        <span style="font-size: xx-large; padding-right: 20px">+</span
+                        ><span style="font-weight: bold; font-weight: bold">AÑADIR PRODUCTO</span>
+                    </button>
+                </v-row>
+            </v-col>
+            <v-col sm="12">
+                <v-row>
+                    <span class="modaSpan"> SELECCIONA EL PRODUCTO QUE DESEA ACTUALIZAR </span>
+                    <transition name="selectorModal">
+                        <div class="modal-overlay" v-if="showModalNew"></div>
+                    </transition>
+                    <transition name="selectorModal">
+                        <div class="modal" v-if="showModalNew">
+                            <h6>contenido</h6>
+                            <p>cont</p>
+                            <p>cont</p>
+                            <p>cont</p>
+                            <!-- <custom-button text="Aceptar" @click="showModalOld = false"/> -->
+                            <button class="modalButtonClose" @click="showModalNew = false">Cancelar</button>
+                            <button class="modalButtonClose" @click="showModalNew = false">Seleccionar</button>
+                        </div>
+                    </transition>
+                    <button class="box modalButton" @click="showModalNew = true">
+                        <span style="font-size: xx-large; padding-right: 20px">+</span
+                        ><span style="font-weight: bold; font-weight: bold">AÑADIR PRODUCTO</span>
+                    </button>
+                </v-row>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col sm="12">
+                <v-row>
+                    <v-col cols="12" md="6">
+                        <v-row>
+                            <v-col cols="12">
+                                <div class="form">
+                                    <h6 class="black--text bold">Dirección de envio</h6>
+                                    <v-divider class="my-3" />
+                                    <select-custom dark label="Usuario Principal" :items="langSelectItems" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                        <span class="body1">Casa 1</span>
                                     </div>
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <v-row>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Dirección de servicio</h6>
-                                        <v-divider class="my-3" />
-                                        <label class="label">
-                                            <input type="checkbox" />
-                                            <span class="body-1 black--text text">
-                                                Usar la misma Dirección de envió para que Idovela preste los servicio de
-                                                instalación, mantenimiento y más.
-                                            </span>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <v-divider class="my-3" />
-                                        <custom-button block text="Añadir Dirección" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                        <span class="body1">Avenida siempre viva 123</span>
                                     </div>
-                                </v-col>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Dirección de facturacion</h6>
-                                        <v-divider class="my-3" />
-                                        <label class="label">
-                                            <input type="checkbox" />
-                                            <span class="body-1 black--text text">
-                                                Usar la misma Dirección de envió para que Idovela entreguela factura
-                                                física.
-                                            </span>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <v-divider class="my-3" />
-                                        <custom-button block text="Añadir Dirección" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Descripcion de Dirección</span>
+                                        <span class="body1">Casa de tejado con color café y patio verde</span>
                                     </div>
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
-        </v-container>
-    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                        <span class="body1">110611</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                        <span class="body1">Cundinamarca</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                        <span class="body1">Bogota d.c</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                        <span class="body1"> -- </span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold"
+                                            >Nombre de quien lo va a recibir</span
+                                        >
+                                        <span class="body1">Alejandro Ramirez</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                        <span class="body1">+57 300 544 3300</span>
+                                    </div>
+                                    <custom-button class="mr-3" text="Editar" />
+                                    <custom-button text="Añadir" />
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-col>
+                    <v-col cols="12" md="6">
+                        <v-row>
+                            <v-col cols="12">
+                                <div class="form">
+                                    <h6 class="black--text bold">Dirección de servicio</h6>
+                                    <v-divider class="my-3" />
+                                    <label class="label">
+                                        <input type="checkbox" />
+                                        <span class="body-1 black--text text">
+                                            Usar la misma Dirección de envió para que Idovela preste los servicio de
+                                            instalación, mantenimiento y más.
+                                        </span>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <v-divider class="my-3" />
+                                    <custom-button block text="Añadir Dirección" />
+                                </div>
+                            </v-col>
+                            <v-col cols="12">
+                                <div class="form">
+                                    <h6 class="black--text bold">Dirección de facturacion</h6>
+                                    <v-divider class="my-3" />
+                                    <label class="label">
+                                        <input type="checkbox" />
+                                        <span class="body-1 black--text text">
+                                            Usar la misma Dirección de envió para que Idovela entreguela factura física.
+                                        </span>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <v-divider class="my-3" />
+                                    <custom-button block text="Añadir Dirección" />
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-col>
+                </v-row>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
@@ -197,11 +189,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    background-color: #ffffff;
-}
-.figure {
-    background-color: #dfdfdf;
-    padding: 3px 0px;
+    background-color: #fafcfc;
 }
 
 .form {
@@ -271,24 +259,6 @@ export default {
     transform: rotate(45deg);
 }
 
-h5 {
-    text-align: left;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 1;
-}
-
-span {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 2px;
-    text-align: left;
-    font: normal normal normal 15px/24px Roboto;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 1;
-}
-
 .modalButton {
     top: 415px;
     left: 518px;
@@ -348,5 +318,39 @@ span {
     bottom: 0;
     z-index: 100;
     background: rgba(0, 0, 0, 0.4);
+}
+
+.upgrade {
+    &-header {
+        display: flex;
+        align-items: center;
+
+        &-icon {
+            background: #ffffff;
+            border-radius: 50%;
+            padding: 0.8rem;
+
+            .v-image {
+                max-width: 60px;
+
+                @media (min-width: 600px) {
+                    max-width: 64px;
+                }
+            }
+        }
+
+        &-content {
+            h1 {
+                font-weight: 600;
+                font-size: 24px;
+                letter-spacing: 0;
+            }
+
+            span {
+                font-size: 15px;
+                letter-spacing: 0;
+            }
+        }
+    }
 }
 </style>
