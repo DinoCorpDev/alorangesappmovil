@@ -261,6 +261,27 @@
                                     </div>
                                 </div>
                             </v-col>
+                            <v-col cols="12">
+                                <div class="div-order">
+                                    <div>
+                                        <h6 class="font-weight-bold">Orden de pedido # IDO2421</h6>
+                                        <p class="body-1">Fecha 02 de Julio de 2022</p>
+                                    </div>
+                                    <div class="div-status">
+                                        <div>
+                                            <p class="text-uppercase font-weight-bold">ESTADO</p>
+                                            <p>Por aprobar pedido</p>
+                                        </div>
+                                        <div class="d-none d-sm-block">
+                                            <custom-button plain icon="la-download" />
+                                            <custom-button plain icon="la-print" />
+                                        </div>
+                                        <div class="d-sm-none">
+                                            <custom-button plain icon="la-ellipsis-v" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </v-col>
                         </v-row>
                         <v-divider class="my-3" />
                         <v-row>
@@ -585,7 +606,6 @@ export default {
 .information {
     display: flex;
     align-items: center;
-    height: 100%;
     gap: 10px;
 }
 
@@ -601,5 +621,20 @@ export default {
     color: #ffffff;
     border-radius: 50%;
     padding: 5px 5px 0px 5px;
+}
+
+.div-order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.div-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
 }
 </style>
