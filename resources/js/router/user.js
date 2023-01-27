@@ -12,6 +12,7 @@ let Wallet = () => import("../pages/user/Wallet");
 let Coupon = () => import("../pages/user/Coupon");
 let Profile = () => import("../pages/user/Profile");
 let UserLayout = () => import("../components/user/UserLayout");
+let RenovacionUpgrade = () => import("../pages/user/RenovacionUpgrade");
 let Error404 = () => import("../pages/errors/404");
 
 export default [
@@ -98,6 +99,12 @@ export default [
                 path: "profile",
                 component: Profile,
                 name: "Profile",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "renovacion-UpGrade",
+                component: RenovacionUpgrade,
+                name: "RenovacionUpgrade",
                 meta: { requiresAuth: true }
             }
         ]
