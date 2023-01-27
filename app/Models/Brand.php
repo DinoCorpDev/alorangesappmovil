@@ -7,6 +7,9 @@ use App;
 
 class Brand extends Model
 {
+
+  protected $fillable = ['name'];
+
   protected $with = ['brand_translations'];
 
   public function getTranslation($field = '', $lang = false)

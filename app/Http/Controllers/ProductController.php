@@ -16,6 +16,7 @@ use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\ProductTax;
 use App\Models\ShopBrand;
+use App\Models\Brand;
 use App\Models\User;
 use App\Utility\CategoryUtility;
 use CoreComponentRepository;
@@ -93,6 +94,8 @@ class ProductController extends Controller
             return redirect()->back();
         }
 
+        dd($request);
+
         $product                    = new Product;
         $product->name              = $request->name;
         $product->shop_id           = auth()->user()->shop_id;
@@ -163,14 +166,16 @@ class ProductController extends Controller
 
         // category
         $product->categories()->sync($request->category_ids);
-
+        
         // shop category ids
         $shop_category_ids = [];
         foreach ($request->category_ids ?? [] as $id) {
             $shop_category_ids[] = CategoryUtility::get_grand_parent_id($id);
         }
-        $shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->shop_categories->pluck('category_id')->toArray());
-        $product->shop->categories()->sync($shop_category_ids);
+        //this get error
+        /*
+        $shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->categories->pluck('category_id')->toArray());
+        $product->shop->categories()->sync($shop_category_ids);*/
 
         // shop brand
         if ($request->brand_id) {
@@ -179,7 +184,6 @@ class ProductController extends Controller
                 'brand_id' => $request->brand_id,
             ]);
         }
-
 
         //taxes
         $tax_data = array();
@@ -302,30 +306,94 @@ class ProductController extends Controller
                 $startcount++;
             }
 
+
             if (count($data) > 0) {
                 foreach ($data as $row_data) {
                     $product = new Product;
-                    $product->name = $row_data["categoria"];
+                    $product->reference = $row_data["referencia"];
+                    $product->name = $row_data["categoria"] . " " . $row_data["marca"];
                     $product->shop_id = auth()->user()->shop_id;
-                    $product->unit = 1;
 
-                    if ($row_data["stock"]) {
+                    if($row_data["marca"] != ""){
+                        $marca = Brand::firstOrCreate(
+                            ['name' => $row_data["marca"]], 
+                            ['name' => $row_data["marca"]]
+                        );
+                    }
+
+                    $product->brand_id = $marca->id;
+
+                    $array_categories = array();
+                    if ($row_data["categoria"] != "") {
+                        $categorie = Category::firstOrCreate(
+                            ['name' => $row_data["categoria"]], 
+                            [
+                                'parent_id' => 0,
+                                'level' => 0,
+                                'name' => $row_data["categoria"],
+                                'order_level' => 0,
+                                'slug' => Str::slug($row_data["categoria"], '-').'-'.strtolower(Str::random(5))
+                            ]
+                        );
+                        array_push($array_categories, $categorie->id);
+
+                        if ($row_data["subcategoria"] != "") {
+                            $subcategorie = Category::firstOrCreate(
+                                ['name' => $row_data["subcategoria"]], 
+                                [
+                                    'parent_id' => $categorie->id,
+                                    'level' => 1,
+                                    'name' => $row_data["subcategoria"],
+                                    'order_level' => 1,
+                                    'slug' => Str::slug($row_data["subcategoria"], '-').'-'.strtolower(Str::random(5))
+                                ]
+                            );
+                            array_push($array_categories, $subcategorie->id);
+                        }
+                    }
+
+                    if ($row_data["stock"] != "") {
                         $unidades = explode(" ", $row_data["stock"]);
                         $product->stock = $unidades[0];
                     }
 
-                    $product->min_qty = 1;
-                    $product->max_qty = 100;
                     $product->description = $row_data["referencia"] . " " . $row_data["subcategoria"] . " marca:" . $row_data["marca"] . " medidas:" . $row_data["medida_de_producto"];
                     $product->published = 0;
 
                     $product->lowest_price  =  $row_data["precio"];
                     $product->highest_price =  $row_data["precio"];
+                    $product->currency =  $row_data["divisa"];
+                    $product->discount_type =  "flat";
                     $product->discount =  $row_data["descuento"];
-                    $product->has_warranty = 1;
-                    $product->slug              = Str::slug($row_data["categoria"], '-') . '-' . strtolower(Str::random(5));
+                    if($row_data["garantia"] != ""){
+                        $product->has_warranty = 1;
+                        $product->warranty_text = $row_data["garantia"];
+                    }else{
+                        $product->has_warranty = 0;
+                    }
+                    $product->shipping =  $row_data["envio"];
+                    $product->intake =  $row_data["consumo"];
+                    $product->material =  $row_data["material"];
+                    $product->engaste =  $row_data["medida_de_engaste"];
+                    $product->unit_metering =  $row_data["si1"];
 
+                    $measures = explode("x", $row_data["medida_de_producto"]);
+                    if(count($measures) > 0){
+                        $product->width = $measures[0];
+                    }
+                    if(count($measures) > 1){
+                        $product->height = $measures[1];
+                    }
+                    if(count($measures) > 2){
+                        $product->length = $measures[2];
+                    }
+                    
+                    $product->slug = Str::slug($row_data["categoria"], '-') . '-' . strtolower(Str::random(5));
                     $product->save();
+
+                    if(count($array_categories) > 0){
+                        $product->categories()->sync($array_categories);
+                    }
                 }
             }
         } catch (Exception $e) {
@@ -397,6 +465,15 @@ class ProductController extends Controller
         if ($product->shop_id != auth()->user()->shop_id) {
             abort(403);
         }
+
+        $product->reference =  $request->reference;
+        $product->currency =  $request->currency;
+        $product->shipping =  $request->shipping;
+        $product->material =  $request->material;
+        $product->intake =  $request->intake;
+        $product->engaste =  $request->engaste;
+        $product->warranty_text =  $request->warranty_text;
+
 
         if ($request->lang == env("DEFAULT_LANGUAGE")) {
             $product->name          = $request->name;
