@@ -1,98 +1,102 @@
 <template>
-    <div class="div-card">
-        <div class="col">
-            <div class="header">
-                <div class="figure"></div>
+    <div class="brand-item">
+        <div class="brand-item-header">
+            <button type="button" class="icon">
+                <favorite-icon />
+            </button>
+        </div>
+        <div class="brand-item-body">
+            <v-img :src="bgImg" aspect-ratio="1" />
+            <div class="brand-item-body-image">
+                <v-img :src="bodyImg" aspect-ratio="1" />
             </div>
-            <div class="body">
-                <div>
-                    <v-img :src="img" max-width="110px"></v-img>
-                </div>
-            </div>
-            <div class="body2">
-                <div class="div-img">
-                    <div>
-                        <v-img :src="img2" max-width="170px"></v-img>
-                    </div>
-                </div>
-            </div>
-            <div class="div-btn">
-                <custom-button block light text="Ver Detalles" />
-            </div>
+        </div>
+        <div class="brand-item-footer">
+            <custom-button block color="nero" text="Ver Detalles" />
         </div>
     </div>
 </template>
 
 <script>
 import CustomButton from "./CustomButton.vue";
+import FavoriteIcon from "../icons/Favorite.vue";
+
 export default {
     name: "CardBrand",
     components: {
-        CustomButton
+        CustomButton,
+        FavoriteIcon
     },
     props: {
-        img: {
+        bgImg: {
             type: String,
-            default: "/public/assets/img/idovela-logo-dark.png"
+            default: "/public/assets/img/brand-item-bg-placeholder.png"
         },
-        img2: {
+        bodyImg: {
             type: String,
-            default: "public/assets/img/carousel-item-placeholder.png"
+            default: "public/assets/img/brand-item-img-placeholder.png"
         }
     }
 };
 </script>
 
 <style lang="scss" scoped>
-.div-card {
-    height: 100%;
-}
-
-.col {
-    background-color: #f5f5f5;
+.brand-item {
     border-radius: 10px;
-    padding: 0;
-}
+    background-color: #f5f5f5;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
 
-.header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 15px;
-}
+    &:hover {
+        background-color: transparent;
+    }
 
-.figure {
-    clip-path: polygon(100% 0, 100% 100%, 48% 55%, 0 100%, 0 49%, 0% 0%);
-    background-color: #7c7c7d;
-    width: 20px;
-    height: 20px;
-}
+    &-header {
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.75rem 1rem;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
 
-.body {
-    height: 200px;
-    background-color: #000000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        &::v-deep {
+            .icon {
+                line-height: 0.5;
 
-.body2 {
-    display: flex;
-    justify-content: center;
-}
+                path {
+                    fill: #040405;
+                    opacity: 0.5;
+                }
 
-.div-img {
-    background-color: #ffffff;
-    height: 170px;
-    border-radius: 50%;
-    margin-top: -85px;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+                &:hover {
+                    path {
+                        opacity: 0.8;
+                    }
+                }
 
-.div-btn {
-    height: 100px;
-    padding: 50px 15px 20px 15px;
+                &:active {
+                    path {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    &-body {
+        &-image {
+            width: 85%;
+            background-color: #ffffff;
+            margin: auto;
+            margin-top: -40%;
+            position: relative;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &-footer {
+        padding: 0.75rem 1rem;
+    }
 }
 </style>

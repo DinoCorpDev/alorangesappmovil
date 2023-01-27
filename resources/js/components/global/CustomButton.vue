@@ -99,70 +99,89 @@ export default {
         height: 38px !important;
     }
 
+    &::v-deep {
+        .v-btn__content {
+            margin-top: 3px;
+        }
+    }
+
     &.grey {
-        color: #ffffff !important;
+        color: #ffffff;
 
         &:hover {
-            background-color: rgba(#161616, 0.8) !important;
+            background-color: rgba(#161616, 0.8);
         }
 
         &:focus {
-            background-color: #161616 !important;
+            background-color: #161616;
         }
     }
 
     &.black {
-        color: #ffffff !important;
-        background-color: rgba(#000000, 0.5) !important;
+        color: #ffffff;
+        background-color: rgba(#000000, 0.5);
 
         &:hover {
-            background-color: rgba(#000000, 0.8) !important;
+            background-color: rgba(#000000, 0.8);
         }
 
         &:focus {
-            background-color: #000000 !important;
+            background-color: #000000;
+        }
+    }
+
+    &.nero {
+        color: #ffffff;
+        background-color: rgba(#161616, 0.5);
+
+        &:hover {
+            background-color: rgba(#161616, 0.8);
+        }
+
+        &:focus {
+            background-color: #161616;
         }
     }
 }
 
-.theme--light {
-    &.v-btn {
-        color: #000000;
+// .theme--light {
+//     &.v-btn {
+//         color: #000000;
 
-        &.v-btn--has-bg {
-            background-color: #dfdfdf;
+//         &.v-btn--has-bg {
+//             background-color: #dfdfdf;
 
-            &:before {
-                background-color: #ffffff;
-            }
+//             &:before {
+//                 background-color: #ffffff;
+//             }
 
-            &.v-btn--disabled {
-                color: #000000 !important;
+//             &.v-btn--disabled {
+//                 color: #000000 !important;
 
-                &.v-btn--has-bg {
-                    background-color: #fafcfc !important;
-                }
-            }
-        }
+//                 &.v-btn--has-bg {
+//                     background-color: #fafcfc !important;
+//                 }
+//             }
+//         }
 
-        &.v-btn--outlined {
-            color: #ffffff;
+//         &.v-btn--outlined {
+//             color: #ffffff;
 
-            &:hover,
-            &:focus {
-                color: #000000;
-            }
+//             &:hover,
+//             &:focus {
+//                 color: #000000;
+//             }
 
-            &:before {
-                background-color: rgba(255, 255, 255, 0.8);
-            }
+//             &:before {
+//                 background-color: rgba(255, 255, 255, 0.8);
+//             }
 
-            &:focus {
-                &:before {
-                    background-color: #ffffff;
-                }
-            }
-        }
-    }
-}
+//             &:focus {
+//                 &:before {
+//                     background-color: #ffffff;
+//                 }
+//             }
+//         }
+//     }
+// }
 </style>

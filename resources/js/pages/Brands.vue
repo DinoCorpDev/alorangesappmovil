@@ -22,30 +22,8 @@
                     </v-col>
                 </v-row>
             </div>
-
-            <v-row>
-                <v-col cols="6" sm="6" md="4" lg="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="2">
-                    <card-brand />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="2">
+            <v-row class="mb-7">
+                <v-col cols="6" sm="6" md="4" lg="2" v-for="i in 12" :key="i">
                     <card-brand />
                 </v-col>
             </v-row>
