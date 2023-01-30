@@ -1,12 +1,12 @@
 <template>
     <div class="search-input">
-        <input type="search" class="search-input-input" :placeholder="placeholder" />
-        <router-link class="search-input-button" type="button" :to="{ name: 'SearchProducts' }">
+        <input type="search" class="search-input-input" :placeholder="placeholder" v-model="searchKeyword" />
+        <button class="search-input-button" type="button" @click.stop.prevent="search()">
             <search-icon />
             <span class="ml-2 d-none d-md-block">
                 {{ buttonLabel }}
             </span>
-        </router-link>
+        </button>
     </div>
 </template>
 
@@ -27,6 +27,24 @@ export default {
     },
     components: {
         SearchIcon
+    },
+    data() {
+        return {
+            searchKeyword: ""
+        };
+    },
+    methods: {
+        search() {
+            this.$router
+                .push({
+                    name: "SearchProducts",
+                    params: this.searchKeyword.length > 0 ? { keyword: this.searchKeyword } : {},
+                    query: {
+                        page: 1
+                    }
+                })
+                .catch(() => {});
+        }
     }
 };
 </script>

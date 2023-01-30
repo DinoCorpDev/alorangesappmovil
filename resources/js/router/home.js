@@ -15,7 +15,7 @@ let Home3 = () => import("../pages/Home3");
 let Home4 = () => import("../pages/Home4");
 let About = () => import("../pages/About");
 let Brands = () => import("../pages/Brands");
-let ListProducts = () => import("../pages/ListProducts");
+let Search = () => import("../pages/Search");
 let Collection = () => import("../pages/Collection");
 
 export default [
@@ -32,8 +32,8 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/search/:keyword?",
-        component: ListProducts,
+        path: "/search2/:keyword?",
+        component: Search,
         name: "SearchProducts",
         meta: { requiresAuth: false }
     },

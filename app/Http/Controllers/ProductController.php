@@ -89,12 +89,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         CoreComponentRepository::instantiateShopRepository();
+
         if ($request->has('is_variant') && !$request->has('variations')) {
             flash(translate('Invalid product variations'))->error();
             return redirect()->back();
         }
-
-        dd($request);
 
         $product                    = new Product;
         $product->name              = $request->name;
@@ -119,11 +118,13 @@ class ProductController extends Controller
 
         // tag
         $tags                       = array();
+
         if ($request->tags != null) {
             foreach (json_decode($request->tags) as $key => $tag) {
                 array_push($tags, $tag->value);
             }
         }
+
         $product->tags              = implode(',', $tags);
 
         // lowest highest price
@@ -141,6 +142,7 @@ class ProductController extends Controller
         // discount
         $product->discount          = $request->discount;
         $product->discount_type     = $request->discount_type;
+
         if ($request->date_range != null) {
             $date_var               = explode(" to ", $request->date_range);
             $product->discount_start_date = strtotime($date_var[0]);
@@ -166,15 +168,15 @@ class ProductController extends Controller
 
         // category
         $product->categories()->sync($request->category_ids);
-        
+
         // shop category ids
         $shop_category_ids = [];
         foreach ($request->category_ids ?? [] as $id) {
             $shop_category_ids[] = CategoryUtility::get_grand_parent_id($id);
         }
-        //this get error
-        /*
-        $shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->categories->pluck('category_id')->toArray());
+
+        // this get error
+        /* $shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->categories->pluck('category_id')->toArray());
         $product->shop->categories()->sync($shop_category_ids);*/
 
         // shop brand
@@ -188,6 +190,7 @@ class ProductController extends Controller
         //taxes
         $tax_data = array();
         $tax_ids = array();
+
         if ($request->has('taxes')) {
             foreach ($request->taxes as $key => $tax) {
                 array_push($tax_data, [
@@ -197,12 +200,12 @@ class ProductController extends Controller
             }
             $tax_ids = $request->tax_ids;
         }
+
         $taxes = array_combine($tax_ids, $tax_data);
 
         $product->product_taxes()->sync($taxes);
 
-
-        //product variation
+        // product variation
         $product->is_variant        = ($request->has('is_variant') && $request->has('variations')) ? 1 : 0;
 
         if ($request->has('is_variant') && $request->has('variations')) {
@@ -254,7 +257,6 @@ class ProductController extends Controller
                 }
             }
         }
-
 
         $product->save();
 
@@ -314,9 +316,9 @@ class ProductController extends Controller
                     $product->name = $row_data["categoria"] . " " . $row_data["marca"];
                     $product->shop_id = auth()->user()->shop_id;
 
-                    if($row_data["marca"] != ""){
+                    if ($row_data["marca"] != "") {
                         $marca = Brand::firstOrCreate(
-                            ['name' => $row_data["marca"]], 
+                            ['name' => $row_data["marca"]],
                             ['name' => $row_data["marca"]]
                         );
                     }
@@ -326,26 +328,26 @@ class ProductController extends Controller
                     $array_categories = array();
                     if ($row_data["categoria"] != "") {
                         $categorie = Category::firstOrCreate(
-                            ['name' => $row_data["categoria"]], 
+                            ['name' => $row_data["categoria"]],
                             [
                                 'parent_id' => 0,
                                 'level' => 0,
                                 'name' => $row_data["categoria"],
                                 'order_level' => 0,
-                                'slug' => Str::slug($row_data["categoria"], '-').'-'.strtolower(Str::random(5))
+                                'slug' => Str::slug($row_data["categoria"], '-') . '-' . strtolower(Str::random(5))
                             ]
                         );
                         array_push($array_categories, $categorie->id);
 
                         if ($row_data["subcategoria"] != "") {
                             $subcategorie = Category::firstOrCreate(
-                                ['name' => $row_data["subcategoria"]], 
+                                ['name' => $row_data["subcategoria"]],
                                 [
                                     'parent_id' => $categorie->id,
                                     'level' => 1,
                                     'name' => $row_data["subcategoria"],
                                     'order_level' => 1,
-                                    'slug' => Str::slug($row_data["subcategoria"], '-').'-'.strtolower(Str::random(5))
+                                    'slug' => Str::slug($row_data["subcategoria"], '-') . '-' . strtolower(Str::random(5))
                                 ]
                             );
                             array_push($array_categories, $subcategorie->id);
@@ -365,12 +367,14 @@ class ProductController extends Controller
                     $product->currency =  $row_data["divisa"];
                     $product->discount_type =  "flat";
                     $product->discount =  $row_data["descuento"];
-                    if($row_data["garantia"] != ""){
+
+                    if ($row_data["garantia"] != "") {
                         $product->has_warranty = 1;
                         $product->warranty_text = $row_data["garantia"];
-                    }else{
+                    } else {
                         $product->has_warranty = 0;
                     }
+
                     $product->shipping =  $row_data["envio"];
                     $product->intake =  $row_data["consumo"];
                     $product->material =  $row_data["material"];
@@ -378,20 +382,20 @@ class ProductController extends Controller
                     $product->unit_metering =  $row_data["si1"];
 
                     $measures = explode("x", $row_data["medida_de_producto"]);
-                    if(count($measures) > 0){
+                    if (count($measures) > 0) {
                         $product->width = $measures[0];
                     }
-                    if(count($measures) > 1){
+                    if (count($measures) > 1) {
                         $product->height = $measures[1];
                     }
-                    if(count($measures) > 2){
+                    if (count($measures) > 2) {
                         $product->length = $measures[2];
                     }
-                    
+
                     $product->slug = Str::slug($row_data["categoria"], '-') . '-' . strtolower(Str::random(5));
                     $product->save();
 
-                    if(count($array_categories) > 0){
+                    if (count($array_categories) > 0) {
                         $product->categories()->sync($array_categories);
                     }
                 }
