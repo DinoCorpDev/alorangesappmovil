@@ -9,10 +9,10 @@
                         </div>
                     </v-col>
                     <v-col cols="4" class="pl-6">
-                        <div style="border-left:1px">
-                        <h5 class="subtitle2 text-uppercase mb-2">{{ data.ref }}</h5>
-                        <h5 class="subtitle1 text-uppercase font-weight-bold mb-2">{{ data.obj }}</h5>
-                        <h5 class="subtitle1 mb-2">{{ data.brand }}</h5>
+                        <div style="border-left: 1px">
+                            <h5 class="subtitle2 text-uppercase mb-2">{{ data.ref }}</h5>
+                            <h5 class="subtitle1 text-uppercase font-weight-bold mb-2">{{ data.obj }}</h5>
+                            <h5 class="subtitle1 mb-2">{{ data.brand }}</h5>
                         </div>
                     </v-col>
                     <v-divider inset vertical class="mb-2"/>
