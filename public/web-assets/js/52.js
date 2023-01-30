@@ -1,2 +1,450 @@
-/*! For license information please see 52.js.LICENSE.txt?id=eff0e535d0ba091d75b1 */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[52],{RJ3T:function(t,e,r){"use strict";r.r(e);function n(t){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function o(){o=function(){return t};var t={},e=Object.prototype,r=e.hasOwnProperty,a=Object.defineProperty||function(t,e,r){t[e]=r.value},i="function"==typeof Symbol?Symbol:{},s=i.iterator||"@@iterator",c=i.asyncIterator||"@@asyncIterator",u=i.toStringTag||"@@toStringTag";function l(t,e,r){return Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}),t[e]}try{l({},"")}catch(t){l=function(t,e,r){return t[e]=r}}function f(t,e,r,n){var o=e&&e.prototype instanceof d?e:d,i=Object.create(o.prototype),s=new C(n||[]);return a(i,"_invoke",{value:L(t,r,s)}),i}function h(t,e,r){try{return{type:"normal",arg:t.call(e,r)}}catch(t){return{type:"throw",arg:t}}}t.wrap=f;var v={};function d(){}function p(){}function m(){}var g={};l(g,s,(function(){return this}));var y=Object.getPrototypeOf,w=y&&y(y(O([])));w&&w!==e&&r.call(w,s)&&(g=w);var _=m.prototype=d.prototype=Object.create(g);function b(t){["next","throw","return"].forEach((function(e){l(t,e,(function(t){return this._invoke(e,t)}))}))}function x(t,e){var o;a(this,"_invoke",{value:function(a,i){function s(){return new e((function(o,s){!function o(a,i,s,c){var u=h(t[a],t,i);if("throw"!==u.type){var l=u.arg,f=l.value;return f&&"object"==n(f)&&r.call(f,"__await")?e.resolve(f.__await).then((function(t){o("next",t,s,c)}),(function(t){o("throw",t,s,c)})):e.resolve(f).then((function(t){l.value=t,s(l)}),(function(t){return o("throw",t,s,c)}))}c(u.arg)}(a,i,o,s)}))}return o=o?o.then(s,s):s()}})}function L(t,e,r){var n="suspendedStart";return function(o,a){if("executing"===n)throw new Error("Generator is already running");if("completed"===n){if("throw"===o)throw a;return j()}for(r.method=o,r.arg=a;;){var i=r.delegate;if(i){var s=E(i,r);if(s){if(s===v)continue;return s}}if("next"===r.method)r.sent=r._sent=r.arg;else if("throw"===r.method){if("suspendedStart"===n)throw n="completed",r.arg;r.dispatchException(r.arg)}else"return"===r.method&&r.abrupt("return",r.arg);n="executing";var c=h(t,e,r);if("normal"===c.type){if(n=r.done?"completed":"suspendedYield",c.arg===v)continue;return{value:c.arg,done:r.done}}"throw"===c.type&&(n="completed",r.method="throw",r.arg=c.arg)}}}function E(t,e){var r=e.method,n=t.iterator[r];if(void 0===n)return e.delegate=null,"throw"===r&&t.iterator.return&&(e.method="return",e.arg=void 0,E(t,e),"throw"===e.method)||"return"!==r&&(e.method="throw",e.arg=new TypeError("The iterator does not provide a '"+r+"' method")),v;var o=h(n,t.iterator,e.arg);if("throw"===o.type)return e.method="throw",e.arg=o.arg,e.delegate=null,v;var a=o.arg;return a?a.done?(e[t.resultName]=a.value,e.next=t.nextLoc,"return"!==e.method&&(e.method="next",e.arg=void 0),e.delegate=null,v):a:(e.method="throw",e.arg=new TypeError("iterator result is not an object"),e.delegate=null,v)}function k(t){var e={tryLoc:t[0]};1 in t&&(e.catchLoc=t[1]),2 in t&&(e.finallyLoc=t[2],e.afterLoc=t[3]),this.tryEntries.push(e)}function $(t){var e=t.completion||{};e.type="normal",delete e.arg,t.completion=e}function C(t){this.tryEntries=[{tryLoc:"root"}],t.forEach(k,this),this.reset(!0)}function O(t){if(t){var e=t[s];if(e)return e.call(t);if("function"==typeof t.next)return t;if(!isNaN(t.length)){var n=-1,o=function e(){for(;++n<t.length;)if(r.call(t,n))return e.value=t[n],e.done=!1,e;return e.value=void 0,e.done=!0,e};return o.next=o}}return{next:j}}function j(){return{value:void 0,done:!0}}return p.prototype=m,a(_,"constructor",{value:m,configurable:!0}),a(m,"constructor",{value:p,configurable:!0}),p.displayName=l(m,u,"GeneratorFunction"),t.isGeneratorFunction=function(t){var e="function"==typeof t&&t.constructor;return!!e&&(e===p||"GeneratorFunction"===(e.displayName||e.name))},t.mark=function(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,m):(t.__proto__=m,l(t,u,"GeneratorFunction")),t.prototype=Object.create(_),t},t.awrap=function(t){return{__await:t}},b(x.prototype),l(x.prototype,c,(function(){return this})),t.AsyncIterator=x,t.async=function(e,r,n,o,a){void 0===a&&(a=Promise);var i=new x(f(e,r,n,o),a);return t.isGeneratorFunction(r)?i:i.next().then((function(t){return t.done?t.value:i.next()}))},b(_),l(_,u,"Generator"),l(_,s,(function(){return this})),l(_,"toString",(function(){return"[object Generator]"})),t.keys=function(t){var e=Object(t),r=[];for(var n in e)r.push(n);return r.reverse(),function t(){for(;r.length;){var n=r.pop();if(n in e)return t.value=n,t.done=!1,t}return t.done=!0,t}},t.values=O,C.prototype={constructor:C,reset:function(t){if(this.prev=0,this.next=0,this.sent=this._sent=void 0,this.done=!1,this.delegate=null,this.method="next",this.arg=void 0,this.tryEntries.forEach($),!t)for(var e in this)"t"===e.charAt(0)&&r.call(this,e)&&!isNaN(+e.slice(1))&&(this[e]=void 0)},stop:function(){this.done=!0;var t=this.tryEntries[0].completion;if("throw"===t.type)throw t.arg;return this.rval},dispatchException:function(t){if(this.done)throw t;var e=this;function n(r,n){return i.type="throw",i.arg=t,e.next=r,n&&(e.method="next",e.arg=void 0),!!n}for(var o=this.tryEntries.length-1;o>=0;--o){var a=this.tryEntries[o],i=a.completion;if("root"===a.tryLoc)return n("end");if(a.tryLoc<=this.prev){var s=r.call(a,"catchLoc"),c=r.call(a,"finallyLoc");if(s&&c){if(this.prev<a.catchLoc)return n(a.catchLoc,!0);if(this.prev<a.finallyLoc)return n(a.finallyLoc)}else if(s){if(this.prev<a.catchLoc)return n(a.catchLoc,!0)}else{if(!c)throw new Error("try statement without catch or finally");if(this.prev<a.finallyLoc)return n(a.finallyLoc)}}}},abrupt:function(t,e){for(var n=this.tryEntries.length-1;n>=0;--n){var o=this.tryEntries[n];if(o.tryLoc<=this.prev&&r.call(o,"finallyLoc")&&this.prev<o.finallyLoc){var a=o;break}}a&&("break"===t||"continue"===t)&&a.tryLoc<=e&&e<=a.finallyLoc&&(a=null);var i=a?a.completion:{};return i.type=t,i.arg=e,a?(this.method="next",this.next=a.finallyLoc,v):this.complete(i)},complete:function(t,e){if("throw"===t.type)throw t.arg;return"break"===t.type||"continue"===t.type?this.next=t.arg:"return"===t.type?(this.rval=this.arg=t.arg,this.method="return",this.next="end"):"normal"===t.type&&e&&(this.next=e),v},finish:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.finallyLoc===t)return this.complete(r.completion,r.afterLoc),$(r),v}},catch:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.tryLoc===t){var n=r.completion;if("throw"===n.type){var o=n.arg;$(r)}return o}}throw new Error("illegal catch attempt")},delegateYield:function(t,e,r){return this.delegate={iterator:O(t),resultName:e,nextLoc:r},"next"===this.method&&(this.arg=void 0),v}},t}function a(t,e,r,n,o,a,i){try{var s=t[a](i),c=s.value}catch(t){return void r(t)}s.done?e(c):Promise.resolve(c).then(n,o)}function i(t){return function(){var e=this,r=arguments;return new Promise((function(n,o){var i=t.apply(e,r);function s(t){a(i,n,o,s,c,"next",t)}function c(t){a(i,n,o,s,c,"throw",t)}s(void 0)}))}}var s={data:function(){return{loading:!0,sending:!1,conversation:null,form:{message:"",conversation_id:null}}},created:function(){var t=this;this.getDetails(this.$route.params.slug),window.intervalCall=setInterval((function(){t.getDetails(t.$route.params.slug)}),8e3)},validations:{form:{message:{required:r("ta7f").required}}},computed:{messageErrors:function(){var t=[];return this.$v.form.message.$dirty?(!this.$v.form.message.required&&t.push(this.$i18n.t("this_field_is_required")),t):t}},methods:{getDetails:function(t){var e=this;return i(o().mark((function r(){var n;return o().wrap((function(r){for(;;)switch(r.prev=r.next){case 0:return r.next=2,e.call_api("get","user/querries/".concat(t));case 2:if(!(n=r.sent).data.success){r.next=9;break}e.conversation=n.data.data,e.form.conversation_id=n.data.data.id,e.loading=!1,r.next=11;break;case 9:return e.snack({message:n.data.message,color:"red"}),r.abrupt("return");case 11:case"end":return r.stop()}}),r)})))()},addNewMessage:function(){var t=this;return i(o().mark((function e(){var r;return o().wrap((function(e){for(;;)switch(e.prev=e.next){case 0:if(t.$v.form.$touch(),!t.$v.form.$anyError){e.next=4;break}return console.log(t.$v.form.$anyError),e.abrupt("return");case 4:return t.sending=!0,e.next=7,t.call_api("post","user/new-message-query",t.form);case 7:(r=e.sent).data.success?(t.conversation=r.data.data,t.snack({message:r.data.message}),t.resetData()):t.snack({message:t.$i18n.t("something_went_wrong"),color:"red"}),t.sending=!1;case 10:case"end":return e.stop()}}),e)})))()},resetData:function(){this.form.message="",this.form.conversation_id=this.conversation.id,this.$v.form.$reset()}}},c=r("KHd+"),u=Object(c.a)(s,(function(){var t=this,e=t._self._c;return e("div",{staticClass:"ps-lg-7 pt-4"},[e("h1",{staticClass:"fs-24 fw-700 opacity-80 mb-5 mt-3"},[t._v(t._s(t.$t("query_with"))+" "+t._s(t.conversation&&t.conversation.receiver_shop))]),t._v(" "),t.loading?e("div",[e("div",{staticClass:"text-center"},[e("div",[t._v(t._s(t.$t("loading_please_wait")))])])]):e("div",[e("v-card",[e("h4",{staticClass:"px-3 py-3 mb-3 border-bottom"},[t._v(" #"+t._s(t.conversation.title)+" ( Between you & "+t._s(t.conversation.receiver_shop)+" )")]),t._v(" "),t._l(t.conversation.messages,(function(r,n){return e("div",{key:n,class:["row mx-4 align-center py-2",{"border-bottom":n+1!=t.conversation.messages.length}]},[e("div",{staticClass:"col-sm-12 pb-0 pb-md-2"},[e("div",{staticClass:"d-flex align-center"},[e("v-avatar",{attrs:{size:"60"}},[e("img",{staticClass:"border border-4",attrs:{src:r.user_image},on:{error:function(e){return t.imageFallback(e)}}})]),t._v(" "),e("div",{staticClass:"ml-3"},[e("h5",[t._v(t._s(r.user_name))]),t._v(" "),e("div",[t._v(t._s(r.created_at))])])],1)]),t._v(" "),e("div",{staticClass:"col-sm-12"},[e("div",{staticClass:"d-flex align-center"},[e("div",[e("div",[t._v(t._s(r.message))])])])])])})),t._v(" "),e("v-form",{staticClass:"px-3 py-5",attrs:{"lazy-validation":"",autocomplete:"chrome-off"},on:{submit:function(e){return e.preventDefault(),t.addNewMessage()}}},[e("div",{staticClass:"mb-3"},[e("div",{staticClass:"mb-1 fs-13 fw-500"},[t._v(t._s(t.$t("message")))]),t._v(" "),e("v-textarea",{attrs:{placeholder:t.$t("message"),"error-messages":t.messageErrors,"hide-details":"auto",rows:"4",required:"",outlined:""},model:{value:t.form.message,callback:function(e){t.$set(t.form,"message",e)},expression:"form.message"}})],1),t._v(" "),e("div",{staticClass:"text-right mt-4"},[e("v-btn",{attrs:{elevation:"0",type:"submit",color:"primary",loading:t.sending}},[t._v(t._s(t.$t("send"))+"\n                    ")])],1)])],2)],1)])}),[],!1,null,null,null);e.default=u.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[52],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/auth/VerifyAccount.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/auth/VerifyAccount.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_tel_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-tel-input */ "./node_modules/vue-tel-input/dist/vue-tel-input.umd.min.js");
+/* harmony import */ var vue_tel_input__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_tel_input__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      mobileInputProps: {
+        inputOptions: {
+          type: "tel",
+          placeholder: "phone number"
+        },
+        dropdownOptions: {
+          showDialCodeInSelection: false,
+          showFlags: true,
+          showDialCodeInList: true
+        },
+        autoDefaultCountry: false,
+        validCharactersOnly: true,
+        mode: "international"
+      },
+      form: {
+        email: "",
+        phone: "",
+        code: "",
+        invalidPhone: true,
+        showInvalidPhone: false
+      },
+      loading: false,
+      resendLoading: false
+    };
+  },
+  components: {
+    VueTelInput: vue_tel_input__WEBPACK_IMPORTED_MODULE_1__["VueTelInput"]
+  },
+  validations: {
+    form: {
+      email: {
+        requiredIf: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function () {
+          return this.authSettings.customer_login_with == 'email' || this.authSettings.customer_login_with == 'email_phone' && this.authSettings.customer_otp_with == 'email';
+        }),
+        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["email"]
+      },
+      phone: {
+        requiredIf: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function () {
+          return this.authSettings.customer_login_with == 'phone' || this.authSettings.customer_login_with == 'email_phone' && this.authSettings.customer_otp_with == 'phone';
+        })
+      },
+      code: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      }
+    }
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])("auth", ["authSettings"])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])("app", ["availableCountries"])), {}, {
+    emailErrors: function emailErrors() {
+      var errors = [];
+      if (!this.$v.form.email.$dirty) return errors;
+      !this.$v.form.email.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+      !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+      return errors;
+    },
+    codeErrors: function codeErrors() {
+      var errors = [];
+      if (!this.$v.form.code.$dirty) return errors;
+      !this.$v.form.code.required && errors.push(this.$i18n.t("this_field_is_required"));
+      return errors;
+    }
+  }),
+  methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])("auth", {
+    actionLogin: "login"
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])('auth', ['updateChatWindow', 'showLoginDialog'])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])("app", ["fetchProductQuerries"])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])("wishlist", ['fetchWislistProducts'])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])("cart", ["fetchCartProducts"])), {}, {
+    phoneValidate: function phoneValidate(phone) {
+      this.form.invalidPhone = phone.valid ? false : true;
+      if (phone.valid) this.form.showInvalidPhone = false;
+    },
+    verifyAccount: function verifyAccount() {
+      var _this = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var res;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _this.$v.form.$touch();
+              if (!_this.$v.form.$anyError) {
+                _context.next = 3;
+                break;
+              }
+              return _context.abrupt("return");
+            case 3:
+              if (!((_this.authSettings.customer_login_with == 'phone' || _this.authSettings.customer_login_with == 'email_phone' && _this.authSettings.customer_otp_with == 'phone') && _this.form.invalidPhone)) {
+                _context.next = 6;
+                break;
+              }
+              _this.form.showInvalidPhone = true;
+              return _context.abrupt("return");
+            case 6:
+              _this.form.phone = _this.form.phone.replace(/\s/g, "");
+              _this.loading = true;
+              _context.next = 10;
+              return _this.call_api("post", "auth/verify", _this.form);
+            case 10:
+              res = _context.sent;
+              if (res.data.success) {
+                _this.actionLogin(res.data);
+                _this.showLoginDialog(false);
+                _this.updateChatWindow(false);
+                _this.fetchWislistProducts();
+                _this.fetchProductQuerries();
+                _this.fetchCartProducts();
+                _this.$router.push(_this.$route.query.redirect || {
+                  name: "DashBoard"
+                });
+              } else {
+                _this.snack({
+                  message: res.data.message,
+                  color: "red"
+                });
+              }
+              _this.loading = false;
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))();
+    },
+    resendCode: function resendCode() {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var res;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _this2.$v.form.email.$touch();
+              if (!_this2.$v.form.email.$anyError) {
+                _context2.next = 3;
+                break;
+              }
+              return _context2.abrupt("return");
+            case 3:
+              if (!((_this2.authSettings.customer_login_with == 'phone' || _this2.authSettings.customer_login_with == 'email_phone' && _this2.authSettings.customer_otp_with == 'phone') && _this2.form.invalidPhone)) {
+                _context2.next = 6;
+                break;
+              }
+              _this2.form.showInvalidPhone = true;
+              return _context2.abrupt("return");
+            case 6:
+              _this2.form.phone = _this2.form.phone.replace(/\s/g, "");
+              _this2.resendLoading = true;
+              _context2.next = 10;
+              return _this2.call_api("post", "auth/resend-code", _this2.form);
+            case 10:
+              res = _context2.sent;
+              if (res.data.success) {
+                _this2.snack({
+                  message: res.data.message
+                });
+              } else {
+                _this2.snack({
+                  message: res.data.message,
+                  color: "red"
+                });
+              }
+              _this2.resendLoading = false;
+            case 13:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
+      }))();
+    }
+  }),
+  created: function created() {
+    if (this.$route.params.email) {
+      this.form.email = this.$route.params.email;
+    }
+    if (this.$route.params.phone) {
+      this.form.phone = this.$route.params.phone;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/auth/VerifyAccount.vue?vue&type=template&id=7c0061d6&":
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/auth/VerifyAccount.vue?vue&type=template&id=7c0061d6& ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("v-container", [_c("v-row", [_c("v-col", {
+    staticClass: "mx-auto",
+    attrs: {
+      cols: "12",
+      lg: "6",
+      md: "8",
+      sm: "10"
+    }
+  }, [_c("div", {
+    staticClass: "my-5 my-lg-16 rounded-lg pa-5 border overflow-hidden shadow-light"
+  }, [_vm.authSettings.customer_login_with == "email" || _vm.authSettings.customer_login_with == "email_phone" && _vm.authSettings.customer_otp_with == "email" ? _c("div", {
+    staticClass: "info--text mb-3"
+  }, [_vm._v("\n                        " + _vm._s(_vm.$t("a_verification_code_has_been_sent_to_your_email")) + "\n                    ")]) : _vm.authSettings.customer_login_with == "phone" || _vm.authSettings.customer_login_with == "email_phone" && _vm.authSettings.customer_otp_with == "phone" ? _c("div", {
+    staticClass: "info--text mb-3"
+  }, [_vm._v("\n                        " + _vm._s(_vm.$t("a_verification_code_has_been_sent_to_your_phone_number")) + "\n                    ")]) : _vm._e(), _vm._v(" "), _c("h1", {
+    staticClass: "text-uppercase lh-1 mb-4"
+  }, [_c("span", {
+    staticClass: "display-1 primary--text fw-900"
+  }, [_vm._v(_vm._s(_vm.$t("verify")))]), _vm._v(" "), _c("span", {
+    staticClass: "d-block display-1 fw-900 grey--text text--darken-3"
+  }, [_vm._v(_vm._s(_vm.$t("account")))])]), _vm._v(" "), _vm.authSettings.customer_login_with == "email" || _vm.authSettings.customer_login_with == "email_phone" && _vm.authSettings.customer_otp_with == "email" ? _c("div", {
+    staticClass: "fs-16 fw-500 mb-6"
+  }, [_vm._v(_vm._s(_vm.$t("enter_your_email_address_verification_code")))]) : _vm.authSettings.customer_login_with == "phone" || _vm.authSettings.customer_login_with == "email_phone" && _vm.authSettings.customer_otp_with == "phone" ? _c("div", {
+    staticClass: "fs-16 fw-500 mb-6"
+  }, [_vm._v(_vm._s(_vm.$t("enter_your_phone_number_verification_code")))]) : _vm._e(), _vm._v(" "), _c("v-form", {
+    ref: "loginForm",
+    attrs: {
+      "lazy-validation": ""
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.verifyAccount();
+      }
+    }
+  }, [_vm.authSettings.customer_login_with == "email" || _vm.authSettings.customer_login_with == "email_phone" && _vm.authSettings.customer_otp_with == "email" ? _c("div", {
+    staticClass: "mb-4"
+  }, [_c("div", {
+    staticClass: "mb-1 fs-13 fw-500"
+  }, [_vm._v(_vm._s(_vm.$t("email")))]), _vm._v(" "), _c("v-text-field", {
+    attrs: {
+      placeholder: _vm.$t("email_address"),
+      type: "email",
+      "error-messages": _vm.emailErrors,
+      "hide-details": "auto",
+      required: "",
+      outlined: ""
+    },
+    model: {
+      value: _vm.form.email,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "email", $$v);
+      },
+      expression: "form.email"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.authSettings.customer_login_with == "phone" || _vm.authSettings.customer_login_with == "email_phone" && _vm.authSettings.customer_otp_with == "phone" ? _c("div", {
+    staticClass: "mb-4"
+  }, [_c("div", {
+    staticClass: "mb-1 fs-13 fw-500"
+  }, [_vm._v("\n                                " + _vm._s(_vm.$t("phone_number")) + "\n                            ")]), _vm._v(" "), _c("vue-tel-input", _vm._b({
+    attrs: {
+      "only-countries": _vm.availableCountries
+    },
+    on: {
+      validate: _vm.phoneValidate
+    },
+    scopedSlots: _vm._u([{
+      key: "arrow-icon",
+      fn: function fn() {
+        return [_c("span", {
+          staticClass: "vti__dropdown-arrow"
+        }, [_vm._v(" ▼")])];
+      },
+      proxy: true
+    }], null, false, 2578343687),
+    model: {
+      value: _vm.form.phone,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "phone", $$v);
+      },
+      expression: "form.phone"
+    }
+  }, "vue-tel-input", _vm.mobileInputProps, false)), _vm._v(" "), _vm.$v.form.phone.$error ? _c("div", {
+    staticClass: "v-text-field__details mt-2 pl-3"
+  }, [_c("div", {
+    staticClass: "v-messages theme--light error--text",
+    attrs: {
+      role: "alert"
+    }
+  }, [_c("div", {
+    staticClass: "v-messages__wrapper"
+  }, [_c("div", {
+    staticClass: "v-messages__message"
+  }, [_vm._v(_vm._s(_vm.$t("this_field_is_required")))])])])]) : _vm._e(), _vm._v(" "), !_vm.$v.form.phone.$error && _vm.form.showInvalidPhone ? _c("div", {
+    staticClass: "v-text-field__details mt-2 pl-3"
+  }, [_c("div", {
+    staticClass: "v-messages theme--light error--text",
+    attrs: {
+      role: "alert"
+    }
+  }, [_c("div", {
+    staticClass: "v-messages__wrapper"
+  }, [_c("div", {
+    staticClass: "v-messages__message"
+  }, [_vm._v("\n                                            " + _vm._s(_vm.$t("phone_number_must_be_valid")) + "\n                                        ")])])])]) : _vm._e()], 1) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "mb-4"
+  }, [_c("div", {
+    staticClass: "mb-1 fs-13 fw-500"
+  }, [_vm._v(_vm._s(_vm.$t("code")))]), _vm._v(" "), _c("v-otp-input", {
+    attrs: {
+      length: "6",
+      type: "number",
+      "error-messages": _vm.codeErrors,
+      "hide-details": "auto",
+      disabled: _vm.loading,
+      required: ""
+    },
+    model: {
+      value: _vm.form.code,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "code", $$v);
+      },
+      expression: "form.code"
+    }
+  })], 1), _vm._v(" "), _c("v-btn", {
+    staticClass: "px-12 mb-4",
+    attrs: {
+      "x-large": "",
+      elevation: "0",
+      type: "submit",
+      color: "primary",
+      loading: _vm.loading,
+      disabled: _vm.loading
+    },
+    on: {
+      click: _vm.verifyAccount
+    }
+  }, [_vm._v(_vm._s(_vm.$t("verify")))]), _vm._v(" "), _c("v-btn", {
+    staticClass: "px-12 mb-4 ms-3",
+    attrs: {
+      "x-large": "",
+      elevation: "0",
+      type: "button",
+      color: "",
+      loading: _vm.resendLoading,
+      disabled: _vm.resendLoading
+    },
+    on: {
+      click: _vm.resendCode
+    }
+  }, [_vm._v(_vm._s(_vm.$t("resend_code")))])], 1)], 1)])], 1)], 1)], 1);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/auth/VerifyAccount.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/pages/auth/VerifyAccount.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VerifyAccount_vue_vue_type_template_id_7c0061d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VerifyAccount.vue?vue&type=template&id=7c0061d6& */ "./resources/js/pages/auth/VerifyAccount.vue?vue&type=template&id=7c0061d6&");
+/* harmony import */ var _VerifyAccount_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VerifyAccount.vue?vue&type=script&lang=js& */ "./resources/js/pages/auth/VerifyAccount.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VerifyAccount_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VerifyAccount_vue_vue_type_template_id_7c0061d6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VerifyAccount_vue_vue_type_template_id_7c0061d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/auth/VerifyAccount.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/auth/VerifyAccount.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/pages/auth/VerifyAccount.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyAccount_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./VerifyAccount.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/auth/VerifyAccount.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyAccount_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/auth/VerifyAccount.vue?vue&type=template&id=7c0061d6&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/pages/auth/VerifyAccount.vue?vue&type=template&id=7c0061d6& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyAccount_vue_vue_type_template_id_7c0061d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./VerifyAccount.vue?vue&type=template&id=7c0061d6& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/auth/VerifyAccount.vue?vue&type=template&id=7c0061d6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyAccount_vue_vue_type_template_id_7c0061d6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyAccount_vue_vue_type_template_id_7c0061d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);
