@@ -15,6 +15,7 @@
                             <h5 class="subtitle1 mb-2">{{ data.brand }}</h5>
                         </div>
                     </v-col>
+                    <v-divider inset vertical class="mb-2" />
                     <v-col cols="5" class="pl-6" style="border-left: 1px">
                         <h5 class="subtitle2 mb-2">{{ data.val }}</h5>
                     </v-col>
@@ -65,5 +66,9 @@ export default {
 
 .v-card:not(.on-hover) {
     opacity: 1;
+}
+
+.v-divider--vertical {
+    border-width: 0 thin 0 0;
 }
 </style>
