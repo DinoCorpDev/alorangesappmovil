@@ -6,7 +6,7 @@
             </div>
             <div class="body">
                 <div>
-                    <v-img :src="img" width="200px"></v-img>
+                    <v-img :src="productDetails.thumbnail_image || img" width="200px"></v-img>
                 </div>
             </div>
             <div class="div-body2">
@@ -14,13 +14,13 @@
                     <span class="black--text body3 text-uppercase">{{ reference }}</span>
                 </div>
                 <div class="space">
-                    <h6 class="black--text">{{ name }}</h6>
+                    <h6 class="black--text">{{ productDetails.name }}</h6>
                 </div>
                 <div class="space">
                     <span class="black--text body1">{{ brand }}</span>
                 </div>
                 <div class="space">
-                    <span class="black--text subtitle1">{{ price }} COP</span>
+                    <span class="black--text subtitle1">{{ productDetails.base_price }} COP</span>
                 </div>
                 <custom-button block light text="Agregar a compras" />
             </div>
@@ -36,6 +36,10 @@ export default {
         CustomButton
     },
     props: {
+        productDetails: {
+            type: Object,
+            default: () => {}
+        },
         img: {
             default: "/public/assets/img/carousel-item-placeholder.png"
         },
@@ -43,15 +47,7 @@ export default {
             type: String,
             default: "Sin Asignar"
         },
-        name: {
-            type: String,
-            default: "Sin Asignar"
-        },
         brand: {
-            type: String,
-            default: "Sin Asignar"
-        },
-        price: {
             type: String,
             default: "Sin Asignar"
         }
