@@ -18,6 +18,7 @@ let Brands = () => import("../pages/Brands");
 let ListProducts = () => import("../pages/ListProducts");
 let RegistrationSuccess = () => import("../pages/auth/RegistrationSuccess");
 let Collection = () => import("../pages/Collection");
+let Product = () => import("../pages/Product");
 
 export default [
   {
@@ -168,6 +169,12 @@ export default [
     path: "/collection",
     component: Collection,
     name: "Collection",
+    meta: { requiresAuth: false}
+  },
+  {
+    path: "/product",
+    component: Product,
+    name: "Product",
     meta: { requiresAuth: false}
   }
 ];
