@@ -270,11 +270,13 @@
                                         <p class="body-1">Fecha 02 de Julio de 2022</p>
                                     </div>
                                     <div class="div-status">
+                                        <v-divider vertical />
                                         <div>
                                             <p class="text-uppercase font-weight-bold">ESTADO</p>
                                             <p>Por aprobar pedido</p>
                                         </div>
-                                        <div class="d-none d-sm-block">
+                                        <v-divider vertical />
+                                        <div class="d-none d-sm-flex">
                                             <custom-button plain icon="la-download" />
                                             <custom-button plain icon="la-print" />
                                         </div>
@@ -438,16 +440,56 @@
                             <v-divider class="my-3" />
                         </div>
                         <v-row>
-                            <v-col cols="12" md="6">
+                            <v-col cols="12" sm="6">
                                 <div class="form">
                                     <h6 class="black--text bold">Seguimiento de envió</h6>
                                     <v-divider class="my-3" />
+                                    <v-timeline dense>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">En verificación</span>
+                                        </v-timeline-item>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">Facturación</span>
+                                        </v-timeline-item>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">Alistamiento</span>
+                                        </v-timeline-item>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">Recogido por transportadora</span>
+                                        </v-timeline-item>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">Entregado a cliente</span>
+                                        </v-timeline-item>
+                                    </v-timeline>
+                                    <a href="#" class="black--text text-decoration-underline font-weight-bold">Conocer
+                                        la logistica de envió</a>
                                 </div>
                             </v-col>
-                            <v-col cols="12" md="6">
+                            <v-col cols="12" sm="6">
                                 <div class="form">
                                     <h6 class="black--text bold">Seguimiento de servicio</h6>
                                     <v-divider class="my-3" />
+                                    <v-timeline dense>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">Comprado</span>
+                                        </v-timeline-item>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">Agendamiento</span>
+                                        </v-timeline-item>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">En preparación</span>
+                                        </v-timeline-item>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">Verificación de
+                                                adecuación</span>
+                                        </v-timeline-item>
+                                        <v-timeline-item color="black" small fill-dot>
+                                            <span class="body2 text-uppercase font-weight-bold">Instalación
+                                                concluida</span>
+                                        </v-timeline-item>
+                                    </v-timeline>
+                                    <a href="#" class="black--text text-decoration-underline font-weight-bold">Conocer
+                                        la logistica de envió</a>
                                 </div>
                             </v-col>
                         </v-row>
@@ -509,6 +551,25 @@ export default {
     .theme--light.v-stepper .v-stepper__step--editable:hover {
         background-color: #000000;
     }
+
+    .v-timeline {
+        padding-top: 0px;
+        left: 11px;
+    }
+
+    .v-timeline::before {
+        background-color: #000000;
+    }
+
+    .v-application--is-ltr, .v-timeline--dense:not(.v-timeline--reverse)::before {
+        left: 11px;
+    }
+
+    .v-timeline-item__divider {
+        display: flex;
+        justify-content: flex-start;
+    }
+
 }
 
 .container {
@@ -551,11 +612,11 @@ export default {
     background-color: #eee;
 }
 
-.label:hover input ~ .checkmark {
+.label:hover input~.checkmark {
     background-color: #f5f5f5;
 }
 
-.label input:checked ~ .checkmark {
+.label input:checked~.checkmark {
     background-color: #000000;
     border-radius: 5px;
 }
@@ -566,7 +627,7 @@ export default {
     display: none;
 }
 
-.label input:checked ~ .checkmark:after {
+.label input:checked~.checkmark:after {
     display: block;
 }
 
