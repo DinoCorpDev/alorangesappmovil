@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <v-container>
             <div>
                 <v-stepper elevation="0">
@@ -264,27 +264,7 @@
                                 </div>
                             </v-col>
                             <v-col cols="12">
-                                <div class="div-order">
-                                    <div>
-                                        <h6 class="font-weight-bold">Orden de pedido # IDO2421</h6>
-                                        <p class="body-1">Fecha 02 de Julio de 2022</p>
-                                    </div>
-                                    <div class="div-status">
-                                        <v-divider vertical />
-                                        <div>
-                                            <p class="text-uppercase font-weight-bold">ESTADO</p>
-                                            <p>Por aprobar pedido</p>
-                                        </div>
-                                        <v-divider vertical />
-                                        <div class="d-none d-sm-flex">
-                                            <custom-button plain icon="la-download" />
-                                            <custom-button plain icon="la-print" />
-                                        </div>
-                                        <div class="d-sm-none">
-                                            <custom-button plain icon="la-ellipsis-v" />
-                                        </div>
-                                    </div>
-                                </div>
+                                <order icon1="la-download" icon2="la-print"/>
                             </v-col>
                         </v-row>
                         <v-divider class="my-3" />
@@ -501,18 +481,21 @@
 </template>
 
 <script>
-import SelectCustom from "../../components/global/SelectCustom.vue";
+
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
+import Order from "../../components/global/Order.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
+import SelectCustom from "../../components/global/SelectCustom.vue";
 import TypePayment from "../../components/global/TypePayment.vue";
 
 export default {
     components: {
-        SelectCustom,
         CustomButton,
         CustomInput,
         ProductCart,
+        SelectCustom,
+        Order,
         TypePayment
     },
     data() {
@@ -686,17 +669,7 @@ export default {
     padding: 5px 5px 0px 5px;
 }
 
-.div-order {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
 
-.div-status {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
+
+
 </style>
