@@ -25,25 +25,25 @@
                         <h6>Productos</h6>
                         <v-row>
                             <v-col cols="12">
-                                <product-cart price="000.000.000 COP" quantity="03" />
+                                <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart />
+                                <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart />
+                                <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart />
+                                <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart />
+                                <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart />
+                                <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart />
+                                <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                             </v-col>
                         </v-row>
                     </v-stepper-content>
@@ -267,7 +267,7 @@
                                 <order icon1="la-download" icon2="la-print"/>
                             </v-col>
                         </v-row>
-                        <v-divider class="my-3" />
+                        <v-divider class="mb-3" />
                         <v-row>
                             <v-col cols="12" md="6">
                                 <v-row>
@@ -389,13 +389,13 @@
                             <v-divider class="my-3" />
                             <v-row>
                                 <v-col cols="12">
-                                    <product-cart price="000.000.000 COP" quantity="03" />
+                                    <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                                 </v-col>
                                 <v-col cols="12">
-                                    <product-cart price="000.000.000 COP" quantity="03" />
+                                    <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                                 </v-col>
                                 <v-col cols="12">
-                                    <product-cart price="000.000.000 COP" quantity="03" />
+                                    <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                                 </v-col>
                             </v-row>
                             <v-divider class="my-3" />

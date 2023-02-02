@@ -20,15 +20,15 @@
                 <div>
                     <div class="quantity">
                         <custom-button text="+" plain />
-                        <h6 class="quantity2">{{ quantity }}</h6>
+                        <span class="quantity2 subtitle-1">{{ quantity }}</span>
                         <custom-button text="-" plain />
                     </div>
                 </div>
                 <div class="divider"></div>
                 <div class="d-none d-md-block">
-                    <custom-button plain icon="la-trash" />
-                    <custom-button plain icon="las la-eye" />
-                    <custom-button plain icon="las la-eye" />
+                    <custom-button plain :icon="icon1" />
+                    <custom-button plain :icon="icon2" />
+                    <custom-button plain :icon="icon3" />
                 </div>
                 <div class="d-md-none">
                     <custom-button plain icon="la-ellipsis-v" />
@@ -47,6 +47,9 @@ export default {
         CustomButton
     },
     props: {
+        icon1: String,
+        icon2:String,
+        icon3:String,
         img: {
             type: String,
             default: "/public/assets/img/carousel-item-placeholder.png"

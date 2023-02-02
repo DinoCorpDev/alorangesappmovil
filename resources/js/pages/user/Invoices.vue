@@ -5,16 +5,16 @@
             <v-divider class="my-3"></v-divider>
             <v-row>
                 <v-col cols="12">
-                    <order icon1="la-download" icon2="la-eye" icon3="la-trash"/>
+                    <order style="background-color: #F5F5F5;" icon1="la-download" icon2="la-eye" icon3="la-print"/>
                 </v-col>
                 <v-col cols="12">
-                    <order icon1="la-download" icon2="la-eye" icon3="la-trash"/>
+                    <order style="background-color: #F5F5F5;" icon1="la-download" icon2="la-eye" icon3="la-print"/>
                 </v-col>
                 <v-col cols="12">
-                    <order icon1="la-download" icon2="la-eye" icon3="la-trash"/>
+                    <order style="background-color: #F5F5F5;" icon1="la-download" icon2="la-eye" icon3="la-print"/>
                 </v-col>
                 <v-col cols="12">
-                    <order icon1="la-download" icon2="la-eye" icon3="la-trash" />
+                    <order style="background-color: #F5F5F5;" icon1="la-download" icon2="la-eye" icon3="la-print" />
                 </v-col>
             </v-row>
         </v-container>
