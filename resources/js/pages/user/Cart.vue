@@ -264,7 +264,7 @@
                                 </div>
                             </v-col>
                             <v-col cols="12">
-                                <order icon1="la-download" icon2="la-print"/>
+                                <order order="ID1222" day="07" month="Julio" year="2020" colorStatus="red" descriptionStatus="Por aprobar pedido" icon1="la-download" icon2="la-print"/>
                             </v-col>
                         </v-row>
                         <v-divider class="mb-3" />

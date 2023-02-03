@@ -1,28 +1,34 @@
 <template>
-        <div class="div-order" :style="style">
-            <div class="order">
-                <div>
-                    <h6 class="font-weight-bold">Orden de pedido # IDO2421</h6>
-                    <p class="body-1">Fecha 02 de Julio de 2022</p>
-                </div>
-            </div>
-            <div class="div-status">
-                <v-divider vertical />
-                <div>
-                    <p class="text-uppercase font-weight-bold">ESTADO</p>
-                    <p>Por aprobar pedido</p>
-                </div>
-                <v-divider vertical />
-                <div class="d-none d-sm-flex">
-                    <custom-button v-if="icon1" plain :icon="icon1" />
-                    <custom-button v-if="icon2" plain :icon="icon2" />
-                    <custom-button v-if="icon3" plain :icon="icon3" />
-                </div>
-                <div class="d-sm-none">
-                    <custom-button plain icon="la-ellipsis-v" />
-                </div>
+    <div class="div-order" :style="style">
+        <div class="order">
+            <div>
+                <h6 class="font-weight-bold">Orden de pedido # {{ order }}</h6>
+                <p class="body-1">Fecha {{ day }} de {{ month }} de {{ year }}</p>
             </div>
         </div>
+        <div class="div-status">
+            <v-divider vertical />
+            <div>
+                <div class="status">
+                    <p class="text-uppercase font-weight-bold">
+                        ESTADO
+                    </p>
+                    <div class="color-status" :class="colorStatus">
+                    </div>
+                </div>
+                <p>{{ descriptionStatus }}</p>
+            </div>
+            <v-divider vertical />
+            <div class="d-none d-sm-flex">
+                <custom-button v-if="icon1" plain :icon="icon1" />
+                <custom-button v-if="icon2" plain :icon="icon2" />
+                <custom-button v-if="icon3" plain :icon="icon3" />
+            </div>
+            <div class="d-sm-none">
+                <custom-button plain icon="la-ellipsis-v" />
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -32,6 +38,12 @@ export default {
         CustomButton
     },
     props: {
+        order: String,
+        day: String,
+        month: String,
+        year: String,
+        descriptionStatus: String,
+        colorStatus:String,
         icon1: String,
         icon2: String,
         icon3: String,
@@ -55,5 +67,17 @@ export default {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+}
+
+.color-status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+
+.status {
+    display: flex;
+    gap: 8px;
 }
 </style>
