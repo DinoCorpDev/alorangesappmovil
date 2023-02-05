@@ -1,5 +1,5 @@
 <template>
-    <div class="div-order" :style="style">
+    <div class="div-order">
         <div class="order">
             <div>
                 <h6 class="font-weight-bold">Orden de pedido # {{ order }}</h6>
@@ -10,11 +10,8 @@
             <v-divider vertical />
             <div>
                 <div class="status">
-                    <p class="text-uppercase font-weight-bold">
-                        ESTADO
-                    </p>
-                    <div class="color-status" :class="colorStatus">
-                    </div>
+                    <p class="text-uppercase font-weight-bold">ESTADO</p>
+                    <div class="color-status" :class="colorStatus"></div>
                 </div>
                 <p>{{ descriptionStatus }}</p>
             </div>
@@ -43,11 +40,10 @@ export default {
         month: String,
         year: String,
         descriptionStatus: String,
-        colorStatus:String,
+        colorStatus: String,
         icon1: String,
         icon2: String,
-        icon3: String,
-        style: String,
+        icon3: String
     }
 };
 </script>

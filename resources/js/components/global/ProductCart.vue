@@ -48,8 +48,8 @@ export default {
     },
     props: {
         icon1: String,
-        icon2:String,
-        icon3:String,
+        icon2: String,
+        icon3: String,
         img: {
             type: String,
             default: "/public/assets/img/carousel-item-placeholder.png"
