@@ -3,8 +3,8 @@
         <div class="buttons">
             <h6 class="black--text bold">Compras</h6>
             <custom-button block class="mb-3 mt-3" light text="Carrito" :to="{ name: 'Cart' }" />
-            <custom-button block class="mb-3" light text="Favoritos" :to="{ name: 'Wishlist' }" />
-            <custom-button block class="mb-3" light text="Facturas" :to="{ name: 'Wallet' }" />
+            <custom-button block class="mb-3" light text="Favoritos" :to="{ name: 'Favorites' }" />
+            <custom-button block class="mb-3" light text="Facturas" :to="{ name: 'Invoices' }" />
             <div class="divider"></div>
         </div>
         <div class="buttons">
