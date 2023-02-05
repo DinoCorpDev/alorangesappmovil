@@ -28,6 +28,15 @@
                         <h5 class="mb-0 h6">{{ translate('Product Information') }}</h5>
                     </div>
                     <div class="card-body">
+                    <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Reference') }} <span
+                                    class="text-danger">*</span></label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="reference"
+                                    placeholder="{{ translate('Reference') }}"
+                                    value="{{ $product->reference }}" required>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-from-label">{{ translate('Product Name') }} <span
                                     class="text-danger">*</span> <i class="las la-language text-danger"
@@ -131,11 +140,25 @@
                     <div class="card-body">
                         @php
                             $first_variation = $product->variations->first();
-                            $price = !$product->is_variant ? $first_variation->price : 0;
-                            $sku = !$product->is_variant ? $first_variation->sku : null;
-                            $stock = !$product->is_variant ? $first_variation->stock : 1;
+                            $price = 0;
+                            $sku = null;
+                            $stock = 1;
+                            if($product->is_variant){
+                                $price = $first_variation->price;
+                                $sku = $first_variation->sku;
+                                $stock = $first_variation->stock;
+                            }
                         @endphp
-
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-from-label">{{ translate('Currency') }}</label>
+                                <div class="col-md-8">
+                                    <input type="text" value="{{ $product->currency }}"
+                                        placeholder="{{ translate('Currency') }}" name="currency" class="form-control"
+                                        >
+                                </div>
+                            </div>
+                        </div>
                         <div class="no_product_variant" @if ($product->is_variant) style="display:none;" @endif>
                             <div class="form-group row">
                                 <label class="col-md-3 col-from-label">{{ translate('Regular price') }} <span
@@ -252,6 +275,17 @@
                                 @endif
                             </div>
                         </div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-from-label">{{ translate('Time Warranty') }} <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-md-8">
+                                    <input type="text" value="{{ $product->warranty_text }}"
+                                        placeholder="{{ translate('Time Warranty') }}" name="warranty_text" class="form-control"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -303,6 +337,14 @@
                         <h5 class="mb-0 h6">{{ translate('Shipping Information') }}</h5>
                     </div>
                     <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Shipping') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Shipping') }}"  class="form-control" name="shipping" value="{{ $product->shipping }}">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-from-label">{{ translate('Standard delivery time') }}</label>
                             <div class="col-md-8">
@@ -364,6 +406,38 @@
                                         value="{{ $product->width }}" required>
                                     <div class="input-group-append"><span
                                             class="input-group-text">{{ get_setting('dimension_unit') }}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Intake') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Intake') }}"  class="form-control" name="intake" value="{{ $product->intake }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Material') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Material') }}"  class="form-control" name="material" value="{{ $product->material }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('SI1') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('SI1') }}"  class="form-control" name="unit_metering" value="{{ $product->unit_metering }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Crimp size') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Crimp size') }}"  class="form-control" name="engaste" value="{{ $product->engaste }}">
                                 </div>
                             </div>
                         </div>

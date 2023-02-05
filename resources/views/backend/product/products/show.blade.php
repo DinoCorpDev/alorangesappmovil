@@ -59,6 +59,10 @@
         <div class="col-lg-auto w-lg-320px">
             <div class="card">
                 <div class="card-body">
+                <div class="mb-3 d-flex justify-content-between">
+                        <span class="mr-2 ml-0">{{ translate('Reference') }}:</span>
+                        <span>{{ $product->reference }}</span>
+                    </div>
                     <div class="mb-3 d-flex justify-content-between">
                         <span class="mr-2 ml-0">{{ translate('Status') }}:</span>
                         @if ($product->published)
@@ -101,6 +105,10 @@
                         @else
                             <span class="badge badge-inline badge-secondary">{{ translate('No warranty') }}</span>
                         @endif
+                    </div>
+                    <div class="mb-3 d-flex justify-content-between">
+                        <span class="mr-2 ml-0"></span>
+                        <span>{{ $product->warranty_text }}</span>
                     </div>
                     <div class="mb-3 d-flex justify-content-between">
                         <span class="mr-2 ml-0">{{ translate('Minimum Purchase Qty ') }}:</span>
@@ -153,6 +161,13 @@
             <div class="card">
                 <div class="card-header mb-0 h6">{{ translate('Product price, stock') }}</div>
                 <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-from-label">{{ translate('Currency') }}</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control" name="width" min="0"
+                                    value="{{ $product->currency }}" required readonly />
+                        </div>
+                    </div>
                     <table class="table table-bordered table-responsive-xl">
                         <thead>
                             <tr>
@@ -253,6 +268,13 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
+                        <label class="col-md-3 col-from-label">{{ translate('Shipping') }}</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control" name="width" min="0"
+                                    value="{{ $product->shipping }}" required readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-md-3 col-from-label">{{ translate('Standard delivery time') }}</label>
                         <div class="col-md-8">
                             <div class="input-group">
@@ -314,6 +336,34 @@
                                 <div class="input-group-append"><span
                                         class="input-group-text">{{ get_setting('dimension_unit') }}</span></div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-from-label">{{ translate('Intake') }}</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control" name="width" min="0"
+                                    value="{{ $product->intake }}" required readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-from-label">{{ translate('Material') }}</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control" name="width" min="0"
+                                    value="{{ $product->material }}" required readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-from-label">{{ translate('SI1') }}</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control" name="width" min="0"
+                                    value="{{ $product->unit_metering }}" required readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-from-label">{{ translate('Crimp size') }}</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control" name="width" min="0"
+                                    value="{{ $product->engaste }}" required readonly />
                         </div>
                     </div>
                 </div>

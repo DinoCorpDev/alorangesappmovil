@@ -31,10 +31,10 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if (from.name == "ConversationsDetails"){
+    if (from.name == "ConversationsDetails") {
         clearInterval(window.intervalCall);
     }
-        store.commit("app/setRouterLoading", true);
+    store.commit("app/setRouterLoading", true);
     if (to.query.social_login == "failed") {
         store.commit("auth/setSociaLoginStatus", "failed");
     } else if (to.query.access_token) {
@@ -51,7 +51,7 @@ router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
     const isAuthenticated = store.getters["auth/isAuthenticated"];
 
-    loadLanguageAsync(locale).then(function() {
+    loadLanguageAsync(locale).then(function () {
         if (requiresAuth && !isAuthenticated) {
             router
                 .push({
@@ -65,9 +65,7 @@ router.beforeEach((to, from, next) => {
                     }
                 });
         } else if (
-            (to.name == "Login" ||
-                to.name == "Registration" ||
-                to.name == "ForgotPassword") &&
+            (to.name == "Login" || to.name == "Registration" || to.name == "ForgotPassword") &&
             isAuthenticated
         ) {
             router.push({ name: "DashBoard" });

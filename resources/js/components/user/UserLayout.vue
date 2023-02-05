@@ -1,9 +1,10 @@
 <template>
-    <div class="">
-        <v-container>
+    <div>
+        <layout-navbar-auth />
+        <v-container fluid>
             <v-row no-gutters>
                 <v-col lg="3" class="d-none d-lg-block">
-                    <sidemenu></sidemenu>
+                    <SideMenu2 />
                 </v-col>
                 <v-col cols="12" lg="9" class="pt-0">
                     <router-view></router-view>
@@ -14,12 +15,19 @@
 </template>
 
 <script>
-import sidemenu from "./SideMenu";
+import SideMenu2 from "./SideMenu2";
+import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
+
 export default {
     components: {
-        sidemenu
+        SideMenu2,
+        LayoutNavbarAuth
     }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+    background-color: #fafcfc;
+}
+</style>
