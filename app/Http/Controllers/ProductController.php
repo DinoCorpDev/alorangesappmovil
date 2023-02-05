@@ -21,6 +21,8 @@ use App\Models\User;
 use App\Utility\CategoryUtility;
 use CoreComponentRepository;
 use Artisan;
+use App\Models\Upload;
+use Auth;
 
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -264,6 +266,76 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
+    private function saveArchive($archive){
+        $type = array(
+            "jpg"=>"image",
+            "jpeg"=>"image",
+            "png"=>"image",
+            "svg"=>"image",
+            "webp"=>"image",
+            "gif"=>"image",
+            "mp4"=>"video",
+            "mpg"=>"video",
+            "mpeg"=>"video",
+            "webm"=>"video",
+            "ogg"=>"video",
+            "avi"=>"video",
+            "mov"=>"video",
+            "flv"=>"video",
+            "swf"=>"video",
+            "mkv"=>"video",
+            "wmv"=>"video",
+            "wma"=>"audio",
+            "aac"=>"audio",
+            "wav"=>"audio",
+            "mp3"=>"audio",
+            "zip"=>"archive",
+            "rar"=>"archive",
+            "7z"=>"archive",
+            "doc"=>"document",
+            "txt"=>"document",
+            "docx"=>"document",
+            "pdf"=>"document",
+            "csv"=>"document",
+            "xml"=>"document",
+            "ods"=>"document",
+            "xlr"=>"document",
+            "xls"=>"document",
+            "xlsx"=>"document"
+        );
+        
+        $carpeta=public_path(). "/uploads/all/";
+        if($archive !== "" && $archive !== null){
+            if (strpos($archive, 'file') !== false) {
+                if(@fopen($archive,"r")){
+                    $destino=$carpeta.substr($archive,strrpos($archive,"/")+1);
+                    file_put_contents($destino, file_get_contents($archive));
+
+                    $upload = new Upload;
+                    $upload->file_original_name = substr($archive,strrpos($archive,"/")+1);
+                    $upload->file_name = "/uploads/all/" . substr($archive, strrpos($archive,"/")+1);
+                    $upload->user_id = Auth::user()->id;
+
+                    $upload->extension = substr($archive, strrpos($archive,".")+1);
+                    if(isset($type[$upload->extension])){
+                        $upload->type = $type[$upload->extension];
+                    }
+                    else{
+                        $upload->type = "others";
+                    }
+                    $upload->file_size = 1024;
+                    $upload->save();
+                    
+                    return $upload->id;
+                }else{
+                    return "";
+                }
+            }else{
+                return "";
+            }
+        }
+    }
+
     /**
      * Stores a newly created resource in storage.
      *
@@ -303,12 +375,67 @@ class ProductController extends Controller
                     'medida_de_producto' => $sheet->getCell('M' . $row)->getValue(),
                     'si1' => $sheet->getCell('N' . $row)->getValue(),
                     'medida_de_engaste' => $sheet->getCell('O' . $row)->getValue(),
+                    'si2' => $sheet->getCell('P' . $row)->getValue(),
+                    'medidas_de_embalaje' => $sheet->getCell('Q' . $row)->getValue(),
+                    'si3' => $sheet->getCell('R' . $row)->getValue(),
+                    'peso_de_producto' => $sheet->getCell('S' . $row)->getValue(),
+                    'si4' => $sheet->getCell('T' . $row)->getValue(),
+                    'peso_de_envio' => $sheet->getCell('U' . $row)->getValue(),
+                    'tipo_de_coneccion' => $sheet->getCell('W' . $row)->getValue(),
+                    'eficiencia' => $sheet->getCell('X' . $row)->getValue(),
+                    'caracteristica1' => $sheet->getCell('V' . $row)->getValue(),
+                    'caracteristica2' => $sheet->getCell('Z' . $row)->getValue(),
+                    'caracteristica3' => $sheet->getCell('AA' . $row)->getValue(),
+                    'caracteristica4' => $sheet->getCell('AB' . $row)->getValue(),
+                    'caracteristica5' => $sheet->getCell('AC' . $row)->getValue(),
+                    'caracteristica6' => $sheet->getCell('AD' . $row)->getValue(),
+                    'caracteristica7' => $sheet->getCell('AE' . $row)->getValue(),
+                    'caracteristica8' => $sheet->getCell('AF' . $row)->getValue(),
+                    'beneficio1' => $sheet->getCell('AG' . $row)->getValue(),
+                    'beneficio2' => $sheet->getCell('AH' . $row)->getValue(),
+                    'beneficio3' => $sheet->getCell('AI' . $row)->getValue(),
+                    'beneficio4' => $sheet->getCell('AJ' . $row)->getValue(),
+                    'beneficio5' => $sheet->getCell('AK' . $row)->getValue(),
+                    'postventa' => $sheet->getCell('AL' . $row)->getValue(),
+                    'imagen1' => $sheet->getCell('AM' . $row)->getValue(),
+                    'imagen2' => $sheet->getCell('AN' . $row)->getValue(),
+                    'imagen3' => $sheet->getCell('AO' . $row)->getValue(),
+                    'imagen4' => $sheet->getCell('AP' . $row)->getValue(),
+                    'video' => $sheet->getCell('AQ' . $row)->getValue(),
+                    'video2' => $sheet->getCell('AR' . $row)->getValue(),
+                    'video3' => $sheet->getCell('AS' . $row)->getValue(),
+                    'video4' => $sheet->getCell('AT' . $row)->getValue(),
+                    'ficha_tecnica_imagen1' => $sheet->getCell('AU' . $row)->getValue(),
+                    'ficha_tecnica_imagen2' => $sheet->getCell('AV' . $row)->getValue(),
+                    'ficha_tecnica_imagen3' => $sheet->getCell('AW' . $row)->getValue(),
+                    'ficha_tecnica_imagen4' => $sheet->getCell('AX' . $row)->getValue(),
+                    'manual_de_producto' => $sheet->getCell('AY' . $row)->getValue(),
+                    'ficha_tecnica_del_producto' => $sheet->getCell('AZ' . $row)->getValue(),
+                    'manual_de_instalacion' => $sheet->getCell('BA' . $row)->getValue(),
+                    'logo' => $sheet->getCell('BB' . $row)->getValue(),
+                    'vida_util' => $sheet->getCell('BC' . $row)->getValue(),
+                    'plastico' => $sheet->getCell('BD' . $row)->getValue(),
+                    'peso_plastico' => $sheet->getCell('BE' . $row)->getValue(),
+                    'carton' => $sheet->getCell('BF' . $row)->getValue(),
+                    'peso_carton' => $sheet->getCell('BG' . $row)->getValue(),
+                    'papel' => $sheet->getCell('BH' . $row)->getValue(),
+                    'peso_papel' => $sheet->getCell('BI' . $row)->getValue(),
+                    'metal' => $sheet->getCell('BJ' . $row)->getValue(),
+                    'peso_metal' => $sheet->getCell('BK' . $row)->getValue(),
+                    'vidrio' => $sheet->getCell('BL' . $row)->getValue(),
+                    'peso_vidrio' => $sheet->getCell('BM' . $row)->getValue(),
+                    'madera' => $sheet->getCell('BN' . $row)->getValue(),
+                    'peso_madera' => $sheet->getCell('BO' . $row)->getValue(),
+                    'textil' => $sheet->getCell('BP' . $row)->getValue(),
+                    'peso_textil' => $sheet->getCell('BQ' . $row)->getValue(),
+                    'bateria_electrico' => $sheet->getCell('BR' . $row)->getValue(),
+                    'peso_bateria_electrico' => $sheet->getCell('BS' . $row)->getValue(),
+                    'impacto_ambiental' => $sheet->getCell('BT' . $row)->getValue()
                 ];
 
                 $startcount++;
             }
-
-
+            
             if (count($data) > 0) {
                 foreach ($data as $row_data) {
                     $product = new Product;
@@ -393,6 +520,67 @@ class ProductController extends Controller
                     }
 
                     $product->slug = Str::slug($row_data["categoria"], '-') . '-' . strtolower(Str::random(5));
+                    
+                    $product->si2 =  $row_data["si2"];
+                    $product->medidas_de_embalaje =  $row_data["medidas_de_embalaje"];
+                    $product->si3 =  $row_data["si3"];
+                    $product->peso_de_producto =  $row_data["peso_de_producto"];
+                    $product->si4 =  $row_data["si4"];
+                    $product->peso_de_envio =  $row_data["peso_de_envio"];
+                    $product->tipo_de_coneccion =  $row_data["tipo_de_coneccion"];
+                    $product->eficiencia =  $row_data["eficiencia"];
+                    $product->caracteristica1 =  $row_data["caracteristica1"];
+                    $product->caracteristica2 =  $row_data["caracteristica2"];
+                    $product->caracteristica3 =  $row_data["caracteristica3"];
+                    $product->caracteristica4 =  $row_data["caracteristica4"];
+                    $product->caracteristica5 =  $row_data["caracteristica5"];
+                    $product->caracteristica6 =  $row_data["caracteristica6"];
+                    $product->caracteristica7 =  $row_data["caracteristica7"];
+                    $product->caracteristica8 =  $row_data["caracteristica8"];
+                    $product->beneficio1 =  $row_data["beneficio1"];
+                    $product->beneficio2 =  $row_data["beneficio2"];
+                    $product->beneficio3 =  $row_data["beneficio3"];
+                    $product->beneficio4 =  $row_data["beneficio4"];
+                    $product->beneficio5 =  $row_data["beneficio5"];
+                    $product->postventa =  $row_data["postventa"];
+
+                    //Archives and images
+                    $product->imagen1 = self::saveArchive($row_data["imagen1"]);
+                    $product->imagen2 =  self::saveArchive($row_data["imagen2"]);
+                    $product->imagen3 =  self::saveArchive($row_data["imagen3"]);
+                    $product->imagen4 =  self::saveArchive($row_data["imagen4"]);
+                    $product->video =  self::saveArchive($row_data["video"]);
+                    $product->video2 =  self::saveArchive($row_data["video2"]);
+                    $product->video3 =  self::saveArchive($row_data["video3"]);
+                    $product->video4 =  self::saveArchive($row_data["video4"]);
+                    $product->ficha_tecnica_imagen1 =  self::saveArchive($row_data["ficha_tecnica_imagen1"]);
+                    $product->ficha_tecnica_imagen2 =  self::saveArchive($row_data["ficha_tecnica_imagen2"]);
+                    $product->ficha_tecnica_imagen3 =  self::saveArchive($row_data["ficha_tecnica_imagen3"]);
+                    $product->ficha_tecnica_imagen4 =  self::saveArchive($row_data["ficha_tecnica_imagen4"]);
+                    $product->manual_de_producto =  self::saveArchive($row_data["manual_de_producto"]);
+                    $product->ficha_tecnica_del_producto =  self::saveArchive($row_data["ficha_tecnica_del_producto"]);
+                    $product->manual_de_instalacion =  self::saveArchive($row_data["manual_de_instalacion"]);
+                    $product->thumbnail_img =  self::saveArchive($row_data["logo"]);
+                    
+                    $product->vida_util =  $row_data["vida_util"];
+                    $product->plastico =  $row_data["plastico"];
+                    $product->peso_plastico =  $row_data["peso_plastico"];
+                    $product->carton =  $row_data["carton"];
+                    $product->peso_carton =  $row_data["peso_carton"];
+                    $product->papel =  $row_data["papel"];
+                    $product->peso_papel =  $row_data["peso_papel"];
+                    $product->metal =  $row_data["metal"];
+                    $product->peso_metal =  $row_data["peso_metal"];
+                    $product->vidrio =  $row_data["vidrio"];
+                    $product->peso_vidrio =  $row_data["peso_vidrio"];
+                    $product->madera =  $row_data["madera"];
+                    $product->peso_madera =  $row_data["peso_madera"];
+                    $product->textil =  $row_data["textil"];
+                    $product->peso_textil =  $row_data["peso_textil"];
+                    $product->bateria_electrico =  $row_data["bateria_electrico"];
+                    $product->peso_bateria_electrico =  $row_data["peso_bateria_electrico"];
+                    $product->impacto_ambiental =  $row_data["impacto_ambiental"];
+                   
                     $product->save();
 
                     if (count($array_categories) > 0) {
@@ -416,7 +604,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+
         return view('backend.product.products.show', [
             'product' => Product::withCount('reviews', 'wishlists', 'carts')->with('variations.combinations')->findOrFail($id)
         ]);
@@ -457,7 +646,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+
         if ($request->has('is_variant') && !$request->has('variations')) {
             flash(translate('Invalid product variations'))->error();
             return redirect()->back();
@@ -469,15 +659,6 @@ class ProductController extends Controller
         if ($product->shop_id != auth()->user()->shop_id) {
             abort(403);
         }
-
-        $product->reference =  $request->reference;
-        $product->currency =  $request->currency;
-        $product->shipping =  $request->shipping;
-        $product->material =  $request->material;
-        $product->intake =  $request->intake;
-        $product->engaste =  $request->engaste;
-        $product->warranty_text =  $request->warranty_text;
-
 
         if ($request->lang == env("DEFAULT_LANGUAGE")) {
             $product->name          = $request->name;
@@ -557,11 +738,13 @@ class ProductController extends Controller
         foreach ($request->category_ids ?? [] as $id) {
             $shop_category_ids[] = CategoryUtility::get_grand_parent_id($id);
         }
-        $shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->shop_categories->pluck('category_id')->toArray());
-        $product->shop->categories()->sync($shop_category_ids);
+
+        // this get error
+        //$shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->shop_categories->pluck('category_id')->toArray());
+        //$product->shop->categories()->sync($shop_category_ids);
 
         // shop brand
-        if ($request->brand_id) {
+        if ($request->brand_id && $product->shop_id) {
             ShopBrand::updateOrCreate([
                 'shop_id' => $product->shop_id,
                 'brand_id' => $request->brand_id,
@@ -648,12 +831,14 @@ class ProductController extends Controller
             }
 
             $variation              = $product->variations->first();
-            $variation->product_id  = $product->id;
-            $variation->code        = null;
-            $variation->sku         = $request->sku;
-            $variation->price       = $request->price;
-            $variation->stock       = $request->stock;
-            $variation->save();
+            if($variation){
+                $variation->product_id  = $product->id;
+                $variation->code        = null;
+                $variation->sku         = $request->sku;
+                $variation->price       = $request->price;
+                $variation->stock       = $request->stock;
+                $variation->save();
+            }
         }
 
 
@@ -684,6 +869,70 @@ class ProductController extends Controller
             }
         }
 
+        $product->reference =  $request->reference;
+        $product->currency =  $request->currency;
+        $product->shipping =  $request->shipping;
+        $product->material =  $request->material;
+        $product->intake =  $request->intake;
+        $product->engaste =  $request->engaste;
+        $product->warranty_text =  $request->warranty_text;
+
+        $product->si2 =  $request->si2;
+        $product->medidas_de_embalaje =  $request->medidas_de_embalaje;
+        $product->si3 =  $request->si3;
+        $product->peso_de_producto =  $request->peso_de_producto;
+        $product->si4 =  $request->si4;
+        $product->peso_de_envio =  $request->peso_de_envio;
+        $product->tipo_de_coneccion =  $request->tipo_de_coneccion;
+        $product->eficiencia =  $request->eficiencia;
+        $product->caracteristica1 =  $request->caracteristica1;
+        $product->caracteristica2 =  $request->caracteristica2;
+        $product->caracteristica3 =  $request->caracteristica3;
+        $product->caracteristica4 =  $request->caracteristica4;
+        $product->caracteristica5 =  $request->caracteristica5;
+        $product->caracteristica6 =  $request->caracteristica6;
+        $product->caracteristica7 =  $request->caracteristica7;
+        $product->caracteristica8 =  $request->caracteristica8;
+        $product->beneficio1 =  $request->beneficio1;
+        $product->beneficio2 =  $request->beneficio2;
+        $product->beneficio3 =  $request->beneficio3;
+        $product->beneficio4 =  $request->beneficio4;
+        $product->beneficio5 =  $request->beneficio5;
+        $product->postventa =  $request->postventa;
+        $product->imagen1 = $request->imagen1;
+        $product->imagen2 =  $request->imagen2;
+        $product->imagen3 =  $request->imagen3;
+        $product->imagen4 =  $request->imagen4;
+        $product->video =  $request->video;
+        $product->video2 =  $request->video2;
+        $product->video3 =  $request->video3;
+        $product->video4 =  $request->video4;
+        $product->ficha_tecnica_imagen1 =  $request->ficha_tecnica_imagen1;
+        $product->ficha_tecnica_imagen2 =  $request->ficha_tecnica_imagen2;
+        $product->ficha_tecnica_imagen3 =  $request->ficha_tecnica_imagen3;
+        $product->ficha_tecnica_imagen4 =  $request->ficha_tecnica_imagen4;
+        $product->manual_de_producto =  $request->manual_de_producto;
+        $product->ficha_tecnica_del_producto =  $request->ficha_tecnica_del_producto;
+        $product->manual_de_instalacion =  $request->manual_de_instalacion;
+        $product->thumbnail_img =  $request->thumbnail_img;
+        $product->vida_util =  $request->vida_util;
+        $product->plastico =  $request->plastico;
+        $product->peso_plastico =  $request->peso_plastico;
+        $product->carton =  $request->carton;
+        $product->peso_carton =  $request->peso_carton;
+        $product->papel =  $request->papel;
+        $product->peso_papel =  $request->peso_papel;
+        $product->metal =  $request->metal;
+        $product->peso_metal =  $request->peso_metal;
+        $product->vidrio =  $request->vidrio;
+        $product->peso_vidrio =  $request->peso_vidrio;
+        $product->madera =  $request->madera;
+        $product->peso_madera =  $request->peso_madera;
+        $product->textil =  $request->textil;
+        $product->peso_textil =  $request->peso_textil;
+        $product->bateria_electrico =  $request->bateria_electrico;
+        $product->peso_bateria_electrico =  $request->peso_bateria_electrico;
+        $product->impacto_ambiental =  $request->impacto_ambiental;
 
         $product->save();
 

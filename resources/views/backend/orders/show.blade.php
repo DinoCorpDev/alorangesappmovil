@@ -1,7 +1,31 @@
 @extends('backend.layouts.app')
 
 @section('content')
-    <h1 class="h4 fw-700 mb-3">{{ translate('Order code') }}: {{ $order->combined_order->code }}</h1>
+    <div class="row mb-3">
+        <div class="col-10">
+            <h1 class="h4 fw-700 mb-3">
+                {{ translate('Order code') }}: {{ $order->combined_order ? $order->combined_order->code : '' }}
+            </h1>
+        </div>
+        <div class="col-2">
+            <div class="dropdown float-right">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Status: 
+
+                    {{ $order->status == null ? "Realizada" : "" }}
+                    {{ $order->status == 1 ? "Contabilidad" : "" }}
+                    {{ $order->status == 2 ? "Despacho" : "" }}
+                    {{ $order->status == 3 ? "Entregada" : "" }}
+
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{ route('order.status', ['order_id' => $order->id, 'status' => '1']) }}">Contabilidad</a>
+                    <a class="dropdown-item" href="{{ route('order.status', ['order_id' => $order->id, 'status' => '2']) }}">Despacho</a>
+                    <a class="dropdown-item" href="{{ route('order.status', ['order_id' => $order->id, 'status' => '3']) }}">Entregada</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row gutters-5">
         <div class="col-lg">
             <div class="card">
@@ -26,7 +50,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="">{{ translate('Order code') }}:</td>
-                                        <td class="text-right text-info fw-700">{{ $order->combined_order->code }}</td>
+                                        <td class="text-right text-info fw-700">{{ $order->combined_order ? $order->combined_order->code : '' }}</td>
                                     </tr>
                                     <tr>
                                         <td class="">{{ translate('Order Date') }}:</td>
@@ -115,10 +139,10 @@
                             @endphp
                             <h5 class="fs-14 mb-3">{{ translate('Shipping address') }}</h5>
                             <address class="">
-                                {{ $shipping_address->phone }}<br>
-                                {{ $shipping_address->address }}<br>
-                                {{ $shipping_address->city }}, {{ $shipping_address->postal_code }}<br>
-                                {{ $shipping_address->state }}, {{ $shipping_address->country }}
+                                {{ $shipping_address ? $shipping_address->phone : '' }}<br>
+                                {{ $shipping_address ? $shipping_address->address : '' }}<br>
+                                {{ $shipping_address ? $shipping_address->city : '' }}, {{ $shipping_address ? $shipping_address->postal_code : '' }}<br>
+                                {{ $shipping_address ? $shipping_address->state : '' }}, {{ $shipping_address ? $shipping_address->country : '' }}
                             </address>
                         </div>
                         <div class="col-md-auto w-md-250px">
@@ -127,10 +151,10 @@
                             @endphp
                             <h5 class="fs-14 mb-3">{{ translate('Billing address') }}</h5>
                             <address class="">
-                                {{ $billing_address->phone }}<br>
-                                {{ $billing_address->address }}<br>
-                                {{ $billing_address->city }}, {{ $billing_address->postal_code }}<br>
-                                {{ $billing_address->state }}, {{ $billing_address->country }}
+                                {{ $billing_address ? $billing_address->phone : '' }}<br>
+                                {{ $billing_address ? $billing_address->address : '' }}<br>
+                                {{ $billing_address ? $billing_address->city : '' }}, {{ $billing_address ? $billing_address->postal_code : '' }}<br>
+                                {{ $billing_address ? $billing_address->state : '' }}, {{ $billing_address ? $billing_address->country : '' }}
                             </address>
                         </div>
                     </div>

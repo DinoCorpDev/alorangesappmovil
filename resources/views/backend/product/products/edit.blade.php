@@ -44,7 +44,7 @@
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="name"
                                     placeholder="{{ translate('Product Name') }}"
-                                    value="{{ $product->getTranslation('name', $lang) }}" required>
+                                    value="{{ $product->name }}" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -409,6 +409,23 @@
                                 </div>
                             </div>
                         </div>
+                        
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0 h6">{{ translate('Product Description') }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Description') }} <i
+                                    class="las la-language text-danger"
+                                    title="{{ translate('Translatable') }}"></i></label>
+                            <div class="col-md-8">
+                                <textarea class="aiz-text-editor" name="description">{!! $product->description !!}</textarea>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-from-label">{{ translate('Intake') }}</label>
                             <div class="col-md-8">
@@ -441,20 +458,556 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0 h6">{{ translate('Product Description') }}</h5>
-                    </div>
-                    <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-md-3 col-from-label">{{ translate('Description') }} <i
-                                    class="las la-language text-danger"
-                                    title="{{ translate('Translatable') }}"></i></label>
+                            <label class="col-md-3 col-from-label">{{ translate('si2') }}</label>
                             <div class="col-md-8">
-                                <textarea class="aiz-text-editor" name="description">{!! $product->getTranslation('description', $lang) !!}</textarea>
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('si2') }}"  class="form-control" name="si2" value="{{ $product->si2 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Medidas embalaje') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Medidas embalaje') }}"  class="form-control" name="medidas_de_embalaje" value="{{ $product->medidas_de_embalaje }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('si3') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('si3') }}"  class="form-control" name="si3" value="{{ $product->si3 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Peso de producto') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Peso de producto') }}"  class="form-control" name="peso_de_producto" value="{{ $product->peso_de_producto }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('si4') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('si4') }}"  class="form-control" name="si4" value="{{ $product->si4 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Peso de envio') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Peso de envio') }}"  class="form-control" name="peso_de_envio" value="{{ $product->peso_de_envio }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Tipo de conexion') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Tipo de conexion') }}"  class="form-control" name="tipo_de_coneccion" value="{{ $product->tipo_de_coneccion }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Eficiencia') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Eficiencia') }}"  class="form-control" name="eficiencia" value="{{ $product->eficiencia }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Caracteristica 1') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Caracteristica 1') }}"  class="form-control" name="caracteristica1" value="{{ $product->caracteristica1 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Caracteristica 2') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Caracteristica 2') }}"  class="form-control" name="caracteristica2" value="{{ $product->caracteristica2 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Caracteristica 3') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Caracteristica 3') }}"  class="form-control" name="caracteristica3" value="{{ $product->caracteristica3 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Caracteristica 4') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Caracteristica 4') }}"  class="form-control" name="caracteristica4" value="{{ $product->caracteristica4 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Caracteristica 5') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Caracteristica 5') }}"  class="form-control" name="caracteristica5" value="{{ $product->caracteristica5 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Caracteristica 6') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Caracteristica 6') }}"  class="form-control" name="caracteristica6" value="{{ $product->caracteristica6 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Caracteristica 7') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Caracteristica 7') }}"  class="form-control" name="caracteristica7" value="{{ $product->caracteristica7 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Caracteristica 8') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Caracteristica 8') }}"  class="form-control" name="caracteristica8" value="{{ $product->caracteristica8 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Beneficio 1') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Beneficio 1') }}"  class="form-control" name="beneficio1" value="{{ $product->beneficio1 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Beneficio 2') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Beneficio 2') }}"  class="form-control" name="beneficio2" value="{{ $product->beneficio2 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Beneficio 3') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Beneficio 3') }}"  class="form-control" name="beneficio3" value="{{ $product->beneficio3 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Beneficio 4') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Beneficio 4') }}"  class="form-control" name="beneficio4" value="{{ $product->beneficio4 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Beneficio 5') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Beneficio 5') }}"  class="form-control" name="beneficio5" value="{{ $product->beneficio5 }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('Postventa') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('Postventa') }}"  class="form-control" name="postventa" value="{{ $product->postventa }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Imagen 1') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="imagen1" class="selected-files"
+                                        value="{{ $product->imagen1 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Imagen 2') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="imagen2" class="selected-files"
+                                        value="{{ $product->imagen2 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Imagen 3') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="imagen3" class="selected-files"
+                                        value="{{ $product->imagen3 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Imagen 4') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="imagen4" class="selected-files"
+                                        value="{{ $product->imagen4 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Video') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="video">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="video" class="selected-files"
+                                        value="{{ $product->video }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Video 2') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="video">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="video2" class="selected-files"
+                                        value="{{ $product->video2 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Video 3') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="video">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="video3" class="selected-files"
+                                        value="{{ $product->video3 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Video 4') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="video">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="video4" class="selected-files"
+                                        value="{{ $product->video4 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Ficha tecnica imagen 1') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="ficha_tecnica_imagen1" class="selected-files"
+                                        value="{{ $product->ficha_tecnica_imagen1 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Ficha tecnica imagen 2') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="ficha_tecnica_imagen2" class="selected-files"
+                                        value="{{ $product->ficha_tecnica_imagen2 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Ficha tecnica imagen 3') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="ficha_tecnica_imagen3" class="selected-files"
+                                        value="{{ $product->ficha_tecnica_imagen3 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('Ficha tecnica imagen 4') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="ficha_tecnica_imagen4" class="selected-files"
+                                        value="{{ $product->ficha_tecnica_imagen4 }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('manual_de_producto') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="manual_de_producto" class="selected-files"
+                                        value="{{ $product->manual_de_producto }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('ficha_tecnica_del_producto') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="ficha_tecnica_del_producto" class="selected-files"
+                                        value="{{ $product->ficha_tecnica_del_producto }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">{{ translate('manual_de_instalacion') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                            {{ translate('Browse') }}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="manual_de_instalacion" class="selected-files"
+                                        value="{{ $product->manual_de_instalacion }}">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('vida_util') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('vida_util') }}"  class="form-control" name="vida_util" value="{{ $product->vida_util }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('plastico') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('plastico') }}"  class="form-control" name="plastico" value="{{ $product->plastico }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('carton') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('carton') }}"  class="form-control" name="carton" value="{{ $product->carton }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('peso_carton') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('peso_carton') }}"  class="form-control" name="peso_carton" value="{{ $product->peso_carton }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('papel') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('papel') }}"  class="form-control" name="papel" value="{{ $product->papel }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('peso_papel') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('peso_papel') }}"  class="form-control" name="peso_papel" value="{{ $product->peso_papel }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('metal') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('metal') }}"  class="form-control" name="metal" value="{{ $product->metal }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('peso_metal') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('peso_metal') }}"  class="form-control" name="peso_metal" value="{{ $product->peso_metal }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('vidrio') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('vidrio') }}"  class="form-control" name="vidrio" value="{{ $product->vidrio }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('peso_vidrio') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('peso_vidrio') }}"  class="form-control" name="peso_vidrio" value="{{ $product->peso_vidrio }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('madera') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('madera') }}"  class="form-control" name="madera" value="{{ $product->madera }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('peso_madera') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('peso_madera') }}"  class="form-control" name="peso_madera" value="{{ $product->peso_madera }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('textil') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('textil') }}"  class="form-control" name="textil" value="{{ $product->textil }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('peso_textil') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('peso_textil') }}"  class="form-control" name="peso_textil" value="{{ $product->peso_textil }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('bateria_electrico') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('bateria_electrico') }}"  class="form-control" name="bateria_electrico" value="{{ $product->bateria_electrico }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('peso_bateria_electrico') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('peso_bateria_electrico') }}"  class="form-control" name="peso_bateria_electrico" value="{{ $product->peso_bateria_electrico }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-from-label">{{ translate('impacto_ambiental') }}</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" placeholder="{{ translate('impacto_ambiental') }}"  class="form-control" name="impacto_ambiental" value="{{ $product->impacto_ambiental }}">
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -96,7 +96,7 @@
                                             onerror="this.onerror=null;this.src='{{ static_asset('/assets/img/placeholder.jpg') }}';" />
                                         <span class="flex-grow-1 minw-0">
                                             <div class=" text-truncate-2 fs-12">
-                                                {{ $product->getTranslation('name') }}</div>
+                                                {{ $product->name }}</div>
                                         </span>
                                     </div>
                                 </a>

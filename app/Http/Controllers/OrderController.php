@@ -55,6 +55,16 @@ class OrderController extends Controller
         return view('backend.orders.show', compact('order'));
     }
 
+    public function order_status(Request $request, $id)
+    {   
+        $order = Order::findOrFail($id);
+        $order->status = $request->status;
+        $order->save();
+
+        flash(translate('Status Changed!!'))->success();
+        return back();
+    }
+
     /**
      * Display a single sale to admin.
      *
