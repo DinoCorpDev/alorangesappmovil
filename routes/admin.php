@@ -57,6 +57,7 @@ Route::get('/convert_for_update', [UpdateController::class, 'convertForRefund'])
 Route::get('/refresh-csrf', function () {
     return csrf_token();
 });
+
 Route::post('/aiz-uploader', [AizUploadController::class, 'show_uploader']);
 Route::post('/aiz-uploader/upload', [AizUploadController::class, 'upload']);
 Route::get('/aiz-uploader/get_uploaded_files', [AizUploadController::class, 'get_uploaded_files']);
@@ -72,7 +73,6 @@ Route::get('/customer-products/admin', [SettingController::class, 'initSetting']
 
 Auth::routes(['register' => false]);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {

@@ -14,14 +14,6 @@ class AddFieldsToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            /*$table->text('reference')->nullable()->after('shop_id');
-            $table->text('currency')->nullable()->after('discount_end_date');
-            $table->text('warranty_text')->nullable()->after('has_warranty');
-            $table->text('shipping')->nullable()->after('num_of_sale');
-            $table->text('intake')->nullable()->after('shipping');
-            $table->text('material')->nullable()->after('intake');
-            $table->text('unit_metering')->nullable()->after('material');
-            $table->text('engaste')->nullable()->after('unit_metering');*/
             $table->text('si2')->nullable()->after('engaste');
             $table->text('medidas_de_embalaje')->nullable()->after('si2');
             $table->text('si3')->nullable()->after('medidas_de_embalaje');
@@ -89,14 +81,62 @@ class AddFieldsToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('reference');
-            $table->dropColumn('currency');
-            $table->dropColumn('warranty_text');
-            $table->dropColumn('shipping');
-            $table->dropColumn('intake');
-            $table->dropColumn('material');
-            $table->dropColumn('unit_metering');
-            $table->dropColumn('engaste');
+            $table->dropColumn('si2');
+            $table->dropColumn('medidas_de_embalaje');
+            $table->dropColumn('si3');
+            $table->dropColumn('peso_de_producto');
+            $table->dropColumn('si4');
+            $table->dropColumn('peso_de_envio');
+            $table->dropColumn('tipo_de_coneccion');
+            $table->dropColumn('eficiencia');
+            $table->dropColumn('caracteristica1');
+            $table->dropColumn('caracteristica2');
+            $table->dropColumn('caracteristica3');
+            $table->dropColumn('caracteristica4');
+            $table->dropColumn('caracteristica5');
+            $table->dropColumn('caracteristica6');
+            $table->dropColumn('caracteristica7');
+            $table->dropColumn('caracteristica8');
+            $table->dropColumn('beneficio1');
+            $table->dropColumn('beneficio2');
+            $table->dropColumn('beneficio3');
+            $table->dropColumn('beneficio4');
+            $table->dropColumn('beneficio5');
+            $table->dropColumn('postventa');
+            $table->dropColumn('imagen1');
+            $table->dropColumn('imagen2');
+            $table->dropColumn('imagen3');
+            $table->dropColumn('imagen4');
+            $table->dropColumn('video');
+            $table->dropColumn('video2');
+            $table->dropColumn('video3');
+            $table->dropColumn('video4');
+            $table->dropColumn('ficha_tecnica_imagen1');
+            $table->dropColumn('ficha_tecnica_imagen2');
+            $table->dropColumn('ficha_tecnica_imagen3');
+            $table->dropColumn('ficha_tecnica_imagen4');
+            $table->dropColumn('manual_de_producto');
+            $table->dropColumn('ficha_tecnica_del_producto');
+            $table->dropColumn('manual_de_instalacion');
+            $table->dropColumn('logo');
+            $table->dropColumn('vida_util');
+            $table->dropColumn('plastico');
+            $table->dropColumn('peso_plastico');
+            $table->dropColumn('carton');
+            $table->dropColumn('peso_carton');
+            $table->dropColumn('papel');
+            $table->dropColumn('peso_papel');
+            $table->dropColumn('metal');
+            $table->dropColumn('peso_metal');
+            $table->dropColumn('vidrio');
+            $table->dropColumn('peso_vidrio');
+            $table->dropColumn('madera');
+            $table->dropColumn('peso_madera');
+            $table->dropColumn('textil');
+            $table->dropColumn('peso_textil');
+            $table->dropColumn('bateria_electrico');
+            $table->dropColumn('peso_bateria_electrico');
+            $table->dropColumn('impacto_ambiental');
         });
     }
 }

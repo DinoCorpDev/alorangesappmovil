@@ -266,71 +266,73 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
-    private function saveArchive($archive){
+    private function saveArchive($archive)
+    {
         $type = array(
-            "jpg"=>"image",
-            "jpeg"=>"image",
-            "png"=>"image",
-            "svg"=>"image",
-            "webp"=>"image",
-            "gif"=>"image",
-            "mp4"=>"video",
-            "mpg"=>"video",
-            "mpeg"=>"video",
-            "webm"=>"video",
-            "ogg"=>"video",
-            "avi"=>"video",
-            "mov"=>"video",
-            "flv"=>"video",
-            "swf"=>"video",
-            "mkv"=>"video",
-            "wmv"=>"video",
-            "wma"=>"audio",
-            "aac"=>"audio",
-            "wav"=>"audio",
-            "mp3"=>"audio",
-            "zip"=>"archive",
-            "rar"=>"archive",
-            "7z"=>"archive",
-            "doc"=>"document",
-            "txt"=>"document",
-            "docx"=>"document",
-            "pdf"=>"document",
-            "csv"=>"document",
-            "xml"=>"document",
-            "ods"=>"document",
-            "xlr"=>"document",
-            "xls"=>"document",
-            "xlsx"=>"document"
+            "jpg" => "image",
+            "jpeg" => "image",
+            "png" => "image",
+            "svg" => "image",
+            "webp" => "image",
+            "gif" => "image",
+            "mp4" => "video",
+            "mpg" => "video",
+            "mpeg" => "video",
+            "webm" => "video",
+            "ogg" => "video",
+            "avi" => "video",
+            "mov" => "video",
+            "flv" => "video",
+            "swf" => "video",
+            "mkv" => "video",
+            "wmv" => "video",
+            "wma" => "audio",
+            "aac" => "audio",
+            "wav" => "audio",
+            "mp3" => "audio",
+            "zip" => "archive",
+            "rar" => "archive",
+            "7z" => "archive",
+            "doc" => "document",
+            "txt" => "document",
+            "docx" => "document",
+            "pdf" => "document",
+            "csv" => "document",
+            "xml" => "document",
+            "ods" => "document",
+            "xlr" => "document",
+            "xls" => "document",
+            "xlsx" => "document"
         );
-        
-        $carpeta=public_path(). "/uploads/all/";
-        if($archive !== "" && $archive !== null){
+
+        $carpeta = public_path() . "/uploads/all/";
+        if ($archive !== "" && $archive !== null) {
             if (strpos($archive, 'file') !== false) {
-                if(@fopen($archive,"r")){
-                    $destino=$carpeta.substr($archive,strrpos($archive,"/")+1);
+                if (@fopen($archive, "r")) {
+                    $destino = $carpeta . substr($archive, strrpos($archive, "/") + 1);
                     file_put_contents($destino, file_get_contents($archive));
 
                     $upload = new Upload;
-                    $upload->file_original_name = substr($archive,strrpos($archive,"/")+1);
-                    $upload->file_name = "/uploads/all/" . substr($archive, strrpos($archive,"/")+1);
+                    $upload->file_original_name = substr($archive, strrpos($archive, "/") + 1);
+                    $upload->file_name = "/uploads/all/" . substr($archive, strrpos($archive, "/") + 1);
                     $upload->user_id = Auth::user()->id;
 
-                    $upload->extension = substr($archive, strrpos($archive,".")+1);
-                    if(isset($type[$upload->extension])){
+                    $upload->extension = substr($archive, strrpos($archive, ".") + 1);
+
+                    if (isset($type[$upload->extension])) {
                         $upload->type = $type[$upload->extension];
-                    }
-                    else{
+                    } else {
                         $upload->type = "others";
                     }
+
                     $upload->file_size = 1024;
                     $upload->save();
-                    
+
                     return $upload->id;
-                }else{
+                } else {
                     return "";
                 }
-            }else{
+            } else {
                 return "";
             }
         }
@@ -435,7 +437,7 @@ class ProductController extends Controller
 
                 $startcount++;
             }
-            
+
             if (count($data) > 0) {
                 foreach ($data as $row_data) {
                     $product = new Product;
@@ -453,6 +455,7 @@ class ProductController extends Controller
                     $product->brand_id = $marca->id;
 
                     $array_categories = array();
+
                     if ($row_data["categoria"] != "") {
                         $categorie = Category::firstOrCreate(
                             ['name' => $row_data["categoria"]],
@@ -464,6 +467,7 @@ class ProductController extends Controller
                                 'slug' => Str::slug($row_data["categoria"], '-') . '-' . strtolower(Str::random(5))
                             ]
                         );
+
                         array_push($array_categories, $categorie->id);
 
                         if ($row_data["subcategoria"] != "") {
@@ -477,6 +481,7 @@ class ProductController extends Controller
                                     'slug' => Str::slug($row_data["subcategoria"], '-') . '-' . strtolower(Str::random(5))
                                 ]
                             );
+
                             array_push($array_categories, $subcategorie->id);
                         }
                     }
@@ -520,7 +525,7 @@ class ProductController extends Controller
                     }
 
                     $product->slug = Str::slug($row_data["categoria"], '-') . '-' . strtolower(Str::random(5));
-                    
+
                     $product->si2 =  $row_data["si2"];
                     $product->medidas_de_embalaje =  $row_data["medidas_de_embalaje"];
                     $product->si3 =  $row_data["si3"];
@@ -544,7 +549,7 @@ class ProductController extends Controller
                     $product->beneficio5 =  $row_data["beneficio5"];
                     $product->postventa =  $row_data["postventa"];
 
-                    //Archives and images
+                    // Archives and images
                     $product->imagen1 = self::saveArchive($row_data["imagen1"]);
                     $product->imagen2 =  self::saveArchive($row_data["imagen2"]);
                     $product->imagen3 =  self::saveArchive($row_data["imagen3"]);
@@ -561,7 +566,7 @@ class ProductController extends Controller
                     $product->ficha_tecnica_del_producto =  self::saveArchive($row_data["ficha_tecnica_del_producto"]);
                     $product->manual_de_instalacion =  self::saveArchive($row_data["manual_de_instalacion"]);
                     $product->thumbnail_img =  self::saveArchive($row_data["logo"]);
-                    
+
                     $product->vida_util =  $row_data["vida_util"];
                     $product->plastico =  $row_data["plastico"];
                     $product->peso_plastico =  $row_data["peso_plastico"];
@@ -580,7 +585,7 @@ class ProductController extends Controller
                     $product->bateria_electrico =  $row_data["bateria_electrico"];
                     $product->peso_bateria_electrico =  $row_data["peso_bateria_electrico"];
                     $product->impacto_ambiental =  $row_data["impacto_ambiental"];
-                   
+
                     $product->save();
 
                     if (count($array_categories) > 0) {
@@ -604,8 +609,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-
+    {
         return view('backend.product.products.show', [
             'product' => Product::withCount('reviews', 'wishlists', 'carts')->with('variations.combinations')->findOrFail($id)
         ]);
@@ -646,7 +650,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
 
         if ($request->has('is_variant') && !$request->has('variations')) {
             flash(translate('Invalid product variations'))->error();
@@ -716,6 +720,7 @@ class ProductController extends Controller
         // discount
         $product->discount          = $request->discount;
         $product->discount_type     = $request->discount_type;
+
         if ($request->date_range != null) {
             $date_var               = explode(" to ", $request->date_range);
             $product->discount_start_date = strtotime($date_var[0]);
@@ -754,6 +759,7 @@ class ProductController extends Controller
         // taxes
         $tax_data = array();
         $tax_ids = array();
+
         if ($request->has('taxes')) {
             foreach ($request->taxes as $key => $tax) {
                 array_push($tax_data, [
@@ -763,6 +769,7 @@ class ProductController extends Controller
             }
             $tax_ids = $request->tax_ids;
         }
+
         $taxes = array_combine($tax_ids, $tax_data);
 
         $product->product_taxes()->sync($taxes);
@@ -785,6 +792,7 @@ class ProductController extends Controller
                 foreach ($variation->combinations as $comb) {
                     $comb->delete();
                 }
+
                 $variation->delete();
             });
 
@@ -826,12 +834,14 @@ class ProductController extends Controller
                     foreach ($variation->combinations as $comb) {
                         $comb->delete();
                     }
+
                     $variation->delete();
                 }
             }
 
             $variation              = $product->variations->first();
-            if($variation){
+
+            if ($variation) {
                 $variation->product_id  = $product->id;
                 $variation->code        = null;
                 $variation->sku         = $request->sku;
@@ -846,12 +856,15 @@ class ProductController extends Controller
         foreach ($product->attributes as $attr) {
             $attr->delete();
         }
+
         foreach ($product->attribute_values as $attr_val) {
             $attr_val->delete();
         }
+
         if ($request->has('product_attributes') && $request->product_attributes[0] != null) {
             foreach ($request->product_attributes as $attr_id) {
                 $attribute_values = 'attribute_' . $attr_id . '_values';
+
                 if ($request->has($attribute_values) && $request->$attribute_values != null) {
                     $p_attribute = new ProductAttribute;
                     $p_attribute->product_id = $product->id;
@@ -1085,8 +1098,6 @@ class ProductController extends Controller
 
     public function sku_combination(Request $request)
     {
-        // dd($request->all());
-
         $option_choices = array();
 
         if ($request->has('product_options')) {
@@ -1106,23 +1117,25 @@ class ProductController extends Controller
                     foreach ($product_option_values as $key => $item) {
                         array_push($choices, $item);
                     }
+
                     $option_choices[$option] =  $choices;
                 }
             }
         }
 
         $combinations = array(array());
+
         foreach ($option_choices as $property => $property_values) {
             $tmp = array();
+
             foreach ($combinations as $combination_item) {
                 foreach ($property_values as $property_value) {
                     $tmp[] = $combination_item + array($property => $property_value);
                 }
             }
+
             $combinations = $tmp;
         }
-
-        // dd($option_choices,$combinations);
 
         return view('backend.product.products.sku_combinations', compact('combinations'))->render();
     }
@@ -1139,6 +1152,7 @@ class ProductController extends Controller
                     );
                 }
             }
+
             $attributes->whereNotIn('id', array_diff($request->product_attributes, [null]));
         }
 
@@ -1152,7 +1166,6 @@ class ProductController extends Controller
 
     public function get_attribute_values(Request $request)
     {
-
         $attribute_id = $request->attribute_id;
         $attribute_values = AttributeValue::where('attribute_id', $attribute_id)->get();
 
@@ -1161,8 +1174,8 @@ class ProductController extends Controller
 
     public function new_option(Request $request)
     {
-
         $attributes = Attribute::query();
+
         if ($request->has('product_options')) {
             foreach ($request->product_options as $key => $value) {
                 if ($value == NULL) {
@@ -1172,7 +1185,9 @@ class ProductController extends Controller
                     );
                 }
             }
+
             $attributes->whereNotIn('id', array_diff($request->product_options, [null]));
+
             if (count($request->product_options) === 3) {
                 return array(
                     'count' => -2,
