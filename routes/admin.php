@@ -57,6 +57,7 @@ Route::get('/convert_for_update', [UpdateController::class, 'convertForRefund'])
 Route::get('/refresh-csrf', function () {
     return csrf_token();
 });
+
 Route::post('/aiz-uploader', [AizUploadController::class, 'show_uploader']);
 Route::post('/aiz-uploader/upload', [AizUploadController::class, 'upload']);
 Route::get('/aiz-uploader/get_uploaded_files', [AizUploadController::class, 'get_uploaded_files']);
@@ -72,7 +73,6 @@ Route::get('/customer-products/admin', [SettingController::class, 'initSetting']
 
 Auth::routes(['register' => false]);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
@@ -109,6 +109,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
         Route::post('/sku-combination', [ProductController::class, 'sku_combination'])->name('product.sku_combination');
 
+        Route::post('/import', [ProductController::class, 'import'])->name('product.import');
 
         Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
         Route::get('/duplicate/{id}', [ProductController::class, 'duplicate'])->name('product.duplicate');
@@ -219,6 +220,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/orders/invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('orders.invoice.download');
     Route::get('/orders/print/{order_id}', [InvoiceController::class, 'invoice_print'])->name('orders.invoice.print');
     Route::post('/orders/add-tracking-information', [OrderController::class, 'add_tracking_information'])->name('orders.add_tracking_information');
+    Route::get('/orders/status/{order_id}', [OrderController::class, 'order_status'])->name('order.status');
 
     //Coupons
     Route::resource('coupon', CouponController::class);
@@ -232,7 +234,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::post('/new-query', 'storeMessage')->name('querries.store');
         Route::post('/product-querries/refresh', 'refresh')->name('querries.refresh');
         Route::get('/product-querries/show/{id}', 'show')->name('querries.show');
-    }); 
+    });
 
     //Reviews
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');

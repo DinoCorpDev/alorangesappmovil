@@ -36,31 +36,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ mix('web-assets/css/app.css') }}" rel="stylesheet">
     <!-- Scripts -->
     <script src="{{ mix('web-assets/js/app.js') }}" defer></script>
-
-    <style>
-        body,
-        .v-application {
-            font-family: 'Roboto', sans-serif;
-            font-weight: 400;
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        .header-sticky {
-            z-index: 8;
-        }
-
-        :root {
-            --primary: {{ get_setting('base_color', '#e62d04') }};
-            --soft-primary: {{ hex2rgba(get_setting('base_color', '#e62d04'), 0.15) }};
-        }
-    </style>
 
     @include('frontend.inc.pwa')
 

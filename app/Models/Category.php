@@ -7,6 +7,9 @@ use App;
 
 class Category extends Model
 {
+
+    protected $fillable = ['parent_id', 'level', 'name', 'order_level', 'slug'];
+
     protected $with = ['category_translations'];
 
     public function getTranslation($field = '', $lang = false)
