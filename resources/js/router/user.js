@@ -15,6 +15,8 @@ let Coupon = () => import("../pages/user/Coupon");
 let Profile = () => import("../pages/user/Profile");
 let UserLayout = () => import("../components/user/UserLayout");
 let RenovacionUpgrade = () => import("../pages/user/RenovacionUpgrade");
+let NotificationAll = () => import("../pages/user/Notification1");
+let Notification = () => import("../pages/user/Notification2");
 let Error404 = () => import("../pages/errors/404");
 
 export default [
@@ -119,6 +121,18 @@ export default [
                 path: "renovacion-UpGrade",
                 component: RenovacionUpgrade,
                 name: "RenovacionUpgrade",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "notification-all",
+                component: NotificationAll,
+                name: "notification-all",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "notification",
+                component: Notification,
+                name: "notification",
                 meta: { requiresAuth: true }
             }
         ]
