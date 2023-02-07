@@ -9,13 +9,13 @@
             <div class="div-body">
                 <div class="div-not1">
                     <div>
-                        <h6 class="black--text bold ">{{ title }}</h6>
+                        <h6 class="black--text bold">{{ title }}</h6>
                         <span class="black--text body1">Fecha</span>
-                        <span class="black--text body1 ">{{ date }}</span>
+                        <span class="black--text body1">{{ date }}</span>
                     </div>
                     <div>
-                        <span class="black--text  bold body1">Envíado</span>
-                        <span class="black--text body1 ">{{ remitent }}</span>
+                        <span class="black--text bold body1">Envíado</span>
+                        <span class="black--text body1">{{ remitent }}</span>
                     </div>
                 </div>
                 <div class="div-not2">
@@ -73,14 +73,14 @@ export default {
     width: 100%;
 }
 
-.div-not1{
+.div-not1 {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     padding: 0px 10px;
     width: 100%;
 }
-.div-not2{
+.div-not2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -106,9 +106,5 @@ export default {
     background-color: #dfdfdf;
     width: 2px;
     height: 80px;
-}
-
-@media (max-width: 959px) {
-
 }
 </style>
