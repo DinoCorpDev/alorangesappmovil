@@ -45,5 +45,5 @@ const app = new Vue({
     store,
     vuetify: Vuetify,
     el: "#app",
-    render: (h) => h(theShop),
+    render: h => h(theShop)
 });
