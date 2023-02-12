@@ -115,7 +115,7 @@
                 </div>
                 <h5 class="subtitle2 text-uppercase mt-3 mb-2">Se incluye con la compra</h5>
                 <v-divider />
-                <product-item-5 />
+                <product-item-6 />
             </v-col>
         </v-row>
 
@@ -229,7 +229,7 @@
 <script>
 import ProductItem3 from "../components/global/ProductItem3.vue";
 import ProductItem2 from "../components/global/ProductItem2.vue";
-import ProductItem5 from "../components/global/ProductItem5.vue";
+import ProductItem6 from "../components/global/ProductItem6.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
 import Carousel from "../components/global/Carousel.vue";
@@ -257,7 +257,7 @@ export default {
     components: {
         ProductItem3,
         ProductItem2,
-        ProductItem5,
+        ProductItem6,
         CustomButton,
         LayoutNavbarSpaces,
         Carousel,

@@ -73,6 +73,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+    gap: 1rem;
+}
+
 .navbar-brand {
     text-decoration: none;
 

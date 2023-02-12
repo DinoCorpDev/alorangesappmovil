@@ -15,8 +15,7 @@ let Home3 = () => import("../pages/Home3");
 let Home4 = () => import("../pages/Home4");
 let About = () => import("../pages/About");
 let Brands = () => import("../pages/Brands");
-let ListProducts = () => import("../pages/ListProducts");
-let RegistrationSuccess = () => import("../pages/auth/RegistrationSuccess");
+let Search = () => import("../pages/Search");
 let Collection = () => import("../pages/Collection");
 let Product = () => import("../pages/Product");
 
@@ -34,15 +33,9 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/registrationsuccess",
-        component: RegistrationSuccess,
-        name: "RegistrationSuccess",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/listproducts",
-        component: ListProducts,
-        name: "ListProducts",
+        path: "/search2/:keyword?",
+        component: Search,
+        name: "SearchProducts",
         meta: { requiresAuth: false }
     },
     {

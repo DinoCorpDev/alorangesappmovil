@@ -7,7 +7,7 @@
                 </router-link>
                 <div class="d-flex">
                     <custom-button light class="mr-4" icon="la-store-alt" text="Ir a tienda" />
-                    <custom-button light class="mr-4" text="Iniciar Sesión" />
+                    <custom-button light class="mr-4" text="Iniciar Sesión" :to="{ name: 'Login2' }" />
                     <theme-toggle-switch />
                 </div>
             </v-container>

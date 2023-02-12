@@ -1,160 +1,61 @@
 <template>
     <div>
         <layout-navbar-auth />
+<<<<<<< HEAD
         <chart-view/>
         <v-row>
             <v-col cols="4">
                 <v-row dense class="mt-2 ml-3">
                     <v-col cols="4">
                         <v-row justify="center">
-                            <v-btn  light width="150px"  @click="showd = true; showd1 = false; showd2 = false">Especificación </v-btn>
+                            <v-btn
+                                light
+                                width="150px"
+                                @click="
+                                    showd = true;
+                                    showd1 = false;
+                                    showd2 = false;
+                                "
+                            >
+                                Especificación
+                            </v-btn>
                         </v-row>
                     </v-col>
                     <v-col cols="4">
                         <v-row justify="center">
-                        <v-btn  width="150px" light  @click="showd = false; showd1 = true; showd2 = false">Reseña </v-btn></v-row>
+                            <v-btn
+                                width="150px"
+                                light
+                                @click="
+                                    showd = false;
+                                    showd1 = true;
+                                    showd2 = false;
+                                "
+                            >
+                                Reseña
+                            </v-btn>
+                        </v-row>
                     </v-col>
                     <v-col cols="4">
                         <v-row justify="center">
-                        <v-btn   light width="150px"  @click="showd = false; showd1 = false; showd2 = true"> Sostenibilidad </v-btn></v-row>
+                            <v-btn
+                                light
+                                width="150px"
+                                @click="
+                                    showd = false;
+                                    showd1 = false;
+                                    showd2 = true;
+                                "
+                            >
+                                Sostenibilidad
+                            </v-btn>
+                        </v-row>
                     </v-col>
                 </v-row>
-                <v-divider class="mt-8 ml-3"/> 
-                <v-card
-                    v-scroll.self="onScroll"
-                    class="overflow-y-auto mt-3"
-                    max-height="628"
-                    v-show="showd"
-                >               
-                    <div class="product-item-body pa-4 la-border ml-3 ">
-                        <v-row>
-                            <v-col cols="6">
-                                <v-row justify="center" dense>
-                                    <span>Energía</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <h5 class="subtitle2 text-uppercase mt-1">Consumo</h5>
-                                </v-row>
-                            </v-col>
-                            <v-divider inset vertical class="mb-2"/>
-                            <v-col cols="6">
-                                <v-row justify="center" dense>
-                                    <span>Material</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <h5 class="subtitle2 text-uppercase mt-1">Cuerpo</h5>
-                                </v-row>
-                            </v-col>
-                        </v-row>
-                    </div>
-                    <div class="product-item-body pa-4 la-border ml-3 mt-4 ">
-                        <v-row>
-                            <v-col cols="5">
-                                <v-row dense>
-                                    <v-icon class="mr-2">la-cube</v-icon>
-                                    <v-icon class="mr-2">la-cube</v-icon>
-                                    <v-icon >la-cube</v-icon>
-                                </v-row>
-                                <v-row dense>
-                                    <span class="subtitle2 text-uppercase mt-1">Medida de Producto</span>
-                                </v-row>
-                                <v-row dense>
-                                    <span class="subtitle2 text-uppercase">Medida de Embalaje</span>
-                                </v-row>
-                                <v-row dense>
-                                    <span class="subtitle2 text-uppercase">Medida de Engaste</span>
-                                </v-row>
-                            </v-col>
-                            <v-col cols="5">
-                                <v-row justify="center" dense>
-                                    <span class="subtitles-gray">(Fuente x Profundidad x Altura)</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <span class="subtitle2 text-uppercase mt-3">000 x 000 x 000</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <span class="subtitle2 text-uppercase">000 x 000 x 000</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <span class="subtitle2 text-uppercase">000 x 000 x 000</span>
-                                </v-row>
-                            </v-col>
-                            <v-col cols="2">
-                                <v-row justify="center" dense>
-                                    <span class="subtitles-gray">(Unidades)</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <span class="subtitle2 mt-3">cm</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <span class="subtitle2">cm</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <span class="subtitle2">cm</span>
-                                </v-row>
-                            </v-col>
-                        </v-row>
-                    </div>
-                    <div class="product-item-body pa-4 la-border ml-3 mt-4 ">
-                        <v-row>
-                            <v-col cols="6">
-                                <v-row justify="center" dense>
-                                    <span>00.0</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <h5 class="subtitle2 text-uppercase mt-1">Peso de Producto</h5>
-                                </v-row>
-                            </v-col>
-                            <v-divider inset vertical class="mb-2"/>
-                            <v-col cols="6">
-                                <v-row justify="center" dense>
-                                    <span>00.0</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <h5 class="subtitle2 text-uppercase mt-1">Peso de Envío</h5>
-                                </v-row>
-                            </v-col>
-                        </v-row>
-                    </div>
-                    <div class="product-item-body pa-4 la-border ml-3 mt-4">
-                        <v-row>
-                            <v-col cols="6">
-                                <v-row justify="center" dense>
-                                    <span>0.0 V / 0.0 Hz / 0.0 A</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <h5 class="subtitle2 text-uppercase mt-1">Voltaje</h5>
-                                </v-row>
-                            </v-col>
-                            <v-divider inset vertical class="mb-2"/>
-                            <v-col cols="6">
-                                <v-row justify="center" dense>
-                                    <span>0.0 %</span>
-                                </v-row>
-                                <v-row justify="center" dense>
-                                    <h5 class="subtitle2 text-uppercase mt-1">Eficiencia</h5>
-                                </v-row>
-                            </v-col>
-                        </v-row>
-                    </div>
-                    <h5 class="subtitle2 text-uppercase mt-5 ml-3">Características</h5>
-                    <v-divider class="mt-2 ml-3"/>
-                    <ul>
-                        <li class="subtitle2 mt-1">Característica 1 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 2 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 3 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 4 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 5 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 6 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 7 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 8 incluye Lorem Ipsum is simply dummy text of printing</li>
-                    </ul>
-                    <div class="d-flex justify-space-between">
-                        <h5 class="subtitle2 text-uppercase mt-5 ml-3">Manuales y Guías</h5>
-                        <h5 class="subtitles-gray mt-5">(Para descargar)</h5>
-                    </div>
-                    <v-divider class="mt-2 ml-3"/>
-                    <v-row class="mt-1 ml-3">
+                <v-divider class="mt-8 ml-3" />
+                <div v-show="showd" class="product-item-body pa-4 la-border ml-3 mt-4">
+                    <v-row>
+>>>>>>> d281d8332c0749b15a02ad719be562a2a213630c
                         <v-col cols="6">
                             <v-row dense>
                                 <span class="subtitle2"><u>Manual de producto</u></span>
@@ -163,6 +64,9 @@
                                 <span class="subtitle2"><u>Ficha técnica del producto</u></span>
                             </v-row>
                         </v-col>
+<<<<<<< HEAD
+=======
+                        <v-divider inset vertical class="mb-2" />
                         <v-col cols="6">
                             <v-row dense>
                                 <span class="subtitle2"><u>Hora de especificaciones</u></span>
@@ -368,20 +272,55 @@
             <v-col cols="4" class="positionColbuttons">
                 <v-row dense justify>
                     <v-col>
-                        <carousel v-show="showp" style="height:700px;"/>
-                        <carousel :slides="sliderSeeder" v-show="showp1" style="height:700px;"/>
-                        <v-img src="https://picsum.photos/1920/1080?random=1" v-show="showp2" height="700px" width="100%"/>
+                        <carousel v-show="showp" style="height: 700px" />
+                        <carousel :slides="sliderSeeder" v-show="showp1" style="height: 700px" />
+                        <v-img
+                            src="https://picsum.photos/1920/1080?random=1"
+                            v-show="showp2"
+                            height="700px"
+                            width="100%"
+                        />
                     </v-col>
                 </v-row>
                 <v-row class="buttonsAct px-4">
                     <v-col cols="4">
-                        <v-btn   light block  @click="showp = true; showp1 = false; showp2 = false">Imágenes </v-btn>
+                        <v-btn
+                            light
+                            block
+                            @click="
+                                showp = true;
+                                showp1 = false;
+                                showp2 = false;
+                            "
+                        >
+                            Imágenes
+                        </v-btn>
                     </v-col>
                     <v-col cols="4">
-                        <v-btn   light block  @click="showp = false; showp1 = true; showp2 = false">Videos </v-btn>
+                        <v-btn
+                            light
+                            block
+                            @click="
+                                showp = false;
+                                showp1 = true;
+                                showp2 = false;
+                            "
+                        >
+                            Videos
+                        </v-btn>
                     </v-col>
                     <v-col cols="4">
-                        <v-btn   light block  @click="showp = false; showp1 = false; showp2 = true"> Ficha Técnica </v-btn>
+                        <v-btn
+                            light
+                            block
+                            @click="
+                                showp = false;
+                                showp1 = false;
+                                showp2 = true;
+                            "
+                        >
+                            Ficha Técnica
+                        </v-btn>
                     </v-col>
                 </v-row>
             </v-col>
@@ -395,21 +334,19 @@
                     <h5 class="subtitle1 mb-2">{{ brand }}</h5>
                     <div class="d-flex">
                         <h5 class="subtitle1 mb-2 mr-2">{{ val }}</h5>
-                        <h5 class="caption mb-2"><del>{{ val }}</del></h5>
+                        <h5 class="caption mb-2">
+                            <del>{{ val }}</del>
+                        </h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="caption mb-3">{{ iva }}</h5>
                         <div class="d-flex justify-space-around align-center">
                             <v-btn icon @click="model = Math.max(model - 1, 0)">
-                                <v-icon small>
-                                    la-minus
-                                </v-icon>
+                                <v-icon small> la-minus </v-icon>
                             </v-btn>
                             {{ model }}
                             <v-btn icon @click="model = Math.min(model + 1, 8)">
-                                <v-icon small>
-                                    la-plus
-                                </v-icon>
+                                <v-icon small> la-plus </v-icon>
                             </v-btn>
                         </div>
                     </div>
@@ -420,10 +357,10 @@
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">{{ varia }}</h5>
                         <v-btn-toggle>
-                            <v-btn class="blue toggle-btn"/>
-                            <v-btn class="ml-2 white toggle-btn"/>
-                            <v-btn class="ml-2 black toggle-btn"/>
-                            <v-btn class="ml-2 red toggle-btn"/>
+                            <v-btn class="blue toggle-btn" />
+                            <v-btn class="ml-2 white toggle-btn" />
+                            <v-btn class="ml-2 black toggle-btn" />
+                            <v-btn class="ml-2 red toggle-btn" />
                         </v-btn-toggle>
                     </div>
                 </div>
@@ -438,7 +375,7 @@
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">Pago</h5>
-                        <h5 class="subtitle1 mb-2">Payu  Visa  PSE  MC</h5>
+                        <h5 class="subtitle1 mb-2">Payu Visa PSE MC</h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase">Envío</h5>
@@ -451,16 +388,16 @@
                     <product-item-5 />
                 </div>
             </v-col>
-        </v-row>   
+        </v-row>
 
         <div class="mb-4 mt-16">
             <div class="d-flex justify-space-between mb-8">
                 <h5 class="mt-1">H5</h5>
                 <div style="width: 38%">
-                <custom-button light text="Nuevo" style="width: 23%"/>
-                <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
-                <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
-                <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
+                    <custom-button light text="Nuevo" style="width: 23%" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                 </div>
             </div>
             <v-row>
@@ -493,10 +430,10 @@
                 <div class="d-flex justify-space-between mb-8">
                     <h5 class="mt-1">H5</h5>
                     <div style="width: 38%">
-                    <custom-button light text="Nuevo" style="width: 23%"/>
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%"/>
+                        <custom-button light text="Nuevo" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                     </div>
                 </div>
                 <v-row>
@@ -575,32 +512,23 @@ import { sliderSeeder } from "../seeders/products";
 
 export default {
     data: () => ({
-      showp: true,
-      showp1: false,
-      showp2: false,
-      showd: true,
-      showd1: false,
-      showd2: false,
-      sliderSeeder,
-      id: "0",
-      name: "Colección",
-      ref: "REFERENCIA",
-      brand: "Marcas",
-      val: "000.000.000 COP",
-      img: "/public/assets/img/item-placeholder.png",
-      iva: "* Iva Incluido",
-      varia: "Variación",
-      model: 0,
-      tags: [
-        '1',
-        '2',
-        '3',
-      ],
-      ratings:{rating5: 67,
-      rating4: 22,
-      rating3: 11,
-      rating2: 0,
-      rating1: 0,}
+        showp: true,
+        showp1: false,
+        showp2: false,
+        showd: true,
+        showd1: false,
+        showd2: false,
+        sliderSeeder,
+        id: "0",
+        name: "Colección",
+        ref: "REFERENCIA",
+        brand: "Marcas",
+        val: "000.000.000 COP",
+        img: "/public/assets/img/item-placeholder.png",
+        iva: "* Iva Incluido",
+        varia: "Variación",
+        model: 0,
+        tags: ["1", "2", "3"]
     }),
     components: {
         ProductItem3,
@@ -620,109 +548,100 @@ export default {
 
 <style lang="scss" scoped>
 .v-btn {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.25px;
 
-  @media (min-width: 960px) {
-    font-size: 14px;
-  }
+    @media (min-width: 960px) {
+        font-size: 14px;
+    }
 
-  border-radius: 5px;
+    border-radius: 5px;
 
-  i {
-    font-size: 20px;
-  }
+    i {
+        font-size: 20px;
+    }
 
-  &:hover:before,
-  &:focus:before {
-    opacity: 1;
-  }
+    &:hover:before,
+    &:focus:before {
+        opacity: 1;
+    }
 
-  &.v-size--default {
-    height: 38px;
-  }
+    &.v-size--default {
+        height: 38px;
+    }
 }
 
 .theme--light {
-  &.v-btn {
-    color: #000000;
-
-    &.v-btn--has-bg {
-      background-color: #dfdfdf;
-
-      &:before {
-        background-color: #ffffff;
-      }
-
-      &.v-btn--disabled {
-        color: #000000 !important;
+    &.v-btn {
+        color: #000000;
 
         &.v-btn--has-bg {
-          background-color: #fafcfc !important;
+            background-color: #dfdfdf;
+
+            &:before {
+                background-color: #ffffff;
+            }
+
+            &.v-btn--disabled {
+                color: #000000 !important;
+
+                &.v-btn--has-bg {
+                    background-color: #fafcfc !important;
+                }
+            }
         }
-      }
-    }
 
-    &.v-btn--outlined {
-      color: #ffffff;
+        &.v-btn--outlined {
+            color: #ffffff;
 
-      &:hover,
-      &:focus {
-        color: #000000;
-      }
+            &:hover,
+            &:focus {
+                color: #000000;
+            }
 
-      &:before {
-        background-color: rgba(255, 255, 255, 0.8);
-      }
+            &:before {
+                background-color: rgba(255, 255, 255, 0.8);
+            }
 
-      &:focus {
-        &:before {
-          background-color: #ffffff;
+            &:focus {
+                &:before {
+                    background-color: #ffffff;
+                }
+            }
         }
-      }
     }
-  }
 }
 
-.buttonsAct{
-    top:20px;
-    position:absolute;
+.buttonsAct {
+    top: 20px;
+    position: absolute;
     width: 96%;
 }
 
-.positionColbuttons{
+.positionColbuttons {
     position: relative;
 }
 
-.la-border{
+.la-border {
     border-radius: 0.5em;
 }
 
-.v-btn-toggle{
+.v-btn-toggle {
     border-radius: 0px;
-    height:20px!important;
+    height: 20px !important;
 }
 
-.toggle-btn{
-    height:20px!important;
-    min-width:20px!important;
+.toggle-btn {
+    height: 20px !important;
+    min-width: 20px !important;
 }
 
-.v-divider{
+.v-divider {
     border-width: thin 0 0;
 }
 
 .v-divider--vertical {
     border-width: 0 thin 0 0;
-}
-
-.subtitles-gray{
-    font-size: 12px;
-    color: gray;
-}
-
-.justify-end{
-    text-align: end;
 }
 </style>

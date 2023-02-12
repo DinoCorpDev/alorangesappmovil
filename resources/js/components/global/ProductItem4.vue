@@ -47,7 +47,7 @@ export default {
         icons: ["mdi-rewind", "mdi-play", "mdi-fast-forward"],
         transparent: "rgba(255, 255, 255, 0)"
     }),
-    name: "ProductItem",
+    name: "ProductItem4",
     components: {
         CustomButton
     },

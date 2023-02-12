@@ -40,7 +40,7 @@
 import CustomButton from "./CustomButton.vue";
 
 export default {
-    name: "ProductItem",
+    name: "ProductItem3",
     components: {
         CustomButton
     },

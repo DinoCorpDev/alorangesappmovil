@@ -1,9 +1,9 @@
 <template>
     <v-container class="bar" fluid>
-        <router-link class="bar-item" :to="{ name: backTo }">
+        <div class="bar-item bar-link" @click="$router.back()">
             <back-arrow-icon />
             <span class="bar-label ml-3"> Volver </span>
-        </router-link>
+        </div>
         <a v-if="share" class="bar-item" href="#">
             <span class="bar-label mr-3"> Compartir </span>
             <share-icon />
@@ -23,9 +23,6 @@ import PadLockIcon from "../icons/PadLock.vue";
 export default {
     name: "NabvarBottomBar",
     props: {
-        backTo: {
-            type: String
-        },
         share: {
             type: Boolean,
             default: false
@@ -74,6 +71,10 @@ export default {
                 }
             }
         }
+    }
+
+    &-link {
+        cursor: pointer;
     }
 
     &-label {

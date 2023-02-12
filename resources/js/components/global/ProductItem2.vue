@@ -40,11 +40,11 @@
 import CustomButton from "./CustomButton.vue";
 
 export default {
+    name: "ProductItem2",
     data: () => ({
         icons: ["mdi-rewind", "mdi-play", "mdi-fast-forward"],
         transparent: "rgba(255, 255, 255, 0)"
     }),
-    name: "ProductItem",
     components: {
         CustomButton
     },
