@@ -1,8 +1,7 @@
 <template>
     <div>
         <layout-navbar-auth />
-<<<<<<< HEAD
-        <chart-view/>
+        <!-- <chart-view /> -->
         <v-row>
             <v-col cols="4">
                 <v-row dense class="mt-2 ml-3">
@@ -53,9 +52,138 @@
                     </v-col>
                 </v-row>
                 <v-divider class="mt-8 ml-3" />
-                <div v-show="showd" class="product-item-body pa-4 la-border ml-3 mt-4">
-                    <v-row>
->>>>>>> d281d8332c0749b15a02ad719be562a2a213630c
+                <v-card v-scroll.self="onScroll" class="overflow-y-auto mt-3" max-height="628" v-show="showd">
+                    <div class="product-item-body pa-4 la-border ml-3">
+                        <v-row>
+                            <v-col cols="6">
+                                <v-row justify="center" dense>
+                                    <span>Energía</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <h5 class="subtitle2 text-uppercase mt-1">Consumo</h5>
+                                </v-row>
+                            </v-col>
+                            <v-divider inset vertical class="mb-2" />
+                            <v-col cols="6">
+                                <v-row justify="center" dense>
+                                    <span>Material</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <h5 class="subtitle2 text-uppercase mt-1">Cuerpo</h5>
+                                </v-row>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <div class="product-item-body pa-4 la-border ml-3 mt-4">
+                        <v-row>
+                            <v-col cols="5">
+                                <v-row dense>
+                                    <v-icon class="mr-2">la-cube</v-icon>
+                                    <v-icon class="mr-2">la-cube</v-icon>
+                                    <v-icon>la-cube</v-icon>
+                                </v-row>
+                                <v-row dense>
+                                    <span class="subtitle2 text-uppercase mt-1">Medida de Producto</span>
+                                </v-row>
+                                <v-row dense>
+                                    <span class="subtitle2 text-uppercase">Medida de Embalaje</span>
+                                </v-row>
+                                <v-row dense>
+                                    <span class="subtitle2 text-uppercase">Medida de Engaste</span>
+                                </v-row>
+                            </v-col>
+                            <v-col cols="5">
+                                <v-row justify="center" dense>
+                                    <span class="subtitles-gray">(Fuente x Profundidad x Altura)</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <span class="subtitle2 text-uppercase mt-3">000 x 000 x 000</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <span class="subtitle2 text-uppercase">000 x 000 x 000</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <span class="subtitle2 text-uppercase">000 x 000 x 000</span>
+                                </v-row>
+                            </v-col>
+                            <v-col cols="2">
+                                <v-row justify="center" dense>
+                                    <span class="subtitles-gray">(Unidades)</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <span class="subtitle2 mt-3">cm</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <span class="subtitle2">cm</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <span class="subtitle2">cm</span>
+                                </v-row>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <div class="product-item-body pa-4 la-border ml-3 mt-4">
+                        <v-row>
+                            <v-col cols="6">
+                                <v-row justify="center" dense>
+                                    <span>00.0</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <h5 class="subtitle2 text-uppercase mt-1">Peso de Producto</h5>
+                                </v-row>
+                            </v-col>
+                            <v-divider inset vertical class="mb-2" />
+                            <v-col cols="6">
+                                <v-row justify="center" dense>
+                                    <span>00.0</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <h5 class="subtitle2 text-uppercase mt-1">Peso de Envío</h5>
+                                </v-row>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <div class="product-item-body pa-4 la-border ml-3 mt-4">
+                        <v-row>
+                            <v-col cols="6">
+                                <v-row justify="center" dense>
+                                    <span>0.0 V / 0.0 Hz / 0.0 A</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <h5 class="subtitle2 text-uppercase mt-1">Voltaje</h5>
+                                </v-row>
+                            </v-col>
+                            <v-divider inset vertical class="mb-2" />
+                            <v-col cols="6">
+                                <v-row justify="center" dense>
+                                    <span>0.0 %</span>
+                                </v-row>
+                                <v-row justify="center" dense>
+                                    <h5 class="subtitle2 text-uppercase mt-1">Eficiencia</h5>
+                                </v-row>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <h5 class="subtitle2 text-uppercase mt-5 ml-3">Características</h5>
+                    <v-divider class="mt-2 ml-3" />
+                    <ul>
+                        <li class="subtitle2 mt-1">
+                            Característica 1 incluye Lorem Ipsum is simply dummy text of printing
+                        </li>
+                        <li class="subtitle2">Característica 2 incluye Lorem Ipsum is simply dummy text of printing</li>
+                        <li class="subtitle2">Característica 3 incluye Lorem Ipsum is simply dummy text of printing</li>
+                        <li class="subtitle2">Característica 4 incluye Lorem Ipsum is simply dummy text of printing</li>
+                        <li class="subtitle2">Característica 5 incluye Lorem Ipsum is simply dummy text of printing</li>
+                        <li class="subtitle2">Característica 6 incluye Lorem Ipsum is simply dummy text of printing</li>
+                        <li class="subtitle2">Característica 7 incluye Lorem Ipsum is simply dummy text of printing</li>
+                        <li class="subtitle2">Característica 8 incluye Lorem Ipsum is simply dummy text of printing</li>
+                    </ul>
+                    <div class="d-flex justify-space-between">
+                        <h5 class="subtitle2 text-uppercase mt-5 ml-3">Manuales y Guías</h5>
+                        <h5 class="subtitles-gray mt-5">(Para descargar)</h5>
+                    </div>
+                    <v-divider class="mt-2 ml-3" />
+                    <v-row class="mt-1 ml-3">
                         <v-col cols="6">
                             <v-row dense>
                                 <span class="subtitle2"><u>Manual de producto</u></span>
@@ -64,9 +192,6 @@
                                 <span class="subtitle2"><u>Ficha técnica del producto</u></span>
                             </v-row>
                         </v-col>
-<<<<<<< HEAD
-=======
-                        <v-divider inset vertical class="mb-2" />
                         <v-col cols="6">
                             <v-row dense>
                                 <span class="subtitle2"><u>Hora de especificaciones</u></span>
@@ -77,84 +202,83 @@
                         </v-col>
                     </v-row>
                     <h5 class="subtitle2 text-uppercase mt-5 ml-3">Beneficios</h5>
-                    <v-divider class="mt-2 ml-3"/>
+                    <v-divider class="mt-2 ml-3" />
                     <ul>
-                        <li class="subtitle2 mt-1">Característica 1 incluye Lorem Ipsum is simply dummy text of printing</li>
+                        <li class="subtitle2 mt-1">
+                            Característica 1 incluye Lorem Ipsum is simply dummy text of printing
+                        </li>
                         <li class="subtitle2">Característica 2 incluye Lorem Ipsum is simply dummy text of printing</li>
                         <li class="subtitle2">Característica 3 incluye Lorem Ipsum is simply dummy text of printing</li>
                         <li class="subtitle2">Característica 4 incluye Lorem Ipsum is simply dummy text of printing</li>
                         <li class="subtitle2">Característica 5 incluye Lorem Ipsum is simply dummy text of printing</li>
                     </ul>
                     <h5 class="subtitle2 text-uppercase mt-5 ml-3">Servicio Postventa</h5>
-                    <v-divider class="mt-2 ml-3"/>
+                    <v-divider class="mt-2 ml-3" />
                     <p class="subtitle2 ml-3">
-                        Característica 1 incluye Lorem Ipsum is simply dummy text of printing Característica 1 incluye Lorem Ipsum is simply dummy text of printing
-                        Característica 1 incluye Lorem Ipsum is simply dummy text of printing Característica 1 incluye Lorem Ipsum is simply dummy text of printing
+                        Característica 1 incluye Lorem Ipsum is simply dummy text of printing Característica 1 incluye
+                        Lorem Ipsum is simply dummy text of printing Característica 1 incluye Lorem Ipsum is simply
+                        dummy text of printing Característica 1 incluye Lorem Ipsum is simply dummy text of printing
                         Característica 1 incluye Lorem Ipsum is simply dummy text of printing
                     </p>
                 </v-card>
-                <v-card
-                    v-scroll.self="onScroll"
-                    class="overflow-y-auto mt-3"
-                    max-height="628"
-                    v-show="showd1"
-                >
+                <v-card v-scroll.self="onScroll" class="overflow-y-auto mt-3" max-height="628" v-show="showd1">
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Calificación</h5>
                         <v-row class="mt-2">
-                            <v-col cols="4" class="justify-end" style="line-height:2.4">
+                            <v-col cols="4" class="justify-end" style="line-height: 2.4">
                                 <h5 class="text-uppercase">5.0</h5>
                                 <v-rating
-                                empty-icon="las la-star"
-                                full-icon="las la-star active"
-                                half-icon="las la-star half half"
-                                background-color=""
-                                length="5"
-                                size="11"
-                                v-model="rating"></v-rating>
+                                    empty-icon="las la-star"
+                                    full-icon="las la-star active"
+                                    half-icon="las la-star half half"
+                                    background-color=""
+                                    length="5"
+                                    size="11"
+                                    v-model="rating"
+                                ></v-rating>
                                 <span class="caption">Opiniones (22)</span>
                             </v-col>
                             <v-col cols="8">
                                 <v-row>
-                                    <v-col cols="1" style="line-height:0.1">
+                                    <v-col cols="1" style="line-height: 0.1">
                                         <span class="caption mr-2">5</span>
                                         <span class="caption mr-2">4</span>
                                         <span class="caption mr-2">3</span>
                                         <span class="caption mr-2">2</span>
                                         <span class="caption mr-2">1</span>
                                     </v-col>
-                                    <v-col cols="9" style="line-height:2.1">
+                                    <v-col cols="9" style="line-height: 2.1">
                                         <v-progress-linear
-                                        v-model="ratings.rating5"
-                                        color="white"
-                                        class="mt-2"
+                                            v-model="ratings.rating5"
+                                            color="white"
+                                            class="mt-2"
                                         ></v-progress-linear>
                                         <v-progress-linear
-                                        v-model="ratings.rating4"
-                                        color="white"
-                                        class="mt-4"
+                                            v-model="ratings.rating4"
+                                            color="white"
+                                            class="mt-4"
                                         ></v-progress-linear>
                                         <v-progress-linear
-                                        v-model="ratings.rating3"
-                                        color="white"
-                                        class="mt-4"
+                                            v-model="ratings.rating3"
+                                            color="white"
+                                            class="mt-4"
                                         ></v-progress-linear>
                                         <v-progress-linear
-                                        v-model="ratings.rating2"
-                                        color="white"
-                                        class="mt-4"
+                                            v-model="ratings.rating2"
+                                            color="white"
+                                            class="mt-4"
                                         ></v-progress-linear>
                                         <v-progress-linear
-                                        v-model="ratings.rating1"
-                                        color="white"
-                                        class="mt-4"
+                                            v-model="ratings.rating1"
+                                            color="white"
+                                            class="mt-4"
                                         ></v-progress-linear>
                                     </v-col>
-                                    <v-col cols="2" style="line-height:0.1">
-                                        <span class="caption">30</span><br/>
-                                        <span class="caption">10</span><br/>
-                                        <span class="caption">5</span><br/>
-                                        <span class="caption">0</span><br/>
+                                    <v-col cols="2" style="line-height: 0.1">
+                                        <span class="caption">30</span><br />
+                                        <span class="caption">10</span><br />
+                                        <span class="caption">5</span><br />
+                                        <span class="caption">0</span><br />
                                         <span class="caption">0</span>
                                     </v-col>
                                 </v-row>
@@ -163,25 +287,21 @@
                     </div>
                     <div class="d-flex pa-4 ml-3">
                         <h5 class="subtitle2 text-uppercase mt-4">¿Deseas calificar este producto?</h5>
-                        <custom-button text="Calificar" class="ml-4 mt-2" light/>
+                        <custom-button text="Calificar" class="ml-4 mt-2" light />
                     </div>
                 </v-card>
-                <v-card
-                    v-scroll.self="onScroll"
-                    class="overflow-y-auto mt-3"
-                    max-height="628"
-                    v-show="showd2"
-                >
+                <v-card v-scroll.self="onScroll" class="overflow-y-auto mt-3" max-height="628" v-show="showd2">
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Vida Útil</h5>
                         <v-row dense class="mt-2" justify="center">
-                            <v-progress-linear style="width:78%"
-                            v-model="ratings.rating5"
-                            color="white"
-                            class="mt-2"
+                            <v-progress-linear
+                                style="width: 78%"
+                                v-model="ratings.rating5"
+                                color="white"
+                                class="mt-2"
                             ></v-progress-linear>
                         </v-row>
-                        <v-row >
+                        <v-row>
                             <v-col cols="3">
                                 <v-row justify="center">
                                     <span>1-14</span>
@@ -191,25 +311,19 @@
                                 </v-row>
                             </v-col>
                             <v-col cols="3">
-                                <v-row justify="center">
-                                    <span>1-24</span><br/>
-                                </v-row>
+                                <v-row justify="center"> <span>1-24</span><br /> </v-row>
                                 <v-row justify="center">
                                     <span class="caption">Meses</span>
                                 </v-row>
                             </v-col>
                             <v-col cols="3">
-                                <v-row justify="center">
-                                    <span>1-10</span><br/>
-                                </v-row>
+                                <v-row justify="center"> <span>1-10</span><br /> </v-row>
                                 <v-row justify="center">
                                     <span class="caption">Años</span>
                                 </v-row>
                             </v-col>
                             <v-col cols="3">
-                                <v-row justify="center">
-                                    <span>10-25</span><br/>
-                                </v-row>
+                                <v-row justify="center"> <span>10-25</span><br /> </v-row>
                                 <v-row justify="center">
                                     <span class="caption">Años</span>
                                 </v-row>
@@ -218,50 +332,119 @@
                     </div>
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Composición de producto</h5>
-                        <v-divider class="mt-2 mb-2"/>
+                        <v-row class="mt-4">
+                            <v-col cols="6">
+                                <div class="piechart"></div>
+                            </v-col>
+                            <v-col cols="6">
+                            <tbody>
+                                <tr v-for="item in desserts" :key="item.name">
+                                    <td style="width: 20px"><div class="pa-2 bg-secondary rounded-circle d-inline-block" :style="item.color"/></td>
+                                    <td style="width: 120px" class="text-size-comp ml-1">{{ item.name }}</td>
+                                    <td style="width: 50px" class="text-size-comp ml-2">{{ item.percent }}</td>
+                                    <td class="text-size-comp ml-2">{{ item.kg }}</td>
+                                </tr>
+                            </tbody>
+                            </v-col>
+                        </v-row>
+                        
+                        <v-divider class="mt-3 mb-4" />
                         <h5 class="subtitle2 text-uppercase">Impacto Ambiental</h5>
+                        <v-row class="mt-4" justify="center">
+                            <div style="width: 78%" class="d-flex">
+                                <v-icon large class="markerLoc">la-map-pin</v-icon>
+                                <v-col cols="3" style="padding: 20px 0px">
+                                    <v-progress-linear
+                                        background-color="green"
+                                        class="mt-2"
+                                    ></v-progress-linear>
+                                </v-col>
+                                <v-col cols="3" style="padding: 15px 0px">
+                                    <v-progress-linear
+                                        background-color="yellow"
+                                        class="mt-2"
+                                    ></v-progress-linear>
+                                </v-col>
+                                <v-col cols="3" style="padding: 10px 0px">
+                                    <v-progress-linear
+                                        background-color="orange"
+                                        class="mt-2"
+                                    ></v-progress-linear>
+                                </v-col>
+                                <v-col cols="3" style="padding: 5px 0px">
+                                    <v-progress-linear 
+                                        background-color="red"
+                                        class="mt-2"
+                                    ></v-progress-linear>
+                                </v-col>
+                            </div>
+                        </v-row>
+                        <v-row class="mt-0 mb-1">
+                            <v-col cols="4">
+                                <v-row justify="start">
+                                    <span class="caption ml-4">Sostenible</span>
+                                </v-row>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-row justify="center">
+                                    <span class="caption">Reversible</span>
+                                </v-row>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-row justify="end">
+                                    <span class="caption mr-4">Irreversible</span>
+                                </v-row>
+                            </v-col>
+                        </v-row>
                     </div>
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Consejos Ecológicos</h5>
                         <ul>
-                            <li class="subtitle2 mt-1">Una vez el producto cumpla su vida útil debes ser riguroso en reciclar sus materiales de forma correcta.</li>
-                            <li class="subtitle2 mt-2">Realizar el mantenimiento pertinente en las fechas adecuadas para extender la vida útil del producto.</li>
+                            <li class="subtitle2 mt-1">
+                                Una vez el producto cumpla su vida útil debes ser riguroso en reciclar sus materiales de
+                                forma correcta.
+                            </li>
+                            <li class="subtitle2 mt-2">
+                                Realizar el mantenimiento pertinente en las fechas adecuadas para extender la vida útil
+                                del producto.
+                            </li>
                         </ul>
                     </div>
                     <v-row>
-                        <v-col cols=6>
+                        <v-col cols="6">
                             <div class="product-item-body pa-1 la-border ml-3 mt-4">
                                 <v-row dense justify="center" class="mt-3">
                                     <v-icon x-large>la-sync</v-icon>
                                 </v-row>
                                 <v-row dense justify="center" class="mt-5">
-                                    <p class="subtitle2" style="text-align:center">
-                                        Deseo reciclar un viejo producto y recibir un bono adicional de descuento a cambio.
+                                    <p class="subtitle2" style="text-align: center">
+                                        Deseo reciclar un viejo producto y recibir un bono adicional de descuento a
+                                        cambio.
                                     </p>
                                 </v-row>
                                 <v-row dense justify="center">
-                                    <custom-button plain text="Solicitar"/>
+                                    <custom-button plain text="Solicitar" />
                                 </v-row>
                                 <v-row dense justify="center" class="mt-4 mb-2">
-                                    <custom-button light text="RENOVACIÓN UPGRADE"  :width="190"/>
+                                    <custom-button light text="RENOVACIÓN UPGRADE" :width="190" />
                                 </v-row>
                             </div>
                         </v-col>
-                        <v-col cols=6>
+                        <v-col cols="6">
                             <div class="product-item-body pa-1 la-border mt-4">
                                 <v-row dense justify="center" class="mt-3">
                                     <v-icon x-large>la-tools</v-icon>
                                 </v-row>
                                 <v-row dense justify="center" class="mt-5">
-                                    <p class="subtitle2" style="text-align:center">
+                                    <p class="subtitle2" style="text-align: center">
                                         Deseo programar un mantenimiento preventivo para mi producto/s.
                                     </p>
                                 </v-row>
                                 <v-row dense justify="center">
-                                    <custom-button plain text="Solicitar"/>
+                                    <custom-button plain text="Solicitar" />
                                 </v-row>
                                 <v-row dense justify="center" class="mt-4 mb-2">
-                                    <custom-button light text="SOPORTE TÉCNICO" :width="190"/>
+                                    <custom-button light text="SOPORTE TÉCNICO" :width="190" />
                                 </v-row>
                             </div>
                         </v-col>
@@ -385,7 +568,7 @@
                 <h5 class="subtitle2 text-uppercase mt-3 mb-2">Se incluye con la compra</h5>
                 <div class="product-item-body mr-5 mt-3">
                     <v-divider />
-                    <product-item-5 />
+                    <product-item-6 />
                 </div>
             </v-col>
         </v-row>
@@ -501,15 +684,13 @@
 <script>
 import ProductItem3 from "../components/global/ProductItem3.vue";
 import ProductItem2 from "../components/global/ProductItem2.vue";
-import ProductItem5 from "../components/global/ProductItem5.vue";
+import ProductItem6 from "../components/global/ProductItem6.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
 import Carousel from "../components/global/Carousel.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
-import ChartView from "../components/global/ChartView.vue";
-
+// import ChartView from "../components/global/ChartView.vue";
 import { sliderSeeder } from "../seeders/products";
-
 export default {
     data: () => ({
         showp: true,
@@ -528,17 +709,68 @@ export default {
         iva: "* Iva Incluido",
         varia: "Variación",
         model: 0,
-        tags: ["1", "2", "3"]
+        tags: ["1", "2", "3"],
+        ratings: { rating5: 67, rating4: 22, rating3: 11, rating2: 0, rating1: 0 },
+        desserts: [
+          {
+            color: 'background-color:#114B99',
+            name: 'Plástico',
+            percent: '5%',
+            kg: '1Kg'
+          },
+          {
+            color: 'background-color:#FEA60F',
+            name: 'Cartón',
+            percent: '0%',
+            kg: '0Kg'
+          },
+          {
+            color: 'background-color:#FFFFFF',
+            name: 'Papel',
+            percent: '3%',
+            kg: '0.2Kg'
+          },
+          {
+            color: 'background-color:#445056',
+            name: 'Metal',
+            percent: '0%',
+            kg: '0Kg'
+          },
+          {
+            color: 'background-color:#61A959',
+            name: 'Vidrio',
+            percent: '0%',
+            kg: '0Kg'
+          },
+          {
+            color: 'background-color:#B1771D',
+            name: 'Madera',
+            percent: '91%',
+            kg: '5Kg'
+          },
+          {
+            color: 'background-color:#ED847B',
+            name: 'Textil',
+            percent: '0%',
+            kg: '0Kg'
+          },
+          {
+            color: 'background-color:#ED847B',
+            name: 'Baterías / Eléctrico',
+            percent: '0%',
+            kg: '0Kg'
+          }
+        ],
     }),
     components: {
         ProductItem3,
         ProductItem2,
-        ProductItem5,
+        ProductItem6,
         CustomButton,
         LayoutNavbarSpaces,
         Carousel,
-        LayoutNavbarAuth,
-        ChartView
+        LayoutNavbarAuth
+        // ChartView
     },
     mounted() {
         this.$vuetify.theme.dark = true;
@@ -551,59 +783,45 @@ export default {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.25px;
-
     @media (min-width: 960px) {
         font-size: 14px;
     }
-
     border-radius: 5px;
-
     i {
         font-size: 20px;
     }
-
     &:hover:before,
     &:focus:before {
         opacity: 1;
     }
-
     &.v-size--default {
         height: 38px;
     }
 }
-
 .theme--light {
     &.v-btn {
         color: #000000;
-
         &.v-btn--has-bg {
             background-color: #dfdfdf;
-
             &:before {
                 background-color: #ffffff;
             }
-
             &.v-btn--disabled {
                 color: #000000 !important;
-
                 &.v-btn--has-bg {
                     background-color: #fafcfc !important;
                 }
             }
         }
-
         &.v-btn--outlined {
             color: #ffffff;
-
             &:hover,
             &:focus {
                 color: #000000;
             }
-
             &:before {
                 background-color: rgba(255, 255, 255, 0.8);
             }
-
             &:focus {
                 &:before {
                     background-color: #ffffff;
@@ -612,36 +830,52 @@ export default {
         }
     }
 }
-
 .buttonsAct {
     top: 20px;
     position: absolute;
     width: 96%;
 }
-
+.markerLoc {
+    top: 73%;
+    position: absolute;
+    left: 29%;
+}
 .positionColbuttons {
     position: relative;
 }
-
 .la-border {
     border-radius: 0.5em;
 }
-
 .v-btn-toggle {
     border-radius: 0px;
     height: 20px !important;
 }
-
 .toggle-btn {
     height: 20px !important;
     min-width: 20px !important;
 }
-
 .v-divider {
     border-width: thin 0 0;
 }
-
 .v-divider--vertical {
     border-width: 0 thin 0 0;
+}
+.subtitles-gray {
+    font-size: 12px;
+    color: gray;
+}
+.justify-end {
+    text-align: end;
+}
+
+.piechart {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background-image: conic-gradient(from 180deg, #B1771D 0 320deg, #445056 0 336deg, #114B99 0);
+        }
+
+.text-size-comp{
+    font-size:.6rem;
 }
 </style>
