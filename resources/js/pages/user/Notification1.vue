@@ -2,67 +2,89 @@
     <v-container>
         <v-row>
             <v-col cols="12">
-                <v-tabs v-model="tab" grow class="mb-6">
-                    <v-tab>Novedades</v-tab>
-                    <v-tab>Solicitudes</v-tab>
-                    <v-tab>Reportes</v-tab>
-                </v-tabs>
-                <v-tabs-items v-model="tab">
-                    <v-tab-item>
-                        <v-row>
-                            <v-col cols="12">
-                                <notification-cart
-                                    title="Titulo de mensaje"
-                                    date="02 de Julio de 2022"
-                                    remitent="correo@idovela.com"
-                                />
-                            </v-col>
-                            <v-col cols="12">
-                                <notification-cart
-                                    title="Titulo de mensaje"
-                                    date="02 de Julio de 2022"
-                                    remitent="correo@idovela.com"
-                                />
-                            </v-col>
-                        </v-row>
-                    </v-tab-item>
-                    <v-tab-item>
-                        <v-row>
-                            <v-col cols="12">
-                                <notification-cart
-                                    title="Titulo de mensaje"
-                                    date="02 de Julio de 2022"
-                                    remitent="correo@idovela.com"
-                                />
-                            </v-col>
-                            <v-col cols="12">
-                                <notification-cart
-                                    title="Titulo de mensaje"
-                                    date="02 de Julio de 2022"
-                                    remitent="correo@idovela.com"
-                                />
-                            </v-col>
-                        </v-row>
-                    </v-tab-item>
-                    <v-tab-item>
-                        <v-row>
-                            <v-col cols="12">
-                                <notification-cart
-                                    title="Titulo de mensaje"
-                                    date="02 de Julio de 2022"
-                                    remitent="correo@idovela.com"
-                                />
-                            </v-col>
-                            <v-col cols="12">
-                                <notification-cart
-                                    title="Titulo de mensaje"
-                                    date="02 de Julio de 2022"
-                                    remitent="correo@idovela.com"
-                                />
-                            </v-col>
-                        </v-row>
-                    </v-tab-item>
-                </v-tabs-items>
+                <v-row class="d-sm-none toolbarNot">
+                    <v-toolbar>
+                        <v-toolbar-title>NOTIFICACIONES</v-toolbar-title>
+                        <v-spacer></v-spacer>
+                        <custom-button @click.stop="drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
+                    </v-toolbar>
+                    <v-navigation-drawer v-model="drawer">
+                        <h5>drawer</h5>
+                    </v-navigation-drawer>
+                </v-row>
+                <v-row class="d-none d-sm-block">
+                    <v-tabs v-model="tab" class="tabsCon">
+                        <v-tab class="tabButton">Novedades</v-tab>
+                        <div class="divider"></div>
+                        <v-tab class="tabButton">Solicitudes</v-tab>
+                        <div class="divider"></div>
+                        <v-tab class="tabButton">Reportes</v-tab>
+                    </v-tabs>
+                </v-row>
+                <v-row>
+                    <v-tabs-items v-model="tab">
+                        <v-tab-item>
+                            <v-row>
+                                <v-col cols="12">
+                                    <notification-cart
+                                        id="0"
+                                        title="Titulo de mensaje"
+                                        date="02 de Julio de 2022"
+                                        remitent="correo@idovela.com"
+                                    />
+                                </v-col>
+                                <v-col cols="12">
+                                    <notification-cart
+                                        id="1"
+                                        title="Titulo de mensaje"
+                                        date="02 de Julio de 2022"
+                                        remitent="correo@idovela.com"
+                                    />
+                                </v-col>
+                            </v-row>
+                        </v-tab-item>
+                        <v-tab-item>
+                            <v-row>
+                                <v-col cols="12">
+                                    <notification-cart
+                                        id="0"
+                                        title="Titulo de mensaje"
+                                        date="02 de Julio de 2022"
+                                        remitent="correo@idovela.com"
+                                    />
+                                </v-col>
+                                <v-col cols="12">
+                                    <notification-cart
+                                        id="1"
+                                        title="Titulo de mensaje"
+                                        date="02 de Julio de 2022"
+                                        remitent="correo@idovela.com"
+                                    />
+                                </v-col>
+                            </v-row>
+                        </v-tab-item>
+                        <v-tab-item>
+                            <v-row>
+                                <v-col cols="12">
+                                    <notification-cart
+                                        id="0"
+                                        title="Titulo de mensaje"
+                                        date="02 de Julio de 2022"
+                                        remitent="correo@idovela.com"
+                                    />
+                                </v-col>
+                                <v-col cols="12">
+                                    <notification-cart
+                                        id="1"
+                                        title="Titulo de mensaje"
+                                        date="02 de Julio de 2022"
+                                        remitent="correo@idovela.com"
+                                    />
+                                </v-col>
+                            </v-row>
+                        </v-tab-item>
+                    </v-tabs-items>
+                </v-row>
             </v-col>
         </v-row>
     </v-container>
@@ -83,6 +105,7 @@ export default {
     },
     data() {
         return {
+            drawer: false,
             tab: null
         };
     }
@@ -90,10 +113,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-tab {
-    background-color: #e4e5e5;
+.tabButton {
+    display: flex;
+    justify-content: space-between;
+    background-color: #dfdfdf;
+    border-radius: 5px;
     font-weight: 600;
     color: #000;
     letter-spacing: 1.25px;
+    max-width: 246px;
+    width: 30vw;
+    height: 38px;
+}
+.tabButton:hover {
+    background-color: #000;
+    color: #ffffff;
+}
+.tabButton:active{
+    background-color: #000;
+    color: #ffffff;
+}
+.tabsCon {
+    display: flex;
+    justify-content: space-evenly;
+}
+.divider {
+    width: 1vw;
+}
+.toolbarNot{
+    padding-bottom: 2vh;
+    width: 100%;
 }
 </style>

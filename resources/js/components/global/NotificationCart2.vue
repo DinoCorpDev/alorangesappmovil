@@ -1,28 +1,33 @@
 <template>
-    <div class="cart">
+ <div class="cart">
         <div class="div-container">
             <div class="div-img">
                 <div>
                     <v-img max-width="100px" :src="img"></v-img>
                 </div>
             </div>
-            <div class="div-body">
-                <div class="div-not1">
+            <div class="div-not1">
+                <h6 class="black--text bold">{{ title }}</h6>
+                <div class="div-not1-1">
                     <div>
-                        <h6 class="black--text bold">{{ title }}</h6>
-                        <span class="black--text body1">Fecha</span>
-                        <span class="black--text body1">{{ date }}</span>
+                        <span class="black--text body2">Fecha</span>
+                        <span class="black--text body2">{{ date }}</span>
                     </div>
                     <div>
-                        <span class="black--text bold body1">Envíado</span>
-                        <span class="black--text body1">{{ remitent }}</span>
+                        <span class="black--text bold body2">Envíado</span>
+                        <span class="black--text body2">{{ remitent }}</span>
                     </div>
                 </div>
-                <div class="div-not2">
-                    <div class="divider"></div>
-                    <div>
-                        <custom-button plain icon="la-trash" />
-                    </div>
+            </div>
+            <div class="div-not2">
+                <div class="divider"></div>
+                <div class="d-none d-sm-block">
+                    <div class="div-not2-1">
+                    <custom-button icon="la-trash" />
+                </div>
+                </div>
+                <div class="d-sm-none div-not2-1">
+                    <custom-button icon="la-ellipsis-v" />
                 </div>
             </div>
         </div>
@@ -38,6 +43,10 @@ export default {
         CustomButton
     },
     props: {
+        id: {
+            type: String,
+            default: "Sin Asignar"
+        },
         img: {
             type: String,
             default: "/public/assets/img/carousel-item-placeholder.png"
@@ -61,34 +70,37 @@ export default {
 <style lang="scss" scoped>
 .div-container {
     display: flex;
-    background-color: #f5f5f5;
-}
-
-.div-body {
-    grid-template-columns: 4fr 1fr;
-    display: grid;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 10px;
     width: 100%;
+    align-content: center;
 }
-
 .div-not1 {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     padding: 0px 10px;
     width: 100%;
+    flex-wrap: wrap;
+}
+.div-not1-1 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+    @media (max-width: 599px) {
+        display: flex;
+        flex-direction: column;
+    }
 }
 .div-not2 {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0px 10px;
-    width: 100%;
+    width: fit-content;
+}
+.div-not2-1{
+    display: flex;
 }
 .cart {
-    // background-color: #ffffff;
+    background-color: #f5f5f5;
     border-radius: 10px;
 }
 

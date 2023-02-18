@@ -3,6 +3,7 @@
         <div>
             <div class="data-notification">
                 <notification-cart2
+                    id="1"
                     title="Titulo de mensaje"
                     date="02 de Julio de 2022"
                     remitent="correo@idovela.com"
