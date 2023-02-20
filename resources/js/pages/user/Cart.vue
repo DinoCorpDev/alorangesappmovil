@@ -24,8 +24,13 @@
                     <h6>Productos</h6>
                     <v-row>
                         <v-col cols="12">
-                            <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye"
-                                icon3="la-eye" />
+                            <product-cart
+                                price="000.000.000 COP"
+                                quantity="03"
+                                icon1="la-trash"
+                                icon2="la-eye"
+                                icon3="la-eye"
+                            />
                         </v-col>
                         <v-col cols="12">
                             <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
@@ -263,8 +268,16 @@
                             </div>
                         </v-col>
                         <v-col cols="12">
-                            <order order="ID1222" day="07" month="Julio" year="2020" colorStatus="red"
-                                descriptionStatus="Por aprobar pedido" icon1="la-download" icon2="la-print" />
+                            <order
+                                order="ID1222"
+                                day="07"
+                                month="Julio"
+                                year="2020"
+                                colorStatus="red"
+                                descriptionStatus="Por aprobar pedido"
+                                icon1="la-download"
+                                icon2="la-print"
+                            />
                         </v-col>
                     </v-row>
                     <v-divider class="mb-3" />
@@ -389,16 +402,31 @@
                         <v-divider class="my-3" />
                         <v-row>
                             <v-col cols="12">
-                                <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye"
-                                    icon3="la-eye" />
+                                <product-cart
+                                    price="000.000.000 COP"
+                                    quantity="03"
+                                    icon1="la-trash"
+                                    icon2="la-eye"
+                                    icon3="la-eye"
+                                />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye"
-                                    icon3="la-eye" />
+                                <product-cart
+                                    price="000.000.000 COP"
+                                    quantity="03"
+                                    icon1="la-trash"
+                                    icon2="la-eye"
+                                    icon3="la-eye"
+                                />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye"
-                                    icon3="la-eye" />
+                                <product-cart
+                                    price="000.000.000 COP"
+                                    quantity="03"
+                                    icon1="la-trash"
+                                    icon2="la-eye"
+                                    icon3="la-eye"
+                                />
                             </v-col>
                         </v-row>
                         <v-divider class="my-3" />
@@ -431,8 +459,9 @@
                                     <v-timeline-item color="black" small fill-dot>
                                         <v-row>
                                             <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">En
-                                                    verificación</span>
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    En verificación
+                                                </span>
                                             </v-col>
                                             <v-col>
                                                 <span class="body2 font-weight-bold">jueves 07, abril</span>
@@ -462,8 +491,9 @@
                                     <v-timeline-item color="black" small fill-dot>
                                         <v-row>
                                             <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">Recogido por
-                                                    transportadora</span>
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    Recogido por transportadora
+                                                </span>
                                             </v-col>
                                             <v-col>
                                                 <span class="body2 font-weight-bold">miércoles 07, julio</span>
@@ -473,7 +503,8 @@
                                     <v-timeline-item color="black" small fill-dot>
                                         <v-row>
                                             <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold"> Entregado a cliente
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    Entregado a cliente
                                                 </span>
                                             </v-col>
                                             <v-col>
@@ -512,8 +543,9 @@
                                     <v-timeline-item color="black" small fill-dot>
                                         <v-row>
                                             <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">En
-                                                    preparación</span>
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    En preparación
+                                                </span>
                                             </v-col>
                                         </v-row>
                                     </v-timeline-item>
@@ -662,11 +694,11 @@ export default {
     background-color: #eee;
 }
 
-.label:hover input~.checkmark {
+.label:hover input ~ .checkmark {
     background-color: #f5f5f5;
 }
 
-.label input:checked~.checkmark {
+.label input:checked ~ .checkmark {
     background-color: #000000;
     border-radius: 5px;
 }
@@ -677,7 +709,7 @@ export default {
     display: none;
 }
 
-.label input:checked~.checkmark:after {
+.label input:checked ~ .checkmark:after {
     display: block;
 }
 
