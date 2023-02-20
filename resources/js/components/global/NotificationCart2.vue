@@ -1,5 +1,5 @@
 <template>
- <div class="cart">
+    <div class="cart">
         <div class="div-container">
             <div class="div-img">
                 <div>
@@ -23,8 +23,8 @@
                 <div class="divider"></div>
                 <div class="d-none d-sm-block">
                     <div class="div-not2-1">
-                    <custom-button icon="la-trash" />
-                </div>
+                        <custom-button icon="la-trash" />
+                    </div>
                 </div>
                 <div class="d-sm-none div-not2-1">
                     <custom-button icon="la-ellipsis-v" />
@@ -73,6 +73,7 @@ export default {
     width: 100%;
     align-content: center;
 }
+
 .div-not1 {
     display: flex;
     align-items: flex-end;
@@ -81,24 +82,28 @@ export default {
     width: 100%;
     flex-wrap: wrap;
 }
+
 .div-not1-1 {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    
+
     @media (max-width: 599px) {
         display: flex;
         flex-direction: column;
     }
 }
+
 .div-not2 {
     display: flex;
     align-items: center;
     width: fit-content;
 }
-.div-not2-1{
+
+.div-not2-1 {
     display: flex;
 }
+
 .cart {
     background-color: #f5f5f5;
     border-radius: 10px;

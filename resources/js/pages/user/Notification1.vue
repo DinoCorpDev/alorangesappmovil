@@ -125,22 +125,27 @@ export default {
     width: 30vw;
     height: 38px;
 }
+
 .tabButton:hover {
     background-color: #000;
     color: #ffffff;
 }
-.tabButton:active{
+
+.tabButton:active {
     background-color: #000;
     color: #ffffff;
 }
+
 .tabsCon {
     display: flex;
     justify-content: space-evenly;
 }
+
 .divider {
     width: 1vw;
 }
-.toolbarNot{
+
+.toolbarNot {
     padding-bottom: 2vh;
     width: 100%;
 }
