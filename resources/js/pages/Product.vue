@@ -3,7 +3,7 @@
         <layout-navbar-auth />
         <!-- <chart-view /> -->
         <v-row>
-            <v-col cols="4">
+            <v-col cols="12" md="4" order-md="1" sm="12" order-sm="3" xs="12" order-xs="3">
                 <v-row dense class="mt-2 ml-3">
                     <v-col cols="4">
                         <v-row justify="center">
@@ -332,8 +332,62 @@
                     </div>
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Composición de producto</h5>
-                        <v-divider class="mt-2 mb-2" />
+                        <v-row class="mt-4">
+                            <v-col cols="6">
+                                <div class="piechart"></div>
+                            </v-col>
+                            <v-col cols="6">
+                                <tbody>
+                                    <tr v-for="item in desserts" :key="item.name">
+                                        <td style="width: 20px">
+                                            <div
+                                                class="pa-2 bg-secondary rounded-circle d-inline-block"
+                                                :style="item.color"
+                                            />
+                                        </td>
+                                        <td style="width: 120px" class="text-size-comp ml-1">{{ item.name }}</td>
+                                        <td style="width: 50px" class="text-size-comp ml-2">{{ item.percent }}</td>
+                                        <td class="text-size-comp ml-2">{{ item.kg }}</td>
+                                    </tr>
+                                </tbody>
+                            </v-col>
+                        </v-row>
+                        <v-divider class="mt-3 mb-4" />
                         <h5 class="subtitle2 text-uppercase">Impacto Ambiental</h5>
+                        <v-row class="mt-4" justify="center">
+                            <div style="width: 78%" class="d-flex">
+                                <v-icon large class="markerLoc">la-map-pin</v-icon>
+                                <v-col cols="3" style="padding: 20px 0px">
+                                    <v-progress-linear background-color="green" class="mt-2"></v-progress-linear>
+                                </v-col>
+                                <v-col cols="3" style="padding: 15px 0px">
+                                    <v-progress-linear background-color="yellow" class="mt-2"></v-progress-linear>
+                                </v-col>
+                                <v-col cols="3" style="padding: 10px 0px">
+                                    <v-progress-linear background-color="orange" class="mt-2"></v-progress-linear>
+                                </v-col>
+                                <v-col cols="3" style="padding: 5px 0px">
+                                    <v-progress-linear background-color="red" class="mt-2"></v-progress-linear>
+                                </v-col>
+                            </div>
+                        </v-row>
+                        <v-row class="mt-0 mb-1">
+                            <v-col cols="4">
+                                <v-row justify="start">
+                                    <span class="caption ml-4">Sostenible</span>
+                                </v-row>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-row justify="center">
+                                    <span class="caption">Reversible</span>
+                                </v-row>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-row justify="end">
+                                    <span class="caption mr-4">Irreversible</span>
+                                </v-row>
+                            </v-col>
+                        </v-row>
                     </div>
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Consejos Ecológicos</h5>
@@ -390,7 +444,7 @@
                 </v-card>
             </v-col>
 
-            <v-col cols="4" class="positionColbuttons">
+            <v-col cols="12" class="positionColbuttons" md="4" order-md="2" sm="12" order-sm="1" xs="12" order-xs="1">
                 <v-row dense justify>
                     <v-col>
                         <carousel v-show="showp" style="height: 700px" />
@@ -445,7 +499,7 @@
                     </v-col>
                 </v-row>
             </v-col>
-            <v-col cols="4">
+            <v-col cols="12" md="4" order-md="3" sm="12" order-sm="2" xs="12" order-xs="2">
                 <div class="product-item-body pa-4 la-border mr-5">
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-2">{{ ref }}</h5>
@@ -506,7 +560,7 @@
                 <h5 class="subtitle2 text-uppercase mt-3 mb-2">Se incluye con la compra</h5>
                 <div class="product-item-body mr-5 mt-3">
                     <v-divider />
-                    <product-item-5 />
+                    <product-item-6 />
                 </div>
             </v-col>
         </v-row>
@@ -622,7 +676,7 @@
 <script>
 import ProductItem3 from "../components/global/ProductItem3.vue";
 import ProductItem2 from "../components/global/ProductItem2.vue";
-import ProductItem5 from "../components/global/ProductItem5.vue";
+import ProductItem6 from "../components/global/ProductItem6.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
 import Carousel from "../components/global/Carousel.vue";
@@ -650,12 +704,62 @@ export default {
         varia: "Variación",
         model: 0,
         tags: ["1", "2", "3"],
-        ratings: { rating5: 67, rating4: 22, rating3: 11, rating2: 0, rating1: 0 }
+        ratings: { rating5: 67, rating4: 22, rating3: 11, rating2: 0, rating1: 0 },
+        desserts: [
+            {
+                color: "background-color:#114B99",
+                name: "Plástico",
+                percent: "5%",
+                kg: "1Kg"
+            },
+            {
+                color: "background-color:#FEA60F",
+                name: "Cartón",
+                percent: "0%",
+                kg: "0Kg"
+            },
+            {
+                color: "background-color:#FFFFFF",
+                name: "Papel",
+                percent: "3%",
+                kg: "0.2Kg"
+            },
+            {
+                color: "background-color:#445056",
+                name: "Metal",
+                percent: "0%",
+                kg: "0Kg"
+            },
+            {
+                color: "background-color:#61A959",
+                name: "Vidrio",
+                percent: "0%",
+                kg: "0Kg"
+            },
+            {
+                color: "background-color:#B1771D",
+                name: "Madera",
+                percent: "91%",
+                kg: "5Kg"
+            },
+            {
+                color: "background-color:#ED847B",
+                name: "Textil",
+                percent: "0%",
+                kg: "0Kg"
+            },
+            {
+                color: "background-color:#ED847B",
+                name: "Baterías / Eléctrico",
+                percent: "0%",
+                kg: "0Kg"
+            }
+        ]
     }),
     components: {
         ProductItem3,
         ProductItem2,
-        ProductItem5,
+        ProductItem6,
         CustomButton,
         LayoutNavbarSpaces,
         Carousel,
@@ -741,6 +845,12 @@ export default {
     width: 96%;
 }
 
+.markerLoc {
+    top: 73%;
+    position: absolute;
+    left: 29%;
+}
+
 .positionColbuttons {
     position: relative;
 }
@@ -774,5 +884,16 @@ export default {
 
 .justify-end {
     text-align: end;
+}
+
+.piechart {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background-image: conic-gradient(from 180deg, #b1771d 0 320deg, #445056 0 336deg, #114b99 0);
+}
+
+.text-size-comp {
+    font-size: 0.6rem;
 }
 </style>
