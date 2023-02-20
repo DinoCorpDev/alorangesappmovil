@@ -3,7 +3,7 @@
         <layout-navbar-auth />
         <!-- <chart-view /> -->
         <v-row>
-            <v-col cols="4">
+            <v-col cols="12" md="4" order-md="1" sm="12" order-sm="3" xs="12" order-xs="3">
                 <v-row dense class="mt-2 ml-3">
                     <v-col cols="4">
                         <v-row justify="center">
@@ -452,7 +452,7 @@
                 </v-card>
             </v-col>
 
-            <v-col cols="4" class="positionColbuttons">
+            <v-col cols="12" class="positionColbuttons" md="4" order-md="2" sm="12" order-sm="1" xs="12" order-xs="1">
                 <v-row dense justify>
                     <v-col>
                         <carousel v-show="showp" style="height: 700px" />
@@ -507,7 +507,7 @@
                     </v-col>
                 </v-row>
             </v-col>
-            <v-col cols="4">
+            <v-col cols="12" md="4" order-md="3" sm="12" order-sm="2" xs="12" order-xs="2">
                 <div class="product-item-body pa-4 la-border mr-5">
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-2">{{ ref }}</h5>
