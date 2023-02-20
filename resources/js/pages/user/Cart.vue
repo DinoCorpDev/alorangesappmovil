@@ -457,21 +457,60 @@
                                 <v-divider class="my-3" />
                                 <v-timeline dense>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold">En verificación</span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    En verificación
+                                                </span>
+                                            </v-col>
+                                            <v-col>
+                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold">Facturación</span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">Facturación</span>
+                                            </v-col>
+                                            <v-col>
+                                                <span class="body2 font-weight-bold">sabado 09, abril</span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold">Alistamiento</span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">Alistamiento</span>
+                                            </v-col>
+                                            <v-col>
+                                                <span class="body2 font-weight-bold">lunes 05, julio</span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold">
-                                            Recogido por transportadora
-                                        </span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    Recogido por transportadora
+                                                </span>
+                                            </v-col>
+                                            <v-col>
+                                                <span class="body2 font-weight-bold">miércoles 07, julio</span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold"> Entregado a cliente </span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    Entregado a cliente
+                                                </span>
+                                            </v-col>
+                                            <v-col>
+                                                <span class="body2 font-weight-bold">viernes 09, julio</span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                 </v-timeline>
                                 <a href="#" class="black--text text-decoration-underline font-weight-bold">
@@ -485,23 +524,48 @@
                                 <v-divider class="my-3" />
                                 <v-timeline dense>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold">Comprado</span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">Comprado</span>
+                                            </v-col>
+                                            <v-col>
+                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold">Agendamiento</span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">Agendamiento</span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold">En preparación</span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    En preparación
+                                                </span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold">
-                                            Verificación de adecuación
-                                        </span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    Verificación de adecuación
+                                                </span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
-                                        <span class="body2 text-uppercase font-weight-bold">
-                                            Instalación concluida
-                                        </span>
+                                        <v-row>
+                                            <v-col>
+                                                <span class="body2 text-uppercase font-weight-bold">
+                                                    Instalación concluida
+                                                </span>
+                                            </v-col>
+                                        </v-row>
                                     </v-timeline-item>
                                 </v-timeline>
                                 <a href="#" class="black--text text-decoration-underline font-weight-bold">
@@ -572,7 +636,7 @@ export default {
 
     .v-timeline {
         padding-top: 0px;
-        left: 11px;
+        left: 0px;
     }
 
     .v-timeline::before {
