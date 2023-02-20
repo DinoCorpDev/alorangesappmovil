@@ -9,10 +9,11 @@ import HomeRoutes from "./home";
 import PageRoutes from "./page";
 import ShopRoutes from "./shop";
 import UserRoutes from "./user";
+import RequestRoutes from "./request";
 
 Vue.use(VueRouter);
 
-let routes = [...HomeRoutes, ...CheckoutRoutes, ...AuthRoutes, ...UserRoutes];
+let routes = [...HomeRoutes, ...CheckoutRoutes, ...AuthRoutes, ...UserRoutes, ...RequestRoutes];
 
 if (Mixin.methods.is_addon_activated("multi_vendor")) {
     routes = [...routes, ...ShopRoutes];

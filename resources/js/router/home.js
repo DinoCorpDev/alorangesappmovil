@@ -11,8 +11,8 @@ let BlogDetails = () => import("../pages/BlogDetails");
 let TempLanding = () => import("../pages/TempLanding");
 let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
-let Home3 = () => import("../pages/Home3");
-let Home4 = () => import("../pages/Home4");
+let Spaces = () => import("../pages/Spaces");
+let Brand2 = () => import("../pages/Brand2");
 let About = () => import("../pages/About");
 let Brands = () => import("../pages/Brands");
 let Search = () => import("../pages/Search");
@@ -51,15 +51,9 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/home4",
-        component: Home4,
-        name: "Home4",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/home3",
-        component: Home3,
-        name: "Home3",
+        path: "/spaces",
+        component: Spaces,
+        name: "Spaces",
         meta: { requiresAuth: false }
     },
     {
@@ -114,6 +108,12 @@ export default [
         path: "/brand/:brandId?",
         component: ProductListing,
         name: "Brand",
+        meta: { requiresAuth: false }
+    },
+    {
+        path: "/brand2/:brandId?",
+        component: Brand2,
+        name: "Brand2",
         meta: { requiresAuth: false }
     },
     {
