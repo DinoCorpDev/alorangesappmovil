@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderUpdate;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Models\Permission;
 use CoreComponentRepository;
 
 class OrderController extends Controller
@@ -52,7 +53,8 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::with(['orderDetails.product','orderDetails.variation.combinations'])->findOrFail($id);
-        return view('backend.orders.show', compact('order'));
+        $permission_status_orders = Permission::where('parent', 'status_order')->get();
+        return view('backend.orders.show', compact('order', 'permission_status_orders'));
     }
 
     public function order_status(Request $request, $id)
