@@ -1,17 +1,9 @@
 <template>
-    <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" style="height: 100%" height="auto">
+    <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" :height="carouselHeight">
         <template v-slot:prev="{ on, attrs }">
             <v-btn small color="#000000" v-bind="attrs" v-on="on">
                 <i class="las la-angle-left"></i>
             </v-btn>
-        </template>
-        <template>
-            <div class="texts">
-                <h4 class="white--text text-uppercase">{{ title }}</h4>
-                <span class="body1 white--text">{{ description }}</span>
-                <br />
-                <span class="body2 white--text text-uppercase">{{ description2 }}</span>
-            </div>
         </template>
         <template v-slot:next="{ on, attrs }">
             <v-btn small color="#000000" v-bind="attrs" v-on="on">
@@ -20,30 +12,26 @@
         </template>
         <template v-if="slides.length > 0">
             <v-carousel-item v-for="(slide, i) in slides" :key="i">
-                <v-img v-if="slide.type === 'image'" :src="slide.src" :aspect-ratio="aspectRatio" />
-                <v-responsive v-if="slide.type === 'video'" :aspect-ratio="aspectRatio">
-                    <video autoplay>
-                        <source :src="slide.src" type="video/mp4" />
-                    </video>
-                </v-responsive>
-                <v-responsive v-if="slide.type === 'iframe'" :aspect-ratio="aspectRatio">
-                    <iframe
-                        :src="`${slide.src}?controls=0&autoplay=1&fs=0&modestbranding&rel=0&showinfo=0&disablekb=0`"
-                        frameborder="0"
-                        allowfullscreen
-                    ></iframe>
-                </v-responsive>
+                <img :src="slide.src" class="carousel-item-img" />
+                <div class="carousel-body white--text">
+                    <h4 class="carousel-title text-uppercase mb-3">{{ title }}</h4>
+                    <p class="carousel-description mb-5">{{ description }}</p>
+                    <div class="carousel-hashtags">
+                        <span v-for="(hashtag, i) in hashtags" :key="i" class="hashtag">
+                            # {{ hashtag }}
+                            <span v-if="i < hashtags.length - 1">•</span>
+                        </span>
+                    </div>
+                </div>
             </v-carousel-item>
         </template>
         <v-carousel-item v-else>
-            <v-img :src="itemPlaceholderUrl" :aspect-ratio="aspectRatio" contain />
+            <img :src="itemPlaceholderUrl" class="carousel-item-img placeholder" />
         </v-carousel-item>
     </v-carousel>
 </template>
 
 <script>
-import { title } from "process";
-
 export default {
     name: "CarouselDescription",
     props: {
@@ -63,9 +51,19 @@ export default {
             type: String,
             default: "single"
         },
-        title: String,
-        description: String,
-        description2: String
+        title: {
+            type: String,
+            default: "H4"
+        },
+        description: {
+            type: String,
+            default:
+                "Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has"
+        },
+        hashtags: {
+            type: Array,
+            default: () => ["Instalaciones", "Mantenimiento", "Planes"]
+        }
     },
     data() {
         return {
@@ -73,35 +71,18 @@ export default {
         };
     },
     computed: {
-        aspectRatio() {
-            if (this.type === "single") {
-                switch (this.$vuetify.breakpoint.name) {
-                    case "xs":
-                        return "0.8";
-                    case "sm":
-                        return "1.6";
-                    case "md":
-                        return "1.4";
-                    case "lg":
-                        return "1.4";
-                    case "xl":
-                        return "1.4";
-                }
-            }
-
-            if (this.type === "banner") {
-                switch (this.$vuetify.breakpoint.name) {
-                    case "xs":
-                        return "1";
-                    case "sm":
-                        return "1.6";
-                    case "md":
-                        return "2.1";
-                    case "lg":
-                        return "2.1";
-                    case "xl":
-                        return "2.1";
-                }
+        carouselHeight() {
+            switch (this.$vuetify.breakpoint.name) {
+                case "xs":
+                    return "570";
+                case "sm":
+                    return "440";
+                case "md":
+                    return "440";
+                case "lg":
+                    return "850";
+                case "xl":
+                    return "850";
             }
         }
     }
@@ -110,24 +91,8 @@ export default {
 
 <style lang="scss" scoped>
 .v-carousel {
-    .v-window-item {
-        display: flex;
-        align-items: center;
-
-        video,
-        iframe {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-        }
-    }
-}
-
-.v-carousel {
     border-radius: 10px;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.05) 100%);
+    background: #dfdfdf;
 
     &::v-deep {
         .v-window__next,
@@ -147,8 +112,27 @@ export default {
             }
         }
 
-        .v-window__container {
-            height: 100% !important;
+        .v-carousel__item {
+            &::before {
+                content: "";
+                background: linear-gradient(0deg, #000000 0%, #00000000 90%, #00000000 100%);
+                height: 100%;
+                width: 100%;
+                opacity: 50%;
+                position: absolute;
+            }
+
+            img {
+                max-width: 100%;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+
+                &.placeholder {
+                    object-fit: contain;
+                }
+            }
         }
 
         .v-carousel__controls {
@@ -181,9 +165,44 @@ export default {
     }
 }
 
-.texts {
-    position: absolute;
-    top: calc(80% - 52px);
-    padding: 0px 20px;
+.carousel {
+    &-body {
+        position: absolute;
+        bottom: 5rem;
+        padding: 1rem 1.5rem;
+    }
+
+    &-title {
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: 400;
+        letter-spacing: 0.25px;
+        text-transform: uppercase;
+
+        @media (min-width: 600px) {
+            font-size: 34px;
+            line-height: 43px;
+        }
+    }
+
+    &-description {
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 400;
+        font-family: "Roboto";
+        letter-spacing: 0.5px;
+
+        @media (min-width: 600px) {
+            font-size: 15px;
+        }
+    }
+
+    &-hashtags {
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
 }
 </style>
