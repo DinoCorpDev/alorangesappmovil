@@ -22,5 +22,5 @@ public/css/app.css
 public/js/app.js
 public/js/app.js.LICENSE.txt
 
-# public/web-assets/js
-# public/web-assets/css
+public/web-assets/js
+public/web-assets/css

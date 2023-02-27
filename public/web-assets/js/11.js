@@ -1,1 +1,364 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{"2Wkc":function(t,s,a){"use strict";a("3Pey")},"3Pey":function(t,s,a){var i=a("Js87");"string"==typeof i&&(i=[[t.i,i,""]]);var e={hmr:!0,transform:void 0,insertInto:void 0};a("aET+")(i,e);i.locals&&(t.exports=i.locals)},A5i6:function(t,s,a){"use strict";a.d(s,"b",(function(){return i})),a.d(s,"a",(function(){return e}));var i=[{src:"https://picsum.photos/1920/1080?random=1",type:"image"},{src:"https://picsum.photos/1920/1080?random=2",type:"image"},{src:"https://picsum.photos/1920/1080?random=3",type:"image"},{src:"/public/assets/video/product-example.mp4",type:"video"},{src:"https://www.youtube.com/embed/UWtzv9-b6yI",type:"iframe"}],e=[{id:"1",name:"Titulo",img:"https://picsum.photos/500/300?random=1",description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum."},{id:"2",name:"Titulo 2",description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.",img:"https://picsum.photos/500/300?random=2"},{id:"3",name:"Titulo 3",description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.",img:"https://picsum.photos/500/300?random=3"},{id:"4",name:"Titulo 4",description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.",img:"https://picsum.photos/500/300?random=4"},{id:"5",name:"Titulo 5",description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.",img:"https://picsum.photos/500/300?random=5"},{id:"6",name:"Titulo 6",description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.",img:"https://picsum.photos/500/300?random=6"},{id:"7",name:"Titulo 7",description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.",img:"https://picsum.photos/500/300?random=7"},{id:"8",name:"Titulo 8",description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.",img:"https://picsum.photos/500/300?random=8"},{id:"9",name:"Titulo 9",description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt fuga minima tenetur. Dicta quos voluptates alias aliquam, dignissimos culpa ratione illum atque accusantium ipsum nobis itaque nihil sunt? Harum.",img:"https://picsum.photos/500/300?random=9"}]},DQ8P:function(t,s,a){"use strict";a("nhus")},FM6H:function(t,s,a){var i=a("P3eT");"string"==typeof i&&(i=[[t.i,i,""]]);var e={hmr:!0,transform:void 0,insertInto:void 0};a("aET+")(i,e);i.locals&&(t.exports=i.locals)},Js87:function(t,s,a){(t.exports=a("I1BE")(!1)).push([t.i,".product-item[data-v-0de5900d]{border-radius:10px;background-color:#18191a}.product-item-image[data-v-0de5900d]{background-color:#242526}.product-item-image[data-v-0de5900d],.product-item-image .v-image[data-v-0de5900d]{border-top-right-radius:10px;border-top-left-radius:10px}.v-card[data-v-0de5900d]{opacity:.3;transition:opacity .4s ease-in-out}.v-card[data-v-0de5900d]:not(.on-hover){opacity:1}.show-btns[data-v-0de5900d]{color:#fff!important}.subtitle2[data-v-0de5900d]{font-size:10px}",""])},Ks3z:function(t,s,a){"use strict";a("y1Ru")},LMKT:function(t,s,a){"use strict";a("FM6H")},Lfsv:function(t,s,a){var i=a("fImU");"string"==typeof i&&(i=[[t.i,i,""]]);var e={hmr:!0,transform:void 0,insertInto:void 0};a("aET+")(i,e);i.locals&&(t.exports=i.locals)},P3eT:function(t,s,a){(t.exports=a("I1BE")(!1)).push([t.i,".v-carousel .v-window-item[data-v-2d3b52c0]{display:flex;align-items:center}.v-carousel .v-window-item iframe[data-v-2d3b52c0],.v-carousel .v-window-item video[data-v-2d3b52c0]{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;position:absolute}.v-carousel[data-v-2d3b52c0]{border-radius:10px;background-color:#242526}.v-carousel[data-v-2d3b52c0] .v-window__next,.v-carousel[data-v-2d3b52c0] .v-window__prev{top:calc(100% - 52px);z-index:2;background:transparent;border-radius:0}.v-carousel[data-v-2d3b52c0] .v-window__next .v-btn,.v-carousel[data-v-2d3b52c0] .v-window__prev .v-btn{font-size:20px;height:38px;min-width:38px;padding:0;border-radius:5px;opacity:.5}.v-carousel[data-v-2d3b52c0] .v-window__container{height:100%!important}.v-carousel[data-v-2d3b52c0] .v-carousel__controls{background:transparent}.v-carousel[data-v-2d3b52c0] .v-carousel__controls .v-item-group{width:50%;display:flex;justify-content:space-around}.v-carousel[data-v-2d3b52c0] .v-carousel__controls .v-carousel__controls__item{height:8px;width:8px;color:#000}.v-carousel[data-v-2d3b52c0] .v-carousel__controls .v-carousel__controls__item.v-item--active{color:#18191a}.v-carousel[data-v-2d3b52c0] .v-carousel__controls .v-carousel__controls__item.v-item--active:before{opacity:1}.v-carousel[data-v-2d3b52c0] .v-carousel__controls .v-carousel__controls__item:before{opacity:.1}",""])},RuNl:function(t,s,a){"use strict";a("Lfsv")},YKDk:function(t,s,a){(t.exports=a("I1BE")(!1)).push([t.i,".v-btn[data-v-66871093]{font-size:12px;font-weight:600;letter-spacing:1.25px;border-radius:5px}@media (min-width:960px){.v-btn[data-v-66871093]{font-size:14px}}.v-btn i[data-v-66871093]{font-size:20px}.v-btn[data-v-66871093]:focus:before,.v-btn[data-v-66871093]:hover:before{opacity:1}.v-btn.v-size--default[data-v-66871093]{height:38px}.theme--light.v-btn[data-v-66871093]{color:#000}.theme--light.v-btn.v-btn--has-bg[data-v-66871093]{background-color:#dfdfdf}.theme--light.v-btn.v-btn--has-bg[data-v-66871093]:before{background-color:#fff}.theme--light.v-btn.v-btn--has-bg.v-btn--disabled[data-v-66871093]{color:#000!important}.theme--light.v-btn.v-btn--has-bg.v-btn--disabled.v-btn--has-bg[data-v-66871093]{background-color:#fafcfc!important}.theme--light.v-btn.v-btn--outlined[data-v-66871093]{color:#fff}.theme--light.v-btn.v-btn--outlined[data-v-66871093]:focus,.theme--light.v-btn.v-btn--outlined[data-v-66871093]:hover{color:#000}.theme--light.v-btn.v-btn--outlined[data-v-66871093]:before{background-color:hsla(0,0%,100%,.8)}.theme--light.v-btn.v-btn--outlined[data-v-66871093]:focus:before{background-color:#fff}.buttonsAct[data-v-66871093]{top:20px;position:absolute;width:96%}.positionColbuttons[data-v-66871093]{position:relative}.la-border[data-v-66871093]{border-radius:.5em}.v-btn-toggle[data-v-66871093]{border-radius:0;height:20px!important}.toggle-btn[data-v-66871093]{height:20px!important;min-width:20px!important}.v-divider[data-v-66871093]{border-width:thin 0 0}.v-divider--vertical[data-v-66871093]{border-width:0 thin 0 0}.subtitles-gray[data-v-66871093]{font-size:12px;color:grey}.justify-end[data-v-66871093]{text-align:end}",""])},ZEnB:function(t,s,a){"use strict";a.r(s);var i=a("oCvW"),e=a("biXX"),o=a("i2hw"),r=a("CVjx"),c=a("pGu3"),l=a("fbQC"),n=a("2LIV"),u=a("A5i6"),v={data:function(){return{showp:!0,showp1:!1,showp2:!1,showd:!0,showd1:!1,showd2:!1,sliderSeeder:u.b,id:"0",name:"Colección",ref:"REFERENCIA",brand:"Marcas",val:"000.000.000 COP",img:"/public/assets/img/item-placeholder.png",iva:"* Iva Incluido",varia:"Variación",model:0,tags:["1","2","3"],ratings:{rating5:67,rating4:22,rating3:11,rating2:0,rating1:0}}},components:{ProductItem3:i.a,ProductItem2:e.a,ProductItem5:o.a,CustomButton:r.a,LayoutNavbarSpaces:c.a,Carousel:l.a,LayoutNavbarAuth:n.a},mounted:function(){this.$vuetify.theme.dark=!0}},d=(a("eDCK"),a("KHd+")),m=Object(d.a)(v,(function(){var t=this,s=t._self._c;return s("div",[s("layout-navbar-auth"),t._v(" "),s("v-row",[s("v-col",{attrs:{cols:"4"}},[s("v-row",{staticClass:"mt-2 ml-3",attrs:{dense:""}},[s("v-col",{attrs:{cols:"4"}},[s("v-row",{attrs:{justify:"center"}},[s("v-btn",{attrs:{light:"",width:"150px"},on:{click:function(s){t.showd=!0,t.showd1=!1,t.showd2=!1}}},[t._v("\n                            Especificación\n                        ")])],1)],1),t._v(" "),s("v-col",{attrs:{cols:"4"}},[s("v-row",{attrs:{justify:"center"}},[s("v-btn",{attrs:{width:"150px",light:""},on:{click:function(s){t.showd=!1,t.showd1=!0,t.showd2=!1}}},[t._v("\n                            Reseña\n                        ")])],1)],1),t._v(" "),s("v-col",{attrs:{cols:"4"}},[s("v-row",{attrs:{justify:"center"}},[s("v-btn",{attrs:{light:"",width:"150px"},on:{click:function(s){t.showd=!1,t.showd1=!1,t.showd2=!0}}},[t._v("\n                            Sostenibilidad\n                        ")])],1)],1)],1),t._v(" "),s("v-divider",{staticClass:"mt-8 ml-3"}),t._v(" "),s("v-card",{directives:[{name:"scroll",rawName:"v-scroll.self",value:t.onScroll,expression:"onScroll",modifiers:{self:!0}},{name:"show",rawName:"v-show",value:t.showd,expression:"showd"}],staticClass:"overflow-y-auto mt-3",attrs:{"max-height":"628"}},[s("div",{staticClass:"product-item-body pa-4 la-border ml-3"},[s("v-row",[s("v-col",{attrs:{cols:"6"}},[s("v-row",{attrs:{justify:"center",dense:""}},[s("span",[t._v("Energía")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("h5",{staticClass:"subtitle2 text-uppercase mt-1"},[t._v("Consumo")])])],1),t._v(" "),s("v-divider",{staticClass:"mb-2",attrs:{inset:"",vertical:""}}),t._v(" "),s("v-col",{attrs:{cols:"6"}},[s("v-row",{attrs:{justify:"center",dense:""}},[s("span",[t._v("Material")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("h5",{staticClass:"subtitle2 text-uppercase mt-1"},[t._v("Cuerpo")])])],1)],1)],1),t._v(" "),s("div",{staticClass:"product-item-body pa-4 la-border ml-3 mt-4"},[s("v-row",[s("v-col",{attrs:{cols:"5"}},[s("v-row",{attrs:{dense:""}},[s("v-icon",{staticClass:"mr-2"},[t._v("la-cube")]),t._v(" "),s("v-icon",{staticClass:"mr-2"},[t._v("la-cube")]),t._v(" "),s("v-icon",[t._v("la-cube")])],1),t._v(" "),s("v-row",{attrs:{dense:""}},[s("span",{staticClass:"subtitle2 text-uppercase mt-1"},[t._v("Medida de Producto")])]),t._v(" "),s("v-row",{attrs:{dense:""}},[s("span",{staticClass:"subtitle2 text-uppercase"},[t._v("Medida de Embalaje")])]),t._v(" "),s("v-row",{attrs:{dense:""}},[s("span",{staticClass:"subtitle2 text-uppercase"},[t._v("Medida de Engaste")])])],1),t._v(" "),s("v-col",{attrs:{cols:"5"}},[s("v-row",{attrs:{justify:"center",dense:""}},[s("span",{staticClass:"subtitles-gray"},[t._v("(Fuente x Profundidad x Altura)")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("span",{staticClass:"subtitle2 text-uppercase mt-3"},[t._v("000 x 000 x 000")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("span",{staticClass:"subtitle2 text-uppercase"},[t._v("000 x 000 x 000")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("span",{staticClass:"subtitle2 text-uppercase"},[t._v("000 x 000 x 000")])])],1),t._v(" "),s("v-col",{attrs:{cols:"2"}},[s("v-row",{attrs:{justify:"center",dense:""}},[s("span",{staticClass:"subtitles-gray"},[t._v("(Unidades)")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("span",{staticClass:"subtitle2 mt-3"},[t._v("cm")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("span",{staticClass:"subtitle2"},[t._v("cm")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("span",{staticClass:"subtitle2"},[t._v("cm")])])],1)],1)],1),t._v(" "),s("div",{staticClass:"product-item-body pa-4 la-border ml-3 mt-4"},[s("v-row",[s("v-col",{attrs:{cols:"6"}},[s("v-row",{attrs:{justify:"center",dense:""}},[s("span",[t._v("00.0")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("h5",{staticClass:"subtitle2 text-uppercase mt-1"},[t._v("Peso de Producto")])])],1),t._v(" "),s("v-divider",{staticClass:"mb-2",attrs:{inset:"",vertical:""}}),t._v(" "),s("v-col",{attrs:{cols:"6"}},[s("v-row",{attrs:{justify:"center",dense:""}},[s("span",[t._v("00.0")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("h5",{staticClass:"subtitle2 text-uppercase mt-1"},[t._v("Peso de Envío")])])],1)],1)],1),t._v(" "),s("div",{staticClass:"product-item-body pa-4 la-border ml-3 mt-4"},[s("v-row",[s("v-col",{attrs:{cols:"6"}},[s("v-row",{attrs:{justify:"center",dense:""}},[s("span",[t._v("0.0 V / 0.0 Hz / 0.0 A")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("h5",{staticClass:"subtitle2 text-uppercase mt-1"},[t._v("Voltaje")])])],1),t._v(" "),s("v-divider",{staticClass:"mb-2",attrs:{inset:"",vertical:""}}),t._v(" "),s("v-col",{attrs:{cols:"6"}},[s("v-row",{attrs:{justify:"center",dense:""}},[s("span",[t._v("0.0 %")])]),t._v(" "),s("v-row",{attrs:{justify:"center",dense:""}},[s("h5",{staticClass:"subtitle2 text-uppercase mt-1"},[t._v("Eficiencia")])])],1)],1)],1),t._v(" "),s("h5",{staticClass:"subtitle2 text-uppercase mt-5 ml-3"},[t._v("Características")]),t._v(" "),s("v-divider",{staticClass:"mt-2 ml-3"}),t._v(" "),s("ul",[s("li",{staticClass:"subtitle2 mt-1"},[t._v("\n                        Característica 1 incluye Lorem Ipsum is simply dummy text of printing\n                    ")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 2 incluye Lorem Ipsum is simply dummy text of printing")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 3 incluye Lorem Ipsum is simply dummy text of printing")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 4 incluye Lorem Ipsum is simply dummy text of printing")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 5 incluye Lorem Ipsum is simply dummy text of printing")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 6 incluye Lorem Ipsum is simply dummy text of printing")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 7 incluye Lorem Ipsum is simply dummy text of printing")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 8 incluye Lorem Ipsum is simply dummy text of printing")])]),t._v(" "),s("div",{staticClass:"d-flex justify-space-between"},[s("h5",{staticClass:"subtitle2 text-uppercase mt-5 ml-3"},[t._v("Manuales y Guías")]),t._v(" "),s("h5",{staticClass:"subtitles-gray mt-5"},[t._v("(Para descargar)")])]),t._v(" "),s("v-divider",{staticClass:"mt-2 ml-3"}),t._v(" "),s("v-row",{staticClass:"mt-1 ml-3"},[s("v-col",{attrs:{cols:"6"}},[s("v-row",{attrs:{dense:""}},[s("span",{staticClass:"subtitle2"},[s("u",[t._v("Manual de producto")])])]),t._v(" "),s("v-row",{staticClass:"mt-1",attrs:{dense:""}},[s("span",{staticClass:"subtitle2"},[s("u",[t._v("Ficha técnica del producto")])])])],1),t._v(" "),s("v-col",{attrs:{cols:"6"}},[s("v-row",{attrs:{dense:""}},[s("span",{staticClass:"subtitle2"},[s("u",[t._v("Hora de especificaciones")])])]),t._v(" "),s("v-row",{staticClass:"mt-1",attrs:{dense:""}},[s("span",{staticClass:"subtitle2"},[s("u",[t._v("Guía de instalación")])])])],1)],1),t._v(" "),s("h5",{staticClass:"subtitle2 text-uppercase mt-5 ml-3"},[t._v("Beneficios")]),t._v(" "),s("v-divider",{staticClass:"mt-2 ml-3"}),t._v(" "),s("ul",[s("li",{staticClass:"subtitle2 mt-1"},[t._v("\n                        Característica 1 incluye Lorem Ipsum is simply dummy text of printing\n                    ")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 2 incluye Lorem Ipsum is simply dummy text of printing")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 3 incluye Lorem Ipsum is simply dummy text of printing")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 4 incluye Lorem Ipsum is simply dummy text of printing")]),t._v(" "),s("li",{staticClass:"subtitle2"},[t._v("Característica 5 incluye Lorem Ipsum is simply dummy text of printing")])]),t._v(" "),s("h5",{staticClass:"subtitle2 text-uppercase mt-5 ml-3"},[t._v("Servicio Postventa")]),t._v(" "),s("v-divider",{staticClass:"mt-2 ml-3"}),t._v(" "),s("p",{staticClass:"subtitle2 ml-3"},[t._v("\n                    Característica 1 incluye Lorem Ipsum is simply dummy text of printing Característica 1 incluye\n                    Lorem Ipsum is simply dummy text of printing Característica 1 incluye Lorem Ipsum is simply\n                    dummy text of printing Característica 1 incluye Lorem Ipsum is simply dummy text of printing\n                    Característica 1 incluye Lorem Ipsum is simply dummy text of printing\n                ")])],1),t._v(" "),s("v-card",{directives:[{name:"scroll",rawName:"v-scroll.self",value:t.onScroll,expression:"onScroll",modifiers:{self:!0}},{name:"show",rawName:"v-show",value:t.showd1,expression:"showd1"}],staticClass:"overflow-y-auto mt-3",attrs:{"max-height":"628"}},[s("div",{staticClass:"product-item-body pa-4 la-border ml-3 mt-4"},[s("h5",{staticClass:"subtitle2 text-uppercase"},[t._v("Calificación")]),t._v(" "),s("v-row",{staticClass:"mt-2"},[s("v-col",{staticClass:"justify-end",staticStyle:{"line-height":"2.4"},attrs:{cols:"4"}},[s("h5",{staticClass:"text-uppercase"},[t._v("5.0")]),t._v(" "),s("v-rating",{attrs:{"empty-icon":"las la-star","full-icon":"las la-star active","half-icon":"las la-star half half","background-color":"",length:"5",size:"11"},model:{value:t.rating,callback:function(s){t.rating=s},expression:"rating"}}),t._v(" "),s("span",{staticClass:"caption"},[t._v("Opiniones (22)")])],1),t._v(" "),s("v-col",{attrs:{cols:"8"}},[s("v-row",[s("v-col",{staticStyle:{"line-height":"0.1"},attrs:{cols:"1"}},[s("span",{staticClass:"caption mr-2"},[t._v("5")]),t._v(" "),s("span",{staticClass:"caption mr-2"},[t._v("4")]),t._v(" "),s("span",{staticClass:"caption mr-2"},[t._v("3")]),t._v(" "),s("span",{staticClass:"caption mr-2"},[t._v("2")]),t._v(" "),s("span",{staticClass:"caption mr-2"},[t._v("1")])]),t._v(" "),s("v-col",{staticStyle:{"line-height":"2.1"},attrs:{cols:"9"}},[s("v-progress-linear",{staticClass:"mt-2",attrs:{color:"white"},model:{value:t.ratings.rating5,callback:function(s){t.$set(t.ratings,"rating5",s)},expression:"ratings.rating5"}}),t._v(" "),s("v-progress-linear",{staticClass:"mt-4",attrs:{color:"white"},model:{value:t.ratings.rating4,callback:function(s){t.$set(t.ratings,"rating4",s)},expression:"ratings.rating4"}}),t._v(" "),s("v-progress-linear",{staticClass:"mt-4",attrs:{color:"white"},model:{value:t.ratings.rating3,callback:function(s){t.$set(t.ratings,"rating3",s)},expression:"ratings.rating3"}}),t._v(" "),s("v-progress-linear",{staticClass:"mt-4",attrs:{color:"white"},model:{value:t.ratings.rating2,callback:function(s){t.$set(t.ratings,"rating2",s)},expression:"ratings.rating2"}}),t._v(" "),s("v-progress-linear",{staticClass:"mt-4",attrs:{color:"white"},model:{value:t.ratings.rating1,callback:function(s){t.$set(t.ratings,"rating1",s)},expression:"ratings.rating1"}})],1),t._v(" "),s("v-col",{staticStyle:{"line-height":"0.1"},attrs:{cols:"2"}},[s("span",{staticClass:"caption"},[t._v("30")]),s("br"),t._v(" "),s("span",{staticClass:"caption"},[t._v("10")]),s("br"),t._v(" "),s("span",{staticClass:"caption"},[t._v("5")]),s("br"),t._v(" "),s("span",{staticClass:"caption"},[t._v("0")]),s("br"),t._v(" "),s("span",{staticClass:"caption"},[t._v("0")])])],1)],1)],1)],1),t._v(" "),s("div",{staticClass:"d-flex pa-4 ml-3"},[s("h5",{staticClass:"subtitle2 text-uppercase mt-4"},[t._v("¿Deseas calificar este producto?")]),t._v(" "),s("custom-button",{staticClass:"ml-4 mt-2",attrs:{text:"Calificar",light:""}})],1)]),t._v(" "),s("v-card",{directives:[{name:"scroll",rawName:"v-scroll.self",value:t.onScroll,expression:"onScroll",modifiers:{self:!0}},{name:"show",rawName:"v-show",value:t.showd2,expression:"showd2"}],staticClass:"overflow-y-auto mt-3",attrs:{"max-height":"628"}},[s("div",{staticClass:"product-item-body pa-4 la-border ml-3 mt-4"},[s("h5",{staticClass:"subtitle2 text-uppercase"},[t._v("Vida Útil")]),t._v(" "),s("v-row",{staticClass:"mt-2",attrs:{dense:"",justify:"center"}},[s("v-progress-linear",{staticClass:"mt-2",staticStyle:{width:"78%"},attrs:{color:"white"},model:{value:t.ratings.rating5,callback:function(s){t.$set(t.ratings,"rating5",s)},expression:"ratings.rating5"}})],1),t._v(" "),s("v-row",[s("v-col",{attrs:{cols:"3"}},[s("v-row",{attrs:{justify:"center"}},[s("span",[t._v("1-14")])]),t._v(" "),s("v-row",{attrs:{justify:"center"}},[s("span",{staticClass:"caption"},[t._v("Semanas")])])],1),t._v(" "),s("v-col",{attrs:{cols:"3"}},[s("v-row",{attrs:{justify:"center"}},[s("span",[t._v("1-24")]),s("br")]),t._v(" "),s("v-row",{attrs:{justify:"center"}},[s("span",{staticClass:"caption"},[t._v("Meses")])])],1),t._v(" "),s("v-col",{attrs:{cols:"3"}},[s("v-row",{attrs:{justify:"center"}},[s("span",[t._v("1-10")]),s("br")]),t._v(" "),s("v-row",{attrs:{justify:"center"}},[s("span",{staticClass:"caption"},[t._v("Años")])])],1),t._v(" "),s("v-col",{attrs:{cols:"3"}},[s("v-row",{attrs:{justify:"center"}},[s("span",[t._v("10-25")]),s("br")]),t._v(" "),s("v-row",{attrs:{justify:"center"}},[s("span",{staticClass:"caption"},[t._v("Años")])])],1)],1)],1),t._v(" "),s("div",{staticClass:"product-item-body pa-4 la-border ml-3 mt-4"},[s("h5",{staticClass:"subtitle2 text-uppercase"},[t._v("Composición de producto")]),t._v(" "),s("v-divider",{staticClass:"mt-2 mb-2"}),t._v(" "),s("h5",{staticClass:"subtitle2 text-uppercase"},[t._v("Impacto Ambiental")])],1),t._v(" "),s("div",{staticClass:"product-item-body pa-4 la-border ml-3 mt-4"},[s("h5",{staticClass:"subtitle2 text-uppercase"},[t._v("Consejos Ecológicos")]),t._v(" "),s("ul",[s("li",{staticClass:"subtitle2 mt-1"},[t._v("\n                            Una vez el producto cumpla su vida útil debes ser riguroso en reciclar sus materiales de\n                            forma correcta.\n                        ")]),t._v(" "),s("li",{staticClass:"subtitle2 mt-2"},[t._v("\n                            Realizar el mantenimiento pertinente en las fechas adecuadas para extender la vida útil\n                            del producto.\n                        ")])])]),t._v(" "),s("v-row",[s("v-col",{attrs:{cols:"6"}},[s("div",{staticClass:"product-item-body pa-1 la-border ml-3 mt-4"},[s("v-row",{staticClass:"mt-3",attrs:{dense:"",justify:"center"}},[s("v-icon",{attrs:{"x-large":""}},[t._v("la-sync")])],1),t._v(" "),s("v-row",{staticClass:"mt-5",attrs:{dense:"",justify:"center"}},[s("p",{staticClass:"subtitle2",staticStyle:{"text-align":"center"}},[t._v("\n                                    Deseo reciclar un viejo producto y recibir un bono adicional de descuento a\n                                    cambio.\n                                ")])]),t._v(" "),s("v-row",{attrs:{dense:"",justify:"center"}},[s("custom-button",{attrs:{plain:"",text:"Solicitar"}})],1),t._v(" "),s("v-row",{staticClass:"mt-4 mb-2",attrs:{dense:"",justify:"center"}},[s("custom-button",{attrs:{light:"",text:"RENOVACIÓN UPGRADE",width:190}})],1)],1)]),t._v(" "),s("v-col",{attrs:{cols:"6"}},[s("div",{staticClass:"product-item-body pa-1 la-border mt-4"},[s("v-row",{staticClass:"mt-3",attrs:{dense:"",justify:"center"}},[s("v-icon",{attrs:{"x-large":""}},[t._v("la-tools")])],1),t._v(" "),s("v-row",{staticClass:"mt-5",attrs:{dense:"",justify:"center"}},[s("p",{staticClass:"subtitle2",staticStyle:{"text-align":"center"}},[t._v("\n                                    Deseo programar un mantenimiento preventivo para mi producto/s.\n                                ")])]),t._v(" "),s("v-row",{attrs:{dense:"",justify:"center"}},[s("custom-button",{attrs:{plain:"",text:"Solicitar"}})],1),t._v(" "),s("v-row",{staticClass:"mt-4 mb-2",attrs:{dense:"",justify:"center"}},[s("custom-button",{attrs:{light:"",text:"SOPORTE TÉCNICO",width:190}})],1)],1)])],1)],1)],1),t._v(" "),s("v-col",{staticClass:"positionColbuttons",attrs:{cols:"4"}},[s("v-row",{attrs:{dense:"",justify:""}},[s("v-col",[s("carousel",{directives:[{name:"show",rawName:"v-show",value:t.showp,expression:"showp"}],staticStyle:{height:"700px"}}),t._v(" "),s("carousel",{directives:[{name:"show",rawName:"v-show",value:t.showp1,expression:"showp1"}],staticStyle:{height:"700px"},attrs:{slides:t.sliderSeeder}}),t._v(" "),s("v-img",{directives:[{name:"show",rawName:"v-show",value:t.showp2,expression:"showp2"}],attrs:{src:"https://picsum.photos/1920/1080?random=1",height:"700px",width:"100%"}})],1)],1),t._v(" "),s("v-row",{staticClass:"buttonsAct px-4"},[s("v-col",{attrs:{cols:"4"}},[s("v-btn",{attrs:{light:"",block:""},on:{click:function(s){t.showp=!0,t.showp1=!1,t.showp2=!1}}},[t._v("\n                        Imágenes\n                    ")])],1),t._v(" "),s("v-col",{attrs:{cols:"4"}},[s("v-btn",{attrs:{light:"",block:""},on:{click:function(s){t.showp=!1,t.showp1=!0,t.showp2=!1}}},[t._v("\n                        Videos\n                    ")])],1),t._v(" "),s("v-col",{attrs:{cols:"4"}},[s("v-btn",{attrs:{light:"",block:""},on:{click:function(s){t.showp=!1,t.showp1=!1,t.showp2=!0}}},[t._v("\n                        Ficha Técnica\n                    ")])],1)],1)],1),t._v(" "),s("v-col",{attrs:{cols:"4"}},[s("div",{staticClass:"product-item-body pa-4 la-border mr-5"},[s("div",{staticClass:"d-flex justify-space-between"},[s("h5",{staticClass:"subtitle2 text-uppercase mb-2"},[t._v(t._s(t.ref))]),t._v(" "),s("v-icon",{attrs:{right:""}},[t._v(" la-bookmark ")])],1),t._v(" "),s("h5",{staticClass:"subtitle1 text-uppercase font-weight-bold mb-2"},[t._v(t._s(t.name))]),t._v(" "),s("h5",{staticClass:"subtitle1 mb-2"},[t._v(t._s(t.brand))]),t._v(" "),s("div",{staticClass:"d-flex"},[s("h5",{staticClass:"subtitle1 mb-2 mr-2"},[t._v(t._s(t.val))]),t._v(" "),s("h5",{staticClass:"caption mb-2"},[s("del",[t._v(t._s(t.val))])])]),t._v(" "),s("div",{staticClass:"d-flex justify-space-between"},[s("h5",{staticClass:"caption mb-3"},[t._v(t._s(t.iva))]),t._v(" "),s("div",{staticClass:"d-flex justify-space-around align-center"},[s("v-btn",{attrs:{icon:""},on:{click:function(s){t.model=Math.max(t.model-1,0)}}},[s("v-icon",{attrs:{small:""}},[t._v(" la-minus ")])],1),t._v("\n                        "+t._s(t.model)+"\n                        "),s("v-btn",{attrs:{icon:""},on:{click:function(s){t.model=Math.min(t.model+1,8)}}},[s("v-icon",{attrs:{small:""}},[t._v(" la-plus ")])],1)],1)]),t._v(" "),s("custom-button",{attrs:{text:"Agregar a Compras",block:""}}),t._v(" "),s("custom-button",{staticClass:"mt-3",attrs:{light:"",text:"Consultar a un Asesor",block:""}})],1),t._v(" "),s("div",{staticClass:"product-item-body pa-4 la-border mr-5 mt-3"},[s("div",{staticClass:"d-flex justify-space-between"},[s("h5",{staticClass:"subtitle2 text-uppercase mb-1"},[t._v(t._s(t.varia))]),t._v(" "),s("v-btn-toggle",[s("v-btn",{staticClass:"blue toggle-btn"}),t._v(" "),s("v-btn",{staticClass:"ml-2 white toggle-btn"}),t._v(" "),s("v-btn",{staticClass:"ml-2 black toggle-btn"}),t._v(" "),s("v-btn",{staticClass:"ml-2 red toggle-btn"})],1)],1)]),t._v(" "),s("div",{staticClass:"product-item-body pa-4 la-border mr-5 mt-3"},[s("div",{staticClass:"d-flex justify-space-between"},[s("h5",{staticClass:"subtitle2 text-uppercase mb-1"},[t._v("Disponibilidad")]),t._v(" "),s("h5",{staticClass:"subtitle1 mb-2"},[t._v("Stock")])]),t._v(" "),s("div",{staticClass:"d-flex justify-space-between"},[s("h5",{staticClass:"subtitle2 text-uppercase mb-1"},[t._v("Garantía")]),t._v(" "),s("h5",{staticClass:"subtitle1 mb-2"},[t._v("12 Meses")])]),t._v(" "),s("div",{staticClass:"d-flex justify-space-between"},[s("h5",{staticClass:"subtitle2 text-uppercase mb-1"},[t._v("Pago")]),t._v(" "),s("h5",{staticClass:"subtitle1 mb-2"},[t._v("Payu Visa PSE MC")])]),t._v(" "),s("div",{staticClass:"d-flex justify-space-between"},[s("h5",{staticClass:"subtitle2 text-uppercase"},[t._v("Envío")]),t._v(" "),s("h5",{staticClass:"subtitle1"},[t._v("A domicilio")])])]),t._v(" "),s("h5",{staticClass:"subtitle2 text-uppercase mt-3 mb-2"},[t._v("Se incluye con la compra")]),t._v(" "),s("div",{staticClass:"product-item-body mr-5 mt-3"},[s("v-divider"),t._v(" "),s("product-item-5")],1)])],1),t._v(" "),s("div",{staticClass:"mb-4 mt-16"},[s("div",{staticClass:"d-flex justify-space-between mb-8"},[s("h5",{staticClass:"mt-1"},[t._v("H5")]),t._v(" "),s("div",{staticStyle:{width:"38%"}},[s("custom-button",{staticStyle:{width:"23%"},attrs:{light:"",text:"Nuevo"}}),t._v(" "),s("custom-button",{staticClass:"ml-2",staticStyle:{width:"23%"},attrs:{light:"",text:"Nuevo"}}),t._v(" "),s("custom-button",{staticClass:"ml-2",staticStyle:{width:"23%"},attrs:{light:"",text:"Nuevo"}}),t._v(" "),s("custom-button",{staticClass:"ml-2",staticStyle:{width:"23%"},attrs:{light:"",text:"Nuevo"}})],1)]),t._v(" "),s("v-row",[s("v-col",{attrs:{cols:"2"}},[s("product-item-2",{attrs:{headerPr:"true"}})],1),t._v(" "),s("v-col",{attrs:{cols:"2"}},[s("product-item-2",{attrs:{headerPr:"true"}})],1),t._v(" "),s("v-col",{attrs:{cols:"2"}},[s("product-item-2",{attrs:{headerPr:"true",img:"/public/assets/img/landing/Pacto-Ambiental.jpg"}})],1),t._v(" "),s("v-col",{attrs:{cols:"2"}},[s("product-item-2",{attrs:{headerPr:"true",img:"/public/assets/img/landing/Pacto-Ambiental.jpg"}})],1),t._v(" "),s("v-col",{attrs:{cols:"2"}},[s("product-item-2",{attrs:{headerPr:"true"}})],1),t._v(" "),s("v-col",{attrs:{cols:"2"}},[s("product-item-2",{attrs:{headerPr:"true",img:"/public/assets/img/landing/Pacto-Ambiental.jpg"}})],1)],1),t._v(" "),s("v-row",{attrs:{justify:"center"}},[s("custom-button",{staticClass:"mt-6 mb-6",staticStyle:{width:"40%"},attrs:{light:"",text:"Ver más"}})],1)],1),t._v(" "),s("v-row",{staticClass:"mb-6"},[s("v-col",{attrs:{cols:"12"}},[s("div",{staticClass:"d-flex justify-space-between mb-8"},[s("h5",{staticClass:"mt-1"},[t._v("H5")]),t._v(" "),s("div",{staticStyle:{width:"38%"}},[s("custom-button",{staticStyle:{width:"23%"},attrs:{light:"",text:"Nuevo"}}),t._v(" "),s("custom-button",{staticClass:"ml-2",staticStyle:{width:"23%"},attrs:{light:"",text:"Nuevo"}}),t._v(" "),s("custom-button",{staticClass:"ml-2",staticStyle:{width:"23%"},attrs:{light:"",text:"Nuevo"}}),t._v(" "),s("custom-button",{staticClass:"ml-2",staticStyle:{width:"23%"},attrs:{light:"",text:"Nuevo"}})],1)]),t._v(" "),s("v-row",[s("v-col",{attrs:{cols:"3"}},[s("product-item-3")],1),t._v(" "),s("v-col",{attrs:{cols:"3"}},[s("product-item-3",{attrs:{title:"Producto 1",descripcion:"Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",idItem:"1"}})],1),t._v(" "),s("v-col",{attrs:{cols:"3"}},[s("product-item-3",{attrs:{title:"Producto 1",descripcion:"Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",idItem:"1",img:"/public/assets/img/landing/Pacto-Ambiental.jpg"}})],1),t._v(" "),s("v-col",{attrs:{cols:"3"}},[s("product-item-3",{attrs:{title:"Producto 1",descripcion:"Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",idItem:"1",img:"/public/assets/img/landing/Pacto-Ambiental.jpg"}})],1)],1),t._v(" "),s("v-row",{attrs:{justify:"center"}},[s("custom-button",{staticClass:"mt-6",staticStyle:{width:"40%"},attrs:{light:"",text:"Ver más"}})],1)],1)],1),t._v(" "),s("v-card",[s("v-footer",{staticClass:"px-5 py-5",attrs:{color:"#18191A"}},[s("v-row",{staticClass:"d-flex justify-space-between flex-wrap"},[s("v-col",{attrs:{cols:"2",sm:"3"}},[s("span",{staticClass:"subtitle1 bold text-uppercase"},[t._v("© Idovela 2022")])]),t._v(" "),s("v-col",{attrs:{cols:"4",sm:"3"}},[s("span",{staticClass:"subtitle1 bold text-uppercase"},[s("i",{staticClass:"las la-globe"}),t._v(" Bogota, Colombia")])]),t._v(" "),s("v-col",{attrs:{cols:"6",sm:"6"}},[s("v-row",[s("v-col",{attrs:{cols:"4"}},[s("span",{staticClass:"subtitle1 bold text-uppercase"},[t._v("Información")])]),t._v(" "),s("v-col",{attrs:{cols:"4"}},[s("span",{staticClass:"subtitle1 bold text-uppercase"},[t._v("Solicitudes")])]),t._v(" "),s("v-col",{attrs:{cols:"4"}},[s("span",{staticClass:"subtitle1 bold text-uppercase"},[t._v("Contacto")])])],1)],1)],1)],1)],1)],1)}),[],!1,null,"66871093",null);s.default=m.exports},biXX:function(t,s,a){"use strict";var i={name:"ProductItem2",data:function(){return{icons:["mdi-rewind","mdi-play","mdi-fast-forward"],transparent:"rgba(255, 255, 255, 0)"}},components:{CustomButton:a("CVjx").a},props:{headerPr:{type:Boolean},data:{type:Object,default:function(){return{id:"0",name:"Objeto",ref:"REFERENCIA",brand:"Marca",val:"000.000.000 COP",img:"/public/assets/img/item-placeholder.png",transparent:"rgba(255, 255, 255, 0)"}}}},computed:{aspectRatio:function(){switch(this.$vuetify.breakpoint.name){case"xs":return"1.2";case"sm":return"1.9";case"md":case"lg":case"xl":return"2.2"}}}},e=(a("2Wkc"),a("KHd+")),o=Object(e.a)(i,(function(){var t=this,s=t._self._c;return s("div",{staticClass:"product-item"},[t.headerPr?s("div",{staticClass:"text-right pa-2"},[s("v-icon",{attrs:{right:""}},[t._v(" la-bookmark ")])],1):s("div",{staticClass:"text-right pa-2 d-flex justify-space-between"},[s("h5",{staticClass:"subtitle1"},[t._v("01")]),t._v(" "),s("v-icon",{attrs:{right:""}},[t._v(" la-wine-glass ")])],1),t._v(" "),s("v-row",[[s("v-col",{attrs:{cols:"12"}},[s("v-hover",{scopedSlots:t._u([{key:"default",fn:function(a){var i=a.hover;return[s("v-card",{class:{"on-hover":i},attrs:{elevation:i?12:2}},[s("v-img",{attrs:{src:t.data.img,height:"150px"}}),t._v(" "),s("div",{staticClass:"pb-5"},[s("custom-button",{class:{"show-btns":i},attrs:{text:"Ver Detalles",block:"",color:"transparent"}})],1)],1)]}}])})],1)]],2),t._v(" "),s("div",{staticClass:"product-item-body pa-5"},[s("h5",{staticClass:"subtitle2 text-uppercase mb-3"},[t._v(t._s(t.data.ref))]),t._v(" "),s("h5",{staticClass:"subtitle1 text-uppercase font-weight-bold mb-3"},[t._v(t._s(t.data.name))]),t._v(" "),s("h5",{staticClass:"subtitle1 mb-3"},[t._v(t._s(t.data.brand))]),t._v(" "),s("h5",{staticClass:"subtitle1 mb-3"},[t._v(t._s(t.data.val))]),t._v(" "),s("custom-button",{staticClass:"px-0",attrs:{text:"Agregar a Compras",block:""}})],1)],1)}),[],!1,null,"0de5900d",null);s.a=o.exports},eDCK:function(t,s,a){"use strict";a("rPs7")},fImU:function(t,s,a){(t.exports=a("I1BE")(!1)).push([t.i,".product-item[data-v-1ca24d68]{border-radius:10px;background-color:#18191a}.product-item-image[data-v-1ca24d68]{background-color:#242526}.product-item-image[data-v-1ca24d68],.product-item-image .v-image[data-v-1ca24d68]{border-top-right-radius:10px;border-top-left-radius:10px}.v-card[data-v-1ca24d68]{opacity:.3;transition:opacity .4s ease-in-out}.v-card[data-v-1ca24d68]:not(.on-hover){opacity:1}.show-btns[data-v-1ca24d68]{color:#fff!important}.subtitle2[data-v-1ca24d68]{font-size:10px}",""])},fbQC:function(t,s,a){"use strict";var i={name:"Carousel",props:{showArrows:{type:Boolean,default:!0},hideDelimiters:{type:Boolean,default:!1},slides:{type:Array,default:function(){return[]}},type:{type:String,default:"single"}},data:function(){return{itemPlaceholderUrl:"/public/assets/img/carousel-item-placeholder.png"}},computed:{aspectRatio:function(){if("single"===this.type)switch(this.$vuetify.breakpoint.name){case"xs":return"0.8";case"sm":return"1.6";case"md":case"lg":case"xl":return"1.4"}if("banner"===this.type)switch(this.$vuetify.breakpoint.name){case"xs":return"1";case"sm":return"1.6";case"md":case"lg":case"xl":return"2.1"}}}},e=(a("LMKT"),a("KHd+")),o=Object(e.a)(i,(function(){var t=this,s=t._self._c;return s("v-carousel",{staticStyle:{height:"100%"},attrs:{"hide-delimiters":t.hideDelimiters,"show-arrows":t.showArrows,height:"auto"},scopedSlots:t._u([{key:"prev",fn:function(a){var i=a.on,e=a.attrs;return[s("v-btn",t._g(t._b({attrs:{small:"",color:"#000000"}},"v-btn",e,!1),i),[s("i",{staticClass:"las la-angle-left"})])]}},{key:"next",fn:function(a){var i=a.on,e=a.attrs;return[s("v-btn",t._g(t._b({attrs:{small:"",color:"#000000"}},"v-btn",e,!1),i),[s("i",{staticClass:"las la-angle-right"})])]}}])},[t._v(" "),t._v(" "),t.slides.length>0?t._l(t.slides,(function(a,i){return s("v-carousel-item",{key:i},["image"===a.type?s("v-img",{attrs:{src:a.src,"aspect-ratio":t.aspectRatio}}):t._e(),t._v(" "),"video"===a.type?s("v-responsive",{attrs:{"aspect-ratio":t.aspectRatio}},[s("video",{attrs:{autoplay:""}},[s("source",{attrs:{src:a.src,type:"video/mp4"}})])]):t._e(),t._v(" "),"iframe"===a.type?s("v-responsive",{attrs:{"aspect-ratio":t.aspectRatio}},[s("iframe",{attrs:{src:"".concat(a.src,"?controls=0&autoplay=1&fs=0&modestbranding&rel=0&showinfo=0&disablekb=0"),frameborder:"0",allowfullscreen:""}})]):t._e()],1)})):s("v-carousel-item",[s("v-img",{attrs:{src:t.itemPlaceholderUrl,"aspect-ratio":t.aspectRatio,contain:""}})],1)],2)}),[],!1,null,"2d3b52c0",null);s.a=o.exports},i2hw:function(t,s,a){"use strict";var i={name:"ProductItem5",components:{CustomButton:a("CVjx").a},props:{data:{type:Object,default:function(){return{id:"0",name:"Titulo",img:"/public/assets/img/item-placeholder.png",description:"Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text."}}}},computed:{aspectRatio:function(){switch(this.$vuetify.breakpoint.name){case"xs":return"1.2";case"sm":return"1.9";case"md":case"lg":case"xl":return"2.2"}}}},e=(a("Ks3z"),a("KHd+")),o=Object(e.a)(i,(function(){var t=this,s=t._self._c;return s("div",{staticClass:"product-item"},[s("div",{staticClass:"product-item-image"},[s("v-img",{attrs:{src:t.data.img,"aspect-ratio":t.aspectRatio,height:"100%",contain:0==t.data.id}})],1),t._v(" "),s("div",{staticClass:"product-item-body pa-5"},[s("h5",{staticClass:"subtitle1 text-uppercase font-weight-bold mb-3"},[t._v(t._s(t.data.name))]),t._v(" "),s("p",{staticClass:"mb-5"},[t._v(t._s(t.data.description))]),t._v(" "),s("custom-button",{staticClass:"px-0",attrs:{color:"#000000",text:"Acción",plain:""}})],1)])}),[],!1,null,"cc417094",null);s.a=o.exports},kzxW:function(t,s,a){(t.exports=a("I1BE")(!1)).push([t.i,".product-item[data-v-cc417094]{border-radius:10px;background-color:#f5f5f5;color:#000;height:100%}.product-item-image[data-v-cc417094]{background-color:#dfdfdf}.product-item-image[data-v-cc417094],.product-item-image .v-image[data-v-cc417094]{border-top-right-radius:10px;border-top-left-radius:10px}",""])},nhus:function(t,s,a){var i=a("tlgb");"string"==typeof i&&(i=[[t.i,i,""]]);var e={hmr:!0,transform:void 0,insertInto:void 0};a("aET+")(i,e);i.locals&&(t.exports=i.locals)},oCvW:function(t,s,a){"use strict";var i={name:"ProductItem3",components:{CustomButton:a("CVjx").a},props:{data:{type:Object,default:function(){return{id:"0",name:"Colección",ref:"REFERENCIA",brand:"Marca",val:"000.000.000 COP",img:"/public/assets/img/item-placeholder.png",description:"Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text.",transparent:"rgba(255, 255, 255, 0)"}}}},computed:{aspectRatio:function(){switch(this.$vuetify.breakpoint.name){case"xs":return"1.2";case"sm":return"1.9";case"md":case"lg":case"xl":return"2.2"}}}},e=(a("RuNl"),a("KHd+")),o=Object(e.a)(i,(function(){var t=this,s=t._self._c;return s("div",{staticClass:"product-item"},[s("div",{staticClass:"text-right pa-2"},[s("v-icon",{attrs:{right:""}},[t._v(" la-bookmark ")])],1),t._v(" "),s("v-row",[[s("v-col",{attrs:{cols:"12"}},[s("v-hover",{scopedSlots:t._u([{key:"default",fn:function(a){var i=a.hover;return[s("v-card",{class:{"on-hover":i},attrs:{elevation:i?12:2}},[s("v-img",{attrs:{src:t.data.img,height:"350px"}}),t._v(" "),s("div",{staticClass:"pb-8"},[s("custom-button",{class:{"show-btns":i},attrs:{text:"Ver Detalles",block:"",color:"transparent"}})],1)],1)]}}])})],1)]],2),t._v(" "),s("div",{staticClass:"product-item-body pa-5"},[s("h5",{staticClass:"subtitle2 text-uppercase mb-3"},[t._v(t._s(t.data.ref))]),t._v(" "),s("h5",{staticClass:"subtitle1 text-uppercase font-weight-bold mb-3"},[t._v(t._s(t.data.name))]),t._v(" "),s("div",{staticClass:"d-flex justify-space-between"},[s("h5",{staticClass:"subtitle1 mb-3"},[t._v(t._s(t.data.brand))]),t._v(" "),s("h5",{staticClass:"subtitle1 mb-3"},[t._v(t._s(t.data.val))])]),t._v(" "),s("v-divider"),t._v(" "),s("p",{staticClass:"mt-5 mb-5"},[t._v(t._s(t.data.description))]),t._v(" "),s("custom-button",{staticClass:"px-0",attrs:{text:"Agregar a Compras",block:""}})],1)],1)}),[],!1,null,"1ca24d68",null);s.a=o.exports},pGu3:function(t,s,a){"use strict";var i=a("CVjx"),e=a("tN2V"),o=a("ip+W"),r={components:{CustomButton:i.a,ThemeToggleSwitch:e.a,SearchInput:o.a}},c=(a("DQ8P"),a("KHd+")),l=Object(c.a)(r,(function(){var t=this._self._c;return t("v-app-bar",{attrs:{color:this.$vuetify.theme.dark?"#000000":"#FAFCFC",height:"100",app:"",elevation:"0"}},[t("v-container",{staticClass:"pa-0 fill-height justify-space-between",attrs:{fluid:""}},[t("router-link",{staticClass:"navbar-brand",attrs:{to:{name:"TempLanding"}}},[t("v-img",{attrs:{src:"/public/assets/img/idovela-logo-dark.png","max-width":"117"}})],1),this._v(" "),t("search-input"),this._v(" "),t("div",[t("custom-button",{attrs:{light:"",text:"Iniciar Sesión"}}),this._v(" "),t("custom-button",{attrs:{light:"",text:"00",icon:"la-cart-arrow-down"}}),this._v(" "),t("theme-toggle-switch")],1)],1)],1)}),[],!1,null,"3cbb3b0c",null);s.a=l.exports},rPs7:function(t,s,a){var i=a("YKDk");"string"==typeof i&&(i=[[t.i,i,""]]);var e={hmr:!0,transform:void 0,insertInto:void 0};a("aET+")(i,e);i.locals&&(t.exports=i.locals)},tlgb:function(t,s,a){(t.exports=a("I1BE")(!1)).push([t.i,".navbar-brand .v-image[data-v-3cbb3b0c]{width:60px}@media (min-width:600px){.navbar-brand .v-image[data-v-3cbb3b0c]{width:90px}}@media (min-width:960px){.navbar-brand .v-image[data-v-3cbb3b0c]{width:117px}}",""])},y1Ru:function(t,s,a){var i=a("kzxW");"string"==typeof i&&(i=[[t.i,i,""]]);var e={hmr:!0,transform:void 0,insertInto:void 0};a("aET+")(i,e);i.locals&&(t.exports=i.locals)}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[11],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shop/ShopBox.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/shop/ShopBox.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    boxStyle: {
+      type: String,
+      "default": 'one'
+    },
+    isLoading: {
+      type: Boolean,
+      required: true,
+      "default": true
+    },
+    shopDetails: {
+      type: Object,
+      required: true,
+      "default": {}
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("follow", ["isThisFollowed"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("follow", ["addNewFollowedShop", "removeFromFollowedShop"]))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shop/ShopBox.vue?vue&type=template&id=6700eaf2&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/shop/ShopBox.vue?vue&type=template&id=6700eaf2& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    "class": [_vm.boxStyle == "two" ? "shop-box-two" : _vm.boxStyle == "three" ? "shop-box-three" : _vm.boxStyle == "four" ? "shop-box-four" : "shop-box-one"]
+  }, [_vm.isLoading && _vm.is_empty_obj(_vm.shopDetails) ? _c("div", [_c("v-skeleton-loader", {
+    attrs: {
+      type: "image",
+      height: "310"
+    }
+  })], 1) : _c("div", {
+    staticClass: "border rounded overflow-hidden"
+  }, [_c("v-row", {
+    attrs: {
+      "no-gutters": "",
+      align: "center"
+    }
+  }, [_c("v-col", {
+    staticClass: "minw-0 position-relative",
+    attrs: {
+      sm: _vm.boxStyle == "three" ? "6" : null,
+      cols: "12"
+    }
+  }, [_vm.boxStyle != "three" ? _c("div", {
+    staticClass: "lh-0 position-relative"
+  }, [_c("router-link", {
+    staticClass: "text-reset d-block",
+    attrs: {
+      to: {
+        name: "ShopDetails",
+        params: {
+          slug: _vm.shopDetails.slug
+        }
+      }
+    }
+  }, [_c("img", {
+    staticClass: "img-fit h-150px",
+    attrs: {
+      src: _vm.shopDetails.banner,
+      alt: _vm.shopDetails.name
+    },
+    on: {
+      error: function error($event) {
+        return _vm.imageFallback($event);
+      }
+    }
+  })]), _vm._v(" "), _vm.boxStyle == "two" ? _c("div", {
+    staticClass: "absolute-bottom-left w-100 grey darken-3 white--text d-flex align-center py-2 fs-12 px-3"
+  }, [_c("span", {
+    staticClass: "me-1 fw-600"
+  }, [_vm._v(_vm._s(_vm.shopDetails.rating.toFixed(2)))]), _vm._v(" "), _c("v-rating", {
+    staticClass: "lh-1-2",
+    attrs: {
+      "background-color": "",
+      "empty-icon": "las la-star",
+      "full-icon": "las la-star active",
+      "half-icon": "las la-star half",
+      hover: "",
+      "half-increments": "",
+      readonly: "",
+      size: "11",
+      length: "5",
+      value: _vm.shopDetails.rating
+    }
+  }), _vm._v(" "), _c("span", {
+    staticClass: "ms-3 opacity-50"
+  }, [_vm._v("(" + _vm._s(_vm.shopDetails.reviews_count) + " " + _vm._s(_vm.$t("ratings")) + ")")])], 1) : _vm._e()], 1) : _vm._e(), _vm._v(" "), _c("div", {
+    "class": ["text-center fs-12", _vm.boxStyle == "three" ? "pa-4" : _vm.boxStyle == "four" ? "absolute-left-center align-center d-flex ms-4" : "pa-5 position-relative"]
+  }, [_vm.boxStyle != "two" ? _c("router-link", {
+    staticClass: "text-reset",
+    attrs: {
+      to: {
+        name: "ShopDetails",
+        params: {
+          slug: _vm.shopDetails.slug
+        }
+      }
+    }
+  }, [_c("img", {
+    "class": ["border rounded-circle shadow-2xl border-2 size-90px", {
+      "mt-n15": _vm.boxStyle == "one"
+    }, {
+      "mb-2": _vm.boxStyle != "four"
+    }],
+    attrs: {
+      src: _vm.shopDetails.logo,
+      alt: _vm.shopDetails.name
+    },
+    on: {
+      error: function error($event) {
+        return _vm.imageFallback($event);
+      }
+    }
+  })]) : _vm._e(), _vm._v(" "), _c("div", {
+    "class": [{
+      "ms-3 pt-1 pb-2 px-3 text-start position-relative": _vm.boxStyle == "four"
+    }]
+  }, [_vm.boxStyle == "four" ? _c("div", {
+    staticClass: "white absolute-full opacity-80",
+    staticStyle: {
+      "z-index": "-1"
+    }
+  }) : _vm._e(), _vm._v(" "), _c("router-link", {
+    staticClass: "text-reset",
+    attrs: {
+      to: {
+        name: "ShopDetails",
+        params: {
+          slug: _vm.shopDetails.slug
+        }
+      }
+    }
+  }, [_c("h4", {
+    "class": ["fs-21", _vm.boxStyle == "three" ? "text-truncate-2 lh-1-4 h-60px" : "text-truncate", {
+      "mb-2": _vm.boxStyle != "four"
+    }]
+  }, [_vm._v(_vm._s(_vm.shopDetails.name))])]), _vm._v(" "), _vm.boxStyle == "one" ? _c("div", {
+    staticClass: "text-truncate-2 opacity-80 h-40px"
+  }, _vm._l(_vm.shopDetails.categories.data, function (category, i) {
+    return _c("span", {
+      key: i
+    }, [_vm._v("\n                                " + _vm._s(category.name)), _vm.shopDetails.categories.data.length - i != 1 ? _c("span", [_vm._v(",")]) : _vm._e()]);
+  }), 0) : _vm._e(), _vm._v(" "), _vm.boxStyle != "two" ? _c("div", {
+    "class": ["d-flex fs-12", {
+      "my-2 justify-center": _vm.boxStyle != "four"
+    }]
+  }, [_c("span", {
+    "class": [_vm.boxStyle == "three" ? "" : "me-2"]
+  }, [_vm._v(_vm._s(_vm.shopDetails.rating.toFixed(1)))]), _vm._v(" "), _c("v-rating", {
+    staticClass: "lh-1-4",
+    attrs: {
+      "background-color": "",
+      "empty-icon": "las la-star",
+      "full-icon": "las la-star active",
+      "half-icon": "las la-star half",
+      hover: "",
+      "half-increments": "",
+      readonly: "",
+      size: "11",
+      length: "5",
+      value: _vm.shopDetails.rating
+    }
+  }), _vm._v(" "), _c("span", {
+    staticClass: "opacity-80"
+  }, [_vm._v("(" + _vm._s(_vm.shopDetails.reviews_count) + " " + _vm._s(_vm.$t("ratings")) + ")")])], 1) : _vm._e(), _vm._v(" "), _vm.boxStyle == "one" ? _c("div", {
+    staticClass: "opacity-80"
+  }, [_vm._v(_vm._s(_vm.$t("shop_since") + " " + _vm.shopDetails.since))]) : _vm._e(), _vm._v(" "), _vm.boxStyle == "one" ? _c("div", {
+    staticClass: "opacity-80"
+  }, [_vm._v(_vm._s(_vm.$t("total_products") + " " + _vm.shopDetails.products_count))]) : _vm._e()], 1), _vm._v(" "), _vm.boxStyle != "four" ? _c("div", {
+    "class": [_vm.boxStyle == "two" ? "d-flex flex-column mt-5" : _vm.boxStyle == "three" ? "d-flex flex-column mt-3" : "mt-5"]
+  }, [_vm.isThisFollowed(_vm.shopDetails.id) ? [_vm.boxStyle == "one" || _vm.boxStyle == "two" ? _c("v-btn", {
+    "class": ["grey", _vm.boxStyle == "one" ? "white--text darken-1" : "lighten-2"],
+    attrs: {
+      elevation: "0",
+      small: _vm.boxStyle == "one" ? false : true
+    },
+    on: {
+      click: function click($event) {
+        return _vm.removeFromFollowedShop(_vm.shopDetails.id);
+      }
+    }
+  }, [_vm._v("\n                                " + _vm._s(_vm.$t("unfollow")) + "\n                            ")]) : _vm._e()] : [_vm.boxStyle == "one" || _vm.boxStyle == "two" ? _c("v-btn", {
+    "class": [_vm.boxStyle == "one" ? "primary" : "grey lighten-4 border border-gray-300"],
+    attrs: {
+      elevation: "0",
+      small: _vm.boxStyle == "one" ? false : true
+    },
+    on: {
+      click: function click($event) {
+        return _vm.addNewFollowedShop(_vm.shopDetails.id);
+      }
+    }
+  }, [_vm._v("\n                                " + _vm._s(_vm.$t("follow")) + "\n                            ")]) : _vm._e()], _vm._v(" "), _c("v-btn", {
+    "class": [_vm.boxStyle == "one" ? "ms-4 white--text grey darken-4" : _vm.boxStyle == "two" ? "mt-2 bg-soft-primary border border-primary" : _vm.boxStyle == "three" ? "mt-2 bg-soft-primary border border-primary" : "mt-2 bg-soft-primary border border-primary"],
+    attrs: {
+      elevation: "0",
+      small: _vm.boxStyle == "one" ? false : true,
+      to: {
+        name: "ShopDetails",
+        params: {
+          slug: _vm.shopDetails.slug
+        }
+      }
+    }
+  }, [_vm._v("\n                            " + _vm._s(_vm.$t("visit_store")) + "\n                        ")])], 2) : _vm._e()], 1)]), _vm._v(" "), _vm.boxStyle == "three" || _vm.boxStyle == "four" ? _c("v-col", {
+    staticClass: "minw-0",
+    attrs: {
+      cols: "12",
+      sm: _vm.boxStyle == "three" ? "6" : null
+    }
+  }, [_c("div", {
+    "class": [_vm.boxStyle == "four" ? "pa-4" : ""]
+  }, [_vm.$optional("shopDetails.top_3_products?.data").length ? _c("v-row", {
+    staticClass: "gutters-10",
+    attrs: {
+      "no-gutters": _vm.boxStyle == "four" ? false : true
+    }
+  }, _vm._l(_vm.shopDetails.top_3_products.data, function (product, i) {
+    return _c("v-col", {
+      key: i,
+      attrs: {
+        cols: "12",
+        sm: _vm.boxStyle == "four" ? "4" : null
+      }
+    }, [_c("product-box", {
+      "class": [_vm.boxStyle == "three" && i == 0 ? "my-4 me-4" : _vm.boxStyle == "three" ? "mb-4 me-4" : ""],
+      attrs: {
+        "product-details": product,
+        "is-loading": _vm.isLoading,
+        "box-style": "two"
+      }
+    })], 1);
+  }), 1) : _c("div", {
+    staticStyle: {
+      height: "73px"
+    }
+  }), _vm._v(" "), _vm.boxStyle == "four" ? _c("div", {
+    staticClass: "text-end mt-3"
+  }, [_c("v-btn", {
+    staticClass: "primary--text transparent",
+    attrs: {
+      small: "",
+      link: "",
+      elevation: "0",
+      to: {
+        name: "ShopDetails",
+        params: {
+          slug: _vm.shopDetails.slug
+        }
+      }
+    }
+  }, [_c("span", [_vm._v(_vm._s(_vm.$t("visit_store")))]), _vm._v(" "), _c("i", {
+    staticClass: "las la-arrow-right"
+  })])], 1) : _vm._e()], 1)]) : _vm._e()], 1)], 1)]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./resources/js/components/shop/ShopBox.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/shop/ShopBox.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ShopBox_vue_vue_type_template_id_6700eaf2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShopBox.vue?vue&type=template&id=6700eaf2& */ "./resources/js/components/shop/ShopBox.vue?vue&type=template&id=6700eaf2&");
+/* harmony import */ var _ShopBox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShopBox.vue?vue&type=script&lang=js& */ "./resources/js/components/shop/ShopBox.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ShopBox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ShopBox_vue_vue_type_template_id_6700eaf2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ShopBox_vue_vue_type_template_id_6700eaf2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/shop/ShopBox.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/shop/ShopBox.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/shop/ShopBox.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopBox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShopBox.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shop/ShopBox.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopBox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/shop/ShopBox.vue?vue&type=template&id=6700eaf2&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/shop/ShopBox.vue?vue&type=template&id=6700eaf2& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopBox_vue_vue_type_template_id_6700eaf2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShopBox.vue?vue&type=template&id=6700eaf2& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shop/ShopBox.vue?vue&type=template&id=6700eaf2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopBox_vue_vue_type_template_id_6700eaf2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopBox_vue_vue_type_template_id_6700eaf2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);
