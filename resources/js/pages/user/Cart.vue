@@ -3,33 +3,33 @@
         <v-stepper elevation="0" v-model="e6">
             <v-stepper-header>
                 <v-stepper-step step="1">
-                    <step-order color="#161616" text2="lista de" text1="pedido" />
+                    <step-order color="#161616" text1="lista de" text2="pedido" />
                 </v-stepper-step>
 
                 <v-stepper-step step="2">
                     <template v-if="e6 >= 2">
-                        <step-medium color="#161616" text="datos" xtext="38%" />
+                        <step-medium color="#161616" text="datos" xtextxl="38%" xtextmd="35%" xtextsm="23%" xtextxs="30%"/>
                     </template>
                     <template v-else>
-                        <step-medium color="#DFDFDF" colortext="#000000" text="datos" xtext="38%" />
+                        <step-medium color="#DFDFDF" colortext="#000000" text="datos" xtextxl="38%" xtextmd="35%" xtextsm="23%" xtextxs="30%"/>
                     </template>
                 </v-stepper-step>
 
                 <v-stepper-step step="3">
                     <template v-if="e6 >= 3">
-                        <step-medium color="#161616" text="pago" xtext="40%" />
+                        <step-medium color="#161616" text="pago" xtextxl="40%" xtextmd="38%" xtextsm="28%" xtextxs="35%"/>
                     </template>
                     <template v-else>
-                        <step-medium color="#DFDFDF" colortext="#000000" text="pago" xtext="40%" />
+                        <step-medium color="#DFDFDF" colortext="#000000" text="pago" xtextxl="40%" xtextmd="38%" xtextsm="28%" xtextxs="35%"/>
                     </template>
                 </v-stepper-step>
 
                 <v-stepper-step step="4">
                     <template v-if="e6 == 4">
-                        <step-medium color="#161616" text="resumen" xtext="30%" />
+                        <step-medium color="#161616" text="resumen" xtextxl="35%" xtextmd="30%" xtextsm="10%" xtextxs="25%"/>
                     </template>
                     <template v-else>
-                        <step-medium color="#DFDFDF" colortext="#000000" text="resumen" xtext="35%" />
+                        <step-medium color="#DFDFDF" colortext="#000000" text="resumen" xtextxl="35%" xtextmd="30%" xtextsm="10%" xtextxs="25%"/>
                     </template>
                 </v-stepper-step>
             </v-stepper-header>
@@ -623,7 +623,7 @@ export default {
     }
 
     .v-stepper__step {
-        padding: 7px;
+        padding: 2px;
     }
 
     .v-stepper__step__step {
