@@ -19,34 +19,23 @@
                 >
                     Status:
 
-                    {{ $order->status == null ? 'Realizada' : '' }}
-                    {{ $order->status == 1 ? 'Contabilidad' : '' }}
-                    {{ $order->status == 2 ? 'Despacho' : '' }}
-                    {{ $order->status == 3 ? 'Entregada' : '' }}
+                    {{ $order->status == null ? '' : $order->status }}
 
                 </button>
                 <div
                     class="dropdown-menu"
                     aria-labelledby="dropdownMenuButton"
                 >
-                    <a
-                        class="dropdown-item"
-                        href="{{ route('order.status', ['order_id' => $order->id, 'status' => '1']) }}"
-                    >
-                        Contabilidad
-                    </a>
-                    <a
-                        class="dropdown-item"
-                        href="{{ route('order.status', ['order_id' => $order->id, 'status' => '2']) }}"
-                    >
-                        Despacho
-                    </a>
-                    <a
-                        class="dropdown-item"
-                        href="{{ route('order.status', ['order_id' => $order->id, 'status' => '3']) }}"
-                    >
-                        Entregada
-                    </a>
+                    @foreach ($permission_status_orders as $key => $permission)
+                        @can($permission->name)
+                            <a
+                                class="dropdown-item"
+                                href="{{ route('order.status.change', ['order_id' => $order->id, 'status' => $permission->name]) }}"
+                            >
+                                {{ $permission->name }}
+                            </a>
+                        @endcan
+                    @endforeach
                 </div>
             </div>
         </div>
