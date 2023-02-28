@@ -17,20 +17,17 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Notifications\EmailVerificationNotification;
 use Mail;
-Use Str;
+use Str;
 
 class AuthController extends Controller
 {
     public function signup(Request $request)
     {
-        
-        if(get_setting('customer_login_with') == 'email'){
+        if (get_setting('customer_login_with') == 'email') {
             $user = User::where('email', $request->email)->first();
-        }
-        elseif(get_setting('customer_login_with') == 'phone'){
+        } elseif (get_setting('customer_login_with') == 'phone') {
             $user = User::where('phone', $request->phone)->first();
-        }
-        else{
+        } else {
             $user = User::where('phone', $request->phone)->orWhere('email', $request->email)->first();
         }
 
@@ -67,23 +64,23 @@ class AuthController extends Controller
             );
         }
 
-        if(get_setting('customer_otp_with') != 'disabled'){
+        /* if (get_setting('customer_otp_with') != 'disabled') {
             if (get_setting('customer_login_with') == 'email' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'email')) {
                 $user->notify(new EmailVerificationNotification());
                 return response()->json([
                     'success' => true,
-                    'verified'=> false,
+                    'verified' => false,
                     'message' => translate('A verification code has been sent to your email.')
                 ], 200);
             } else {
                 (new SmsServices)->phoneVerificationSms($user->phone, $user->verification_code);
                 return response()->json([
                     'success' => true,
-                    'verified'=> false,
+                    'verified' => false,
                     'message' => translate('A verification code has been sent to your phone.')
                 ], 200);
             }
-        }
+        } */
 
         $tokenResult = $user->createToken('Personal Access Token');
         return $this->loginSuccess($tokenResult, $user);
@@ -98,16 +95,14 @@ class AuthController extends Controller
         ]);
 
         $phone = Str::replace(' ', '', $request->phone);
-        if($request->email){
+        if ($request->email) {
             $user = User::where('email', $request->email)->first();
-        }
-        elseif($request->phone){
+        } elseif ($request->phone) {
             $user = User::where('phone', $phone)->first();
-        }
-        else{
+        } else {
             $user = null;
         }
-        if(!$user || !Hash::check($request->password, $user->password)){
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'message' => translate('Invalid login information')
@@ -124,34 +119,31 @@ class AuthController extends Controller
                     ]
                 );
             }
-            
-            if(get_setting('customer_otp_with') != 'disabled'){
+
+            if (get_setting('customer_otp_with') != 'disabled') {
                 if (get_setting('customer_login_with') == 'email' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'email') && $user->email_verified_at == null) {
 
                     $user->notify(new EmailVerificationNotification());
                     return response()->json([
                         'success' => true,
-                        'verified'=> false,
+                        'verified' => false,
                         'email_verified' => false,
                         'message' => translate('Please verify your account')
                     ], 200);
-
-                }elseif((get_setting('customer_login_with') == 'phone' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'phone')) && $user->phone_verified_at == null){
+                } elseif ((get_setting('customer_login_with') == 'phone' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'phone')) && $user->phone_verified_at == null) {
 
                     (new SmsServices)->phoneVerificationSms($user->phone, $user->verification_code);
                     return response()->json([
                         'success' => true,
-                        'verified'=> false,
+                        'verified' => false,
                         'phone_verified' => false,
                         'message' => translate('Please verify your account')
                     ], 200);
-                    
                 }
             }
 
             $tokenResult = $user->createToken('Personal Access Token');
             return $this->loginSuccess($tokenResult, $user);
-
         } else {
             return response()->json([
                 'success' => false,
@@ -163,13 +155,11 @@ class AuthController extends Controller
     public function verify(Request $request)
     {
         $phone = Str::replace(' ', '', $request->phone);
-        if(get_setting('customer_login_with') == 'email' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'email')){
+        if (get_setting('customer_login_with') == 'email' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'email')) {
             $user = User::where('email', $request->email)->first();
-        }
-        elseif(get_setting('customer_login_with') == 'phone' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'phone')){
+        } elseif (get_setting('customer_login_with') == 'phone' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'phone')) {
             $user = User::where('phone', $phone)->first();
-        }
-        else{
+        } else {
             $user = null;
         }
 
@@ -186,9 +176,9 @@ class AuthController extends Controller
             ], 200);
         } else {
 
-            if(get_setting('customer_login_with') == 'email' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'email')){
+            if (get_setting('customer_login_with') == 'email' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'email')) {
                 $user->email_verified_at = date('Y-m-d H:m:s');
-            }else{
+            } else {
                 $user->phone_verified_at = date('Y-m-d H:m:s');
             }
 
@@ -201,13 +191,11 @@ class AuthController extends Controller
     public function resend_code(Request $request)
     {
         $phone = Str::replace(' ', '', $request->phone);
-        if(get_setting('customer_login_with') == 'email' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'email')){
+        if (get_setting('customer_login_with') == 'email' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'email')) {
             $user = User::where('email', $request->email)->first();
-        }
-        elseif(get_setting('customer_login_with') == 'phone' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'phone')){
+        } elseif (get_setting('customer_login_with') == 'phone' || (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'phone')) {
             $user = User::where('phone', $phone)->first();
-        }
-        else{
+        } else {
             $user = null;
         }
 
@@ -225,14 +213,14 @@ class AuthController extends Controller
             $user->notify(new EmailVerificationNotification());
             return response()->json([
                 'success' => true,
-                'verified'=> false,
+                'verified' => false,
                 'message' => translate('A verification code has been sent to your email.')
             ], 200);
         } else {
             (new SmsServices)->phoneVerificationSms($user->phone, $user->verification_code);
             return response()->json([
                 'success' => true,
-                'verified'=> false,
+                'verified' => false,
                 'message' => translate('A verification code has been sent to your phone.')
             ], 200);
         }

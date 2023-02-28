@@ -62,14 +62,7 @@
                                 :to="{ name: 'Registration2' }"
                             />
                         </div>
-                        <div class="login-footer">
-                            <span class="footer-copyright">© Idovela 2022</span>
-                            <ul class="footer-links">
-                                <li class="footer-link" v-for="link in footerLinks">
-                                    <a :href="link.link"> {{ link.label }} </a>
-                                </li>
-                            </ul>
-                        </div>
+                        <auth-footer />
                     </div>
                 </v-col>
             </v-row>
@@ -82,6 +75,7 @@ import CarouselDescription from "../../components/global/CarouselDescription.vue
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
+import AuthFooter from "./AuthFooter.vue";
 
 import { required, email } from "vuelidate/lib/validators";
 import { mapActions, mapGetters, mapMutations } from "vuex";
@@ -91,19 +85,15 @@ export default {
         CarouselDescription,
         CustomButton,
         CustomInput,
-        LayoutNavbarAuth
+        LayoutNavbarAuth,
+        AuthFooter
     },
     data: () => ({
         form: {
             email: "",
             password: ""
         },
-        loading: false,
-        footerLinks: [
-            { label: "Información", link: "#" },
-            { label: "Solicitudes", link: "#" },
-            { label: "Contacto", link: "#" }
-        ]
+        loading: false
     }),
     validations: {
         form: {
@@ -216,34 +206,6 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-    }
-
-    &-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .footer-copyright,
-        .footer-link a {
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0;
-            line-height: 24px;
-            color: #000000;
-            text-transform: uppercase;
-
-            @media (min-width: 600px) {
-                font-size: 15px;
-            }
-        }
-
-        .footer-links {
-            display: flex;
-            padding: 0;
-            list-style: none;
-            justify-content: flex-end;
-            gap: 1rem;
-        }
     }
 }
 

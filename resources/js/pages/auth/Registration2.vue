@@ -1,42 +1,67 @@
 <template>
-    <div>
+    <div class="register d-flex flex-column h-100">
         <layout-navbar-auth />
-        <v-container>
-            <v-row>
+        <v-container class="flex-grow-1 mb-5">
+            <v-row class="wrap pa-5" no-gutters>
                 <v-col cols="12">
-                    <div class="wrap pa-5 form">
-                        <div class="div-title">
-                            <h6 class="black--text title">Registro</h6>
-                            <v-divider class="divider"></v-divider>
-                        </div>
-                        <div class="inputs">
+                    <div class="register-content pa-lg-5 pt-lg-8">
+                        <h1 class="register-title">Registro</h1>
+                        <v-divider class="my-4" />
+                        <v-form class="inputs mb-8" ref="loginForm" lazy-validation @submit.prevent="register()">
                             <v-row>
                                 <v-col cols="12" md="6">
-                                    <span class="black--text body-2 text-uppercase">Correo Electrónico</span>
-                                    <custom-input></custom-input>
+                                    <span class="black--text body-2 text-uppercase">
+                                        {{ $t("email_address") }}
+                                    </span>
+                                    <custom-input
+                                        type="email"
+                                        v-model="form.email"
+                                        :error-messages="emailErrors"
+                                        @blur="$v.form.email.$touch()"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                             </v-row>
                             <v-row>
                                 <v-col cols="12" md="6">
-                                    <span class="black--text body-2 text-uppercase">Contraseña</span>
-                                    <custom-input></custom-input>
+                                    <span class="black--text body-2 text-uppercase">
+                                        {{ $t("password") }}
+                                    </span>
+                                    <custom-input
+                                        v-model="form.password"
+                                        :error-messages="passwordErrors"
+                                        @blur="$v.form.password.$touch()"
+                                        type="password"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                                 <v-col cols="12" md="6">
-                                    <span class="black--text body-2 text-uppercase">Repetir Contraseña</span>
-                                    <custom-input></custom-input>
+                                    <span class="black--text body-2 text-uppercase">
+                                        {{ $t("confirm_password") }}
+                                    </span>
+                                    <custom-input
+                                        v-model="form.confirmPassword"
+                                        :error-messages="confirmPasswordErrors"
+                                        @blur="$v.form.confirmPassword.$touch()"
+                                        type="password"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                             </v-row>
                             <v-row>
                                 <v-col cols="12" md="6">
                                     <label class="label">
-                                        <input type="checkbox" />
+                                        <input type="radio" v-model="typePerson" value="natural" />
                                         <span class="body-1 black--text text">Registrar como persona natural</span>
                                         <span class="checkmark"></span>
                                     </label>
                                 </v-col>
                                 <v-col cols="12" md="6">
                                     <label class="label">
-                                        <input type="checkbox" />
+                                        <input type="radio" v-model="typePerson" value="juridical" />
                                         <span class="body-1 black--text text">Registrar como persona jurídica</span>
                                         <span class="checkmark"></span>
                                     </label>
@@ -47,37 +72,156 @@
                                     <v-row>
                                         <v-col cols="12" sm="6">
                                             <span class="black--text body-2 text-uppercase">Primer Nombre</span>
+                                            <custom-input
+                                                type="text"
+                                                v-model="form.name"
+                                                :error-messages="nameErrors"
+                                                @blur="$v.form.name.$touch()"
+                                                hide-details="auto"
+                                                required
+                                            />
+                                        </v-col>
+                                        <v-col cols="12" sm="6">
+                                            <span class="black--text body-2 text-uppercase">
+                                                Segundo Nombre (Opcional)
+                                            </span>
+                                            <custom-input></custom-input>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <v-row>
+                                        <v-col cols="12" sm="6">
+                                            <span class="black--text body-2 text-uppercase">Primer Apellido</span>
                                             <custom-input></custom-input>
                                         </v-col>
                                         <v-col cols="12" sm="6">
-                                            <span class="black--text body-2 text-uppercase"
-                                                >Segundo Nombre (Opcional)</span
-                                            >
+                                            <span class="black--text body-2 text-uppercase">Segundo Apellido</span>
                                             <custom-input></custom-input>
                                         </v-col>
                                     </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Documento (Representante)</span>
                                     <select-custom light label="--" :items="DocumentType" />
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Numero de Documento</span>
+                                    <custom-input></custom-input>
+                                </v-col>
+                            </v-row>
+                            <v-row v-if="typePerson == 'juridical'">
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Nombre de la Empresa</span>
+                                    <custom-input></custom-input>
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Entidad Comercial</span>
+                                    <select-custom light label="--" :items="DocumentType" />
+                                </v-col>
+                            </v-row>
+                            <v-row v-if="typePerson == 'juridical'">
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Documento (Representante)</span>
+                                    <custom-button block class="mt-3" text="Añadir Mi Empresa" />
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Documento (Representante)</span>
+                                    <custom-button block class="mt-3" text="Añadir Mi Empresa" />
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="6">
                                     <v-row>
                                         <v-col cols="12" md="6">
-                                            <span class="black--text body-2 text-uppercase"
-                                                >Nombre De Direccion (Casa / Oficina)</span
-                                            >
+                                            <span class="black--text body-2 text-uppercase">
+                                                Nombre De Dirección (Casa / Oficina)
+                                            </span>
                                             <custom-input></custom-input>
                                         </v-col>
                                         <v-col cols="12" md="6">
-                                            <span class="black--text body-2 text-uppercase"
-                                                >Direccion (Calle / Carrera)</span
-                                            >
+                                            <span class="black--text body-2 text-uppercase">
+                                                Dirección (Calle / Carrera)
+                                            </span>
                                             <custom-input></custom-input>
                                         </v-col>
                                     </v-row>
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">
+                                        Dirección Adicional (Piso / Apartamento / Oficina)
+                                    </span>
+                                    <custom-input></custom-input>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Codigo Postal</span>
                                     <custom-input></custom-input>
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Departamento</span>
+                                    <select-custom light label="--" :items="DocumentType" />
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Municipio</span>
-                                    <select-custom light label="--" :items="Municipio" />
-                                    <span class="black--text body-2 text-uppercase">Pais</span>
+                                    <select-custom light label="--" />
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Barrio ( Opcional )</span>
                                     <custom-input></custom-input>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Pais</span>
+                                    <select-custom light label="--" />
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Teléfono / Mobil</span>
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <vue-tel-input
+                                                v-model="form.phone"
+                                                v-bind="mobileInputProps"
+                                                :onlyCountries="availableCountries"
+                                                @validate="phoneValidate"
+                                            >
+                                                <template slot="arrow-icon">
+                                                    <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                                </template>
+                                            </vue-tel-input>
+                                            <div class="v-text-field__details mt-2 pl-3" v-if="$v.form.phone.$error">
+                                                <div class="v-messages theme--light error--text" role="alert">
+                                                    <div class="v-messages__wrapper">
+                                                        <div class="v-messages__message">
+                                                            {{ $t("this_field_is_required") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="v-text-field__details mt-2 pl-3"
+                                                v-if="!$v.form.phone.$error && form.showInvalidPhone"
+                                            >
+                                                <div class="v-messages theme--light error--text" role="alert">
+                                                    <div class="v-messages__wrapper">
+                                                        <div class="v-messages__message">
+                                                            {{ $t("phone_number_must_be_valid") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="6">
                                     <label class="label">
                                         <input type="checkbox" />
                                         <span class="body-1 black--text text">
@@ -95,65 +239,20 @@
                                     </label>
                                 </v-col>
                                 <v-col cols="12" md="6">
-                                    <v-row>
-                                        <v-col cols="12" md="6">
-                                            <span class="black--text body-2 text-uppercase">Primer Apellido</span>
-                                            <custom-input></custom-input>
-                                        </v-col>
-                                        <v-col cols="12" md="6">
-                                            <span class="black--text body-2 text-uppercase">Segundo Apellido</span>
-                                            <custom-input></custom-input>
-                                        </v-col>
-                                    </v-row>
-                                    <span class="black--text body-2 text-uppercase">Numero de Documento</span>
-                                    <custom-input></custom-input>
-                                    <span class="black--text body-2 text-uppercase">
-                                        Direccion Adicional (Piso / Apartamento / Oficina)
-                                    </span>
-                                    <custom-input></custom-input>
-                                    <span class="black--text body-2 text-uppercase">Departamento</span>
-                                    <select-custom light label="--" :items="DocumentType" />
-                                    <span class="black--text body-2 text-uppercase">Barrio ( Opcional )</span>
-                                    <custom-input></custom-input>
-                                    <span class="black--text body-2 text-uppercase">Teléfono / Movil</span>
-                                    <v-row>
-                                        <v-col cols="2" md="4">
-                                            <select-custom light label="--" :items="DocumentType" />
-                                        </v-col>
-                                        <v-col cols="10" md="8">
-                                            <custom-input></custom-input>
-                                        </v-col>
-                                    </v-row>
                                     <custom-button
                                         block
-                                        color="black"
                                         class="mt-3"
                                         text="Guardar"
-                                        :to="{ name: 'RegistrationSuccess' }"
+                                        type="submit"
+                                        color="black"
+                                        @click="register"
+                                        :disabled="loading"
+                                        :loading="loading"
                                     />
                                 </v-col>
                             </v-row>
-                        </div>
-                        <div class="footer">
-                            <v-row>
-                                <v-col cols="6">
-                                    <span class="subtitle1 bold text-uppercase black--text">© Idovela 2022</span>
-                                </v-col>
-                                <v-col cols="6">
-                                    <v-row class="d-flex justify-space-between">
-                                        <v-col cols="4">
-                                            <span class="subtitle1 bold text-uppercase black--text"> Información </span>
-                                        </v-col>
-                                        <v-col cols="4">
-                                            <span class="subtitle1 bold text-uppercase black--text"> Solicitudes </span>
-                                        </v-col>
-                                        <v-col cols="4">
-                                            <p class="subtitle1 bold text-uppercase black--text">Contacto</p>
-                                        </v-col>
-                                    </v-row>
-                                </v-col>
-                            </v-row>
-                        </div>
+                        </v-form>
+                        <auth-footer />
                     </div>
                 </v-col>
             </v-row>
@@ -162,24 +261,138 @@
 </template>
 
 <script>
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { mapActions, mapGetters, mapMutations } from "vuex";
+import { VueTelInput } from "vue-tel-input";
+import snackbar from "../../components/inc/SnackBar";
+
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
+import AuthFooter from "./AuthFooter.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
 
 export default {
     components: {
+        VueTelInput,
+        snackbar,
         CarouselDescription,
         CustomButton,
         CustomInput,
         LayoutNavbarAuth,
+        AuthFooter,
         SelectCustom
     },
     data() {
         return {
-            DocumentType: ["(C.C) Cedula de ciudadanía", "NIT"]
+            mobileInputProps: {
+                inputOptions: {
+                    type: "tel",
+                    placeholder: "phone number"
+                },
+                dropdownOptions: {
+                    showDialCodeInSelection: false,
+                    showFlags: true,
+                    showDialCodeInList: true
+                },
+                autoDefaultCountry: false,
+                validCharactersOnly: true,
+                mode: "international"
+            },
+            typePerson: "natural",
+            DocumentType: ["(C.C) Cedula de ciudadanía", "NIT"],
+            form: {
+                name: "",
+                phone: "",
+                email: "",
+                password: "",
+                confirmPassword: "",
+                invalidPhone: true,
+                showInvalidPhone: false
+            },
+            loading: false
         };
+    },
+    validations: {
+        form: {
+            name: { required },
+            email: { required, email },
+            phone: { required },
+            password: { required, minLength: minLength(6) },
+            confirmPassword: { required, sameAsPassword: sameAs("password") }
+        }
+    },
+    computed: {
+        ...mapGetters("app", ["generalSettings", "availableCountries"]),
+        nameErrors() {
+            const errors = [];
+            if (!this.$v.form.name.$dirty) return errors;
+            !this.$v.form.name.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        emailErrors() {
+            const errors = [];
+            if (!this.$v.form.email.$dirty) return errors;
+            !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            return errors;
+        },
+        passwordErrors() {
+            const errors = [];
+            if (!this.$v.form.password.$dirty) return errors;
+            !this.$v.form.password.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.password.minLength && errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
+            return errors;
+        },
+        confirmPasswordErrors() {
+            const errors = [];
+            if (!this.$v.form.confirmPassword.$dirty) return errors;
+            !this.$v.form.confirmPassword.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.confirmPassword.sameAsPassword &&
+                errors.push(this.$i18n.t("password_and_confirm_password_should_match"));
+            return errors;
+        }
+    },
+    methods: {
+        ...mapActions("auth", ["login"]),
+        ...mapMutations("auth", ["updateChatWindow", "showLoginDialog"]),
+        phoneValidate(phone) {
+            this.form.invalidPhone = phone.valid ? false : true;
+            if (phone.valid) this.form.showInvalidPhone = false;
+        },
+        async register() {
+            this.$v.form.$touch();
+
+            if (this.form.invalidPhone) {
+                this.form.showInvalidPhone = true;
+                return;
+            }
+
+            if (this.$v.form.$anyError) {
+                return;
+            }
+
+            this.form.phone = this.form.phone.replace(/\s/g, "");
+
+            this.loading = true;
+
+            const res = await this.call_api("post", "auth/signup", this.form);
+
+            if (res.data.success) {
+                this.login(res.data);
+                this.showLoginDialog(false);
+                this.updateChatWindow(false);
+                this.$router.push(this.$route.query.redirect || { name: "RegistrationSuccess" });
+            } else {
+                this.snack({
+                    message: res.data.message,
+                    color: "red"
+                });
+            }
+
+            this.loading = false;
+        }
     }
 };
 </script>
@@ -193,51 +406,36 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.register {
+    height: 100%;
+
+    &-title {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 30px;
+    }
+
+    &-content {
+        @media (min-width: 1264px) {
+            border: 1px solid #e4e4e4;
+            border-radius: 10px;
+        }
+
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
 .wrap {
     background-color: #fafcfc;
     border-radius: 10px;
 }
 
-.title {
-    margin-top: 5px;
-}
-
-.container {
-    // background-color: #fafcfc;
-    // -webkit-box-shadow: -1px 1px 26px -11px rgba(0, 0, 0, 0.75);
-    // -moz-box-shadow: -1px 1px 26px -11px rgba(0, 0, 0, 0.75);
-    // box-shadow: -1px 1px 26px -11px rgba(0, 0, 0, 0.75);
-    // border-radius: 10px;
-}
-
-@media (min-width: 960px) {
-    .form {
-        border: 1px solid #e4e4e4;
-        border-radius: 10px;
-        padding: 10px;
-    }
-
-    .footer {
-        margin-top: 20px;
-    }
-
-    .all {
-        margin: 0 12%;
-    }
-}
-
-@media (max-width: 959px) {
-    .all {
-        margin: 0 20px;
-    }
-
-    .footer {
-        margin-top: 30px;
-    }
-}
-
-.divider {
-    margin: 15px 0;
+.v-divider {
+    border-color: #e4e4e4 !important;
 }
 
 .label {

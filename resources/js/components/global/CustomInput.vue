@@ -1,12 +1,14 @@
 <template>
     <v-text-field
-        class="input"
-        :placeholder="placeholder"
-        :type="type"
-        :required="required"
         :error-messages="errorMessages"
+        :hide-details="hideDetails"
+        :placeholder="placeholder"
+        :required="required"
+        :type="type"
         :value="value"
         @input="$emit('input', $event)"
+        @blur="$emit('blur', $event)"
+        class="input"
     />
 </template>
 
@@ -33,6 +35,10 @@ export default {
         errorMessages: {
             type: Array,
             default: () => []
+        },
+        hideDetails: {
+            type: [Boolean, String],
+            default: false
         }
     }
 };
