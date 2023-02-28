@@ -7,21 +7,48 @@
                     <div class="register-content pa-lg-5 pt-lg-8">
                         <h1 class="register-title">Registro</h1>
                         <v-divider class="my-4" />
-                        <div class="inputs mb-8">
+                        <v-form class="inputs mb-8" ref="loginForm" lazy-validation @submit.prevent="register()">
                             <v-row>
                                 <v-col cols="12" md="6">
-                                    <span class="black--text body-2 text-uppercase">Correo Electrónico</span>
-                                    <custom-input></custom-input>
+                                    <span class="black--text body-2 text-uppercase">
+                                        {{ $t("email_address") }}
+                                    </span>
+                                    <custom-input
+                                        type="email"
+                                        v-model="form.email"
+                                        :error-messages="emailErrors"
+                                        @blur="$v.form.email.$touch()"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                             </v-row>
                             <v-row>
                                 <v-col cols="12" md="6">
-                                    <span class="black--text body-2 text-uppercase">Contraseña</span>
-                                    <custom-input></custom-input>
+                                    <span class="black--text body-2 text-uppercase">
+                                        {{ $t("password") }}
+                                    </span>
+                                    <custom-input
+                                        v-model="form.password"
+                                        :error-messages="passwordErrors"
+                                        @blur="$v.form.password.$touch()"
+                                        type="password"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                                 <v-col cols="12" md="6">
-                                    <span class="black--text body-2 text-uppercase">Repetir Contraseña</span>
-                                    <custom-input></custom-input>
+                                    <span class="black--text body-2 text-uppercase">
+                                        {{ $t("confirm_password") }}
+                                    </span>
+                                    <custom-input
+                                        v-model="form.confirmPassword"
+                                        :error-messages="confirmPasswordErrors"
+                                        @blur="$v.form.confirmPassword.$touch()"
+                                        type="password"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -45,7 +72,14 @@
                                     <v-row>
                                         <v-col cols="12" sm="6">
                                             <span class="black--text body-2 text-uppercase">Primer Nombre</span>
-                                            <custom-input></custom-input>
+                                            <custom-input
+                                                type="text"
+                                                v-model="form.name"
+                                                :error-messages="nameErrors"
+                                                @blur="$v.form.name.$touch()"
+                                                hide-details="auto"
+                                                required
+                                            />
                                         </v-col>
                                         <v-col cols="12" sm="6">
                                             <span class="black--text body-2 text-uppercase">
@@ -62,7 +96,7 @@
                                             <custom-input></custom-input>
                                         </v-col>
                                         <v-col cols="12" sm="6">
-                                            <span class="black--text body-2 text-uppercase"> Segundo Apellido </span>
+                                            <span class="black--text body-2 text-uppercase">Segundo Apellido</span>
                                             <custom-input></custom-input>
                                         </v-col>
                                     </v-row>
@@ -150,11 +184,38 @@
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Teléfono / Mobil</span>
                                     <v-row>
-                                        <v-col cols="2" md="4">
-                                            <select-custom light label="--" :items="DocumentType" />
-                                        </v-col>
-                                        <v-col cols="10" md="8">
-                                            <custom-input></custom-input>
+                                        <v-col cols="12">
+                                            <vue-tel-input
+                                                v-model="form.phone"
+                                                v-bind="mobileInputProps"
+                                                :onlyCountries="availableCountries"
+                                                @validate="phoneValidate"
+                                            >
+                                                <template slot="arrow-icon">
+                                                    <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                                </template>
+                                            </vue-tel-input>
+                                            <div class="v-text-field__details mt-2 pl-3" v-if="$v.form.phone.$error">
+                                                <div class="v-messages theme--light error--text" role="alert">
+                                                    <div class="v-messages__wrapper">
+                                                        <div class="v-messages__message">
+                                                            {{ $t("this_field_is_required") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="v-text-field__details mt-2 pl-3"
+                                                v-if="!$v.form.phone.$error && form.showInvalidPhone"
+                                            >
+                                                <div class="v-messages theme--light error--text" role="alert">
+                                                    <div class="v-messages__wrapper">
+                                                        <div class="v-messages__message">
+                                                            {{ $t("phone_number_must_be_valid") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </v-col>
                                     </v-row>
                                 </v-col>
@@ -180,14 +241,17 @@
                                 <v-col cols="12" md="6">
                                     <custom-button
                                         block
-                                        color="black"
                                         class="mt-3"
                                         text="Guardar"
-                                        :to="{ name: 'RegistrationSuccess' }"
+                                        type="submit"
+                                        color="black"
+                                        @click="register"
+                                        :disabled="loading"
+                                        :loading="loading"
                                     />
                                 </v-col>
                             </v-row>
-                        </div>
+                        </v-form>
                         <auth-footer />
                     </div>
                 </v-col>
@@ -197,6 +261,11 @@
 </template>
 
 <script>
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { mapActions, mapGetters, mapMutations } from "vuex";
+import { VueTelInput } from "vue-tel-input";
+import snackbar from "../../components/inc/SnackBar";
+
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
@@ -206,6 +275,8 @@ import SelectCustom from "../../components/global/SelectCustom.vue";
 
 export default {
     components: {
+        VueTelInput,
+        snackbar,
         CarouselDescription,
         CustomButton,
         CustomInput,
@@ -215,9 +286,113 @@ export default {
     },
     data() {
         return {
+            mobileInputProps: {
+                inputOptions: {
+                    type: "tel",
+                    placeholder: "phone number"
+                },
+                dropdownOptions: {
+                    showDialCodeInSelection: false,
+                    showFlags: true,
+                    showDialCodeInList: true
+                },
+                autoDefaultCountry: false,
+                validCharactersOnly: true,
+                mode: "international"
+            },
             typePerson: "natural",
-            DocumentType: ["(C.C) Cedula de ciudadanía", "NIT"]
+            DocumentType: ["(C.C) Cedula de ciudadanía", "NIT"],
+            form: {
+                name: "",
+                phone: "",
+                email: "",
+                password: "",
+                confirmPassword: "",
+                invalidPhone: true,
+                showInvalidPhone: false
+            },
+            loading: false
         };
+    },
+    validations: {
+        form: {
+            name: { required },
+            email: { required, email },
+            phone: { required },
+            password: { required, minLength: minLength(6) },
+            confirmPassword: { required, sameAsPassword: sameAs("password") }
+        }
+    },
+    computed: {
+        ...mapGetters("app", ["generalSettings", "availableCountries"]),
+        nameErrors() {
+            const errors = [];
+            if (!this.$v.form.name.$dirty) return errors;
+            !this.$v.form.name.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        emailErrors() {
+            const errors = [];
+            if (!this.$v.form.email.$dirty) return errors;
+            !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            return errors;
+        },
+        passwordErrors() {
+            const errors = [];
+            if (!this.$v.form.password.$dirty) return errors;
+            !this.$v.form.password.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.password.minLength && errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
+            return errors;
+        },
+        confirmPasswordErrors() {
+            const errors = [];
+            if (!this.$v.form.confirmPassword.$dirty) return errors;
+            !this.$v.form.confirmPassword.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.confirmPassword.sameAsPassword &&
+                errors.push(this.$i18n.t("password_and_confirm_password_should_match"));
+            return errors;
+        }
+    },
+    methods: {
+        ...mapActions("auth", ["login"]),
+        ...mapMutations("auth", ["updateChatWindow", "showLoginDialog"]),
+        phoneValidate(phone) {
+            this.form.invalidPhone = phone.valid ? false : true;
+            if (phone.valid) this.form.showInvalidPhone = false;
+        },
+        async register() {
+            this.$v.form.$touch();
+
+            if (this.form.invalidPhone) {
+                this.form.showInvalidPhone = true;
+                return;
+            }
+
+            if (this.$v.form.$anyError) {
+                return;
+            }
+
+            this.form.phone = this.form.phone.replace(/\s/g, "");
+
+            this.loading = true;
+
+            const res = await this.call_api("post", "auth/signup", this.form);
+
+            if (res.data.success) {
+                this.login(res.data);
+                this.showLoginDialog(false);
+                this.updateChatWindow(false);
+                this.$router.push(this.$route.query.redirect || { name: "RegistrationSuccess" });
+            } else {
+                this.snack({
+                    message: res.data.message,
+                    color: "red"
+                });
+            }
+
+            this.loading = false;
+        }
     }
 };
 </script>

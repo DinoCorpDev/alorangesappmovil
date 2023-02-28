@@ -1,5 +1,5 @@
-import { i18n } from './../../plugins/i18n';
-import Mixin from './../../utils/mixin';
+import { i18n } from "./../../plugins/i18n";
+import Mixin from "./../../utils/mixin";
 const shopSetting = window.shopSetting;
 const loadState = () => ({
     chatWindowOpen: false,
@@ -9,10 +9,10 @@ const loadState = () => ({
     showAddToCartDialog: false,
     showConversationDialog: false,
     cartDialogProductSlug: null,
-    accessToken: localStorage.getItem('shopAccessToken') || null,
+    accessToken: localStorage.getItem("shopAccessToken") || null,
     currentUser: {},
     sociaLoginStatus: null,
-    authSettings: shopSetting.authSettings,
+    authSettings: shopSetting.authSettings
 });
 export default {
     namespaced: true,
@@ -53,7 +53,7 @@ export default {
         },
         authSettings(state) {
             return state.authSettings;
-        },
+        }
     },
     mutations: {
         updateChatWindow(state, status) {
@@ -72,8 +72,8 @@ export default {
             state.showAddToCartDialog = status;
             state.cartDialogProductSlug = slug;
         },
-        showConversationDialog(state, { status }) { 
-                state.showConversationDialog = status; 
+        showConversationDialog(state, { status }) {
+            state.showConversationDialog = status;
         },
         login(state, data) {
             state.accessToken = data.access_token;
@@ -84,7 +84,7 @@ export default {
         logout(state) {
             localStorage.removeItem("shopAccessToken");
             const newState = loadState();
-            Object.keys(newState).forEach((key) => {
+            Object.keys(newState).forEach(key => {
                 state[key] = newState[key];
             });
         },
@@ -102,23 +102,16 @@ export default {
             if (state.currentUser.balance >= amount) {
                 state.currentUser.balance -= amount;
             }
-        },
+        }
     },
     actions: {
         async getUser({ commit, getters }) {
             if (getters.accessToken) {
                 try {
-                    const res = await Mixin.methods.call_api(
-                        "get",
-                        `user/info`
-                    );
+                    const res = await Mixin.methods.call_api("get", `user/info`);
                     if (res.data.success) {
                         commit("setUser", res.data.user);
-                        commit(
-                            "follow/setFollowedShops",
-                            res.data.followed_shops,
-                            { root: true }
-                        );
+                        commit("follow/setFollowedShops", res.data.followed_shops, { root: true });
                     } else {
                         commit("logout");
                     }
@@ -130,13 +123,13 @@ export default {
         rechargeWallet({ dispatch }, status) {
             if (status && status == "success") {
                 Mixin.methods.snack({
-                    message: i18n.t("wallet_successfully_recharged"),
+                    message: i18n.t("wallet_successfully_recharged")
                 });
                 dispatch("getUser");
             } else if (status && status == "failed") {
                 Mixin.methods.snack({
                     message: i18n.t("wallet_recharge_failed"),
-                    color: "red",
+                    color: "red"
                 });
             }
         },
@@ -150,7 +143,7 @@ export default {
             } else if (getters.sociaLoginStatus == "failed") {
                 Mixin.methods.snack({
                     message: i18n.t("something_went_wrong"),
-                    color: "red",
+                    color: "red"
                 });
             }
         },
@@ -160,12 +153,12 @@ export default {
         logout({ commit }) {
             commit("logout");
         },
-        showConversationDialog({commit}, status ) {
-            if (this.getters["auth/isAuthenticated"]) { 
+        showConversationDialog({ commit }, status) {
+            if (this.getters["auth/isAuthenticated"]) {
                 commit("showConversationDialog", status);
             } else {
                 commit("auth/showLoginDialog", true, { root: true });
             }
-        },
-    },
+        }
+    }
 };
