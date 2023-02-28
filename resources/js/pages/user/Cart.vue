@@ -1,21 +1,36 @@
 <template>
     <v-container>
-        <v-stepper elevation="0">
+        <v-stepper elevation="0" v-model="e6">
             <v-stepper-header>
-                <v-stepper-step step="1" editable>
-                    <span class="text-uppercase bold">Pedido</span>
+                <v-stepper-step step="1">
+                    <step-order color="#161616" text2="lista de" text1="pedido" />
                 </v-stepper-step>
 
-                <v-stepper-step step="2" editable>
-                    <span class="text-uppercase bold">Datos</span>
+                <v-stepper-step step="2">
+                    <template v-if="e6 >= 2">
+                        <step-medium color="#161616" text="datos" xtext="38%" />
+                    </template>
+                    <template v-else>
+                        <step-medium color="#DFDFDF" colortext="#000000" text="datos" xtext="38%" />
+                    </template>
                 </v-stepper-step>
 
-                <v-stepper-step step="3" editable>
-                    <span class="text-uppercase bold">Pago</span>
+                <v-stepper-step step="3">
+                    <template v-if="e6 >= 3">
+                        <step-medium color="#161616" text="pago" xtext="40%" />
+                    </template>
+                    <template v-else>
+                        <step-medium color="#DFDFDF" colortext="#000000" text="pago" xtext="40%" />
+                    </template>
                 </v-stepper-step>
 
-                <v-stepper-step step="4" editable>
-                    <span class="text-uppercase bold">Resumen</span>
+                <v-stepper-step step="4">
+                    <template v-if="e6 == 4">
+                        <step-medium color="#161616" text="resumen" xtext="30%" />
+                    </template>
+                    <template v-else>
+                        <step-medium color="#DFDFDF" colortext="#000000" text="resumen" xtext="35%" />
+                    </template>
                 </v-stepper-step>
             </v-stepper-header>
             <v-divider />
@@ -24,13 +39,8 @@
                     <h6>Productos</h6>
                     <v-row>
                         <v-col cols="12">
-                            <product-cart
-                                price="000.000.000 COP"
-                                quantity="03"
-                                icon1="la-trash"
-                                icon2="la-eye"
-                                icon3="la-eye"
-                            />
+                            <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye"
+                                icon3="la-eye" />
                         </v-col>
                         <v-col cols="12">
                             <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
@@ -49,6 +59,12 @@
                         </v-col>
                         <v-col cols="12">
                             <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        </v-col>
+                        <v-col cols="12" class="d-flex justify-space-between">
+                            <total />
+                            <div class="mb-2">
+                                <custom-button text="Continuar" @click="e6 = 2" />
+                            </div>
                         </v-col>
                     </v-row>
                 </v-stepper-content>
@@ -185,16 +201,14 @@
                                 </v-col>
                             </v-row>
                         </v-col>
-                        <v-col sm="12" class="d-none d-sm-block">
-                            <v-row>
-                                <v-col cols="12" class="d-flex justify-space-between">
-                                    <custom-button text="Volver" />
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <h6 class="text-uppercase bold">Total 000.000.000 COP</h6>
-                                    </div>
-                                    <custom-button text="Continuar" />
-                                </v-col>
-                            </v-row>
+                        <v-col cols="12" class="d-flex justify-space-between">
+                            <div class="mb-2">
+                                <custom-button text="Volver" @click="e6 = 1" />
+                            </div>
+                            <total />
+                            <div class="mb-2">
+                                <custom-button text="Continuar" @click="e6 = 3" />
+                            </div>
                         </v-col>
                     </v-row>
                 </v-stepper-content>
@@ -234,16 +248,14 @@
                                 <custom-input />
                             </div>
                         </v-col>
-                        <v-col sm="12" class="d-none d-sm-block">
-                            <v-row>
-                                <v-col cols="12" class="d-flex justify-space-between">
-                                    <custom-button text="Volver" />
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <h6 class="text-uppercase bold">Total 000.000.000 COP</h6>
-                                    </div>
-                                    <custom-button text="Continuar" />
-                                </v-col>
-                            </v-row>
+                        <v-col cols="12" class="d-flex justify-space-between">
+                            <div class="mb-2">
+                                <custom-button text="Volver" @click="e6 = 2" />
+                            </div>
+                            <total />
+                            <div class="mb-2">
+                                <custom-button text="Continuar" @click="e6 = 4" />
+                            </div>
                         </v-col>
                     </v-row>
                 </v-stepper-content>
@@ -268,16 +280,8 @@
                             </div>
                         </v-col>
                         <v-col cols="12">
-                            <order
-                                order="ID1222"
-                                day="07"
-                                month="Julio"
-                                year="2020"
-                                colorStatus="red"
-                                descriptionStatus="Por aprobar pedido"
-                                icon1="la-download"
-                                icon2="la-print"
-                            />
+                            <order order="ID1222" day="07" month="Julio" year="2020" colorStatus="red"
+                                descriptionStatus="Por aprobar pedido" icon1="la-download" icon2="la-print" />
                         </v-col>
                     </v-row>
                     <v-divider class="mb-3" />
@@ -402,31 +406,16 @@
                         <v-divider class="my-3" />
                         <v-row>
                             <v-col cols="12">
-                                <product-cart
-                                    price="000.000.000 COP"
-                                    quantity="03"
-                                    icon1="la-trash"
-                                    icon2="la-eye"
-                                    icon3="la-eye"
-                                />
+                                <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye"
+                                    icon3="la-eye" />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart
-                                    price="000.000.000 COP"
-                                    quantity="03"
-                                    icon1="la-trash"
-                                    icon2="la-eye"
-                                    icon3="la-eye"
-                                />
+                                <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye"
+                                    icon3="la-eye" />
                             </v-col>
                             <v-col cols="12">
-                                <product-cart
-                                    price="000.000.000 COP"
-                                    quantity="03"
-                                    icon1="la-trash"
-                                    icon2="la-eye"
-                                    icon3="la-eye"
-                                />
+                                <product-cart price="000.000.000 COP" quantity="03" icon1="la-trash" icon2="la-eye"
+                                    icon3="la-eye" />
                             </v-col>
                         </v-row>
                         <v-divider class="my-3" />
@@ -573,6 +562,15 @@
                                 </a>
                             </div>
                         </v-col>
+                        <v-col cols="12" class="d-flex justify-space-between">
+                            <div class="mb-2">
+                                <custom-button text="Volver" @click="e6 = 3" />
+                            </div>
+                            <total />
+                            <div class="mb-2">
+                                <custom-button text="Continuar" @click="e6 = 1" />
+                            </div>
+                        </v-col>
                     </v-row>
                 </v-stepper-content>
             </v-stepper-items>
@@ -586,6 +584,9 @@ import CustomInput from "../../components/global/CustomInput.vue";
 import Order from "../../components/global/Order.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
+import StepOrder from "../../components/icons/StepOrder.vue";
+import StepMedium from "../../components/icons/StepMedium.vue";
+import Total from "../../components/global/Total.vue";
 import TypePayment from "../../components/global/TypePayment.vue";
 
 export default {
@@ -594,12 +595,16 @@ export default {
         CustomInput,
         ProductCart,
         SelectCustom,
+        StepOrder,
+        StepMedium,
         Order,
-        TypePayment
+        TypePayment,
+        Total
     },
     data() {
         return {
-            langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"]
+            langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"],
+            e6: 1,
         };
     }
 };
@@ -607,32 +612,60 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep {
+
     .v-stepper__header {
-        box-shadow: none;
+        display: flex;
+        flex-wrap: nowrap;
     }
 
-    .v-stepper__content {
-        padding: 24px 0px;
+    .v-stepper:not(.v-stepper--vertical) .v-stepper__label {
+        display: block;
     }
 
-    .v-stepper__step--editable {
-        background-color: #dfdfdf;
-        height: 50%;
-        box-shadow: none;
-        border-radius: 10px;
+    .v-stepper__step {
+        padding: 7px;
     }
 
-    .v-stepper__step .v-stepper__label {
-        color: #000000 !important;
+    .v-stepper__step__step {
+        display: none;
     }
 
-    .v-stepper__step .v-stepper__label:hover {
-        color: #ffffff !important;
+    .v-stepper__label {
+        font-size: 16px;
     }
 
-    .theme--light.v-stepper .v-stepper__step--editable:hover {
-        background-color: #000000;
+    @media (max-width: 600px) {
+        .v-stepper__label {
+            font-size: 12px;
+        }
     }
+
+    // .v-stepper__header {
+    //     box-shadow: none;
+    // }
+
+    // .v-stepper__content {
+    //     padding: 24px 0px;
+    // }
+
+    // .v-stepper__step--editable {
+    //     background-color: #dfdfdf;
+    //     height: 50%;
+    //     box-shadow: none;
+    //     border-radius: 10px;
+    // }
+
+    // .v-stepper__step .v-stepper__label {
+    //     color: #000000 !important;
+    // }
+
+    // .v-stepper__step .v-stepper__label:hover {
+    //     color: #ffffff !important;
+    // }
+
+    // .theme--light.v-stepper .v-stepper__step--editable:hover {
+    //     background-color: #000000;
+    // }
 
     .v-timeline {
         padding-top: 0px;
@@ -694,11 +727,11 @@ export default {
     background-color: #eee;
 }
 
-.label:hover input ~ .checkmark {
+.label:hover input~.checkmark {
     background-color: #f5f5f5;
 }
 
-.label input:checked ~ .checkmark {
+.label input:checked~.checkmark {
     background-color: #000000;
     border-radius: 5px;
 }
@@ -709,7 +742,7 @@ export default {
     display: none;
 }
 
-.label input:checked ~ .checkmark:after {
+.label input:checked~.checkmark:after {
     display: block;
 }
 
