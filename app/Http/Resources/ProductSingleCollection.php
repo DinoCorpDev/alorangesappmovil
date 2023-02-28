@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductSingleCollection extends JsonResource
-{   
+{
     /**
      * Transform the resource into an array.
      *
@@ -13,10 +13,9 @@ class ProductSingleCollection extends JsonResource
      * @return array
      */
     public function toArray($request)
-    {   
-
-        return [    
-            'id' => (integer) $this->id,
+    {
+        return [
+            'id' => (int) $this->id,
             'name' => $this->getTranslation('name'),
             'slug' => $this->slug,
             'metaTitle' => $this->meta_title,
@@ -29,34 +28,34 @@ class ProductSingleCollection extends JsonResource
             'photos' => $this->convertPhotos($this),
             'thumbnail_image' => api_asset($this->thumbnail_img),
             'tags' => explode(',', $this->tags),
-            'featured' => (integer) $this->featured,
-            'stock' => (integer) $this->stock,
-            'min_qty' => (integer) $this->min_qty,
-            'max_qty' => (integer) $this->max_qty,
+            'featured' => (int) $this->featured,
+            'stock' => (int) $this->stock,
+            'min_qty' => (int) $this->min_qty,
+            'max_qty' => (int) $this->max_qty,
             'unit' => $this->getTranslation('unit'),
             'discount' => $this->discount,
             'discount_type' => $this->discount_type,
-            'base_price' => (double) product_base_price($this),
+            'base_price' => (float) product_base_price($this),
             'lowest_price' => $this->lowest_price,
-            'highest_price' => (double) product_highest_price($this),
+            'highest_price' => (float) product_highest_price($this),
             'highest_price' => $this->highest_price,
-            'base_discounted_price' => (double) product_discounted_base_price($this),
-            'highest_discounted_price' => (double) product_discounted_highest_price($this),
-            'standard_delivery_time' => (integer) $this->standard_delivery_time,
-            'express_delivery_time' => (integer) $this->express_delivery_time,
+            'base_discounted_price' => (float) product_discounted_base_price($this),
+            'highest_discounted_price' => (float) product_discounted_highest_price($this),
+            'standard_delivery_time' => (int) $this->standard_delivery_time,
+            'express_delivery_time' => (int) $this->express_delivery_time,
             'is_variant' => $this->is_variant,
             'has_warranty' => $this->has_warranty,
             'review_summary' => [
-                'average' => (double) $this->rating,
-                'total_count' => (integer) $this->reviews_count,
-                'count_5' => (integer) $this->reviews_5_count,
-                'count_4' => (integer) $this->reviews_4_count,
-                'count_3' => (integer) $this->reviews_3_count,
-                'count_2' => (integer) $this->reviews_2_count,
-                'count_1' => (integer) $this->reviews_1_count,
+                'average' => (float) $this->rating,
+                'total_count' => (int) $this->reviews_count,
+                'count_5' => (int) $this->reviews_5_count,
+                'count_4' => (int) $this->reviews_4_count,
+                'count_3' => (int) $this->reviews_3_count,
+                'count_2' => (int) $this->reviews_2_count,
+                'count_1' => (int) $this->reviews_1_count,
             ],
             'description' => $this->getTranslation('description'),
-            'variations' => filter_product_variations($this->variations,$this),
+            'variations' => filter_product_variations($this->variations, $this),
             'variation_options' => generate_variation_options($this->variation_combinations),
 
             'intake' => $this->intake,
@@ -163,7 +162,8 @@ class ProductSingleCollection extends JsonResource
         ];
     }
 
-    protected function convertPhotos(){
+    protected function convertPhotos()
+    {
         $result = array();
         foreach (explode(',', $this->photos) as $item) {
             array_push($result, api_asset($item));
