@@ -24,7 +24,7 @@
                 <div class="d-none d-sm-block">
                     <div class="div-not2-1">
                         <custom-button icon="la-trash" />
-                        <custom-button icon="las la-eye" />
+                        <custom-button icon="las la-eye" :to="{ name: 'Notification' }" />
                     </div>
                 </div>
                 <div class="d-sm-none div-not2-1">

@@ -18,7 +18,7 @@
             <v-divider vertical />
             <div class="d-none d-sm-flex">
                 <custom-button v-if="icon1" plain :icon="icon1" />
-                <custom-button v-if="icon2" plain :icon="icon2" />
+                <custom-button v-if="icon2" plain :icon="icon2" :to="{ name: 'InvoicesDetails' }" />
                 <custom-button v-if="icon3" plain :icon="icon3" />
             </div>
             <div class="d-sm-none">
