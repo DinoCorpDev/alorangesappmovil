@@ -121,13 +121,13 @@ export default [
         component: ProductListing,
         name: "Search",
         meta: { requiresAuth: false }
-    },
+    },/*
     {
         path: "/product/:slug",
         component: ProductDetails,
         name: "ProductDetails",
         meta: { requiresAuth: false }
-    },
+    }*/
     {
         path: "/track-order",
         component: TrackOrder,
@@ -165,7 +165,7 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/product",
+        path: "/product/:slug",
         component: Product,
         name: "Product",
         meta: { requiresAuth: false }
