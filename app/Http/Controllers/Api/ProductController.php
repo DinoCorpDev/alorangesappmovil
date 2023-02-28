@@ -26,8 +26,8 @@ class ProductController extends Controller
 
     public function show($product_slug)
     {
-        $product = filter_products(Product::query())
-            ->where('slug', $product_slug)
+        //$product = filter_products(Product::query())
+        $product = Product::where('slug', $product_slug)
             ->with(['brand', 'variations', 'variation_combinations','shop' => function($query){
                 $query->withCount('reviews');
             }])
@@ -75,7 +75,8 @@ class ProductController extends Controller
 
     public function random_products($limit, $product_id = null)
     {
-        return new ProductCollection(filter_products(Product::where('id', '!=', $product_id))->inRandomOrder()->limit($limit)->get());
+        //return new ProductCollection(filter_products(Product::where('id', '!=', $product_id))->inRandomOrder()->limit($limit)->get());
+        return new ProductCollection(Product::where('id', '!=', $product_id)->inRandomOrder()->limit($limit)->get());
     }
     public function latest_products($limit)
     {

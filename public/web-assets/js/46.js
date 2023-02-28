@@ -16,7 +16,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_global_LayoutNavbarSpaces_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/global/LayoutNavbarSpaces.vue */ "./resources/js/components/global/LayoutNavbarSpaces.vue");
 /* harmony import */ var _components_global_Carousel_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/global/Carousel.vue */ "./resources/js/components/global/Carousel.vue");
 /* harmony import */ var _components_global_LayoutNavbarAuth_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/global/LayoutNavbarAuth.vue */ "./resources/js/components/global/LayoutNavbarAuth.vue");
-/* harmony import */ var _seeders_products__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../seeders/products */ "./resources/js/seeders/products.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -26,22 +29,17 @@ __webpack_require__.r(__webpack_exports__);
 
 // import ChartView from "../components/global/ChartView.vue";
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      productDetails: {},
       showp: true,
       showp1: false,
       showp2: false,
       showd: true,
       showd1: false,
       showd2: false,
-      sliderSeeder: _seeders_products__WEBPACK_IMPORTED_MODULE_7__["sliderSeeder"],
       id: "0",
-      name: "Colección",
-      ref: "REFERENCIA",
-      brand: "Marcas",
-      val: "000.000.000 COP",
       img: "/public/assets/img/item-placeholder.png",
       iva: "* Iva Incluido",
       varia: "Variación",
@@ -52,49 +50,13 @@ __webpack_require__.r(__webpack_exports__);
         rating4: 22,
         rating3: 11,
         rating2: 0,
-        rating1: 0
+        rating1: 0,
+        vidaUtil: 0
       },
-      desserts: [{
-        color: "background-color:#114B99",
-        name: "Plástico",
-        percent: "5%",
-        kg: "1Kg"
-      }, {
-        color: "background-color:#FEA60F",
-        name: "Cartón",
-        percent: "0%",
-        kg: "0Kg"
-      }, {
-        color: "background-color:#FFFFFF",
-        name: "Papel",
-        percent: "3%",
-        kg: "0.2Kg"
-      }, {
-        color: "background-color:#445056",
-        name: "Metal",
-        percent: "0%",
-        kg: "0Kg"
-      }, {
-        color: "background-color:#61A959",
-        name: "Vidrio",
-        percent: "0%",
-        kg: "0Kg"
-      }, {
-        color: "background-color:#B1771D",
-        name: "Madera",
-        percent: "91%",
-        kg: "5Kg"
-      }, {
-        color: "background-color:#ED847B",
-        name: "Textil",
-        percent: "0%",
-        kg: "0Kg"
-      }, {
-        color: "background-color:#ED847B",
-        name: "Baterías / Eléctrico",
-        percent: "0%",
-        kg: "0Kg"
-      }]
+      desserts: [],
+      impacto: "28%",
+      moreProducts: [],
+      footerProducts: []
     };
   },
   components: {
@@ -107,8 +69,196 @@ __webpack_require__.r(__webpack_exports__);
     LayoutNavbarAuth: _components_global_LayoutNavbarAuth_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
     // ChartView
   },
+
+  methods: {
+    getDetails: function getDetails() {
+      var _this = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var res, _this$productDetails, _this$productDetails2, _this$productDetails3;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.call_api("get", "product/details/".concat(_this.$route.params.slug));
+            case 2:
+              res = _context.sent;
+              if (res.data.success) {
+                _this.productDetails = res.data.data;
+                _this.setVidaUtil(_this.productDetails.vida_util);
+                _this.setComposition(_this.productDetails);
+                _this.setImpacto((_this$productDetails = _this.productDetails) === null || _this$productDetails === void 0 ? void 0 : _this$productDetails.impacto_ambiental);
+                _this.getMoreProducts((_this$productDetails2 = _this.productDetails) === null || _this$productDetails2 === void 0 ? void 0 : _this$productDetails2.id);
+                _this.getMoreProducts2((_this$productDetails3 = _this.productDetails) === null || _this$productDetails3 === void 0 ? void 0 : _this$productDetails3.id);
+              }
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))();
+    },
+    getMoreProducts: function getMoreProducts(id) {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var res, _res$data, _res$data$data;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _this2.call_api("get", "product/random/6/".concat(id));
+            case 2:
+              res = _context2.sent;
+              if (res.data.success) {
+                (_res$data = res.data) === null || _res$data === void 0 ? void 0 : (_res$data$data = _res$data.data) === null || _res$data$data === void 0 ? void 0 : _res$data$data.map(function (product) {
+                  _this2.moreProducts.push({
+                    name: product === null || product === void 0 ? void 0 : product.name,
+                    val: (product === null || product === void 0 ? void 0 : product.base_price) + " " + (product === null || product === void 0 ? void 0 : product.currency),
+                    img: product === null || product === void 0 ? void 0 : product.thumbnail_image,
+                    description: product === null || product === void 0 ? void 0 : product.description,
+                    brand: product === null || product === void 0 ? void 0 : product.brandName,
+                    ref: product === null || product === void 0 ? void 0 : product.reference,
+                    slug: product === null || product === void 0 ? void 0 : product.slug
+                  });
+                });
+              }
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
+      }))();
+    },
+    getMoreProducts2: function getMoreProducts2(id) {
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var res, _res$data2, _res$data2$data;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _this3.call_api("get", "product/random/4/".concat(id));
+            case 2:
+              res = _context3.sent;
+              if (res.data.success) {
+                (_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : (_res$data2$data = _res$data2.data) === null || _res$data2$data === void 0 ? void 0 : _res$data2$data.map(function (product) {
+                  _this3.footerProducts.push({
+                    name: product === null || product === void 0 ? void 0 : product.name,
+                    val: (product === null || product === void 0 ? void 0 : product.base_price) + " " + (product === null || product === void 0 ? void 0 : product.currency),
+                    img: product === null || product === void 0 ? void 0 : product.thumbnail_image,
+                    description: product === null || product === void 0 ? void 0 : product.description,
+                    brand: product === null || product === void 0 ? void 0 : product.brandName,
+                    ref: product === null || product === void 0 ? void 0 : product.reference,
+                    slug: product === null || product === void 0 ? void 0 : product.slug
+                  });
+                });
+              }
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3);
+      }))();
+    },
+    setVidaUtil: function setVidaUtil(value) {
+      if (value) {
+        switch (value) {
+          case "1-10 años":
+            this.ratings.vidaUtil = 67;
+            break;
+          case "10-25 años":
+            this.ratings.vidaUtil = 100;
+            break;
+          case "1-24 Meses":
+            this.ratings.vidaUtil = 34;
+            break;
+          case "1-14 Semanas":
+            this.ratings.vidaUtil = 0;
+            break;
+          default:
+            this.ratings.vidaUtil = 0;
+            break;
+        }
+      }
+    },
+    setComposition: function setComposition(data) {
+      var _data$plastico, _data$peso_plastico, _data$carton, _data$peso_carton, _data$papel, _data$peso_papel, _data$metal, _data$peso_metal, _data$vidrio, _data$peso_vidrio, _data$madera, _data$peso_madera, _data$textil, _data$peso_textil, _data$bateria_electri, _data$peso_bateria_el;
+      this.desserts = [{
+        color: "background-color:#114B99",
+        name: "Plástico",
+        percent: (_data$plastico = data === null || data === void 0 ? void 0 : data.plastico) !== null && _data$plastico !== void 0 ? _data$plastico : "-",
+        kg: (_data$peso_plastico = data === null || data === void 0 ? void 0 : data.peso_plastico) !== null && _data$peso_plastico !== void 0 ? _data$peso_plastico : "-" + "Kg"
+      }, {
+        color: "background-color:#FEA60F",
+        name: "Cartón",
+        percent: (_data$carton = data === null || data === void 0 ? void 0 : data.carton) !== null && _data$carton !== void 0 ? _data$carton : "-",
+        kg: (_data$peso_carton = data === null || data === void 0 ? void 0 : data.peso_carton) !== null && _data$peso_carton !== void 0 ? _data$peso_carton : "-" + "Kg"
+      }, {
+        color: "background-color:#FFFFFF",
+        name: "Papel",
+        percent: (_data$papel = data === null || data === void 0 ? void 0 : data.papel) !== null && _data$papel !== void 0 ? _data$papel : "-",
+        kg: (_data$peso_papel = data === null || data === void 0 ? void 0 : data.peso_papel) !== null && _data$peso_papel !== void 0 ? _data$peso_papel : "-" + "Kg"
+      }, {
+        color: "background-color:#445056",
+        name: "Metal",
+        percent: (_data$metal = data === null || data === void 0 ? void 0 : data.metal) !== null && _data$metal !== void 0 ? _data$metal : "-",
+        kg: (_data$peso_metal = data === null || data === void 0 ? void 0 : data.peso_metal) !== null && _data$peso_metal !== void 0 ? _data$peso_metal : "-" + "Kg"
+      }, {
+        color: "background-color:#61A959",
+        name: "Vidrio",
+        percent: (_data$vidrio = data === null || data === void 0 ? void 0 : data.vidrio) !== null && _data$vidrio !== void 0 ? _data$vidrio : "-",
+        kg: (_data$peso_vidrio = data === null || data === void 0 ? void 0 : data.peso_vidrio) !== null && _data$peso_vidrio !== void 0 ? _data$peso_vidrio : "-" + "Kg"
+      }, {
+        color: "background-color:#B1771D",
+        name: "Madera",
+        percent: (_data$madera = data === null || data === void 0 ? void 0 : data.madera) !== null && _data$madera !== void 0 ? _data$madera : "-",
+        kg: (_data$peso_madera = data === null || data === void 0 ? void 0 : data.peso_madera) !== null && _data$peso_madera !== void 0 ? _data$peso_madera : "-" + "Kg"
+      }, {
+        color: "background-color:#ED847B",
+        name: "Textil",
+        percent: (_data$textil = data === null || data === void 0 ? void 0 : data.textil) !== null && _data$textil !== void 0 ? _data$textil : "-",
+        kg: (_data$peso_textil = data === null || data === void 0 ? void 0 : data.peso_textil) !== null && _data$peso_textil !== void 0 ? _data$peso_textil : "-" + "Kg"
+      }, {
+        color: "background-color:#ED847B",
+        name: "Baterías / Eléctrico",
+        percent: (_data$bateria_electri = data === null || data === void 0 ? void 0 : data.bateria_electrico) !== null && _data$bateria_electri !== void 0 ? _data$bateria_electri : "-",
+        kg: (_data$peso_bateria_el = data === null || data === void 0 ? void 0 : data.peso_bateria_electrico) !== null && _data$peso_bateria_el !== void 0 ? _data$peso_bateria_el : "-" + "Kg"
+      }];
+    },
+    setImpacto: function setImpacto(value) {
+      if (value) {
+        switch (value) {
+          case "Reversible":
+            this.impacto = "35%";
+            break;
+          case "Sostenible":
+            this.impacto = "11%";
+            break;
+          case "No Reversible":
+            this.impacto = "75%";
+            break;
+          default:
+            this.impacto = "11%";
+            break;
+        }
+      }
+    }
+  },
   mounted: function mounted() {
     this.$vuetify.theme.dark = true;
+  },
+  created: function created() {
+    var _this4 = this;
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _this4.getDetails();
+          case 1:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4);
+    }))();
   }
 });
 
@@ -126,6 +276,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function render() {
+  var _vm$productDetails, _vm$productDetails2, _vm$productDetails3, _vm$productDetails4, _vm$productDetails5, _vm$productDetails6, _vm$productDetails7, _vm$productDetails8, _vm$productDetails9, _vm$productDetails10, _vm$productDetails11, _vm$productDetails12, _vm$productDetails13, _vm$productDetails14, _vm$productDetails15, _vm$productDetails16, _vm$productDetails17, _vm$productDetails18, _vm$productDetails19, _vm$productDetails20, _vm$productDetails21, _vm$productDetails22, _vm$productDetails23, _vm$productDetails24, _vm$productDetails25, _vm$productDetails26, _vm$productDetails27, _vm$productDetails28, _vm$productDetails29, _vm$productDetails30, _vm$productDetails31, _vm$productDetails32, _vm$productDetails$na, _vm$productDetails33, _vm$productDetails$br, _vm$productDetails34, _vm$productDetails34$, _vm$productDetails$lo, _vm$productDetails35, _vm$productDetails$cu, _vm$productDetails36, _vm$productDetails$hi, _vm$productDetails37, _vm$productDetails$cu2, _vm$productDetails38, _vm$productDetails$st, _vm$productDetails39, _vm$productDetails$wa, _vm$productDetails40, _vm$productDetails$sh, _vm$productDetails41;
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", [_c("layout-navbar-auth"), _vm._v(" "), _c("v-row", [_c("v-col", {
@@ -220,7 +371,7 @@ var render = function render() {
       value: _vm.showd,
       expression: "showd"
     }],
-    staticClass: "overflow-y-auto mt-3",
+    staticClass: "overflow-y-auto overflow-x-auto mt-3 overflow-uw",
     attrs: {
       "max-height": "628"
     }
@@ -242,7 +393,7 @@ var render = function render() {
     }
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase mt-1"
-  }, [_vm._v("Consumo")])])], 1), _vm._v(" "), _c("v-divider", {
+  }, [_vm._v("\n                                    " + _vm._s((_vm$productDetails = _vm.productDetails) === null || _vm$productDetails === void 0 ? void 0 : _vm$productDetails.intake) + "\n                                ")])])], 1), _vm._v(" "), _c("v-divider", {
     staticClass: "mb-2",
     attrs: {
       inset: "",
@@ -264,7 +415,7 @@ var render = function render() {
     }
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase mt-1"
-  }, [_vm._v("Cuerpo")])])], 1)], 1)], 1), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                    " + _vm._s((_vm$productDetails2 = _vm.productDetails) === null || _vm$productDetails2 === void 0 ? void 0 : _vm$productDetails2.material) + "\n                                ")])])], 1)], 1)], 1), _vm._v(" "), _c("div", {
     staticClass: "product-item-body pa-4 la-border ml-3 mt-4"
   }, [_c("v-row", [_c("v-col", {
     attrs: {
@@ -314,21 +465,21 @@ var render = function render() {
     }
   }, [_c("span", {
     staticClass: "subtitle2 text-uppercase mt-3"
-  }, [_vm._v("000 x 000 x 000")])]), _vm._v(" "), _c("v-row", {
+  }, [_vm._v(_vm._s((_vm$productDetails3 = _vm.productDetails) === null || _vm$productDetails3 === void 0 ? void 0 : _vm$productDetails3.medida_producto))])]), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center",
       dense: ""
     }
   }, [_c("span", {
     staticClass: "subtitle2 text-uppercase"
-  }, [_vm._v("000 x 000 x 000")])]), _vm._v(" "), _c("v-row", {
+  }, [_vm._v(_vm._s((_vm$productDetails4 = _vm.productDetails) === null || _vm$productDetails4 === void 0 ? void 0 : _vm$productDetails4.medidas_de_embalaje))])]), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center",
       dense: ""
     }
   }, [_c("span", {
     staticClass: "subtitle2 text-uppercase"
-  }, [_vm._v("000 x 000 x 000")])])], 1), _vm._v(" "), _c("v-col", {
+  }, [_vm._v(_vm._s((_vm$productDetails5 = _vm.productDetails) === null || _vm$productDetails5 === void 0 ? void 0 : _vm$productDetails5.engaste))])])], 1), _vm._v(" "), _c("v-col", {
     attrs: {
       cols: "2"
     }
@@ -346,21 +497,21 @@ var render = function render() {
     }
   }, [_c("span", {
     staticClass: "subtitle2 mt-3"
-  }, [_vm._v("cm")])]), _vm._v(" "), _c("v-row", {
+  }, [_vm._v("\n                                    " + _vm._s((_vm$productDetails6 = _vm.productDetails) === null || _vm$productDetails6 === void 0 ? void 0 : _vm$productDetails6.unit_metering) + "\n                                ")])]), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center",
       dense: ""
     }
   }, [_c("span", {
     staticClass: "subtitle2"
-  }, [_vm._v("cm")])]), _vm._v(" "), _c("v-row", {
+  }, [_vm._v("\n                                    " + _vm._s((_vm$productDetails7 = _vm.productDetails) === null || _vm$productDetails7 === void 0 ? void 0 : _vm$productDetails7.unit_metering) + "\n                                ")])]), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center",
       dense: ""
     }
   }, [_c("span", {
     staticClass: "subtitle2"
-  }, [_vm._v("cm")])])], 1)], 1)], 1), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                    " + _vm._s((_vm$productDetails8 = _vm.productDetails) === null || _vm$productDetails8 === void 0 ? void 0 : _vm$productDetails8.unit_metering) + "\n                                ")])])], 1)], 1)], 1), _vm._v(" "), _c("div", {
     staticClass: "product-item-body pa-4 la-border ml-3 mt-4"
   }, [_c("v-row", [_c("v-col", {
     attrs: {
@@ -371,7 +522,7 @@ var render = function render() {
       justify: "center",
       dense: ""
     }
-  }, [_c("span", [_vm._v("00.0")])]), _vm._v(" "), _c("v-row", {
+  }, [_c("span", [_vm._v(_vm._s((_vm$productDetails9 = _vm.productDetails) === null || _vm$productDetails9 === void 0 ? void 0 : _vm$productDetails9.peso_de_producto))])]), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center",
       dense: ""
@@ -393,7 +544,7 @@ var render = function render() {
       justify: "center",
       dense: ""
     }
-  }, [_c("span", [_vm._v("00.0")])]), _vm._v(" "), _c("v-row", {
+  }, [_c("span", [_vm._v(_vm._s((_vm$productDetails10 = _vm.productDetails) === null || _vm$productDetails10 === void 0 ? void 0 : _vm$productDetails10.peso_de_envio))])]), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center",
       dense: ""
@@ -411,7 +562,7 @@ var render = function render() {
       justify: "center",
       dense: ""
     }
-  }, [_c("span", [_vm._v("0.0 V / 0.0 Hz / 0.0 A")])]), _vm._v(" "), _c("v-row", {
+  }, [_c("span", [_vm._v(_vm._s((_vm$productDetails11 = _vm.productDetails) === null || _vm$productDetails11 === void 0 ? void 0 : _vm$productDetails11.tipo_de_coneccion))])]), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center",
       dense: ""
@@ -433,7 +584,7 @@ var render = function render() {
       justify: "center",
       dense: ""
     }
-  }, [_c("span", [_vm._v("0.0 %")])]), _vm._v(" "), _c("v-row", {
+  }, [_c("span", [_vm._v(_vm._s((_vm$productDetails12 = _vm.productDetails) === null || _vm$productDetails12 === void 0 ? void 0 : _vm$productDetails12.eficiencia) + " %")])]), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center",
       dense: ""
@@ -446,21 +597,19 @@ var render = function render() {
     staticClass: "mt-2 ml-3"
   }), _vm._v(" "), _c("ul", [_c("li", {
     staticClass: "subtitle2 mt-1"
-  }, [_vm._v("\n                        Característica 1 incluye Lorem Ipsum is simply dummy text of printing\n                    ")]), _vm._v(" "), _c("li", {
+  }, [_vm._v(_vm._s((_vm$productDetails13 = _vm.productDetails) === null || _vm$productDetails13 === void 0 ? void 0 : _vm$productDetails13.caracteristica1))]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 2 incluye Lorem Ipsum is simply dummy text of printing")]), _vm._v(" "), _c("li", {
+  }, [_vm._v(_vm._s((_vm$productDetails14 = _vm.productDetails) === null || _vm$productDetails14 === void 0 ? void 0 : _vm$productDetails14.caracteristica2))]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 3 incluye Lorem Ipsum is simply dummy text of printing")]), _vm._v(" "), _c("li", {
+  }, [_vm._v(_vm._s((_vm$productDetails15 = _vm.productDetails) === null || _vm$productDetails15 === void 0 ? void 0 : _vm$productDetails15.caracteristica3))]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 4 incluye Lorem Ipsum is simply dummy text of printing")]), _vm._v(" "), _c("li", {
+  }, [_vm._v(_vm._s((_vm$productDetails16 = _vm.productDetails) === null || _vm$productDetails16 === void 0 ? void 0 : _vm$productDetails16.caracteristica4))]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 5 incluye Lorem Ipsum is simply dummy text of printing")]), _vm._v(" "), _c("li", {
+  }, [_vm._v(_vm._s((_vm$productDetails17 = _vm.productDetails) === null || _vm$productDetails17 === void 0 ? void 0 : _vm$productDetails17.caracteristica5))]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 6 incluye Lorem Ipsum is simply dummy text of printing")]), _vm._v(" "), _c("li", {
+  }, [_vm._v(_vm._s((_vm$productDetails18 = _vm.productDetails) === null || _vm$productDetails18 === void 0 ? void 0 : _vm$productDetails18.caracteristica6))]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 7 incluye Lorem Ipsum is simply dummy text of printing")]), _vm._v(" "), _c("li", {
-    staticClass: "subtitle2"
-  }, [_vm._v("Característica 8 incluye Lorem Ipsum is simply dummy text of printing")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s((_vm$productDetails19 = _vm.productDetails) === null || _vm$productDetails19 === void 0 ? void 0 : _vm$productDetails19.caracteristica7))])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase mt-5 ml-3"
@@ -478,15 +627,23 @@ var render = function render() {
     attrs: {
       dense: ""
     }
-  }, [_c("span", {
-    staticClass: "subtitle2"
+  }, [_c("a", {
+    staticClass: "subtitle2 text-white",
+    attrs: {
+      href: (_vm$productDetails20 = _vm.productDetails) === null || _vm$productDetails20 === void 0 ? void 0 : _vm$productDetails20.manual_de_producto,
+      target: "_blank"
+    }
   }, [_c("u", [_vm._v("Manual de producto")])])]), _vm._v(" "), _c("v-row", {
     staticClass: "mt-1",
     attrs: {
       dense: ""
     }
-  }, [_c("span", {
-    staticClass: "subtitle2"
+  }, [_c("a", {
+    staticClass: "subtitle2 text-white",
+    attrs: {
+      href: (_vm$productDetails21 = _vm.productDetails) === null || _vm$productDetails21 === void 0 ? void 0 : _vm$productDetails21.ficha_tecnica_del_producto,
+      target: "_blank"
+    }
   }, [_c("u", [_vm._v("Ficha técnica del producto")])])])], 1), _vm._v(" "), _c("v-col", {
     attrs: {
       cols: "6"
@@ -502,29 +659,33 @@ var render = function render() {
     attrs: {
       dense: ""
     }
-  }, [_c("span", {
-    staticClass: "subtitle2"
+  }, [_c("a", {
+    staticClass: "subtitle2 text-white",
+    attrs: {
+      href: (_vm$productDetails22 = _vm.productDetails) === null || _vm$productDetails22 === void 0 ? void 0 : _vm$productDetails22.manual_de_instalacion,
+      target: "_blank"
+    }
   }, [_c("u", [_vm._v("Guía de instalación")])])])], 1)], 1), _vm._v(" "), _c("h5", {
     staticClass: "subtitle2 text-uppercase mt-5 ml-3"
   }, [_vm._v("Beneficios")]), _vm._v(" "), _c("v-divider", {
     staticClass: "mt-2 ml-3"
   }), _vm._v(" "), _c("ul", [_c("li", {
     staticClass: "subtitle2 mt-1"
-  }, [_vm._v("\n                        Característica 1 incluye Lorem Ipsum is simply dummy text of printing\n                    ")]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                        " + _vm._s((_vm$productDetails23 = _vm.productDetails) === null || _vm$productDetails23 === void 0 ? void 0 : _vm$productDetails23.beneficio1) + "\n                    ")]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 2 incluye Lorem Ipsum is simply dummy text of printing")]), _vm._v(" "), _c("li", {
+  }, [_vm._v(_vm._s((_vm$productDetails24 = _vm.productDetails) === null || _vm$productDetails24 === void 0 ? void 0 : _vm$productDetails24.beneficio2))]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 3 incluye Lorem Ipsum is simply dummy text of printing")]), _vm._v(" "), _c("li", {
+  }, [_vm._v(_vm._s((_vm$productDetails25 = _vm.productDetails) === null || _vm$productDetails25 === void 0 ? void 0 : _vm$productDetails25.beneficio3))]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 4 incluye Lorem Ipsum is simply dummy text of printing")]), _vm._v(" "), _c("li", {
+  }, [_vm._v(_vm._s((_vm$productDetails26 = _vm.productDetails) === null || _vm$productDetails26 === void 0 ? void 0 : _vm$productDetails26.beneficio4))]), _vm._v(" "), _c("li", {
     staticClass: "subtitle2"
-  }, [_vm._v("Característica 5 incluye Lorem Ipsum is simply dummy text of printing")])]), _vm._v(" "), _c("h5", {
+  }, [_vm._v(_vm._s((_vm$productDetails27 = _vm.productDetails) === null || _vm$productDetails27 === void 0 ? void 0 : _vm$productDetails27.beneficio5))])]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle2 text-uppercase mt-5 ml-3"
   }, [_vm._v("Servicio Postventa")]), _vm._v(" "), _c("v-divider", {
     staticClass: "mt-2 ml-3"
   }), _vm._v(" "), _c("p", {
     staticClass: "subtitle2 ml-3"
-  }, [_vm._v("\n                    Característica 1 incluye Lorem Ipsum is simply dummy text of printing Característica 1 incluye\n                    Lorem Ipsum is simply dummy text of printing Característica 1 incluye Lorem Ipsum is simply\n                    dummy text of printing Característica 1 incluye Lorem Ipsum is simply dummy text of printing\n                    Característica 1 incluye Lorem Ipsum is simply dummy text of printing\n                ")])], 1), _vm._v(" "), _c("v-card", {
+  }, [_vm._v("\n                    " + _vm._s((_vm$productDetails28 = _vm.productDetails) === null || _vm$productDetails28 === void 0 ? void 0 : _vm$productDetails28.postventa) + "\n                ")])], 1), _vm._v(" "), _c("v-card", {
     directives: [{
       name: "scroll",
       rawName: "v-scroll.self",
@@ -539,7 +700,7 @@ var render = function render() {
       value: _vm.showd1,
       expression: "showd1"
     }],
-    staticClass: "overflow-y-auto mt-3",
+    staticClass: "overflow-y-auto overflow-x-auto mt-3 overflow-uw",
     attrs: {
       "max-height": "628"
     }
@@ -707,7 +868,7 @@ var render = function render() {
       value: _vm.showd2,
       expression: "showd2"
     }],
-    staticClass: "overflow-y-auto mt-3",
+    staticClass: "overflow-y-auto overflow-x-auto mt-3 overflow-uw",
     attrs: {
       "max-height": "628"
     }
@@ -730,11 +891,11 @@ var render = function render() {
       color: "white"
     },
     model: {
-      value: _vm.ratings.rating5,
+      value: _vm.ratings.vidaUtil,
       callback: function callback($$v) {
-        _vm.$set(_vm.ratings, "rating5", $$v);
+        _vm.$set(_vm.ratings, "vidaUtil", $$v);
       },
-      expression: "ratings.rating5"
+      expression: "ratings.vidaUtil"
     }
   })], 1), _vm._v(" "), _c("v-row", [_c("v-col", {
     attrs: {
@@ -843,10 +1004,14 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "d-flex",
     staticStyle: {
-      width: "78%"
+      width: "78%",
+      position: "relative"
     }
   }, [_c("v-icon", {
     staticClass: "markerLoc",
+    style: {
+      left: _vm.impacto
+    },
     attrs: {
       large: ""
     }
@@ -1061,6 +1226,9 @@ var render = function render() {
     }],
     staticStyle: {
       height: "700px"
+    },
+    attrs: {
+      slides: (_vm$productDetails29 = _vm.productDetails) === null || _vm$productDetails29 === void 0 ? void 0 : _vm$productDetails29.imagenes
     }
   }), _vm._v(" "), _c("carousel", {
     directives: [{
@@ -1073,7 +1241,7 @@ var render = function render() {
       height: "700px"
     },
     attrs: {
-      slides: _vm.sliderSeeder
+      slides: (_vm$productDetails30 = _vm.productDetails) === null || _vm$productDetails30 === void 0 ? void 0 : _vm$productDetails30.videos
     }
   }), _vm._v(" "), _c("v-img", {
     directives: [{
@@ -1083,7 +1251,7 @@ var render = function render() {
       expression: "showp2"
     }],
     attrs: {
-      src: "https://picsum.photos/1920/1080?random=1",
+      src: (_vm$productDetails31 = _vm.productDetails) === null || _vm$productDetails31 === void 0 ? void 0 : _vm$productDetails31.ficha_tecnica_del_producto,
       height: "700px",
       width: "100%"
     }
@@ -1153,21 +1321,21 @@ var render = function render() {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase mb-2"
-  }, [_vm._v(_vm._s(_vm.ref))]), _vm._v(" "), _c("v-icon", {
+  }, [_vm._v("REFERENCIA: " + _vm._s((_vm$productDetails32 = _vm.productDetails) === null || _vm$productDetails32 === void 0 ? void 0 : _vm$productDetails32.reference))]), _vm._v(" "), _c("v-icon", {
     attrs: {
       right: ""
     }
   }, [_vm._v(" la-bookmark ")])], 1), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 text-uppercase font-weight-bold mb-2"
-  }, [_vm._v(_vm._s(_vm.name))]), _vm._v(" "), _c("h5", {
+  }, [_vm._v(_vm._s((_vm$productDetails$na = (_vm$productDetails33 = _vm.productDetails) === null || _vm$productDetails33 === void 0 ? void 0 : _vm$productDetails33.name) !== null && _vm$productDetails$na !== void 0 ? _vm$productDetails$na : ""))]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 mb-2"
-  }, [_vm._v(_vm._s(_vm.brand))]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s((_vm$productDetails$br = (_vm$productDetails34 = _vm.productDetails) === null || _vm$productDetails34 === void 0 ? void 0 : (_vm$productDetails34$ = _vm$productDetails34.brand) === null || _vm$productDetails34$ === void 0 ? void 0 : _vm$productDetails34$.name) !== null && _vm$productDetails$br !== void 0 ? _vm$productDetails$br : ""))]), _vm._v(" "), _c("div", {
     staticClass: "d-flex"
   }, [_c("h5", {
     staticClass: "subtitle1 mb-2 mr-2"
-  }, [_vm._v(_vm._s(_vm.val))]), _vm._v(" "), _c("h5", {
+  }, [_vm._v(_vm._s((_vm$productDetails$lo = (_vm$productDetails35 = _vm.productDetails) === null || _vm$productDetails35 === void 0 ? void 0 : _vm$productDetails35.lowest_price) !== null && _vm$productDetails$lo !== void 0 ? _vm$productDetails$lo : "000") + " " + _vm._s((_vm$productDetails$cu = (_vm$productDetails36 = _vm.productDetails) === null || _vm$productDetails36 === void 0 ? void 0 : _vm$productDetails36.currency) !== null && _vm$productDetails$cu !== void 0 ? _vm$productDetails$cu : ""))]), _vm._v(" "), _c("h5", {
     staticClass: "caption mb-2"
-  }, [_c("del", [_vm._v(_vm._s(_vm.val))])])]), _vm._v(" "), _c("div", {
+  }, [_c("del", [_vm._v(_vm._s((_vm$productDetails$hi = (_vm$productDetails37 = _vm.productDetails) === null || _vm$productDetails37 === void 0 ? void 0 : _vm$productDetails37.highest_price) !== null && _vm$productDetails$hi !== void 0 ? _vm$productDetails$hi : "000") + " " + _vm._s((_vm$productDetails$cu2 = (_vm$productDetails38 = _vm.productDetails) === null || _vm$productDetails38 === void 0 ? void 0 : _vm$productDetails38.currency) !== null && _vm$productDetails$cu2 !== void 0 ? _vm$productDetails$cu2 : ""))])])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "caption mb-3"
@@ -1233,25 +1401,25 @@ var render = function render() {
     staticClass: "subtitle2 text-uppercase mb-1"
   }, [_vm._v("Disponibilidad")]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 mb-2"
-  }, [_vm._v("Stock")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s((_vm$productDetails$st = (_vm$productDetails39 = _vm.productDetails) === null || _vm$productDetails39 === void 0 ? void 0 : _vm$productDetails39.stock) !== null && _vm$productDetails$st !== void 0 ? _vm$productDetails$st : "000") + " en stock")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase mb-1"
   }, [_vm._v("Garantía")]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 mb-2"
-  }, [_vm._v("12 Meses")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s((_vm$productDetails$wa = (_vm$productDetails40 = _vm.productDetails) === null || _vm$productDetails40 === void 0 ? void 0 : _vm$productDetails40.warranty_text) !== null && _vm$productDetails$wa !== void 0 ? _vm$productDetails$wa : "--"))])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase mb-1"
   }, [_vm._v("Pago")]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 mb-2"
-  }, [_vm._v("Payu Visa PSE MC")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("--")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase"
   }, [_vm._v("Envío")]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1"
-  }, [_vm._v("A domicilio")])])]), _vm._v(" "), _c("h5", {
+  }, [_vm._v(_vm._s((_vm$productDetails$sh = (_vm$productDetails41 = _vm.productDetails) === null || _vm$productDetails41 === void 0 ? void 0 : _vm$productDetails41.shipping) !== null && _vm$productDetails$sh !== void 0 ? _vm$productDetails$sh : "--"))])])]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle2 text-uppercase mt-3 mb-2"
   }, [_vm._v("Se incluye con la compra")]), _vm._v(" "), _c("div", {
     staticClass: "product-item-body mr-5 mt-3"
@@ -1300,58 +1468,19 @@ var render = function render() {
       light: "",
       text: "Nuevo"
     }
-  })], 1)]), _vm._v(" "), _c("v-row", [_c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1)], 1), _vm._v(" "), _c("v-row", {
+  })], 1)]), _vm._v(" "), _c("v-row", _vm._l(_vm.moreProducts, function (product, i) {
+    return _c("v-col", {
+      key: i,
+      attrs: {
+        cols: "2"
+      }
+    }, [_c("product-item-2", {
+      attrs: {
+        headerPr: "true",
+        data: product
+      }
+    })], 1);
+  }), 1), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center"
     }
@@ -1413,43 +1542,18 @@ var render = function render() {
       light: "",
       text: "Nuevo"
     }
-  })], 1)]), _vm._v(" "), _c("v-row", [_c("v-col", {
-    attrs: {
-      cols: "3"
-    }
-  }, [_c("product-item-3")], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "3"
-    }
-  }, [_c("product-item-3", {
-    attrs: {
-      title: "Producto 1",
-      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
-      idItem: "1"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "3"
-    }
-  }, [_c("product-item-3", {
-    attrs: {
-      title: "Producto 1",
-      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
-      idItem: "1",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "3"
-    }
-  }, [_c("product-item-3", {
-    attrs: {
-      title: "Producto 1",
-      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
-      idItem: "1",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1)], 1), _vm._v(" "), _c("v-row", {
+  })], 1)]), _vm._v(" "), _c("v-row", _vm._l(_vm.footerProducts, function (product, i) {
+    return _c("v-col", {
+      key: i,
+      attrs: {
+        cols: "3"
+      }
+    }, [_c("product-item-3", {
+      attrs: {
+        data: product
+      }
+    })], 1);
+  }), 1), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center"
     }
@@ -1528,7 +1632,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".v-btn[data-v-b8645414] {\n  font-size: 12px;\n  font-weight: 600;\n  letter-spacing: 1.25px;\n  border-radius: 5px;\n}\n@media (min-width: 960px) {\n.v-btn[data-v-b8645414] {\n    font-size: 14px;\n}\n}\n.v-btn i[data-v-b8645414] {\n  font-size: 20px;\n}\n.v-btn[data-v-b8645414]:hover:before, .v-btn[data-v-b8645414]:focus:before {\n  opacity: 1;\n}\n.v-btn.v-size--default[data-v-b8645414] {\n  height: 38px;\n}\n.theme--light.v-btn[data-v-b8645414] {\n  color: #000000;\n}\n.theme--light.v-btn.v-btn--has-bg[data-v-b8645414] {\n  background-color: #dfdfdf;\n}\n.theme--light.v-btn.v-btn--has-bg[data-v-b8645414]:before {\n  background-color: #ffffff;\n}\n.theme--light.v-btn.v-btn--has-bg.v-btn--disabled[data-v-b8645414] {\n  color: #000000 !important;\n}\n.theme--light.v-btn.v-btn--has-bg.v-btn--disabled.v-btn--has-bg[data-v-b8645414] {\n  background-color: #fafcfc !important;\n}\n.theme--light.v-btn.v-btn--outlined[data-v-b8645414] {\n  color: #ffffff;\n}\n.theme--light.v-btn.v-btn--outlined[data-v-b8645414]:hover, .theme--light.v-btn.v-btn--outlined[data-v-b8645414]:focus {\n  color: #000000;\n}\n.theme--light.v-btn.v-btn--outlined[data-v-b8645414]:before {\n  background-color: rgba(255, 255, 255, 0.8);\n}\n.theme--light.v-btn.v-btn--outlined[data-v-b8645414]:focus:before {\n  background-color: #ffffff;\n}\n.buttonsAct[data-v-b8645414] {\n  top: 20px;\n  position: absolute;\n  width: 96%;\n}\n.markerLoc[data-v-b8645414] {\n  top: 73%;\n  position: absolute;\n  left: 29%;\n}\n.positionColbuttons[data-v-b8645414] {\n  position: relative;\n}\n.la-border[data-v-b8645414] {\n  border-radius: 0.5em;\n}\n.v-btn-toggle[data-v-b8645414] {\n  border-radius: 0px;\n  height: 20px !important;\n}\n.toggle-btn[data-v-b8645414] {\n  height: 20px !important;\n  min-width: 20px !important;\n}\n.v-divider[data-v-b8645414] {\n  border-width: thin 0 0;\n}\n.v-divider--vertical[data-v-b8645414] {\n  border-width: 0 thin 0 0;\n}\n.subtitles-gray[data-v-b8645414] {\n  font-size: 12px;\n  color: gray;\n}\n.justify-end[data-v-b8645414] {\n  text-align: end;\n}\n.piechart[data-v-b8645414] {\n  width: 170px;\n  height: 170px;\n  border-radius: 50%;\n  background-image: conic-gradient(from 180deg, #b1771d 0 320deg, #445056 0 336deg, #114b99 0);\n}\n.text-size-comp[data-v-b8645414] {\n  font-size: 0.6rem;\n}", ""]);
+exports.push([module.i, ".v-btn[data-v-b8645414] {\n  font-size: 12px;\n  font-weight: 600;\n  letter-spacing: 1.25px;\n  border-radius: 5px;\n}\n@media (min-width: 960px) {\n.v-btn[data-v-b8645414] {\n    font-size: 14px;\n}\n}\n.v-btn i[data-v-b8645414] {\n  font-size: 20px;\n}\n.v-btn[data-v-b8645414]:hover:before, .v-btn[data-v-b8645414]:focus:before {\n  opacity: 1;\n}\n.v-btn.v-size--default[data-v-b8645414] {\n  height: 38px;\n}\n.theme--light.v-btn[data-v-b8645414] {\n  color: #000000;\n}\n.theme--light.v-btn.v-btn--has-bg[data-v-b8645414] {\n  background-color: #dfdfdf;\n}\n.theme--light.v-btn.v-btn--has-bg[data-v-b8645414]:before {\n  background-color: #ffffff;\n}\n.theme--light.v-btn.v-btn--has-bg.v-btn--disabled[data-v-b8645414] {\n  color: #000000 !important;\n}\n.theme--light.v-btn.v-btn--has-bg.v-btn--disabled.v-btn--has-bg[data-v-b8645414] {\n  background-color: #fafcfc !important;\n}\n.theme--light.v-btn.v-btn--outlined[data-v-b8645414] {\n  color: #ffffff;\n}\n.theme--light.v-btn.v-btn--outlined[data-v-b8645414]:hover, .theme--light.v-btn.v-btn--outlined[data-v-b8645414]:focus {\n  color: #000000;\n}\n.theme--light.v-btn.v-btn--outlined[data-v-b8645414]:before {\n  background-color: rgba(255, 255, 255, 0.8);\n}\n.theme--light.v-btn.v-btn--outlined[data-v-b8645414]:focus:before {\n  background-color: #ffffff;\n}\n.buttonsAct[data-v-b8645414] {\n  top: 20px;\n  position: absolute;\n  width: 96%;\n}\n.markerLoc[data-v-b8645414] {\n  top: -37%;\n  position: absolute;\n}\n.positionColbuttons[data-v-b8645414] {\n  position: relative;\n}\n.la-border[data-v-b8645414] {\n  border-radius: 0.5em;\n}\n.v-btn-toggle[data-v-b8645414] {\n  border-radius: 0px;\n  height: 20px !important;\n}\n.toggle-btn[data-v-b8645414] {\n  height: 20px !important;\n  min-width: 20px !important;\n}\n.v-divider[data-v-b8645414] {\n  border-width: thin 0 0;\n}\n.v-divider--vertical[data-v-b8645414] {\n  border-width: 0 thin 0 0;\n}\n.subtitles-gray[data-v-b8645414] {\n  font-size: 12px;\n  color: gray;\n}\n.justify-end[data-v-b8645414] {\n  text-align: end;\n}\n.piechart[data-v-b8645414] {\n  width: 170px;\n  height: 170px;\n  border-radius: 50%;\n  background-image: conic-gradient(from 180deg, #b1771d 0 320deg, #445056 0 336deg, #114b99 0);\n}\n.text-size-comp[data-v-b8645414] {\n  font-size: 0.6rem;\n}", ""]);
 
 // exports
 

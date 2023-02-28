@@ -15,7 +15,7 @@ class ProductCollection extends ResourceCollection
                     'name' => $data->getTranslation('name'),
                     'slug' => $data->slug,
                     'thumbnail_image' => api_asset($data->thumbnail_img),
-                    'base_price' => (double) product_base_price($data),
+                    'base_price' => (double) $data->lowest_price,
                     'base_discounted_price' => (double) product_discounted_base_price($data),
                     'stock' => $data->stock,
                     'unit' => $data->getTranslation('unit'),
@@ -24,6 +24,10 @@ class ProductCollection extends ResourceCollection
                     'rating' => (double) $data->rating,
                     'is_variant' => (int) $data->is_variant,
                     'variations' => $data->variations,
+                    'description' => $data->description,
+                    'brandName' => optional($data->brand)->getTranslation('name'),
+                    'reference' => $data->reference,
+                    'currency' => $data->currency,
                 ];
             })
         ];
