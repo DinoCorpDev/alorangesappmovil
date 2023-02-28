@@ -3,7 +3,7 @@
         <v-row>
             <v-col cols="12">
                 <order
-                    style="background-color: #f5f5f5;"
+                    style="background-color: #f5f5f5"
                     order="ID1222"
                     day="07"
                     month="Julio"
@@ -61,9 +61,7 @@
                                         <span class="body1">Avenida siempre viva 123</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">
-                                            Descripción de Dirección
-                                        </span>
+                                        <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
                                         <span class="body1">Casa de tejado con color café y patio verde</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
@@ -147,9 +145,7 @@
                                 <span class="body1">Avenida siempre viva 123</span>
                             </div>
                             <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold">
-                                    Descripción de Dirección
-                                </span>
+                                <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
                                 <span class="body1">Casa de tejado con color café y patio verde</span>
                             </div>
                             <div class="d-flex justify-space-between mb-2">
@@ -169,9 +165,7 @@
                                 <span class="body1"> -- </span>
                             </div>
                             <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold">
-                                    Nombre de quien lo va a recibir
-                                </span>
+                                <span class="subtitle1 text-uppercase bold"> Nombre de quien lo va a recibir </span>
                                 <span class="body1">Alejandro Ramirez</span>
                             </div>
                             <div class="d-flex justify-space-between mb-2">
@@ -247,9 +241,7 @@
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
                                 <v-col>
-                                    <span class="body2 text-uppercase font-weight-bold">
-                                        En verificación
-                                    </span>
+                                    <span class="body2 text-uppercase font-weight-bold"> En verificación </span>
                                 </v-col>
                                 <v-col>
                                     <span class="body2 font-weight-bold">jueves 07, abril</span>
@@ -291,9 +283,7 @@
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
                                 <v-col>
-                                    <span class="body2 text-uppercase font-weight-bold">
-                                        Entregado a cliente
-                                    </span>
+                                    <span class="body2 text-uppercase font-weight-bold"> Entregado a cliente </span>
                                 </v-col>
                                 <v-col>
                                     <span class="body2 font-weight-bold">viernes 09, julio</span>
@@ -331,9 +321,7 @@
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
                                 <v-col>
-                                    <span class="body2 text-uppercase font-weight-bold">
-                                        En preparación
-                                    </span>
+                                    <span class="body2 text-uppercase font-weight-bold"> En preparación </span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -349,9 +337,7 @@
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
                                 <v-col>
-                                    <span class="body2 text-uppercase font-weight-bold">
-                                        Instalación concluida
-                                    </span>
+                                    <span class="body2 text-uppercase font-weight-bold"> Instalación concluida </span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>

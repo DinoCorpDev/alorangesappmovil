@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 100%;">
+    <div style="width: 100%">
         <div class="buttons">
             <h6 class="black--text bold">Compras</h6>
             <custom-button block class="mb-3 mt-3" light text="Carrito" :to="{ name: 'Cart' }" />
