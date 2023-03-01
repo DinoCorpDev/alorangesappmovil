@@ -17,6 +17,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_global_Carousel_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/global/Carousel.vue */ "./resources/js/components/global/Carousel.vue");
 /* harmony import */ var _components_global_LayoutNavbarAuth_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/global/LayoutNavbarAuth.vue */ "./resources/js/components/global/LayoutNavbarAuth.vue");
 /* harmony import */ var _seeders_products__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../seeders/products */ "./resources/js/seeders/products.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -28,8 +32,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      overlay: true,
-      overlay1: false,
+      productDetails: {},
+      overlay: false,
+      overlay1: true,
       overlay2: false,
       sliderSeeder: _seeders_products__WEBPACK_IMPORTED_MODULE_7__["sliderSeeder"],
       id: "0",
@@ -41,7 +46,9 @@ __webpack_require__.r(__webpack_exports__);
       iva: "* Iva Incluido",
       varia: "Variación",
       model: 0,
-      tags: ["1", "2", "3"]
+      tags: ["1", "2", "3"],
+      moreProducts: [],
+      footerProducts: []
     };
   },
   components: {
@@ -53,8 +60,103 @@ __webpack_require__.r(__webpack_exports__);
     Carousel: _components_global_Carousel_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     LayoutNavbarAuth: _components_global_LayoutNavbarAuth_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
+  methods: {
+    getDetails: function getDetails() {
+      var _this = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var res, _this$productDetails, _this$productDetails2;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.call_api("get", "product/details/".concat(_this.$route.params.slug));
+            case 2:
+              res = _context.sent;
+              if (res.data.success) {
+                _this.productDetails = res.data.data;
+                _this.getMoreProducts((_this$productDetails = _this.productDetails) === null || _this$productDetails === void 0 ? void 0 : _this$productDetails.id);
+                _this.getMoreProducts2((_this$productDetails2 = _this.productDetails) === null || _this$productDetails2 === void 0 ? void 0 : _this$productDetails2.id);
+              }
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))();
+    },
+    getMoreProducts: function getMoreProducts(id) {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var res, _res$data;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _this2.call_api("get", "product/random/6/".concat(id));
+            case 2:
+              res = _context2.sent;
+              if (res.data.success) {
+                _this2.setMoreProducts("moreProducts", (_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.data);
+              }
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
+      }))();
+    },
+    getMoreProducts2: function getMoreProducts2(id) {
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var res, _res$data2;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _this3.call_api("get", "product/random/4/".concat(id));
+            case 2:
+              res = _context3.sent;
+              if (res.data.success) {
+                _this3.setMoreProducts("footerProducts", (_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : _res$data2.data);
+              }
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3);
+      }))();
+    },
+    setMoreProducts: function setMoreProducts(value, data) {
+      var _this4 = this;
+      data === null || data === void 0 ? void 0 : data.map(function (product) {
+        _this4[value].push({
+          name: product === null || product === void 0 ? void 0 : product.name,
+          val: (product === null || product === void 0 ? void 0 : product.base_price) + " " + (product === null || product === void 0 ? void 0 : product.currency),
+          img: product === null || product === void 0 ? void 0 : product.thumbnail_image,
+          description: product === null || product === void 0 ? void 0 : product.description,
+          brand: product === null || product === void 0 ? void 0 : product.brandName,
+          ref: product === null || product === void 0 ? void 0 : product.reference,
+          slug: product === null || product === void 0 ? void 0 : product.slug
+        });
+      });
+    }
+  },
   mounted: function mounted() {
     this.$vuetify.theme.dark = true;
+  },
+  created: function created() {
+    var _this5 = this;
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _this5.getDetails();
+          case 1:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4);
+    }))();
   }
 });
 
@@ -72,6 +174,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function render() {
+  var _vm$productDetails, _vm$productDetails2, _vm$productDetails3, _vm$productDetails4, _vm$productDetails$na, _vm$productDetails5, _vm$productDetails$br, _vm$productDetails6, _vm$productDetails6$b, _vm$productDetails$lo, _vm$productDetails7, _vm$productDetails$cu, _vm$productDetails8, _vm$productDetails$hi, _vm$productDetails9, _vm$productDetails$cu2, _vm$productDetails10, _vm$productDetails$st, _vm$productDetails11, _vm$productDetails$wa, _vm$productDetails12, _vm$productDetails$sh, _vm$productDetails13;
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", [_c("layout-navbar-auth"), _vm._v(" "), _c("v-row", [_c("v-col", {
@@ -92,7 +195,7 @@ var render = function render() {
       expression: "overlay"
     }],
     attrs: {
-      src: "https://picsum.photos/1920/1080?random=1",
+      src: (_vm$productDetails = _vm.productDetails) === null || _vm$productDetails === void 0 ? void 0 : _vm$productDetails.ficha_tecnica_del_producto,
       height: "700px",
       width: "100%"
     }
@@ -104,7 +207,7 @@ var render = function render() {
       expression: "overlay1"
     }],
     attrs: {
-      slides: _vm.sliderSeeder,
+      slides: (_vm$productDetails2 = _vm.productDetails) === null || _vm$productDetails2 === void 0 ? void 0 : _vm$productDetails2.imagenes,
       height: "700px",
       width: "100%"
     }
@@ -116,6 +219,7 @@ var render = function render() {
       expression: "overlay2"
     }],
     attrs: {
+      slides: (_vm$productDetails3 = _vm.productDetails) === null || _vm$productDetails3 === void 0 ? void 0 : _vm$productDetails3.videos,
       height: "700px",
       width: "100%"
     }
@@ -175,21 +279,21 @@ var render = function render() {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase mb-2"
-  }, [_vm._v(_vm._s(_vm.ref))]), _vm._v(" "), _c("v-icon", {
+  }, [_vm._v("REFERENCIA: " + _vm._s((_vm$productDetails4 = _vm.productDetails) === null || _vm$productDetails4 === void 0 ? void 0 : _vm$productDetails4.reference))]), _vm._v(" "), _c("v-icon", {
     attrs: {
       right: ""
     }
   }, [_vm._v(" la-bookmark ")])], 1), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 text-uppercase font-weight-bold mb-2"
-  }, [_vm._v(_vm._s(_vm.name))]), _vm._v(" "), _c("h5", {
+  }, [_vm._v(_vm._s((_vm$productDetails$na = (_vm$productDetails5 = _vm.productDetails) === null || _vm$productDetails5 === void 0 ? void 0 : _vm$productDetails5.name) !== null && _vm$productDetails$na !== void 0 ? _vm$productDetails$na : ""))]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 mb-2"
-  }, [_vm._v(_vm._s(_vm.brand))]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s((_vm$productDetails$br = (_vm$productDetails6 = _vm.productDetails) === null || _vm$productDetails6 === void 0 ? void 0 : (_vm$productDetails6$b = _vm$productDetails6.brand) === null || _vm$productDetails6$b === void 0 ? void 0 : _vm$productDetails6$b.name) !== null && _vm$productDetails$br !== void 0 ? _vm$productDetails$br : ""))]), _vm._v(" "), _c("div", {
     staticClass: "d-flex"
   }, [_c("h5", {
     staticClass: "subtitle1 mb-2 mr-2"
-  }, [_vm._v(_vm._s(_vm.val))]), _vm._v(" "), _c("h5", {
+  }, [_vm._v(_vm._s((_vm$productDetails$lo = (_vm$productDetails7 = _vm.productDetails) === null || _vm$productDetails7 === void 0 ? void 0 : _vm$productDetails7.lowest_price) !== null && _vm$productDetails$lo !== void 0 ? _vm$productDetails$lo : "000") + " " + _vm._s((_vm$productDetails$cu = (_vm$productDetails8 = _vm.productDetails) === null || _vm$productDetails8 === void 0 ? void 0 : _vm$productDetails8.currency) !== null && _vm$productDetails$cu !== void 0 ? _vm$productDetails$cu : ""))]), _vm._v(" "), _c("h5", {
     staticClass: "caption mb-2"
-  }, [_c("del", [_vm._v(_vm._s(_vm.val))])])]), _vm._v(" "), _c("div", {
+  }, [_c("del", [_vm._v(_vm._s((_vm$productDetails$hi = (_vm$productDetails9 = _vm.productDetails) === null || _vm$productDetails9 === void 0 ? void 0 : _vm$productDetails9.highest_price) !== null && _vm$productDetails$hi !== void 0 ? _vm$productDetails$hi : "000") + " " + _vm._s((_vm$productDetails$cu2 = (_vm$productDetails10 = _vm.productDetails) === null || _vm$productDetails10 === void 0 ? void 0 : _vm$productDetails10.currency) !== null && _vm$productDetails$cu2 !== void 0 ? _vm$productDetails$cu2 : ""))])])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "caption mb-3"
@@ -255,25 +359,25 @@ var render = function render() {
     staticClass: "subtitle2 text-uppercase mb-1"
   }, [_vm._v("Disponibilidad")]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 mb-2"
-  }, [_vm._v("Consultar")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s((_vm$productDetails$st = (_vm$productDetails11 = _vm.productDetails) === null || _vm$productDetails11 === void 0 ? void 0 : _vm$productDetails11.stock) !== null && _vm$productDetails$st !== void 0 ? _vm$productDetails$st : "000") + " en stock")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase mb-1"
   }, [_vm._v("Garantía")]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 mb-2"
-  }, [_vm._v("12 Meses")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s((_vm$productDetails$wa = (_vm$productDetails12 = _vm.productDetails) === null || _vm$productDetails12 === void 0 ? void 0 : _vm$productDetails12.warranty_text) !== null && _vm$productDetails$wa !== void 0 ? _vm$productDetails$wa : "--"))])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase mb-1"
   }, [_vm._v("Pago")]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1 mb-2"
-  }, [_vm._v("Payu Visa PSE MC")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("--")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-space-between"
   }, [_c("h5", {
     staticClass: "subtitle2 text-uppercase"
   }, [_vm._v("Envío")]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle1"
-  }, [_vm._v("A domicilio")])])]), _vm._v(" "), _c("h5", {
+  }, [_vm._v(_vm._s((_vm$productDetails$sh = (_vm$productDetails13 = _vm.productDetails) === null || _vm$productDetails13 === void 0 ? void 0 : _vm$productDetails13.shipping) !== null && _vm$productDetails$sh !== void 0 ? _vm$productDetails$sh : "--"))])])]), _vm._v(" "), _c("h5", {
     staticClass: "subtitle2 text-uppercase mt-3 mb-2"
   }, [_vm._v("Se incluye con la compra")]), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("product-item-6")], 1)], 1), _vm._v(" "), _c("v-row", {
     staticClass: "mb-6"
@@ -324,43 +428,18 @@ var render = function render() {
       light: "",
       text: "Nuevo"
     }
-  })], 1)]), _vm._v(" "), _c("v-row", [_c("v-col", {
-    attrs: {
-      cols: "3"
-    }
-  }, [_c("product-item-3")], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "3"
-    }
-  }, [_c("product-item-3", {
-    attrs: {
-      title: "Producto 1",
-      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
-      idItem: "1"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "3"
-    }
-  }, [_c("product-item-3", {
-    attrs: {
-      title: "Producto 1",
-      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
-      idItem: "1",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "3"
-    }
-  }, [_c("product-item-3", {
-    attrs: {
-      title: "Producto 1",
-      descripcion: "Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa.",
-      idItem: "1",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1)], 1), _vm._v(" "), _c("v-row", {
+  })], 1)]), _vm._v(" "), _c("v-row", _vm._l(_vm.footerProducts, function (product, i) {
+    return _c("v-col", {
+      key: i,
+      attrs: {
+        cols: "3"
+      }
+    }, [_c("product-item-3", {
+      attrs: {
+        data: product
+      }
+    })], 1);
+  }), 1), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center"
     }
@@ -418,58 +497,19 @@ var render = function render() {
       light: "",
       text: "Nuevo"
     }
-  })], 1)]), _vm._v(" "), _c("v-row", [_c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true"
-    }
-  })], 1), _vm._v(" "), _c("v-col", {
-    attrs: {
-      cols: "2"
-    }
-  }, [_c("product-item-2", {
-    attrs: {
-      headerPr: "true",
-      img: "/public/assets/img/landing/Pacto-Ambiental.jpg"
-    }
-  })], 1)], 1), _vm._v(" "), _c("v-row", {
+  })], 1)]), _vm._v(" "), _c("v-row", _vm._l(_vm.moreProducts, function (product, i) {
+    return _c("v-col", {
+      key: i,
+      attrs: {
+        cols: "2"
+      }
+    }, [_c("product-item-2", {
+      attrs: {
+        headerPr: "true",
+        data: product
+      }
+    })], 1);
+  }), 1), _vm._v(" "), _c("v-row", {
     attrs: {
       justify: "center"
     }

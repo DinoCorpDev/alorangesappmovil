@@ -159,7 +159,7 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/collection",
+        path: "/collection/:slug",
         component: Collection,
         name: "Collection",
         meta: { requiresAuth: false }
