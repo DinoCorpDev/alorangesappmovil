@@ -31,7 +31,7 @@
                         />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart price="120.000.000" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                     </v-col>
                     <v-col cols="12">
                         <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />

@@ -6,12 +6,14 @@
                     <v-img max-width="100px" :src="img"></v-img>
                 </div>
             </div>
-            <div class="div-body">
+            <div class="information">
                 <div>
                     <span class="black--text text-uppercase reference">{{ reference }}</span>
                     <h6 class="black--text text-uppercase object">{{ name }}</h6>
                     <span class="black--text brand">{{ brand }}</span>
                 </div>
+            </div>
+            <div class="div-body">
                 <div class="divider"></div>
                 <div>
                     <span class="black--text price">{{ price }} COP</span>
@@ -83,7 +85,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .div-container {
     background-color: #f5f5f5;
     border-radius: 10px;
@@ -102,20 +103,24 @@ export default {
     align-items: center;
 }
 
-.div-body {
+.information {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
-    padding: 5px 0px 5px 10px;
+    justify-content: flex-start;
+    padding: 13px 0px 13px 25px;
     width: 100%;
 }
 
-//Texts
+.div-body {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 25px;
+    padding: 5px 0px 5px 10px;
+    width: 100%;
+}
 .reference {
     font: normal normal 600 10px/13px Overpass;
 }
-
 .object {
     font: normal normal bold 15px/24px Overpass;
 }
@@ -125,51 +130,50 @@ export default {
 }
 .price {
     font: normal normal normal 18px/24px Roboto;
+    overflow: hidden;
+    white-space: nowrap;
 }
-
-@media (max-width: 959px) {
-    .div-body {
-        display: flex;
-        justify-content: space-around;
-    }
-}
-
-@media (max-width: 599px) {
-
-    .object {
-        font: normal normal bold 12px/14px Overpass;
-    }
-
-    .brand {
-        font: normal normal normal 12px/24px Roboto;
-    }
-    .price {
-        font: normal normal normal 12px/24px Roboto;
-    }
-}
-
-
-
 .divider {
     background-color: #dfdfdf;
     width: 2px;
     height: 90%;
 }
-
 .quantity {
     background-color: #fafafa;
     border-radius: 10px;
     display: flex;
     justify-content: center;
 }
-
 .textquantity {
     line-height: 40px;
     font-family: 'Roboto';
     font-size: 15px;
 }
 
+@media (max-width: 959px) {
+    .div-body {
+        gap: 8px;
+    }
+    .information {
+        padding: 13px 0px 13px 15px;
+    }
+}
+
 @media (max-width: 599px) {
+    .object {
+        font: normal normal bold 12px/14px Overpass;
+        padding-top: 25px;
+        padding-bottom: 24px;
+    }
+    .brand {
+        font: normal normal normal 12px/24px Roboto;
+    }
+    .price {
+        font: normal normal normal 12px/24px Roboto;
+    }
+    .div-body {
+        gap: 5px;
+    }
     .div-container {
         height: 112px;
     }
@@ -178,6 +182,12 @@ export default {
         margin-left: 7px;
         border-radius: 10px;
     }
+    .information {
+        padding: 0px 0px 0px 6px;
+    }
+    .reference {
+        padding-top: 5px;
+    }
     .quantity {
         border-radius: 10px;
         display: flex;
@@ -185,7 +195,6 @@ export default {
         flex-direction: column;
         width: 100%;
     }
-
     .textquantity {
         line-height: normal;
         display: flex;
