@@ -41,7 +41,7 @@
 
 .v-divider {
     border-color: #dfdfdf !important;
-    border-width: 2px;
+    border-width: 2px 0 0;
 }
 
 a {
@@ -106,6 +106,10 @@ h5 {
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.15px;
+}
+
+.text-white {
+    color: #ddd !important;
 }
 
 .body1 {
@@ -184,4 +188,30 @@ h5 {
     .body1 {
         font-size: 13px;
     }
+}
+
+//for scroll styles
+
+.overflow-uw::-webkit-scrollbar {
+width: 7px;
+height: 7px;
+}
+
+.overflow-uw::-webkit-scrollbar-thumb {
+background: #373737;
+border-radius: 4px;
+}
+
+.overflow-uw::-webkit-scrollbar-thumb:hover {
+background: #b3b3b3;
+box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.overflow-uw::-webkit-scrollbar-thumb:active {
+background-color: #999999;
+}
+
+.overflow-uw::-webkit-scrollbar-track:hover,
+.overflow-uw::-webkit-scrollbar-track:active {
+background: #d4d4d4;
 }

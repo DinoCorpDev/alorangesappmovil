@@ -14,12 +14,17 @@
                         <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
                             <v-img :src="data.img" height="150px" />
                             <div class="pb-5">
-                                <custom-button
-                                    text="Ver Detalles"
-                                    block
-                                    :class="{ 'show-btns': hover }"
-                                    color="transparent"
-                                />
+                                <router-link
+                                    :class="['text-reset me-1 opacity-80', {'primary--text text-decoration-underline':hover}]"
+                                    :to="{ name: 'Product', params: {slug: data.slug}}"
+                                >
+                                    <custom-button
+                                        text="Ver Detalles"
+                                        block
+                                        :class="{ 'show-btns': hover }"
+                                        color="transparent"
+                                    />
+                                </router-link>
                             </div>
                         </v-card>
                     </v-hover>

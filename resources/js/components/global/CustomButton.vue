@@ -1,18 +1,19 @@
 <template>
     <v-btn
+        :block="block"
+        :color="color"
+        :dark="dark"
+        :disabled="disabled"
+        :href="href"
+        :light="light"
+        :loading="loading"
+        :outlined="outlined"
+        :plain="plain"
+        :ripple="false"
+        :to="to"
+        :width="width"
         @click.stop="$emit('click')"
         class="text-uppercase"
-        :color="color"
-        :outlined="outlined"
-        :disabled="disabled"
-        :block="block"
-        :width="width"
-        :dark="dark"
-        :light="light"
-        :ripple="false"
-        :plain="plain"
-        :href="href"
-        :to="to"
         depressed
     >
         <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
@@ -64,6 +65,10 @@ export default {
         },
         to: {
             type: [String, Object]
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     }
 };

@@ -26,9 +26,9 @@ class ProductController extends Controller
 
     public function show($product_slug)
     {
-        $product = filter_products(Product::query())
-            ->where('slug', $product_slug)
-            ->with(['brand', 'variations', 'variation_combinations','shop' => function($query){
+        //$product = filter_products(Product::query())
+        $product = Product::where('slug', $product_slug)
+            ->with(['brand', 'variations', 'variation_combinations', 'shop' => function ($query) {
                 $query->withCount('reviews');
             }])
             ->withCount(['reviews', 'reviews_1', 'reviews_2', 'reviews_3', 'reviews_4', 'reviews_5'])
@@ -75,7 +75,8 @@ class ProductController extends Controller
 
     public function random_products($limit, $product_id = null)
     {
-        return new ProductCollection(filter_products(Product::where('id', '!=', $product_id))->inRandomOrder()->limit($limit)->get());
+        //return new ProductCollection(filter_products(Product::where('id', '!=', $product_id))->inRandomOrder()->limit($limit)->get());
+        return new ProductCollection(Product::where('id', '!=', $product_id)->inRandomOrder()->limit($limit)->get());
     }
     public function latest_products($limit)
     {
@@ -88,11 +89,11 @@ class ProductController extends Controller
         $search_keyword             = $request->keyword;
         $sort_by                    = $request->sort_by;
         $category_id                = optional($category)->id;
-        $brand_ids                  = $request->brand_ids ? explode(',',$request->brand_ids) : null;
+        $brand_ids                  = $request->brand_ids ? explode(',', $request->brand_ids) : null;
         $min_price                  = $request->min_price;
         $max_price                  = $request->max_price;
         $attributes                 = Attribute::with('attribute_values')->get();
-        $selected_attribute_values  = $request->attribute_values ? explode(',',$request->attribute_values) : null;
+        $selected_attribute_values  = $request->attribute_values ? explode(',', $request->attribute_values) : null;
 
         $products = filter_products(Product::with(['variations']));
 
@@ -100,7 +101,6 @@ class ProductController extends Controller
         if ($brand_ids != null) {
             $products->whereIn('brand_id', $brand_ids);
         }
-        
 
         // search keyword check
         if ($search_keyword != null) {
@@ -123,12 +123,11 @@ class ProductController extends Controller
 
             $attribute_ids = AttributeCategory::whereIn('category_id', $category_ids)->pluck('attribute_id')->toArray();
             $attributes = Attribute::with('attribute_values')->whereIn('id', $attribute_ids)->get();
-
         } else {
             $category_ids = [];
             if ($search_keyword != null) {
                 foreach (explode(' ', trim($search_keyword)) as $word) {
-                    $ids = Category::where('name', 'like', '%'.$word.'%')->pluck('id')->toArray();
+                    $ids = Category::where('name', 'like', '%' . $word . '%')->pluck('id')->toArray();
                     if (count($ids) > 0) {
                         foreach ($ids as $id) {
                             $category_ids[] = $id;
@@ -187,12 +186,11 @@ class ProductController extends Controller
             'currentPage' => $collection->currentPage(),
             'total' => $collection->total(),
             'parentCategory' => $category && $category->parent_id != 0 ? new CategorySingleCollection(Category::find($category->parent_id)) : null,
-            'currentCategory' => $category? new CategorySingleCollection($category) : null,
+            'currentCategory' => $category ? new CategorySingleCollection($category) : null,
             'childCategories' => $category ? new CategoryCollection($category->childrenCategories) : null,
             'rootCategories' => new CategoryCollection(Category::where('level', 0)->orderBy('order_level', 'desc')->get()),
             'allBrands' => new BrandCollection(Brand::all()),
             'attributes' => new AttributeCollection($attributes)
         ]);
     }
-
 }

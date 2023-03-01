@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderUpdate;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Models\Permission;
 use CoreComponentRepository;
 
 class OrderController extends Controller
@@ -36,10 +37,12 @@ class OrderController extends Controller
                 $query->where('code', 'like', '%' . $sort_search . '%');
             });
         }
+
         if ($request->payment_status != null) {
             $orders = $orders->where('payment_status', $request->payment_status);
             $payment_status = $request->payment_status;
         }
+
         if ($request->delivery_status != null) {
             $orders = $orders->where('delivery_status', $request->delivery_status);
             $delivery_status = $request->delivery_status;
@@ -52,7 +55,8 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::with(['orderDetails.product', 'orderDetails.variation.combinations'])->findOrFail($id);
-        return view('backend.orders.show', compact('order'));
+        $permission_status_orders = Permission::where('parent', 'status_order')->get();
+        return view('backend.orders.show', compact('order', 'permission_status_orders'));
     }
 
     public function order_status(Request $request, $id)
@@ -90,6 +94,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
@@ -140,6 +145,7 @@ class OrderController extends Controller
                 foreach ($refundRequest->refundRequestItems as $key => $refundRequestItem) {
                     $refundRequestItem->delete();
                 }
+
                 $refundRequest->delete();
             }
 
@@ -147,11 +153,14 @@ class OrderController extends Controller
             if ($order_count == 1) {
                 $order->combined_order->delete();
             }
+
             $order->delete();
+
             flash(translate('Order has been deleted successfully'))->success();
         } else {
             flash(translate('Something went wrong'))->error();
         }
+
         return back();
     }
 
@@ -178,6 +187,7 @@ class OrderController extends Controller
                         $brand->save();
                     }
                 } catch (\Exception $e) {
+                    //
                 }
             }
             if ($order->payment_status == 'paid') {
@@ -209,10 +219,12 @@ class OrderController extends Controller
                     } else {
                         $shop->current_balance -= $order->seller_earning;
                     }
+
                     $shop->save();
                 }
             }
         }
+
         $order->delivery_status = $request->status;
         $order->save();
 
@@ -250,7 +262,6 @@ class OrderController extends Controller
 
     public function add_tracking_information(Request $request)
     {
-
         $order = Order::findOrFail($request->order_id);
 
         if ($order->courier_name) {

@@ -3,7 +3,7 @@
         <layout-navbar-auth />
         <!-- <chart-view /> -->
         <v-row>
-            <v-col cols="4">
+            <v-col cols="12" md="4" order-md="1" sm="12" order-sm="3" xs="12" order-xs="3">
                 <v-row dense class="mt-2 ml-3">
                     <v-col cols="4">
                         <v-row justify="center">
@@ -52,7 +52,12 @@
                     </v-col>
                 </v-row>
                 <v-divider class="mt-8 ml-3" />
-                <v-card v-scroll.self="onScroll" class="overflow-y-auto mt-3" max-height="628" v-show="showd">
+                <v-card
+                    v-scroll.self="onScroll"
+                    class="overflow-y-auto overflow-x-auto mt-3 overflow-uw"
+                    max-height="628"
+                    v-show="showd"
+                >
                     <div class="product-item-body pa-4 la-border ml-3">
                         <v-row>
                             <v-col cols="6">
@@ -60,7 +65,9 @@
                                     <span>Energía</span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <h5 class="subtitle2 text-uppercase mt-1">Consumo</h5>
+                                    <h5 class="subtitle2 text-uppercase mt-1">
+                                        {{ productDetails?.intake }}
+                                    </h5>
                                 </v-row>
                             </v-col>
                             <v-divider inset vertical class="mb-2" />
@@ -69,7 +76,9 @@
                                     <span>Material</span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <h5 class="subtitle2 text-uppercase mt-1">Cuerpo</h5>
+                                    <h5 class="subtitle2 text-uppercase mt-1">
+                                        {{ productDetails?.material }}
+                                    </h5>
                                 </v-row>
                             </v-col>
                         </v-row>
@@ -97,13 +106,17 @@
                                     <span class="subtitles-gray">(Fuente x Profundidad x Altura)</span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <span class="subtitle2 text-uppercase mt-3">000 x 000 x 000</span>
+                                    <span class="subtitle2 text-uppercase mt-3">
+                                        {{ productDetails?.medida_producto }}
+                                    </span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <span class="subtitle2 text-uppercase">000 x 000 x 000</span>
+                                    <span class="subtitle2 text-uppercase">
+                                        {{ productDetails?.medidas_de_embalaje }}
+                                    </span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <span class="subtitle2 text-uppercase">000 x 000 x 000</span>
+                                    <span class="subtitle2 text-uppercase">{{ productDetails?.engaste }}</span>
                                 </v-row>
                             </v-col>
                             <v-col cols="2">
@@ -111,13 +124,19 @@
                                     <span class="subtitles-gray">(Unidades)</span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <span class="subtitle2 mt-3">cm</span>
+                                    <span class="subtitle2 mt-3">
+                                        {{ productDetails?.unit_metering }}
+                                    </span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <span class="subtitle2">cm</span>
+                                    <span class="subtitle2">
+                                        {{ productDetails?.unit_metering }}
+                                    </span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <span class="subtitle2">cm</span>
+                                    <span class="subtitle2">
+                                        {{ productDetails?.unit_metering }}
+                                    </span>
                                 </v-row>
                             </v-col>
                         </v-row>
@@ -126,7 +145,7 @@
                         <v-row>
                             <v-col cols="6">
                                 <v-row justify="center" dense>
-                                    <span>00.0</span>
+                                    <span>{{ productDetails?.peso_de_producto }}</span>
                                 </v-row>
                                 <v-row justify="center" dense>
                                     <h5 class="subtitle2 text-uppercase mt-1">Peso de Producto</h5>
@@ -135,7 +154,7 @@
                             <v-divider inset vertical class="mb-2" />
                             <v-col cols="6">
                                 <v-row justify="center" dense>
-                                    <span>00.0</span>
+                                    <span>{{ productDetails?.peso_de_envio }}</span>
                                 </v-row>
                                 <v-row justify="center" dense>
                                     <h5 class="subtitle2 text-uppercase mt-1">Peso de Envío</h5>
@@ -147,7 +166,7 @@
                         <v-row>
                             <v-col cols="6">
                                 <v-row justify="center" dense>
-                                    <span>0.0 V / 0.0 Hz / 0.0 A</span>
+                                    <span>{{ productDetails?.tipo_de_coneccion }}</span>
                                 </v-row>
                                 <v-row justify="center" dense>
                                     <h5 class="subtitle2 text-uppercase mt-1">Voltaje</h5>
@@ -156,7 +175,7 @@
                             <v-divider inset vertical class="mb-2" />
                             <v-col cols="6">
                                 <v-row justify="center" dense>
-                                    <span>0.0 %</span>
+                                    <span>{{ productDetails?.eficiencia }} %</span>
                                 </v-row>
                                 <v-row justify="center" dense>
                                     <h5 class="subtitle2 text-uppercase mt-1">Eficiencia</h5>
@@ -167,16 +186,13 @@
                     <h5 class="subtitle2 text-uppercase mt-5 ml-3">Características</h5>
                     <v-divider class="mt-2 ml-3" />
                     <ul>
-                        <li class="subtitle2 mt-1">
-                            Característica 1 incluye Lorem Ipsum is simply dummy text of printing
-                        </li>
-                        <li class="subtitle2">Característica 2 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 3 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 4 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 5 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 6 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 7 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 8 incluye Lorem Ipsum is simply dummy text of printing</li>
+                        <li class="subtitle2 mt-1">{{ productDetails?.caracteristica1 }}</li>
+                        <li class="subtitle2">{{ productDetails?.caracteristica2 }}</li>
+                        <li class="subtitle2">{{ productDetails?.caracteristica3 }}</li>
+                        <li class="subtitle2">{{ productDetails?.caracteristica4 }}</li>
+                        <li class="subtitle2">{{ productDetails?.caracteristica5 }}</li>
+                        <li class="subtitle2">{{ productDetails?.caracteristica6 }}</li>
+                        <li class="subtitle2">{{ productDetails?.caracteristica7 }}</li>
                     </ul>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mt-5 ml-3">Manuales y Guías</h5>
@@ -186,10 +202,22 @@
                     <v-row class="mt-1 ml-3">
                         <v-col cols="6">
                             <v-row dense>
-                                <span class="subtitle2"><u>Manual de producto</u></span>
+                                <a
+                                    class="subtitle2 text-white"
+                                    :href="productDetails?.manual_de_producto"
+                                    target="_blank"
+                                >
+                                    <u>Manual de producto</u>
+                                </a>
                             </v-row>
                             <v-row dense class="mt-1">
-                                <span class="subtitle2"><u>Ficha técnica del producto</u></span>
+                                <a
+                                    class="subtitle2 text-white"
+                                    :href="productDetails?.ficha_tecnica_del_producto"
+                                    target="_blank"
+                                >
+                                    <u>Ficha técnica del producto</u>
+                                </a>
                             </v-row>
                         </v-col>
                         <v-col cols="6">
@@ -197,7 +225,13 @@
                                 <span class="subtitle2"><u>Hora de especificaciones</u></span>
                             </v-row>
                             <v-row dense class="mt-1">
-                                <span class="subtitle2"><u>Guía de instalación</u></span>
+                                <a
+                                    class="subtitle2 text-white"
+                                    :href="productDetails?.manual_de_instalacion"
+                                    target="_blank"
+                                >
+                                    <u>Guía de instalación</u>
+                                </a>
                             </v-row>
                         </v-col>
                     </v-row>
@@ -205,23 +239,25 @@
                     <v-divider class="mt-2 ml-3" />
                     <ul>
                         <li class="subtitle2 mt-1">
-                            Característica 1 incluye Lorem Ipsum is simply dummy text of printing
+                            {{ productDetails?.beneficio1 }}
                         </li>
-                        <li class="subtitle2">Característica 2 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 3 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 4 incluye Lorem Ipsum is simply dummy text of printing</li>
-                        <li class="subtitle2">Característica 5 incluye Lorem Ipsum is simply dummy text of printing</li>
+                        <li class="subtitle2">{{ productDetails?.beneficio2 }}</li>
+                        <li class="subtitle2">{{ productDetails?.beneficio3 }}</li>
+                        <li class="subtitle2">{{ productDetails?.beneficio4 }}</li>
+                        <li class="subtitle2">{{ productDetails?.beneficio5 }}</li>
                     </ul>
                     <h5 class="subtitle2 text-uppercase mt-5 ml-3">Servicio Postventa</h5>
                     <v-divider class="mt-2 ml-3" />
                     <p class="subtitle2 ml-3">
-                        Característica 1 incluye Lorem Ipsum is simply dummy text of printing Característica 1 incluye
-                        Lorem Ipsum is simply dummy text of printing Característica 1 incluye Lorem Ipsum is simply
-                        dummy text of printing Característica 1 incluye Lorem Ipsum is simply dummy text of printing
-                        Característica 1 incluye Lorem Ipsum is simply dummy text of printing
+                        {{ productDetails?.postventa }}
                     </p>
                 </v-card>
-                <v-card v-scroll.self="onScroll" class="overflow-y-auto mt-3" max-height="628" v-show="showd1">
+                <v-card
+                    v-scroll.self="onScroll"
+                    class="overflow-y-auto overflow-x-auto mt-3 overflow-uw"
+                    max-height="628"
+                    v-show="showd1"
+                >
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Calificación</h5>
                         <v-row class="mt-2">
@@ -290,13 +326,18 @@
                         <custom-button text="Calificar" class="ml-4 mt-2" light />
                     </div>
                 </v-card>
-                <v-card v-scroll.self="onScroll" class="overflow-y-auto mt-3" max-height="628" v-show="showd2">
+                <v-card
+                    v-scroll.self="onScroll"
+                    class="overflow-y-auto overflow-x-auto mt-3 overflow-uw"
+                    max-height="628"
+                    v-show="showd2"
+                >
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Vida Útil</h5>
                         <v-row dense class="mt-2" justify="center">
                             <v-progress-linear
                                 style="width: 78%"
-                                v-model="ratings.rating5"
+                                v-model="ratings.vidaUtil"
                                 color="white"
                                 class="mt-2"
                             ></v-progress-linear>
@@ -332,8 +373,62 @@
                     </div>
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Composición de producto</h5>
-                        <v-divider class="mt-2 mb-2" />
+                        <v-row class="mt-4">
+                            <v-col cols="6">
+                                <div class="piechart"></div>
+                            </v-col>
+                            <v-col cols="6">
+                                <tbody>
+                                    <tr v-for="item in desserts" :key="item.name">
+                                        <td style="width: 20px">
+                                            <div
+                                                class="pa-2 bg-secondary rounded-circle d-inline-block"
+                                                :style="item.color"
+                                            />
+                                        </td>
+                                        <td style="width: 120px" class="text-size-comp ml-1">{{ item.name }}</td>
+                                        <td style="width: 50px" class="text-size-comp ml-2">{{ item.percent }}</td>
+                                        <td class="text-size-comp ml-2">{{ item.kg }}</td>
+                                    </tr>
+                                </tbody>
+                            </v-col>
+                        </v-row>
+                        <v-divider class="mt-3 mb-4" />
                         <h5 class="subtitle2 text-uppercase">Impacto Ambiental</h5>
+                        <v-row class="mt-4" justify="center">
+                            <div style="width: 78%; position: relative" class="d-flex">
+                                <v-icon large class="markerLoc" :style="{ left: impacto }">la-map-pin</v-icon>
+                                <v-col cols="3" style="padding: 20px 0px">
+                                    <v-progress-linear background-color="green" class="mt-2"></v-progress-linear>
+                                </v-col>
+                                <v-col cols="3" style="padding: 15px 0px">
+                                    <v-progress-linear background-color="yellow" class="mt-2"></v-progress-linear>
+                                </v-col>
+                                <v-col cols="3" style="padding: 10px 0px">
+                                    <v-progress-linear background-color="orange" class="mt-2"></v-progress-linear>
+                                </v-col>
+                                <v-col cols="3" style="padding: 5px 0px">
+                                    <v-progress-linear background-color="red" class="mt-2"></v-progress-linear>
+                                </v-col>
+                            </div>
+                        </v-row>
+                        <v-row class="mt-0 mb-1">
+                            <v-col cols="4">
+                                <v-row justify="start">
+                                    <span class="caption ml-4">Sostenible</span>
+                                </v-row>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-row justify="center">
+                                    <span class="caption">Reversible</span>
+                                </v-row>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-row justify="end">
+                                    <span class="caption mr-4">Irreversible</span>
+                                </v-row>
+                            </v-col>
+                        </v-row>
                     </div>
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Consejos Ecológicos</h5>
@@ -390,13 +485,13 @@
                 </v-card>
             </v-col>
 
-            <v-col cols="4" class="positionColbuttons">
+            <v-col cols="12" class="positionColbuttons" md="4" order-md="2" sm="12" order-sm="1" xs="12" order-xs="1">
                 <v-row dense justify>
                     <v-col>
-                        <carousel v-show="showp" style="height: 700px" />
-                        <carousel :slides="sliderSeeder" v-show="showp1" style="height: 700px" />
+                        <carousel :slides="productDetails?.imagenes" v-show="showp" style="height: 700px" />
+                        <carousel :slides="productDetails?.videos" v-show="showp1" style="height: 700px" />
                         <v-img
-                            src="https://picsum.photos/1920/1080?random=1"
+                            :src="productDetails?.ficha_tecnica_del_producto"
                             v-show="showp2"
                             height="700px"
                             width="100%"
@@ -445,18 +540,20 @@
                     </v-col>
                 </v-row>
             </v-col>
-            <v-col cols="4">
+            <v-col cols="12" md="4" order-md="3" sm="12" order-sm="2" xs="12" order-xs="2">
                 <div class="product-item-body pa-4 la-border mr-5">
                     <div class="d-flex justify-space-between">
-                        <h5 class="subtitle2 text-uppercase mb-2">{{ ref }}</h5>
+                        <h5 class="subtitle2 text-uppercase mb-2">REFERENCIA: {{ productDetails?.reference }}</h5>
                         <v-icon right> la-bookmark </v-icon>
                     </div>
-                    <h5 class="subtitle1 text-uppercase font-weight-bold mb-2">{{ name }}</h5>
-                    <h5 class="subtitle1 mb-2">{{ brand }}</h5>
+                    <h5 class="subtitle1 text-uppercase font-weight-bold mb-2">{{ productDetails?.name ?? "" }}</h5>
+                    <h5 class="subtitle1 mb-2">{{ productDetails?.brand?.name ?? "" }}</h5>
                     <div class="d-flex">
-                        <h5 class="subtitle1 mb-2 mr-2">{{ val }}</h5>
+                        <h5 class="subtitle1 mb-2 mr-2">
+                            {{ productDetails?.lowest_price ?? "000" }} {{ productDetails?.currency ?? "" }}
+                        </h5>
                         <h5 class="caption mb-2">
-                            <del>{{ val }}</del>
+                            <del>{{ productDetails?.highest_price ?? "000" }} {{ productDetails?.currency ?? "" }}</del>
                         </h5>
                     </div>
                     <div class="d-flex justify-space-between">
@@ -488,25 +585,25 @@
                 <div class="product-item-body pa-4 la-border mr-5 mt-3">
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">Disponibilidad</h5>
-                        <h5 class="subtitle1 mb-2">Stock</h5>
+                        <h5 class="subtitle1 mb-2">{{ productDetails?.stock ?? "000" }} en stock</h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">Garantía</h5>
-                        <h5 class="subtitle1 mb-2">12 Meses</h5>
+                        <h5 class="subtitle1 mb-2">{{ productDetails?.warranty_text ?? "--" }}</h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">Pago</h5>
-                        <h5 class="subtitle1 mb-2">Payu Visa PSE MC</h5>
+                        <h5 class="subtitle1 mb-2">--</h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase">Envío</h5>
-                        <h5 class="subtitle1">A domicilio</h5>
+                        <h5 class="subtitle1">{{ productDetails?.shipping ?? "--" }}</h5>
                     </div>
                 </div>
                 <h5 class="subtitle2 text-uppercase mt-3 mb-2">Se incluye con la compra</h5>
                 <div class="product-item-body mr-5 mt-3">
                     <v-divider />
-                    <product-item-5 />
+                    <product-item-6 />
                 </div>
             </v-col>
         </v-row>
@@ -522,23 +619,8 @@
                 </div>
             </div>
             <v-row>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
+                <v-col cols="2" v-for="(product, i) in moreProducts" :key="i">
+                    <product-item-2 headerPr="true" :data="product" />
                 </v-col>
             </v-row>
             <v-row justify="center">
@@ -558,31 +640,8 @@
                     </div>
                 </div>
                 <v-row>
-                    <v-col cols="3">
-                        <product-item-3 />
-                    </v-col>
-                    <v-col cols="3">
-                        <product-item-3
-                            title="Producto 1"
-                            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                            idItem="1"
-                        />
-                    </v-col>
-                    <v-col cols="3">
-                        <product-item-3
-                            title="Producto 1"
-                            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                            idItem="1"
-                            img="/public/assets/img/landing/Pacto-Ambiental.jpg"
-                        />
-                    </v-col>
-                    <v-col cols="3">
-                        <product-item-3
-                            title="Producto 1"
-                            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                            idItem="1"
-                            img="/public/assets/img/landing/Pacto-Ambiental.jpg"
-                        />
+                    <v-col cols="3" v-for="(product, i) in footerProducts" :key="i">
+                        <product-item-3 :data="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
@@ -622,48 +681,185 @@
 <script>
 import ProductItem3 from "../components/global/ProductItem3.vue";
 import ProductItem2 from "../components/global/ProductItem2.vue";
-import ProductItem5 from "../components/global/ProductItem5.vue";
+import ProductItem6 from "../components/global/ProductItem6.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
 import Carousel from "../components/global/Carousel.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 // import ChartView from "../components/global/ChartView.vue";
 
-import { sliderSeeder } from "../seeders/products";
-
 export default {
     data: () => ({
+        productDetails: {},
         showp: true,
         showp1: false,
         showp2: false,
         showd: true,
         showd1: false,
         showd2: false,
-        sliderSeeder,
         id: "0",
-        name: "Colección",
-        ref: "REFERENCIA",
-        brand: "Marcas",
-        val: "000.000.000 COP",
         img: "/public/assets/img/item-placeholder.png",
         iva: "* Iva Incluido",
         varia: "Variación",
         model: 0,
         tags: ["1", "2", "3"],
-        ratings: { rating5: 67, rating4: 22, rating3: 11, rating2: 0, rating1: 0 }
+        ratings: { rating5: 67, rating4: 22, rating3: 11, rating2: 0, rating1: 0, vidaUtil: 0 },
+        desserts: [],
+        impacto: "28%",
+        moreProducts: [],
+        footerProducts: []
     }),
     components: {
         ProductItem3,
         ProductItem2,
-        ProductItem5,
+        ProductItem6,
         CustomButton,
         LayoutNavbarSpaces,
         Carousel,
         LayoutNavbarAuth
         // ChartView
     },
+    methods: {
+        async getDetails() {
+            const res = await this.call_api("get", `product/details/${this.$route.params.slug}`);
+            if (res.data.success) {
+                this.productDetails = res.data.data;
+                this.setVidaUtil(this.productDetails.vida_util);
+                this.setComposition(this.productDetails);
+                this.setImpacto(this.productDetails?.impacto_ambiental);
+                this.getMoreProducts(this.productDetails?.id);
+                this.getMoreProducts2(this.productDetails?.id);
+            }
+        },
+        async getMoreProducts(id) {
+            const res = await this.call_api("get", `product/random/6/${id}`);
+            if (res.data.success) {
+                res.data?.data?.map(product => {
+                    this.moreProducts.push({
+                        name: product?.name,
+                        val: product?.base_price + " " + product?.currency,
+                        img: product?.thumbnail_image,
+                        description: product?.description,
+                        brand: product?.brandName,
+                        ref: product?.reference,
+                        slug: product?.slug
+                    });
+                });
+            }
+        },
+        async getMoreProducts2(id) {
+            const res = await this.call_api("get", `product/random/4/${id}`);
+            if (res.data.success) {
+                res.data?.data?.map(product => {
+                    this.footerProducts.push({
+                        name: product?.name,
+                        val: product?.base_price + " " + product?.currency,
+                        img: product?.thumbnail_image,
+                        description: product?.description,
+                        brand: product?.brandName,
+                        ref: product?.reference,
+                        slug: product?.slug
+                    });
+                });
+            }
+        },
+        setVidaUtil(value) {
+            if (value) {
+                switch (value) {
+                    case "1-10 años":
+                        this.ratings.vidaUtil = 67;
+                        break;
+                    case "10-25 años":
+                        this.ratings.vidaUtil = 100;
+                        break;
+                    case "1-24 Meses":
+                        this.ratings.vidaUtil = 34;
+                        break;
+                    case "1-14 Semanas":
+                        this.ratings.vidaUtil = 0;
+                        break;
+                    default:
+                        this.ratings.vidaUtil = 0;
+                        break;
+                }
+            }
+        },
+        setComposition(data) {
+            this.desserts = [
+                {
+                    color: "background-color:#114B99",
+                    name: "Plástico",
+                    percent: data?.plastico ?? "-",
+                    kg: data?.peso_plastico ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#FEA60F",
+                    name: "Cartón",
+                    percent: data?.carton ?? "-",
+                    kg: data?.peso_carton ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#FFFFFF",
+                    name: "Papel",
+                    percent: data?.papel ?? "-",
+                    kg: data?.peso_papel ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#445056",
+                    name: "Metal",
+                    percent: data?.metal ?? "-",
+                    kg: data?.peso_metal ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#61A959",
+                    name: "Vidrio",
+                    percent: data?.vidrio ?? "-",
+                    kg: data?.peso_vidrio ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#B1771D",
+                    name: "Madera",
+                    percent: data?.madera ?? "-",
+                    kg: data?.peso_madera ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#ED847B",
+                    name: "Textil",
+                    percent: data?.textil ?? "-",
+                    kg: data?.peso_textil ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#ED847B",
+                    name: "Baterías / Eléctrico",
+                    percent: data?.bateria_electrico ?? "-",
+                    kg: data?.peso_bateria_electrico ?? "-" + "Kg"
+                }
+            ];
+        },
+        setImpacto(value) {
+            if (value) {
+                switch (value) {
+                    case "Reversible":
+                        this.impacto = "35%";
+                        break;
+                    case "Sostenible":
+                        this.impacto = "11%";
+                        break;
+                    case "No Reversible":
+                        this.impacto = "75%";
+                        break;
+                    default:
+                        this.impacto = "11%";
+                        break;
+                }
+            }
+        }
+    },
     mounted() {
         this.$vuetify.theme.dark = true;
+    },
+    async created() {
+        this.getDetails();
     }
 };
 </script>
@@ -741,6 +937,11 @@ export default {
     width: 96%;
 }
 
+.markerLoc {
+    top: -37%;
+    position: absolute;
+}
+
 .positionColbuttons {
     position: relative;
 }
@@ -774,5 +975,16 @@ export default {
 
 .justify-end {
     text-align: end;
+}
+
+.piechart {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background-image: conic-gradient(from 180deg, #b1771d 0 320deg, #445056 0 336deg, #114b99 0);
+}
+
+.text-size-comp {
+    font-size: 0.6rem;
 }
 </style>

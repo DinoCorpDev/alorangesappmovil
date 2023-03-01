@@ -1,25 +1,22 @@
 <template>
-    <div>
+    <div class="login d-flex flex-column h-100">
         <layout-navbar-auth />
-        <v-container>
+        <v-container class="flex-grow-1 mb-5">
             <v-row class="wrap pa-5" no-gutters>
-                <v-col cols="12" md="6">
-                    <div class="d-md-none">
-                        <h5>Inicio de Sesión</h5>
+                <v-col cols="12" lg="6">
+                    <div class="d-lg-none">
+                        <h1 class="login-title">Inicio de sesión</h1>
                         <v-divider class="my-4" />
                     </div>
-                    <carousel-description
-                        title="h4"
-                        description="Lorem ipsum dolor atum adipisci, suscipit iusto molestiae voluptates!"
-                    />
+                    <carousel-description />
                 </v-col>
-                <v-col cols="12" md="6" class="pt-5 pt-md-0 pl-md-5">
-                    <div class="form">
-                        <div class="d-none d-md-block">
-                            <h5 class="black--text">Inicio de Sesión</h5>
-                            <v-divider class="my-4" />
-                        </div>
-                        <div class="inputs">
+                <v-col cols="12" lg="6" class="pt-5 pt-lg-0 pl-lg-5">
+                    <div class="login-content pa-lg-5 pt-lg-8">
+                        <div class="inputs mb-8">
+                            <div class="d-none d-lg-block">
+                                <h1 class="login-title">Inicio de sesión</h1>
+                                <v-divider class="my-4" />
+                            </div>
                             <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
                                 <div class="form-group">
                                     <label class="black--text">{{ $t("email_address") }}</label>
@@ -65,30 +62,7 @@
                                 :to="{ name: 'Registration2' }"
                             />
                         </div>
-                        <div class="footer">
-                            <v-row>
-                                <v-col cols="4">
-                                    <span class="subtitle1 bold text-uppercase black--text">© Idovela 2022</span>
-                                </v-col>
-                                <v-col cols="8">
-                                    <v-row>
-                                        <v-col cols="4">
-                                            <a href="#" class="subtitle1 bold text-uppercase black--text">
-                                                Información
-                                            </a>
-                                        </v-col>
-                                        <v-col cols="4">
-                                            <a href="#" class="subtitle1 bold text-uppercase black--text">
-                                                Solicitudes
-                                            </a>
-                                        </v-col>
-                                        <v-col cols="4">
-                                            <a href="#" class="subtitle1 bold text-uppercase black--text"> Contacto </a>
-                                        </v-col>
-                                    </v-row>
-                                </v-col>
-                            </v-row>
-                        </div>
+                        <auth-footer />
                     </div>
                 </v-col>
             </v-row>
@@ -101,6 +75,7 @@ import CarouselDescription from "../../components/global/CarouselDescription.vue
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
+import AuthFooter from "./AuthFooter.vue";
 
 import { required, email } from "vuelidate/lib/validators";
 import { mapActions, mapGetters, mapMutations } from "vuex";
@@ -110,7 +85,8 @@ export default {
         CarouselDescription,
         CustomButton,
         CustomInput,
-        LayoutNavbarAuth
+        LayoutNavbarAuth,
+        AuthFooter
     },
     data: () => ({
         form: {
@@ -210,41 +186,36 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.login {
+    height: 100%;
+
+    &-title {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 30px;
+    }
+
+    &-content {
+        @media (min-width: 1264px) {
+            border: 1px solid #e4e4e4;
+            border-radius: 10px;
+        }
+
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
 .wrap {
     background-color: #fafcfc;
     border-radius: 10px;
 }
 
-h5 {
-    font-size: 17px;
-    font-weight: 600;
-
-    @media (min-width: 600px) {
-        font-size: 24px;
-    }
-}
-
 .v-divider {
-    border-width: 2px 0 0;
     border-color: #e4e4e4 !important;
-}
-
-@media (min-width: 960px) {
-    .form {
-        border: 1px solid #e4e4e4;
-        border-radius: 10px;
-        padding: 10px;
-    }
-
-    .footer {
-        margin-top: 150px;
-    }
-}
-
-@media (max-width: 959px) {
-    .footer {
-        margin-top: 30px;
-    }
 }
 
 .form-group {
