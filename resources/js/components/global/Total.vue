@@ -19,13 +19,13 @@ export default {
             default: "000.000.000"
         },
         text1: {
-            type: String,
+            type: String
         },
         text2: {
-            type: String,
+            type: String
         },
         btn2: {
-            type: String,
+            type: String
         }
     }
 };
@@ -61,4 +61,5 @@ export default {
     .iva {
         font: normal normal 600 10px/13px Overpass;
     }
-}</style>
+}
+</style>
