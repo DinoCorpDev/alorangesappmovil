@@ -1,5 +1,5 @@
 <template>
-    <div class="cart">
+    <div>
         <div class="div-container">
             <div class="div-img">
                 <div>
@@ -8,30 +8,34 @@
             </div>
             <div class="div-body">
                 <div>
-                    <span class="black--text body2">{{ reference }}</span>
-                    <h6 class="black--text bold text-uppercase">{{ name }}</h6>
-                    <span class="black--text body1">{{ brand }}</span>
+                    <span class="black--text text-uppercase reference">{{ reference }}</span>
+                    <h6 class="black--text text-uppercase object">{{ name }}</h6>
+                    <span class="black--text brand">{{ brand }}</span>
                 </div>
                 <div class="divider"></div>
                 <div>
-                    <span class="black--text text-uppercase bold body1">{{ price }}</span>
+                    <span class="black--text price">{{ price }} COP</span>
                 </div>
                 <div class="divider"></div>
                 <div>
                     <div class="quantity">
-                        <custom-button text="+" plain />
-                        <span class="quantity2 subtitle-1">{{ quantity }}</span>
-                        <custom-button text="-" plain />
+                        <div>
+                            <custom-button color="#FAFAFA" block text="+" />
+                        </div>
+                        <span class="textquantity">{{ quantity }}</span>
+                        <div>
+                            <custom-button color="#FAFAFA" block text="-" />
+                        </div>
                     </div>
                 </div>
                 <div class="divider"></div>
-                <div class="d-none d-md-block">
-                    <custom-button plain :icon="icon1" />
-                    <custom-button plain :icon="icon2" />
-                    <custom-button plain :icon="icon3" />
+                <div class="d-none d-md-flex">
+                    <custom-button :icon="icon1" />
+                    <custom-button :icon="icon2" />
+                    <custom-button :icon="icon3" />
                 </div>
                 <div class="d-md-none">
-                    <custom-button plain icon="la-ellipsis-v" />
+                    <custom-button block icon="la-ellipsis-v" />
                 </div>
             </div>
         </div>
@@ -56,19 +60,19 @@ export default {
         },
         reference: {
             type: String,
-            default: "Sin Asignar"
+            default: "Referencia"
         },
         name: {
             type: String,
-            default: "Sin Asignar"
+            default: "Objeto"
         },
         brand: {
             type: String,
-            default: "Sin Asignar"
+            default: "Marca"
         },
         price: {
             type: String,
-            default: "Sin Asignar"
+            default: "000.000.000"
         },
         quantity: {
             type: String,
@@ -79,21 +83,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .div-container {
-    display: flex;
-}
-
-.div-body {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 10px;
-    width: 100%;
-}
-
-.cart {
     background-color: #f5f5f5;
     border-radius: 10px;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .div-img {
@@ -107,10 +102,58 @@ export default {
     align-items: center;
 }
 
+.div-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 5px 0px 5px 10px;
+    width: 100%;
+}
+
+//Texts
+.reference {
+    font: normal normal 600 10px/13px Overpass;
+}
+
+.object {
+    font: normal normal bold 15px/24px Overpass;
+}
+
+.brand {
+    font: normal normal normal 15px/24px Roboto;
+}
+.price {
+    font: normal normal normal 18px/24px Roboto;
+}
+
+@media (max-width: 959px) {
+    .div-body {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 599px) {
+
+    .object {
+        font: normal normal bold 12px/14px Overpass;
+    }
+
+    .brand {
+        font: normal normal normal 12px/24px Roboto;
+    }
+    .price {
+        font: normal normal normal 12px/24px Roboto;
+    }
+}
+
+
+
 .divider {
     background-color: #dfdfdf;
     width: 2px;
-    height: 80px;
+    height: 90%;
 }
 
 .quantity {
@@ -120,11 +163,21 @@ export default {
     justify-content: center;
 }
 
-.quantity2 {
+.textquantity {
     line-height: 40px;
+    font-family: 'Roboto';
+    font-size: 15px;
 }
 
-@media (max-width: 959px) {
+@media (max-width: 599px) {
+    .div-container {
+        height: 112px;
+    }
+    .div-img {
+        margin-top: 6px;
+        margin-left: 7px;
+        border-radius: 10px;
+    }
     .quantity {
         border-radius: 10px;
         display: flex;
@@ -132,7 +185,8 @@ export default {
         flex-direction: column;
         width: 100%;
     }
-    .quantity2 {
+
+    .textquantity {
         line-height: normal;
         display: flex;
         justify-content: center;

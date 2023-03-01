@@ -69,6 +69,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .main-wrapper {
     padding: 1rem;
     background: #f5f5f5;

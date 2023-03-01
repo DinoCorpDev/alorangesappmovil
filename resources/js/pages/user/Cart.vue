@@ -24,7 +24,6 @@
                 <v-row>
                     <v-col cols="12">
                         <product-cart
-                            price="000.000.000 COP"
                             quantity="03"
                             icon1="la-trash"
                             icon2="la-eye"
@@ -398,7 +397,6 @@
                     <v-row>
                         <v-col cols="12">
                             <product-cart
-                                price="000.000.000 COP"
                                 quantity="03"
                                 icon1="la-trash"
                                 icon2="la-eye"
@@ -407,7 +405,6 @@
                         </v-col>
                         <v-col cols="12">
                             <product-cart
-                                price="000.000.000 COP"
                                 quantity="03"
                                 icon1="la-trash"
                                 icon2="la-eye"
@@ -416,7 +413,6 @@
                         </v-col>
                         <v-col cols="12">
                             <product-cart
-                                price="000.000.000 COP"
                                 quantity="03"
                                 icon1="la-trash"
                                 icon2="la-eye"
