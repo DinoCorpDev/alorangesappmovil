@@ -260,7 +260,7 @@
                                 </div>
                             </div>
                             <div>
-                                <custom-button dark text="Finalizar" />
+                                <custom-button color="#858585" text="Finalizar" style="color: #FFFFFF;" />
                             </div>
                         </div>
                     </v-col>
