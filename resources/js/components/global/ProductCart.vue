@@ -146,7 +146,7 @@ export default {
 }
 .textquantity {
     line-height: 40px;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-size: 15px;
 }
 
