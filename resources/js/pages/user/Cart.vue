@@ -23,25 +23,25 @@
                 <h6>Productos</h6>
                 <v-row>
                     <v-col cols="12">
-                        <product-cart quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart value="3" icon1="la-trash" icon3="la-eye" />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart price="120.000.000" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart icon1="la-trash" icon3="la-eye" />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart icon1="la-trash" icon3="la-eye" />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart icon1="la-trash" icon3="la-eye" />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart icon1="la-trash" icon3="la-eye" />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart icon1="la-trash" icon3="la-eye" />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart icon1="la-trash" icon3="la-eye" />
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
                         <total />
@@ -383,13 +383,13 @@
                     <v-divider class="my-3" />
                     <v-row>
                         <v-col cols="12">
-                            <product-cart quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                            <product-cart icon1="../../../../public/assets/img/icons/back.svg" icon3="../../../../public/assets/img/icons/marker.svg" />
                         </v-col>
                         <v-col cols="12">
-                            <product-cart quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                            <product-cart icon1="../../../../public/assets/img/icons/back.svg" icon3="../../../../public/assets/img/icons/marker.svg" />
                         </v-col>
                         <v-col cols="12">
-                            <product-cart quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                            <product-cart icon1="../../../../public/assets/img/icons/back.svg" icon3="../../../../public/assets/img/icons/marker.svg" />
                         </v-col>
                     </v-row>
                     <v-divider class="my-3" />

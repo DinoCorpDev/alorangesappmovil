@@ -6,7 +6,7 @@
             <v-col cols="12">
                 <product-cart
                     price="000.000.000 COP"
-                    quantity="03"
+                    quantity=3
                     icon1="la-trash"
                     icon2="la-eye"
                     icon3="la-shopping-cart"
@@ -15,7 +15,7 @@
             <v-col cols="12">
                 <product-cart
                     price="000.000.000 COP"
-                    quantity="03"
+                    quantity=3
                     icon1="la-trash"
                     icon2="la-eye"
                     icon3="la-shopping-cart"
@@ -24,7 +24,7 @@
             <v-col cols="12">
                 <product-cart
                     price="000.000.000 COP"
-                    quantity="03"
+                    quantity=3
                     icon1="la-trash"
                     icon2="la-eye"
                     icon3="la-shopping-cart"
@@ -33,7 +33,7 @@
             <v-col cols="12">
                 <product-cart
                     price="000.000.000 COP"
-                    quantity="03"
+                    quantity=3
                     icon1="la-trash"
                     icon2="la-eye"
                     icon3="la-shopping-cart"
