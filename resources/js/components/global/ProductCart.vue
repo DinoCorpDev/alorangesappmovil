@@ -23,13 +23,13 @@
                     <div class="quantity">
                         <div>
                             <v-btn v-on:click="increment()" block plain>
-                                <v-img src="../../../../public/assets/img/icons/sum.svg"></v-img>
+                                <v-img src="/public/assets/img/icons/sum.svg"></v-img>
                             </v-btn>
                         </div>
                         <input type="number" v-model="quantity" class="textquantity" />
                         <div>
                             <v-btn v-on:click="decrement()" block plain>
-                                <v-img src="../../../../public/assets/img/icons/subtract.svg"></v-img>
+                                <v-img src="/public/assets/img/icons/subtract.svg"></v-img>
                             </v-btn>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         </div>
                         <div>
                             <v-btn block plain>
-                                <v-img src="../../../../public/assets/img/icons/view.svg"></v-img>
+                                <v-img src="/public/assets/img/icons/view.svg"></v-img>
                             </v-btn>
                         </div>
                         <div>
@@ -92,13 +92,13 @@ export default {
         price: {
             type: Number,
             default: 0
-        },
-        quantity: {
-            type: Number,
-            default: 0
         }
     },
-
+    data() {
+        return {
+            quantity: 0
+        };
+    },
     methods: {
         increment() {
             this.quantity++;
@@ -107,7 +107,7 @@ export default {
             if (this.quantity > 0) {
                 this.quantity--;
             }
-        },
+        }
     }
 };
 </script>
@@ -189,6 +189,7 @@ export default {
     font-size: 15px;
     width: 20px;
     outline: none;
+    text-align: center;
 }
 
 @media (max-width: 959px) {
@@ -255,5 +256,17 @@ export default {
         display: flex;
         justify-content: center;
     }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 </style>

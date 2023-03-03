@@ -186,28 +186,25 @@
                 <v-col cols="12">
                     <product-cart
                         price="000.000.000 COP"
-                        quantity=3
-                        icon1="la-trash"
-                        icon2="la-eye"
-                        icon3="la-eye"
+                        quantity="3"
+                        icon1="/public/assets/img/icons/back.svg"
+                        icon3="/public/assets/img/icons/marker.svg"
                     />
                 </v-col>
                 <v-col cols="12">
                     <product-cart
                         price="000.000.000 COP"
-                        quantity=3
-                        icon1="la-trash"
-                        icon2="la-eye"
-                        icon3="la-eye"
+                        quantity="3"
+                        icon1="/public/assets/img/icons/back.svg"
+                        icon3="/public/assets/img/icons/marker.svg"
                     />
                 </v-col>
                 <v-col cols="12">
                     <product-cart
                         price="000.000.000 COP"
-                        quantity=3
-                        icon1="la-trash"
-                        icon2="la-eye"
-                        icon3="la-eye"
+                        quantity="3"
+                        icon1="/public/assets/img/icons/back.svg"
+                        icon3="/public/assets/img/icons/marker.svg"
                     />
                 </v-col>
             </v-row>
