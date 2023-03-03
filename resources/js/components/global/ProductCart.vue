@@ -22,22 +22,40 @@
                 <div>
                     <div class="quantity">
                         <div>
-                            <custom-button color="#FAFAFA" block text="+" />
+                            <v-btn v-on:click="increment()" block plain>
+                                <v-img src="/public/assets/img/icons/sum.svg"></v-img>
+                            </v-btn>
                         </div>
-                        <span class="textquantity">{{ quantity }}</span>
+                        <input type="number" v-model="quantity" class="textquantity" />
                         <div>
-                            <custom-button color="#FAFAFA" block text="-" />
+                            <v-btn v-on:click="decrement()" block plain>
+                                <v-img src="/public/assets/img/icons/subtract.svg"></v-img>
+                            </v-btn>
                         </div>
                     </div>
                 </div>
                 <div class="divider"></div>
-                <div class="d-none d-md-flex">
-                    <custom-button :icon="icon1" />
-                    <custom-button :icon="icon2" />
-                    <custom-button :icon="icon3" />
-                </div>
-                <div class="d-md-none">
-                    <custom-button block icon="la-ellipsis-v" />
+                <div class="icons">
+                    <div class="d-none d-md-flex">
+                        <div>
+                            <v-btn block plain>
+                                <v-img :src="icon1"></v-img>
+                            </v-btn>
+                        </div>
+                        <div>
+                            <v-btn block plain>
+                                <v-img src="/public/assets/img/icons/view.svg"></v-img>
+                            </v-btn>
+                        </div>
+                        <div>
+                            <v-btn block plain>
+                                <v-img :src="icon3"></v-img>
+                            </v-btn>
+                        </div>
+                    </div>
+                    <div class="d-md-none">
+                        <custom-button block icon="la-ellipsis-v" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,7 +72,6 @@ export default {
     },
     props: {
         icon1: String,
-        icon2: String,
         icon3: String,
         img: {
             type: String,
@@ -73,12 +90,23 @@ export default {
             default: "Marca"
         },
         price: {
-            type: String,
-            default: "000.000.000"
+            type: Number,
+            default: 0
+        }
+    },
+    data() {
+        return {
+            quantity: 0
+        };
+    },
+    methods: {
+        increment() {
+            this.quantity++;
         },
-        quantity: {
-            type: String,
-            default: "00"
+        decrement() {
+            if (this.quantity > 0) {
+                this.quantity--;
+            }
         }
     }
 };
@@ -118,9 +146,15 @@ export default {
     padding: 5px 0px 5px 10px;
     width: 100%;
 }
+
+.icons {
+    padding-right: 25px;
+}
+
 .reference {
     font: normal normal 600 10px/13px Overpass;
 }
+
 .object {
     font: normal normal bold 15px/24px Overpass;
 }
@@ -128,34 +162,47 @@ export default {
 .brand {
     font: normal normal normal 15px/24px Roboto;
 }
+
 .price {
     font: normal normal normal 18px/24px Roboto;
     overflow: hidden;
     white-space: nowrap;
 }
+
 .divider {
     background-color: #dfdfdf;
     width: 2px;
     height: 90%;
 }
+
 .quantity {
     background-color: #fafafa;
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
+
 .textquantity {
-    line-height: 40px;
+    line-height: 35px;
     font-family: "Roboto";
     font-size: 15px;
+    width: 20px;
+    outline: none;
+    text-align: center;
 }
 
 @media (max-width: 959px) {
     .div-body {
         gap: 8px;
     }
+
     .information {
         padding: 13px 0px 13px 15px;
+    }
+
+    .icons {
+        padding-right: 0px;
     }
 }
 
@@ -165,29 +212,37 @@ export default {
         padding-top: 25px;
         padding-bottom: 24px;
     }
+
     .brand {
         font: normal normal normal 12px/24px Roboto;
     }
+
     .price {
         font: normal normal normal 12px/24px Roboto;
     }
+
     .div-body {
         gap: 5px;
     }
+
     .div-container {
         height: 112px;
     }
+
     .div-img {
         margin-top: 6px;
         margin-left: 7px;
         border-radius: 10px;
     }
+
     .information {
         padding: 0px 0px 0px 6px;
     }
+
     .reference {
         padding-top: 5px;
     }
+
     .quantity {
         border-radius: 10px;
         display: flex;
@@ -195,10 +250,23 @@ export default {
         flex-direction: column;
         width: 100%;
     }
+
     .textquantity {
         line-height: normal;
         display: flex;
         justify-content: center;
     }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 </style>
