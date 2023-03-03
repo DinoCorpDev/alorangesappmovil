@@ -85,7 +85,14 @@
                                             <span class="black--text body-2 text-uppercase">
                                                 Segundo Nombre (Opcional)
                                             </span>
-                                            <custom-input></custom-input>
+                                            <custom-input
+                                                type="text"
+                                                v-model="form.secondName"
+                                                :error-messages="secondNameErrors"
+                                                @blur="$v.form.secondName.$touch()"
+                                                hide-details="auto"
+                                                required
+                                            />
                                         </v-col>
                                     </v-row>
                                 </v-col>
@@ -93,11 +100,25 @@
                                     <v-row>
                                         <v-col cols="12" sm="6">
                                             <span class="black--text body-2 text-uppercase">Primer Apellido</span>
-                                            <custom-input></custom-input>
+                                            <custom-input
+                                                type="text"
+                                                v-model="form.firstLastname"
+                                                :error-messages="firstLastnameErrors"
+                                                @blur="$v.form.firstLastname.$touch()"
+                                                hide-details="auto"
+                                                required
+                                            />
                                         </v-col>
                                         <v-col cols="12" sm="6">
                                             <span class="black--text body-2 text-uppercase">Segundo Apellido</span>
-                                            <custom-input></custom-input>
+                                            <custom-input
+                                                type="text"
+                                                v-model="form.secondLastname"
+                                                :error-messages="secondLastnameErrors"
+                                                @blur="$v.form.secondLastname.$touch()"
+                                                hide-details="auto"
+                                                required
+                                            />
                                         </v-col>
                                     </v-row>
                                 </v-col>
@@ -109,13 +130,26 @@
                                 </v-col>
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Numero de Documento</span>
-                                    <custom-input></custom-input>
+                                    <custom-input
+                                        v-model="form.documentNumber"
+                                        :error-messages="documentNumberErrors"
+                                        @blur="$v.form.documentNumber.$touch()"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                             </v-row>
                             <v-row v-if="typePerson == 'juridical'">
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Nombre de la Empresa</span>
-                                    <custom-input></custom-input>
+                                    <custom-input
+                                        type="text"
+                                        v-model="form.factoryName"
+                                        :error-messages="factoryNameErrors"
+                                        @blur="$v.form.factoryName.$touch()"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Entidad Comercial</span>
@@ -139,13 +173,27 @@
                                             <span class="black--text body-2 text-uppercase">
                                                 Nombre De Dirección (Casa / Oficina)
                                             </span>
-                                            <custom-input></custom-input>
+                                            <custom-input
+                                                type="text"
+                                                v-model="form.nameAdress"
+                                                :error-messages="nameAdressErrors"
+                                                @blur="$v.form.nameAdress.$touch()"
+                                                hide-details="auto"
+                                                required
+                                            />
                                         </v-col>
                                         <v-col cols="12" md="6">
                                             <span class="black--text body-2 text-uppercase">
                                                 Dirección (Calle / Carrera)
                                             </span>
-                                            <custom-input></custom-input>
+                                            <custom-input
+                                                type="text"
+                                                v-model="form.adress"
+                                                :error-messages="adressErrors"
+                                                @blur="$v.form.adress.$touch()"
+                                                hide-details="auto"
+                                                required
+                                            />
                                         </v-col>
                                     </v-row>
                                 </v-col>
@@ -153,13 +201,26 @@
                                     <span class="black--text body-2 text-uppercase">
                                         Dirección Adicional (Piso / Apartamento / Oficina)
                                     </span>
-                                    <custom-input></custom-input>
+                                    <custom-input
+                                        type="text"
+                                        v-model="form.aditionalAdress"
+                                        :error-messages="aditionalAdressErrors"
+                                        @blur="$v.form.aditionalAdress.$touch()"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                             </v-row>
                             <v-row>
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Codigo Postal</span>
-                                    <custom-input></custom-input>
+                                    <custom-input
+                                        v-model="form.postalCode"
+                                        :error-messages="postalCodeErrors"
+                                        @blur="$v.form.postalCode.$touch()"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Departamento</span>
@@ -173,7 +234,14 @@
                                 </v-col>
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Barrio ( Opcional )</span>
-                                    <custom-input></custom-input>
+                                    <custom-input
+                                        type="text"
+                                        v-model="form.barrio"
+                                        :error-messages="barrioErrors"
+                                        @blur="$v.form.barrio.$touch()"
+                                        hide-details="auto"
+                                        required
+                                    />
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -223,14 +291,14 @@
                             <v-row>
                                 <v-col cols="12" md="6">
                                     <label class="label">
-                                        <input type="checkbox" />
+                                        <input type="checkbox" v-model="polities" />
                                         <span class="body-1 black--text text">
                                             He podido leer y entiendo la política de privacidad y cookies
                                         </span>
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="label">
-                                        <input type="checkbox" />
+                                        <input type="checkbox" v-model="comunication" />
                                         <span class="body-1 black--text text">
                                             Quiero recibir comunicaciones comerciales personalizadas de idovela a través
                                             de email.
@@ -301,11 +369,23 @@ export default {
                 mode: "international"
             },
             typePerson: "natural",
+            polities: "",
+            comunication: "",
             DocumentType: ["(C.C) Cedula de ciudadanía", "NIT"],
             form: {
                 name: "",
+                secondName: "",
+                firstLastname: "",
+                secondLastname: "",
                 phone: "",
+                documentNumber: "",
+                nameAdress: "",
+                adress: "",
+                aditionalAdress: "",
+                postalCode: "",
+                barrio: "",
                 email: "",
+                factoryName: "",
                 password: "",
                 confirmPassword: "",
                 invalidPhone: true,
@@ -317,8 +397,17 @@ export default {
     validations: {
         form: {
             name: { required },
+            secondName: { required },
+            firstLastname: { required },
+            secondLastname: { required },
             email: { required, email },
             phone: { required },
+            documentNumber: { required },
+            nameAdress: { required },
+            adress: { required },
+            aditionalAdress: { required },
+            postalCode: { required },
+            barrio: { required },
             password: { required, minLength: minLength(6) },
             confirmPassword: { required, sameAsPassword: sameAs("password") }
         }
@@ -329,6 +418,66 @@ export default {
             const errors = [];
             if (!this.$v.form.name.$dirty) return errors;
             !this.$v.form.name.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        secondNameErrors() {
+            const errors = [];
+            if (!this.$v.form.secondName.$dirty) return errors;
+            !this.$v.form.secondName.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        firstLastnameErrors() {
+            const errors = [];
+            if (!this.$v.form.firstLastname.$dirty) return errors;
+            !this.$v.form.firstLastname.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        secondLastnameErrors() {
+            const errors = [];
+            if (!this.$v.form.secondLastname.$dirty) return errors;
+            !this.$v.form.secondLastname.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        documentNumberErrors() {
+            const errors = [];
+            if (!this.$v.form.documentNumber.$dirty) return errors;
+            !this.$v.form.documentNumber.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        nameAdressErrors() {
+            const errors = [];
+            if (!this.$v.form.nameAdress.$dirty) return errors;
+            !this.$v.form.nameAdress.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        adressErrors() {
+            const errors = [];
+            if (!this.$v.form.adress.$dirty) return errors;
+            !this.$v.form.adress.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        aditionalAdressErrors() {
+            const errors = [];
+            if (!this.$v.form.aditionalAdress.$dirty) return errors;
+            !this.$v.form.aditionalAdress.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        postalCodeErrors() {
+            const errors = [];
+            if (!this.$v.form.postalCode.$dirty) return errors;
+            !this.$v.form.postalCode.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        barrioErrors() {
+            const errors = [];
+            if (!this.$v.form.barrio.$dirty) return errors;
+            !this.$v.form.barrio.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        factoryNameErrors() {
+            const errors = [];
+            if (!this.$v.form.factoryName.$dirty) return errors;
+            !this.$v.form.factoryName.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         emailErrors() {
