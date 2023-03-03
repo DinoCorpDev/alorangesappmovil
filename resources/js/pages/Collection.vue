@@ -7,13 +7,13 @@
                 <v-row dense justify>
                     <v-col>
                         <v-img
-                            src="https://picsum.photos/1920/1080?random=1"
+                            :src="productDetails?.ficha_tecnica_del_producto"
                             v-show="overlay"
                             height="700px"
                             width="100%"
                         />
-                        <carousel :slides="sliderSeeder" v-show="overlay1" height="700px" width="100%" />
-                        <carousel v-show="overlay2" height="700px" width="100%" />
+                        <carousel :slides="productDetails?.imagenes" v-show="overlay1" height="700px" width="100%" />
+                        <carousel :slides="productDetails?.videos" v-show="overlay2" height="700px" width="100%" />
                     </v-col>
                 </v-row>
                 <v-row class="buttonsAct px-4">
@@ -58,15 +58,17 @@
             <v-col>
                 <div class="product-item-body pa-4 la-border mr-5">
                     <div class="d-flex justify-space-between">
-                        <h5 class="subtitle2 text-uppercase mb-2">{{ ref }}</h5>
+                        <h5 class="subtitle2 text-uppercase mb-2">REFERENCIA: {{ productDetails?.reference }}</h5>
                         <v-icon right> la-bookmark </v-icon>
                     </div>
-                    <h5 class="subtitle1 text-uppercase font-weight-bold mb-2">{{ name }}</h5>
-                    <h5 class="subtitle1 mb-2">{{ brand }}</h5>
+                    <h5 class="subtitle1 text-uppercase font-weight-bold mb-2">{{ productDetails?.name ?? "" }}</h5>
+                    <h5 class="subtitle1 mb-2">{{ productDetails?.brand?.name ?? "" }}</h5>
                     <div class="d-flex">
-                        <h5 class="subtitle1 mb-2 mr-2">{{ val }}</h5>
+                        <h5 class="subtitle1 mb-2 mr-2">
+                            {{ productDetails?.lowest_price ?? "000" }} {{ productDetails?.currency ?? "" }}
+                        </h5>
                         <h5 class="caption mb-2">
-                            <del>{{ val }}</del>
+                            <del>{{ productDetails?.highest_price ?? "000" }} {{ productDetails?.currency ?? "" }}</del>
                         </h5>
                     </div>
                     <div class="d-flex justify-space-between">
@@ -98,19 +100,19 @@
                 <div class="product-item-body pa-4 la-border mr-5 mt-3">
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">Disponibilidad</h5>
-                        <h5 class="subtitle1 mb-2">Consultar</h5>
+                        <h5 class="subtitle1 mb-2">{{ productDetails?.stock ?? "000" }} en stock</h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">Garantía</h5>
-                        <h5 class="subtitle1 mb-2">12 Meses</h5>
+                        <h5 class="subtitle1 mb-2">{{ productDetails?.warranty_text ?? "--" }}</h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">Pago</h5>
-                        <h5 class="subtitle1 mb-2">Payu Visa PSE MC</h5>
+                        <h5 class="subtitle1 mb-2">--</h5>
                     </div>
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase">Envío</h5>
-                        <h5 class="subtitle1">A domicilio</h5>
+                        <h5 class="subtitle1">{{ productDetails?.shipping ?? "--" }}</h5>
                     </div>
                 </div>
                 <h5 class="subtitle2 text-uppercase mt-3 mb-2">Se incluye con la compra</h5>
@@ -131,31 +133,8 @@
                     </div>
                 </div>
                 <v-row>
-                    <v-col cols="3">
-                        <product-item-3 />
-                    </v-col>
-                    <v-col cols="3">
-                        <product-item-3
-                            title="Producto 1"
-                            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                            idItem="1"
-                        />
-                    </v-col>
-                    <v-col cols="3">
-                        <product-item-3
-                            title="Producto 1"
-                            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                            idItem="1"
-                            img="/public/assets/img/landing/Pacto-Ambiental.jpg"
-                        />
-                    </v-col>
-                    <v-col cols="3">
-                        <product-item-3
-                            title="Producto 1"
-                            descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                            idItem="1"
-                            img="/public/assets/img/landing/Pacto-Ambiental.jpg"
-                        />
+                    <v-col cols="3" v-for="(product, i) in footerProducts" :key="i">
+                        <product-item-3 :data="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
@@ -175,23 +154,8 @@
                 </div>
             </div>
             <v-row>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" />
-                </v-col>
-                <v-col cols="2">
-                    <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
+                <v-col cols="2" v-for="(product, i) in moreProducts" :key="i">
+                    <product-item-2 headerPr="true" :data="product" />
                 </v-col>
             </v-row>
             <v-row justify="center">
@@ -239,8 +203,9 @@ import { sliderSeeder } from "../seeders/products";
 
 export default {
     data: () => ({
-        overlay: true,
-        overlay1: false,
+        productDetails: {},
+        overlay: false,
+        overlay1: true,
         overlay2: false,
         sliderSeeder,
         id: "0",
@@ -252,7 +217,9 @@ export default {
         iva: "* Iva Incluido",
         varia: "Variación",
         model: 0,
-        tags: ["1", "2", "3"]
+        tags: ["1", "2", "3"],
+        moreProducts: [],
+        footerProducts: []
     }),
     components: {
         ProductItem3,
@@ -263,8 +230,46 @@ export default {
         Carousel,
         LayoutNavbarAuth
     },
+    methods: {
+        async getDetails() {
+            const res = await this.call_api("get", `product/details/${this.$route.params.slug}`);
+            if (res.data.success) {
+                this.productDetails = res.data.data;
+                this.getMoreProducts(this.productDetails?.id);
+                this.getMoreProducts2(this.productDetails?.id);
+            }
+        },
+        async getMoreProducts(id) {
+            const res = await this.call_api("get", `product/random/6/${id}`);
+            if (res.data.success) {
+                this.setMoreProducts("moreProducts", res.data?.data);
+            }
+        },
+        async getMoreProducts2(id) {
+            const res = await this.call_api("get", `product/random/4/${id}`);
+            if (res.data.success) {
+                this.setMoreProducts("footerProducts", res.data?.data);
+            }
+        },
+        setMoreProducts(value, data) {
+            data?.map(product => {
+                this[value].push({
+                    name: product?.name,
+                    val: product?.base_price + " " + product?.currency,
+                    img: product?.thumbnail_image,
+                    description: product?.description,
+                    brand: product?.brandName,
+                    ref: product?.reference,
+                    slug: product?.slug
+                });
+            });
+        }
+    },
     mounted() {
         this.$vuetify.theme.dark = true;
+    },
+    async created() {
+        this.getDetails();
     }
 };
 </script>
