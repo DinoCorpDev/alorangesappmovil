@@ -52,7 +52,12 @@
                     </v-col>
                 </v-row>
                 <v-divider class="mt-8 ml-3" />
-                <v-card v-scroll.self="onScroll" class="overflow-y-auto overflow-x-auto mt-3 overflow-uw" max-height="628" v-show="showd">
+                <v-card
+                    v-scroll.self="onScroll"
+                    class="overflow-y-auto overflow-x-auto mt-3 overflow-uw"
+                    max-height="628"
+                    v-show="showd"
+                >
                     <div class="product-item-body pa-4 la-border ml-3">
                         <v-row>
                             <v-col cols="6">
@@ -101,10 +106,14 @@
                                     <span class="subtitles-gray">(Fuente x Profundidad x Altura)</span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <span class="subtitle2 text-uppercase mt-3">{{ productDetails?.medida_producto }}</span>
+                                    <span class="subtitle2 text-uppercase mt-3">
+                                        {{ productDetails?.medida_producto }}
+                                    </span>
                                 </v-row>
                                 <v-row justify="center" dense>
-                                    <span class="subtitle2 text-uppercase">{{ productDetails?.medidas_de_embalaje }}</span>
+                                    <span class="subtitle2 text-uppercase">
+                                        {{ productDetails?.medidas_de_embalaje }}
+                                    </span>
                                 </v-row>
                                 <v-row justify="center" dense>
                                     <span class="subtitle2 text-uppercase">{{ productDetails?.engaste }}</span>
@@ -193,10 +202,22 @@
                     <v-row class="mt-1 ml-3">
                         <v-col cols="6">
                             <v-row dense>
-                                <a class="subtitle2 text-white" :href="productDetails?.manual_de_producto" target="_blank"><u>Manual de producto</u></a>
+                                <a
+                                    class="subtitle2 text-white"
+                                    :href="productDetails?.manual_de_producto"
+                                    target="_blank"
+                                >
+                                    <u>Manual de producto</u>
+                                </a>
                             </v-row>
                             <v-row dense class="mt-1">
-                                <a class="subtitle2 text-white" :href="productDetails?.ficha_tecnica_del_producto" target="_blank"><u>Ficha técnica del producto</u></a>
+                                <a
+                                    class="subtitle2 text-white"
+                                    :href="productDetails?.ficha_tecnica_del_producto"
+                                    target="_blank"
+                                >
+                                    <u>Ficha técnica del producto</u>
+                                </a>
                             </v-row>
                         </v-col>
                         <v-col cols="6">
@@ -204,7 +225,13 @@
                                 <span class="subtitle2"><u>Hora de especificaciones</u></span>
                             </v-row>
                             <v-row dense class="mt-1">
-                                <a class="subtitle2 text-white" :href="productDetails?.manual_de_instalacion" target="_blank"><u>Guía de instalación</u></a>
+                                <a
+                                    class="subtitle2 text-white"
+                                    :href="productDetails?.manual_de_instalacion"
+                                    target="_blank"
+                                >
+                                    <u>Guía de instalación</u>
+                                </a>
                             </v-row>
                         </v-col>
                     </v-row>
@@ -225,7 +252,12 @@
                         {{ productDetails?.postventa }}
                     </p>
                 </v-card>
-                <v-card v-scroll.self="onScroll" class="overflow-y-auto overflow-x-auto mt-3 overflow-uw" max-height="628" v-show="showd1">
+                <v-card
+                    v-scroll.self="onScroll"
+                    class="overflow-y-auto overflow-x-auto mt-3 overflow-uw"
+                    max-height="628"
+                    v-show="showd1"
+                >
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Calificación</h5>
                         <v-row class="mt-2">
@@ -294,7 +326,12 @@
                         <custom-button text="Calificar" class="ml-4 mt-2" light />
                     </div>
                 </v-card>
-                <v-card v-scroll.self="onScroll" class="overflow-y-auto overflow-x-auto mt-3 overflow-uw" max-height="628" v-show="showd2">
+                <v-card
+                    v-scroll.self="onScroll"
+                    class="overflow-y-auto overflow-x-auto mt-3 overflow-uw"
+                    max-height="628"
+                    v-show="showd2"
+                >
                     <div class="product-item-body pa-4 la-border ml-3 mt-4">
                         <h5 class="subtitle2 text-uppercase">Vida Útil</h5>
                         <v-row dense class="mt-2" justify="center">
@@ -359,8 +396,8 @@
                         <v-divider class="mt-3 mb-4" />
                         <h5 class="subtitle2 text-uppercase">Impacto Ambiental</h5>
                         <v-row class="mt-4" justify="center">
-                            <div style="width: 78%; position: relative;" class="d-flex">
-                                <v-icon large class="markerLoc" :style="{'left': impacto}">la-map-pin</v-icon>
+                            <div style="width: 78%; position: relative" class="d-flex">
+                                <v-icon large class="markerLoc" :style="{ left: impacto }">la-map-pin</v-icon>
                                 <v-col cols="3" style="padding: 20px 0px">
                                     <v-progress-linear background-color="green" class="mt-2"></v-progress-linear>
                                 </v-col>
@@ -512,7 +549,9 @@
                     <h5 class="subtitle1 text-uppercase font-weight-bold mb-2">{{ productDetails?.name ?? "" }}</h5>
                     <h5 class="subtitle1 mb-2">{{ productDetails?.brand?.name ?? "" }}</h5>
                     <div class="d-flex">
-                        <h5 class="subtitle1 mb-2 mr-2">{{ productDetails?.lowest_price ?? "000" }} {{ productDetails?.currency ?? "" }}</h5>
+                        <h5 class="subtitle1 mb-2 mr-2">
+                            {{ productDetails?.lowest_price ?? "000" }} {{ productDetails?.currency ?? "" }}
+                        </h5>
                         <h5 class="caption mb-2">
                             <del>{{ productDetails?.highest_price ?? "000" }} {{ productDetails?.currency ?? "" }}</del>
                         </h5>
@@ -602,9 +641,7 @@
                 </div>
                 <v-row>
                     <v-col cols="3" v-for="(product, i) in footerProducts" :key="i">
-                        <product-item-3
-                            :data="product"
-                        />
+                        <product-item-3 :data="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
@@ -651,8 +688,6 @@ import Carousel from "../components/global/Carousel.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 // import ChartView from "../components/global/ChartView.vue";
 
-
-
 export default {
     data: () => ({
         productDetails: {},
@@ -686,7 +721,7 @@ export default {
     },
     methods: {
         async getDetails() {
-            const res = await this.call_api( "get", `product/details/${this.$route.params.slug}`);
+            const res = await this.call_api("get", `product/details/${this.$route.params.slug}`);
             if (res.data.success) {
                 this.productDetails = res.data.data;
                 this.setVidaUtil(this.productDetails.vida_util);
@@ -699,7 +734,7 @@ export default {
         async getMoreProducts(id) {
             const res = await this.call_api("get", `product/random/6/${id}`);
             if (res.data.success) {
-                res.data?.data?.map(product=>{
+                res.data?.data?.map(product => {
                     this.moreProducts.push({
                         name: product?.name,
                         val: product?.base_price + " " + product?.currency,
@@ -708,14 +743,14 @@ export default {
                         brand: product?.brandName,
                         ref: product?.reference,
                         slug: product?.slug
-                    })
-                })
+                    });
+                });
             }
         },
         async getMoreProducts2(id) {
             const res = await this.call_api("get", `product/random/4/${id}`);
             if (res.data.success) {
-                res.data?.data?.map(product=>{
+                res.data?.data?.map(product => {
                     this.footerProducts.push({
                         name: product?.name,
                         val: product?.base_price + " " + product?.currency,
@@ -724,12 +759,12 @@ export default {
                         brand: product?.brandName,
                         ref: product?.reference,
                         slug: product?.slug
-                    })
-                })
+                    });
+                });
             }
         },
         setVidaUtil(value) {
-            if(value){
+            if (value) {
                 switch (value) {
                     case "1-10 años":
                         this.ratings.vidaUtil = 67;
@@ -749,7 +784,7 @@ export default {
                 }
             }
         },
-        setComposition(data){
+        setComposition(data) {
             this.desserts = [
                 {
                     color: "background-color:#114B99",
@@ -799,33 +834,33 @@ export default {
                     percent: data?.bateria_electrico ?? "-",
                     kg: data?.peso_bateria_electrico ?? "-" + "Kg"
                 }
-            ]
+            ];
         },
-        setImpacto(value){
-            if(value){
+        setImpacto(value) {
+            if (value) {
                 switch (value) {
                     case "Reversible":
-                        this.impacto = "35%";   
+                        this.impacto = "35%";
                         break;
                     case "Sostenible":
-                        this.impacto = "11%";  
+                        this.impacto = "11%";
                         break;
                     case "No Reversible":
-                        this.impacto = "75%";  
+                        this.impacto = "75%";
                         break;
                     default:
-                        this.impacto = "11%";  
+                        this.impacto = "11%";
                         break;
                 }
             }
         }
     },
     mounted() {
-        this.$vuetify.theme.dark = true; 
+        this.$vuetify.theme.dark = true;
     },
     async created() {
         this.getDetails();
-    },
+    }
 };
 </script>
 

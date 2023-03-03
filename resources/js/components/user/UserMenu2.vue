@@ -10,7 +10,8 @@
         <div class="buttons">
             <h6 class="black--text bold">Usuario</h6>
             <custom-button block class="mb-3 mt-3" dark text="Perfil" :to="{ name: 'Profile' }" />
-            <custom-button block class="mb-3" light text="Notificaciones" />
+            <custom-button block class="mb-3" light text="Notificaciones" :to="{ name: 'NotificationAll' }" />
+            <custom-button block class="mb-3" light text="Informacion" :to="{ name: 'PactoAmbiental' }" />
             <div class="divider"></div>
             <custom-button block class="mb-5 mt-5" plain @click="logout">
                 {{ $t("logout") }}

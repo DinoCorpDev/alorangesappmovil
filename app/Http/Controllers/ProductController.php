@@ -69,7 +69,6 @@ class ProductController extends Controller
         return view('backend.product.products.index', compact('products', 'type', 'col_name', 'query', 'sort_search'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      *

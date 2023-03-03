@@ -1,583 +1,547 @@
 <template>
-    <v-container>
-        <v-stepper elevation="0">
-            <v-stepper-header>
-                <v-stepper-step step="1" editable>
-                    <span class="text-uppercase bold">Pedido</span>
-                </v-stepper-step>
+    <v-stepper elevation="0" v-model="step">
+        <v-stepper-header>
+            <v-stepper-step step="1">
+                <step-order text="Lista de Pedido" short-text="Pedido" active first />
+            </v-stepper-step>
 
-                <v-stepper-step step="2" editable>
-                    <span class="text-uppercase bold">Datos</span>
-                </v-stepper-step>
+            <v-stepper-step step="2">
+                <step-order text="Datos" :active="step >= 2" />
+            </v-stepper-step>
 
-                <v-stepper-step step="3" editable>
-                    <span class="text-uppercase bold">Pago</span>
-                </v-stepper-step>
+            <v-stepper-step step="3">
+                <step-order text="Pago" :active="step >= 3" />
+            </v-stepper-step>
 
-                <v-stepper-step step="4" editable>
-                    <span class="text-uppercase bold">Resumen</span>
-                </v-stepper-step>
-            </v-stepper-header>
-            <v-divider />
-            <v-stepper-items>
-                <v-stepper-content step="1">
-                    <h6>Productos</h6>
-                    <v-row>
-                        <v-col cols="12">
-                            <product-cart
-                                price="000.000.000 COP"
-                                quantity="03"
-                                icon1="la-trash"
-                                icon2="la-eye"
-                                icon3="la-eye"
-                            />
-                        </v-col>
-                        <v-col cols="12">
-                            <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
-                        </v-col>
-                        <v-col cols="12">
-                            <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
-                        </v-col>
-                        <v-col cols="12">
-                            <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
-                        </v-col>
-                        <v-col cols="12">
-                            <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
-                        </v-col>
-                        <v-col cols="12">
-                            <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
-                        </v-col>
-                        <v-col cols="12">
-                            <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
-                        </v-col>
-                    </v-row>
-                </v-stepper-content>
-                <v-stepper-content step="2">
-                    <v-row>
-                        <v-col cols="12" md="6">
-                            <v-row>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Facturar a</h6>
-                                        <v-divider class="my-3" />
-                                        <select-custom dark label="Usuario Principal" :items="langSelectItems" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Correo electronico</span>
-                                            <span class="body1">user@gmail.com</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Tipo de Persona</span>
-                                            <span class="body1">Natural</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre</span>
-                                            <span class="body1">Alejando Ramirez</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-3">
-                                            <span class="subtitle1 text-uppercase bold">Documento</span>
-                                            <span class="body1">C.C. 1010101011</span>
-                                        </div>
-                                        <custom-button class="mr-3" text="Editar" />
-                                        <custom-button text="Añadir" />
-                                    </div>
-                                </v-col>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Dirección de servicio</h6>
-                                        <v-divider class="my-3" />
-                                        <label class="label">
-                                            <input type="checkbox" />
-                                            <span class="body-1 black--text text">
-                                                Usar la misma Dirección de envió para que Idovela preste los servicio de
-                                                instalación, mantenimiento y más.
-                                            </span>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <v-divider class="my-3" />
-                                        <custom-button block text="Añadir Dirección" />
-                                    </div>
-                                </v-col>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Dirección de facturacion</h6>
-                                        <v-divider class="my-3" />
-                                        <label class="label">
-                                            <input type="checkbox" />
-                                            <span class="body-1 black--text text">
-                                                Usar la misma Dirección de envió para que Idovela entreguela factura
-                                                física.
-                                            </span>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <v-divider class="my-3" />
-                                        <custom-button block text="Añadir Dirección" />
-                                    </div>
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <v-row>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Dirección de envio</h6>
-                                        <v-divider class="my-3" />
-                                        <select-custom dark label="Usuario Principal" :items="langSelectItems" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                            <span class="body1">Casa 1</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">Avenida siempre viva 123</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Descripción de Dirección
-                                            </span>
-                                            <span class="body1">Casa de tejado con color café y patio verde</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">110611</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">Cundinamarca</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">Bogota d.c</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                            <span class="body1"> -- </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Nombre de quien lo va a recibir
-                                            </span>
-                                            <span class="body1">Alejandro Ramirez</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">+57 300 544 3300</span>
-                                        </div>
-                                        <custom-button class="mr-3" text="Editar" />
-                                        <custom-button text="Añadir" />
-                                    </div>
-                                </v-col>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Costo logístico</h6>
-                                        <v-divider class="my-3" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Fleta adicional de envio a todo el país
-                                            </span>
-                                            <span class="body1">+000.000.000 COP</span>
-                                        </div>
-                                        <div class="d-flex justify-end mb-2">
-                                            <span class="body2 text-uppercase grey--text">
-                                                ( Envió sin costos desde 500.000 COP )
-                                            </span>
-                                        </div>
-                                    </div>
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                        <v-col sm="12" class="d-none d-sm-block">
-                            <v-row>
-                                <v-col cols="12" class="d-flex justify-space-between">
-                                    <custom-button text="Volver" />
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <h6 class="text-uppercase bold">Total 000.000.000 COP</h6>
-                                    </div>
-                                    <custom-button text="Continuar" />
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                    </v-row>
-                </v-stepper-content>
-                <v-stepper-content step="3">
-                    <v-row>
-                        <v-col cols="12" md="6">
-                            <div class="form">
-                                <h6 class="black--text bold">Medio de Pago</h6>
-                                <v-divider class="my-3" />
-                                <v-row>
-                                    <v-col cols="3">
-                                        <type-payment img="/public/assets/img/transferir.png" text="Pse" />
-                                    </v-col>
-                                    <v-col cols="3">
-                                        <type-payment img="/public/assets/img/credito.png" text="Credito" />
-                                    </v-col>
-                                    <v-col cols="3">
-                                        <type-payment img="/public/assets/img/debito.png" text="Debito" />
-                                    </v-col>
-                                    <v-col cols="3">
-                                        <type-payment img="/public/assets/img/transferir.png" text="Transferir" />
-                                    </v-col>
-                                </v-row>
-                                <v-divider class="my-3" />
-                                <label class="text-uppercase">Tipo de Persona</label>
-                                <select-custom dark label="Tipo de persona" :items="langSelectItems" />
-                                <label class="text-uppercase">Banco</label>
-                                <select-custom dark label="Seleccionar banco" :items="langSelectItems" />
-                                <custom-button text="Aplicar" />
-                            </div>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <div class="form">
-                                <h6 class="black--text bold">Codigo Promocional</h6>
-                                <v-divider class="my-3" />
-                                <label class="black--text text-uppercase">(Regalo / Referido)</label>
-                                <custom-input />
-                            </div>
-                        </v-col>
-                        <v-col sm="12" class="d-none d-sm-block">
-                            <v-row>
-                                <v-col cols="12" class="d-flex justify-space-between">
-                                    <custom-button text="Volver" />
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <h6 class="text-uppercase bold">Total 000.000.000 COP</h6>
-                                    </div>
-                                    <custom-button text="Continuar" />
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                    </v-row>
-                </v-stepper-content>
-                <v-stepper-content step="4">
-                    <v-row>
-                        <v-col cols="12">
-                            <div class="div-alert">
-                                <div class="information">
-                                    <div>
-                                        <span class="success"><i class="las la-check"></i></span>
-                                    </div>
-                                    <div>
-                                        <h6 class="font-weight-bold">Gracias por registrarse</h6>
-                                        <p class="body-1">
-                                            Enviaremos al e-mail de facturación un correo de verificación por la compra
-                                        </p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <custom-button dark text="Finalizar" />
-                                </div>
-                            </div>
-                        </v-col>
-                        <v-col cols="12">
-                            <order
-                                order="ID1222"
-                                day="07"
-                                month="Julio"
-                                year="2020"
-                                colorStatus="red"
-                                descriptionStatus="Por aprobar pedido"
-                                icon1="la-download"
-                                icon2="la-print"
-                            />
-                        </v-col>
-                    </v-row>
-                    <v-divider class="mb-3" />
-                    <v-row>
-                        <v-col cols="12" md="6">
-                            <v-row>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Facturar a</h6>
-                                        <v-divider class="my-3" />
-                                        <select-custom dark label="Usuario Principal" :items="langSelectItems" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Correo electronico</span>
-                                            <span class="body1">user@gmail.com</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Tipo de Persona</span>
-                                            <span class="body1">Natural</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre</span>
-                                            <span class="body1">Alejando Ramirez</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-3">
-                                            <span class="subtitle1 text-uppercase bold">Documento</span>
-                                            <span class="body1">C.C. 1010101011</span>
-                                        </div>
-                                        <custom-button class="mr-3" text="Editar" />
-                                        <custom-button text="Añadir" />
-                                    </div>
-                                </v-col>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Dirección de servicio</h6>
-                                        <v-divider class="my-3" />
-                                        <label class="label">
-                                            <input type="checkbox" />
-                                            <span class="body-1 black--text text">
-                                                Usar la misma Dirección de envió para que Idovela preste los servicio de
-                                                instalación, mantenimiento y más.
-                                            </span>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <v-divider class="my-3" />
-                                        <custom-button block text="Añadir Dirección" />
-                                    </div>
-                                </v-col>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Dirección de facturacion</h6>
-                                        <v-divider class="my-3" />
-                                        <label class="label">
-                                            <input type="checkbox" />
-                                            <span class="body-1 black--text text">
-                                                Usar la misma Dirección de envió para que Idovela entreguela factura
-                                                física.
-                                            </span>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <v-divider class="my-3" />
-                                        <custom-button block text="Añadir Dirección" />
-                                    </div>
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <v-row>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Dirección de envio</h6>
-                                        <v-divider class="my-3" />
-                                        <select-custom dark label="Usuario Principal" :items="langSelectItems" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                            <span class="body1">Casa 1</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">Avenida siempre viva 123</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Descripción de Dirección
-                                            </span>
-                                            <span class="body1">Casa de tejado con color café y patio verde</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">110611</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">Cundinamarca</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">Bogota d.c</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                            <span class="body1"> -- </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Nombre de quien lo va a recibir
-                                            </span>
-                                            <span class="body1">Alejandro Ramirez</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">+57 300 544 3300</span>
-                                        </div>
-                                        <custom-button class="mr-3" text="Editar" />
-                                        <custom-button text="Añadir" />
-                                    </div>
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                    </v-row>
-                    <div class="my-5">
-                        <h6>Lista de Pedido</h6>
-                        <v-divider class="my-3" />
+            <v-stepper-step step="4">
+                <step-order text="Resumen" :active="step >= 4" last />
+            </v-stepper-step>
+        </v-stepper-header>
+        <v-divider />
+        <v-stepper-items>
+            <v-stepper-content step="1">
+                <h6>Productos</h6>
+                <v-row>
+                    <v-col cols="12">
+                        <product-cart quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                    </v-col>
+                    <v-col cols="12">
+                        <product-cart price="120.000.000" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                    </v-col>
+                    <v-col cols="12">
+                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                    </v-col>
+                    <v-col cols="12">
+                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                    </v-col>
+                    <v-col cols="12">
+                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                    </v-col>
+                    <v-col cols="12">
+                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                    </v-col>
+                    <v-col cols="12">
+                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                    </v-col>
+                    <v-col cols="12" class="d-flex justify-space-between">
+                        <total />
+                        <div class="mb-2">
+                            <custom-button text="Continuar" @click="step = 2" />
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-stepper-content>
+            <v-stepper-content step="2">
+                <v-row>
+                    <v-col cols="12" md="6">
                         <v-row>
                             <v-col cols="12">
-                                <product-cart
-                                    price="000.000.000 COP"
-                                    quantity="03"
-                                    icon1="la-trash"
-                                    icon2="la-eye"
-                                    icon3="la-eye"
-                                />
+                                <div class="form">
+                                    <h6 class="black--text bold">Facturar a</h6>
+                                    <v-divider class="my-3" />
+                                    <select-custom dark label="Usuario Principal" :items="langSelectItems" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Correo electronico</span>
+                                        <span class="body1">user@gmail.com</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Tipo de Persona</span>
+                                        <span class="body1">Natural</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Nombre</span>
+                                        <span class="body1">Alejando Ramirez</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-3">
+                                        <span class="subtitle1 text-uppercase bold">Documento</span>
+                                        <span class="body1">C.C. 1010101011</span>
+                                    </div>
+                                    <custom-button class="mr-3" text="Editar" />
+                                    <custom-button text="Añadir" />
+                                </div>
                             </v-col>
                             <v-col cols="12">
-                                <product-cart
-                                    price="000.000.000 COP"
-                                    quantity="03"
-                                    icon1="la-trash"
-                                    icon2="la-eye"
-                                    icon3="la-eye"
-                                />
+                                <div class="form">
+                                    <h6 class="black--text bold">Dirección de servicio</h6>
+                                    <v-divider class="my-3" />
+                                    <label class="label">
+                                        <input type="checkbox" />
+                                        <span class="body-1 black--text text">
+                                            Usar la misma Dirección de envió para que Idovela preste los servicio de
+                                            instalación, mantenimiento y más.
+                                        </span>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <v-divider class="my-3" />
+                                    <custom-button block text="Añadir Dirección" />
+                                </div>
                             </v-col>
                             <v-col cols="12">
-                                <product-cart
-                                    price="000.000.000 COP"
-                                    quantity="03"
-                                    icon1="la-trash"
-                                    icon2="la-eye"
-                                    icon3="la-eye"
-                                />
+                                <div class="form">
+                                    <h6 class="black--text bold">Dirección de facturacion</h6>
+                                    <v-divider class="my-3" />
+                                    <label class="label">
+                                        <input type="checkbox" />
+                                        <span class="body-1 black--text text">
+                                            Usar la misma Dirección de envió para que Idovela entreguela factura física.
+                                        </span>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <v-divider class="my-3" />
+                                    <custom-button block text="Añadir Dirección" />
+                                </div>
                             </v-col>
                         </v-row>
-                        <v-divider class="my-3" />
-                        <div class="div-total">
-                            <div>
-                                <p class="subtitle-2 text-uppercase font-weight-bold">Sub-total</p>
-                                <p class="body-2">000.000.000 COP</p>
+                    </v-col>
+                    <v-col cols="12" md="6">
+                        <v-row>
+                            <v-col cols="12">
+                                <div class="form">
+                                    <h6 class="black--text bold">Dirección de envio</h6>
+                                    <v-divider class="my-3" />
+                                    <select-custom dark label="Usuario Principal" :items="langSelectItems" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                        <span class="body1">Casa 1</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                        <span class="body1">Avenida siempre viva 123</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                                        <span class="body1">Casa de tejado con color café y patio verde</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                        <span class="body1">110611</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                        <span class="body1">Cundinamarca</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                        <span class="body1">Bogota d.c</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                        <span class="body1"> -- </span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">
+                                            Nombre de quien lo va a recibir
+                                        </span>
+                                        <span class="body1">Alejandro Ramirez</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                        <span class="body1">+57 300 544 3300</span>
+                                    </div>
+                                    <custom-button class="mr-3" text="Editar" />
+                                    <custom-button text="Añadir" />
+                                </div>
+                            </v-col>
+                            <v-col cols="12">
+                                <div class="form">
+                                    <h6 class="black--text bold">Costo logístico</h6>
+                                    <v-divider class="my-3" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">
+                                            Fleta adicional de envio a todo el país
+                                        </span>
+                                        <span class="body1">+000.000.000 COP</span>
+                                    </div>
+                                    <div class="d-flex justify-end mb-2">
+                                        <span class="body2 text-uppercase grey--text">
+                                            ( Envió sin costos desde 500.000 COP )
+                                        </span>
+                                    </div>
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-col>
+                    <v-col cols="12" class="d-flex justify-space-between">
+                        <div class="mb-2">
+                            <custom-button text="Volver" @click="step = 1" />
+                        </div>
+                        <total />
+                        <div class="mb-2">
+                            <custom-button text="Continuar" @click="step = 3" />
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-stepper-content>
+            <v-stepper-content step="3">
+                <v-row>
+                    <v-col cols="12" md="6">
+                        <div class="form">
+                            <h6 class="black--text bold">Medio de Pago</h6>
+                            <v-divider class="my-3" />
+                            <v-row>
+                                <v-col cols="3">
+                                    <type-payment img="/public/assets/img/transferir.png" text="Pse" />
+                                </v-col>
+                                <v-col cols="3">
+                                    <type-payment img="/public/assets/img/credito.png" text="Credito" />
+                                </v-col>
+                                <v-col cols="3">
+                                    <type-payment img="/public/assets/img/debito.png" text="Debito" />
+                                </v-col>
+                                <v-col cols="3">
+                                    <type-payment img="/public/assets/img/transferir.png" text="Transferir" />
+                                </v-col>
+                            </v-row>
+                            <v-divider class="my-3" />
+                            <label class="text-uppercase">Tipo de Persona</label>
+                            <select-custom dark label="Tipo de persona" :items="langSelectItems" />
+                            <label class="text-uppercase">Banco</label>
+                            <select-custom dark label="Seleccionar banco" :items="langSelectItems" />
+                            <custom-button text="Aplicar" />
+                        </div>
+                    </v-col>
+                    <v-col cols="12" md="6">
+                        <div class="form">
+                            <h6 class="black--text bold">Codigo Promocional</h6>
+                            <v-divider class="my-3" />
+                            <label class="black--text text-uppercase">(Regalo / Referido)</label>
+                            <custom-input />
+                        </div>
+                    </v-col>
+                    <v-col cols="12" class="d-flex justify-space-between">
+                        <div class="mb-2">
+                            <custom-button text="Volver" @click="step = 2" />
+                        </div>
+                        <total />
+                        <div class="mb-2">
+                            <custom-button text="Continuar" @click="step = 4" />
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-stepper-content>
+            <v-stepper-content step="4">
+                <v-row>
+                    <v-col cols="12">
+                        <div class="div-alert">
+                            <div class="information">
+                                <div>
+                                    <span class="success"><i class="las la-check"></i></span>
+                                </div>
+                                <div>
+                                    <h6 class="font-weight-bold">Gracias por registrarse</h6>
+                                    <p class="body-1">
+                                        Enviaremos al e-mail de facturación un correo de verificación por la compra
+                                    </p>
+                                </div>
                             </div>
                             <div>
-                                <p class="subtitle-2 text-uppercase font-weight-bold">Iva</p>
-                                <p class="body-2">000.000.000 COP</p>
-                            </div>
-                            <div>
-                                <p class="subtitle-2 text-uppercase font-weight-bold">Flete</p>
-                                <p class="body-2">000.000.000 COP</p>
-                            </div>
-                            <div>
-                                <p class="subtitle-1 text-uppercase font-weight-bold">Total</p>
-                                <p class="body-1">000.000.000 COP</p>
+                                <custom-button color="#858585" text="Finalizar" style="color: #ffffff" />
                             </div>
                         </div>
-                        <v-divider class="my-3" />
-                    </div>
+                    </v-col>
+                    <v-col cols="12">
+                        <order
+                            order="ID1222"
+                            day="07"
+                            month="Julio"
+                            year="2020"
+                            colorStatus="red"
+                            descriptionStatus="Por aprobar pedido"
+                            icon1="la-download"
+                            icon2="la-print"
+                        />
+                    </v-col>
+                </v-row>
+                <v-divider class="mb-3" />
+                <v-row>
+                    <v-col cols="12" md="6">
+                        <v-row>
+                            <v-col cols="12">
+                                <div class="form">
+                                    <h6 class="black--text bold">Facturar a</h6>
+                                    <v-divider class="my-3" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Correo electronico</span>
+                                        <span class="body1">user@gmail.com</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Tipo de Persona</span>
+                                        <span class="body1">Natural</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Nombre</span>
+                                        <span class="body1">Alejando Ramirez</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-3">
+                                        <span class="subtitle1 text-uppercase bold">Documento</span>
+                                        <span class="body1">C.C. 1010101011</span>
+                                    </div>
+                                </div>
+                            </v-col>
+                            <v-col cols="12">
+                                <div class="form">
+                                    <h6 class="black--text bold">Dirección de servicio</h6>
+                                    <v-divider class="my-3" />
+                                    <label class="label">
+                                        <input type="checkbox" />
+                                        <span class="body-1 black--text text">
+                                            Usar la misma Dirección de envió para que Idovela preste los servicio de
+                                            instalación, mantenimiento y más.
+                                        </span>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <v-divider class="my-3" />
+                                </div>
+                            </v-col>
+                            <v-col cols="12">
+                                <div class="form">
+                                    <h6 class="black--text bold">Dirección de facturacion</h6>
+                                    <v-divider class="my-3" />
+                                    <label class="label">
+                                        <input type="checkbox" />
+                                        <span class="body-1 black--text text">
+                                            Usar la misma Dirección de envió para que Idovela entreguela factura física.
+                                        </span>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <v-divider class="my-3" />
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-col>
+                    <v-col cols="12" md="6">
+                        <v-row>
+                            <v-col cols="12">
+                                <div class="form">
+                                    <h6 class="black--text bold">Dirección de envio</h6>
+                                    <v-divider class="my-3" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                        <span class="body1">Casa 1</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                        <span class="body1">Avenida siempre viva 123</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                                        <span class="body1">Casa de tejado con color café y patio verde</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                        <span class="body1">110611</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                        <span class="body1">Cundinamarca</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                        <span class="body1">Bogota d.c</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                        <span class="body1"> -- </span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">
+                                            Nombre de quien lo va a recibir
+                                        </span>
+                                        <span class="body1">Alejandro Ramirez</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                        <span class="body1">+57 300 544 3300</span>
+                                    </div>
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-col>
+                </v-row>
+                <div class="my-5">
+                    <h6>Lista de Pedido</h6>
+                    <v-divider class="my-3" />
                     <v-row>
-                        <v-col cols="12" sm="6">
-                            <div class="form">
-                                <h6 class="black--text bold">Seguimiento de envió</h6>
-                                <v-divider class="my-3" />
-                                <v-timeline dense>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">
-                                                    En verificación
-                                                </span>
-                                            </v-col>
-                                            <v-col>
-                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">Facturación</span>
-                                            </v-col>
-                                            <v-col>
-                                                <span class="body2 font-weight-bold">sabado 09, abril</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">Alistamiento</span>
-                                            </v-col>
-                                            <v-col>
-                                                <span class="body2 font-weight-bold">lunes 05, julio</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">
-                                                    Recogido por transportadora
-                                                </span>
-                                            </v-col>
-                                            <v-col>
-                                                <span class="body2 font-weight-bold">miércoles 07, julio</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">
-                                                    Entregado a cliente
-                                                </span>
-                                            </v-col>
-                                            <v-col>
-                                                <span class="body2 font-weight-bold">viernes 09, julio</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                </v-timeline>
-                                <a href="#" class="black--text text-decoration-underline font-weight-bold">
-                                    Conocer la logistica de envió
-                                </a>
-                            </div>
+                        <v-col cols="12">
+                            <product-cart quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                         </v-col>
-                        <v-col cols="12" sm="6">
-                            <div class="form">
-                                <h6 class="black--text bold">Seguimiento de servicio</h6>
-                                <v-divider class="my-3" />
-                                <v-timeline dense>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">Comprado</span>
-                                            </v-col>
-                                            <v-col>
-                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">Agendamiento</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">
-                                                    En preparación
-                                                </span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">
-                                                    Verificación de adecuación
-                                                </span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">
-                                                    Instalación concluida
-                                                </span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                </v-timeline>
-                                <a href="#" class="black--text text-decoration-underline font-weight-bold">
-                                    Conocer la logistica de envió
-                                </a>
-                            </div>
+                        <v-col cols="12">
+                            <product-cart quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        </v-col>
+                        <v-col cols="12">
+                            <product-cart quantity="03" icon1="la-trash" icon2="la-eye" icon3="la-eye" />
                         </v-col>
                     </v-row>
-                </v-stepper-content>
-            </v-stepper-items>
-        </v-stepper>
-    </v-container>
+                    <v-divider class="my-3" />
+                    <div class="div-total">
+                        <div>
+                            <p class="subtitle-2 text-uppercase font-weight-bold">Sub-total</p>
+                            <p class="body-2">000.000.000 COP</p>
+                        </div>
+                        <div>
+                            <p class="subtitle-2 text-uppercase font-weight-bold">Iva</p>
+                            <p class="body-2">000.000.000 COP</p>
+                        </div>
+                        <div>
+                            <p class="subtitle-2 text-uppercase font-weight-bold">Flete</p>
+                            <p class="body-2">000.000.000 COP</p>
+                        </div>
+                        <div>
+                            <p class="subtitle-1 text-uppercase font-weight-bold">Total</p>
+                            <p class="body-1">000.000.000 COP</p>
+                        </div>
+                    </div>
+                    <v-divider class="my-3" />
+                </div>
+                <v-row>
+                    <v-col cols="12" sm="6">
+                        <div class="form">
+                            <h6 class="black--text bold">Seguimiento de envió</h6>
+                            <v-divider class="my-3" />
+                            <v-timeline dense>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold"> En verificación </span>
+                                        </v-col>
+                                        <v-col>
+                                            <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold">Facturación</span>
+                                        </v-col>
+                                        <v-col>
+                                            <span class="body2 font-weight-bold">sabado 09, abril</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold">Alistamiento</span>
+                                        </v-col>
+                                        <v-col>
+                                            <span class="body2 font-weight-bold">lunes 05, julio</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold">
+                                                Recogido por transportadora
+                                            </span>
+                                        </v-col>
+                                        <v-col>
+                                            <span class="body2 font-weight-bold">miércoles 07, julio</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold">
+                                                Entregado a cliente
+                                            </span>
+                                        </v-col>
+                                        <v-col>
+                                            <span class="body2 font-weight-bold">viernes 09, julio</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                            </v-timeline>
+                            <a href="#" class="black--text text-decoration-underline font-weight-bold">
+                                Conocer la logistica de envió
+                            </a>
+                        </div>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                        <div class="form">
+                            <h6 class="black--text bold">Seguimiento de servicio</h6>
+                            <v-divider class="my-3" />
+                            <v-timeline dense>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold">Comprado</span>
+                                        </v-col>
+                                        <v-col>
+                                            <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold">Agendamiento</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold"> En preparación </span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold">
+                                                Verificación de adecuación
+                                            </span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                                <v-timeline-item color="black" small fill-dot>
+                                    <v-row>
+                                        <v-col>
+                                            <span class="body2 text-uppercase font-weight-bold">
+                                                Instalación concluida
+                                            </span>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                            </v-timeline>
+                            <a href="#" class="black--text text-decoration-underline font-weight-bold">
+                                Conocer la logistica de envió
+                            </a>
+                        </div>
+                    </v-col>
+                    <v-col cols="12" class="d-flex justify-space-between">
+                        <div class="mb-2">
+                            <custom-button text="Volver" @click="step = 3" />
+                        </div>
+                        <total />
+                    </v-col>
+                </v-row>
+            </v-stepper-content>
+        </v-stepper-items>
+    </v-stepper>
 </template>
 
 <script>
@@ -586,6 +550,8 @@ import CustomInput from "../../components/global/CustomInput.vue";
 import Order from "../../components/global/Order.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
+import StepOrder from "../../components/icons/StepOrder.vue";
+import Total from "../../components/global/Total.vue";
 import TypePayment from "../../components/global/TypePayment.vue";
 
 export default {
@@ -594,12 +560,15 @@ export default {
         CustomInput,
         ProductCart,
         SelectCustom,
+        StepOrder,
         Order,
-        TypePayment
+        TypePayment,
+        Total
     },
     data() {
         return {
-            langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"]
+            langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"],
+            step: 1
         };
     }
 };
@@ -607,31 +576,24 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep {
-    .v-stepper__header {
-        box-shadow: none;
+    .v-stepper__step {
+        padding: 2px;
+        flex: 1;
     }
 
-    .v-stepper__content {
-        padding: 24px 0px;
+    .v-stepper__step__step {
+        display: none;
     }
 
-    .v-stepper__step--editable {
-        background-color: #dfdfdf;
-        height: 50%;
-        box-shadow: none;
-        border-radius: 10px;
+    .v-stepper__label {
+        display: block !important;
+        font-size: 12px;
     }
 
-    .v-stepper__step .v-stepper__label {
-        color: #000000 !important;
-    }
-
-    .v-stepper__step .v-stepper__label:hover {
-        color: #ffffff !important;
-    }
-
-    .theme--light.v-stepper .v-stepper__step--editable:hover {
-        background-color: #000000;
+    @media (min-width: 600px) {
+        .v-stepper__label {
+            font-size: 16px;
+        }
     }
 
     .v-timeline {

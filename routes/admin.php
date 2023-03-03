@@ -220,7 +220,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/orders/invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('orders.invoice.download');
     Route::get('/orders/print/{order_id}', [InvoiceController::class, 'invoice_print'])->name('orders.invoice.print');
     Route::post('/orders/add-tracking-information', [OrderController::class, 'add_tracking_information'])->name('orders.add_tracking_information');
-    Route::get('/orders/status/{order_id}', [OrderController::class, 'order_status'])->name('order.status');
+    Route::get('/orders/update/status/{order_id}', [OrderController::class, 'order_status'])->name('order.status.change');
 
     //Coupons
     Route::resource('coupon', CouponController::class);

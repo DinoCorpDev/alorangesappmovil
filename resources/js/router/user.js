@@ -1,5 +1,6 @@
 let Cart = () => import("../pages/user/Cart");
 let Invoices = () => import("../pages/user/Invoices");
+let InvoicesDetails = () => import("../pages/user/InvoicesDetails");
 let Favorites = () => import("../pages/user/Favorites");
 let DashBoard = () => import("../pages/user/Dashboard");
 let PurchaseHistory = () => import("../pages/user/PurchaseHistory");
@@ -16,6 +17,7 @@ let Profile = () => import("../pages/user/Profile");
 let UserLayout = () => import("../components/user/UserLayout");
 let NotificationAll = () => import("../pages/user/Notification1");
 let Notification = () => import("../pages/user/Notification2");
+let PactoAmbiental = () => import("../pages/user/PactoAmbiental");
 let Error404 = () => import("../pages/errors/404");
 
 export default [
@@ -34,6 +36,12 @@ export default [
                 path: "invoices",
                 component: Invoices,
                 name: "Invoices",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "invoicesDetails",
+                component: InvoicesDetails,
+                name: "InvoicesDetails",
                 meta: { requiresAuth: true }
             },
             {
@@ -119,13 +127,19 @@ export default [
             {
                 path: "notifications",
                 component: NotificationAll,
-                name: "notification-all",
+                name: "NotificationAll",
                 meta: { requiresAuth: true }
             },
             {
                 path: "notification",
                 component: Notification,
-                name: "notification",
+                name: "Notification",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "pactoAmbiental",
+                component: PactoAmbiental,
+                name: "PactoAmbiental",
                 meta: { requiresAuth: true }
             }
         ]
