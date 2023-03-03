@@ -64,7 +64,9 @@
                     <h5 class="subtitle1 text-uppercase font-weight-bold mb-2">{{ productDetails?.name ?? "" }}</h5>
                     <h5 class="subtitle1 mb-2">{{ productDetails?.brand?.name ?? "" }}</h5>
                     <div class="d-flex">
-                        <h5 class="subtitle1 mb-2 mr-2">{{ productDetails?.lowest_price ?? "000" }} {{ productDetails?.currency ?? "" }}</h5>
+                        <h5 class="subtitle1 mb-2 mr-2">
+                            {{ productDetails?.lowest_price ?? "000" }} {{ productDetails?.currency ?? "" }}
+                        </h5>
                         <h5 class="caption mb-2">
                             <del>{{ productDetails?.highest_price ?? "000" }} {{ productDetails?.currency ?? "" }}</del>
                         </h5>
@@ -132,9 +134,7 @@
                 </div>
                 <v-row>
                     <v-col cols="3" v-for="(product, i) in footerProducts" :key="i">
-                        <product-item-3
-                            :data="product"
-                        />
+                        <product-item-3 :data="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
@@ -232,7 +232,7 @@ export default {
     },
     methods: {
         async getDetails() {
-            const res = await this.call_api( "get", `product/details/${this.$route.params.slug}`);
+            const res = await this.call_api("get", `product/details/${this.$route.params.slug}`);
             if (res.data.success) {
                 this.productDetails = res.data.data;
                 this.getMoreProducts(this.productDetails?.id);
@@ -252,7 +252,7 @@ export default {
             }
         },
         setMoreProducts(value, data) {
-            data?.map(product=>{
+            data?.map(product => {
                 this[value].push({
                     name: product?.name,
                     val: product?.base_price + " " + product?.currency,
@@ -261,8 +261,8 @@ export default {
                     brand: product?.brandName,
                     ref: product?.reference,
                     slug: product?.slug
-                })
-            })
+                });
+            });
         }
     },
     mounted() {
