@@ -14,38 +14,14 @@ class AddMoreFieldsToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table
-                ->text('reference')
-                ->nullable()
-                ->after('shop_id');
-            $table
-                ->text('currency')
-                ->nullable()
-                ->after('discount_end_date');
-            $table
-                ->text('warranty_text')
-                ->nullable()
-                ->after('has_warranty');
-            $table
-                ->text('shipping')
-                ->nullable()
-                ->after('num_of_sale');
-            $table
-                ->text('intake')
-                ->nullable()
-                ->after('shipping');
-            $table
-                ->text('material')
-                ->nullable()
-                ->after('intake');
-            $table
-                ->text('unit_metering')
-                ->nullable()
-                ->after('material');
-            $table
-                ->text('engaste')
-                ->nullable()
-                ->after('unit_metering');
+            $table->text('reference')->nullable()->after('shop_id');
+            $table->text('currency')->nullable()->after('discount_end_date');
+            $table->text('warranty_text')->nullable()->after('has_warranty');
+            $table->text('shipping')->nullable()->after('num_of_sale');
+            $table->text('intake')->nullable()->after('shipping');
+            $table->text('material')->nullable()->after('intake');
+            $table->text('unit_metering')->nullable()->after('material');
+            $table->text('engaste')->nullable()->after('unit_metering');
         });
     }
 

@@ -1,21 +1,25 @@
 <template>
-    <div>
-        <v-select
-            class="text-uppercase"
-            :items="items"
-            :label="label"
-            :dark="dark"
-            :light="light"
-            solo
-            append-icon="las la-angle-down"
-        >
-            <template v-slot:item="{ item, attrs, on }">
-                <v-list-item v-bind="attrs" v-on="on">
-                    <v-list-item-title :id="attrs['aria-labelledby']" v-text="item"></v-list-item-title>
-                </v-list-item>
-            </template>
-        </v-select>
-    </div>
+    <v-select
+        :dark="dark"
+        :error-messages="errorMessages"
+        :hide-details="hideDetails"
+        :item-text="itemText"
+        :item-value="itemValue"
+        :items="items"
+        :light="light"
+        :placeholder="placeholder"
+        :required="required"
+        :value="value"
+        @blur="$emit('blur', $event)"
+        @input="$emit('input', $event)"
+        append-icon="las la-angle-down"
+        clear-icon="las la-times"
+        clearable
+        flat
+        outlined
+        rounded
+        solo
+    ></v-select>
 </template>
 
 <script>
@@ -26,15 +30,41 @@ export default {
             type: Boolean,
             default: false
         },
+        errorMessages: {
+            type: Array,
+            default: () => []
+        },
+        hideDetails: {
+            type: [Boolean, String],
+            default: false
+        },
+        itemText: {
+            type: String,
+            default: "text"
+        },
+        itemValue: {
+            type: String,
+            default: "value"
+        },
+        items: {
+            type: Array,
+            default: () => []
+        },
         light: {
             type: Boolean,
             default: false
         },
-        label: {
-            type: String
+        placeholder: {
+            type: String,
+            default: "--"
         },
-        items: {
-            type: Array
+        required: {
+            type: Boolean,
+            default: false
+        },
+        value: {
+            type: [String, Number, Boolean, Object, Array],
+            default: null
         }
     }
 };
@@ -42,31 +72,60 @@ export default {
 
 <style lang="scss" scoped>
 .v-select {
-    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
 
     &::v-deep {
-        .v-input__control {
+        .v-input__control,
+        .v-input__slot {
             min-height: 38px;
+        }
 
-            .v-input__slot {
-                background: #18191a;
-                padding: 0 18px !important;
+        &:not(.v-input--has-state) {
+            .v-input__slot fieldset {
+                color: #dfdfdf;
             }
         }
 
-        .v-label {
-            font-family: "Roboto", sans-serif;
-            font-size: 15px;
-            color: #ffffff;
+        .v-input__icon {
+            min-width: 12px;
+            width: 12px;
+            height: 12px;
+
+            .v-icon {
+                font-size: 12px;
+            }
+        }
+    }
+
+    &.v-text-field--rounded {
+        border-radius: 5px;
+    }
+}
+
+.theme--light {
+    .v-select {
+        &::v-deep {
+            .v-input__slot {
+                background: #f5f5f5;
+
+                &:hover {
+                    background: #dfdfdf;
+                }
+            }
         }
 
-        .v-icon {
-            font-size: 15px;
-        }
-
-        .theme--dark {
-            &.v-list {
-                background: #18191a;
+        &.v-text-field--outlined {
+            &::v-deep {
+                &:not(.v-input--has-state) {
+                    .v-input__slot {
+                        &:hover,
+                        fieldset {
+                            border-color: #f5f5f5;
+                        }
+                    }
+                }
             }
         }
     }

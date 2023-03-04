@@ -28,9 +28,7 @@ class AuthController extends Controller
         } elseif (get_setting('customer_login_with') == 'phone') {
             $user = User::where('phone', $request->phone)->first();
         } else {
-            $user = User::where('phone', $request->phone)
-                ->orWhere('email', $request->email)
-                ->first();
+            $user = User::where('phone', $request->phone)->orWhere('email', $request->email)->first();
         }
 
         if ($user != null) {
@@ -41,32 +39,38 @@ class AuthController extends Controller
             ]);
         }
         if (!$request->has('phone') || !$request->has('email')) {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => translate('Email & phone is required.'),
-                    'data' => null,
-                ],
-                200
-            );
+            return response()->json([
+                'success' => false,
+                'message' => translate('Email & phone is required.'),
+                'data' => null,
+            ], 200);
         }
 
         $user = new User([
-            'name' => $request->name,
-            'secondName' => $request->secondName,
-            'firstLastname' => $request->firstLastname,
-            'secondLastname' => $request->secondLastname,
-            'phone' => $request->phone,
-            'documentNumber' => $request->documentNumber,
-            'nameAdress' => $request->nameAdress,
-            'adress' => $request->adress,
-            'aditionalAdress' => $request->aditionalAdress,
-            'postalCode' => $request->postalCode,
-            'barrio' => $request->barrio,
             'email' => $request->email,
-            'phone' => $request->phone,
-            'factoryName' => $request->factoryName,
             'password' => Hash::make($request->password),
+            'person_type' => $request->personType,
+            'first_name' => $request->firstName,
+            'second_name' => $request->secondName,
+            'first_lastname' => $request->firstLastname,
+            'second_lastname' => $request->secondLastname,
+            'document_type' => $request->documentType,
+            'document_number' => $request->documentNumber,
+            'company_name' => $request->companyName,
+            'company_type' => $request->companyType,
+            'company_document_type' => $request->companyDocumentType,
+            'company_document_number' => $request->companyDocumentNumber,
+            'address' => $request->address,
+            'address_name' => $request->addressName,
+            'address_details' => $request->addressDetails,
+            'country_id' => $request->country,
+            'state_id' => $request->state,
+            'city_id' => $request->city,
+            'town' => $request->town,
+            'postal_code' => $request->postalCode,
+            'phone' => $request->phone,
+            'policies_and_cookies_consent' => $request->policiesAndCookiesConsent,
+            'offers_consent' => $request->offersConsent,
             // 'verification_code' => rand(100000, 999999),
         ]);
         $user->save();
@@ -117,13 +121,10 @@ class AuthController extends Controller
             $user = null;
         }
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => translate('Invalid login information'),
-                ],
-                200
-            );
+            return response()->json([
+                'success' => false,
+                'message' => translate('Invalid login information'),
+            ], 200);
         }
 
         if ($user->user_type == 'customer') {
@@ -142,15 +143,12 @@ class AuthController extends Controller
                         $user->email_verified_at == null)
                 ) {
                     $user->notify(new EmailVerificationNotification());
-                    return response()->json(
-                        [
-                            'success' => true,
-                            'verified' => false,
-                            'email_verified' => false,
-                            'message' => translate('Please verify your account'),
-                        ],
-                        200
-                    );
+                    return response()->json([
+                        'success' => true,
+                        'verified' => false,
+                        'email_verified' => false,
+                        'message' => translate('Please verify your account'),
+                    ], 200);
                 } elseif (
                     (get_setting('customer_login_with') == 'phone' ||
                         (get_setting('customer_login_with') == 'email_phone' &&
@@ -158,28 +156,22 @@ class AuthController extends Controller
                     $user->phone_verified_at == null
                 ) {
                     (new SmsServices())->phoneVerificationSms($user->phone, $user->verification_code);
-                    return response()->json(
-                        [
-                            'success' => true,
-                            'verified' => false,
-                            'phone_verified' => false,
-                            'message' => translate('Please verify your account'),
-                        ],
-                        200
-                    );
+                    return response()->json([
+                        'success' => true,
+                        'verified' => false,
+                        'phone_verified' => false,
+                        'message' => translate('Please verify your account'),
+                    ], 200);
                 }
             }
 
             $tokenResult = $user->createToken('Personal Access Token');
             return $this->loginSuccess($tokenResult, $user);
         } else {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => translate('Only customers can login here'),
-                ],
-                200
-            );
+            return response()->json([
+                'success' => false,
+                'message' => translate('Only customers can login here'),
+            ], 200);
         }
     }
 
@@ -201,22 +193,16 @@ class AuthController extends Controller
         }
 
         if (!$user) {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => translate('No user found with this email address.'),
-                ],
-                200
-            );
+            return response()->json([
+                'success' => false,
+                'message' => translate('No user found with this email address.'),
+            ], 200);
         }
         if ($user->verification_code != $request->code) {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => translate('Code does not match.'),
-                ],
-                200
-            );
+            return response()->json([
+                'success' => false,
+                'message' => translate('Code does not match.'),
+            ], 200);
         } else {
             if (
                 get_setting('customer_login_with') == 'email' ||
@@ -251,13 +237,10 @@ class AuthController extends Controller
         }
 
         if (!$user) {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => translate('No user found with this email address.'),
-                ],
-                200
-            );
+            return response()->json([
+                'success' => false,
+                'message' => translate('No user found with this email address.'),
+            ], 200);
         }
 
         $user->verification_code = rand(100000, 999999);
@@ -268,24 +251,18 @@ class AuthController extends Controller
             (get_setting('customer_login_with') == 'email_phone' && get_setting('customer_otp_with') == 'email')
         ) {
             $user->notify(new EmailVerificationNotification());
-            return response()->json(
-                [
-                    'success' => true,
-                    'verified' => false,
-                    'message' => translate('A verification code has been sent to your email.'),
-                ],
-                200
-            );
+            return response()->json([
+                'success' => true,
+                'verified' => false,
+                'message' => translate('A verification code has been sent to your email.'),
+            ], 200);
         } else {
             (new SmsServices())->phoneVerificationSms($user->phone, $user->verification_code);
-            return response()->json(
-                [
-                    'success' => true,
-                    'verified' => false,
-                    'message' => translate('A verification code has been sent to your phone.'),
-                ],
-                200
-            );
+            return response()->json([
+                'success' => true,
+                'verified' => false,
+                'message' => translate('A verification code has been sent to your phone.'),
+            ], 200);
         }
     }
 
@@ -296,14 +273,9 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request
-            ->user()
-            ->token()
-            ->revoke();
-        $request
-            ->user()
-            ->token()
-            ->delete();
+        $request->user()->token()->revoke();
+        $request->user()->token()->delete();
+
         return response()->json([
             'message' => translate('Successfully logged out'),
         ]);
