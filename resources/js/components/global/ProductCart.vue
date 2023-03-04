@@ -1,37 +1,61 @@
 <template>
-    <div class="cart">
+    <div>
         <div class="div-container">
             <div class="div-img">
                 <div>
                     <v-img max-width="100px" :src="img"></v-img>
                 </div>
             </div>
-            <div class="div-body">
+            <div class="information">
                 <div>
-                    <span class="black--text body2">{{ reference }}</span>
-                    <h6 class="black--text bold text-uppercase">{{ name }}</h6>
-                    <span class="black--text body1">{{ brand }}</span>
+                    <span class="black--text text-uppercase reference">{{ reference }}</span>
+                    <h6 class="black--text text-uppercase object">{{ name }}</h6>
+                    <span class="black--text brand">{{ brand }}</span>
                 </div>
+            </div>
+            <div class="div-body">
                 <div class="divider"></div>
                 <div>
-                    <span class="black--text text-uppercase bold body1">{{ price }}</span>
+                    <span class="black--text price">{{ price }} COP</span>
                 </div>
                 <div class="divider"></div>
                 <div>
                     <div class="quantity">
-                        <custom-button text="+" plain />
-                        <span class="quantity2 subtitle-1">{{ quantity }}</span>
-                        <custom-button text="-" plain />
+                        <div>
+                            <v-btn v-on:click="increment()" block plain>
+                                <v-img src="/public/assets/img/icons/sum.svg"></v-img>
+                            </v-btn>
+                        </div>
+                        <input type="number" v-model="quantity" class="textquantity" />
+                        <div>
+                            <v-btn v-on:click="decrement()" block plain>
+                                <v-img src="/public/assets/img/icons/subtract.svg"></v-img>
+                            </v-btn>
+                        </div>
                     </div>
                 </div>
                 <div class="divider"></div>
-                <div class="d-none d-md-block">
-                    <custom-button plain :icon="icon1" />
-                    <custom-button plain :icon="icon2" />
-                    <custom-button plain :icon="icon3" />
-                </div>
-                <div class="d-md-none">
-                    <custom-button plain icon="la-ellipsis-v" />
+                <div class="icons">
+                    <div class="d-none d-md-flex">
+                        <div>
+                            <v-btn block plain>
+                                <v-img :src="icon1"></v-img>
+                            </v-btn>
+                        </div>
+                        <div>
+                            <v-btn block plain>
+                                <v-img src="/public/assets/img/icons/view.svg"></v-img>
+                            </v-btn>
+                        </div>
+                        <div>
+                            <v-btn block plain>
+                                <v-img :src="icon3"></v-img>
+                            </v-btn>
+                        </div>
+                    </div>
+                    <div class="d-md-none">
+                        <custom-button block icon="la-ellipsis-v" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,7 +72,6 @@ export default {
     },
     props: {
         icon1: String,
-        icon2: String,
         icon3: String,
         img: {
             type: String,
@@ -56,23 +79,34 @@ export default {
         },
         reference: {
             type: String,
-            default: "Sin Asignar"
+            default: "Referencia"
         },
         name: {
             type: String,
-            default: "Sin Asignar"
+            default: "Objeto"
         },
         brand: {
             type: String,
-            default: "Sin Asignar"
+            default: "Marca"
         },
         price: {
-            type: String,
-            default: "Sin Asignar"
+            type: Number,
+            default: 0
+        }
+    },
+    data() {
+        return {
+            quantity: 0
+        };
+    },
+    methods: {
+        increment() {
+            this.quantity++;
         },
-        quantity: {
-            type: String,
-            default: "00"
+        decrement() {
+            if (this.quantity > 0) {
+                this.quantity--;
+            }
         }
     }
 };
@@ -80,20 +114,10 @@ export default {
 
 <style lang="scss" scoped>
 .div-container {
-    display: flex;
-}
-
-.div-body {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 10px;
-    width: 100%;
-}
-
-.cart {
     background-color: #f5f5f5;
     border-radius: 10px;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .div-img {
@@ -107,10 +131,48 @@ export default {
     align-items: center;
 }
 
+.information {
+    display: flex;
+    justify-content: flex-start;
+    padding: 13px 0px 13px 25px;
+    width: 100%;
+}
+
+.div-body {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 25px;
+    padding: 5px 0px 5px 10px;
+    width: 100%;
+}
+
+.icons {
+    padding-right: 25px;
+}
+
+.reference {
+    font: normal normal 600 10px/13px Overpass;
+}
+
+.object {
+    font: normal normal bold 15px/24px Overpass;
+}
+
+.brand {
+    font: normal normal normal 15px/24px Roboto;
+}
+
+.price {
+    font: normal normal normal 18px/24px Roboto;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .divider {
     background-color: #dfdfdf;
     width: 2px;
-    height: 80px;
+    height: 90%;
 }
 
 .quantity {
@@ -118,13 +180,69 @@ export default {
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.quantity2 {
-    line-height: 40px;
+.textquantity {
+    line-height: 35px;
+    font-family: "Roboto";
+    font-size: 15px;
+    width: 20px;
+    outline: none;
+    text-align: center;
 }
 
 @media (max-width: 959px) {
+    .div-body {
+        gap: 8px;
+    }
+
+    .information {
+        padding: 13px 0px 13px 15px;
+    }
+
+    .icons {
+        padding-right: 0px;
+    }
+}
+
+@media (max-width: 599px) {
+    .object {
+        font: normal normal bold 12px/14px Overpass;
+        padding-top: 25px;
+        padding-bottom: 24px;
+    }
+
+    .brand {
+        font: normal normal normal 12px/24px Roboto;
+    }
+
+    .price {
+        font: normal normal normal 12px/24px Roboto;
+    }
+
+    .div-body {
+        gap: 5px;
+    }
+
+    .div-container {
+        height: 112px;
+    }
+
+    .div-img {
+        margin-top: 6px;
+        margin-left: 7px;
+        border-radius: 10px;
+    }
+
+    .information {
+        padding: 0px 0px 0px 6px;
+    }
+
+    .reference {
+        padding-top: 5px;
+    }
+
     .quantity {
         border-radius: 10px;
         display: flex;
@@ -132,10 +250,23 @@ export default {
         flex-direction: column;
         width: 100%;
     }
-    .quantity2 {
+
+    .textquantity {
         line-height: normal;
         display: flex;
         justify-content: center;
     }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 </style>

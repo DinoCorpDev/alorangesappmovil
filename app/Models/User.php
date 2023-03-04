@@ -25,7 +25,34 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'avatar', 'provider_id', 'email_verified_at', 'verification_code'
+        'email',
+        'password',
+        'person_type',
+        'first_name',
+        'second_name',
+        'first_lastname',
+        'second_lastname',
+        'document_type',
+        'document_number',
+        'company_name',
+        'company_type',
+        'company_document_type',
+        'company_document_number',
+        'address',
+        'address_name',
+        'address_details',
+        'country_id',
+        'state_id',
+        'city_id',
+        'town',
+        'postal_code',
+        'phone',
+        'policies_and_cookies_consent',
+        'offers_consent',
+        'avatar',
+        'provider_id',
+        'email_verified_at',
+        // 'verification_code',
     ];
 
     /**
@@ -33,9 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     public function wishlists()
     {
@@ -74,7 +99,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function shop()
     {
-        return $this->hasOne(Shop::class,'id','shop_id');
+        return $this->hasOne(Shop::class, 'id', 'shop_id');
     }
 
     public function followed_shops()
@@ -89,6 +114,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function conversations()
     {
-        return $this->hasMany(Conversation::class,'sender_id','id');
+        return $this->hasMany(Conversation::class, 'sender_id', 'id');
     }
 }

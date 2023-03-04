@@ -24,30 +24,46 @@
                 <v-row>
                     <v-col cols="12">
                         <product-cart
-                            price="000.000.000 COP"
-                            quantity="03"
-                            icon1="la-trash"
-                            icon2="la-eye"
-                            icon3="la-eye"
+                            value="3"
+                            icon1="/public/assets/img/icons/back.svg"
+                            icon3="/public/assets/img/icons/marker.svg"
                         />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart
+                            icon1="/public/assets/img/icons/back.svg"
+                            icon3="/public/assets/img/icons/marker.svg"
+                        />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart
+                            icon1="/public/assets/img/icons/back.svg"
+                            icon3="/public/assets/img/icons/marker.svg"
+                        />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart
+                            icon1="/public/assets/img/icons/back.svg"
+                            icon3="/public/assets/img/icons/marker.svg"
+                        />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart
+                            icon1="/public/assets/img/icons/back.svg"
+                            icon3="/public/assets/img/icons/marker.svg"
+                        />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart
+                            icon1="/public/assets/img/icons/back.svg"
+                            icon3="/public/assets/img/icons/marker.svg"
+                        />
                     </v-col>
                     <v-col cols="12">
-                        <product-cart icon1="la-trash" icon2="la-eye" icon3="la-eye" />
+                        <product-cart
+                            icon1="/public/assets/img/icons/back.svg"
+                            icon3="/public/assets/img/icons/marker.svg"
+                        />
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
                         <total />
@@ -261,7 +277,7 @@
                                 </div>
                             </div>
                             <div>
-                                <custom-button dark text="Finalizar" />
+                                <custom-button color="#858585" text="Finalizar" style="color: #ffffff" />
                             </div>
                         </div>
                     </v-col>
@@ -286,7 +302,6 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Facturar a</h6>
                                     <v-divider class="my-3" />
-                                    <select-custom dark label="Usuario Principal" :items="langSelectItems" />
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Correo electronico</span>
                                         <span class="body1">user@gmail.com</span>
@@ -303,8 +318,6 @@
                                         <span class="subtitle1 text-uppercase bold">Documento</span>
                                         <span class="body1">C.C. 1010101011</span>
                                     </div>
-                                    <custom-button class="mr-3" text="Editar" />
-                                    <custom-button text="Añadir" />
                                 </div>
                             </v-col>
                             <v-col cols="12">
@@ -320,7 +333,6 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button block text="Añadir Dirección" />
                                 </div>
                             </v-col>
                             <v-col cols="12">
@@ -335,7 +347,6 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button block text="Añadir Dirección" />
                                 </div>
                             </v-col>
                         </v-row>
@@ -346,7 +357,6 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de envio</h6>
                                     <v-divider class="my-3" />
-                                    <select-custom dark label="Usuario Principal" :items="langSelectItems" />
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                         <span class="body1">Casa 1</span>
@@ -385,8 +395,6 @@
                                         <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
                                         <span class="body1">+57 300 544 3300</span>
                                     </div>
-                                    <custom-button class="mr-3" text="Editar" />
-                                    <custom-button text="Añadir" />
                                 </div>
                             </v-col>
                         </v-row>
@@ -398,29 +406,20 @@
                     <v-row>
                         <v-col cols="12">
                             <product-cart
-                                price="000.000.000 COP"
-                                quantity="03"
-                                icon1="la-trash"
-                                icon2="la-eye"
-                                icon3="la-eye"
+                                icon1="/public/assets/img/icons/back.svg"
+                                icon3="/public/assets/img/icons/marker.svg"
                             />
                         </v-col>
                         <v-col cols="12">
                             <product-cart
-                                price="000.000.000 COP"
-                                quantity="03"
-                                icon1="la-trash"
-                                icon2="la-eye"
-                                icon3="la-eye"
+                                icon1="/public/assets/img/icons/back.svg"
+                                icon3="/public/assets/img/icons/marker.svg"
                             />
                         </v-col>
                         <v-col cols="12">
                             <product-cart
-                                price="000.000.000 COP"
-                                quantity="03"
-                                icon1="la-trash"
-                                icon2="la-eye"
-                                icon3="la-eye"
+                                icon1="/public/assets/img/icons/back.svg"
+                                icon3="/public/assets/img/icons/marker.svg"
                             />
                         </v-col>
                     </v-row>
