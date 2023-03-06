@@ -108,6 +108,7 @@ export default {
 .cart {
     background-color: #f5f5f5;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .div-img {

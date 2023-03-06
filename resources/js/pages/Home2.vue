@@ -2,8 +2,8 @@
     <div>
         <layout-navbar />
         <v-container>
-            <v-row class="mb-6" align="center">
-                <v-col cols="12" md="5">
+            <v-row class="mb-6 height-section" align="center">
+                <v-col cols="12" md="5" class="height-section">
                     <h1 class="mb-8">
                         iDOVELA <br />
                         Para un mundo más habitable
@@ -19,7 +19,7 @@
                         </v-col>
                     </v-row>
                 </v-col>
-                <v-col cols="12" md="7">
+                <v-col cols="12" md="7" class="height-section">
                     <carousel :slides="sliderSeeder" />
                 </v-col>
             </v-row>
@@ -247,6 +247,9 @@ export default {
     padding: 2% 15%;
 }
 
+.height-section {
+    height: 786px;
+}
 .img-map {
     border-radius: 50%;
 }

@@ -66,9 +66,10 @@
                         />
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
+                        <div class="mb-2"></div>
                         <total />
                         <div class="mb-2">
-                            <custom-button text="Continuar" @click="step = 2" />
+                            <custom-button text="Continuar" color="nero" @click="step = 2" />
                         </div>
                     </v-col>
                 </v-row>
@@ -98,8 +99,8 @@
                                         <span class="subtitle1 text-uppercase bold">Documento</span>
                                         <span class="body1">C.C. 1010101011</span>
                                     </div>
-                                    <custom-button class="mr-3" text="Editar" />
-                                    <custom-button text="Añadir" />
+                                    <custom-button color="grey" class="mr-3" text="Editar" />
+                                    <custom-button color="grey" text="Añadir" />
                                 </div>
                             </v-col>
                             <v-col cols="12">
@@ -115,7 +116,7 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button block text="Añadir Dirección" />
+                                    <custom-button block color="grey" text="Añadir Dirección" />
                                 </div>
                             </v-col>
                             <v-col cols="12">
@@ -130,7 +131,7 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button block text="Añadir Dirección" />
+                                    <custom-button block color="grey" text="Añadir Dirección" />
                                 </div>
                             </v-col>
                         </v-row>
@@ -180,8 +181,8 @@
                                         <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
                                         <span class="body1">+57 300 544 3300</span>
                                     </div>
-                                    <custom-button class="mr-3" text="Editar" />
-                                    <custom-button text="Añadir" />
+                                    <custom-button class="mr-3" color="grey" text="Editar" />
+                                    <custom-button text="Añadir" color="grey" />
                                 </div>
                             </v-col>
                             <v-col cols="12">
@@ -205,11 +206,11 @@
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
                         <div class="mb-2">
-                            <custom-button text="Volver" @click="step = 1" />
+                            <custom-button text="Volver" color="nero" @click="step = 1" />
                         </div>
                         <total />
                         <div class="mb-2">
-                            <custom-button text="Continuar" @click="step = 3" />
+                            <custom-button text="Continuar" color="nero" @click="step = 3" />
                         </div>
                     </v-col>
                 </v-row>
@@ -239,7 +240,7 @@
                             <select-custom dark label="Tipo de persona" :items="langSelectItems" />
                             <label class="text-uppercase">Banco</label>
                             <select-custom dark label="Seleccionar banco" :items="langSelectItems" />
-                            <custom-button text="Aplicar" />
+                            <custom-button text="Aplicar" color="grey" />
                         </div>
                     </v-col>
                     <v-col cols="12" md="6">
@@ -252,11 +253,11 @@
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
                         <div class="mb-2">
-                            <custom-button text="Volver" @click="step = 2" />
+                            <custom-button text="Volver" color="nero" @click="step = 2" />
                         </div>
                         <total />
                         <div class="mb-2">
-                            <custom-button text="Continuar" @click="step = 4" />
+                            <custom-button text="Continuar" color="nero" @click="step = 4" />
                         </div>
                     </v-col>
                 </v-row>
@@ -277,7 +278,7 @@
                                 </div>
                             </div>
                             <div>
-                                <custom-button color="#858585" text="Finalizar" style="color: #ffffff" />
+                                <custom-button color="nero" text="Finalizar" />
                             </div>
                         </div>
                     </v-col>
@@ -565,7 +566,7 @@
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
                         <div class="mb-2">
-                            <custom-button text="Volver" @click="step = 3" />
+                            <custom-button text="Volver" color="nero" @click="step = 3" />
                         </div>
                         <total />
                     </v-col>

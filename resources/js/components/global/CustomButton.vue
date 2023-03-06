@@ -86,7 +86,7 @@ export default {
     }
 
     @media (min-width: 960px) {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     border-radius: 5px;
@@ -111,14 +111,17 @@ export default {
     }
 
     &.grey {
-        color: #ffffff;
+        color: #000;
+        background-color: rgba(#dfdfdf, 0.5) !important;
 
         &:hover {
-            background-color: rgba(#161616, 0.8);
+            color: #fff;
+            background-color: rgba(#434343, 0.8) !important;
         }
 
         &:focus {
-            background-color: #161616;
+            color: #fff;
+            background-color: #161616 !important;
         }
     }
 
@@ -127,20 +130,20 @@ export default {
         background-color: rgba(#000000, 0.5);
 
         &:hover {
-            background-color: rgba(#000000, 0.8);
+            background-color: rgba(#858585, 0.8);
         }
 
         &:focus {
-            background-color: #000000;
+            background-color: #161616;
         }
     }
 
     &.nero {
         color: #ffffff;
-        background-color: rgba(#161616, 0.5);
+        background-color: #858585;
 
         &:hover {
-            background-color: rgba(#161616, 0.8);
+            background-color: rgba(#434343, 0.8);
         }
 
         &:focus {

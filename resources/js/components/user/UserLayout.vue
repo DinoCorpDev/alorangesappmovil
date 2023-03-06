@@ -1,7 +1,7 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <v-container fluid>
+        <v-container fluid class="pad-cont">
             <v-row no-gutters>
                 <v-col lg="3" class="d-none d-lg-block">
                     <SideMenu2 />
@@ -29,5 +29,8 @@ export default {
 <style lang="scss" scoped>
 .container {
     background-color: #fafcfc;
+}
+.pad-cont {
+    padding: 0 12px 12px 0;
 }
 </style>

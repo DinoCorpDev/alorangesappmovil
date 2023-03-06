@@ -43,14 +43,14 @@ export default {
             &::v-deep {
                 svg {
                     path {
-                        fill: #ffffff;
+                        fill: #040405;
                     }
                 }
             }
         }
 
         &-label {
-            color: #ffffff;
+            color: #040405;
         }
     }
 }
@@ -59,6 +59,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: #dfdfdf;
 
     &-item {
         display: flex;

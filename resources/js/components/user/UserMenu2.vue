@@ -1,19 +1,19 @@
 <template>
-    <div style="width: 100%">
+    <div style="width: 100%;">
         <div class="buttons">
             <h6 class="black--text bold">Compras</h6>
-            <custom-button block class="mb-3 mt-3" light text="Carrito" :to="{ name: 'Cart' }" />
-            <custom-button block class="mb-3" light text="Favoritos" :to="{ name: 'Favorites' }" />
-            <custom-button block class="mb-3" light text="Facturas" :to="{ name: 'Invoices' }" />
+            <custom-button block class="mb-3 mt-3" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
+            <custom-button block class="mb-3" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
+            <custom-button block class="mb-3" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
             <div class="divider"></div>
         </div>
         <div class="buttons">
             <h6 class="black--text bold">Usuario</h6>
-            <custom-button block class="mb-3 mt-3" dark text="Perfil" :to="{ name: 'Profile' }" />
-            <custom-button block class="mb-3" light text="Notificaciones" :to="{ name: 'NotificationAll' }" />
-            <custom-button block class="mb-3" light text="Informacion" :to="{ name: 'PactoAmbiental' }" />
+            <custom-button block class="mb-3 mt-3" color="nero" text="Perfil" :to="{ name: 'Profile' }" />
+            <custom-button block class="mb-3" color="nero" text="Notificaciones" :to="{ name: 'NotificationAll' }" />
+            <custom-button block class="mb-3" color="nero" text="Informacion" :to="{ name: 'PactoAmbiental' }" />
             <div class="divider"></div>
-            <custom-button block class="mb-5 mt-5" plain @click="logout">
+            <custom-button block class="mb-5 mt-5" color="nero" @click="logout">
                 {{ $t("logout") }}
             </custom-button>
             <div class="divider"></div>

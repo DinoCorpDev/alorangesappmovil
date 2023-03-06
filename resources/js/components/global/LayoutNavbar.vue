@@ -12,7 +12,6 @@
                 </div>
             </v-container>
         </v-app-bar>
-        <nabvar-bottom-bar share />
     </div>
 </template>
 

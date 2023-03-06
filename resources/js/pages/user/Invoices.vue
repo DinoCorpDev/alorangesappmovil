@@ -3,9 +3,9 @@
         <h6>Compras</h6>
         <v-divider class="my-3"></v-divider>
         <v-row>
-            <v-col cols="12">
+            <v-col cols="12 invoice-div">
                 <order
-                    style="background-color: #f5f5f5"
+                    style="background-color: #f5f5f5;"
                     order="ID1222"
                     day="07"
                     month="Julio"
@@ -17,9 +17,9 @@
                     icon3="la-print"
                 />
             </v-col>
-            <v-col cols="12">
+            <v-col cols="12 invoice-div">
                 <order
-                    style="background-color: #f5f5f5"
+                    style="background-color: #f5f5f5;"
                     order="ID1222"
                     day="07"
                     month="Julio"
@@ -31,9 +31,9 @@
                     icon3="la-print"
                 />
             </v-col>
-            <v-col cols="12">
+            <v-col cols="12 invoice-div">
                 <order
-                    style="background-color: #f5f5f5"
+                    style="background-color: #f5f5f5;"
                     order="ID1222"
                     day="07"
                     month="Julio"
@@ -45,9 +45,9 @@
                     icon3="la-print"
                 />
             </v-col>
-            <v-col cols="12">
+            <v-col cols="12 invoice-div">
                 <order
-                    style="background-color: #f5f5f5"
+                    style="background-color: #f5f5f5;"
                     order="ID1222"
                     day="07"
                     month="Julio"
@@ -76,5 +76,8 @@ export default {
 <style lang="scss" scoped>
 .container {
     background-color: #ffffff;
+}
+.invoice-div {
+    padding: 8px 10px 0 10px;
 }
 </style>

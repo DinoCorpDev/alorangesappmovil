@@ -4,7 +4,7 @@
             <v-col cols="6" class="text-start">
                 <div class="avatar-upload">
                     <custom-button
-                        light
+                        color="grey"
                         text="CAMBIAR FOTO"
                         type="file"
                         id="avatar-input"
@@ -32,8 +32,8 @@
                         v-on:submit.prevent="updateBasic()"
                         enctype="multipart/form-data"
                     >
-                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
+                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
                         <v-row>
                             <v-col class="text-start">
                                 <label class="bold">CORREO ELECTRONICO</label>
@@ -143,14 +143,14 @@
                             </v-col>
                         </v-row>
 
-                        <custom-button light text="EDITAR" />
+                        <custom-button color="grey" text="EDITAR" />
                     </v-form>
                 </v-card>
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <h5 class="bold">Otras direcciones</h5>
                     <v-divider class="my-4" />
                     <div>
-                        <custom-button class="my-4" block light @click.stop="addDialogShow = true"
+                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true"
                             >AÑADIR DIRECCION</custom-button
                         >
                         <div class="cards">
@@ -175,7 +175,7 @@
                     <h5 class="bold">Empresa</h5>
                     <v-divider class="my-4" />
                     <div>
-                        <custom-button class="my-4" block light @click.stop="addDialogShow = true"
+                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true"
                             >AÑADIR MI EMPRESA</custom-button
                         >
                         <div class="cards">
@@ -195,7 +195,7 @@
                         <!-- <v-btn light block elevation="0" class="ms-auto" @click.stop="addDialogShow = true"
                             >CAMBIAR CONTRASEÑA</v-btn
                         > -->
-                        <custom-button class="my-4" block light @click.stop="addDialogShow = true"
+                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true"
                             >CAMBIAR CONTRASEÑA</custom-button
                         >
                     </div>
@@ -238,7 +238,7 @@
                             </span>
                             <span class="checkmark"></span>
                         </label>
-                        <custom-button light text="SABER MÁS" />
+                        <custom-button color="grey" text="SABER MÁS" />
                     </div>
                 </v-card>
                 <!-- <v-card elevation="0">
@@ -501,7 +501,7 @@ export default {
 
 <style scoped lang="scss">
 .form-profile {
-    line-height: 13px;
+    line-height: 20px;
 }
 
 @media (max-width: 600px) {

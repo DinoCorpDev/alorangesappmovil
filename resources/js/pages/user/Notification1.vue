@@ -21,7 +21,7 @@
                         <v-tab class="tabButton">Reportes</v-tab>
                     </v-tabs>
                 </v-row>
-                <v-row>
+                <v-row class="row-container">
                     <v-tabs-items v-model="tab">
                         <v-tab-item>
                             <v-row>
@@ -115,15 +115,21 @@ export default {
 <style lang="scss" scoped>
 .tabButton {
     display: flex;
-    justify-content: space-between;
     background-color: #dfdfdf;
     border-radius: 5px;
     font-weight: 600;
     color: #000;
     letter-spacing: 1.25px;
-    max-width: 246px;
-    width: 30vw;
+    max-width: 100%;
+    width: 100%;
     height: 38px;
+}
+.container {
+    padding: 10px 40px;
+}
+
+.row-container {
+    padding: 25px 0 0 0;
 }
 
 .tabButton:hover {
@@ -136,9 +142,9 @@ export default {
     color: #ffffff;
 }
 
-.tabsCon {
+.tabsCon .v-item-group {
     display: flex;
-    justify-content: space-evenly;
+    width: 100% !important;
 }
 
 .divider {

@@ -1,22 +1,24 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <v-container class="container">
+        <v-container class="container mt-10">
             <v-row justify="center">
-                <v-col cols="6">
+                <v-col cols="12 cont">
                     <div class="wrap pa-5">
-                        <h6 class="black--text">¿Olvidó su contraseña?</h6>
-                        <v-divider class="divider"></v-divider>
-                        <span class="black--text body2">
-                            Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
-                            industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been
-                            the industry's • Incluye Lorem Ipsum is simply dummy text.
-                        </span>
-                        <div class="inputs">
-                            <span class="black--text body-2 text-uppercase">Correo Electronico</span>
-                            <custom-input></custom-input>
+                        <div class="wrap pa-5 border-div">
+                            <h6 class="black--text">¿Olvidó su contraseña?</h6>
+                            <v-divider class="divider"></v-divider>
+                            <span class="black--text body2">
+                                Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
+                                industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
+                                been the industry's • Incluye Lorem Ipsum is simply dummy text.
+                            </span>
+                            <div class="inputs">
+                                <span class="black--text body-2 text-uppercase">Correo Electronico</span>
+                                <custom-input></custom-input>
+                            </div>
+                            <custom-button block color="black" class="mt-5" text="Enviar" :to="{ name: 'Login2' }" />
                         </div>
-                        <custom-button block class="mt-5" text="Enviar" :to="{ name: 'Login2' }" />
                     </div>
                 </v-col>
             </v-row>
@@ -40,7 +42,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-application {
     &.theme--light {
         background: #dee0e0;
@@ -54,14 +56,22 @@ export default {
     border-radius: 10px;
 }
 
-@media (min-width: 960px) {
-    .all {
-        position: absolute;
-        top: calc(50% - (150px));
-        background-color: #fafcfc;
-        border-radius: 10px;
-        left: calc(50% - (589px / 2));
-        padding: 10px;
+.cont {
+    padding: 5% 25%;
+}
+
+.border-div {
+    border: 1px solid #dfdfdf !important;
+}
+
+@media (max-width: 768px) {
+    .cont {
+        padding: 20% 15% 0 15%;
+    }
+}
+@media (max-width: 475px) {
+    .cont {
+        padding: 20% 5% 0 5%;
     }
 }
 
@@ -77,15 +87,5 @@ export default {
 
 .inputs {
     margin-top: 20px;
-}
-
-@media (max-width: 959px) {
-    .container {
-        position: absolute;
-        width: 90%;
-        top: calc(50% - (150px));
-        background-color: #fafcfc;
-        left: calc(5%);
-    }
 }
 </style>
