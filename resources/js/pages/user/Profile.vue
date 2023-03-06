@@ -1,5 +1,5 @@
 <template>
-    <div class="ps-lg-7 pt-4">
+    <div class="px-5 py-3">
         <v-row>
             <v-col cols="6" class="text-start">
                 <div class="avatar-upload">
@@ -32,8 +32,8 @@
                         v-on:submit.prevent="updateBasic()"
                         enctype="multipart/form-data"
                     >
-                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
-                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
+                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
                             <v-col class="text-start">
                                 <label class="bold">CORREO ELECTRONICO</label>

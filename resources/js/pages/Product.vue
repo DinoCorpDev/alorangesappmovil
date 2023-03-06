@@ -259,7 +259,7 @@
                         <div class="product-item-body pa-4 la-border">
                             <h5 class="subtitle2 text-uppercase">Calificación</h5>
                             <v-row class="mt-2">
-                                <v-col cols="4" class="justify-end" style="line-height: 2.4;">
+                                <v-col cols="4" class="justify-end" style="line-height: 2.4">
                                     <h5 class="text-uppercase">5.0</h5>
                                     <v-rating
                                         empty-icon="las la-star"
@@ -274,14 +274,14 @@
                                 </v-col>
                                 <v-col cols="8">
                                     <v-row>
-                                        <v-col cols="1" style="line-height: 0.1;">
+                                        <v-col cols="1" style="line-height: 0.1">
                                             <span class="caption mr-2">5</span>
                                             <span class="caption mr-2">4</span>
                                             <span class="caption mr-2">3</span>
                                             <span class="caption mr-2">2</span>
                                             <span class="caption mr-2">1</span>
                                         </v-col>
-                                        <v-col cols="9" style="line-height: 2.1;">
+                                        <v-col cols="9" style="line-height: 2.1">
                                             <v-progress-linear
                                                 v-model="ratings.rating5"
                                                 color="white"
@@ -308,7 +308,7 @@
                                                 class="mt-4"
                                             ></v-progress-linear>
                                         </v-col>
-                                        <v-col cols="2" style="line-height: 0.1;">
+                                        <v-col cols="2" style="line-height: 0.1">
                                             <span class="caption">30</span><br />
                                             <span class="caption">10</span><br />
                                             <span class="caption">5</span><br />
@@ -334,7 +334,7 @@
                             <h5 class="subtitle2 text-uppercase">Vida Útil</h5>
                             <v-row dense class="mt-2" justify="center">
                                 <v-progress-linear
-                                    style="width: 78%;"
+                                    style="width: 78%"
                                     v-model="ratings.vidaUtil"
                                     color="white"
                                     class="mt-2"
@@ -378,14 +378,14 @@
                                 <v-col cols="6">
                                     <tbody>
                                         <tr v-for="item in desserts" :key="item.name">
-                                            <td style="width: 20px;">
+                                            <td style="width: 20px">
                                                 <div
                                                     class="pa-2 bg-secondary rounded-circle d-inline-block"
                                                     :style="item.color"
                                                 />
                                             </td>
-                                            <td style="width: 120px;" class="text-size-comp ml-1">{{ item.name }}</td>
-                                            <td style="width: 50px;" class="text-size-comp ml-2">{{ item.percent }}</td>
+                                            <td style="width: 120px" class="text-size-comp ml-1">{{ item.name }}</td>
+                                            <td style="width: 50px" class="text-size-comp ml-2">{{ item.percent }}</td>
                                             <td class="text-size-comp ml-2">{{ item.kg }}</td>
                                         </tr>
                                     </tbody>
@@ -394,18 +394,18 @@
                             <v-divider class="mt-3 mb-4" />
                             <h5 class="subtitle2 text-uppercase">Impacto Ambiental</h5>
                             <v-row class="mt-4" justify="center">
-                                <div style="width: 78%; position: relative;" class="d-flex">
+                                <div style="width: 78%; position: relative" class="d-flex">
                                     <v-icon large class="markerLoc" :style="{ left: impacto }">la-map-pin</v-icon>
-                                    <v-col cols="3" style="padding: 20px 0px;">
+                                    <v-col cols="3" style="padding: 20px 0px">
                                         <v-progress-linear background-color="green" class="mt-2"></v-progress-linear>
                                     </v-col>
-                                    <v-col cols="3" style="padding: 15px 0px;">
+                                    <v-col cols="3" style="padding: 15px 0px">
                                         <v-progress-linear background-color="yellow" class="mt-2"></v-progress-linear>
                                     </v-col>
-                                    <v-col cols="3" style="padding: 10px 0px;">
+                                    <v-col cols="3" style="padding: 10px 0px">
                                         <v-progress-linear background-color="orange" class="mt-2"></v-progress-linear>
                                     </v-col>
-                                    <v-col cols="3" style="padding: 5px 0px;">
+                                    <v-col cols="3" style="padding: 5px 0px">
                                         <v-progress-linear background-color="red" class="mt-2"></v-progress-linear>
                                     </v-col>
                                 </div>
@@ -448,7 +448,7 @@
                                         <v-icon x-large>la-sync</v-icon>
                                     </v-row>
                                     <v-row dense justify="center" class="mt-5">
-                                        <p class="subtitle2" style="text-align: center;">
+                                        <p class="subtitle2" style="text-align: center">
                                             Deseo reciclar un viejo producto y recibir un bono adicional de descuento a
                                             cambio.
                                         </p>
@@ -467,7 +467,7 @@
                                         <v-icon x-large>la-tools</v-icon>
                                     </v-row>
                                     <v-row dense justify="center" class="mt-5">
-                                        <p class="subtitle2" style="text-align: center;">
+                                        <p class="subtitle2" style="text-align: center">
                                             Deseo programar un mantenimiento preventivo para mi producto/s.
                                         </p>
                                     </v-row>
@@ -544,8 +544,8 @@
                     </v-row>
                     <v-row dense justify class="pt-0">
                         <v-col>
-                            <carousel :slides="productDetails?.imagenes" v-show="showp" style="height: 700px;" />
-                            <carousel :slides="productDetails?.videos" v-show="showp1" style="height: 700px;" />
+                            <carousel :slides="productDetails?.imagenes" v-show="showp" style="height: 700px" />
+                            <carousel :slides="productDetails?.videos" v-show="showp1" style="height: 700px" />
                             <v-img
                                 :src="productDetails?.ficha_tecnica_del_producto"
                                 v-show="showp2"
@@ -629,11 +629,11 @@
             <div class="px-2 pt-2">
                 <div class="d-flex justify-space-between mb-8">
                     <h5 class="mt-1">H5</h5>
-                    <div style="width: 38%;">
-                        <custom-button light text="Nuevo" style="width: 23%;" />
-                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
-                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
-                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                    <div style="width: 38%">
+                        <custom-button light text="Nuevo" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                     </div>
                 </div>
                 <v-row>
@@ -642,7 +642,7 @@
                     </v-col>
                 </v-row>
                 <v-row justify="center">
-                    <custom-button light text="Ver más" class="mt-6 mb-6" style="width: 40%;" />
+                    <custom-button light text="Ver más" class="mt-6 mb-6" style="width: 40%" />
                 </v-row>
             </div>
 
@@ -650,11 +650,11 @@
                 <v-col cols="12">
                     <div class="d-flex justify-space-between mb-8">
                         <h5 class="mt-1">H5</h5>
-                        <div style="width: 38%;">
-                            <custom-button light text="Nuevo" style="width: 23%;" />
-                            <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
-                            <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
-                            <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                        <div style="width: 38%">
+                            <custom-button light text="Nuevo" style="width: 23%" />
+                            <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                            <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                            <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                         </div>
                     </div>
                     <v-row>
@@ -672,7 +672,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
+                        <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
                     </v-row>
                 </v-col>
             </v-row>

@@ -1,13 +1,13 @@
 <template>
-    <div>
+    <div class="user-layout">
         <layout-navbar-auth />
-        <v-container fluid class="pad-cont">
-            <v-row no-gutters>
-                <v-col lg="3" class="d-none d-lg-block">
+        <v-container fluid>
+            <v-row>
+                <v-col lg="3" class="user-layout-sidebar d-none d-lg-block">
                     <SideMenu2 />
                 </v-col>
-                <v-col cols="12" lg="9" class="pt-0">
-                    <router-view></router-view>
+                <v-col cols="12" lg="9" class="user-layout-content">
+                    <router-view />
                 </v-col>
             </v-row>
         </v-container>
@@ -27,10 +27,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-    background-color: #fafcfc;
-}
-.pad-cont {
-    padding: 0 12px 12px 0;
+.user-layout {
+    &-sidebar {
+        background-color: #f5f5f5;
+    }
+
+    &-content {
+        background-color: #fafcfc;
+    }
 }
 </style>

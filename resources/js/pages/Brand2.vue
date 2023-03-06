@@ -60,10 +60,8 @@
             </div>
             <v-divider />
             <v-row>
-                <v-col class="bar3"
-                    ><h5 class="black--text">
-                        H5
-                    </h5>
+                <v-col class="bar3">
+                    <h5 class="black--text">H5</h5>
                 </v-col>
                 <v-col class="bar2">
                     <custom-button class="mr-2 ms-2" light text="Nuevo" />
@@ -100,10 +98,8 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col class="bar3"
-                    ><h5 class="black--text">
-                        H5
-                    </h5>
+                <v-col class="bar3">
+                    <h5 class="black--text">H5</h5>
                 </v-col>
                 <v-col class="bar2">
                     <custom-button class="mr-2 ms-2" light text="Nuevo" />
@@ -140,47 +136,8 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col class="bar3"
-                    ><h5 class="black--text">
-                        H5
-                    </h5>
-                </v-col>
-                <v-col class="bar2">
-                    <custom-button class="mr-2 ms-2" light text="Nuevo" />
-                    <custom-button class="mr-2 ms-2" light text="Nuevo" />
-                    <custom-button class="mr-2 ms-2" light text="Nuevo" />
-                    <custom-button class="mr-2 ms-2" light text="Nuevo" />
-                </v-col>
-            </v-row>
-            <div class="cards">
-                <v-row class="d-flex justify-space-around flex-wrap">
-                    <v-col cols="12" sm="8" md="8" lg="4" xl="4">
-                        <product-item5 />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                </v-row>
-            </div>
-            <v-row class="d-flex justify-center">
-                <v-col cols="10" md="6" lg="5">
-                    <custom-button block class="mb-5" light text="Ver más" />
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col class="bar3"
-                    ><h5 class="black--text">
-                        H5
-                    </h5>
+                <v-col class="bar3">
+                    <h5 class="black--text">H5</h5>
                 </v-col>
                 <v-col class="bar2">
                     <custom-button class="mr-2 ms-2" light text="Nuevo" />
@@ -214,10 +171,43 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col class="bar3"
-                    ><h5 class="black--text">
-                        H5
-                    </h5>
+                <v-col class="bar3">
+                    <h5 class="black--text">H5</h5>
+                </v-col>
+                <v-col class="bar2">
+                    <custom-button class="mr-2 ms-2" light text="Nuevo" />
+                    <custom-button class="mr-2 ms-2" light text="Nuevo" />
+                    <custom-button class="mr-2 ms-2" light text="Nuevo" />
+                    <custom-button class="mr-2 ms-2" light text="Nuevo" />
+                </v-col>
+            </v-row>
+            <div class="cards">
+                <v-row class="d-flex justify-space-around flex-wrap">
+                    <v-col cols="12" sm="8" md="8" lg="4" xl="4">
+                        <product-item5 />
+                    </v-col>
+                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
+                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                    </v-col>
+                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
+                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                    </v-col>
+                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
+                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                    </v-col>
+                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
+                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                    </v-col>
+                </v-row>
+            </div>
+            <v-row class="d-flex justify-center">
+                <v-col cols="10" md="6" lg="5">
+                    <custom-button block class="mb-5" light text="Ver más" />
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col class="bar3">
+                    <h5 class="black--text">H5</h5>
                 </v-col>
                 <v-col class="bar2">
                     <custom-button class="mr-2 ms-2" light text="Nuevo" />

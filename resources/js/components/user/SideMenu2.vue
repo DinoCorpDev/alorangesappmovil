@@ -1,6 +1,6 @@
 <template>
     <v-card color="#F5F5F5" elevation="0" height="100%">
-        <div class="pt-4 border-bottom">
+        <div class="pt-3 border-bottom">
             <div class="div-container">
                 <div class="col1">
                     <div class="div-img">
