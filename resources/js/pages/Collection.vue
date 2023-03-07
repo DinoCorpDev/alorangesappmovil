@@ -2,8 +2,8 @@
     <div>
         <layout-navbar-auth />
 
-        <v-row>
-            <v-col cols="8" class="positionColbuttons">
+        <v-row class="pa-2 mt-2">
+            <v-col cols="12" xs="12" sm="12" md="12" lg="8" xl="8" class="positionColbuttons">
                 <v-row dense justify>
                     <v-col>
                         <v-img
@@ -56,7 +56,7 @@
                 </v-row>
             </v-col>
             <v-col>
-                <div class="product-item-body pa-4 la-border mr-5">
+                <div class="product-item-body pa-4 la-border">
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-2">REFERENCIA: {{ productDetails?.reference }}</h5>
                         <v-icon right> la-bookmark </v-icon>
@@ -86,7 +86,7 @@
                     <custom-button text="Agregar a Compras" block />
                     <custom-button light text="Consultar a un Asesor" block class="mt-3" />
                 </div>
-                <div class="product-item-body pa-4 la-border mr-5 mt-3">
+                <div class="product-item-body pa-4 la-border mt-3">
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">{{ varia }}</h5>
                         <v-btn-toggle>
@@ -97,7 +97,7 @@
                         </v-btn-toggle>
                     </div>
                 </div>
-                <div class="product-item-body pa-4 la-border mr-5 mt-3">
+                <div class="product-item-body pa-4 la-border mt-3">
                     <div class="d-flex justify-space-between">
                         <h5 class="subtitle2 text-uppercase mb-1">Disponibilidad</h5>
                         <h5 class="subtitle1 mb-2">{{ productDetails?.stock ?? "000" }} en stock</h5>
@@ -121,45 +121,60 @@
             </v-col>
         </v-row>
 
-        <v-row class="mb-6">
+        <v-row class="mb-6 pa-2">
             <v-col cols="12">
                 <div class="d-flex justify-space-between mb-8">
                     <h5 class="mt-1">H5</h5>
-                    <div style="width: 38%">
-                        <custom-button light text="Nuevo" style="width: 23%" />
-                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
-                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
-                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                    <div class="d-none d-lg-block" style="width: 38%;">
+                        <custom-button light text="Nuevo" style="width: 23%;" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                    </div>
+                    <div class="d-lg-none" style="width: 40%; text-align: end;">
+                        <custom-button light text="Filtro" style="width: 40%;" />
                     </div>
                 </div>
                 <v-row>
-                    <v-col cols="3" v-for="(product, i) in footerProducts" :key="i">
+                    <v-col
+                        cols="12"
+                        md="6"
+                        sm="6"
+                        xs="12"
+                        lg="3"
+                        xl="3"
+                        v-for="(product, i) in footerProducts"
+                        :key="i"
+                    >
                         <product-item-3 :data="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
-                    <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
+                    <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
                 </v-row>
             </v-col>
         </v-row>
 
-        <div class="mb-4 mt-16">
+        <div class="mb-4 mt-16 pa-2">
             <div class="d-flex justify-space-between mb-8">
                 <h5 class="mt-1">H5</h5>
-                <div style="width: 38%">
-                    <custom-button light text="Nuevo" style="width: 23%" />
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                <div class="d-none d-lg-block" style="width: 38%;">
+                    <custom-button light text="Nuevo" style="width: 23%;" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                </div>
+                <div class="d-lg-none" style="width: 40%; text-align: end;">
+                    <custom-button light text="Filtro" style="width: 40%;" />
                 </div>
             </div>
             <v-row>
-                <v-col cols="2" v-for="(product, i) in moreProducts" :key="i">
+                <v-col cols="6" md="4" sm="4" xs="6" lg="2" xl="2" v-for="(product, i) in moreProducts" :key="i">
                     <product-item-2 headerPr="true" :data="product" />
                 </v-col>
             </v-row>
             <v-row justify="center">
-                <custom-button light text="Ver más" class="mt-6 mb-6" style="width: 40%" />
+                <custom-button light text="Ver más" class="mt-6 mb-6" style="width: 40%;" />
             </v-row>
         </div>
         <v-card>
