@@ -4,7 +4,7 @@
         <div>
             <!-- <chart-view /> -->
             <v-row class="px-2 pt-8">
-                <v-col cols="12" md="4" order-md="1" sm="12" order-sm="3" xs="12" order-xs="3">
+                <v-col cols="12" md="4" order="3" order-md="1" sm="12" order-sm="3">
                     <v-row dense class="px-4">
                         <v-col cols="4">
                             <v-row justify="center">
@@ -492,8 +492,7 @@
                     order-md="1"
                     sm="12"
                     order-sm="1"
-                    xs="12"
-                    order-xs="1"
+                    order="1"
                 >
                     <v-row dense class="buttons-img">
                         <v-col cols="4">
@@ -555,7 +554,7 @@
                         </v-col>
                     </v-row>
                 </v-col>
-                <v-col cols="12" md="4" order-md="3" sm="12" order-sm="2" xs="12" order-xs="2" class="py-0">
+                <v-col cols="12" md="4" order-md="3" sm="12" order-sm="2" order="2" class="py-0">
                     <div class="product-item-body pa-4 la-border">
                         <div class="d-flex justify-space-between">
                             <h5 class="subtitle2 text-uppercase mb-2">REFERENCIA: {{ productDetails?.reference }}</h5>
@@ -626,14 +625,17 @@
                 </v-col>
             </v-row>
 
-            <div class="px-2 pt-2">
+            <div class="px-2 pt-12">
                 <div class="d-flex justify-space-between mb-8">
                     <h5 class="mt-1">H5</h5>
-                    <div style="width: 38%">
+                    <div class="d-none d-lg-block" style="width: 38%">
                         <custom-button light text="Nuevo" style="width: 23%" />
                         <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                         <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                         <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                    </div>
+                    <div class="d-lg-none" style="width: 40%; text-align: end">
+                        <custom-button light text="Filtro" style="width: 40%" />
                     </div>
                 </div>
                 <v-row>
@@ -646,15 +648,18 @@
                 </v-row>
             </div>
 
-            <v-row class="px-2 pt-2 pb-4">
+            <v-row class="px-2 py-12">
                 <v-col cols="12">
                     <div class="d-flex justify-space-between mb-8">
                         <h5 class="mt-1">H5</h5>
-                        <div style="width: 38%">
+                        <div class="d-none d-lg-block" style="width: 38%">
                             <custom-button light text="Nuevo" style="width: 23%" />
                             <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                             <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                             <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        </div>
+                        <div class="d-lg-none" style="width: 40%; text-align: end">
+                            <custom-button light text="Filtro" style="width: 40%" />
                         </div>
                     </div>
                     <v-row>
