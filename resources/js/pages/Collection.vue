@@ -125,14 +125,14 @@
             <v-col cols="12">
                 <div class="d-flex justify-space-between mb-8">
                     <h5 class="mt-1">H5</h5>
-                    <div class="d-none d-lg-block" style="width: 38%;">
-                        <custom-button light text="Nuevo" style="width: 23%;" />
-                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
-                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
-                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                    <div class="d-none d-lg-block" style="width: 38%">
+                        <custom-button light text="Nuevo" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                     </div>
-                    <div class="d-lg-none" style="width: 40%; text-align: end;">
-                        <custom-button light text="Filtro" style="width: 40%;" />
+                    <div class="d-lg-none" style="width: 40%; text-align: end">
+                        <custom-button light text="Filtro" style="width: 40%" />
                     </div>
                 </div>
                 <v-row>
@@ -150,7 +150,7 @@
                     </v-col>
                 </v-row>
                 <v-row justify="center">
-                    <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
+                    <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
                 </v-row>
             </v-col>
         </v-row>
@@ -158,14 +158,14 @@
         <div class="mb-4 mt-16 pa-2">
             <div class="d-flex justify-space-between mb-8">
                 <h5 class="mt-1">H5</h5>
-                <div class="d-none d-lg-block" style="width: 38%;">
-                    <custom-button light text="Nuevo" style="width: 23%;" />
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
-                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%;" />
+                <div class="d-none d-lg-block" style="width: 38%">
+                    <custom-button light text="Nuevo" style="width: 23%" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                    <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
                 </div>
-                <div class="d-lg-none" style="width: 40%; text-align: end;">
-                    <custom-button light text="Filtro" style="width: 40%;" />
+                <div class="d-lg-none" style="width: 40%; text-align: end">
+                    <custom-button light text="Filtro" style="width: 40%" />
                 </div>
             </div>
             <v-row>
@@ -174,7 +174,7 @@
                 </v-col>
             </v-row>
             <v-row justify="center">
-                <custom-button light text="Ver más" class="mt-6 mb-6" style="width: 40%;" />
+                <custom-button light text="Ver más" class="mt-6 mb-6" style="width: 40%" />
             </v-row>
         </div>
         <v-card>
