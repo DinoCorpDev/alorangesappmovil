@@ -295,7 +295,7 @@ class AuthController extends Controller
             'user' => [
                 'id' => $user->id,
                 'balance' => $user->balance,
-                'name' => $user->name,
+                'name' => $user->first_name,
                 'email' => $user->email,
                 'phone' => $user->phone,
                 'avatar' => api_asset($user->avatar),

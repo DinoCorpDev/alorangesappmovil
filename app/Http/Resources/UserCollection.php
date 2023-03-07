@@ -17,7 +17,7 @@ class UserCollection extends JsonResource
         return [
             'id' => $this->id,
             'balance' => $this->balance,
-            'name' => $this->name,
+            'name' => $this->first_name,
             'email' => $this->email,
             'phone' => $this->phone,
             'avatar' => $this->avatar ? api_asset($this->avatar) : '',
