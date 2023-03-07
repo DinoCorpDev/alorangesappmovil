@@ -15,7 +15,15 @@
                     <v-row>
                         <v-col cols="8">
                             <custom-button light text="Comunicarse con ventas" outlined class="mb-10" block />
-                            <select-custom dark label="Seleccionar país" :items="langSelectItems" />
+                            <select-custom
+                                :clearable="false"
+                                :items="allLanguages"
+                                @input="agree"
+                                itemText="name"
+                                itemValue="code"
+                                placeholder="Seleccionar país"
+                                v-model="selectedCode"
+                            />
                         </v-col>
                     </v-row>
                 </v-col>
@@ -24,9 +32,9 @@
                 </v-col>
             </v-row>
 
-            <v-row tag="section" class="mb-6">
+            <v-row tag="section" class="preambulo mb-6">
                 <v-col cols="12">
-                    <div class="primary rounded-section px-5 py-8">
+                    <div class="rounded-section px-5 py-8">
                         <div class="mb-3">
                             <span class="subtitle1 text-uppercase font-weight-bold"> Preámbulo </span>
                         </div>
@@ -189,6 +197,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vue";
 import Carousel from "../components/global/Carousel.vue";
 import CustomButton from "../components/global/CustomButton.vue";
@@ -219,18 +229,48 @@ export default {
     },
     data() {
         return {
+            selectedCode: null,
             productsSeeder,
-            sliderSeeder,
-            langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"]
+            sliderSeeder
         };
+    },
+    computed: {
+        ...mapGetters("app", ["userLanguageObj", "allLanguages"])
     },
     mounted() {
         this.$vuetify.theme.dark = true;
+
+        this.selectedCode = this.userLanguageObj.code;
+    },
+    methods: {
+        ...mapActions("app", ["setLanguage"]),
+        agree() {
+            if (this.$i18n.locale !== this.selectedCode) {
+                this.setLanguage(this.selectedCode);
+                window.location.reload();
+            }
+        }
     }
 };
 </script>
 
+<style lang="scss">
+.v-list-item {
+    text-transform: uppercase;
+}
+</style>
+
 <style lang="scss" scoped>
+.theme--dark {
+    .preambulo .rounded-section {
+        background-color: #18191a;
+    }
+}
+
+.v-select {
+    text-transform: uppercase;
+}
+
 @media (min-width: 835px) {
     .container {
         max-width: 1920px;
