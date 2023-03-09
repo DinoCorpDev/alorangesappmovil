@@ -47,7 +47,7 @@ export default {
     },
     methods: {
         async getDetails() {
-            const res = await this.call_api( "get", `all-brands`);
+            const res = await this.call_api("get", `all-brands`);
             if (res.data.success) {
                 this.brands = res.data.data;
             }
