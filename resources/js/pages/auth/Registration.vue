@@ -4,7 +4,7 @@
         <v-container class="flex-grow-1 mb-5">
             <v-row class="wrap pa-5" no-gutters>
                 <v-col cols="12">
-                    <div class="register-content pa-lg-5 pt-lg-8">
+                    <div class="register-content h-100 pa-lg-5 pt-lg-8">
                         <h1 class="register-title">Registro</h1>
                         <v-divider class="my-4" />
                         <v-form class="inputs mb-8" ref="loginForm" lazy-validation @submit.prevent="register()">
@@ -724,8 +724,6 @@ export default {
 
 <style lang="scss" scoped>
 .register {
-    height: 100%;
-
     &-title {
         font-size: 24px;
         font-weight: 600;
@@ -739,7 +737,6 @@ export default {
             border-radius: 10px;
         }
 
-        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

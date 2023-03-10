@@ -11,7 +11,7 @@
                     <carousel-description />
                 </v-col>
                 <v-col cols="12" lg="6" class="pt-5 pt-lg-0 pl-lg-5">
-                    <div class="login-content pa-lg-5 pt-lg-8">
+                    <div class="login-content h-100 pa-lg-5 pt-lg-8">
                         <div class="inputs mb-8">
                             <div class="d-none d-lg-block">
                                 <h1 class="login-title">Inicio de sesión</h1>
@@ -187,8 +187,6 @@ export default {
 
 <style lang="scss" scoped>
 .login {
-    height: 100%;
-
     &-title {
         font-size: 24px;
         font-weight: 600;
@@ -202,7 +200,6 @@ export default {
             border-radius: 10px;
         }
 
-        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

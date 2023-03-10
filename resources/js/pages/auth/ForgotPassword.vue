@@ -1,23 +1,37 @@
 <template>
-    <div>
+    <div class="forgot-password d-flex flex-column h-100">
         <layout-navbar-auth />
-        <v-container class="container mt-10">
-            <v-row justify="center">
-                <v-col cols="12 cont">
-                    <div class="wrap pa-5">
-                        <div class="wrap pa-5 border-div">
-                            <h6 class="black--text">¿Olvidó su contraseña?</h6>
-                            <v-divider class="divider"></v-divider>
-                            <span class="black--text body2">
+        <v-container class="d-flex flex-grow-1">
+            <v-row justify="center" align="center">
+                <v-col cols="12" sm="10" md="8" lg="6">
+                    <div class="wrap pa-3 pa-sm-5 mb-10">
+                        <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-8">
+                            <h1 class="forgot-password-title">¿Olvidó su contraseña?</h1>
+                            <v-divider class="my-4" />
+                            <p>
                                 Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
                                 industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
                                 been the industry's • Incluye Lorem Ipsum is simply dummy text.
-                            </span>
-                            <div class="inputs">
-                                <span class="black--text body-2 text-uppercase">Correo Electronico</span>
-                                <custom-input></custom-input>
+                            </p>
+                            <div class="inputs mb-5">
+                                <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
+                                <custom-input
+                                    type="email"
+                                    v-model="form.email"
+                                    :error-messages="emailErrors"
+                                    hide-details="auto"
+                                    required
+                                />
                             </div>
-                            <custom-button block color="black" class="mt-5" text="Enviar" :to="{ name: 'Login' }" />
+                            <custom-button
+                                block
+                                color="black"
+                                text="Enviar"
+                                type="submit"
+                                @click="resetPassword"
+                                :loading="loading"
+                                :disabled="loading"
+                            />
                         </div>
                     </div>
                 </v-col>
@@ -27,22 +41,71 @@
 </template>
 
 <script>
+import { required, email } from "vuelidate/lib/validators";
+
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
 
 export default {
+    data: () => ({
+        form: { email: "" },
+        loading: false
+    }),
     components: {
         CarouselDescription,
         CustomButton,
         CustomInput,
         LayoutNavbarAuth
+    },
+    validations: {
+        form: {
+            email: {
+                required,
+                email
+            }
+        }
+    },
+    computed: {
+        emailErrors() {
+            const errors = [];
+            if (!this.$v.form.email.$dirty) return errors;
+            !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            return errors;
+        }
+    },
+    methods: {
+        async resetPassword() {
+            this.$v.form.$touch();
+            if (this.$v.form.$anyError) {
+                return;
+            }
+
+            this.loading = true;
+
+            const res = await this.call_api("post", "auth/password/create", this.form);
+
+            if (res.data.success) {
+                this.$router.push({ name: "NewPassword", params: { email: this.form.email } });
+
+                this.snack({
+                    message: res.data.message
+                });
+            } else {
+                this.snack({
+                    message: res.data.message,
+                    color: "red"
+                });
+            }
+            this.loading = false;
+        }
     }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .v-application {
     &.theme--light {
         background: #dee0e0;
@@ -51,38 +114,42 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.forgot-password {
+    &-title {
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 22px;
+
+        @media (min-width: 600px) {
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+
+    &-content {
+        border: 1px solid #e4e4e4;
+        border-radius: 10px;
+
+        p {
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            line-height: 18px;
+
+            @media (min-width: 600px) {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
 .wrap {
     background-color: #fafcfc;
     border-radius: 10px;
 }
 
-.cont {
-    padding: 5% 25%;
-}
-
-.border-div {
-    border: 1px solid #dfdfdf !important;
-}
-
-@media (max-width: 768px) {
-    .cont {
-        padding: 20% 15% 0 15%;
-    }
-}
-@media (max-width: 475px) {
-    .cont {
-        padding: 20% 5% 0 5%;
-    }
-}
-
-// .container {
-//     border: 1px solid #e4e4e4;
-//     border-radius: 10px;
-//     // width: 589px;
-// }
-
-.divider {
-    margin: 15px 0;
+.v-divider {
+    border-color: #e4e4e4 !important;
 }
 
 .inputs {
