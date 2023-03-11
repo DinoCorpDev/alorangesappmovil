@@ -1,15 +1,23 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="12">
+            <v-col cols="12" class="notificationContainer">
                 <v-row class="d-sm-none toolbarNot">
                     <v-toolbar>
                         <v-toolbar-title>NOTIFICACIONES</v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <custom-button @click.stop="drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
+                        <custom-button @click= "drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
                     </v-toolbar>
-                    <v-navigation-drawer v-model="drawer">
-                        <h5>drawer</h5>
+                    <v-navigation-drawer v-model="drawer" class="drawerNot" absolute temporary >
+                        <!-- <v-col>
+                            <v-row> -->
+                                <v-tabs class="tabsCon2" bg-color="teal-darken-3" right vertical v-model="tab">
+                                    <v-tab>Novedades</v-tab>
+                                    <v-tab>Solicitudes</v-tab>
+                                    <v-tab>Reportes</v-tab>
+                                </v-tabs>
+                            <!-- </v-row>
+                        </v-col> -->
                     </v-navigation-drawer>
                 </v-row>
                 <v-row class="d-none d-sm-block">
@@ -105,7 +113,7 @@ export default {
     },
     data() {
         return {
-            drawer: false,
+            drawer: null,
             tab: null
         };
     }
@@ -113,6 +121,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.notificationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .tabButton {
     display: flex;
     justify-content: space-between;
@@ -129,7 +142,7 @@ export default {
     background-color: #000;
     color: #ffffff;
 }
-.tabButton:active{
+.tabButton:active {
     background-color: #000;
     color: #ffffff;
 }
@@ -137,11 +150,18 @@ export default {
     display: flex;
     justify-content: space-evenly;
 }
+.tabsCon2{
+    background-color: #dfdfdf;
+}
 .divider {
     width: 1vw;
 }
-.toolbarNot{
+.toolbarNot {
     padding-bottom: 2vh;
     width: 100%;
+}
+.drawerNot {
+    background-color: #dfdfdf;
+    // display: flex;
 }
 </style>

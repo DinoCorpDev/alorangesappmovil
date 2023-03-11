@@ -86,10 +86,10 @@ export default {
     justify-content: space-between;
     width: 100%;
     
-    @media (max-width: 599px) {
-        display: flex;
-        flex-direction: column;
-    }
+    // @media screen and (max-width: 599px) {
+    //     display: flex;
+    //     flex-direction: column;
+    // }
 }
 .div-not2 {
     display: flex;
