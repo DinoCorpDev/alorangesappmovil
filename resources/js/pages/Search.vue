@@ -1,15 +1,21 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <v-container fluid>
+        <v-container fluid class="searchConteiner">
             <div class="bar">
                 <h5 class="filter">Filtro</h5>
-                <custom-button class="mr-2 ms-2" light text="Nuevo" />
-                <custom-button class="mr-2 ms-2" light text="Colecciones" />
-                <custom-button class="mr-2 ms-2" light text="Planes" />
-                <custom-button class="mr-2 ms-2" light text="Popular" />
-                <custom-button class="mr-2 ms-2" light text="Marcas" />
-                <custom-button class="mr-2 ms-2" light text="Ofertas" />
+                <!-- <custom-button @click="queryParam.sortBy = 'nuevo'" class="mr-2 ms-2" light text="Nuevo" />
+                <custom-button @click="queryParam.sortBy = 'colecciones'" class="mr-2 ms-2" light text="Colecciones" />
+                <custom-button @click="queryParam.sortBy = 'planes'" class="mr-2 ms-2" light text="Planes" />
+                <custom-button @click="queryParam.sortBy = 'popular'" class="mr-2 ms-2" light text="Popular" />
+                <custom-button @click="queryParam.sortBy = 'marcas'" class="mr-2 ms-2" light text="Marcas" />
+                <custom-button @click="queryParam.sortBy = 'ofertas'" class="mr-2 ms-2" light text="Ofertas" /> -->
+                <custom-button @click="console" class="mr-2 ms-2" light text="Nuevo" />
+                <custom-button @click="console" class="mr-2 ms-2" light text="Colecciones" />
+                <custom-button @click="console" class="mr-2 ms-2" light text="Planes" />
+                <custom-button @click="console" class="mr-2 ms-2" light text="Popular" />
+                <custom-button @click="console" class="mr-2 ms-2" light text="Marcas" />
+                <custom-button @click="console" class="mr-2 ms-2" light text="Ofertas" />
             </div>
 
             <v-divider></v-divider>
@@ -47,7 +53,10 @@ export default {
                 minPrice: null,
                 maxPrice: null
             },
-            products: []
+            products: [],
+            console: function(){
+                console.log('you have clicked me');
+                }
         };
     },
     created() {
@@ -122,7 +131,9 @@ export default {
     border-radius: 50%;
     padding: 10px 0;
 }
-
+.searchConteiner {
+    background-color: #ffffff;
+}
 .cards {
     padding: 10px 0;
     margin: 20px 0px;
@@ -132,5 +143,8 @@ export default {
     line-height: 42px;
     padding-right: 30px;
     display: inline-block;
+}
+.bar {
+    margin: 1%;
 }
 </style>
