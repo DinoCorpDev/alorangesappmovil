@@ -6,18 +6,14 @@
                     <v-toolbar>
                         <v-toolbar-title>NOTIFICACIONES</v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <custom-button @click= "drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
+                        <custom-button @click="drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
                     </v-toolbar>
-                    <v-navigation-drawer v-model="drawer" class="drawerNot" absolute temporary >
-                        <!-- <v-col>
-                            <v-row> -->
-                                <v-tabs class="tabsCon2" bg-color="teal-darken-3" right vertical v-model="tab">
-                                    <v-tab>Novedades</v-tab>
-                                    <v-tab>Solicitudes</v-tab>
-                                    <v-tab>Reportes</v-tab>
-                                </v-tabs>
-                            <!-- </v-row>
-                        </v-col> -->
+                    <v-navigation-drawer v-model="drawer" class="drawerNot" absolute temporary>
+                        <v-tabs class="tabsCon2" bg-color="teal-darken-3" right vertical v-model="tab">
+                            <v-tab>Novedades</v-tab>
+                            <v-tab>Solicitudes</v-tab>
+                            <v-tab>Reportes</v-tab>
+                        </v-tabs>
                     </v-navigation-drawer>
                 </v-row>
                 <v-row class="d-none d-sm-block">
@@ -126,6 +122,7 @@ export default {
     flex-direction: column;
     align-items: center;
 }
+
 .tabButton {
     display: flex;
     justify-content: space-between;
@@ -138,28 +135,35 @@ export default {
     width: 30vw;
     height: 38px;
 }
+
 .tabButton:hover {
     background-color: #000;
     color: #ffffff;
 }
+
 .tabButton:active {
     background-color: #000;
     color: #ffffff;
 }
+
 .tabsCon {
     display: flex;
     justify-content: space-evenly;
 }
-.tabsCon2{
+
+.tabsCon2 {
     background-color: #dfdfdf;
 }
+
 .divider {
     width: 1vw;
 }
+
 .toolbarNot {
     padding-bottom: 2vh;
     width: 100%;
 }
+
 .drawerNot {
     background-color: #dfdfdf;
     // display: flex;

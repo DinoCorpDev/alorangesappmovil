@@ -10,12 +10,12 @@
                 <custom-button @click="queryParam.sortBy = 'popular'" class="mr-2 ms-2" light text="Popular" />
                 <custom-button @click="queryParam.sortBy = 'marcas'" class="mr-2 ms-2" light text="Marcas" />
                 <custom-button @click="queryParam.sortBy = 'ofertas'" class="mr-2 ms-2" light text="Ofertas" /> -->
-                <custom-button @click="console" class="mr-2 ms-2" light text="Nuevo" />
-                <custom-button @click="console" class="mr-2 ms-2" light text="Colecciones" />
-                <custom-button @click="console" class="mr-2 ms-2" light text="Planes" />
-                <custom-button @click="console" class="mr-2 ms-2" light text="Popular" />
-                <custom-button @click="console" class="mr-2 ms-2" light text="Marcas" />
-                <custom-button @click="console" class="mr-2 ms-2" light text="Ofertas" />
+                <custom-button @click="consoleFilter" class="mr-2 ms-2" light text="Nuevo" />
+                <custom-button @click="consoleFilter" class="mr-2 ms-2" light text="Colecciones" />
+                <custom-button @click="consoleFilter" class="mr-2 ms-2" light text="Planes" />
+                <custom-button @click="consoleFilter" class="mr-2 ms-2" light text="Popular" />
+                <custom-button @click="consoleFilter" class="mr-2 ms-2" light text="Marcas" />
+                <custom-button @click="consoleFilter" class="mr-2 ms-2" light text="Ofertas" />
             </div>
 
             <v-divider></v-divider>
@@ -53,10 +53,7 @@ export default {
                 minPrice: null,
                 maxPrice: null
             },
-            products: [],
-            console: function(){
-                console.log('you have clicked me');
-                }
+            products: []
         };
     },
     created() {
@@ -120,6 +117,9 @@ export default {
                 this.totalProducts = res.data.total;
                 this.queryParam.page = res.data.currentPage;
             }
+        },
+        consoleFilter() {
+            console.log("you have clicked me");
         }
     }
 };
@@ -131,9 +131,11 @@ export default {
     border-radius: 50%;
     padding: 10px 0;
 }
+
 .searchConteiner {
     background-color: #ffffff;
 }
+
 .cards {
     padding: 10px 0;
     margin: 20px 0px;
@@ -144,6 +146,7 @@ export default {
     padding-right: 30px;
     display: inline-block;
 }
+
 .bar {
     margin: 1%;
 }
