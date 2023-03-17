@@ -40,17 +40,17 @@
                             <h5>H5</h5>
                             <v-row>
                                 <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                                    <product-item-3 />
+                                    <product-box />
                                 </v-col>
                                 <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                                    <product-item-3
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                                    <product-item-3
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
@@ -58,7 +58,7 @@
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                                    <product-item-3
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
@@ -161,17 +161,17 @@
                             <h5>H5</h5>
                             <v-row>
                                 <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                                    <product-item-3 />
+                                    <product-box />
                                 </v-col>
                                 <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                                    <product-item-3
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                                    <product-item-3
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
@@ -179,7 +179,7 @@
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                                    <product-item-3
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
@@ -313,17 +313,17 @@
                             <h5>H5</h5>
                             <v-row>
                                 <v-col cols="12" sm="6" md="4" lg="3" xl="3">
-                                    <product-item-3 />
+                                    <product-box />
                                 </v-col>
                                 <v-col cols="12" sm="6" md="4" lg="3" xl="3">
-                                    <product-item-3
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6" md="4" lg="3" xl="3">
-                                    <product-item-3
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
@@ -331,7 +331,7 @@
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6" md="4" lg="3" xl="3">
-                                    <product-item-3
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
@@ -393,7 +393,7 @@ import CarouselProducts from "../components/global/CarouselProducts.vue";
 import CarouselSpaces from "../components/global/CarouselSpaces.vue";
 import ProductItem1 from "../components/global/ProductItem1.vue";
 import ProductItem2 from "../components/global/ProductItem2.vue";
-import ProductItem3 from "../components/global/ProductItem3.vue";
+import ProductBox from "../components/product/ProductBox.vue";
 import ProductItem4 from "../components/global/ProductItem4.vue";
 import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
 import FooterCustom from "../components/global/FooterCustom.vue";
@@ -423,7 +423,7 @@ export default {
         CarouselProducts,
         CarouselSpaces,
         ProductItem1,
-        ProductItem3,
+        ProductBox,
         LayoutNavbarSpaces,
         ProductItem2,
         ProductItem4,

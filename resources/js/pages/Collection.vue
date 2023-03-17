@@ -146,7 +146,7 @@
                         v-for="(product, i) in footerProducts"
                         :key="i"
                     >
-                        <product-item-3 :data="product" />
+                        <product-box :product-details="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
@@ -206,7 +206,7 @@
 </template>
 
 <script>
-import ProductItem3 from "../components/global/ProductItem3.vue";
+import ProductBox from "../components/product/ProductBox.vue";
 import ProductItem2 from "../components/global/ProductItem2.vue";
 import ProductItem6 from "../components/global/ProductItem6.vue";
 import CustomButton from "../components/global/CustomButton.vue";
@@ -237,7 +237,7 @@ export default {
         footerProducts: []
     }),
     components: {
-        ProductItem3,
+        ProductBox,
         ProductItem2,
         ProductItem6,
         CustomButton,
