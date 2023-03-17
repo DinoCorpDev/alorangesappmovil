@@ -21,8 +21,8 @@
             <v-divider></v-divider>
             <div class="cards">
                 <v-row class="d-flex flex-wrap" v-if="products.length > 0">
-                    <v-col cols="12" sm="6" md="4" lg="3" xl="2" v-for="(product, i) in products" :key="i">
-                        <products :product-details="product" :is-loading="loading" />
+                    <v-col cols="12" sm="6" md="4" lg="2" v-for="(product, i) in products" :key="i">
+                        <product-box :product-details="product" />
                     </v-col>
                 </v-row>
             </div>
@@ -32,14 +32,14 @@
 
 <script>
 import CustomButton from "../components/global/CustomButton.vue";
-import Products from "../components/global/Products.vue";
+import ProductBox from "../components/product/ProductBox.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
         CustomButton,
-        Products,
-        LayoutNavbarAuth
+        LayoutNavbarAuth,
+        ProductBox
     },
     data() {
         return {
@@ -124,6 +124,14 @@ export default {
     }
 };
 </script>
+
+<style lang="scss">
+.v-application {
+    &.theme--light {
+        background: #fafcfc;
+    }
+}
+</style>
 
 <style lang="scss" scoped>
 .img {
