@@ -195,7 +195,7 @@ export default {
                     if (cartProduct.cart_id === cart_id)
                         return (cartProduct.qty = cartProduct.qty + 1);
                 });
-            } else if (type == "minus" && item.qty > item.min_qty) {
+            } else if (type == "minus" /*&& item.qty > item.min_qty*/) {
                 state.cartProducts.map((cartProduct) => {
                     if (cartProduct.cart_id === cart_id)
                         return (cartProduct.qty = cartProduct.qty - 1);
@@ -329,6 +329,7 @@ export default {
             }
         },
         async updateQuantity({ commit, getters, dispatch }, { type, cart_id }) {
+            /*
             let cartItem = getters.findCartItemByCartId(cart_id);
             if (type == "plus" && cartItem.qty + 1 > cartItem.max_qty) {
                 Mixin.methods.snack({
@@ -336,7 +337,7 @@ export default {
                     color: "red",
                 });
                 return;
-            }
+            }*/
             const res = await Mixin.methods.call_api(
                 "post",
                 `carts/change-quantity`,

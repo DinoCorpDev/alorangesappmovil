@@ -16,7 +16,7 @@
             <div class="div-body">
                 <div class="divider"></div>
                 <div>
-                    <span class="black--text price">{{ price }} COP</span>
+                    <span class="black--text price">{{ format_price(price2) }} COP</span>
                 </div>
                 <div class="divider"></div>
                 <div>
@@ -64,7 +64,7 @@
 
 <script>
 import CustomButton from "../../components/global/CustomButton.vue";
-
+import { mapActions  } from "vuex";
 export default {
     name: "ProductItem",
     components: {
@@ -92,22 +92,50 @@ export default {
         price: {
             type: Number,
             default: 0
+        },
+        price2: {
+            type: Number,
+            default: 0
+        },
+        cart_id: {
+            type: Number,
+            default: 0
+        },
+        quantity: {
+            type: Number,
+            default: 0
         }
     },
     data() {
-        return {
-            quantity: 0
-        };
+        return {};
     },
     methods: {
-        increment() {
-            this.quantity++;
-        },
+        ...mapActions("cart", [
+            "updateQuantity",
+            //"toggleCartItem",
+            //"removeFromCart",
+        ]),
         decrement() {
             if (this.quantity > 0) {
                 this.quantity--;
+                this.update("minus");
             }
+        },
+        increment() {
+            this.quantity++;
+            this.update("plus");
+        },
+        async update(type) {
+            await this.updateQuantity({type: type, cart_id:this.cart_id });
+            this.$emit("changeQty", 1);
+            this.calculatedPrice();
+        },
+        async calculatedPrice() {
+            this.price2 = this.price * this.quantity;
         }
+    },
+    async created() {
+        this.calculatedPrice();
     }
 };
 </script>

@@ -348,7 +348,7 @@ export default {
                 return;
             }
 
-            let minMaxCheck = this.checkMinMaxLimit(this.selectedVariation.id);
+            let minMaxCheck = this.checkMinMaxLimit(this.selectedVariation?.id);
             if (!minMaxCheck.success) {
                 // selected variation min max limit check
 
@@ -365,7 +365,8 @@ export default {
             }
 
             this.addToCart({
-                variation_id: this.selectedVariation.id,
+                //variation_id: this.selectedVariation?.id,
+                variation_id: this.productDetails?.id,
                 qty: this.cartQuantity,
             });
             this.snack({
