@@ -22,7 +22,7 @@
             <v-stepper-content step="1">
                 <h6>Productos</h6>
                 <v-row>
-                    <v-col cols="12"  v-for="(product, i) in cartItems" :key="i" class="">
+                    <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
                         <product-cart
                             :reference="product?.reference"
                             :name="product?.name"
@@ -38,7 +38,7 @@
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
                         <div class="mb-2"></div>
-                        <total :total="priceTotal"/>
+                        <total :total="priceTotal" />
                         <div class="mb-2">
                             <custom-button text="Continuar" color="nero" @click="step = 2" />
                         </div>
@@ -179,7 +179,7 @@
                         <div class="mb-2">
                             <custom-button text="Volver" color="nero" @click="step = 1" />
                         </div>
-                        <total :total="priceTotal"/>
+                        <total :total="priceTotal" />
                         <div class="mb-2">
                             <custom-button text="Continuar" color="nero" @click="step = 3" />
                         </div>
@@ -226,7 +226,7 @@
                         <div class="mb-2">
                             <custom-button text="Volver" color="nero" @click="step = 2" />
                         </div>
-                        <total :total="priceTotal"/>
+                        <total :total="priceTotal" />
                         <div class="mb-2">
                             <custom-button text="Continuar" color="nero" @click="step = 4" />
                         </div>
@@ -376,7 +376,7 @@
                     <h6>Lista de Pedido</h6>
                     <v-divider class="my-3" />
                     <v-row>
-                        <v-col cols="12"  v-for="(product, i) in cartItems" :key="i" class="">
+                        <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
                             <product-cart
                                 :reference="product?.reference"
                                 :name="product?.name"
@@ -535,7 +535,7 @@
                         <div class="mb-2">
                             <custom-button text="Volver" color="nero" @click="step = 3" />
                         </div>
-                        <total :total="priceTotal"/>
+                        <total :total="priceTotal" />
                     </v-col>
                 </v-row>
             </v-stepper-content>
@@ -574,17 +574,17 @@ export default {
     },
     methods: {
         async getCart() {
-            const res = await this.call_api( "post", `carts`,{});
+            const res = await this.call_api("post", `carts`, {});
             if (res.data.success) {
                 this.cartItems = res.data?.cart_items?.data;
                 this.priceTotal = 0;
-                this.cartItems.map((product)=>{
-                    this.priceTotal+= (product?.regular_price * product?.qty);
-                })
+                this.cartItems.map(product => {
+                    this.priceTotal += product?.regular_price * product?.qty;
+                });
             } else {
                 this.snack({
                     message: res.data.message,
-                    color: "red",
+                    color: "red"
                 });
                 this.$router.push({ name: "404" });
             }

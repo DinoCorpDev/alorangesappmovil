@@ -64,9 +64,10 @@
 
 <script>
 import CustomButton from "../../components/global/CustomButton.vue";
-import { mapActions  } from "vuex";
+import { mapActions } from "vuex";
+
 export default {
-    name: "ProductItem",
+    name: "ProductCart",
     components: {
         CustomButton
     },
@@ -106,15 +107,8 @@ export default {
             default: 0
         }
     },
-    data() {
-        return {};
-    },
     methods: {
-        ...mapActions("cart", [
-            "updateQuantity",
-            //"toggleCartItem",
-            //"removeFromCart",
-        ]),
+        ...mapActions("cart", ["updateQuantity"]),
         decrement() {
             if (this.quantity > 0) {
                 this.quantity--;
@@ -126,7 +120,7 @@ export default {
             this.update("plus");
         },
         async update(type) {
-            await this.updateQuantity({type: type, cart_id:this.cart_id });
+            await this.updateQuantity({ type: type, cart_id: this.cart_id });
             this.$emit("changeQty", 1);
             this.calculatedPrice();
         },
