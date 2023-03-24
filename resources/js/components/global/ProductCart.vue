@@ -19,7 +19,7 @@
                     <span class="black--text price">{{ format_price(price2) }} COP</span>
                 </div>
                 <div class="divider"></div>
-                <div>
+                <div class="quanty-res">
                     <div class="quantity">
                         <div>
                             <v-btn v-on:click="increment()" block plain>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="d-md-none">
-                        <custom-button block icon="la-ellipsis-v" />
+                        <custom-button block icon="la-ellipsis-v" class="btn-res" />
                     </div>
                 </div>
             </div>
@@ -216,7 +216,7 @@ export default {
 
 @media (max-width: 959px) {
     .div-body {
-        gap: 8px;
+        gap: 15px;
     }
 
     .information {
@@ -234,7 +234,12 @@ export default {
         padding-top: 25px;
         padding-bottom: 24px;
     }
-
+    .quanty-res {
+        width: 25px;
+    }
+    .btn-res {
+        padding: 0 0 !important;
+    }
     .brand {
         font: normal normal normal 12px/24px Roboto;
     }
