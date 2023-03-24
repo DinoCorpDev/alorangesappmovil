@@ -105,6 +105,12 @@ export default [
         meta: { requiresAuth: false }
     },
     {
+        path: "/category2/:categorySlug?",
+        component: Search,
+        name: "Category2",
+        meta: { requiresAuth: false }
+    },
+    {
         path: "/brand/:brandId?",
         component: ProductListing,
         name: "Brand",
