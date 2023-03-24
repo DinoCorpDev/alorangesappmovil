@@ -3,7 +3,7 @@
         <div class="div_total">
             <div>
                 <span class="text-uppercase bold title">Total </span>
-                <span class="text-uppercase price"> {{ total }} COP</span>
+                <span class="text-uppercase price"> {{ format_price(total) }} COP</span>
             </div>
             <span class="iva">* Iva incluido</span>
         </div>
