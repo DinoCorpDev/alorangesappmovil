@@ -20,7 +20,12 @@
             </v-col>
         </v-row>
         <v-divider class="my-6" />
-
+        <address-dialog 
+            :typeAddress="typeAddress" 
+            :show="addDialogShow" 
+            @close="addressDialogClosed" 
+            :old-address="addressSelectedForEdit" 
+        />
         <v-row>
             <v-col cols="12" md="6">
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
@@ -81,8 +86,8 @@
                             <v-col class="text-start">
                                 <label class="bold">DIRECCION</label>
                             </v-col>
-                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
-                                <div>{{ address.address }}</div>
+                            <v-col class="text-end">
+                                <div>{{ addressPrincipal?.address }}</div>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -98,24 +103,24 @@
                             <v-col class="text-start">
                                 <label class="bold">CODIGO POSTAL</label>
                             </v-col>
-                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
-                                <div>{{ address.postal_code }}</div>
+                            <v-col class="text-end">
+                                <div>{{ addressPrincipal?.postal_code }}</div>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
                                 <label class="bold">DEPARTAMENTO</label>
                             </v-col>
-                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
-                                <div>{{ address.state }}</div>
+                            <v-col class="text-end">
+                                <div>{{ addressPrincipal?.state }}</div>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
                                 <label class="bold">MUNICIPIO</label>
                             </v-col>
-                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
-                                <div>{{ address.city }}</div>
+                            <v-col class="text-end">
+                                <div>{{ addressPrincipal?.city }}</div>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -139,18 +144,64 @@
                                 <label class="bold">TELÉFONO / MOBIL</label>
                             </v-col>
                             <v-col class="text-end">
-                                <div>{{ $t("phone_number") }}</div>
+                                <div>{{ addressPrincipal?.phone }}</div>
                             </v-col>
                         </v-row>
-
-                        <custom-button color="grey" text="EDITAR" />
+                        <custom-button color="grey" text="EDITAR" @click="editAddress(addressPrincipal, 'shipping')" />
                     </v-form>
                 </v-card>
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <h5 class="bold">Otras direcciones</h5>
                     <v-divider class="my-4" />
+
+                    <div class="form" v-for="(otherAdd, i) in otherAdress" :key="i">
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Dirección</span>
+                            <span class="body1 text-right">{{otherAdd?.address}}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                            <span class="body1 text-right">{{otherAdd?.address}}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                            <span class="body1">{{otherAdd?.postal_code}}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Departamento</span>
+                            <span class="body1">{{otherAdd?.state}}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Municipio</span>
+                            <span class="body1">{{otherAdd?.city}}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                            <span class="body1"> -- </span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                            <span class="body1">{{otherAdd?.phone}}</span>
+                        </div>
+                        <custom-button 
+                            class="mr-3" 
+                            color="grey" 
+                            text="Editar" 
+                            @click="editAddress(otherAdd, 'billing')"
+                        />
+
+                        <custom-button 
+                            class="mr-3" 
+                            color="red" 
+                            text="Eliminar" 
+                            @click="deleteAddress(otherAdd?.id)"
+                        />
+
+                        <v-divider class="my-4" />
+                    </div>
+                    
                     <div>
-                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true"
+                        <custom-button class="my-4" block color="grey" @click="openAdress('billing')"
                             >AÑADIR DIRECCION</custom-button
                         >
                         <div class="cards">
@@ -186,11 +237,6 @@
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <h5 class="bold">Contraseña</h5>
                     <v-divider class="my-4" />
-                    <address-dialog
-                        :show="addDialogShow"
-                        @close="addressDialogClosed"
-                        :old-address="addressSelectedForEdit"
-                    />
                     <div>
                         <!-- <v-btn light block elevation="0" class="ms-auto" @click.stop="addDialogShow = true"
                             >CAMBIAR CONTRASEÑA</v-btn
@@ -325,7 +371,10 @@ export default {
         passwordShow: false,
         addDialogShow: false,
         infoUpdateLoading: false,
-        addressSelectedForEdit: {}
+        addressSelectedForEdit: {},
+        addressPrincipal: {},
+        otherAdress: [],
+        typeAddress: "shipping"
     }),
     components: {
         VueTelInput,
@@ -392,12 +441,11 @@ export default {
         this.form.phone = this.currentUser.phone;
         this.form.previewAvatar = this.currentUser.avatar;
 
-        this.fetchAddresses();
+        this.getAddressUser();
     },
     methods: {
         ...mapMutations("auth", ["setUser"]),
         ...mapMutations("address", ["setAddresses"]),
-        ...mapActions("address", ["fetchAddresses"]),
         previewThumbnail(event) {
             this.form.avatar = event.target.files[0];
             if (event.target.files && event.target.files[0]) {
@@ -410,6 +458,13 @@ export default {
         },
         phoneValidate(phone) {
             this.form.invalidPhone = phone.valid ? false : true;
+        },
+        async getAddressUser(){
+                const res = await this.call_api("get", `user/addresses`);
+                if(res.data.success){
+                    this.addressPrincipal = res.data?.data?.find(address => address.default_shipping == 1);
+                    this.otherAdress = res.data?.data?.filter(address => address.default_shipping == 0);
+                }
         },
         async updateBasic() {
             // if(this.form.email == ""){
@@ -459,13 +514,10 @@ export default {
         async deleteAddress(id) {
             const res = await this.call_api("get", `user/address/delete/${id}`);
             if (res.data.success) {
-                this.setAddresses(res.data.data);
+                //this.setAddresses(res.data.data);
+                this.getAddressUser();
                 this.snack({ message: res.data.message });
             }
-        },
-        editAddress(address) {
-            this.addressSelectedForEdit = address;
-            this.addDialogShow = true;
         },
         async markDefaultShipping(id) {
             const res = await this.call_api("get", `user/address/default-shipping/${id}`);
@@ -491,9 +543,19 @@ export default {
                 });
             }
         },
+        editAddress(address, type){
+            this.typeAddress = type;
+            this.addressSelectedForEdit = address;
+            this.addDialogShow = true
+        },
         addressDialogClosed() {
             this.addressSelectedForEdit = {};
             this.addDialogShow = false;
+            this.getAddressUser();
+        },
+        openAdress(type){
+            this.typeAddress = type;
+            this.addDialogShow = true;
         }
     }
 };

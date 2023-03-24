@@ -20,7 +20,8 @@ class AddressCollection extends ResourceCollection
                     'postal_code' => $data->postal_code,
                     'phone' => $data->phone,
                     'default_shipping' => $data->default_shipping,
-                    'default_billing' => $data->default_billing
+                    'default_billing' => $data->default_billing,
+                    'default_service' => $data->default_service
                 ];
             })
         ];

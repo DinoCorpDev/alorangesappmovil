@@ -78,7 +78,41 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de servicio</h6>
                                     <v-divider class="my-3" />
-                                    <label class="label">
+                                    <div v-if="Object.entries(addressServicio).length !== 0" >
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                            <span class="body1">Dirección principal</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                            <span class="body1">{{addressServicio?.address}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                                            <span class="body1">{{addressServicio?.address}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                            <span class="body1">{{addressServicio?.postal_code}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                            <span class="body1">{{addressServicio?.country}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                            <span class="body1">{{addressServicio?.city}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                            <span class="body1"> -- </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                            <span class="body1">{{addressPrincipal?.phone}}</span>
+                                        </div>
+                                    </div>
+                                    <label class="label my-3">
                                         <input type="checkbox" />
                                         <span class="body-1 black--text text">
                                             Usar la misma Dirección de envió para que Idovela preste los servicio de
@@ -87,14 +121,62 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button block color="grey" text="Añadir Dirección" />
+                                    <custom-button 
+                                        v-if="Object.entries(addressServicio).length !== 0" 
+                                        class="mr-3" 
+                                        color="grey" 
+                                        text="Editar" 
+                                        @click="editAddress(addressServicio, 'service')"
+                                        
+                                    />
+                                    <custom-button 
+                                        v-if="Object.entries(addressServicio).length === 0" 
+                                        block 
+                                        color="grey" 
+                                        text="Añadir Dirección" 
+                                        @click="openAdress('service')"
+                                    />
                                 </div>
                             </v-col>
                             <v-col cols="12">
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de facturacion</h6>
                                     <v-divider class="my-3" />
-                                    <label class="label">
+                                    <div v-if="Object.entries(addressFacturacion).length !== 0" >
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                            <span class="body1">Dirección principal</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                            <span class="body1">{{addressFacturacion?.address}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                                            <span class="body1">{{addressFacturacion?.address}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                            <span class="body1">{{addressFacturacion?.postal_code}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                            <span class="body1">{{addressFacturacion?.country}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                            <span class="body1">{{addressFacturacion?.city}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                            <span class="body1"> -- </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                            <span class="body1">{{addressPrincipal?.phone}}</span>
+                                        </div>
+                                    </div>
+                                    <label class="label my-3">
                                         <input type="checkbox" />
                                         <span class="body-1 black--text text">
                                             Usar la misma Dirección de envió para que Idovela entreguela factura física.
@@ -102,12 +184,27 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button block color="grey" text="Añadir Dirección" />
+                                    <custom-button 
+                                        v-if="Object.entries(addressFacturacion).length !== 0" 
+                                        class="mr-3" 
+                                        color="grey" 
+                                        text="Editar" 
+                                        @click="editAddress(addressFacturacion, 'billing')"
+                                        
+                                    />
+                                    <custom-button 
+                                        v-if="Object.entries(addressFacturacion).length === 0" 
+                                        block 
+                                        color="grey" 
+                                        text="Añadir Dirección" 
+                                        @click="openAdress('billing')"
+                                    />
                                 </div>
                             </v-col>
                         </v-row>
                     </v-col>
                     <v-col cols="12" md="6">
+                        <address-dialog :typeAddress="typeAddress" :show="addDialogShow" @close="addressDialogClosed" :old-address="addressSelectedForEdit" />
                         <v-row>
                             <v-col cols="12">
                                 <div class="form">
@@ -116,27 +213,27 @@
                                     <select-custom dark label="Usuario Principal" :items="langSelectItems" />
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                        <span class="body1">Casa 1</span>
+                                        <span class="body1">Dirección principal</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                        <span class="body1">Avenida siempre viva 123</span>
+                                        <span class="body1">{{addressPrincipal?.address}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                        <span class="body1">Casa de tejado con color café y patio verde</span>
+                                        <span class="body1">{{addressPrincipal?.address}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                        <span class="body1">110611</span>
+                                        <span class="body1">{{addressPrincipal?.postal_code}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                        <span class="body1">Cundinamarca</span>
+                                        <span class="body1">{{addressPrincipal?.country}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                        <span class="body1">Bogota d.c</span>
+                                        <span class="body1">{{addressPrincipal?.city}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -150,10 +247,23 @@
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                        <span class="body1">+57 300 544 3300</span>
+                                        <span class="body1">{{addressPrincipal?.phone}}</span>
                                     </div>
-                                    <custom-button class="mr-3" color="grey" text="Editar" />
-                                    <custom-button text="Añadir" color="grey" />
+                                    <custom-button 
+                                        v-if="Object.entries(addressPrincipal).length !== 0" 
+                                        class="mr-3" 
+                                        color="grey" 
+                                        text="Editar" 
+                                        @click="editAddress(addressPrincipal, 'shipping')"
+                                        
+                                    />
+                                    <custom-button 
+                                        v-if="Object.entries(addressPrincipal).length === 0" 
+                                        block 
+                                        color="grey" 
+                                        text="Añadir Dirección" 
+                                        @click="openAdress('shipping')"
+                                    />
                                 </div>
                             </v-col>
                             <v-col cols="12">
@@ -296,7 +406,43 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de servicio</h6>
                                     <v-divider class="my-3" />
-                                    <label class="label">
+
+                                    <div v-if="Object.entries(addressServicio).length !== 0" >
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                            <span class="body1">Dirección principal</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                            <span class="body1">{{addressServicio?.address}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                                            <span class="body1">{{addressServicio?.address}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                            <span class="body1">{{addressServicio?.postal_code}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                            <span class="body1">{{addressServicio?.country}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                            <span class="body1">{{addressServicio?.city}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                            <span class="body1"> -- </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                            <span class="body1">{{addressPrincipal?.phone}}</span>
+                                        </div>
+                                    </div>
+
+                                    <label class="label mt-4">
                                         <input type="checkbox" />
                                         <span class="body-1 black--text text">
                                             Usar la misma Dirección de envió para que Idovela preste los servicio de
@@ -304,21 +450,53 @@
                                         </span>
                                         <span class="checkmark"></span>
                                     </label>
-                                    <v-divider class="my-3" />
                                 </div>
                             </v-col>
                             <v-col cols="12">
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de facturacion</h6>
                                     <v-divider class="my-3" />
-                                    <label class="label">
+                                    <div v-if="Object.entries(addressFacturacion).length !== 0" >
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                            <span class="body1">Dirección principal</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                            <span class="body1">{{addressFacturacion?.address}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                                            <span class="body1">{{addressFacturacion?.address}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                            <span class="body1">{{addressFacturacion?.postal_code}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                            <span class="body1">{{addressFacturacion?.country}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                            <span class="body1">{{addressFacturacion?.city}}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                            <span class="body1"> -- </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                            <span class="body1">{{addressPrincipal?.phone}}</span>
+                                        </div>
+                                    </div>
+                                    <label class="label mt-3">
                                         <input type="checkbox" />
                                         <span class="body-1 black--text text">
                                             Usar la misma Dirección de envió para que Idovela entreguela factura física.
                                         </span>
                                         <span class="checkmark"></span>
                                     </label>
-                                    <v-divider class="my-3" />
                                 </div>
                             </v-col>
                         </v-row>
@@ -329,29 +507,30 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de envio</h6>
                                     <v-divider class="my-3" />
+                                    <select-custom dark label="Usuario Principal" :items="langSelectItems" />
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                        <span class="body1">Casa 1</span>
+                                        <span class="body1">Dirección principal</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                        <span class="body1">Avenida siempre viva 123</span>
+                                        <span class="body1">{{addressPrincipal?.address}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                        <span class="body1">Casa de tejado con color café y patio verde</span>
+                                        <span class="body1">{{addressPrincipal?.address}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                        <span class="body1">110611</span>
+                                        <span class="body1">{{addressPrincipal?.postal_code}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                        <span class="body1">Cundinamarca</span>
+                                        <span class="body1">{{addressPrincipal?.country}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                        <span class="body1">Bogota d.c</span>
+                                        <span class="body1">{{addressPrincipal?.city}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -365,7 +544,7 @@
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                        <span class="body1">+57 300 544 3300</span>
+                                        <span class="body1">{{addressPrincipal?.phone}}</span>
                                     </div>
                                 </div>
                             </v-col>
@@ -552,6 +731,7 @@ import SelectCustom from "../../components/global/SelectCustom.vue";
 import StepOrder from "../../components/icons/StepOrder.vue";
 import Total from "../../components/global/Total.vue";
 import TypePayment from "../../components/global/TypePayment.vue";
+import AddressDialog from '../../components/address/AddressDialog.vue'
 
 export default {
     components: {
@@ -562,14 +742,21 @@ export default {
         StepOrder,
         Order,
         TypePayment,
-        Total
+        Total,
+        AddressDialog
     },
     data() {
         return {
             langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"],
             step: 1,
             cartItems: [],
-            priceTotal: 0
+            priceTotal: 0,
+            addDialogShow: false,
+            addressSelectedForEdit: {},
+            addressPrincipal: {},
+            addressServicio: {},
+            addressFacturacion: {},
+            typeAddress: "shipping"
         };
     },
     methods: {
@@ -589,12 +776,50 @@ export default {
                 this.$router.push({ name: "404" });
             }
         },
+        async getAddresses() {
+            const res = await this.call_api( "get", `user/addresses`);
+            if (res.data.success) {
+                res?.data?.data?.map((address)=>{
+                    console.log(address);
+                    if(address?.default_shipping == 1){
+                        this.addressPrincipal = address;
+                    }
+                    if(address?.default_billing == 1){
+                        this.addressFacturacion = address;
+                    }
+                    if(address?.default_service == 1){
+                        this.addressServicio = address;
+                    }
+                })
+            } else {
+                this.snack({
+                    message: res.data.message,
+                    color: "red",
+                });
+                this.$router.push({ name: "404" });
+            }
+        },
         changeQty(i) {
             this.getCart();
+        },
+        addressDialogClosed(){
+            this.addressSelectedForEdit = {}
+            this.addDialogShow = false;
+            this.getAddresses();
+        },
+        editAddress(address, type){
+            this.typeAddress = type;
+            this.addressSelectedForEdit = address;
+            this.addDialogShow = true
+        },
+        openAdress(type){
+            this.typeAddress = type;
+            this.addDialogShow = true;
         }
     },
     async created() {
         this.getCart();
+        this.getAddresses();
     }
 };
 </script>

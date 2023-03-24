@@ -29,47 +29,39 @@
                 </div>
                 <div class="mb-3">
                     <div class="mb-1 fs-13 fw-500">{{ $t('country') }}</div>
-                    <v-autocomplete
+                    <v-text-field
+                        type="text"
                         v-model="form.country"
                         :error-messages="countryErrors"
-                        :items="countries"
                         :placeholder="$t('select_country')"
                         hide-details="auto"
+                        required
                         outlined
-                        item-text="name"
-                        item-value="id"
-                        dense
-                        @input="countryChanged"
-                    ></v-autocomplete>
+                    ></v-text-field>
                 </div>
                 <div class="mb-3">
                     <div class="mb-1 fs-13 fw-500">{{ $t('state') }}</div>
-                    <v-autocomplete
+                    <v-text-field
+                        type="text"
                         v-model="form.state"
                         :error-messages="stateErrors"
-                        :items="filteredStates"
                         hide-details="auto"
                         :placeholder="statePlaceholer"
                         outlined
-                        item-text="name"
-                        item-value="id"
-                        dense
-                        @input="stateChanged"
-                    ></v-autocomplete>
+                        required
+                    ></v-text-field>
                 </div>
                 <div class="mb-3">
                     <div class="mb-1 fs-13 fw-500">City</div>
-                    <v-autocomplete
+                    <v-text-field
                         v-model="form.city"
                         :error-messages="cityErrors"
-                        :items="filteredCities"
                         :placeholder="cityPlaceholer"
                         hide-details="auto"
                         outlined
-                        item-text="name"
-                        item-value="id"
-                        dense
-                    ></v-autocomplete>
+                        required
+                        type="text"
+                    ></v-text-field>
                 </div>
                 <div class="mb-3">
                     <div class="mb-1 fs-13 fw-500">{{ $t('phone_number') }}</div>
@@ -115,7 +107,8 @@ import { mapMutations,mapActions } from "vuex";
 export default {
     props: {
         show: { type: Boolean, required: true, default: false },
-        oldAddress: { type: Object, default: () => {} }
+        oldAddress: { type: Object, default: () => {} },
+        typeAddress: { type: String, default: "shipping" }
     },
     data: () => ({
         adding: false,
@@ -130,7 +123,7 @@ export default {
             country: "",
             state: "",
             city: "",
-            phone: "",
+            phone: ""
         }
     }),
     validations: {
@@ -209,7 +202,7 @@ export default {
         },
     },
     created(){
-        this.fetchCountries();
+
     },
     methods: {
         ...mapActions("address",[
@@ -218,48 +211,17 @@ export default {
         ...mapMutations("address",[
             "setAddresses"
         ]),
-        async fetchCountries(){
-            if(!this.countriesLoaded){
-                const res = await this.call_api("get", "all-countries");
-                if(res.data.success){
-                    this.countriesLoaded = true
-                    this.countries = res.data.data
-                }
-            }
-        },
-        async countryChanged(countryid){
-            const res = await this.call_api("get", `states/${countryid}`);
-            if(res.data.success){
-                this.filteredStates = res.data.data
-                this.form.state = ""
-                this.form.city = ""
-                this.filteredCities = []
-            }else{
-                this.snack({
-                    message: this.$i18n.t("something_went_wrong"),
-                    color: 'red'
-                });
-            }
-        },
-        async stateChanged(stateid){
-            const res = await this.call_api("get", `cities/${stateid}`);
-            if(res.data.success){
-                this.filteredCities = res.data.data
-                this.form.city = ""
-            }else{
-                this.snack({
-                    message: this.$i18n.t("something_went_wrong"),
-                    color: 'red'
-                });
-            }
-        },
         async addNewAddress(){
             this.$v.form.$touch();
             if (this.$v.form.$anyError) {
                 return;
             }
             this.adding = true;
-            const res = await this.call_api("post", "user/address/create",this.form);
+            let data = {
+                type: this.typeAddress,
+                ...this.form
+            }
+            const res = await this.call_api("post", "user/address/create",data);
             if(res.data.success){
                 this.addAddress(res.data.data)
                 this.snack({ message: res.data.message });
@@ -305,26 +267,14 @@ export default {
         },
         async processOldAddress(oldVal){
             let oldAddress = { ...oldVal }
-
+            
             this.form.id = oldAddress.id;
             this.form.address = oldAddress.address;
             this.form.postal_code = oldAddress.postal_code;
             this.form.phone = oldAddress.phone;
-
-            //find selected country and filter states
-            let selectedCountry = this.countries.find(country => country.name === oldAddress.country)
-            this.form.country = selectedCountry.id;
-            await this.countryChanged(selectedCountry.id)
-
-            //find selected state and filter cities
-            let selectedState = this.filteredStates.find(state => state.name === oldAddress.state)
-            this.form.state = selectedState.id;
-            await this.stateChanged(selectedState.id)
-
-            //find selected city
-            let selectedCity = this.filteredCities.find(city => city.name === oldAddress.city)
-            this.form.city = selectedCity.id;
-
+            this.form.country = oldAddress.country;
+            this.form.state = oldAddress.state;
+            this.form.city = oldAddress.city;
         },
         closeDialog(){
             this.isVisible = false

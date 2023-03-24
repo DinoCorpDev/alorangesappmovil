@@ -61,7 +61,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       passwordShow: false,
       addDialogShow: false,
       infoUpdateLoading: false,
-      addressSelectedForEdit: {}
+      addressSelectedForEdit: {},
+      addressPrincipal: {},
+      otherAdress: [],
+      typeAddress: "shipping"
     };
   },
   components: {
@@ -127,9 +130,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     this.form.email = this.currentUser.email;
     this.form.phone = this.currentUser.phone;
     this.form.previewAvatar = this.currentUser.avatar;
-    this.fetchAddresses();
+    this.getAddressUser();
   },
-  methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])("auth", ["setUser"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])("address", ["setAddresses"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("address", ["fetchAddresses"])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])("auth", ["setUser"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])("address", ["setAddresses"])), {}, {
     previewThumbnail: function previewThumbnail(event) {
       var _this = this;
       this.form.avatar = event.target.files[0];
@@ -144,12 +147,38 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     phoneValidate: function phoneValidate(phone) {
       this.form.invalidPhone = phone.valid ? false : true;
     },
-    updateBasic: function updateBasic() {
+    getAddressUser: function getAddressUser() {
       var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var formData, key, res;
+        var res, _res$data, _res$data$data, _res$data2, _res$data2$data;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this2.call_api("get", "user/addresses");
+            case 2:
+              res = _context.sent;
+              if (res.data.success) {
+                _this2.addressPrincipal = (_res$data = res.data) === null || _res$data === void 0 ? void 0 : (_res$data$data = _res$data.data) === null || _res$data$data === void 0 ? void 0 : _res$data$data.find(function (address) {
+                  return address.default_shipping == 1;
+                });
+                _this2.otherAdress = (_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : (_res$data2$data = _res$data2.data) === null || _res$data2$data === void 0 ? void 0 : _res$data2$data.filter(function (address) {
+                  return address.default_shipping == 0;
+                });
+              }
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))();
+    },
+    updateBasic: function updateBasic() {
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var formData, key, res;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
             case 0:
               // if(this.form.email == ""){
               //     this.snack({
@@ -173,71 +202,43 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               //     return;
               // }
 
-              _this2.$v.form.$touch();
-              if (!_this2.$v.form.$anyError) {
-                _context.next = 3;
+              _this3.$v.form.$touch();
+              if (!_this3.$v.form.$anyError) {
+                _context2.next = 3;
                 break;
               }
-              return _context.abrupt("return");
+              return _context2.abrupt("return");
             case 3:
               // this.form.phone = this.form.phone.replace(/\s/g, '')
-              _this2.infoUpdateLoading = true;
+              _this3.infoUpdateLoading = true;
               formData = new FormData();
-              for (key in _this2.form) {
-                formData.append(key, _this2.form[key]);
+              for (key in _this3.form) {
+                formData.append(key, _this3.form[key]);
               }
-              _context.next = 8;
-              return _this2.call_api("post", "user/info/update", formData, true);
+              _context2.next = 8;
+              return _this3.call_api("post", "user/info/update", formData, true);
             case 8:
-              res = _context.sent;
+              res = _context2.sent;
               if (res.data.success) {
-                _this2.setUser(res.data.user);
-                _this2.snack({
+                _this3.setUser(res.data.user);
+                _this3.snack({
                   message: res.data.message
                 });
               } else {
-                _this2.snack({
+                _this3.snack({
                   message: res.data.message,
                   color: "red"
                 });
               }
-              _this2.infoUpdateLoading = false;
+              _this3.infoUpdateLoading = false;
             case 11:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee);
-      }))();
-    },
-    deleteAddress: function deleteAddress(id) {
-      var _this3 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var res;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return _this3.call_api("get", "user/address/delete/".concat(id));
-            case 2:
-              res = _context2.sent;
-              if (res.data.success) {
-                _this3.setAddresses(res.data.data);
-                _this3.snack({
-                  message: res.data.message
-                });
-              }
-            case 4:
             case "end":
               return _context2.stop();
           }
         }, _callee2);
       }))();
     },
-    editAddress: function editAddress(address) {
-      this.addressSelectedForEdit = address;
-      this.addDialogShow = true;
-    },
-    markDefaultShipping: function markDefaultShipping(id) {
+    deleteAddress: function deleteAddress(id) {
       var _this4 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         var res;
@@ -245,18 +246,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return _this4.call_api("get", "user/address/default-shipping/".concat(id));
+              return _this4.call_api("get", "user/address/delete/".concat(id));
             case 2:
               res = _context3.sent;
               if (res.data.success) {
-                _this4.setAddresses(res.data.data);
+                //this.setAddresses(res.data.data);
+                _this4.getAddressUser();
                 _this4.snack({
                   message: res.data.message
-                });
-              } else {
-                _this4.snack({
-                  message: _this4.$i18n.t("something_went_wrong"),
-                  color: "red"
                 });
               }
             case 4:
@@ -266,7 +263,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         }, _callee3);
       }))();
     },
-    markDefaultBilling: function markDefaultBilling(id) {
+    markDefaultShipping: function markDefaultShipping(id) {
       var _this5 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
         var res;
@@ -274,7 +271,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           while (1) switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return _this5.call_api("get", "user/address/default-billing/".concat(id));
+              return _this5.call_api("get", "user/address/default-shipping/".concat(id));
             case 2:
               res = _context4.sent;
               if (res.data.success) {
@@ -295,9 +292,48 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         }, _callee4);
       }))();
     },
+    markDefaultBilling: function markDefaultBilling(id) {
+      var _this6 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        var res;
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return _this6.call_api("get", "user/address/default-billing/".concat(id));
+            case 2:
+              res = _context5.sent;
+              if (res.data.success) {
+                _this6.setAddresses(res.data.data);
+                _this6.snack({
+                  message: res.data.message
+                });
+              } else {
+                _this6.snack({
+                  message: _this6.$i18n.t("something_went_wrong"),
+                  color: "red"
+                });
+              }
+            case 4:
+            case "end":
+              return _context5.stop();
+          }
+        }, _callee5);
+      }))();
+    },
+    editAddress: function editAddress(address, type) {
+      this.typeAddress = type;
+      this.addressSelectedForEdit = address;
+      this.addDialogShow = true;
+    },
     addressDialogClosed: function addressDialogClosed() {
       this.addressSelectedForEdit = {};
       this.addDialogShow = false;
+      this.getAddressUser();
+    },
+    openAdress: function openAdress(type) {
+      this.typeAddress = type;
+      this.addDialogShow = true;
     }
   })
 });
@@ -316,6 +352,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function render() {
+  var _vm$addressPrincipal, _vm$addressPrincipal2, _vm$addressPrincipal3, _vm$addressPrincipal4, _vm$addressPrincipal5;
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -347,6 +384,15 @@ var render = function render() {
     staticClass: "date"
   }, [_vm._v("Se unio en febrero de 2022 ")])])])], 1), _vm._v(" "), _c("v-divider", {
     staticClass: "my-6"
+  }), _vm._v(" "), _c("address-dialog", {
+    attrs: {
+      typeAddress: _vm.typeAddress,
+      show: _vm.addDialogShow,
+      "old-address": _vm.addressSelectedForEdit
+    },
+    on: {
+      close: _vm.addressDialogClosed
+    }
   }), _vm._v(" "), _c("v-row", [_c("v-col", {
     attrs: {
       cols: "12",
@@ -431,12 +477,9 @@ var render = function render() {
     staticClass: "text-start"
   }, [_c("label", {
     staticClass: "bold"
-  }, [_vm._v("DIRECCION")])]), _vm._v(" "), _vm._l(_vm.getAddresses, function (address, i) {
-    return _c("v-col", {
-      key: i,
-      staticClass: "text-end"
-    }, [_c("div", [_vm._v(_vm._s(address.address))])]);
-  })], 2), _vm._v(" "), _c("v-row", [_c("v-col", {
+  }, [_vm._v("DIRECCION")])]), _vm._v(" "), _c("v-col", {
+    staticClass: "text-end"
+  }, [_c("div", [_vm._v(_vm._s((_vm$addressPrincipal = _vm.addressPrincipal) === null || _vm$addressPrincipal === void 0 ? void 0 : _vm$addressPrincipal.address))])])], 1), _vm._v(" "), _c("v-row", [_c("v-col", {
     staticClass: "text-start"
   }, [_c("label", {
     staticClass: "bold"
@@ -446,30 +489,21 @@ var render = function render() {
     staticClass: "text-start"
   }, [_c("label", {
     staticClass: "bold"
-  }, [_vm._v("CODIGO POSTAL")])]), _vm._v(" "), _vm._l(_vm.getAddresses, function (address, i) {
-    return _c("v-col", {
-      key: i,
-      staticClass: "text-end"
-    }, [_c("div", [_vm._v(_vm._s(address.postal_code))])]);
-  })], 2), _vm._v(" "), _c("v-row", [_c("v-col", {
+  }, [_vm._v("CODIGO POSTAL")])]), _vm._v(" "), _c("v-col", {
+    staticClass: "text-end"
+  }, [_c("div", [_vm._v(_vm._s((_vm$addressPrincipal2 = _vm.addressPrincipal) === null || _vm$addressPrincipal2 === void 0 ? void 0 : _vm$addressPrincipal2.postal_code))])])], 1), _vm._v(" "), _c("v-row", [_c("v-col", {
     staticClass: "text-start"
   }, [_c("label", {
     staticClass: "bold"
-  }, [_vm._v("DEPARTAMENTO")])]), _vm._v(" "), _vm._l(_vm.getAddresses, function (address, i) {
-    return _c("v-col", {
-      key: i,
-      staticClass: "text-end"
-    }, [_c("div", [_vm._v(_vm._s(address.state))])]);
-  })], 2), _vm._v(" "), _c("v-row", [_c("v-col", {
+  }, [_vm._v("DEPARTAMENTO")])]), _vm._v(" "), _c("v-col", {
+    staticClass: "text-end"
+  }, [_c("div", [_vm._v(_vm._s((_vm$addressPrincipal3 = _vm.addressPrincipal) === null || _vm$addressPrincipal3 === void 0 ? void 0 : _vm$addressPrincipal3.state))])])], 1), _vm._v(" "), _c("v-row", [_c("v-col", {
     staticClass: "text-start"
   }, [_c("label", {
     staticClass: "bold"
-  }, [_vm._v("MUNICIPIO")])]), _vm._v(" "), _vm._l(_vm.getAddresses, function (address, i) {
-    return _c("v-col", {
-      key: i,
-      staticClass: "text-end"
-    }, [_c("div", [_vm._v(_vm._s(address.city))])]);
-  })], 2), _vm._v(" "), _c("v-row", [_c("v-col", {
+  }, [_vm._v("MUNICIPIO")])]), _vm._v(" "), _c("v-col", {
+    staticClass: "text-end"
+  }, [_c("div", [_vm._v(_vm._s((_vm$addressPrincipal4 = _vm.addressPrincipal) === null || _vm$addressPrincipal4 === void 0 ? void 0 : _vm$addressPrincipal4.city))])])], 1), _vm._v(" "), _c("v-row", [_c("v-col", {
     staticClass: "text-start"
   }, [_c("label", {
     staticClass: "bold"
@@ -489,10 +523,15 @@ var render = function render() {
     staticClass: "bold"
   }, [_vm._v("TELÉFONO / MOBIL")])]), _vm._v(" "), _c("v-col", {
     staticClass: "text-end"
-  }, [_c("div", [_vm._v(_vm._s(_vm.$t("phone_number")))])])], 1), _vm._v(" "), _c("custom-button", {
+  }, [_c("div", [_vm._v(_vm._s((_vm$addressPrincipal5 = _vm.addressPrincipal) === null || _vm$addressPrincipal5 === void 0 ? void 0 : _vm$addressPrincipal5.phone))])])], 1), _vm._v(" "), _c("custom-button", {
     attrs: {
       color: "grey",
       text: "EDITAR"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.editAddress(_vm.addressPrincipal, "shipping");
+      }
     }
   })], 1)], 1), _vm._v(" "), _c("v-card", {
     staticClass: "mb-6 form-border rounded-lg pa-5",
@@ -503,6 +542,77 @@ var render = function render() {
     staticClass: "bold"
   }, [_vm._v("Otras direcciones")]), _vm._v(" "), _c("v-divider", {
     staticClass: "my-4"
+  }), _vm._v(" "), _vm._l(_vm.otherAdress, function (otherAdd, i) {
+    return _c("div", {
+      key: i,
+      staticClass: "form"
+    }, [_c("div", {
+      staticClass: "d-flex justify-space-between mb-2"
+    }, [_c("span", {
+      staticClass: "subtitle1 text-uppercase bold"
+    }, [_vm._v("Dirección")]), _vm._v(" "), _c("span", {
+      staticClass: "body1 text-right"
+    }, [_vm._v(_vm._s(otherAdd === null || otherAdd === void 0 ? void 0 : otherAdd.address))])]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex justify-space-between mb-2"
+    }, [_c("span", {
+      staticClass: "subtitle1 text-uppercase bold"
+    }, [_vm._v(" Descripción de Dirección ")]), _vm._v(" "), _c("span", {
+      staticClass: "body1 text-right"
+    }, [_vm._v(_vm._s(otherAdd === null || otherAdd === void 0 ? void 0 : otherAdd.address))])]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex justify-space-between mb-2"
+    }, [_c("span", {
+      staticClass: "subtitle1 text-uppercase bold"
+    }, [_vm._v("Codigo Postal")]), _vm._v(" "), _c("span", {
+      staticClass: "body1"
+    }, [_vm._v(_vm._s(otherAdd === null || otherAdd === void 0 ? void 0 : otherAdd.postal_code))])]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex justify-space-between mb-2"
+    }, [_c("span", {
+      staticClass: "subtitle1 text-uppercase bold"
+    }, [_vm._v("Departamento")]), _vm._v(" "), _c("span", {
+      staticClass: "body1"
+    }, [_vm._v(_vm._s(otherAdd === null || otherAdd === void 0 ? void 0 : otherAdd.state))])]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex justify-space-between mb-2"
+    }, [_c("span", {
+      staticClass: "subtitle1 text-uppercase bold"
+    }, [_vm._v("Municipio")]), _vm._v(" "), _c("span", {
+      staticClass: "body1"
+    }, [_vm._v(_vm._s(otherAdd === null || otherAdd === void 0 ? void 0 : otherAdd.city))])]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex justify-space-between mb-2"
+    }, [_c("span", {
+      staticClass: "subtitle1 text-uppercase bold"
+    }, [_vm._v("Barrio")]), _vm._v(" "), _c("span", {
+      staticClass: "body1"
+    }, [_vm._v(" -- ")])]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex justify-space-between mb-2"
+    }, [_c("span", {
+      staticClass: "subtitle1 text-uppercase bold"
+    }, [_vm._v("Telefono / Movil")]), _vm._v(" "), _c("span", {
+      staticClass: "body1"
+    }, [_vm._v(_vm._s(otherAdd === null || otherAdd === void 0 ? void 0 : otherAdd.phone))])]), _vm._v(" "), _c("custom-button", {
+      staticClass: "mr-3",
+      attrs: {
+        color: "grey",
+        text: "Editar"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.editAddress(otherAdd, "billing");
+        }
+      }
+    }), _vm._v(" "), _c("custom-button", {
+      staticClass: "mr-3",
+      attrs: {
+        color: "red",
+        text: "Eliminar"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.deleteAddress(otherAdd === null || otherAdd === void 0 ? void 0 : otherAdd.id);
+        }
+      }
+    }), _vm._v(" "), _c("v-divider", {
+      staticClass: "my-4"
+    })], 1);
   }), _vm._v(" "), _c("div", [_c("custom-button", {
     staticClass: "my-4",
     attrs: {
@@ -511,13 +621,12 @@ var render = function render() {
     },
     on: {
       click: function click($event) {
-        $event.stopPropagation();
-        _vm.addDialogShow = true;
+        return _vm.openAdress("billing");
       }
     }
   }, [_vm._v("AÑADIR DIRECCION")]), _vm._v(" "), _c("div", {
     staticClass: "cards"
-  }, [_vm._v("\n                        Puedes registrar otras direcciones para los envios de facturacion, entregas de productos y\n                        solicitudes de servicio.\n                    ")])], 1)], 1)], 1), _vm._v(" "), _c("v-col", {
+  }, [_vm._v("\n                        Puedes registrar otras direcciones para los envios de facturacion, entregas de productos y\n                        solicitudes de servicio.\n                    ")])], 1)], 2)], 1), _vm._v(" "), _c("v-col", {
     attrs: {
       cols: "12",
       md: "6"
@@ -554,14 +663,6 @@ var render = function render() {
     staticClass: "bold"
   }, [_vm._v("Contraseña")]), _vm._v(" "), _c("v-divider", {
     staticClass: "my-4"
-  }), _vm._v(" "), _c("address-dialog", {
-    attrs: {
-      show: _vm.addDialogShow,
-      "old-address": _vm.addressSelectedForEdit
-    },
-    on: {
-      close: _vm.addressDialogClosed
-    }
   }), _vm._v(" "), _c("div", [_c("custom-button", {
     staticClass: "my-4",
     attrs: {
