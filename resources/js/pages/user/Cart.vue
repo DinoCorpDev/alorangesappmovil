@@ -217,7 +217,7 @@
             </v-stepper-content>
             <v-stepper-content step="3">
                 <v-row>
-                    <v-col cols="12" md="6">
+                    <v-col cols="12" md="6" order="1" order-md="2" order-sm="2">
                         <div class="form">
                             <h6 class="black--text bold">Medio de Pago</h6>
                             <v-divider class="my-3" />
@@ -243,7 +243,7 @@
                             <custom-button text="Aplicar" color="grey" />
                         </div>
                     </v-col>
-                    <v-col cols="12" md="6">
+                    <v-col cols="12" md="6" order="2" order-md="1" order-sm="1">
                         <div class="form">
                             <h6 class="black--text bold">Codigo Promocional</h6>
                             <v-divider class="my-3" />
@@ -251,7 +251,7 @@
                             <custom-input />
                         </div>
                     </v-col>
-                    <v-col cols="12" class="d-flex justify-space-between">
+                    <v-col cols="12" order="3" order-md="3" order-sm="3" class="d-flex justify-space-between">
                         <div class="mb-2">
                             <custom-button text="Volver" color="nero" @click="step = 2" />
                         </div>
@@ -611,6 +611,10 @@ export default {
     .v-stepper__step {
         padding: 2px;
         flex: 1;
+    }
+
+    .v-stepper__content {
+        padding: 12px 8px 16px;
     }
 
     .v-stepper__step__step {
