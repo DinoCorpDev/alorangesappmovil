@@ -870,7 +870,10 @@ var render = function render() {
   }, [_c("v-row", [_c("v-col", {
     attrs: {
       cols: "12",
-      md: "6"
+      md: "6",
+      order: "1",
+      "order-md": "2",
+      "order-sm": "2"
     }
   }, [_c("div", {
     staticClass: "form"
@@ -940,7 +943,10 @@ var render = function render() {
   })], 1)]), _vm._v(" "), _c("v-col", {
     attrs: {
       cols: "12",
-      md: "6"
+      md: "6",
+      order: "2",
+      "order-md": "1",
+      "order-sm": "1"
     }
   }, [_c("div", {
     staticClass: "form"
@@ -953,7 +959,10 @@ var render = function render() {
   }, [_vm._v("(Regalo / Referido)")]), _vm._v(" "), _c("custom-input")], 1)]), _vm._v(" "), _c("v-col", {
     staticClass: "d-flex justify-space-between",
     attrs: {
-      cols: "12"
+      cols: "12",
+      order: "3",
+      "order-md": "3",
+      "order-sm": "3"
     }
   }, [_c("div", {
     staticClass: "mb-2"
@@ -1515,7 +1524,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "[data-v-197bfc2a] .v-stepper__step {\n  padding: 2px;\n  flex: 1;\n}\n[data-v-197bfc2a] .v-stepper__step__step {\n  display: none;\n}\n[data-v-197bfc2a] .v-stepper__label {\n  display: block !important;\n  font-size: 12px;\n}\n@media (min-width: 600px) {\n[data-v-197bfc2a] .v-stepper__label {\n    font-size: 16px;\n}\n}\n[data-v-197bfc2a] .v-timeline {\n  padding-top: 0px;\n  left: 0px;\n}\n[data-v-197bfc2a] .v-timeline::before {\n  background-color: #000000;\n}\n[data-v-197bfc2a] .v-application--is-ltr,[data-v-197bfc2a] .v-timeline--dense:not(.v-timeline--reverse)::before {\n  left: 11px;\n}\n[data-v-197bfc2a] .v-timeline-item__divider {\n  display: flex;\n  justify-content: flex-start;\n}\n.container[data-v-197bfc2a] {\n  background-color: #ffffff;\n}\n.form[data-v-197bfc2a] {\n  border: 1px solid #e4e4e4;\n  border-radius: 10px;\n  padding: 10px;\n}\n.label[data-v-197bfc2a] {\n  display: block;\n  position: relative;\n  padding-left: 35px;\n  margin-bottom: 12px;\n  cursor: pointer;\n  font-size: 22px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n.label input[data-v-197bfc2a] {\n  position: absolute;\n  opacity: 0;\n  cursor: pointer;\n  height: 0;\n  width: 0;\n}\n.checkmark[data-v-197bfc2a] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 25px;\n  width: 25px;\n  background-color: #eee;\n}\n.label:hover input ~ .checkmark[data-v-197bfc2a] {\n  background-color: #f5f5f5;\n}\n.label input:checked ~ .checkmark[data-v-197bfc2a] {\n  background-color: #000000;\n  border-radius: 5px;\n}\n.checkmark[data-v-197bfc2a]:after {\n  content: \"\";\n  position: absolute;\n  display: none;\n}\n.label input:checked ~ .checkmark[data-v-197bfc2a]:after {\n  display: block;\n}\n.label .checkmark[data-v-197bfc2a]:after {\n  left: 9px;\n  top: 5px;\n  width: 7px;\n  height: 12px;\n  border: solid white;\n  border-width: 0 3px 3px 0;\n  transform: rotate(45deg);\n}\n.div-total[data-v-197bfc2a] {\n  display: flex;\n  flex-direction: column;\n}\n.div-total div[data-v-197bfc2a] {\n  display: flex;\n  justify-content: flex-end;\n}\n.div-total p[data-v-197bfc2a] {\n  padding-left: 5px;\n}\n.div-alert[data-v-197bfc2a] {\n  background-color: #dfdfdf;\n  border-radius: 10px;\n  padding: 10px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.information[data-v-197bfc2a] {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n@media (max-width: 600px) {\n.div-alert[data-v-197bfc2a] {\n    display: flex;\n    flex-wrap: wrap;\n}\n}\n.success[data-v-197bfc2a] {\n  background-color: #06c167;\n  color: #ffffff;\n  border-radius: 50%;\n  padding: 5px 5px 0px 5px;\n}", ""]);
+exports.push([module.i, "[data-v-197bfc2a] .v-stepper__step {\n  padding: 2px;\n  flex: 1;\n}\n[data-v-197bfc2a] .v-stepper__content {\n  padding: 12px 8px 16px;\n}\n[data-v-197bfc2a] .v-stepper__step__step {\n  display: none;\n}\n[data-v-197bfc2a] .v-stepper__label {\n  display: block !important;\n  font-size: 12px;\n}\n@media (min-width: 600px) {\n[data-v-197bfc2a] .v-stepper__label {\n    font-size: 16px;\n}\n}\n[data-v-197bfc2a] .v-timeline {\n  padding-top: 0px;\n  left: 0px;\n}\n[data-v-197bfc2a] .v-timeline::before {\n  background-color: #000000;\n}\n[data-v-197bfc2a] .v-application--is-ltr,[data-v-197bfc2a] .v-timeline--dense:not(.v-timeline--reverse)::before {\n  left: 11px;\n}\n[data-v-197bfc2a] .v-timeline-item__divider {\n  display: flex;\n  justify-content: flex-start;\n}\n.container[data-v-197bfc2a] {\n  background-color: #ffffff;\n}\n.form[data-v-197bfc2a] {\n  border: 1px solid #e4e4e4;\n  border-radius: 10px;\n  padding: 10px;\n}\n.label[data-v-197bfc2a] {\n  display: block;\n  position: relative;\n  padding-left: 35px;\n  margin-bottom: 12px;\n  cursor: pointer;\n  font-size: 22px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n.label input[data-v-197bfc2a] {\n  position: absolute;\n  opacity: 0;\n  cursor: pointer;\n  height: 0;\n  width: 0;\n}\n.checkmark[data-v-197bfc2a] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 25px;\n  width: 25px;\n  background-color: #eee;\n}\n.label:hover input ~ .checkmark[data-v-197bfc2a] {\n  background-color: #f5f5f5;\n}\n.label input:checked ~ .checkmark[data-v-197bfc2a] {\n  background-color: #000000;\n  border-radius: 5px;\n}\n.checkmark[data-v-197bfc2a]:after {\n  content: \"\";\n  position: absolute;\n  display: none;\n}\n.label input:checked ~ .checkmark[data-v-197bfc2a]:after {\n  display: block;\n}\n.label .checkmark[data-v-197bfc2a]:after {\n  left: 9px;\n  top: 5px;\n  width: 7px;\n  height: 12px;\n  border: solid white;\n  border-width: 0 3px 3px 0;\n  transform: rotate(45deg);\n}\n.div-total[data-v-197bfc2a] {\n  display: flex;\n  flex-direction: column;\n}\n.div-total div[data-v-197bfc2a] {\n  display: flex;\n  justify-content: flex-end;\n}\n.div-total p[data-v-197bfc2a] {\n  padding-left: 5px;\n}\n.div-alert[data-v-197bfc2a] {\n  background-color: #dfdfdf;\n  border-radius: 10px;\n  padding: 10px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.information[data-v-197bfc2a] {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n@media (max-width: 600px) {\n.div-alert[data-v-197bfc2a] {\n    display: flex;\n    flex-wrap: wrap;\n}\n}\n.success[data-v-197bfc2a] {\n  background-color: #06c167;\n  color: #ffffff;\n  border-radius: 50%;\n  padding: 5px 5px 0px 5px;\n}", ""]);
 
 // exports
 

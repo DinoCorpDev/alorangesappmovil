@@ -31,6 +31,9 @@ __webpack_require__.r(__webpack_exports__);
       searchKeyword: ""
     };
   },
+  created: function created() {
+    this.searchKeyword = this.$route.params.keyword;
+  },
   methods: {
     search: function search() {
       this.$router.push({
@@ -80,6 +83,10 @@ var render = function render() {
       value: _vm.searchKeyword
     },
     on: {
+      keyup: function keyup($event) {
+        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
+        return _vm.search();
+      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.searchKeyword = $event.target.value;

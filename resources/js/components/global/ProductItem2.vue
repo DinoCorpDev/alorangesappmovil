@@ -36,13 +36,14 @@
             <h5 class="subtitle1 text-uppercase font-weight-bold mb-3">{{ data.name }}</h5>
             <h5 class="subtitle1 mb-3">{{ data.brand }}</h5>
             <h5 class="subtitle1 mb-3">{{ data.val }}</h5>
-            <custom-button text="Agregar a Compras" block class="px-0" />
+            <custom-button text="Agregar a Compras" block class="px-0" @click="addCart()"/>
         </div>
     </div>
 </template>
 
 <script>
 import CustomButton from "./CustomButton.vue";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
     name: "ProductItem2",
@@ -85,6 +86,21 @@ export default {
                     return "2.2";
             }
         }
+    },
+    methods: {
+        ...mapActions("cart", ["addToCart", "updateQuantity"]),
+        async addCart() {
+            this.addToCart({
+                // variation_id: this.selectedVariation?.id,
+                variation_id: this.data.id,
+                qty: 1
+            });
+            this.snack({
+                message: this.$i18n.t("product_added_to_cart"),
+                color: "green"
+            });
+        }
+    
     }
 };
 </script>

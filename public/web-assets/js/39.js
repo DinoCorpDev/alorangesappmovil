@@ -32,17 +32,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      loading: true,
       queryParam: {
         page: 1,
         categorySlug: null,
         brandIds: [],
+        categoryIds: [],
         attributeValues: [],
         keyword: null,
         sortBy: "popular",
         minPrice: null,
         maxPrice: null
       },
-      products: []
+      products: [],
+      rootCategories: [],
+      currentCategory: {}
     };
   },
   created: function created() {
@@ -51,6 +55,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.queryParam.categorySlug = this.$route.params.categorySlug || this.queryParam.categorySlug;
     this.queryParam.keyword = this.$route.params.keyword;
     this.queryParam.brandIds = this.$route.params.brandId || this.queryParam.brandIds;
+    var categoryIds = this.$route.query.categoryIds;
+    this.queryParam.categoryIds = categoryIds ? categoryIds.length > 1 ? categoryIds.map(function (cat) {
+      return Number(cat);
+    }) : [Number(categoryIds)] : this.queryParam.categoryIds;
     this.queryParam.page = this.$route.query.page || this.queryParam.page;
     this.queryParam.sortBy = this.$route.query.sortBy || this.queryParam.sortBy;
     this.queryParam.minPrice = this.$route.query.minPrice || this.queryParam.minPrice;
@@ -67,6 +75,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       page: this.queryParam.page,
       categorySlug: this.queryParam.categorySlug,
       brandIds: this.queryParam.brandIds,
+      categoryIds: this.queryParam.categoryIds,
       attributeValues: this.queryParam.attributeValues,
       keyword: this.queryParam.keyword,
       sortBy: this.queryParam.sortBy,
@@ -88,14 +97,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               url += "&page=".concat(_this2.queryParam.page);
               url += params.categorySlug ? "&category_slug=".concat(params.categorySlug) : "";
               url += params.brandIds ? "&brand_ids=".concat(params.brandIds) : "";
+              url += params.categoryIds ? "&category_ids=".concat(params.categoryIds) : "";
               url += params.attributeValues ? "&attribute_values=".concat(params.attributeValues) : "";
               url += params.keyword ? "&keyword=".concat(params.keyword) : "";
               url += params.sortBy ? "&sort_by=".concat(params.sortBy) : "";
               url += params.minPrice ? "&min_price=".concat(params.minPrice) : "";
               url += params.maxPrice ? "&max_price=".concat(params.maxPrice) : "";
-              _context.next = 13;
+              _context.next = 14;
               return _this2.call_api("get", url);
-            case 13:
+            case 14:
               res = _context.sent;
               if (res.data.success) {
                 _this2.loading = false;
@@ -111,15 +121,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.totalProducts = res.data.total;
                 _this2.queryParam.page = res.data.currentPage;
               }
-            case 15:
+            case 16:
             case "end":
               return _context.stop();
           }
         }, _callee);
       }))();
     },
-    consoleFilter: function consoleFilter() {
-      console.log("you have clicked me");
+    categoryChange: function categoryChange(id) {
+      if (this.queryParam.categoryIds.indexOf(id) > -1) {
+        var index = this.queryParam.categoryIds.indexOf(id);
+        this.queryParam.categoryIds.splice(index, 1);
+      } else {
+        this.queryParam.categoryIds.push(id);
+      }
+      this.$router.push({
+        query: _objectSpread(_objectSpread({}, this.$route.query), {}, {
+          categoryIds: this.queryParam.categoryIds
+        })
+      })["catch"](function () {});
+      this.getList({});
+    },
+    handleCategoryChecked: function handleCategoryChecked(id) {
+      return this.queryParam.categoryIds.find(function (categoryId) {
+        return categoryId == id;
+      });
     }
   }
 });
@@ -141,73 +167,62 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", [_c("layout-navbar-auth"), _vm._v(" "), _c("v-container", {
-    staticClass: "searchConteiner",
     attrs: {
       fluid: ""
     }
+  }, [_c("v-row", {
+    staticClass: "filter-bar-wrap mb-5"
+  }, [_c("v-col", {
+    attrs: {
+      cols: "12"
+    }
   }, [_c("div", {
-    staticClass: "bar"
+    staticClass: "filter-bar"
   }, [_c("h5", {
-    staticClass: "filter"
-  }, [_vm._v("Filtro")]), _vm._v(" "), _c("custom-button", {
-    staticClass: "mr-2 ms-2",
+    staticClass: "filter-bar-title mr-8"
+  }, [_vm._v("Filtro")]), _vm._v(" "), _c("div", {
+    staticClass: "filter-bar-actions"
+  }, [_vm.loading && _vm.rootCategories.length == 0 ? _c("v-skeleton-loader", {
     attrs: {
-      light: "",
-      text: "Nuevo"
-    },
-    on: {
-      click: _vm.consoleFilter
+      type: "actions"
     }
-  }), _vm._v(" "), _c("custom-button", {
-    staticClass: "mr-2 ms-2",
-    attrs: {
-      light: "",
-      text: "Colecciones"
-    },
-    on: {
-      click: _vm.consoleFilter
-    }
-  }), _vm._v(" "), _c("custom-button", {
-    staticClass: "mr-2 ms-2",
-    attrs: {
-      light: "",
-      text: "Planes"
-    },
-    on: {
-      click: _vm.consoleFilter
-    }
-  }), _vm._v(" "), _c("custom-button", {
-    staticClass: "mr-2 ms-2",
-    attrs: {
-      light: "",
-      text: "Popular"
-    },
-    on: {
-      click: _vm.consoleFilter
-    }
-  }), _vm._v(" "), _c("custom-button", {
-    staticClass: "mr-2 ms-2",
-    attrs: {
-      light: "",
-      text: "Marcas"
-    },
-    on: {
-      click: _vm.consoleFilter
-    }
-  }), _vm._v(" "), _c("custom-button", {
-    staticClass: "mr-2 ms-2",
-    attrs: {
-      light: "",
-      text: "Ofertas"
-    },
-    on: {
-      click: _vm.consoleFilter
-    }
-  })], 1), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("div", {
-    staticClass: "cards"
-  }, [_vm.products.length > 0 ? _c("v-row", {
+  }) : _vm._l(_vm.rootCategories, function (category, i) {
+    return _c("v-checkbox", {
+      key: i,
+      staticClass: "filter-bar-button",
+      attrs: {
+        "on-icon": "la-check",
+        "hide-details": "",
+        "input-value": _vm.handleCategoryChecked(category.id),
+        label: category.name,
+        ripple: false
+      },
+      on: {
+        change: function change($event) {
+          return _vm.categoryChange(category.id);
+        }
+      }
+    });
+  })], 2)])])], 1), _vm._v(" "), _c("v-row", {
     staticClass: "d-flex flex-wrap"
-  }, _vm._l(_vm.products, function (product, i) {
+  }, [_c("v-col", {
+    attrs: {
+      cols: "12"
+    }
+  }, [_vm.queryParam.keyword ? _c("h5", {
+    staticClass: "search-results"
+  }, [_vm._v("\n                    " + _vm._s(_vm.$t("search_results_for")) + ' "' + _vm._s(_vm.queryParam.keyword) + '"\n                ')]) : _vm._e()]), _vm._v(" "), _vm.loading ? _c("v-col", {
+    attrs: {
+      cols: "12",
+      sm: "6",
+      md: "4",
+      lg: "2"
+    }
+  }, [_c("v-skeleton-loader", {
+    attrs: {
+      type: "card"
+    }
+  })], 1) : [_vm.products.length > 0 ? _vm._l(_vm.products, function (product, i) {
     return _c("v-col", {
       key: i,
       attrs: {
@@ -221,7 +236,11 @@ var render = function render() {
         "product-details": product
       }
     })], 1);
-  }), 1) : _vm._e()], 1)], 1)], 1);
+  }) : [_c("v-col", {
+    attrs: {
+      cols: "12"
+    }
+  }, [_vm._v("\n                        " + _vm._s(_vm.$t("no_product_found")) + "\n                    ")])]]], 2)], 1)], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -260,7 +279,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".img[data-v-7262a471] {\n  background-color: #dfdfdf;\n  border-radius: 50%;\n  padding: 10px 0;\n}\n.searchConteiner[data-v-7262a471] {\n  background-color: #ffffff;\n}\n.cards[data-v-7262a471] {\n  padding: 10px 0;\n  margin: 20px 0px;\n}\n.filter[data-v-7262a471] {\n  line-height: 42px;\n  padding-right: 30px;\n  display: inline-block;\n}\n.bar[data-v-7262a471] {\n  margin: 1%;\n}", ""]);
+exports.push([module.i, ".filter-bar[data-v-7262a471] {\n  display: flex;\n  align-items: center;\n}\n.filter-bar-wrap[data-v-7262a471] {\n  border-bottom: 1px solid #e4e4e4;\n}\n.filter-bar-title[data-v-7262a471] {\n  font-size: 15px;\n  letter-spacing: 0.15px;\n  font-weight: 400;\n}\n@media (min-width: 960px) {\n.filter-bar-title[data-v-7262a471] {\n    font-size: 20px;\n}\n}\n.filter-bar-actions[data-v-7262a471] {\n  overflow-y: auto;\n  display: flex;\n  gap: 1rem;\n}\n.filter-bar-button[data-v-7262a471] {\n  margin-top: 0;\n  background-color: #f5f5f5;\n  border-radius: 5px;\n  padding: 0;\n}\n.filter-bar-button[data-v-7262a471] .v-input--selection-controls__input {\n  display: none;\n}\n.filter-bar-button[data-v-7262a471] label {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 38px !important;\n  padding: 0 16px;\n  font-weight: 600;\n  text-transform: uppercase;\n  font-size: 12px;\n  line-height: 17px;\n  color: #000000;\n  white-space: nowrap;\n}\n@media (min-width: 960px) {\n.filter-bar-button[data-v-7262a471] label {\n    font-size: 14px;\n}\n}\n.filter-bar-button[data-v-7262a471].v-input--is-label-active label {\n  color: #ffffff;\n}\n.filter-bar-button[data-v-7262a471]:hover {\n  background-color: #dfdfdf;\n}\n.filter-bar-button.v-input--is-label-active[data-v-7262a471] {\n  background-color: #000000;\n}\n.search-results[data-v-7262a471] {\n  font-size: 24px;\n  font-weight: 400;\n  line-height: 30px;\n}", ""]);
 
 // exports
 

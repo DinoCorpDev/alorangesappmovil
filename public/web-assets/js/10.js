@@ -23,7 +23,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ProductItem",
+  name: "ProductCart",
   components: {
     CustomButton: _components_global_CustomButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -63,13 +63,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       "default": 0
     }
   },
-  data: function data() {
-    return {};
-  },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])("cart", ["updateQuantity"
-  //"toggleCartItem",
-  //"removeFromCart",
-  ])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])("cart", ["updateQuantity"])), {}, {
     decrement: function decrement() {
       if (this.quantity > 0) {
         this.quantity--;
@@ -173,7 +167,9 @@ var render = function render() {
     staticClass: "black--text price"
   }, [_vm._v(_vm._s(_vm.format_price(_vm.price2)) + " COP")])]), _vm._v(" "), _c("div", {
     staticClass: "divider"
-  }), _vm._v(" "), _c("div", [_c("div", {
+  }), _vm._v(" "), _c("div", {
+    staticClass: "quanty-res"
+  }, [_c("div", {
     staticClass: "quantity"
   }, [_c("div", [_c("v-btn", {
     attrs: {
@@ -259,6 +255,7 @@ var render = function render() {
   })], 1)], 1)]), _vm._v(" "), _c("div", {
     staticClass: "d-md-none"
   }, [_c("custom-button", {
+    staticClass: "btn-res",
     attrs: {
       block: "",
       icon: "la-ellipsis-v"
@@ -283,7 +280,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".div-container[data-v-960667a4] {\n  background-color: #f5f5f5;\n  border-radius: 10px;\n  display: flex;\n  flex-wrap: nowrap;\n}\n.div-img[data-v-960667a4] {\n  background-color: #dfdfdf;\n  border-start-start-radius: 10px;\n  border-end-start-radius: 10px;\n  width: 100px;\n  height: 100px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.information[data-v-960667a4] {\n  display: flex;\n  justify-content: flex-start;\n  padding: 13px 0px 13px 25px;\n  width: 100%;\n}\n.div-body[data-v-960667a4] {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 25px;\n  padding: 5px 0px 5px 10px;\n  width: 100%;\n}\n.icons[data-v-960667a4] {\n  padding-right: 25px;\n}\n.reference[data-v-960667a4] {\n  font: normal normal 600 10px/13px Overpass;\n}\n.object[data-v-960667a4] {\n  font: normal normal bold 15px/24px Overpass;\n}\n.brand[data-v-960667a4] {\n  font: normal normal normal 15px/24px Roboto;\n}\n.price[data-v-960667a4] {\n  font: normal normal normal 18px/24px Roboto;\n  overflow: hidden;\n  white-space: nowrap;\n}\n.divider[data-v-960667a4] {\n  background-color: #dfdfdf;\n  width: 2px;\n  height: 90%;\n}\n.quantity[data-v-960667a4] {\n  background-color: #fafafa;\n  border-radius: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.textquantity[data-v-960667a4] {\n  line-height: 35px;\n  font-family: \"Roboto\";\n  font-size: 15px;\n  width: 20px;\n  outline: none;\n  text-align: center;\n}\n@media (max-width: 959px) {\n.div-body[data-v-960667a4] {\n    gap: 8px;\n}\n.information[data-v-960667a4] {\n    padding: 13px 0px 13px 15px;\n}\n.icons[data-v-960667a4] {\n    padding-right: 0px;\n}\n}\n@media (max-width: 599px) {\n.object[data-v-960667a4] {\n    font: normal normal bold 12px/14px Overpass;\n    padding-top: 25px;\n    padding-bottom: 24px;\n}\n.brand[data-v-960667a4] {\n    font: normal normal normal 12px/24px Roboto;\n}\n.price[data-v-960667a4] {\n    font: normal normal normal 12px/24px Roboto;\n}\n.div-body[data-v-960667a4] {\n    gap: 5px;\n}\n.div-container[data-v-960667a4] {\n    height: 112px;\n}\n.div-img[data-v-960667a4] {\n    margin-top: 6px;\n    margin-left: 7px;\n    border-radius: 10px;\n}\n.information[data-v-960667a4] {\n    padding: 0px 0px 0px 6px;\n}\n.reference[data-v-960667a4] {\n    padding-top: 5px;\n}\n.quantity[data-v-960667a4] {\n    border-radius: 10px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    width: 100%;\n}\n.textquantity[data-v-960667a4] {\n    line-height: normal;\n    display: flex;\n    justify-content: center;\n}\n}\n/* Chrome, Safari, Edge, Opera */\ninput[data-v-960667a4]::-webkit-outer-spin-button,\ninput[data-v-960667a4]::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}\n\n/* Firefox */\ninput[type=number][data-v-960667a4] {\n  -moz-appearance: textfield;\n}", ""]);
+exports.push([module.i, ".div-container[data-v-960667a4] {\n  background-color: #f5f5f5;\n  border-radius: 10px;\n  display: flex;\n  flex-wrap: nowrap;\n}\n.div-img[data-v-960667a4] {\n  background-color: #dfdfdf;\n  border-start-start-radius: 10px;\n  border-end-start-radius: 10px;\n  width: 100px;\n  height: 100px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.information[data-v-960667a4] {\n  display: flex;\n  justify-content: flex-start;\n  padding: 13px 0px 13px 25px;\n  width: 100%;\n}\n.div-body[data-v-960667a4] {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 25px;\n  padding: 5px 0px 5px 10px;\n  width: 100%;\n}\n.icons[data-v-960667a4] {\n  padding-right: 25px;\n}\n.reference[data-v-960667a4] {\n  font: normal normal 600 10px/13px Overpass;\n}\n.object[data-v-960667a4] {\n  font: normal normal bold 15px/24px Overpass;\n}\n.brand[data-v-960667a4] {\n  font: normal normal normal 15px/24px Roboto;\n}\n.price[data-v-960667a4] {\n  font: normal normal normal 18px/24px Roboto;\n  overflow: hidden;\n  white-space: nowrap;\n}\n.divider[data-v-960667a4] {\n  background-color: #dfdfdf;\n  width: 2px;\n  height: 90%;\n}\n.quantity[data-v-960667a4] {\n  background-color: #fafafa;\n  border-radius: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.textquantity[data-v-960667a4] {\n  line-height: 35px;\n  font-family: \"Roboto\";\n  font-size: 15px;\n  width: 20px;\n  outline: none;\n  text-align: center;\n}\n@media (max-width: 959px) {\n.div-body[data-v-960667a4] {\n    gap: 15px;\n}\n.information[data-v-960667a4] {\n    padding: 13px 0px 13px 15px;\n}\n.icons[data-v-960667a4] {\n    padding-right: 0px;\n}\n}\n@media (max-width: 599px) {\n.object[data-v-960667a4] {\n    font: normal normal bold 12px/14px Overpass;\n    padding-top: 25px;\n    padding-bottom: 24px;\n}\n.quanty-res[data-v-960667a4] {\n    width: 25px;\n}\n.btn-res[data-v-960667a4] {\n    padding: 0 0 !important;\n}\n.brand[data-v-960667a4] {\n    font: normal normal normal 12px/24px Roboto;\n}\n.price[data-v-960667a4] {\n    font: normal normal normal 12px/24px Roboto;\n}\n.div-body[data-v-960667a4] {\n    gap: 5px;\n}\n.div-container[data-v-960667a4] {\n    height: 112px;\n}\n.div-img[data-v-960667a4] {\n    margin-top: 6px;\n    margin-left: 7px;\n    border-radius: 10px;\n}\n.information[data-v-960667a4] {\n    padding: 0px 0px 0px 6px;\n}\n.reference[data-v-960667a4] {\n    padding-top: 5px;\n}\n.quantity[data-v-960667a4] {\n    border-radius: 10px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    width: 100%;\n}\n.textquantity[data-v-960667a4] {\n    line-height: normal;\n    display: flex;\n    justify-content: center;\n}\n}\n/* Chrome, Safari, Edge, Opera */\ninput[data-v-960667a4]::-webkit-outer-spin-button,\ninput[data-v-960667a4]::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}\n\n/* Firefox */\ninput[type=number][data-v-960667a4] {\n  -moz-appearance: textfield;\n}", ""]);
 
 // exports
 
