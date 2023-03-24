@@ -78,30 +78,32 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de servicio</h6>
                                     <v-divider class="my-3" />
-                                    <div v-if="Object.entries(addressServicio).length !== 0" >
+                                    <div v-if="Object.entries(addressServicio).length !== 0">
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">{{addressServicio?.address}}</span>
+                                            <span class="body1">{{ addressServicio?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                            <span class="body1">{{addressServicio?.address}}</span>
+                                            <span class="subtitle1 text-uppercase bold">
+                                                Descripción de Dirección
+                                            </span>
+                                            <span class="body1">{{ addressServicio?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{addressServicio?.postal_code}}</span>
+                                            <span class="body1">{{ addressServicio?.postal_code }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{addressServicio?.country}}</span>
+                                            <span class="body1">{{ addressServicio?.country }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{addressServicio?.city}}</span>
+                                            <span class="body1">{{ addressServicio?.city }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -109,7 +111,7 @@
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{addressPrincipal?.phone}}</span>
+                                            <span class="body1">{{ addressPrincipal?.phone }}</span>
                                         </div>
                                     </div>
                                     <label class="label my-3">
@@ -121,19 +123,18 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button 
-                                        v-if="Object.entries(addressServicio).length !== 0" 
-                                        class="mr-3" 
-                                        color="grey" 
-                                        text="Editar" 
+                                    <custom-button
+                                        v-if="Object.entries(addressServicio).length !== 0"
+                                        class="mr-3"
+                                        color="grey"
+                                        text="Editar"
                                         @click="editAddress(addressServicio, 'service')"
-                                        
                                     />
-                                    <custom-button 
-                                        v-if="Object.entries(addressServicio).length === 0" 
-                                        block 
-                                        color="grey" 
-                                        text="Añadir Dirección" 
+                                    <custom-button
+                                        v-if="Object.entries(addressServicio).length === 0"
+                                        block
+                                        color="grey"
+                                        text="Añadir Dirección"
                                         @click="openAdress('service')"
                                     />
                                 </div>
@@ -142,30 +143,32 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de facturacion</h6>
                                     <v-divider class="my-3" />
-                                    <div v-if="Object.entries(addressFacturacion).length !== 0" >
+                                    <div v-if="Object.entries(addressFacturacion).length !== 0">
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">{{addressFacturacion?.address}}</span>
+                                            <span class="body1">{{ addressFacturacion?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                            <span class="body1">{{addressFacturacion?.address}}</span>
+                                            <span class="subtitle1 text-uppercase bold">
+                                                Descripción de Dirección
+                                            </span>
+                                            <span class="body1">{{ addressFacturacion?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{addressFacturacion?.postal_code}}</span>
+                                            <span class="body1">{{ addressFacturacion?.postal_code }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{addressFacturacion?.country}}</span>
+                                            <span class="body1">{{ addressFacturacion?.country }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{addressFacturacion?.city}}</span>
+                                            <span class="body1">{{ addressFacturacion?.city }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -173,7 +176,7 @@
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{addressPrincipal?.phone}}</span>
+                                            <span class="body1">{{ addressPrincipal?.phone }}</span>
                                         </div>
                                     </div>
                                     <label class="label my-3">
@@ -184,19 +187,18 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button 
-                                        v-if="Object.entries(addressFacturacion).length !== 0" 
-                                        class="mr-3" 
-                                        color="grey" 
-                                        text="Editar" 
+                                    <custom-button
+                                        v-if="Object.entries(addressFacturacion).length !== 0"
+                                        class="mr-3"
+                                        color="grey"
+                                        text="Editar"
                                         @click="editAddress(addressFacturacion, 'billing')"
-                                        
                                     />
-                                    <custom-button 
-                                        v-if="Object.entries(addressFacturacion).length === 0" 
-                                        block 
-                                        color="grey" 
-                                        text="Añadir Dirección" 
+                                    <custom-button
+                                        v-if="Object.entries(addressFacturacion).length === 0"
+                                        block
+                                        color="grey"
+                                        text="Añadir Dirección"
                                         @click="openAdress('billing')"
                                     />
                                 </div>
@@ -204,7 +206,12 @@
                         </v-row>
                     </v-col>
                     <v-col cols="12" md="6">
-                        <address-dialog :typeAddress="typeAddress" :show="addDialogShow" @close="addressDialogClosed" :old-address="addressSelectedForEdit" />
+                        <address-dialog
+                            :typeAddress="typeAddress"
+                            :show="addDialogShow"
+                            @close="addressDialogClosed"
+                            :old-address="addressSelectedForEdit"
+                        />
                         <v-row>
                             <v-col cols="12">
                                 <div class="form">
@@ -217,23 +224,23 @@
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                        <span class="body1">{{addressPrincipal?.address}}</span>
+                                        <span class="body1">{{ addressPrincipal?.address }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                        <span class="body1">{{addressPrincipal?.address}}</span>
+                                        <span class="body1">{{ addressPrincipal?.address }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                        <span class="body1">{{addressPrincipal?.postal_code}}</span>
+                                        <span class="body1">{{ addressPrincipal?.postal_code }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                        <span class="body1">{{addressPrincipal?.country}}</span>
+                                        <span class="body1">{{ addressPrincipal?.country }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                        <span class="body1">{{addressPrincipal?.city}}</span>
+                                        <span class="body1">{{ addressPrincipal?.city }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -247,21 +254,20 @@
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                        <span class="body1">{{addressPrincipal?.phone}}</span>
+                                        <span class="body1">{{ addressPrincipal?.phone }}</span>
                                     </div>
-                                    <custom-button 
-                                        v-if="Object.entries(addressPrincipal).length !== 0" 
-                                        class="mr-3" 
-                                        color="grey" 
-                                        text="Editar" 
+                                    <custom-button
+                                        v-if="Object.entries(addressPrincipal).length !== 0"
+                                        class="mr-3"
+                                        color="grey"
+                                        text="Editar"
                                         @click="editAddress(addressPrincipal, 'shipping')"
-                                        
                                     />
-                                    <custom-button 
-                                        v-if="Object.entries(addressPrincipal).length === 0" 
-                                        block 
-                                        color="grey" 
-                                        text="Añadir Dirección" 
+                                    <custom-button
+                                        v-if="Object.entries(addressPrincipal).length === 0"
+                                        block
+                                        color="grey"
+                                        text="Añadir Dirección"
                                         @click="openAdress('shipping')"
                                     />
                                 </div>
@@ -407,30 +413,32 @@
                                     <h6 class="black--text bold">Dirección de servicio</h6>
                                     <v-divider class="my-3" />
 
-                                    <div v-if="Object.entries(addressServicio).length !== 0" >
+                                    <div v-if="Object.entries(addressServicio).length !== 0">
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">{{addressServicio?.address}}</span>
+                                            <span class="body1">{{ addressServicio?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                            <span class="body1">{{addressServicio?.address}}</span>
+                                            <span class="subtitle1 text-uppercase bold">
+                                                Descripción de Dirección
+                                            </span>
+                                            <span class="body1">{{ addressServicio?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{addressServicio?.postal_code}}</span>
+                                            <span class="body1">{{ addressServicio?.postal_code }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{addressServicio?.country}}</span>
+                                            <span class="body1">{{ addressServicio?.country }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{addressServicio?.city}}</span>
+                                            <span class="body1">{{ addressServicio?.city }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -438,7 +446,7 @@
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{addressPrincipal?.phone}}</span>
+                                            <span class="body1">{{ addressPrincipal?.phone }}</span>
                                         </div>
                                     </div>
 
@@ -456,30 +464,32 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de facturacion</h6>
                                     <v-divider class="my-3" />
-                                    <div v-if="Object.entries(addressFacturacion).length !== 0" >
+                                    <div v-if="Object.entries(addressFacturacion).length !== 0">
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">{{addressFacturacion?.address}}</span>
+                                            <span class="body1">{{ addressFacturacion?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                            <span class="body1">{{addressFacturacion?.address}}</span>
+                                            <span class="subtitle1 text-uppercase bold">
+                                                Descripción de Dirección
+                                            </span>
+                                            <span class="body1">{{ addressFacturacion?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{addressFacturacion?.postal_code}}</span>
+                                            <span class="body1">{{ addressFacturacion?.postal_code }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{addressFacturacion?.country}}</span>
+                                            <span class="body1">{{ addressFacturacion?.country }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{addressFacturacion?.city}}</span>
+                                            <span class="body1">{{ addressFacturacion?.city }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -487,7 +497,7 @@
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{addressPrincipal?.phone}}</span>
+                                            <span class="body1">{{ addressPrincipal?.phone }}</span>
                                         </div>
                                     </div>
                                     <label class="label mt-3">
@@ -514,23 +524,23 @@
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                        <span class="body1">{{addressPrincipal?.address}}</span>
+                                        <span class="body1">{{ addressPrincipal?.address }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                        <span class="body1">{{addressPrincipal?.address}}</span>
+                                        <span class="body1">{{ addressPrincipal?.address }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                        <span class="body1">{{addressPrincipal?.postal_code}}</span>
+                                        <span class="body1">{{ addressPrincipal?.postal_code }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                        <span class="body1">{{addressPrincipal?.country}}</span>
+                                        <span class="body1">{{ addressPrincipal?.country }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                        <span class="body1">{{addressPrincipal?.city}}</span>
+                                        <span class="body1">{{ addressPrincipal?.city }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -544,7 +554,7 @@
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                        <span class="body1">{{addressPrincipal?.phone}}</span>
+                                        <span class="body1">{{ addressPrincipal?.phone }}</span>
                                     </div>
                                 </div>
                             </v-col>
@@ -731,7 +741,7 @@ import SelectCustom from "../../components/global/SelectCustom.vue";
 import StepOrder from "../../components/icons/StepOrder.vue";
 import Total from "../../components/global/Total.vue";
 import TypePayment from "../../components/global/TypePayment.vue";
-import AddressDialog from '../../components/address/AddressDialog.vue'
+import AddressDialog from "../../components/address/AddressDialog.vue";
 
 export default {
     components: {
@@ -777,24 +787,24 @@ export default {
             }
         },
         async getAddresses() {
-            const res = await this.call_api( "get", `user/addresses`);
+            const res = await this.call_api("get", `user/addresses`);
             if (res.data.success) {
-                res?.data?.data?.map((address)=>{
+                res?.data?.data?.map(address => {
                     console.log(address);
-                    if(address?.default_shipping == 1){
+                    if (address?.default_shipping == 1) {
                         this.addressPrincipal = address;
                     }
-                    if(address?.default_billing == 1){
+                    if (address?.default_billing == 1) {
                         this.addressFacturacion = address;
                     }
-                    if(address?.default_service == 1){
+                    if (address?.default_service == 1) {
                         this.addressServicio = address;
                     }
-                })
+                });
             } else {
                 this.snack({
                     message: res.data.message,
-                    color: "red",
+                    color: "red"
                 });
                 this.$router.push({ name: "404" });
             }
@@ -802,17 +812,17 @@ export default {
         changeQty(i) {
             this.getCart();
         },
-        addressDialogClosed(){
-            this.addressSelectedForEdit = {}
+        addressDialogClosed() {
+            this.addressSelectedForEdit = {};
             this.addDialogShow = false;
             this.getAddresses();
         },
-        editAddress(address, type){
+        editAddress(address, type) {
             this.typeAddress = type;
             this.addressSelectedForEdit = address;
-            this.addDialogShow = true
+            this.addDialogShow = true;
         },
-        openAdress(type){
+        openAdress(type) {
             this.typeAddress = type;
             this.addDialogShow = true;
         }

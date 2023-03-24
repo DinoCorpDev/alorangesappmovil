@@ -9,7 +9,7 @@ class AddressCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection->map(function($data) {
+            'data' => $this->collection->map(function ($data) {
                 return [
                     'id'      => $data->id,
                     'user_id' => $data->user_id,

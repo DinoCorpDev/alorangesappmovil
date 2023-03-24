@@ -83,7 +83,7 @@
                             </v-btn>
                         </div>
                     </div>
-                    <custom-button text="Agregar a Compras" block  @click="addCart(productDetails)"/>
+                    <custom-button text="Agregar a Compras" block @click="addCart(productDetails)" />
                     <custom-button light text="Consultar a un Asesor" block class="mt-3" />
                 </div>
                 <div class="product-item-body pa-4 la-border mt-3">
@@ -206,8 +206,7 @@
 </template>
 
 <script>
-
-import { mapGetters, mapActions, mapMutations } from "vuex";
+import { mapActions } from "vuex";
 import ProductBox from "../components/product/ProductBox.vue";
 import ProductItem2 from "../components/global/ProductItem2.vue";
 import ProductItem6 from "../components/global/ProductItem6.vue";

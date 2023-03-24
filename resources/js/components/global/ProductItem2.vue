@@ -15,8 +15,11 @@
                             <v-img :src="data.img" height="150px" />
                             <div class="pb-5">
                                 <router-link
-                                    :class="['text-reset me-1 opacity-80', {'primary--text text-decoration-underline':hover}]"
-                                    :to="{ name: 'Product', params: {slug: data.slug}}"
+                                    :class="[
+                                        'text-reset me-1 opacity-80',
+                                        { 'primary--text text-decoration-underline': hover }
+                                    ]"
+                                    :to="{ name: 'Product', params: { slug: data.slug } }"
                                 >
                                     <custom-button
                                         text="Ver Detalles"
@@ -36,14 +39,14 @@
             <h5 class="subtitle1 text-uppercase font-weight-bold mb-3">{{ data.name }}</h5>
             <h5 class="subtitle1 mb-3">{{ data.brand }}</h5>
             <h5 class="subtitle1 mb-3">{{ data.val }}</h5>
-            <custom-button text="Agregar a Compras" block class="px-0" @click="addCart()"/>
+            <custom-button text="Agregar a Compras" block class="px-0" @click="addCart()" />
         </div>
     </div>
 </template>
 
 <script>
 import CustomButton from "./CustomButton.vue";
-import { mapGetters, mapActions, mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
     name: "ProductItem2",
@@ -91,7 +94,6 @@ export default {
         ...mapActions("cart", ["addToCart", "updateQuantity"]),
         async addCart() {
             this.addToCart({
-                // variation_id: this.selectedVariation?.id,
                 variation_id: this.data.id,
                 qty: 1
             });
@@ -100,7 +102,6 @@ export default {
                 color: "green"
             });
         }
-    
     }
 };
 </script>

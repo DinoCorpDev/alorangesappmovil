@@ -20,11 +20,11 @@
             </v-col>
         </v-row>
         <v-divider class="my-6" />
-        <address-dialog 
-            :typeAddress="typeAddress" 
-            :show="addDialogShow" 
-            @close="addressDialogClosed" 
-            :old-address="addressSelectedForEdit" 
+        <address-dialog
+            :typeAddress="typeAddress"
+            :show="addDialogShow"
+            @close="addressDialogClosed"
+            :old-address="addressSelectedForEdit"
         />
         <v-row>
             <v-col cols="12" md="6">
@@ -157,23 +157,23 @@
                     <div class="form" v-for="(otherAdd, i) in otherAdress" :key="i">
                         <div class="d-flex justify-space-between mb-2">
                             <span class="subtitle1 text-uppercase bold">Dirección</span>
-                            <span class="body1 text-right">{{otherAdd?.address}}</span>
+                            <span class="body1 text-right">{{ otherAdd?.address }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
                             <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                            <span class="body1 text-right">{{otherAdd?.address}}</span>
+                            <span class="body1 text-right">{{ otherAdd?.address }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
                             <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                            <span class="body1">{{otherAdd?.postal_code}}</span>
+                            <span class="body1">{{ otherAdd?.postal_code }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
                             <span class="subtitle1 text-uppercase bold">Departamento</span>
-                            <span class="body1">{{otherAdd?.state}}</span>
+                            <span class="body1">{{ otherAdd?.state }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
                             <span class="subtitle1 text-uppercase bold">Municipio</span>
-                            <span class="body1">{{otherAdd?.city}}</span>
+                            <span class="body1">{{ otherAdd?.city }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
                             <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -181,25 +181,20 @@
                         </div>
                         <div class="d-flex justify-space-between mb-2">
                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                            <span class="body1">{{otherAdd?.phone}}</span>
+                            <span class="body1">{{ otherAdd?.phone }}</span>
                         </div>
-                        <custom-button 
-                            class="mr-3" 
-                            color="grey" 
-                            text="Editar" 
+                        <custom-button
+                            class="mr-3"
+                            color="grey"
+                            text="Editar"
                             @click="editAddress(otherAdd, 'billing')"
                         />
 
-                        <custom-button 
-                            class="mr-3" 
-                            color="red" 
-                            text="Eliminar" 
-                            @click="deleteAddress(otherAdd?.id)"
-                        />
+                        <custom-button class="mr-3" color="red" text="Eliminar" @click="deleteAddress(otherAdd?.id)" />
 
                         <v-divider class="my-4" />
                     </div>
-                    
+
                     <div>
                         <custom-button class="my-4" block color="grey" @click="openAdress('billing')"
                             >AÑADIR DIRECCION</custom-button
@@ -210,25 +205,15 @@
                         </div>
                     </div>
                 </v-card>
-                <!-- <v-btn
-                    type="submit"
-                    :loading="infoUpdateLoading"
-                    :disabled="infoUpdateLoading"
-                    color="primary"
-                    elevation="0"
-                    class="px-10"
-                    @click="updateBasic"
-                    >{{ $t("update") }}</v-btn
-                > -->
             </v-col>
             <v-col cols="12" md="6">
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <h5 class="bold">Empresa</h5>
                     <v-divider class="my-4" />
                     <div>
-                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true"
-                            >AÑADIR MI EMPRESA</custom-button
-                        >
+                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true">
+                            AÑADIR MI EMPRESA
+                        </custom-button>
                         <div class="cards">
                             Realiza las compras como persona juridica agregando los datos de facturación como empresa.
                         </div>
@@ -238,12 +223,9 @@
                     <h5 class="bold">Contraseña</h5>
                     <v-divider class="my-4" />
                     <div>
-                        <!-- <v-btn light block elevation="0" class="ms-auto" @click.stop="addDialogShow = true"
-                            >CAMBIAR CONTRASEÑA</v-btn
-                        > -->
-                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true"
-                            >CAMBIAR CONTRASEÑA</custom-button
-                        >
+                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true">
+                            CAMBIAR CONTRASEÑA
+                        </custom-button>
                     </div>
                 </v-card>
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
@@ -287,60 +269,18 @@
                         <custom-button color="grey" text="SABER MÁS" />
                     </div>
                 </v-card>
-                <!-- <v-card elevation="0">
-                    <v-card-title class="pa-0 fs-16 fw-700 mb-4">
-                        <span class="">Contraseña</span>
-                    </v-card-title>
-                    <v-row class="mb-4 row-cols-1 row-cols-sm-2 gutters-10">
-                        <v-col>
-                            <label>{{ $t("old_password") }}</label>
-                            <v-text-field
-                                placeholder="******"
-                                type="password"
-                                v-model="form.oldPassword"
-                                :error-messages="oldPasswordErrors"
-                                outlined
-                                hide-details="auto"
-                                class="mb-3"
-                            ></v-text-field>
-
-                            <label>{{ $t("new_password") }}</label>
-                            <v-text-field
-                                placeholder="******"
-                                type="password"
-                                v-model="form.password"
-                                :error-messages="passwordErrors"
-                                @blur="$v.form.password.$touch()"
-                                outlined
-                                hide-details="auto"
-                                class="mb-3"
-                            ></v-text-field>
-
-                            <label>{{ $t("confirm_password") }}</label>
-                            <v-text-field
-                                placeholder="******"
-                                type="password"
-                                v-model="form.confirmPassword"
-                                :error-messages="confirmPasswordErrors"
-                                @blur="$v.form.confirmPassword.$touch()"
-                                outlined
-                                hide-details="auto"
-                                class="mb-3"
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
-                </v-card> -->
             </v-col>
         </v-row>
     </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from "vuex";
-import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
+import { mapGetters, mapMutations } from "vuex";
+import { required, minLength, sameAs } from "vuelidate/lib/validators";
 import CustomButton from "../../components/global/CustomButton.vue";
 import { VueTelInput } from "vue-tel-input";
 import AddressDialog from "../../components/address/AddressDialog.vue";
+
 export default {
     data: () => ({
         mobileInputProps: {
@@ -384,10 +324,6 @@ export default {
     validations: {
         form: {
             name: { required },
-            // email: {
-            //     email,
-            //     required
-            // },
             oldPassword: { required },
             password: { minLength: minLength(6) },
             confirmPassword: { sameAsPassword: sameAs("password") }
@@ -459,42 +395,19 @@ export default {
         phoneValidate(phone) {
             this.form.invalidPhone = phone.valid ? false : true;
         },
-        async getAddressUser(){
-                const res = await this.call_api("get", `user/addresses`);
-                if(res.data.success){
-                    this.addressPrincipal = res.data?.data?.find(address => address.default_shipping == 1);
-                    this.otherAdress = res.data?.data?.filter(address => address.default_shipping == 0);
-                }
+        async getAddressUser() {
+            const res = await this.call_api("get", `user/addresses`);
+            if (res.data.success) {
+                this.addressPrincipal = res.data?.data?.find(address => address.default_shipping == 1);
+                this.otherAdress = res.data?.data?.filter(address => address.default_shipping == 0);
+            }
         },
         async updateBasic() {
-            // if(this.form.email == ""){
-            //     this.snack({
-            //         message: "Email is required.",
-            //         color: "red"
-            //     });
-            //     return;
-            // }
-            // if(this.form.email != "" && !this.$v.form.email.email){
-            //     this.snack({
-            //         message: "Email must be valid.",
-            //         color: "red"
-            //     });
-            //     return;
-            // }
-            // if(this.form.phone != ""  && this.form.invalidPhone){
-            //     this.snack({
-            //         message: "Phone number must be valid.",
-            //         color: "red"
-            //     });
-            //     return;
-            // }
-
             this.$v.form.$touch();
             if (this.$v.form.$anyError) {
                 return;
             }
 
-            // this.form.phone = this.form.phone.replace(/\s/g, '')
             this.infoUpdateLoading = true;
 
             let formData = new FormData();
@@ -514,7 +427,6 @@ export default {
         async deleteAddress(id) {
             const res = await this.call_api("get", `user/address/delete/${id}`);
             if (res.data.success) {
-                //this.setAddresses(res.data.data);
                 this.getAddressUser();
                 this.snack({ message: res.data.message });
             }
@@ -543,17 +455,17 @@ export default {
                 });
             }
         },
-        editAddress(address, type){
+        editAddress(address, type) {
             this.typeAddress = type;
             this.addressSelectedForEdit = address;
-            this.addDialogShow = true
+            this.addDialogShow = true;
         },
         addressDialogClosed() {
             this.addressSelectedForEdit = {};
             this.addDialogShow = false;
             this.getAddressUser();
         },
-        openAdress(type){
+        openAdress(type) {
             this.typeAddress = type;
             this.addDialogShow = true;
         }
