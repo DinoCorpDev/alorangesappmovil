@@ -83,7 +83,7 @@
                             </v-btn>
                         </div>
                     </div>
-                    <custom-button text="Agregar a Compras" block />
+                    <custom-button text="Agregar a Compras" block @click="addCart(productDetails)" />
                     <custom-button light text="Consultar a un Asesor" block class="mt-3" />
                 </div>
                 <div class="product-item-body pa-4 la-border mt-3">
@@ -206,6 +206,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import ProductBox from "../components/product/ProductBox.vue";
 import ProductItem2 from "../components/global/ProductItem2.vue";
 import ProductItem6 from "../components/global/ProductItem6.vue";
@@ -246,6 +247,7 @@ export default {
         LayoutNavbarAuth
     },
     methods: {
+        ...mapActions("cart", ["addToCart", "updateQuantity"]),
         async getDetails() {
             const res = await this.call_api("get", `product/details/${this.$route.params.slug}`);
             if (res.data.success) {
@@ -275,8 +277,20 @@ export default {
                     description: product?.description,
                     brand: product?.brandName,
                     ref: product?.reference,
-                    slug: product?.slug
+                    slug: product?.slug,
+                    id: product?.id
                 });
+            });
+        },
+        async addCart(product) {
+            this.addToCart({
+                // variation_id: this.selectedVariation?.id,
+                variation_id: product.id,
+                qty: this.model
+            });
+            this.snack({
+                message: this.$i18n.t("product_added_to_cart"),
+                color: "green"
             });
         }
     },

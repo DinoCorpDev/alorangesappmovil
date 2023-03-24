@@ -30,7 +30,7 @@
             <span class="product-box-price">{{ format_price(productDetails.base_discounted_price) }}</span>
         </div>
         <div class="product-box-footer pt-0">
-            <custom-button block color="nero" text="Agregar a Compras" />
+            <custom-button block color="nero" text="Agregar a Compras" @click="addCart()" />
         </div>
     </div>
 </template>
@@ -38,6 +38,7 @@
 <script>
 import CustomButton from "../global/CustomButton.vue";
 import FavoriteIcon from "../icons/Favorite.vue";
+import { mapActions } from "vuex";
 
 export default {
     name: "ProductBox",
@@ -56,6 +57,19 @@ export default {
         return {
             productPlaceholderUrl: "/public/assets/img/item-placeholder.png"
         };
+    },
+    methods: {
+        ...mapActions("cart", ["addToCart", "updateQuantity"]),
+        async addCart() {
+            this.addToCart({
+                variation_id: this.productDetails.id,
+                qty: 1
+            });
+            this.snack({
+                message: this.$i18n.t("product_added_to_cart"),
+                color: "green"
+            });
+        }
     }
 };
 </script>

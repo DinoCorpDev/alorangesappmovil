@@ -204,12 +204,8 @@ var render = function render() {
     attrs: {
       fluid: ""
     }
-  }, [_c("v-row", {
-    attrs: {
-      "no-gutters": ""
-    }
-  }, [_c("v-col", {
-    staticClass: "d-none d-lg-block",
+  }, [_c("v-row", [_c("v-col", {
+    staticClass: "user-layout-sidebar d-none d-lg-block",
     attrs: {
       lg: "3"
     }
@@ -365,7 +361,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".container[data-v-425bad3e] {\n  background-color: #fafcfc;\n}", ""]);
+exports.push([module.i, ".container[data-v-425bad3e] {\n  background-color: #fafcfc;\n}\n.user-layout-sidebar[data-v-425bad3e] {\n  background-color: #f5f5f5;\n}\n.user-layout-content[data-v-425bad3e] {\n  background-color: #fafcfc;\n}", ""]);
 
 // exports
 
