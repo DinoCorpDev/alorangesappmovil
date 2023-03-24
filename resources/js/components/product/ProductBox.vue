@@ -21,9 +21,9 @@
             </div>
         </div>
         <div class="product-box-body">
-            <p class="product-box-reference mb-3">{{ productDetails.reference }}</p>
-            <h2 class="product-box-name mb-1">{{ productDetails.name }}</h2>
-            <p class="product-box-brand-name mb-3">{{ productDetails.brandName }}</p>
+            <p class="product-box-reference mb-3">{{ productDetails.reference || "--" }}</p>
+            <h2 class="product-box-name mb-1">{{ productDetails.name || "--" }}</h2>
+            <p class="product-box-brand-name mb-3">{{ productDetails.brandName || "--" }}</p>
             <template v-if="productDetails.base_price > productDetails.base_discounted_price">
                 <del class="product-box-price discounted">{{ format_price(productDetails.base_price) }}</del>
             </template>
@@ -61,6 +61,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.theme--dark {
+    .product-box {
+        &-body {
+            color: #000;
+        }
+    }
+}
+
 .product-box {
     display: flex;
     flex-direction: column;
