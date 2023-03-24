@@ -1,6 +1,12 @@
 <template>
     <div class="search-input">
-        <input type="search" class="search-input-input" :placeholder="placeholder" v-model="searchKeyword" />
+        <input
+            type="search"
+            class="search-input-input"
+            :placeholder="placeholder"
+            v-model="searchKeyword"
+            @keyup.enter="search()"
+        />
         <button class="search-input-button" type="button" @click.stop.prevent="search()">
             <search-icon />
             <span class="ml-2 d-none d-md-block">
@@ -32,6 +38,9 @@ export default {
         return {
             searchKeyword: ""
         };
+    },
+    created() {
+        this.searchKeyword = this.$route.params.keyword;
     },
     methods: {
         search() {
