@@ -673,7 +673,7 @@
                             v-for="(product, i) in footerProducts"
                             :key="i"
                         >
-                            <product-box :product-details="product" />
+                            <product-box :product-details="product" boxStyle="two" />
                         </v-col>
                     </v-row>
                     <v-row justify="center">

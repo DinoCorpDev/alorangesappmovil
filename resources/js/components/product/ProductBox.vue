@@ -28,6 +28,10 @@
                 <del class="product-box-price discounted">{{ format_price(productDetails.base_price) }}</del>
             </template>
             <span class="product-box-price">{{ format_price(productDetails.base_discounted_price) }}</span>
+            <template v-if="boxStyle == 'two'">
+                <v-divider class="my-4" />
+                <p class="product-box-description">{{ productDetails.description || "--" }}</p>
+            </template>
         </div>
         <div class="product-box-footer pt-0">
             <custom-button block color="nero" text="Agregar a Compras" @click="addCart()" />
@@ -47,11 +51,8 @@ export default {
         FavoriteIcon
     },
     props: {
-        productDetails: {
-            type: Object,
-            required: true,
-            default: {}
-        }
+        boxStyle: { type: String, default: "one" },
+        productDetails: { type: Object, required: true, default: {} }
     },
     data() {
         return {
@@ -172,6 +173,10 @@ export default {
 
     &-body {
         flex: 1;
+
+        .v-divider {
+            background-color: #e4e4e4;
+        }
     }
 
     &-reference {
@@ -212,6 +217,13 @@ export default {
                 display: inline-block;
             }
         }
+    }
+
+    &-description {
+        font-family: "Roboto", sans-serif;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        line-height: 18px;
     }
 }
 </style>
