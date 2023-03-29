@@ -96,7 +96,8 @@ class ProductController extends Controller
         $attributes                 = Attribute::with('attribute_values')->get();
         $selected_attribute_values  = $request->attribute_values ? explode(',', $request->attribute_values) : null;
 
-        $products = filter_products(Product::with(['variations']));
+        //$products = filter_products(Product::with(['variations']));
+        $products = Product::query();
 
         //brand check
         if ($brand_ids != null) {

@@ -16,15 +16,13 @@
                             </div>
                         </div>
                         <div class="col2">
-                            <h5 class="black--text bold">Marcas</h5>
+                            <h5 class="black--text bold">{{ brand?.name }}</h5>
                             <span class="black--text body-2 text-uppercase"># Marcas</span>
                         </div>
                         <div class="divider"></div>
                         <div class="col3">
                             <p class="black--text">
-                                Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
-                                industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
-                                been the industry's • Incluye Lorem Ipsum is simply dummy text.
+                                {{ brand?.description }}
                             </p>
                         </div>
                     </div>
@@ -72,23 +70,8 @@
             </v-row>
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                    <v-col cols="6" sm="4" md="4" lg="2" xl="2"  v-for="(product1, i) in panel1" :key="i">
+                        <products :productDetails="product1" :reference="product1?.reference" :name="product1?.name" :brand="product1?.brandName" />
                     </v-col>
                 </v-row>
             </div>
@@ -110,23 +93,8 @@
             </v-row>
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                    <v-col cols="6" sm="4" md="4" lg="2" xl="2" v-for="(product2, i) in panel2" :key="i">
+                        <products :productDetails="product2" :reference="product2?.reference" :name="product2?.name" :brand="product2?.brandName"  />
                     </v-col>
                 </v-row>
             </div>
@@ -148,28 +116,14 @@
             </v-row>
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
-                    <v-col cols="12" sm="8" md="8" lg="4" xl="4">
+                    <v-col cols="12" sm="8" md="8" lg="4" xl="4" v-for="(product3, i) in panel3" :key="i">
                         <product-item5 />
                     </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                    <v-col cols="6" sm="4" md="4" lg="2" xl="2" v-for="(product4, i) in panel4" :key="i">
+                        <products :productDetails="product4" :reference="product4?.reference" :name="product4?.name" :brand="product4?.brandName" />
                     </v-col>
                 </v-row>
             </div>
-            <v-row class="d-flex justify-center">
-                <v-col cols="10" md="6" lg="5">
-                    <custom-button block class="mb-5" light text="Ver más" />
-                </v-col>
-            </v-row>
             <v-row>
                 <v-col class="bar3">
                     <h5 class="black--text">H5</h5>
@@ -183,20 +137,11 @@
             </v-row>
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
-                    <v-col cols="12" sm="8" md="8" lg="4" xl="4">
+                    <v-col cols="12" sm="8" md="8" lg="4" xl="4" v-for="(product, i) in panel5" :key="i">
                         <product-item5 />
                     </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2">
-                        <products reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                    <v-col cols="6" sm="4" md="4" lg="2" xl="2" v-for="(product6, i) in panel6" :key="i">
+                        <products :productDetails="product6" :reference="product6?.reference" :name="product6?.name" :brand="product6?.brandName" />
                     </v-col>
                 </v-row>
             </div>
@@ -218,17 +163,8 @@
             </v-row>
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
-                    <v-col cols="12" sm="6" md="6" lg="3" xl="3">
-                        <products2 reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="6" lg="3" xl="3">
-                        <products2 reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="6" lg="3" xl="3">
-                        <products2 reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="6" lg="3" xl="3">
-                        <products2 reference="QWEEQE" name="Lorem" brand="BMW" price="123.123123.12" />
+                    <v-col cols="12" sm="6" md="6" lg="3" xl="3" v-for="(product7, i) in panel7" :key="i">
+                        <products2 :productDetails="product7" :reference="product7?.reference" :name="product7?.name" :brand="product7?.brandName" />
                     </v-col>
                 </v-row>
             </div>
@@ -263,8 +199,80 @@ export default {
         ProductItem5,
         FooterCustom
     },
+    data: () => ({
+        brand: {},
+        products: [],
+        panel1: [],
+        panel2: [],
+        panel3: [],
+        panel4: [],
+        panel5: [],
+        panel6: [],
+        panel7: [],
+        queryParam:{
+            page: 1,
+            categorySlug: null,
+            brandIds: [],
+            attributeValues: [],
+            keyword: null,
+            sortBy: 'popular',
+            minPrice: null,
+            maxPrice: null,
+        }
+    }),
     mounted() {
         this.$vuetify.theme.dark = true;
+    },
+    created() {
+        this.queryParam.brandIds = [this.$route.params.brandId];
+        this.getList({
+            page: this.queryParam.page,
+            categorySlug: this.queryParam.categorySlug,
+            brandIds: this.queryParam.brandIds,
+            attributeValues: this.queryParam.attributeValues,
+            keyword: this.queryParam.keyword,
+            sortBy: this.queryParam.sortBy,
+            minPrice: this.queryParam.minPrice,
+            maxPrice: this.queryParam.maxPrice,
+        })
+    },
+    methods: {
+        replaceByDefault(e){
+            console.log(e);
+            e.target.src='../../public/assets/img/carousel-item-placeholder.png';
+        },
+        async getList(obj){
+            
+            let params = { ...this.queryParam, ...obj}
+            
+            let url = 'product/search?'
+            url += `&page=${this.queryParam.page}`
+            url += params.categorySlug ? `&category_slug=${params.categorySlug}` : ''
+            url += params.brandIds ? `&brand_ids=${params.brandIds}` : ''
+            url += params.attributeValues ? `&attribute_values=${params.attributeValues}` : ''
+            url += params.keyword ? `&keyword=${params.keyword}` : ''
+            url += params.sortBy ? `&sort_by=${params.sortBy}` : ''
+            url += params.minPrice ? `&min_price=${params.minPrice}` : ''
+            url += params.maxPrice ? `&max_price=${params.maxPrice}` : ''
+            
+            const res = await this.call_api("get", url);
+            if (res.data.success) {
+                this.products = res.data.products?.data;
+                this.panel1 = this.getMultipleRandom(6);
+                this.panel2 = this.getMultipleRandom(6);
+                this.panel3 = this.getMultipleRandom(1);
+                this.panel4 = this.getMultipleRandom(4);
+                this.panel5 = this.getMultipleRandom(1);
+                this.panel6 = this.getMultipleRandom(4);
+                this.panel7 = this.getMultipleRandom(4);
+
+                this.brand = res.data.allBrands?.data?.find(a=> a?.id==parseInt(this.$route.params.brandId));
+            }
+        },
+        getMultipleRandom(num) {
+            const shuffled = this.products?.sort(() => 0.5 - Math.random());
+            return shuffled?.slice(0, num);
+        }
     }
 };
 </script>

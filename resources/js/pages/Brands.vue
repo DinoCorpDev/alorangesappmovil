@@ -24,7 +24,7 @@
             </div>
             <v-row class="mb-7">
                 <v-col cols="6" sm="6" md="4" lg="2" v-for="(brand, i) in brands" :key="i">
-                    <card-brand :bodyImg="brand?.logo" />
+                    <card-brand :bodyImg="brand?.logo" :id="brand?.id" />
                 </v-col>
             </v-row>
         </v-container>

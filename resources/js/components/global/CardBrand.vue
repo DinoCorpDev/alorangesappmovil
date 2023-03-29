@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="brand-item-footer">
-            <custom-button block color="nero" text="Ver Detalles" />
+            <custom-button block color="nero" text="Ver Detalles" @click="goToBrand" />
         </div>
     </div>
 </template>
@@ -35,6 +35,15 @@ export default {
         bodyImg: {
             type: String,
             default: "public/assets/img/brand-item-img-placeholder.png"
+        },
+        id: {
+            type: Number,
+            default: 0
+        }
+    },
+    methods: {
+        goToBrand() {
+            this.$router.push({ name: "Brand2" , params: { brandId: this.id }});
         }
     }
 };
