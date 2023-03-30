@@ -10,12 +10,8 @@ const loadState = () => ({
     appLanguage: shopSetting.appLanguage,
     paymentMethods: shopSetting.paymentMethods,
     offlinePaymentMethods: shopSetting.offlinePaymentMethods,
-    userLanguage:
-        localStorage.getItem("shopSelectedLanguage") || shopSetting.appLanguage,
-    availableCountries:
-        shopSetting.availableCountries.length > 0
-            ? shopSetting.availableCountries
-            : ["US"],
+    userLanguage: localStorage.getItem("shopSelectedLanguage") || shopSetting.appLanguage,
+    availableCountries: shopSetting.availableCountries.length > 0 ? shopSetting.availableCountries : ["US"],
     allLanguages: shopSetting.allLanguages,
     allCurrencies: shopSetting.allCurrencies,
     generalSettings: shopSetting.general_settings,
@@ -26,6 +22,7 @@ const loadState = () => ({
     refundSettings: shopSetting.refundSettings,
     productQuerries: [],
     unseenProductQuerries: 0,
+    previewAvatar: null
 });
 export default {
     namespaced: true,
@@ -41,9 +38,7 @@ export default {
             return state.appLogo;
         },
         appUrl(state) {
-            return state.appUrl.slice(-1) == "/"
-                ? state.appUrl.slice(0, state.appUrl.length - 1)
-                : state.appUrl;
+            return state.appUrl.slice(-1) == "/" ? state.appUrl.slice(0, state.appUrl.length - 1) : state.appUrl;
         },
         demoMode(state) {
             return state.demoMode;
@@ -61,9 +56,7 @@ export default {
             return state.userLanguage;
         },
         userLanguageObj(state) {
-            return state.allLanguages.find(
-                (language) => language.code === state.userLanguage
-            );
+            return state.allLanguages.find(language => language.code === state.userLanguage);
         },
         paymentMethods(state) {
             return state.paymentMethods;
@@ -100,12 +93,12 @@ export default {
         },
         getUnseenProductQuerries(state) {
             return state.unseenProductQuerries;
-        },
+        }
     },
     mutations: {
         setProductQuerries(state, data) {
             state.productQuerries = data;
-            let unseenData = data.filter((data) => {
+            let unseenData = data.filter(data => {
                 return data.sender_viewed == 0;
             });
             state.unseenProductQuerries = unseenData.length;
@@ -125,6 +118,9 @@ export default {
         setRouterLoading(state, status) {
             state.routerLoading = status;
         },
+        setPreviewAvatar(state, avatar) {
+            state.previewAvatar = avatar;
+        }
     },
     actions: {
         setLanguage({ commit }, lang) {
@@ -135,14 +131,11 @@ export default {
         },
         async fetchProductQuerries({ commit }) {
             if (this.getters["auth/isAuthenticated"]) {
-                const res = await Mixin.methods.call_api(
-                    "get",
-                    `user/querries`
-                );
+                const res = await Mixin.methods.call_api("get", `user/querries`);
                 if (res.data.success) {
                     commit("setProductQuerries", res.data.data);
                 }
             }
-        },
-    },
+        }
+    }
 };

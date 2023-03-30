@@ -40,7 +40,7 @@ export default {
         },
         hideDetails: {
             type: [Boolean, String],
-            default: false
+            default: "auto"
         },
         itemText: {
             type: String,

@@ -18,10 +18,10 @@ class UserController extends Controller
     public function dashboard()
     {
         $total_order_products = OrderDetail::distinct()
-                                        ->whereIn('order_id', Order::where('user_id', auth('api')->user()->id)->pluck('id')->toArray());
+            ->whereIn('order_id', Order::where('user_id', auth('api')->user()->id)->pluck('id')->toArray());
 
-        $recent_purchased_products = Product::whereIn('id',$total_order_products->pluck('product_id')->toArray())->limit(10)->get();
-        $last_recharge = Wallet::where('user_id',auth('api')->user()->id)->latest()->first();
+        $recent_purchased_products = Product::whereIn('id', $total_order_products->pluck('product_id')->toArray())->limit(10)->get();
+        $last_recharge = Wallet::where('user_id', auth('api')->user()->id)->latest()->first();
 
         return response()->json([
             'success' => true,
@@ -47,19 +47,19 @@ class UserController extends Controller
     public function updateInfo(Request $request)
     {
         $user = User::find(auth('api')->user()->id);
+
         if (Hash::check($request->oldPassword, $user->password)) {
-            
-            if($request->hasFile('avatar')){
+
+            if ($request->hasFile('avatar')) {
                 $upload = new Upload;
                 $upload->file_original_name = null;
                 $arr = explode('.', $request->file('avatar')->getClientOriginalName());
 
-                for($i=0; $i < count($arr)-1; $i++){
-                    if($i == 0){
+                for ($i = 0; $i < count($arr) - 1; $i++) {
+                    if ($i == 0) {
                         $upload->file_original_name .= $arr[$i];
-                    }
-                    else{
-                        $upload->file_original_name .= ".".$arr[$i];
+                    } else {
+                        $upload->file_original_name .= "." . $arr[$i];
                     }
                 }
 
@@ -75,11 +75,16 @@ class UserController extends Controller
                 ]);
             }
             $user->update([
-                'name' => $request->name,
-                // 'phone' => $request->phone
+                'first_name' => $request->firstName,
+                'second_name' => $request->secondName,
+                'first_lastname' => $request->firstLastname,
+                'second_lastname' => $request->secondLastname,
+                'document_type' => $request->documentType,
+                'document_number' => $request->documentNumber,
+                'phone' => $request->phone,
             ]);
-            
-            if($request->password){
+
+            if ($request->password) {
                 $user->update([
                     'password' => Hash::make($request->password),
                 ]);
