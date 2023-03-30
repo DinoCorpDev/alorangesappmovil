@@ -23,10 +23,10 @@
                 </div>
                 <div class="space">
                     <span class="black--text subtitle1">
-                        {{ productDetails ? productDetails.base_price : "000.000.000" }} COP
+                        {{ productDetails ? format_price(productDetails?.base_price) : "000.000.000" }} COP
                     </span>
                 </div>
-                <custom-button block light text="Agregar a compras" />
+                <custom-button block light text="Agregar a compras" @click="addCart()" />
             </div>
         </div>
     </div>
@@ -34,6 +34,7 @@
 
 <script>
 import CustomButton from "./CustomButton.vue";
+import { mapActions } from "vuex";
 export default {
     name: "Products",
     components: {
@@ -70,6 +71,19 @@ export default {
                 case "xl":
                     return "2.2";
             }
+        }
+    },
+    methods: {
+        ...mapActions("cart", ["addToCart", "updateQuantity"]),
+        async addCart() {
+            this.addToCart({
+                variation_id: this.productDetails?.id,
+                qty: 1
+            });
+            this.snack({
+                message: this.$i18n.t("product_added_to_cart"),
+                color: "green"
+            });
         }
     }
 };
