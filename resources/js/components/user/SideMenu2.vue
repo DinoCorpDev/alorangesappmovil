@@ -6,7 +6,11 @@
                     <div class="div-img">
                         <div>
                             <v-avatar size="100">
-                                <img :src="currentUser.avatar" @error="imageFallback($event)" class="border border-4" />
+                                <img
+                                    :src="previewAvatar || currentUser.avatar"
+                                    @error="imageFallback($event)"
+                                    class="border border-4"
+                                />
                             </v-avatar>
                         </div>
                     </div>
@@ -22,7 +26,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import UserMenu2 from "./UserMenu2";
 import CustomButton from "../../components/global/CustomButton.vue";
 
@@ -33,7 +37,8 @@ export default {
     },
     data: () => ({}),
     computed: {
-        ...mapGetters("auth", ["currentUser"])
+        ...mapGetters("auth", ["currentUser"]),
+        ...mapState("app", ["previewAvatar"])
     }
 };
 </script>

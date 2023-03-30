@@ -18,7 +18,6 @@
                                         v-model="form.email"
                                         :error-messages="emailErrors"
                                         @blur="$v.form.email.$touch()"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
@@ -33,7 +32,6 @@
                                         :error-messages="passwordErrors"
                                         @blur="$v.form.password.$touch()"
                                         type="password"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
@@ -46,7 +44,6 @@
                                         :error-messages="confirmPasswordErrors"
                                         @blur="$v.form.confirmPassword.$touch()"
                                         type="password"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
@@ -54,14 +51,14 @@
                             <v-row>
                                 <v-col cols="12" md="6">
                                     <label class="label">
-                                        <input type="radio" v-model="form.personType" value="natural" />
+                                        <input type="radio" v-model="form.personType" value="Natural" />
                                         <span class="body-1 black--text text">Registrar como persona natural</span>
                                         <span class="checkmark"></span>
                                     </label>
                                 </v-col>
                                 <v-col cols="12" md="6">
                                     <label class="label">
-                                        <input type="radio" v-model="form.personType" value="juridical" />
+                                        <input type="radio" v-model="form.personType" value="Juridical" />
                                         <span class="body-1 black--text text">Registrar como persona jurídica</span>
                                         <span class="checkmark"></span>
                                     </label>
@@ -76,7 +73,6 @@
                                                 v-model="form.firstName"
                                                 :error-messages="firstNameErrors"
                                                 @blur="$v.form.firstName.$touch()"
-                                                hide-details="auto"
                                                 required
                                             />
                                         </v-col>
@@ -84,7 +80,7 @@
                                             <span class="black--text body-2 text-uppercase">
                                                 Segundo Nombre (Opcional)
                                             </span>
-                                            <custom-input v-model="form.secondName" hide-details="auto" />
+                                            <custom-input v-model="form.secondName" />
                                         </v-col>
                                     </v-row>
                                 </v-col>
@@ -96,7 +92,6 @@
                                                 v-model="form.firstLastname"
                                                 :error-messages="firstLastnameErrors"
                                                 @blur="$v.form.firstLastname.$touch()"
-                                                hide-details="auto"
                                                 required
                                             />
                                         </v-col>
@@ -106,7 +101,6 @@
                                                 v-model="form.secondLastname"
                                                 :error-messages="secondLastnameErrors"
                                                 @blur="$v.form.secondLastname.$touch()"
-                                                hide-details="auto"
                                                 required
                                             />
                                         </v-col>
@@ -121,7 +115,6 @@
                                         v-model="form.documentType"
                                         :error-messages="documentTypeErrors"
                                         @blur="$v.form.documentType.$touch()"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
@@ -131,19 +124,17 @@
                                         v-model="form.documentNumber"
                                         :error-messages="documentNumberErrors"
                                         @blur="$v.form.documentNumber.$touch()"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
                             </v-row>
-                            <v-row v-if="form.personType == 'juridical'">
+                            <v-row v-if="form.personType == 'Juridical'">
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Nombre de la Empresa</span>
                                     <custom-input
                                         v-model="form.companyName"
                                         :error-messages="companyNameErrors"
                                         @blur="$v.form.companyName.$touch()"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
@@ -154,12 +145,11 @@
                                         v-model="form.companyType"
                                         :error-messages="companyTypeErrors"
                                         @blur="$v.form.companyType.$touch()"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
                             </v-row>
-                            <v-row v-if="form.personType == 'juridical'">
+                            <v-row v-if="form.personType == 'Juridical'">
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Documento</span>
                                     <select-custom
@@ -167,7 +157,6 @@
                                         v-model="form.companyDocumentType"
                                         :error-messages="companyDocumentTypeErrors"
                                         @blur="$v.form.companyDocumentType.$touch()"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
@@ -180,12 +169,11 @@
                                         v-model="form.companyDocumentNumber"
                                         :error-messages="companyDocumentNumberErrors"
                                         @blur="$v.form.companyDocumentNumber.$touch()"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
                             </v-row>
-                            <v-row v-if="form.personType == 'juridical'">
+                            <v-row v-if="form.personType == 'Juridical'">
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Documento (Representante)</span>
                                     <custom-button block class="mt-3" text="Añadir Mi Empresa" />
@@ -206,7 +194,6 @@
                                                 v-model="form.addressName"
                                                 :error-messages="addressNameErrors"
                                                 @blur="$v.form.addressName.$touch()"
-                                                hide-details="auto"
                                                 required
                                             />
                                         </v-col>
@@ -218,7 +205,6 @@
                                                 v-model="form.address"
                                                 :error-messages="addressErrors"
                                                 @blur="$v.form.address.$touch()"
-                                                hide-details="auto"
                                                 required
                                             />
                                         </v-col>
@@ -232,7 +218,6 @@
                                         v-model="form.addressDetails"
                                         :error-messages="addressDetailsErrors"
                                         @blur="$v.form.addressDetails.$touch()"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
@@ -244,7 +229,6 @@
                                         v-model="form.postalCode"
                                         :error-messages="postalCodeErrors"
                                         @blur="$v.form.postalCode.$touch()"
-                                        hide-details="auto"
                                         required
                                     />
                                 </v-col>
@@ -255,7 +239,6 @@
                                         :items="filteredStates"
                                         @blur="$v.form.state.$touch()"
                                         @input="stateChanged"
-                                        hide-details="auto"
                                         item-text="name"
                                         item-value="id"
                                         required
@@ -270,7 +253,6 @@
                                         :error-messages="cityErrors"
                                         :items="filteredCities"
                                         @blur="$v.form.city.$touch()"
-                                        hide-details="auto"
                                         item-text="name"
                                         item-value="id"
                                         required
@@ -279,7 +261,7 @@
                                 </v-col>
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Barrio ( Opcional )</span>
-                                    <custom-input v-model="form.town" hide-details="auto" />
+                                    <custom-input v-model="form.town" />
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -290,7 +272,6 @@
                                         :items="countries"
                                         @blur="$v.form.country.$touch()"
                                         @input="countryChanged"
-                                        hide-details="auto"
                                         item-text="name"
                                         item-value="id"
                                         required
@@ -445,7 +426,7 @@ export default {
                 email: "",
                 password: "",
                 confirmPassword: "",
-                personType: "natural",
+                personType: "Natural",
                 firstName: "",
                 secondName: "",
                 firstLastname: "",
@@ -485,10 +466,10 @@ export default {
             secondLastname: { required },
             documentType: { required },
             documentNumber: { required },
-            companyName: { requiredIf: requiredIf(item => item.personType === "juridical") },
-            companyType: { requiredIf: requiredIf(item => item.personType === "juridical") },
-            companyDocumentType: { requiredIf: requiredIf(item => item.personType === "juridical") },
-            companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "juridical") },
+            companyName: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            companyType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            companyDocumentType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             address: { required },
             addressName: { required },
             addressDetails: { required },

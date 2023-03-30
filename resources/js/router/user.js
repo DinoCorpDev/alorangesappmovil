@@ -14,6 +14,7 @@ let FollowedShops = () => import("../pages/user/FollowedShops");
 let Wallet = () => import("../pages/user/Wallet");
 let Coupon = () => import("../pages/user/Coupon");
 let Profile = () => import("../pages/user/Profile");
+let Profile2 = () => import("../pages/user/ProfileOld");
 let UserLayout = () => import("../components/user/UserLayout");
 let NotificationAll = () => import("../pages/user/Notification1");
 let Notification = () => import("../pages/user/Notification2");
@@ -122,6 +123,12 @@ export default [
                 path: "profile",
                 component: Profile,
                 name: "Profile",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "profile2",
+                component: Profile2,
+                name: "Profile2",
                 meta: { requiresAuth: true }
             },
             {
