@@ -26,7 +26,7 @@
                         {{ productDetails ? format_price(productDetails?.base_price) : "000.000.000" }} COP
                     </span>
                 </div>
-                <custom-button block light text="Agregar a compras" @click="addCart()"/>
+                <custom-button block light text="Agregar a compras" @click="addCart()" />
             </div>
         </div>
     </div>

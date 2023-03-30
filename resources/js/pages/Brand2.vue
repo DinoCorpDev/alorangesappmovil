@@ -70,8 +70,13 @@
             </v-row>
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
-                    <v-col cols="6" sm="4" md="4" lg="2" xl="2"  v-for="(product1, i) in panel1" :key="i">
-                        <products :productDetails="product1" :reference="product1?.reference" :name="product1?.name" :brand="product1?.brandName" />
+                    <v-col cols="6" sm="4" md="4" lg="2" xl="2" v-for="(product1, i) in panel1" :key="i">
+                        <products
+                            :productDetails="product1"
+                            :reference="product1?.reference"
+                            :name="product1?.name"
+                            :brand="product1?.brandName"
+                        />
                     </v-col>
                 </v-row>
             </div>
@@ -94,7 +99,12 @@
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
                     <v-col cols="6" sm="4" md="4" lg="2" xl="2" v-for="(product2, i) in panel2" :key="i">
-                        <products :productDetails="product2" :reference="product2?.reference" :name="product2?.name" :brand="product2?.brandName"  />
+                        <products
+                            :productDetails="product2"
+                            :reference="product2?.reference"
+                            :name="product2?.name"
+                            :brand="product2?.brandName"
+                        />
                     </v-col>
                 </v-row>
             </div>
@@ -120,7 +130,12 @@
                         <product-item5 />
                     </v-col>
                     <v-col cols="6" sm="4" md="4" lg="2" xl="2" v-for="(product4, i) in panel4" :key="i">
-                        <products :productDetails="product4" :reference="product4?.reference" :name="product4?.name" :brand="product4?.brandName" />
+                        <products
+                            :productDetails="product4"
+                            :reference="product4?.reference"
+                            :name="product4?.name"
+                            :brand="product4?.brandName"
+                        />
                     </v-col>
                 </v-row>
             </div>
@@ -141,7 +156,12 @@
                         <product-item5 />
                     </v-col>
                     <v-col cols="6" sm="4" md="4" lg="2" xl="2" v-for="(product6, i) in panel6" :key="i">
-                        <products :productDetails="product6" :reference="product6?.reference" :name="product6?.name" :brand="product6?.brandName" />
+                        <products
+                            :productDetails="product6"
+                            :reference="product6?.reference"
+                            :name="product6?.name"
+                            :brand="product6?.brandName"
+                        />
                     </v-col>
                 </v-row>
             </div>
@@ -164,7 +184,12 @@
             <div class="cards">
                 <v-row class="d-flex justify-space-around flex-wrap">
                     <v-col cols="12" sm="6" md="6" lg="3" xl="3" v-for="(product7, i) in panel7" :key="i">
-                        <products2 :productDetails="product7" :reference="product7?.reference" :name="product7?.name" :brand="product7?.brandName" />
+                        <products2
+                            :productDetails="product7"
+                            :reference="product7?.reference"
+                            :name="product7?.name"
+                            :brand="product7?.brandName"
+                        />
                     </v-col>
                 </v-row>
             </div>
@@ -209,15 +234,15 @@ export default {
         panel5: [],
         panel6: [],
         panel7: [],
-        queryParam:{
+        queryParam: {
             page: 1,
             categorySlug: null,
             brandIds: [],
             attributeValues: [],
             keyword: null,
-            sortBy: 'popular',
+            sortBy: "popular",
             minPrice: null,
-            maxPrice: null,
+            maxPrice: null
         }
     }),
     mounted() {
@@ -233,28 +258,27 @@ export default {
             keyword: this.queryParam.keyword,
             sortBy: this.queryParam.sortBy,
             minPrice: this.queryParam.minPrice,
-            maxPrice: this.queryParam.maxPrice,
-        })
+            maxPrice: this.queryParam.maxPrice
+        });
     },
     methods: {
-        replaceByDefault(e){
+        replaceByDefault(e) {
             console.log(e);
-            e.target.src='../../public/assets/img/carousel-item-placeholder.png';
+            e.target.src = "../../public/assets/img/carousel-item-placeholder.png";
         },
-        async getList(obj){
-            
-            let params = { ...this.queryParam, ...obj}
-            
-            let url = 'product/search?'
-            url += `&page=${this.queryParam.page}`
-            url += params.categorySlug ? `&category_slug=${params.categorySlug}` : ''
-            url += params.brandIds ? `&brand_ids=${params.brandIds}` : ''
-            url += params.attributeValues ? `&attribute_values=${params.attributeValues}` : ''
-            url += params.keyword ? `&keyword=${params.keyword}` : ''
-            url += params.sortBy ? `&sort_by=${params.sortBy}` : ''
-            url += params.minPrice ? `&min_price=${params.minPrice}` : ''
-            url += params.maxPrice ? `&max_price=${params.maxPrice}` : ''
-            
+        async getList(obj) {
+            let params = { ...this.queryParam, ...obj };
+
+            let url = "product/search?";
+            url += `&page=${this.queryParam.page}`;
+            url += params.categorySlug ? `&category_slug=${params.categorySlug}` : "";
+            url += params.brandIds ? `&brand_ids=${params.brandIds}` : "";
+            url += params.attributeValues ? `&attribute_values=${params.attributeValues}` : "";
+            url += params.keyword ? `&keyword=${params.keyword}` : "";
+            url += params.sortBy ? `&sort_by=${params.sortBy}` : "";
+            url += params.minPrice ? `&min_price=${params.minPrice}` : "";
+            url += params.maxPrice ? `&max_price=${params.maxPrice}` : "";
+
             const res = await this.call_api("get", url);
             if (res.data.success) {
                 this.products = res.data.products?.data;
@@ -266,7 +290,7 @@ export default {
                 this.panel6 = this.getMultipleRandom(4);
                 this.panel7 = this.getMultipleRandom(4);
 
-                this.brand = res.data.allBrands?.data?.find(a=> a?.id==parseInt(this.$route.params.brandId));
+                this.brand = res.data.allBrands?.data?.find(a => a?.id == parseInt(this.$route.params.brandId));
             }
         },
         getMultipleRandom(num) {

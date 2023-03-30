@@ -43,7 +43,7 @@ export default {
     },
     methods: {
         goToBrand() {
-            this.$router.push({ name: "Brand2" , params: { brandId: this.id }});
+            this.$router.push({ name: "Brand2", params: { brandId: this.id } });
         }
     }
 };
