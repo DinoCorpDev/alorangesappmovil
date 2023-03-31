@@ -18,9 +18,11 @@ class AddressController extends Controller
 
     public function createShippingAddress(Request $request)
     {
-        $shipping_count = Address::where('user_id', auth('api')->user()->id)->where('default_shipping', 1)->count();
-        $billing_count = Address::where('user_id', auth('api')->user()->id)->where('default_billing', 1)->count();
-        $service_count = Address::where('user_id', auth('api')->user()->id)->where('default_service', 1)->count();
+        $user_id = $request->has('customer_id') ? $request->customer_id : auth('api')->user()->id;
+
+        $shipping_count = Address::where('user_id', $user_id)->where('default_shipping', 1)->count();
+        $billing_count = Address::where('user_id', $user_id)->where('default_billing', 1)->count();
+        $service_count = Address::where('user_id', $user_id)->where('default_service', 1)->count();
 
         $isShipping  = false;
         $isBilling  = false;
@@ -43,14 +45,17 @@ class AddressController extends Controller
         }
 
         $address = new Address;
-        $address->user_id = auth('api')->user()->id;
+        $address->user_id = $user_id;
         $address->address = $request->address;
-        $address->country = $request->country; //Country::find($request->country)->name;
+        $address->name = $request->name;
+        $address->details = $request->details;
+        $address->country = Country::find($request->country)->name;
         $address->country_id = $request->country;
-        $address->state = $request->state; //State::find($request->state)->name;
+        $address->state = State::find($request->state)->name;
         $address->state_id = $request->state;
-        $address->city = $request->city; //City::find($request->city)->name;
+        $address->city = City::find($request->city)->name;
         $address->city_id = $request->city;
+        $address->neighborhood = $request->neighborhood;
         $address->postal_code = $request->postal_code;
         $address->phone = $request->phone;
         $address->default_shipping = $isShipping == true ? ($shipping_count > 0 ? 0 : 1) : 0;
@@ -64,9 +69,12 @@ class AddressController extends Controller
                 'id'      => $address->id,
                 'user_id' => $address->user_id,
                 'address' => $address->address,
+                'name' => $address->name,
+                'details' => $address->details,
                 'country' => $address->country,
                 'state' => $address->state,
                 'city' => $address->city,
+                'neighborhood' => $address->neighborhood,
                 'postal_code' => $address->postal_code,
                 'phone' => $address->phone,
                 'default_shipping' => $address->default_shipping,

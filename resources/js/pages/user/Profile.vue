@@ -45,7 +45,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">TIPO DE PERSONA</label>
+                                <label class="profile-label">Tipo de Persona</label>
                             </v-col>
                             <v-col class="text-end"> {{ currentUser.personType || "--" }} </v-col>
                         </v-row>
@@ -57,7 +57,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">DOCUMENTO</label>
+                                <label class="profile-label">Documento</label>
                             </v-col>
                             <v-col class="text-end">
                                 {{ currentUser.documentType || "--" }} {{ currentUser.documentNumber || "--" }}
@@ -73,15 +73,15 @@
 
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">NOMBRE DE DIRECCION</label>
+                                <label class="profile-label">Nombre de Dirección</label>
                             </v-col>
                             <v-col class="text-end">
-                                {{ defaultAddress.addressName || "--" }}
+                                {{ defaultAddress.name || "--" }}
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">DIRECCION</label>
+                                <label class="profile-label">Dirección</label>
                             </v-col>
                             <v-col class="text-end">
                                 {{ defaultAddress.address }}
@@ -89,23 +89,23 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">DESCRIPCION DE DIRECCION</label>
+                                <label class="profile-label">Descripción de Dirección</label>
                             </v-col>
                             <v-col class="text-end">
-                                {{ defaultAddress.addressDetails || "--" }}
+                                {{ defaultAddress.details || "--" }}
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">CODIGO POSTAL</label>
+                                <label class="profile-label">Código Postal</label>
                             </v-col>
                             <v-col class="text-end">
-                                {{ defaultAddress.postalCode || "--" }}
+                                {{ defaultAddress.postal_code || "--" }}
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">DEPARTAMENTO</label>
+                                <label class="profile-label">Departamento</label>
                             </v-col>
                             <v-col class="text-end">
                                 {{ defaultAddress.state || "--" }}
@@ -113,7 +113,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">MUNICIPIO</label>
+                                <label class="profile-label">Municipio</label>
                             </v-col>
                             <v-col class="text-end">
                                 {{ defaultAddress.city || "--" }}
@@ -121,15 +121,15 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">BARRIO</label>
+                                <label class="profile-label">Barrio</label>
                             </v-col>
                             <v-col class="text-end">
-                                {{ defaultAddress.town || "--" }}
+                                {{ defaultAddress.neighborhood || "--" }}
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">NOMBRE DE QUIEN VA A RECIBIR</label>
+                                <label class="profile-label">Nombre de Quién Va a Recibir</label>
                             </v-col>
                             <v-col class="text-end">
                                 {{ currentUser.name }}
@@ -137,10 +137,10 @@
                         </v-row>
                         <v-row class="mb-3">
                             <v-col class="text-start">
-                                <label class="profile-label">TELÉFONO / MOBIL</label>
+                                <label class="profile-label">Teléfono / Mobil </label>
                             </v-col>
                             <v-col class="text-end">
-                                {{ currentUser.phone || "--" }}
+                                {{ defaultAddress.phone || "--" }}
                             </v-col>
                         </v-row>
                         <custom-button color="grey" text="Editar" @click="editAddress(defaultAddress, 'shipping')" />
@@ -156,7 +156,7 @@
                             <span class="body1 text-right">{{ otherAdd?.address }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
-                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                            <span class="subtitle1 text-uppercase bold">Descripción de Dirección</span>
                             <span class="body1 text-right">{{ otherAdd?.address }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
@@ -271,7 +271,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 import { required, minLength, sameAs } from "vuelidate/lib/validators";
 import CustomButton from "../../components/global/CustomButton.vue";
 import { VueTelInput } from "vue-tel-input";
@@ -279,7 +279,6 @@ import AddressDialog from "../../components/address/AddressDialog.vue";
 import ProfileDialog from "../../components/user/ProfileDialog.vue";
 
 import CustomInput from "../../components/global/CustomInput.vue";
-import ProfileDialogVue from "../../components/user/ProfileDialog.vue";
 
 export default {
     data: () => ({
@@ -376,9 +375,11 @@ export default {
         }
     },
     created() {
+        this.getUser();
         this.getAddressUser();
     },
     methods: {
+        ...mapActions("auth", ["getUser"]),
         ...mapMutations("app", ["setPreviewAvatar"]),
         ...mapMutations("auth", ["setUser"]),
         ...mapMutations("address", ["setAddresses"]),
