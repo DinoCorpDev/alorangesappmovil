@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="isVisible" max-width="960px" @click:outside="closeDialog">
-        <div class="white pa-5 rounded">
-            <v-form class="inputs mb-8" ref="loginForm" lazy-validation @submit.prevent="register()">
+        <div class="white pa-8 rounded">
+            <v-form class="inputs" ref="loginForm" lazy-validation @submit.prevent="register()">
                 <v-row>
                     <v-col cols="12" md="6">
                         <span class="black--text body-2 text-uppercase">Primer Nombre</span>

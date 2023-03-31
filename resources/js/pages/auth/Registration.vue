@@ -191,9 +191,9 @@
                                                 Nombre De Dirección (Casa / Oficina)
                                             </span>
                                             <custom-input
-                                                v-model="form.addressName"
+                                                v-model="mainAddress.name"
                                                 :error-messages="addressNameErrors"
-                                                @blur="$v.form.addressName.$touch()"
+                                                @blur="$v.mainAddress.name.$touch()"
                                                 required
                                             />
                                         </v-col>
@@ -202,9 +202,9 @@
                                                 Dirección (Calle / Carrera)
                                             </span>
                                             <custom-input
-                                                v-model="form.address"
+                                                v-model="mainAddress.address"
                                                 :error-messages="addressErrors"
-                                                @blur="$v.form.address.$touch()"
+                                                @blur="$v.mainAddress.address.$touch()"
                                                 required
                                             />
                                         </v-col>
@@ -215,9 +215,9 @@
                                         Dirección Adicional (Piso / Apartamento / Oficina)
                                     </span>
                                     <custom-input
-                                        v-model="form.addressDetails"
+                                        v-model="mainAddress.details"
                                         :error-messages="addressDetailsErrors"
-                                        @blur="$v.form.addressDetails.$touch()"
+                                        @blur="$v.mainAddress.details.$touch()"
                                         required
                                     />
                                 </v-col>
@@ -226,9 +226,9 @@
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Codigo Postal</span>
                                     <custom-input
-                                        v-model="form.postalCode"
-                                        :error-messages="postalCodeErrors"
-                                        @blur="$v.form.postalCode.$touch()"
+                                        v-model="mainAddress.postal_code"
+                                        :error-messages="postalCodeErros"
+                                        @blur="$v.mainAddress.postal_code.$touch()"
                                         required
                                     />
                                 </v-col>
@@ -237,12 +237,12 @@
                                     <select-custom
                                         :error-messages="stateErrors"
                                         :items="filteredStates"
-                                        @blur="$v.form.state.$touch()"
+                                        @blur="$v.mainAddress.state.$touch()"
                                         @input="stateChanged"
                                         item-text="name"
                                         item-value="id"
                                         required
-                                        v-model="form.state"
+                                        v-model="mainAddress.state"
                                     />
                                 </v-col>
                             </v-row>
@@ -252,16 +252,16 @@
                                     <select-custom
                                         :error-messages="cityErrors"
                                         :items="filteredCities"
-                                        @blur="$v.form.city.$touch()"
+                                        @blur="$v.mainAddress.city.$touch()"
                                         item-text="name"
                                         item-value="id"
                                         required
-                                        v-model="form.city"
+                                        v-model="mainAddress.city"
                                     />
                                 </v-col>
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Barrio ( Opcional )</span>
-                                    <custom-input v-model="form.town" />
+                                    <custom-input v-model="mainAddress.neighborhood" />
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -270,12 +270,12 @@
                                     <select-custom
                                         :error-messages="countryErrors"
                                         :items="countries"
-                                        @blur="$v.form.country.$touch()"
+                                        @blur="$v.mainAddress.country.$touch()"
                                         @input="countryChanged"
                                         item-text="name"
                                         item-value="id"
                                         required
-                                        v-model="form.country"
+                                        v-model="mainAddress.country"
                                     />
                                 </v-col>
                                 <v-col cols="12" md="6">
@@ -437,19 +437,24 @@ export default {
                 companyType: "",
                 companyDocumentType: "",
                 companyDocumentNumber: "",
-                address: "",
-                addressName: "",
-                addressDetails: "",
-                country: "",
-                state: "",
-                city: "",
-                town: "",
-                postalCode: "",
                 phone: "",
                 policiesAndCookiesConsent: false,
                 offersConsent: false,
                 invalidPhone: true,
                 showInvalidPhone: false
+            },
+            mainAddress: {
+                customer_id: null,
+                address: "",
+                name: "",
+                details: "",
+                country: "",
+                state: "",
+                city: "",
+                neighborhood: "",
+                postal_code: "",
+                phone: "",
+                type: "shipping"
             },
             loading: false
         };
@@ -470,15 +475,17 @@ export default {
             companyType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyDocumentType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            phone: { required },
+            policiesAndCookiesConsent: { required, isTrue }
+        },
+        mainAddress: {
             address: { required },
-            addressName: { required },
-            addressDetails: { required },
+            name: { required },
+            details: { required },
             country: { required },
             state: { required },
             city: { required },
-            postalCode: { required },
-            phone: { required },
-            policiesAndCookiesConsent: { required, isTrue }
+            postal_code: { required }
         }
     },
     computed: {
@@ -573,44 +580,44 @@ export default {
         },
         addressErrors() {
             const errors = [];
-            if (!this.$v.form.address.$dirty) return errors;
-            !this.$v.form.address.required && errors.push(this.$i18n.t("this_field_is_required"));
+            if (!this.$v.mainAddress.address.$dirty) return errors;
+            !this.$v.mainAddress.address.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         addressNameErrors() {
             const errors = [];
-            if (!this.$v.form.addressName.$dirty) return errors;
-            !this.$v.form.addressName.required && errors.push(this.$i18n.t("this_field_is_required"));
+            if (!this.$v.mainAddress.name.$dirty) return errors;
+            !this.$v.mainAddress.name.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         addressDetailsErrors() {
             const errors = [];
-            if (!this.$v.form.addressDetails.$dirty) return errors;
-            !this.$v.form.addressDetails.required && errors.push(this.$i18n.t("this_field_is_required"));
+            if (!this.$v.mainAddress.details.$dirty) return errors;
+            !this.$v.mainAddress.details.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         countryErrors() {
             const errors = [];
-            if (!this.$v.form.country.$dirty) return errors;
-            !this.$v.form.country.required && errors.push(this.$i18n.t("this_field_is_required"));
+            if (!this.$v.mainAddress.country.$dirty) return errors;
+            !this.$v.mainAddress.country.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         stateErrors() {
             const errors = [];
-            if (!this.$v.form.state.$dirty) return errors;
-            !this.$v.form.state.required && errors.push(this.$i18n.t("this_field_is_required"));
+            if (!this.$v.mainAddress.state.$dirty) return errors;
+            !this.$v.mainAddress.state.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         cityErrors() {
             const errors = [];
-            if (!this.$v.form.city.$dirty) return errors;
-            !this.$v.form.city.required && errors.push(this.$i18n.t("this_field_is_required"));
+            if (!this.$v.mainAddress.city.$dirty) return errors;
+            !this.$v.mainAddress.city.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
-        postalCodeErrors() {
+        postalCodeErros() {
             const errors = [];
-            if (!this.$v.form.postalCode.$dirty) return errors;
-            !this.$v.form.postalCode.required && errors.push(this.$i18n.t("this_field_is_required"));
+            if (!this.$v.mainAddress.postal_code.$dirty) return errors;
+            !this.$v.mainAddress.postal_code.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         }
     },
@@ -626,27 +633,33 @@ export default {
         },
         async register() {
             this.$v.form.$touch();
+            this.$v.mainAddress.$touch();
 
             if (this.form.invalidPhone) {
                 this.form.showInvalidPhone = true;
                 return;
             }
 
-            if (this.$v.form.$anyError) {
+            if (this.$v.form.$anyError || this.$v.mainAddress.$anyError) {
                 return;
             }
 
             this.form.phone = this.form.phone.replace(/\s/g, "");
+            this.mainAddress.phone = this.form.phone;
 
             this.loading = true;
 
             const res = await this.call_api("post", "auth/signup", this.form);
 
             if (res.data.success) {
-                this.login(res.data);
-                this.showLoginDialog(false);
-                this.updateChatWindow(false);
-                this.$router.push(this.$route.query.redirect || { name: "RegistrationSuccess" });
+                this.mainAddress.customer_id = res.data.user.id;
+
+                await this.saveAddress().then(() => {
+                    this.login(res.data);
+                    this.showLoginDialog(false);
+                    this.updateChatWindow(false);
+                    this.$router.push(this.$route.query.redirect || { name: "RegistrationSuccess" });
+                });
             } else {
                 this.snack({
                     message: res.data.message,
@@ -685,6 +698,27 @@ export default {
                 this.filteredCities = res.data.data;
                 this.form.city = "";
             } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+        },
+        async saveAddress() {
+            this.mainAddress.phone = this.form.phone;
+
+            try {
+                const res = await this.call_api("post", "user/address/create", this.mainAddress);
+
+                if (res.data.success) {
+                    return res.data;
+                } else {
+                    this.snack({
+                        message: res.data.message,
+                        color: "red"
+                    });
+                }
+            } catch (error) {
                 this.snack({
                     message: this.$i18n.t("something_went_wrong"),
                     color: "red"
