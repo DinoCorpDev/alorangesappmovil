@@ -2,11 +2,11 @@
     <div>
         <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="100">
             <v-container class="pa-0 fill-height justify-space-between" fluid>
-                <router-link :to="{ name: 'TempLanding' }" class="navbar-brand">
+                <router-link :to="{ name: 'Home2' }" class="navbar-brand">
                     <v-img src="/public/assets/img/idovela-logo-dark.png" max-width="117" />
                 </router-link>
                 <div class="d-flex">
-                    <custom-button light class="mr-4" icon="la-store-alt" text="Ir a tienda" />
+                    <custom-button light class="mr-4" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Spaces' }" />
                     <custom-button light class="mr-4" text="Iniciar Sesión" :to="{ name: 'Login' }" />
                     <theme-toggle-switch />
                 </div>

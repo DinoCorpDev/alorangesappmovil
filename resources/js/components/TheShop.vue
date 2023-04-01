@@ -32,10 +32,11 @@ import MobileMenu from "./inc/MobileMenu";
 import LoginDialog from "./auth/LoginDialog.vue";
 import AddToCartDialog from "./product/AddToCartDialog";
 import { mapGetters, mapActions, mapMutations } from "vuex";
+
 export default {
     metaInfo() {
         return {
-            title: this.appMetaTitle,
+            title: this.appMetaTitle
         };
     },
     components: {
@@ -46,16 +47,11 @@ export default {
         SnackBar,
         LoginDialog,
         MobileMenu,
-        AddToCartDialog,
+        AddToCartDialog
     },
     computed: {
         ...mapGetters("auth", ["isAuthenticated"]),
-        ...mapGetters("app", [
-            "appMetaTitle",
-            "userLanguageObj",
-            "routerLoading",
-            "maintenanceMode",
-        ]),
+        ...mapGetters("app", ["appMetaTitle", "userLanguageObj", "routerLoading", "maintenanceMode"])
     },
     methods: {
         ...mapActions("auth", ["getUser", "checkSocialLoginStatus"]),
@@ -66,7 +62,7 @@ export default {
             } else {
                 this.$vuetify.rtl = false;
             }
-        },
+        }
     },
     async created() {
         this.changeRTL();
@@ -74,7 +70,7 @@ export default {
         setTimeout(() => {
             this.checkSocialLoginStatus();
         }, 200);
-    },
+    }
 };
 </script>
 <style scoped>

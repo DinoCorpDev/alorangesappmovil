@@ -28,7 +28,7 @@
                     </v-row>
                 </v-col>
                 <v-col cols="12" md="7">
-                    <carousel :slides="sliderSeeder" />
+                    <carousel :slides="sliderItems" />
                 </v-col>
             </v-row>
 
@@ -71,30 +71,38 @@
                                 >
                                     <v-col>
                                         <polygon-element
-                                            text="Usuario"
-                                            icon="/public/assets/img/home/icon-usuario.svg"
+                                            text="Esta Allí"
+                                            icon="/public/assets/img/home/icon-be-there.svg"
+                                            href="#be-there"
                                         />
                                     </v-col>
                                     <v-col>
                                         <polygon-element
-                                            text="Organizar"
-                                            icon="/public/assets/img/home/icon-organizar.svg"
+                                            text="Forma"
+                                            icon="/public/assets/img/home/icon-shape.svg"
+                                            href="#shape"
                                         />
                                     </v-col>
                                     <v-col>
                                         <polygon-element
-                                            text="Evaluar"
-                                            icon="/public/assets/img/home/icon-evaluar.svg"
+                                            text="Comprobación"
+                                            icon="/public/assets/img/home/icon-validation.svg"
+                                            href="#validation"
                                         />
                                     </v-col>
                                     <v-col>
                                         <polygon-element
-                                            text="Guardar"
-                                            icon="/public/assets/img/home/icon-guardar.svg"
+                                            text="Tiempo"
+                                            icon="/public/assets/img/home/icon-time.svg"
+                                            href="#time"
                                         />
                                     </v-col>
                                     <v-col>
-                                        <polygon-element text="Crear" icon="/public/assets/img/home/icon-crear.svg" />
+                                        <polygon-element
+                                            text="Listo Para Usar"
+                                            icon="/public/assets/img/home/icon-ready-for-use.svg"
+                                            href="#ready-for-use"
+                                        />
                                     </v-col>
                                 </v-row>
                                 <v-img
@@ -117,7 +125,20 @@
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <presentation-banner :slidesCarousel="sliderSeeder" />
+                    <presentation-banner
+                        id="be-there"
+                        icon="/public/assets/img/home/icon-be-there.svg"
+                        preamble="Escuchar, Comprender y Percibir al Usuario"
+                        title="Estar allí"
+                        image="/public/assets/img/home/img-be-there.png"
+                    >
+                        <template v-slot:description>
+                            Identificamos las necesidades de las personas para mejorar su experiencia del entorno.
+                            Estableciendo la conexión entre el espacio vital y la persona que lo habita, teniendo en
+                            cuenta: la representación antropométrica, la adaptación ergonómica, la evaluación de la
+                            propiocepción y la estimulación espacial.
+                        </template>
+                    </presentation-banner>
                 </v-col>
             </v-row>
 
@@ -135,7 +156,20 @@
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <presentation-banner orientation="right" :slidesCarousel="sliderSeeder" />
+                    <presentation-banner
+                        id="shape"
+                        icon="/public/assets/img/home/icon-shape.svg"
+                        preamble="Planificar y diseñar"
+                        title="Forma"
+                        orientation="right"
+                        image="/public/assets/img/home/img-shape.png"
+                    >
+                        <template v-slot:description>
+                            El valor añadido se consigue comprendiendo los gustos subjetivos de las personas que
+                            determinarán la función de la forma, lo que conducirá a la planificación de modelos más
+                            eficientes que permitan el ser allí, resultando en una mejor experiencia.
+                        </template>
+                    </presentation-banner>
                 </v-col>
             </v-row>
 
@@ -147,13 +181,40 @@
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <presentation-banner />
+                    <presentation-banner
+                        id="validation"
+                        icon="/public/assets/img/home/icon-validation.svg"
+                        preamble="Prueba, Validar y Depurar Productos"
+                        title="Comprobación"
+                        image="/public/assets/img/home/img-validation.png"
+                    >
+                        <template v-slot:description>
+                            Al evaluar eficazmente los prototipos con respecto a los requisitos del usuario, se revelan
+                            las deficiencias estructurales del diseño, lo que garantiza la corrección continua y, por
+                            tanto, el cumplimiento de las normas de calidad, lo que a su vez asegura la entrega
+                            satisfactoria de un espacio habitable.
+                        </template>
+                    </presentation-banner>
                 </v-col>
             </v-row>
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <presentation-banner orientation="right" :slidesCarousel="sliderSeeder" />
+                    <presentation-banner
+                        id="time"
+                        icon="/public/assets/img/home/icon-time.svg"
+                        preamble="Obsolescencia Programada, Material y Atemporalidad"
+                        title="Tiempo"
+                        orientation="right"
+                        image="/public/assets/img/home/img-time.png"
+                    >
+                        <template v-slot:description>
+                            Nos esforzamos por interiorizar una sólida comprensión y extracción de los materiales que
+                            componen un espacio vital para garantizar su construcción, uso y mantenimiento a lo largo de
+                            su vida. Nos comprometemos a que sea lo más fácil de usar y respetuoso con el medio ambiente
+                            posible.
+                        </template>
+                    </presentation-banner>
                 </v-col>
             </v-row>
 
@@ -169,7 +230,19 @@
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <presentation-banner />
+                    <presentation-banner
+                        id="ready-for-use"
+                        icon="/public/assets/img/home/icon-ready-for-use.svg"
+                        preamble="Ejecutar e Implementar la Función"
+                        title="Listo para usar"
+                        image="/public/assets/img/home/img-ready-for-use.png"
+                    >
+                        <template v-slot:description>
+                            Un espacio habitable finalizado es el conjunto de objetos que acompañan al usuario en el
+                            cumplimiento de una función determinada elaborada con cuidado al detalle el entorno es
+                            transformando en una experiencia reconfortante.
+                        </template>
+                    </presentation-banner>
                 </v-col>
             </v-row>
 
@@ -231,7 +304,8 @@ export default {
         return {
             selectedCode: null,
             productsSeeder,
-            sliderSeeder
+            sliderSeeder,
+            sliderItems: [{ src: "/public/assets/img/home/banner-home.png", type: "image" }]
         };
     },
     computed: {
@@ -241,6 +315,8 @@ export default {
         this.$vuetify.theme.dark = true;
 
         this.selectedCode = this.userLanguageObj.code;
+
+        this.scrollToCenter();
     },
     methods: {
         ...mapActions("app", ["setLanguage"]),

@@ -1,7 +1,7 @@
 <template>
     <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="100" app elevation="0">
         <v-container class="pa-0 fill-height justify-space-between" fluid>
-            <router-link :to="{ name: 'TempLanding' }" class="navbar-brand">
+            <router-link :to="{ name: 'Home2' }" class="navbar-brand">
                 <v-img src="/public/assets/img/idovela-logo-dark.png" max-width="117" />
             </router-link>
             <search-input />

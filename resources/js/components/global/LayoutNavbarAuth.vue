@@ -2,7 +2,7 @@
     <div>
         <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="60" elevation="0">
             <v-container class="pa-0 fill-height justify-space-between" fluid>
-                <router-link :to="{ name: 'TempLanding' }" class="navbar-brand">
+                <router-link :to="{ name: 'Home2' }" class="navbar-brand">
                     <span class="d-none d-sm-block">
                         <v-img
                             v-if="$vuetify.theme.dark"
