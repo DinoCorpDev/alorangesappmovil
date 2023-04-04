@@ -150,6 +150,7 @@
                         idItem="100"
                         variant="#e9e9e9"
                         variant-text="black--text"
+                        img="/public/assets/img/home/opa.png"
                     ></banner-category-product>
                 </v-col>
             </v-row>
@@ -175,7 +176,7 @@
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <carousel-products :products="productsSeeder" />
+                    <carousel-products :products="productsSeeder" title="Integración" />
                 </v-col>
             </v-row>
 
@@ -246,15 +247,30 @@
                 </v-col>
             </v-row>
 
-            <v-row>
+            <v-row class="mb-6">
+                <v-col cols="12">
+                    <banner-category-product
+                        title="Titulo"
+                        descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
+                        idItem="100"
+                    ></banner-category-product>
+                </v-col>
+            </v-row>
+
+            <v-row class="mb-6">
                 <v-col>
-                    <cards-custom title="Titulo" title-card1="Cocina" />
+                    <cards-custom
+                        title="Explora nuestros productos y servicios"
+                        title-card1="Diseño de espacios"
+                        title-card2="Servicios"
+                        title-card3="ESP"
+                    />
                 </v-col>
             </v-row>
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <v-banner color="#242526" class="rounded">
+                    <v-banner color="#242526" class="rounded temp">
                         <div class="div-map">
                             <div class="map">
                                 <v-img class="img-map" src="../../public/assets/img/mapa.png"></v-img>
@@ -303,9 +319,29 @@ export default {
     data() {
         return {
             selectedCode: null,
-            productsSeeder,
             sliderSeeder,
-            sliderItems: [{ src: "/public/assets/img/home/banner-home.png", type: "image" }]
+            sliderItems: [{ src: "/public/assets/img/home/banner-home.png", type: "image" }],
+
+            productsSeeder: [
+                {
+                    id: "1",
+                    name: "'I'",
+                    img: "/public/assets/img/home/i.png",
+                    description: "Racionalización de procesos de fabricación"
+                },
+                {
+                    id: "2",
+                    name: "'DOVELA'",
+                    description: "Cuidadosa selección de materiales",
+                    img: "/public/assets/img/home/dovela1.png"
+                },
+                {
+                    id: "3",
+                    name: "'INTEGRACIÓN'",
+                    description: "Ciclo de vida adaptable",
+                    img: "/public/assets/img/home/dovela.png"
+                }
+            ]
         };
     },
     computed: {
@@ -337,6 +373,9 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.temp {
+    padding: 0 15%;
+}
 .theme--dark {
     .preambulo .rounded-section {
         background-color: #18191a;
