@@ -1,5 +1,5 @@
 <template>
-    <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" style="height: 100%" height="auto">
+    <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" height="100%">
         <template v-slot:prev="{ on, attrs }">
             <v-btn small color="#000000" v-bind="attrs" v-on="on">
                 <i class="las la-angle-left"></i>
@@ -12,7 +12,7 @@
         </template>
         <template v-if="slides.length > 0">
             <v-carousel-item v-for="(slide, i) in slides" :key="i">
-                <v-img v-if="slide.type === 'image'" :src="slide.src" :aspect-ratio="aspectRatio" />
+                <img v-if="slide.type === 'image'" class="carousel-image" :src="slide.src" />
                 <v-responsive v-if="slide.type === 'video'" :aspect-ratio="aspectRatio">
                     <video autoplay>
                         <source :src="slide.src" type="video/mp4" />
@@ -28,7 +28,7 @@
             </v-carousel-item>
         </template>
         <v-carousel-item v-else>
-            <v-img :src="itemPlaceholderUrl" :aspect-ratio="aspectRatio" contain />
+            <img class="carousel-image" :src="itemPlaceholderUrl" />
         </v-carousel-item>
     </v-carousel>
 </template>
@@ -107,6 +107,20 @@ export default {
             height: 100%;
             object-fit: cover;
             position: absolute;
+        }
+    }
+}
+
+.carousel {
+    &-image {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+
+        &.placeholder {
+            object-fit: contain;
         }
     }
 }

@@ -77,7 +77,7 @@ export default {
 <style lang="scss" scoped>
 .v-select {
     font-family: "Roboto", sans-serif;
-    font-size: 15px;
+    font-size: calc(12px + (15 - 12) * var(--screen-size));
     letter-spacing: 0.5px;
 
     &::v-deep {

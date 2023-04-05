@@ -2,19 +2,23 @@
     <div>
         <layout-navbar />
         <v-container>
-            <v-row class="mb-6" align="center">
+            <v-row class="main mb-6" align="center" tag="main">
                 <v-col cols="12" md="5">
-                    <h1 class="mb-8">
+                    <h1 class="home-main-title mb-6 mb-sm-8">
                         iDOVELA <br />
-                        Para un mundo más habitable
+                        Para un mundo <br />
+                        más habitable
                     </h1>
-                    <h5 class="mb-8">
-                        Mejores espacios conducen a modelos más eficaces de vida. Las habitats eficientes conducen a una
-                        implementación más rápida. Genere valor en su vida con mejores espacios habitables.
-                    </h5>
+                    <p class="home-main-description mb-6 mb-sm-10">
+                        Mejores espacios conducen a modelos más eficaces de vida. <br />
+                        Las habitats eficientes conducen a una implementación más rápida. Genere valor en su vida con
+                        mejores espacios habitables.
+                    </p>
                     <v-row>
-                        <v-col cols="8">
-                            <custom-button light text="Comunicarse con ventas" outlined class="mb-10" block />
+                        <v-col cols="8" sm="6" md="8">
+                            <custom-button block outlined text="Comunicarse con ventas" />
+                        </v-col>
+                        <v-col cols="4" offset-sm="3" sm="3" offset-md="0" md="8">
                             <select-custom
                                 :clearable="false"
                                 :items="allLanguages"
@@ -28,7 +32,7 @@
                     </v-row>
                 </v-col>
                 <v-col cols="12" md="7">
-                    <carousel :slides="sliderItems" />
+                    <carousel class="home-main-carousel" :slides="sliderItems" />
                 </v-col>
             </v-row>
 
@@ -373,6 +377,34 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.home {
+    &-main {
+        &-title {
+            line-height: calc(43px + (122 - 43) * var(--screen-size));
+            letter-spacing: -0.5px;
+
+            @media (min-width: 960px) {
+                letter-spacing: -1.5px;
+            }
+        }
+
+        &-description {
+            font-size: var(--font-size-h5);
+        }
+
+        &-carousel {
+            height: 80vh !important;
+            max-height: 786px;
+
+            &::v-deep {
+                .v-carousel__item {
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
 .temp {
     padding: 0 15%;
 }

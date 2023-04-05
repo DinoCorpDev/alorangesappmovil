@@ -70,54 +70,28 @@ export default {
     // max-height: 600px;
 
     &-preamble {
-        font-size: 13px;
-        line-height: 26px;
+        font-size: calc(13px + (18 - 13) * var(--screen-size));
+        line-height: calc(24px + (26 - 24) * var(--screen-size));
         font-weight: 700;
         text-transform: uppercase;
-
-        @media (min-width: 600px) {
-            font-size: 15px;
-            line-height: 24px;
-        }
-
-        @media (min-width: 960px) {
-            font-size: 18px;
-        }
     }
 
     &-title {
-        font-size: 27px;
-        line-height: 39px;
+        font-size: calc(27px + (60 - 27) * var(--screen-size));
+        line-height: calc(39px + (76 - 39) * var(--screen-size));
         letter-spacing: 0.25px;
         font-weight: 300;
 
-        @media (min-width: 600px) {
-            font-size: 34px;
-            line-height: 50px;
-        }
-
         @media (min-width: 960px) {
-            font-size: 60px;
-            line-height: 76px;
             letter-spacing: -0.5px;
         }
     }
 
     &-description {
         font-family: "Roboto", sans-serif;
-        font-size: 13px;
-        line-height: 20px;
+        font-size: calc(13px + (20 - 13) * var(--screen-size));
+        line-height: calc(20px + (35 - 20) * var(--screen-size));
         letter-spacing: 0.5px;
-
-        @media (min-width: 600px) {
-            font-size: 15px;
-            line-height: 18px;
-        }
-
-        @media (min-width: 960px) {
-            font-size: 20px;
-            line-height: 35px;
-        }
     }
 
     &-image {

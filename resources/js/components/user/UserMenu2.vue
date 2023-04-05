@@ -13,7 +13,7 @@
             <custom-button block class="mb-3" color="nero" text="Notificaciones" :to="{ name: 'NotificationAll' }" />
             <custom-button block class="mb-3" color="nero" text="Informacion" :to="{ name: 'PactoAmbiental' }" />
             <div class="divider"></div>
-            <custom-button block class="mb-5 mt-5" color="nero" @click="logout">
+            <custom-button block class="mb-5 mt-5" color="white" @click="logout">
                 {{ $t("logout") }}
             </custom-button>
             <div class="divider"></div>

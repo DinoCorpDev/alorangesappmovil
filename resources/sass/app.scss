@@ -53,29 +53,52 @@ a {
 }
 
 h1 {
-    font-size: 96px;
+    font-size: var(--font-size-h1);
     letter-spacing: -1.5px;
 }
 
 h2 {
-    font-size: 60px;
+    font-size: var(--font-size-h2);
     letter-spacing: -0.5px;
 }
 
 h3 {
-    font-size: 48px;
+    font-size: var(--font-size-h3);
 }
 
 h4 {
-    font-size: 34px;
+    font-size: var(--font-size-h4);
 }
 
 h5 {
-    font-size: 24px;
+    font-size: var(--font-size-h5);
 }
 
 h6 {
-    font-size: 20px;
+    font-size: var(--font-size-h6);
+}
+
+.body1,
+.sub1 {
+    font-size: var(--font-size-body1);
+}
+
+.body2,
+.sub2 {
+    font-size: var(--font-size-body2);
+}
+
+button,
+a {
+    font-size: var(--font-size-body2);
+}
+
+.caption {
+    font-size: var(--font-size-caption);
+}
+
+.overline {
+    font-size: var(--font-size-overline);
 }
 
 h1,
@@ -135,55 +158,13 @@ h5 {
 
 @media (max-width: 960px) {
     h1 {
-        font-size: 60px;
         letter-spacing: -0.03px;
-    }
-
-    h2 {
-        font-size: 34px;
-    }
-
-    h3 {
-        font-size: 48px;
-    }
-
-    h4 {
-        font-size: 34px;
-    }
-
-    h5 {
-        font-size: 18px;
-    }
-
-    h6 {
-        font-size: 20px;
     }
 }
 
 @media (max-width: 600px) {
     h1 {
-        font-size: 34px;
         letter-spacing: -0.02px;
-    }
-
-    h2 {
-        font-size: 27px;
-    }
-
-    h3 {
-        font-size: 48px;
-    }
-
-    h4 {
-        font-size: 24px;
-    }
-
-    h5 {
-        font-size: 15px;
-    }
-
-    h6 {
-        font-size: 20px;
     }
 
     .subtitle1 {
