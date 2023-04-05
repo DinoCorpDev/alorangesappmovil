@@ -150,6 +150,23 @@ export default {
             background-color: #161616;
         }
     }
+    &.white {
+        color: #000;
+        background-color: #f5f5f5 !important;
+
+        &:hover,
+        &:focus {
+            color: #ffffff;
+        }
+
+        &:hover {
+            background-color: rgba(#161616, 0.8) !important;
+        }
+
+        &:focus {
+            background-color: #161616 !important;
+        }
+    }
 }
 
 // .theme--light {
