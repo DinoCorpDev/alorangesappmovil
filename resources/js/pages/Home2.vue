@@ -261,14 +261,43 @@
                 </v-col>
             </v-row>
 
-            <v-row class="mb-6">
+            <v-row tag="section" class="home-portfolio mb-6">
                 <v-col>
-                    <cards-custom
-                        title="Explora nuestros productos y servicios"
-                        title-card1="Diseño de espacios"
-                        title-card2="Servicios"
-                        title-card3="ESP"
-                    />
+                    <h5 class="mb-5">Portafolio</h5>
+                    <v-row>
+                        <v-col cols="12" sm="6" lg="3">
+                            <div class="home-portfolio-wrap">
+                                <h2 class="home-portfolio-title">Explora nuestros productos y Servicios</h2>
+                            </div>
+                        </v-col>
+                        <v-col cols="12" sm="6" lg="3">
+                            <portfolio-card
+                                title="Diseño de Espacios"
+                                img="/public/assets/img/home/portfolio-design-img.png"
+                                icon="/public/assets/img/home/portfolio-design-icon.svg"
+                                description="Proyecta tus espacias a la mediada que deseas."
+                                :to="{ name: 'Spaces' }"
+                            />
+                        </v-col>
+                        <v-col cols="12" sm="6" lg="3">
+                            <portfolio-card
+                                title="Servicios"
+                                img="/public/assets/img/home/portfolio-services-img.png"
+                                icon="/public/assets/img/home/portfolio-services-icon.svg"
+                                description="Contrata a profesionales para la instalación y recalibración de tus espacios habitables."
+                                :to="{ name: 'Spaces' }"
+                            />
+                        </v-col>
+                        <v-col cols="12" sm="6" lg="3">
+                            <portfolio-card
+                                title="ESP"
+                                img="/public/assets/img/home/portfolio-esp-img.png"
+                                icon="/public/assets/img/home/portfolio-esp-icon.svg"
+                                description="Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar."
+                                :to="{ name: 'Spaces' }"
+                            />
+                        </v-col>
+                    </v-row>
                 </v-col>
             </v-row>
 
@@ -298,13 +327,13 @@ import CustomButton from "../components/global/CustomButton.vue";
 import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
-import CardsCustom from "../components/global/CardsCustom.vue";
 import CarouselProducts from "../components/global/CarouselProducts.vue";
 import FooterCustom from "../components/global/FooterCustom.vue";
 import PolygonElement from "../components/global/PolygonElement.vue";
 import LayoutNavbar from "../components/global/LayoutNavbar.vue";
+import PortfolioCard from "../components/global/PortfolioCard.vue";
 
-import { productsSeeder, sliderSeeder } from "../seeders/products";
+import { sliderSeeder } from "../seeders/products";
 
 export default {
     components: {
@@ -314,11 +343,11 @@ export default {
         ProductItem,
         SelectCustom,
         PresentationBanner,
-        CardsCustom,
         CarouselProducts,
         PolygonElement,
         LayoutNavbar,
-        FooterCustom
+        FooterCustom,
+        PortfolioCard
     },
     data() {
         return {
@@ -379,15 +408,6 @@ export default {
 <style lang="scss" scoped>
 .home {
     &-main {
-        &-title {
-            line-height: calc(43px + (122 - 43) * var(--screen-size));
-            letter-spacing: -0.5px;
-
-            @media (min-width: 960px) {
-                letter-spacing: -1.5px;
-            }
-        }
-
         &-description {
             font-size: var(--font-size-h5);
         }
@@ -403,11 +423,30 @@ export default {
             }
         }
     }
+
+    &-portfolio {
+        &-wrap {
+            border: 1px solid #fff;
+            border-radius: 10px;
+            padding: 1rem;
+            height: 100%;
+            min-height: 560px;
+            display: flex;
+            align-items: center;
+        }
+
+        &-title {
+            @media (max-width: 600px) {
+                width: 60%;
+            }
+        }
+    }
 }
 
 .temp {
     padding: 0 15%;
 }
+
 .theme--dark {
     .preambulo .rounded-section {
         background-color: #18191a;
