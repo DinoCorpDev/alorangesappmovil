@@ -1,11 +1,11 @@
 <template>
     <v-card color="#F5F5F5" elevation="0" height="100%">
-        <div class="pt-3 border-bottom">
+        <div class="border-bottom">
             <div class="div-container">
                 <div class="col1">
                     <div class="div-img">
                         <div>
-                            <v-avatar size="100">
+                            <v-avatar size="100" class="avatar-res">
                                 <img
                                     :src="previewAvatar || currentUser.avatar"
                                     @error="imageFallback($event)"
@@ -18,7 +18,7 @@
                 <div class="col2">
                     <h6 class="black--text text-uppercase bold">{{ currentUser.name }}</h6>
                 </div>
-                <div class="divider"></div>
+                <div class="d-none d-lg-block divider"></div>
                 <UserMenu2 />
             </div>
         </div>
@@ -52,6 +52,16 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@media (max-width: 1025px) {
+    .div-img {
+        width: 60px;
+        height: 60px;
+    }
+    .avatar-res {
+        width: 60px !important;
+        height: 60px !important;
+    }
 }
 
 .div-container {

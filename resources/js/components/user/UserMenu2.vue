@@ -1,22 +1,58 @@
 <template>
     <div style="width: 100%">
-        <div class="buttons">
-            <h6 class="black--text bold">Compras</h6>
-            <custom-button block class="mb-3 mt-3" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
-            <custom-button block class="mb-3" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
-            <custom-button block class="mb-3" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
-            <div class="divider"></div>
+        <div style="width: 100%" class="d-none d-lg-block">
+            <div class="buttons">
+                <h6 class="black--text bold">Compras</h6>
+                <custom-button block class="mb-3 mt-3" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
+                <custom-button block class="mb-3" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
+                <custom-button block class="mb-3" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
+                <div class="divider"></div>
+            </div>
+            <div class="buttons">
+                <h6 class="black--text bold">Usuario</h6>
+                <custom-button block class="mb-3 mt-3" color="nero" text="Perfil" :to="{ name: 'Profile' }" />
+                <custom-button
+                    block
+                    class="mb-3"
+                    color="nero"
+                    text="Notificaciones"
+                    :to="{ name: 'NotificationAll' }"
+                />
+                <custom-button block class="mb-3" color="nero" text="Informacion" :to="{ name: 'PactoAmbiental' }" />
+                <div class="divider"></div>
+                <custom-button block class="mb-5 mt-5" color="white" @click="logout">
+                    {{ $t("logout") }}
+                </custom-button>
+                <div class="divider"></div>
+            </div>
         </div>
-        <div class="buttons">
-            <h6 class="black--text bold">Usuario</h6>
-            <custom-button block class="mb-3 mt-3" color="nero" text="Perfil" :to="{ name: 'Profile' }" />
-            <custom-button block class="mb-3" color="nero" text="Notificaciones" :to="{ name: 'NotificationAll' }" />
-            <custom-button block class="mb-3" color="nero" text="Informacion" :to="{ name: 'PactoAmbiental' }" />
-            <div class="divider"></div>
-            <custom-button block class="mb-5 mt-5" color="white" @click="logout">
+        <div style="width: 100%" class="mt-5 d-lg-none d-sm-flex d-md-flex">
+            <custom-button class="btn-responsive" color="white" @click="logout">
                 {{ $t("logout") }}
             </custom-button>
-            <div class="divider"></div>
+            <v-row class="buttons">
+                <v-col cols="col">
+                    <custom-button block class="" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
+                </v-col>
+                <v-col cols="col">
+                    <custom-button block class="" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
+                </v-col>
+                <v-col cols="col">
+                    <custom-button block class="" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
+                </v-col>
+                <v-col cols="col">
+                    <custom-button block class="" color="nero" text="Perfil" :to="{ name: 'Profile' }" />
+                </v-col>
+                <v-col cols="col">
+                    <custom-button
+                        block
+                        class="mb-3"
+                        color="nero"
+                        text="Notificaciones"
+                        :to="{ name: 'NotificationAll' }"
+                    />
+                </v-col>
+            </v-row>
         </div>
     </div>
 </template>
@@ -25,6 +61,16 @@
 import { mapGetters, mapActions } from "vuex";
 import CustomButton from "../../components/global/CustomButton.vue";
 export default {
+    data: () => ({
+        drawer: false,
+        group: null
+    }),
+
+    watch: {
+        group() {
+            this.drawer = false;
+        }
+    },
     components: {
         CustomButton
     },
@@ -133,9 +179,18 @@ export default {
     width: 100%;
     height: 2px;
 }
-
+.col {
+    padding: 3px;
+}
+.btn-responsive {
+    position: absolute;
+    right: 0%;
+    top: 15%;
+    font-size: 16px;
+}
 .buttons {
-    padding: 10px;
+    padding: 0 10px;
+    margin-left: 0px;
     width: 100%;
 }
 </style>
