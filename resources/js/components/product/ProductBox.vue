@@ -90,6 +90,7 @@ export default {
     border-radius: 10px;
     background-color: #f5f5f5;
     height: 100%;
+    overflow: hidden;
 
     &-header,
     &-body,
@@ -102,8 +103,6 @@ export default {
         background-color: #f5f5f5;
         display: flex;
         justify-content: flex-end;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
 
         &::v-deep {
             .icon {

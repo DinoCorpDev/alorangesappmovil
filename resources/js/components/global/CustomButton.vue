@@ -76,17 +76,13 @@ export default {
 
 <style lang="scss" scoped>
 .v-btn {
-    font-size: 12px;
+    font-size: var(--font-size-btn);
     font-weight: 600;
     letter-spacing: 1.25px;
     transition: all 0.2s ease-in-out;
 
     &:before {
         content: unset;
-    }
-
-    @media (min-width: 960px) {
-        font-size: 12px;
     }
 
     border-radius: 5px;
@@ -107,6 +103,21 @@ export default {
     &::v-deep {
         .v-btn__content {
             margin-top: 3px;
+        }
+    }
+
+    &.v-btn--outlined {
+        &:hover,
+        &:focus {
+            color: #000000;
+        }
+
+        &:hover {
+            background-color: rgba(#ffffff, 0.8);
+        }
+
+        &:focus {
+            background-color: #ffffff;
         }
     }
 
@@ -150,6 +161,7 @@ export default {
             background-color: #161616;
         }
     }
+
     &.white {
         color: #000;
         background-color: #f5f5f5 !important;
@@ -185,25 +197,6 @@ export default {
 
 //                 &.v-btn--has-bg {
 //                     background-color: #fafcfc !important;
-//                 }
-//             }
-//         }
-
-//         &.v-btn--outlined {
-//             color: #ffffff;
-
-//             &:hover,
-//             &:focus {
-//                 color: #000000;
-//             }
-
-//             &:before {
-//                 background-color: rgba(255, 255, 255, 0.8);
-//             }
-
-//             &:focus {
-//                 &:before {
-//                     background-color: #ffffff;
 //                 }
 //             }
 //         }
