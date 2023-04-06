@@ -9,17 +9,17 @@
                             <h1 class="forgot-password-title">Restablecer contraseña</h1>
                             <v-divider class="my-4" />
                             <p v-if="resetWith == 'email'">
-                                {{ $t('a_verification_code_has_been_sent_to_your_email') }}
+                                {{ $t("a_verification_code_has_been_sent_to_your_email") }}
                             </p>
                             <p v-else>
-                                {{ $t('a_verification_code_has_been_sent_to_your_phone_number') }}
+                                {{ $t("a_verification_code_has_been_sent_to_your_phone_number") }}
                             </p>
 
                             <p v-if="resetWith == 'email'">
-                                {{ $t('enter_your_email_address_code__new_password') }}
+                                {{ $t("enter_your_email_address_code__new_password") }}
                             </p>
                             <p v-else>
-                                {{ $t('enter_your_phone_number_code__new_password') }}
+                                {{ $t("enter_your_phone_number_code__new_password") }}
                             </p>
                             <div class="inputs mb-5">
                                 <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
@@ -91,16 +91,16 @@ export default {
         mobileInputProps: {
             inputOptions: {
                 type: "tel",
-                placeholder: "phone number",
+                placeholder: "phone number"
             },
             dropdownOptions: {
                 showDialCodeInSelection: false,
                 showFlags: true,
-                showDialCodeInList: true,
+                showDialCodeInList: true
             },
             autoDefaultCountry: false,
             validCharactersOnly: true,
-            mode: "international",
+            mode: "international"
         },
         form: {
             email: "",
@@ -108,85 +108,79 @@ export default {
             password: "",
             confirmPassword: "",
             invalidPhone: true,
-            showInvalidPhone: false,
+            showInvalidPhone: false
         },
-        resetWith: 'email',
-        loading: false,
+        resetWith: "email",
+        loading: false
     }),
     components: {
         VueTelInput,
         CustomButton,
-        CustomInput,
+        CustomInput
     },
     validations: {
         form: {
             email: {
-                requiredIf: requiredIf(function (){
-                    return this.resetWith == 'email'
+                requiredIf: requiredIf(function () {
+                    return this.resetWith == "email";
                 }),
                 email
             },
             phone: {
-                requiredIf: requiredIf(function (){
-                    return this.resetWith == 'phone'
-                }),
+                requiredIf: requiredIf(function () {
+                    return this.resetWith == "phone";
+                })
             },
             code: {
-                required,
+                required
             },
             password: { required, minLength: minLength(6) },
-            confirmPassword: { required, sameAsPassword: sameAs('password') }
+            confirmPassword: { required, sameAsPassword: sameAs("password") }
         }
     },
-    computed:{
+    computed: {
         ...mapGetters("app", ["availableCountries"]),
         ...mapGetters("auth", ["authSettings"]),
         emailErrors() {
             const errors = [];
             if (!this.$v.form.email.$dirty) return errors;
-            !this.$v.form.email.requiredIf &&
-                errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.email.email &&
-                errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            !this.$v.form.email.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
             return errors;
         },
         codeErrors() {
             const errors = [];
             if (!this.$v.form.code.$dirty) return errors;
-            !this.$v.form.code.required &&
-                errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.code.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         passwordErrors() {
             const errors = [];
             if (!this.$v.form.password.$dirty) return errors;
-            !this.$v.form.password.required &&
-                errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.password.minLength &&
-                errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
+            !this.$v.form.password.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.password.minLength && errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
             return errors;
         },
         confirmPasswordErrors() {
             const errors = [];
             if (!this.$v.form.confirmPassword.$dirty) return errors;
-            !this.$v.form.confirmPassword.required &&
-                errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.confirmPassword.required && errors.push(this.$i18n.t("this_field_is_required"));
             !this.$v.form.confirmPassword.sameAsPassword &&
                 errors.push(this.$i18n.t("password_and_confirm_password_should_match"));
             return errors;
         }
     },
-    methods:{
+    methods: {
         phoneValidate(phone) {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;
         },
-        async resetPassword(){
+        async resetPassword() {
             this.$v.form.$touch();
             if (this.$v.form.$anyError) {
                 return;
             }
-            if (this.resetWith == 'phone' && this.form.invalidPhone) {
+            if (this.resetWith == "phone" && this.form.invalidPhone) {
                 this.form.showInvalidPhone = true;
                 return;
             }
@@ -196,9 +190,9 @@ export default {
             if (res.data.success) {
                 this.$router.push({ name: "Login" });
                 this.snack({
-                    message: res.data.message,
+                    message: res.data.message
                 });
-            }else{
+            } else {
                 this.snack({
                     message: res.data.message,
                     color: "red"
@@ -207,20 +201,22 @@ export default {
             this.loading = false;
         }
     },
-    created(){
-        if(this.$route.params.email){
-            this.form.email = this.$route.params.email
+    created() {
+        if (this.$route.params.email) {
+            this.form.email = this.$route.params.email;
         }
-        if(this.$route.params.phone){
-            this.form.phone = this.$route.params.phone
-            this.resetWith = 'phone'
-        }else if(this.authSettings.customer_login_with == 'phone' || (this.authSettings.customer_login_with == 'email_phone' && this.authSettings.customer_otp_with == 'phone')){
-            this.resetWith = 'phone'
+        if (this.$route.params.phone) {
+            this.form.phone = this.$route.params.phone;
+            this.resetWith = "phone";
+        } else if (
+            this.authSettings.customer_login_with == "phone" ||
+            (this.authSettings.customer_login_with == "email_phone" && this.authSettings.customer_otp_with == "phone")
+        ) {
+            this.resetWith = "phone";
         }
     }
-}
+};
 </script>
-
 
 <style lang="scss">
 .v-application {
