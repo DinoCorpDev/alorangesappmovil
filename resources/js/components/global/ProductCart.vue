@@ -22,13 +22,13 @@
                 <div class="quanty-res">
                     <div class="quantity">
                         <div>
-                            <v-btn v-on:click="increment()" block plain>
+                            <v-btn v-on:click="increment()" block plain v-if="showOperation == true">
                                 <v-img src="/public/assets/img/icons/sum.svg"></v-img>
                             </v-btn>
                         </div>
                         <input type="number" v-model="quantity" class="textquantity" />
                         <div>
-                            <v-btn v-on:click="decrement()" block plain>
+                            <v-btn v-on:click="decrement()" block plain v-if="showOperation == true">
                                 <v-img src="/public/assets/img/icons/subtract.svg"></v-img>
                             </v-btn>
                         </div>
@@ -105,6 +105,10 @@ export default {
         quantity: {
             type: Number,
             default: 0
+        },
+        showOperation: {
+            type: Boolean,
+            default: true
         }
     },
     methods: {
