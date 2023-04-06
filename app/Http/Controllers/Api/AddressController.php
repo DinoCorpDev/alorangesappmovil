@@ -49,11 +49,11 @@ class AddressController extends Controller
         $address->address = $request->address;
         $address->name = $request->name;
         $address->details = $request->details;
-        //$address->country = Country::find($request->country)->name;
+        $address->country = Country::find($request->country)->name;
         $address->country_id = $request->country;
-        //$address->state = State::find($request->state)->name;
+        $address->state = State::find($request->state)->name;
         $address->state_id = $request->state;
-        //$address->city = City::find($request->city)->name;
+        $address->city = City::find($request->city)->name;
         $address->city_id = $request->city;
         $address->neighborhood = $request->neighborhood;
         $address->postal_code = $request->postal_code;

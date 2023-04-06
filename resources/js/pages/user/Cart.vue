@@ -68,17 +68,23 @@
                                     </div>
                                     <div class="d-flex justify-space-between mb-3">
                                         <span class="subtitle1 text-uppercase bold">Documento</span>
-                                        <span class="body1">{{ currentUser.documentType || "--" }} {{ currentUser.documentNumber || "--" }}</span>
+                                        <span class="body1">
+                                            {{ currentUser.documentType || "--" }}
+                                            {{ currentUser.documentNumber || "--" }}
+                                        </span>
                                     </div>
                                     <custom-button color="grey" class="mr-3" text="Editar" @click="editProfile()" />
-            
                                 </div>
                             </v-col>
                             <v-col cols="12">
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de servicio</h6>
                                     <v-divider class="my-3" />
-                                    <div v-if="Object.entries(addressServicio).length !== 0 && useDefaultAddress1 == false">
+                                    <div
+                                        v-if="
+                                            Object.entries(addressServicio).length !== 0 && useDefaultAddress1 == false
+                                        "
+                                    >
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
@@ -115,7 +121,7 @@
                                         </div>
                                     </div>
                                     <label class="label my-3">
-                                        <input type="checkbox" v-model="useDefaultAddress1" id="useDefaultAddress1"/>
+                                        <input type="checkbox" v-model="useDefaultAddress1" id="useDefaultAddress1" />
                                         <span class="body-1 black--text text">
                                             Usar la misma Dirección de envió para que Idovela preste los servicio de
                                             instalación, mantenimiento y más.
@@ -124,14 +130,18 @@
                                     </label>
                                     <v-divider class="my-3" />
                                     <custom-button
-                                        v-if="Object.entries(addressServicio).length !== 0 && useDefaultAddress1 == false"
+                                        v-if="
+                                            Object.entries(addressServicio).length !== 0 && useDefaultAddress1 == false
+                                        "
                                         class="mr-3"
                                         color="grey"
                                         text="Editar"
                                         @click="editAddress(addressServicio, 'service')"
                                     />
                                     <custom-button
-                                        v-if="Object.entries(addressServicio).length === 0 && useDefaultAddress1 == false"
+                                        v-if="
+                                            Object.entries(addressServicio).length === 0 && useDefaultAddress1 == false
+                                        "
                                         block
                                         color="grey"
                                         text="Añadir Dirección"
@@ -143,7 +153,12 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de facturacion</h6>
                                     <v-divider class="my-3" />
-                                    <div v-if="Object.entries(addressFacturacion).length !== 0 && useDefaultAddress2 == false">
+                                    <div
+                                        v-if="
+                                            Object.entries(addressFacturacion).length !== 0 &&
+                                            useDefaultAddress2 == false
+                                        "
+                                    >
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
@@ -180,7 +195,7 @@
                                         </div>
                                     </div>
                                     <label class="label my-3">
-                                        <input type="checkbox" v-model="useDefaultAddress2" id="useDefaultAddress2"/>
+                                        <input type="checkbox" v-model="useDefaultAddress2" id="useDefaultAddress2" />
                                         <span class="body-1 black--text text">
                                             Usar la misma Dirección de envió para que Idovela entreguela factura física.
                                         </span>
@@ -188,14 +203,20 @@
                                     </label>
                                     <v-divider class="my-3" />
                                     <custom-button
-                                        v-if="Object.entries(addressFacturacion).length !== 0 && useDefaultAddress2 == false"
+                                        v-if="
+                                            Object.entries(addressFacturacion).length !== 0 &&
+                                            useDefaultAddress2 == false
+                                        "
                                         class="mr-3"
                                         color="grey"
                                         text="Editar"
                                         @click="editAddress(addressFacturacion, 'billing')"
                                     />
                                     <custom-button
-                                        v-if="Object.entries(addressFacturacion).length === 0 && useDefaultAddress2 == false"
+                                        v-if="
+                                            Object.entries(addressFacturacion).length === 0 &&
+                                            useDefaultAddress2 == false
+                                        "
                                         block
                                         color="grey"
                                         text="Añadir Dirección"
@@ -212,10 +233,10 @@
                             @close="addressDialogClosed"
                             :old-address="addressSelectedForEdit"
                         />
-                        <profile-dialog 
-                            :show="profileDialogShow" 
-                            @close="profileDialogClosed" 
-                            :old-profile="profileSelectedForEdit" 
+                        <profile-dialog
+                            :show="profileDialogShow"
+                            @close="profileDialogClosed"
+                            :old-profile="profileSelectedForEdit"
                         />
                         <v-row>
                             <v-col cols="12">
@@ -409,7 +430,10 @@
                                     </div>
                                     <div class="d-flex justify-space-between mb-3">
                                         <span class="subtitle1 text-uppercase bold">Documento</span>
-                                        <span class="body1"> {{ currentUser.documentType || "--" }} {{ currentUser.documentNumber || "--" }}</span>
+                                        <span class="body1">
+                                            {{ currentUser.documentType || "--" }}
+                                            {{ currentUser.documentNumber || "--" }}
+                                        </span>
                                     </div>
                                 </div>
                             </v-col>
@@ -418,7 +442,11 @@
                                     <h6 class="black--text bold">Dirección de servicio</h6>
                                     <v-divider class="my-3" />
 
-                                    <div v-if="Object.entries(addressServicio).length !== 0 && useDefaultAddress1 == false">
+                                    <div
+                                        v-if="
+                                            Object.entries(addressServicio).length !== 0 && useDefaultAddress1 == false
+                                        "
+                                    >
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
@@ -454,8 +482,13 @@
                                             <span class="body1">{{ addressPrincipal?.phone }}</span>
                                         </div>
                                     </div>
-                                    
-                                    <div class="" v-if="Object.entries(addressPrincipal).length !== 0 && useDefaultAddress1 == true">
+
+                                    <div
+                                        class=""
+                                        v-if="
+                                            Object.entries(addressPrincipal).length !== 0 && useDefaultAddress1 == true
+                                        "
+                                    >
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
@@ -465,7 +498,9 @@
                                             <span class="body1 text-right">{{ addressPrincipal?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                                            <span class="subtitle1 text-uppercase bold">
+                                                Descripción de Dirección
+                                            </span>
                                             <span class="body1">{{ addressPrincipal?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
@@ -497,20 +532,27 @@
                                     </div>
 
                                     <custom-button
-                                        v-if="Object.entries(addressFacturacion).length === 0 && useDefaultAddress1 == false"
+                                        v-if="
+                                            Object.entries(addressFacturacion).length === 0 &&
+                                            useDefaultAddress1 == false
+                                        "
                                         block
                                         color="grey"
                                         text="Añadir Dirección"
                                         @click="openAdress('service')"
                                     />
-                                    
                                 </div>
                             </v-col>
                             <v-col cols="12">
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de facturacion</h6>
                                     <v-divider class="my-3" />
-                                    <div v-if="Object.entries(addressFacturacion).length !== 0 && useDefaultAddress2 == false">
+                                    <div
+                                        v-if="
+                                            Object.entries(addressFacturacion).length !== 0 &&
+                                            useDefaultAddress2 == false
+                                        "
+                                    >
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
@@ -546,8 +588,13 @@
                                             <span class="body1">{{ addressPrincipal?.phone }}</span>
                                         </div>
                                     </div>
-                                    
-                                    <div class="" v-if="Object.entries(addressPrincipal).length !== 0 && useDefaultAddress2 == true">
+
+                                    <div
+                                        class=""
+                                        v-if="
+                                            Object.entries(addressPrincipal).length !== 0 && useDefaultAddress2 == true
+                                        "
+                                    >
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
@@ -557,7 +604,9 @@
                                             <span class="body1 text-right">{{ addressPrincipal?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
+                                            <span class="subtitle1 text-uppercase bold">
+                                                Descripción de Dirección
+                                            </span>
                                             <span class="body1">{{ addressPrincipal?.address }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
@@ -589,7 +638,10 @@
                                     </div>
 
                                     <custom-button
-                                        v-if="Object.entries(addressFacturacion).length === 0 && useDefaultAddress2 == false"
+                                        v-if="
+                                            Object.entries(addressFacturacion).length === 0 &&
+                                            useDefaultAddress2 == false
+                                        "
                                         block
                                         color="grey"
                                         text="Añadir Dirección"
@@ -665,7 +717,7 @@
                                 @changeQtyMinus="changeQty"
                                 :cart_id="product?.cart_id"
                                 :quantity="product?.qty"
-                                showOperation=false
+                                :showOperation="false"
                             />
                         </v-col>
                     </v-row>
