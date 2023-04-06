@@ -90,12 +90,14 @@ class ProductController extends Controller
         $sort_by                    = $request->sort_by;
         $category_id                = optional($category)->id;
         $brand_ids                  = $request->brand_ids ? explode(',', $request->brand_ids) : null;
+        $category_ids               = $request->category_ids ? explode(',', $request->category_ids) : null;
         $min_price                  = $request->min_price;
         $max_price                  = $request->max_price;
         $attributes                 = Attribute::with('attribute_values')->get();
         $selected_attribute_values  = $request->attribute_values ? explode(',', $request->attribute_values) : null;
 
-        $products = filter_products(Product::with(['variations']));
+        //$products = filter_products(Product::with(['variations']));
+        $products = Product::query();
 
         //brand check
         if ($brand_ids != null) {
@@ -117,6 +119,13 @@ class ProductController extends Controller
             $category_ids = CategoryUtility::children_ids($category_id);
             $category_ids[] = $category_id;
 
+            $products->with('product_categories')->whereHas('product_categories', function ($query) use ($category_ids) {
+                return $query->whereIn('category_id', $category_ids);
+            });
+
+            $attribute_ids = AttributeCategory::whereIn('category_id', $category_ids)->pluck('attribute_id')->toArray();
+            $attributes = Attribute::with('attribute_values')->whereIn('id', $attribute_ids)->get();
+        } else if ($category_ids != null) {
             $products->with('product_categories')->whereHas('product_categories', function ($query) use ($category_ids) {
                 return $query->whereIn('category_id', $category_ids);
             });

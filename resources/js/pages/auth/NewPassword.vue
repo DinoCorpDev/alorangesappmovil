@@ -1,114 +1,76 @@
 <template>
-    <div>
-        <v-container>
-            <v-row>
-                <v-col cols="12" lg="6" md="8" sm="10" class="mx-auto">
-                    <div class="my-5 my-lg-16 rounded-lg pa-5 border overflow-hidden shadow-light">
-                        <div v-if="resetWith == 'email'" class="info--text mb-3">
-                            {{ $t('a_verification_code_has_been_sent_to_your_email') }}
-                        </div>
-                        <div v-else class="info--text mb-3">
-                            {{ $t('a_verification_code_has_been_sent_to_your_phone_number') }}
-                        </div>
-                        <h1 class="text-uppercase lh-1 mb-4">
-                            <span class="display-1 primary--text fw-900">{{ $t('reset') }}</span>
-                            <span class="d-block display-1 fw-900 grey--text text--darken-3">{{ $t('password') }}</span>
-                        </h1>
-                        <div v-if="resetWith == 'email'" class="fs-16 fw-500 mb-6">{{ $t('enter_your_email_address_code__new_password') }}</div>
-                        <div v-else class="fs-16 fw-500 mb-6">{{ $t('enter_your_phone_number_code__new_password') }}</div>
-                        <v-form ref="loginForm" lazy-validation @submit.prevent="resetPassword()">
-                            <div v-if="resetWith == 'email'" class="mb-4">
-                                <div class="mb-1 fs-13 fw-500">{{ $t('email') }}</div>
-                                <v-text-field
-                                    v-model="form.email"
-                                    :placeholder="$t('email_address')"
+    <div class="forgot-password d-flex flex-column h-100">
+        <layout-navbar-auth />
+        <v-container class="d-flex flex-grow-1">
+            <v-row justify="center" align="center">
+                <v-col cols="12" sm="10" md="8" lg="6">
+                    <div class="wrap pa-3 pa-sm-5 mb-10">
+                        <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-8">
+                            <h1 class="forgot-password-title">Restablecer contraseña</h1>
+                            <v-divider class="my-4" />
+                            <p v-if="resetWith == 'email'">
+                                {{ $t("a_verification_code_has_been_sent_to_your_email") }}
+                            </p>
+                            <p v-else>
+                                {{ $t("a_verification_code_has_been_sent_to_your_phone_number") }}
+                            </p>
+
+                            <p v-if="resetWith == 'email'">
+                                {{ $t("enter_your_email_address_code__new_password") }}
+                            </p>
+                            <p v-else>
+                                {{ $t("enter_your_phone_number_code__new_password") }}
+                            </p>
+                            <div class="inputs mb-5">
+                                <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
+                                <custom-input
                                     type="email"
+                                    v-model="form.email"
                                     :error-messages="emailErrors"
                                     hide-details="auto"
                                     required
-                                    outlined
-                                ></v-text-field>
+                                />
                             </div>
-                            <div v-if="resetWith == 'phone'" class="mb-4">
-                                <div class="mb-1 fs-13 fw-500">
-                                    {{ $t("phone_number") }}
-                                </div>
-                                <vue-tel-input
-                                    v-model="form.phone"
-                                    v-bind="mobileInputProps"
-                                    :only-countries=" availableCountries"
-                                    @validate="phoneValidate"
-                                >
-                                    <template #arrow-icon ><span class=" vti__dropdown-arrow " >&nbsp;▼</span ></template >
-                                </vue-tel-input>
-                                <div v-if="$v.form.phone.$error" class=" v-text-field__details mt-2 pl-3 " >
-                                    <div class=" v-messages theme--light error--text " role="alert">
-                                        <div class=" v-messages__wrapper " >
-                                            <div class=" v-messages__message " >{{ $t("this_field_is_required") }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div v-if="!$v.form.phone.$error && form.showInvalidPhone" class=" v-text-field__details mt-2 pl-3">
-                                    <div class=" v-messages theme--light error--text " role="alert" >
-                                        <div class=" v-messages__wrapper " >
-                                            <div class=" v-messages__message " >
-                                                {{ $t("phone_number_must_be_valid") }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <div class="mb-1 fs-13 fw-500">{{ $t('code') }}</div>
-                                <v-otp-input
+                            <div class="inputs mb-5">
+                                <label class="black--text text-uppercase">{{ $t("code") }}</label>
+                                <custom-input
+                                    type="email"
                                     v-model="form.code"
-                                    length="6"
-                                    type="number"
                                     :error-messages="codeErrors"
                                     hide-details="auto"
-                                    :disabled="loading"
                                     required
-                                ></v-otp-input>
+                                />
                             </div>
-                            <div class="mb-4">
-                                <div class="mb-1 fs-13 fw-500">{{ $t('password') }}</div>
-                                <v-text-field
+                            <div class="inputs mb-5">
+                                <label class="black--text text-uppercase">{{ $t("password") }}</label>
+                                <custom-input
+                                    type="email"
                                     v-model="form.password"
-                                    placeholder="* * * * * * * *"
                                     :error-messages="passwordErrors"
-                                    type="password"
-                                    class="input-group--focused"
                                     hide-details="auto"
                                     required
-                                    outlined
-                                    @blur="$v.form.password.$touch()"
-                                ></v-text-field>
+                                />
                             </div>
-                            <div class="mb-4">
-                                <div class="mb-1 fs-13 fw-500">{{ $t('confirm_password') }}</div>
-                                <v-text-field
+                            <div class="inputs mb-5">
+                                <label class="black--text text-uppercase">{{ $t("confirm_password") }}</label>
+                                <custom-input
+                                    type="email"
                                     v-model="form.confirmPassword"
-                                    placeholder="* * * * * * * *"
                                     :error-messages="confirmPasswordErrors"
-                                    type="password"
-                                    class="input-group--focused"
                                     hide-details="auto"
                                     required
-                                    outlined
-                                    @blur="$v.form.confirmPassword.$touch()"
-                                ></v-text-field>
+                                />
                             </div>
-                            <v-btn
-                                x-large
-                                class="px-12 mb-4"
-                                elevation="0"
+                            <custom-button
+                                block
+                                color="black"
+                                text="Reset Password"
                                 type="submit"
-                                color="primary"
+                                @click="resetPassword"
                                 :loading="loading"
                                 :disabled="loading"
-                                @click="resetPassword"
-                            >{{ $t('reset_password') }}</v-btn>
-                        </v-form>
+                            />
+                        </div>
                     </div>
                 </v-col>
             </v-row>
@@ -117,6 +79,10 @@
 </template>
 
 <script>
+import CustomButton from "../../components/global/CustomButton.vue";
+import CustomInput from "../../components/global/CustomInput.vue";
+import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
+
 import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
 import { VueTelInput } from "vue-tel-input";
 import { mapGetters } from "vuex";
@@ -125,16 +91,16 @@ export default {
         mobileInputProps: {
             inputOptions: {
                 type: "tel",
-                placeholder: "phone number",
+                placeholder: "phone number"
             },
             dropdownOptions: {
                 showDialCodeInSelection: false,
                 showFlags: true,
-                showDialCodeInList: true,
+                showDialCodeInList: true
             },
             autoDefaultCountry: false,
             validCharactersOnly: true,
-            mode: "international",
+            mode: "international"
         },
         form: {
             email: "",
@@ -142,83 +108,79 @@ export default {
             password: "",
             confirmPassword: "",
             invalidPhone: true,
-            showInvalidPhone: false,
+            showInvalidPhone: false
         },
-        resetWith: 'email',
-        loading: false,
+        resetWith: "email",
+        loading: false
     }),
     components: {
         VueTelInput,
+        CustomButton,
+        CustomInput
     },
     validations: {
         form: {
             email: {
-                requiredIf: requiredIf(function (){
-                    return this.resetWith == 'email'
+                requiredIf: requiredIf(function () {
+                    return this.resetWith == "email";
                 }),
                 email
             },
             phone: {
-                requiredIf: requiredIf(function (){
-                    return this.resetWith == 'phone'
-                }),
+                requiredIf: requiredIf(function () {
+                    return this.resetWith == "phone";
+                })
             },
             code: {
-                required,
+                required
             },
             password: { required, minLength: minLength(6) },
-            confirmPassword: { required, sameAsPassword: sameAs('password') }
+            confirmPassword: { required, sameAsPassword: sameAs("password") }
         }
     },
-    computed:{
+    computed: {
         ...mapGetters("app", ["availableCountries"]),
         ...mapGetters("auth", ["authSettings"]),
         emailErrors() {
             const errors = [];
             if (!this.$v.form.email.$dirty) return errors;
-            !this.$v.form.email.requiredIf &&
-                errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.email.email &&
-                errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            !this.$v.form.email.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
             return errors;
         },
         codeErrors() {
             const errors = [];
             if (!this.$v.form.code.$dirty) return errors;
-            !this.$v.form.code.required &&
-                errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.code.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         passwordErrors() {
             const errors = [];
             if (!this.$v.form.password.$dirty) return errors;
-            !this.$v.form.password.required &&
-                errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.password.minLength &&
-                errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
+            !this.$v.form.password.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.password.minLength && errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
             return errors;
         },
         confirmPasswordErrors() {
             const errors = [];
             if (!this.$v.form.confirmPassword.$dirty) return errors;
-            !this.$v.form.confirmPassword.required &&
-                errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.confirmPassword.required && errors.push(this.$i18n.t("this_field_is_required"));
             !this.$v.form.confirmPassword.sameAsPassword &&
                 errors.push(this.$i18n.t("password_and_confirm_password_should_match"));
             return errors;
         }
     },
-    methods:{
+    methods: {
         phoneValidate(phone) {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;
         },
-        async resetPassword(){
+        async resetPassword() {
             this.$v.form.$touch();
             if (this.$v.form.$anyError) {
                 return;
             }
-            if (this.resetWith == 'phone' && this.form.invalidPhone) {
+            if (this.resetWith == "phone" && this.form.invalidPhone) {
                 this.form.showInvalidPhone = true;
                 return;
             }
@@ -228,9 +190,9 @@ export default {
             if (res.data.success) {
                 this.$router.push({ name: "Login" });
                 this.snack({
-                    message: res.data.message,
+                    message: res.data.message
                 });
-            }else{
+            } else {
                 this.snack({
                     message: res.data.message,
                     color: "red"
@@ -239,16 +201,71 @@ export default {
             this.loading = false;
         }
     },
-    created(){
-        if(this.$route.params.email){
-            this.form.email = this.$route.params.email
+    created() {
+        if (this.$route.params.email) {
+            this.form.email = this.$route.params.email;
         }
-        if(this.$route.params.phone){
-            this.form.phone = this.$route.params.phone
-            this.resetWith = 'phone'
-        }else if(this.authSettings.customer_login_with == 'phone' || (this.authSettings.customer_login_with == 'email_phone' && this.authSettings.customer_otp_with == 'phone')){
-            this.resetWith = 'phone'
+        if (this.$route.params.phone) {
+            this.form.phone = this.$route.params.phone;
+            this.resetWith = "phone";
+        } else if (
+            this.authSettings.customer_login_with == "phone" ||
+            (this.authSettings.customer_login_with == "email_phone" && this.authSettings.customer_otp_with == "phone")
+        ) {
+            this.resetWith = "phone";
+        }
+    }
+};
+</script>
+
+<style lang="scss">
+.v-application {
+    &.theme--light {
+        background: #dee0e0;
+    }
+}
+</style>
+
+<style lang="scss" scoped>
+.forgot-password {
+    &-title {
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 22px;
+
+        @media (min-width: 600px) {
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+
+    &-content {
+        border: 1px solid #e4e4e4;
+        border-radius: 10px;
+
+        p {
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            line-height: 18px;
+
+            @media (min-width: 600px) {
+                font-size: 15px;
+            }
         }
     }
 }
-</script>
+
+.wrap {
+    background-color: #fafcfc;
+    border-radius: 10px;
+}
+
+.v-divider {
+    border-color: #e4e4e4 !important;
+}
+
+.inputs {
+    margin-top: 20px;
+}
+</style>

@@ -25,7 +25,7 @@ export default {
         },
         hideDetails: {
             type: [Boolean, String],
-            default: false
+            default: "auto"
         },
         placeholder: {
             type: String,

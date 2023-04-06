@@ -1,26 +1,29 @@
 <template>
-    <div class="ps-lg-7 pt-4">
-        <v-row>
+    <div class="px-5 py-3">
+        <v-row align="center">
             <v-col cols="6" class="text-start">
                 <div class="avatar-upload">
-                    <custom-button
-                        light
-                        text="CAMBIAR FOTO"
+                    <custom-button color="grey" text="Cambiar Foto" @click="changeAvatar" />
+                    <input
+                        hidden
                         type="file"
+                        ref="avatar-input"
                         id="avatar-input"
                         accept="image/png, image/jpg, image/jpeg"
                         @change="previewThumbnail"
                     />
                 </div>
             </v-col>
-            <v-col cols="6" class="text-end">
-                <div>
-                    <label class="date">Se unio en febrero de 2022 </label>
-                </div>
-            </v-col>
+            <v-col cols="6" class="text-end"> Se unio en {{ formatDate(currentUser.registerSince) }} </v-col>
         </v-row>
         <v-divider class="my-6" />
-
+        <address-dialog
+            :typeAddress="typeAddress"
+            :show="addDialogShow"
+            @close="addressDialogClosed"
+            :old-address="addressSelectedForEdit"
+        />
+        <profile-dialog :show="profileDialogShow" @close="profileDialogClosed" :old-profile="profileSelectedForEdit" />
         <v-row>
             <v-col cols="12" md="6">
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
@@ -36,34 +39,33 @@
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
                             <v-col class="text-start">
-                                <label class="bold">CORREO ELECTRONICO</label>
+                                <label class="profile-label">{{ $t("email_address") }}</label>
                             </v-col>
-                            <v-col class="text-end">
-                                <label>{{ $t("email_address") }}</label>
-                            </v-col>
+                            <v-col class="text-end">{{ currentUser.email || "--" }} </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="bold">TIPO DE PERSONA</label>
+                                <label class="profile-label">Tipo de Persona</label>
                             </v-col>
-                            <v-col class="text-end">
-                                <label>Natural</label>
-                            </v-col>
+                            <v-col class="text-end"> {{ currentUser.personType || "--" }} </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="bold">NOMBRE</label>
+                                <label class="profile-label">{{ $t("name") }}</label>
                             </v-col>
-                            <v-col class="text-end">
-                                <label>{{ $t("full_name") }}</label>
-                            </v-col>
+                            <v-col class="text-end">{{ currentUser.name || "--" }}</v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="bold">DOCUMENTO</label>
+                                <label class="profile-label">Documento</label>
                             </v-col>
                             <v-col class="text-end">
-                                <label>C.C 1010236398</label>
+                                {{ currentUser.documentType || "--" }} {{ currentUser.documentNumber || "--" }}
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <custom-button color="grey" text="Editar" @click="editProfile()" />
                             </v-col>
                         </v-row>
 
@@ -71,86 +73,126 @@
 
                         <v-row>
                             <v-col class="text-start">
-                                <label class="bold">NOMBRE DE DIRECCION</label>
+                                <label class="profile-label">Nombre de Dirección</label>
                             </v-col>
                             <v-col class="text-end">
-                                <label>Casa 1</label>
+                                {{ defaultAddress.name || "--" }}
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="bold">DIRECCION</label>
-                            </v-col>
-                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
-                                <div>{{ address.address }}</div>
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start">
-                                <label class="bold">DESCRIPCION DE DIRECCION</label>
+                                <label class="profile-label">Dirección</label>
                             </v-col>
                             <v-col class="text-end">
-                                <label>Casa de tejado verde y con patio cercado.</label>
-                            </v-col>
-                        </v-row>
-
-                        <v-row>
-                            <v-col class="text-start">
-                                <label class="bold">CODIGO POSTAL</label>
-                            </v-col>
-                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
-                                <div>{{ address.postal_code }}</div>
+                                {{ defaultAddress.address }}
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="bold">DEPARTAMENTO</label>
-                            </v-col>
-                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
-                                <div>{{ address.state }}</div>
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start">
-                                <label class="bold">MUNICIPIO</label>
-                            </v-col>
-                            <v-col class="text-end" v-for="(address, i) in getAddresses" :key="i">
-                                <div>{{ address.city }}</div>
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start">
-                                <label class="bold">BARRIO</label>
+                                <label class="profile-label">Descripción de Dirección</label>
                             </v-col>
                             <v-col class="text-end">
-                                <div>Galerias</div>
+                                {{ defaultAddress.details || "--" }}
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="bold">NOMBRE DE QUIEN VA A RECIBIR</label>
+                                <label class="profile-label">Código Postal</label>
                             </v-col>
                             <v-col class="text-end">
-                                <div>Felipe Ramirez</div>
+                                {{ defaultAddress.postal_code || "--" }}
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">Departamento</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                {{ defaultAddress.state || "--" }}
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">Municipio</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                {{ defaultAddress.city || "--" }}
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">Barrio</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                {{ defaultAddress.neighborhood || "--" }}
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">Nombre de Quién Va a Recibir</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                {{ currentUser.name }}
                             </v-col>
                         </v-row>
                         <v-row class="mb-3">
                             <v-col class="text-start">
-                                <label class="bold">TELÉFONO / MOBIL</label>
+                                <label class="profile-label">Teléfono / Mobil </label>
                             </v-col>
                             <v-col class="text-end">
-                                <div>{{ $t("phone_number") }}</div>
+                                {{ defaultAddress.phone || "--" }}
                             </v-col>
                         </v-row>
-
-                        <custom-button light text="EDITAR" />
+                        <custom-button color="grey" text="Editar" @click="editAddress(defaultAddress, 'shipping')" />
                     </v-form>
                 </v-card>
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <h5 class="bold">Otras direcciones</h5>
                     <v-divider class="my-4" />
+
+                    <div class="form" v-for="(otherAdd, i) in otherAdress" :key="i">
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Dirección</span>
+                            <span class="body1 text-right">{{ otherAdd?.address }}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Descripción de Dirección</span>
+                            <span class="body1 text-right">{{ otherAdd?.address }}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                            <span class="body1">{{ otherAdd?.postal_code }}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Departamento</span>
+                            <span class="body1">{{ otherAdd?.state }}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Municipio</span>
+                            <span class="body1">{{ otherAdd?.city }}</span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                            <span class="body1"> -- </span>
+                        </div>
+                        <div class="d-flex justify-space-between mb-2">
+                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                            <span class="body1">{{ otherAdd?.phone }}</span>
+                        </div>
+                        <custom-button
+                            class="mr-3"
+                            color="grey"
+                            text="Editar"
+                            @click="editAddress(otherAdd, 'billing')"
+                        />
+
+                        <custom-button class="mr-3" color="red" text="Eliminar" @click="deleteAddress(otherAdd?.id)" />
+
+                        <v-divider class="my-4" />
+                    </div>
+
                     <div>
-                        <custom-button class="my-4" block light @click.stop="addDialogShow = true"
+                        <custom-button class="my-4" block color="grey" @click="openAdress('billing')"
                             >AÑADIR DIRECCION</custom-button
                         >
                         <div class="cards">
@@ -159,25 +201,15 @@
                         </div>
                     </div>
                 </v-card>
-                <!-- <v-btn
-                    type="submit"
-                    :loading="infoUpdateLoading"
-                    :disabled="infoUpdateLoading"
-                    color="primary"
-                    elevation="0"
-                    class="px-10"
-                    @click="updateBasic"
-                    >{{ $t("update") }}</v-btn
-                > -->
             </v-col>
             <v-col cols="12" md="6">
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <h5 class="bold">Empresa</h5>
                     <v-divider class="my-4" />
                     <div>
-                        <custom-button class="my-4" block light @click.stop="addDialogShow = true"
-                            >AÑADIR MI EMPRESA</custom-button
-                        >
+                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true">
+                            AÑADIR MI EMPRESA
+                        </custom-button>
                         <div class="cards">
                             Realiza las compras como persona juridica agregando los datos de facturación como empresa.
                         </div>
@@ -186,18 +218,10 @@
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <h5 class="bold">Contraseña</h5>
                     <v-divider class="my-4" />
-                    <address-dialog
-                        :show="addDialogShow"
-                        @close="addressDialogClosed"
-                        :old-address="addressSelectedForEdit"
-                    />
                     <div>
-                        <!-- <v-btn light block elevation="0" class="ms-auto" @click.stop="addDialogShow = true"
-                            >CAMBIAR CONTRASEÑA</v-btn
-                        > -->
-                        <custom-button class="my-4" block light @click.stop="addDialogShow = true"
-                            >CAMBIAR CONTRASEÑA</custom-button
-                        >
+                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true">
+                            CAMBIAR CONTRASEÑA
+                        </custom-button>
                     </div>
                 </v-card>
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
@@ -238,52 +262,9 @@
                             </span>
                             <span class="checkmark"></span>
                         </label>
-                        <custom-button light text="SABER MÁS" />
+                        <custom-button color="grey" text="SABER MÁS" />
                     </div>
                 </v-card>
-                <!-- <v-card elevation="0">
-                    <v-card-title class="pa-0 fs-16 fw-700 mb-4">
-                        <span class="">Contraseña</span>
-                    </v-card-title>
-                    <v-row class="mb-4 row-cols-1 row-cols-sm-2 gutters-10">
-                        <v-col>
-                            <label>{{ $t("old_password") }}</label>
-                            <v-text-field
-                                placeholder="******"
-                                type="password"
-                                v-model="form.oldPassword"
-                                :error-messages="oldPasswordErrors"
-                                outlined
-                                hide-details="auto"
-                                class="mb-3"
-                            ></v-text-field>
-
-                            <label>{{ $t("new_password") }}</label>
-                            <v-text-field
-                                placeholder="******"
-                                type="password"
-                                v-model="form.password"
-                                :error-messages="passwordErrors"
-                                @blur="$v.form.password.$touch()"
-                                outlined
-                                hide-details="auto"
-                                class="mb-3"
-                            ></v-text-field>
-
-                            <label>{{ $t("confirm_password") }}</label>
-                            <v-text-field
-                                placeholder="******"
-                                type="password"
-                                v-model="form.confirmPassword"
-                                :error-messages="confirmPasswordErrors"
-                                @blur="$v.form.confirmPassword.$touch()"
-                                outlined
-                                hide-details="auto"
-                                class="mb-3"
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
-                </v-card> -->
             </v-col>
         </v-row>
     </div>
@@ -291,10 +272,14 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
-import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
+import { required, minLength, sameAs } from "vuelidate/lib/validators";
 import CustomButton from "../../components/global/CustomButton.vue";
 import { VueTelInput } from "vue-tel-input";
 import AddressDialog from "../../components/address/AddressDialog.vue";
+import ProfileDialog from "../../components/user/ProfileDialog.vue";
+
+import CustomInput from "../../components/global/CustomInput.vue";
+
 export default {
     data: () => ({
         mobileInputProps: {
@@ -324,21 +309,24 @@ export default {
         },
         passwordShow: false,
         addDialogShow: false,
+        profileDialogShow: false,
         infoUpdateLoading: false,
-        addressSelectedForEdit: {}
+        addressSelectedForEdit: {},
+        profileSelectedForEdit: {},
+        defaultAddress: {},
+        otherAdress: [],
+        typeAddress: "shipping"
     }),
     components: {
         VueTelInput,
         AddressDialog,
-        CustomButton
+        ProfileDialog,
+        CustomButton,
+        CustomInput
     },
     validations: {
         form: {
             name: { required },
-            // email: {
-            //     email,
-            //     required
-            // },
             oldPassword: { required },
             password: { minLength: minLength(6) },
             confirmPassword: { sameAsPassword: sameAs("password") }
@@ -387,23 +375,24 @@ export default {
         }
     },
     created() {
-        this.form.name = this.currentUser.name;
-        this.form.email = this.currentUser.email;
-        this.form.phone = this.currentUser.phone;
-        this.form.previewAvatar = this.currentUser.avatar;
-
-        this.fetchAddresses();
+        this.getUser();
+        this.getAddressUser();
     },
     methods: {
+        ...mapActions("auth", ["getUser"]),
+        ...mapMutations("app", ["setPreviewAvatar"]),
         ...mapMutations("auth", ["setUser"]),
         ...mapMutations("address", ["setAddresses"]),
-        ...mapActions("address", ["fetchAddresses"]),
+        changeAvatar() {
+            this.$refs["avatar-input"].click();
+        },
         previewThumbnail(event) {
             this.form.avatar = event.target.files[0];
             if (event.target.files && event.target.files[0]) {
                 const reader = new FileReader();
                 reader.onload = e => {
                     this.form.previewAvatar = e.target.result;
+                    this.setPreviewAvatar(e.target.result);
                 };
                 reader.readAsDataURL(event.target.files[0]);
             }
@@ -411,35 +400,19 @@ export default {
         phoneValidate(phone) {
             this.form.invalidPhone = phone.valid ? false : true;
         },
+        async getAddressUser() {
+            const res = await this.call_api("get", `user/addresses`);
+            if (res.data.success) {
+                this.defaultAddress = res.data?.data?.find(address => address.default_shipping == 1);
+                this.otherAdress = res.data?.data?.filter(address => address.default_shipping == 0);
+            }
+        },
         async updateBasic() {
-            // if(this.form.email == ""){
-            //     this.snack({
-            //         message: "Email is required.",
-            //         color: "red"
-            //     });
-            //     return;
-            // }
-            // if(this.form.email != "" && !this.$v.form.email.email){
-            //     this.snack({
-            //         message: "Email must be valid.",
-            //         color: "red"
-            //     });
-            //     return;
-            // }
-            // if(this.form.phone != ""  && this.form.invalidPhone){
-            //     this.snack({
-            //         message: "Phone number must be valid.",
-            //         color: "red"
-            //     });
-            //     return;
-            // }
-
             this.$v.form.$touch();
             if (this.$v.form.$anyError) {
                 return;
             }
 
-            // this.form.phone = this.form.phone.replace(/\s/g, '')
             this.infoUpdateLoading = true;
 
             let formData = new FormData();
@@ -459,13 +432,9 @@ export default {
         async deleteAddress(id) {
             const res = await this.call_api("get", `user/address/delete/${id}`);
             if (res.data.success) {
-                this.setAddresses(res.data.data);
+                this.getAddressUser();
                 this.snack({ message: res.data.message });
             }
-        },
-        editAddress(address) {
-            this.addressSelectedForEdit = address;
-            this.addDialogShow = true;
         },
         async markDefaultShipping(id) {
             const res = await this.call_api("get", `user/address/default-shipping/${id}`);
@@ -491,9 +460,34 @@ export default {
                 });
             }
         },
+        editAddress(address, type) {
+            this.typeAddress = type;
+            this.addressSelectedForEdit = address;
+            this.addDialogShow = true;
+        },
+        editProfile() {
+            this.profileSelectedForEdit = this.currentUser;
+            this.profileDialogShow = true;
+        },
         addressDialogClosed() {
             this.addressSelectedForEdit = {};
             this.addDialogShow = false;
+            this.getAddressUser();
+        },
+        profileDialogClosed() {
+            this.profileSelectedForEdit = {};
+            this.profileDialogShow = false;
+            this.getUser();
+        },
+        openAdress(type) {
+            this.typeAddress = type;
+            this.addDialogShow = true;
+        },
+        formatDate(date) {
+            const d = new Date(date);
+            const month = d.toLocaleString("default", { month: "long" }).toLocaleLowerCase();
+
+            return `${this.$i18n.t(month)} de ${d.getFullYear()}`;
         }
     }
 };
@@ -501,7 +495,7 @@ export default {
 
 <style scoped lang="scss">
 .form-profile {
-    line-height: 13px;
+    line-height: 20px;
 }
 
 @media (max-width: 600px) {
@@ -522,6 +516,15 @@ export default {
 
 .form-border {
     border: 1px solid #e4e4e4;
+}
+
+.profile {
+    &-label {
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 25.2px;
+    }
 }
 
 //Estilos de input checkbox

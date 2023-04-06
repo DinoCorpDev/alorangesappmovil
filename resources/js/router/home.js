@@ -17,7 +17,6 @@ let About = () => import("../pages/About");
 let Brands = () => import("../pages/Brands");
 let Search = () => import("../pages/Search");
 let Collection = () => import("../pages/Collection");
-let Product = () => import("../pages/Product");
 
 export default [
     {
@@ -105,6 +104,12 @@ export default [
         meta: { requiresAuth: false }
     },
     {
+        path: "/category2/:categorySlug?",
+        component: Search,
+        name: "Category2",
+        meta: { requiresAuth: false }
+    },
+    {
         path: "/brand/:brandId?",
         component: ProductListing,
         name: "Brand",
@@ -121,13 +126,13 @@ export default [
         component: ProductListing,
         name: "Search",
         meta: { requiresAuth: false }
-    } /*
+    },
     {
         path: "/product/:slug",
         component: ProductDetails,
         name: "ProductDetails",
         meta: { requiresAuth: false }
-    }*/,
+    },
     {
         path: "/track-order",
         component: TrackOrder,
@@ -162,12 +167,6 @@ export default [
         path: "/collection/:slug",
         component: Collection,
         name: "Collection",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/product/:slug",
-        component: Product,
-        name: "Product",
         meta: { requiresAuth: false }
     }
 ];

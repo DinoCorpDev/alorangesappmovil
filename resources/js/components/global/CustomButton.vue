@@ -76,17 +76,13 @@ export default {
 
 <style lang="scss" scoped>
 .v-btn {
-    font-size: 12px;
+    font-size: var(--font-size-btn);
     font-weight: 600;
     letter-spacing: 1.25px;
     transition: all 0.2s ease-in-out;
 
     &:before {
         content: unset;
-    }
-
-    @media (min-width: 960px) {
-        font-size: 14px;
     }
 
     border-radius: 5px;
@@ -110,15 +106,33 @@ export default {
         }
     }
 
-    &.grey {
-        color: #ffffff;
+    &.v-btn--outlined {
+        &:hover,
+        &:focus {
+            color: #000000;
+        }
 
         &:hover {
-            background-color: rgba(#161616, 0.8);
+            background-color: rgba(#ffffff, 0.8);
         }
 
         &:focus {
-            background-color: #161616;
+            background-color: #ffffff;
+        }
+    }
+
+    &.grey {
+        color: #000;
+        background-color: rgba(#dfdfdf, 0.5) !important;
+
+        &:hover {
+            color: #fff;
+            background-color: rgba(#434343, 0.8) !important;
+        }
+
+        &:focus {
+            color: #fff;
+            background-color: #161616 !important;
         }
     }
 
@@ -127,24 +141,42 @@ export default {
         background-color: rgba(#000000, 0.5);
 
         &:hover {
-            background-color: rgba(#000000, 0.8);
+            background-color: rgba(#858585, 0.8);
         }
 
         &:focus {
-            background-color: #000000;
+            background-color: #161616;
         }
     }
 
     &.nero {
         color: #ffffff;
-        background-color: rgba(#161616, 0.5);
+        background-color: #858585;
 
         &:hover {
-            background-color: rgba(#161616, 0.8);
+            background-color: rgba(#434343, 0.8);
         }
 
         &:focus {
             background-color: #161616;
+        }
+    }
+
+    &.white {
+        color: #000;
+        background-color: #f5f5f5 !important;
+
+        &:hover,
+        &:focus {
+            color: #ffffff;
+        }
+
+        &:hover {
+            background-color: rgba(#161616, 0.8) !important;
+        }
+
+        &:focus {
+            background-color: #161616 !important;
         }
     }
 }
@@ -165,25 +197,6 @@ export default {
 
 //                 &.v-btn--has-bg {
 //                     background-color: #fafcfc !important;
-//                 }
-//             }
-//         }
-
-//         &.v-btn--outlined {
-//             color: #ffffff;
-
-//             &:hover,
-//             &:focus {
-//                 color: #000000;
-//             }
-
-//             &:before {
-//                 background-color: rgba(255, 255, 255, 0.8);
-//             }
-
-//             &:focus {
-//                 &:before {
-//                     background-color: #ffffff;
 //                 }
 //             }
 //         }

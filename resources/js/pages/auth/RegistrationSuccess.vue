@@ -1,19 +1,25 @@
 <template>
     <div>
         <layout-navbar-auth />
-        <div class="all">
-            <v-container class="container">
-                <h6 class="black--text">
-                    <span class="success"><i class="las la-check"></i></span> Gracias por registrarse
-                </h6>
-                <v-divider class="divider"></v-divider>
-                <span class="black--text body2">
-                    Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
-                    Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
-                    Incluye Lorem Ipsum is simply dummy text.
-                </span>
-            </v-container>
-        </div>
+        <v-container class="container mt-10">
+            <v-row justify="center">
+                <v-col cols="12 cont">
+                    <div class="wrap pa-5">
+                        <div class="wrap pa-5 border-div">
+                            <h6 class="black--text">
+                                <span class="success"><i class="las la-check"></i></span> Gracias por registrarse
+                            </h6>
+                            <v-divider class="divider"></v-divider>
+                            <span class="black--text body2">
+                                Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
+                                industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
+                                been the industry's • Incluye Lorem Ipsum is simply dummy text.
+                            </span>
+                        </div>
+                    </div>
+                </v-col>
+            </v-row>
+        </v-container>
     </div>
 </template>
 
@@ -34,21 +40,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media (min-width: 960px) {
-    .all {
-        position: absolute;
-        top: calc(50% - (60px));
-        background-color: #fafcfc;
-        border-radius: 10px;
-        left: calc(50% - (589px / 2));
-        padding: 10px;
-    }
+.cont {
+    padding: 7% 30% 0 30%;
 }
 
-.container {
-    border: 1px solid #e4e4e4;
+.wrap {
+    background-color: #fafcfc;
     border-radius: 10px;
-    width: 589px;
+}
+
+.border-div {
+    border: 1px solid #dfdfdf !important;
+}
+
+@media (max-width: 1024px) {
+    .cont {
+        padding: 20% 15% 0 15%;
+    }
+}
+@media (max-width: 768px) {
+    .cont {
+        padding: 20% 15% 0 15%;
+    }
+}
+@media (max-width: 475px) {
+    .cont {
+        padding: 20% 5% 0 5%;
+    }
 }
 
 .success {
@@ -64,15 +82,5 @@ export default {
 
 .inputs {
     margin-top: 20px;
-}
-
-@media (max-width: 959px) {
-    .container {
-        position: absolute;
-        width: 90%;
-        top: calc(50% - (70px));
-        background-color: #fafcfc;
-        left: calc(5%);
-    }
 }
 </style>

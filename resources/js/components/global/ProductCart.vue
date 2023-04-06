@@ -16,19 +16,19 @@
             <div class="div-body">
                 <div class="divider"></div>
                 <div>
-                    <span class="black--text price">{{ price }} COP</span>
+                    <span class="black--text price">{{ format_price(price2) }} COP</span>
                 </div>
                 <div class="divider"></div>
-                <div>
+                <div class="quanty-res">
                     <div class="quantity">
                         <div>
-                            <v-btn v-on:click="increment()" block plain>
+                            <v-btn v-on:click="increment()" block plain v-if="showOperation == true">
                                 <v-img src="/public/assets/img/icons/sum.svg"></v-img>
                             </v-btn>
                         </div>
                         <input type="number" v-model="quantity" class="textquantity" />
                         <div>
-                            <v-btn v-on:click="decrement()" block plain>
+                            <v-btn v-on:click="decrement()" block plain v-if="showOperation == true">
                                 <v-img src="/public/assets/img/icons/subtract.svg"></v-img>
                             </v-btn>
                         </div>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="d-md-none">
-                        <custom-button block icon="la-ellipsis-v" />
+                        <custom-button block icon="la-ellipsis-v" class="btn-res" />
                     </div>
                 </div>
             </div>
@@ -64,9 +64,10 @@
 
 <script>
 import CustomButton from "../../components/global/CustomButton.vue";
+import { mapActions } from "vuex";
 
 export default {
-    name: "ProductItem",
+    name: "ProductCart",
     components: {
         CustomButton
     },
@@ -92,22 +93,47 @@ export default {
         price: {
             type: Number,
             default: 0
+        },
+        price2: {
+            type: Number,
+            default: 0
+        },
+        cart_id: {
+            type: Number,
+            default: 0
+        },
+        quantity: {
+            type: Number,
+            default: 0
+        },
+        showOperation: {
+            type: Boolean,
+            default: true
         }
     },
-    data() {
-        return {
-            quantity: 0
-        };
-    },
     methods: {
-        increment() {
-            this.quantity++;
-        },
+        ...mapActions("cart", ["updateQuantity"]),
         decrement() {
             if (this.quantity > 0) {
                 this.quantity--;
+                this.update("minus");
             }
+        },
+        increment() {
+            this.quantity++;
+            this.update("plus");
+        },
+        async update(type) {
+            await this.updateQuantity({ type: type, cart_id: this.cart_id });
+            this.$emit("changeQty", 1);
+            this.calculatedPrice();
+        },
+        async calculatedPrice() {
+            this.price2 = this.price * this.quantity;
         }
+    },
+    async created() {
+        this.calculatedPrice();
     }
 };
 </script>
@@ -194,7 +220,7 @@ export default {
 
 @media (max-width: 959px) {
     .div-body {
-        gap: 8px;
+        gap: 15px;
     }
 
     .information {
@@ -212,7 +238,12 @@ export default {
         padding-top: 25px;
         padding-bottom: 24px;
     }
-
+    .quanty-res {
+        width: 25px;
+    }
+    .btn-res {
+        padding: 0 0 !important;
+    }
     .brand {
         font: normal normal normal 12px/24px Roboto;
     }

@@ -1,86 +1,38 @@
 <template>
-    <div>
-        <v-container>
-            <v-row>
-                <v-col xl="10" class="mx-auto">
-                    <div class=" my-5 my-lg-16 rounded-lg pa-5 border overflow-hidden shadow-light">
-                        <v-row no-gutters align="center">
-                            <v-col cols="12" lg="6" order="2" order-lg="1" class="lh-0">
-                                <banner :loading="false" :banner="$store.getters['app/banners'].forgot_page" class="mt-5 mt-lg-0"/>
-                            </v-col>
-                            <v-col cols="12" order="1" order-lg="2" lg="6">
-                                <div class="px-lg-7">
-                                    <h1 class="text-uppercase lh-1 mb-4">
-                                        <span class="display-1 primary--text fw-900">{{ $t('forgot') }}</span>
-                                        <span class="d-block display-1 fw-900 grey--text text--darken-3">{{ $t('password') }}</span>
-                                        <span class="fs-22 fw-900 display-3 primary--text">?</span>
-                                    </h1>
-                                    <div class="fs-16 fw-500 mb-6" v-if="authSettings.customer_login_with == 'email'">{{ $t('enter_your_email_address_to_recover_your_password') }}</div>
-                                    <div class="fs-16 fw-500 mb-6" v-else-if="authSettings.customer_login_with == 'phone'">{{ $t('enter_your_phone_number_to_recover_your_password') }}</div>
-                                    <div class="fs-16 fw-500 mb-6" v-else="authSettings.customer_login_with == 'phone'">{{ $t('enter_your_email_address_or_phone_number_to_recover_your_password') }}</div>
-                                    <v-form ref="loginForm" lazy-validation v-on:submit.prevent="resetPassword()">
-                                        <div class="mb-6" v-if="authSettings.customer_login_with == 'email' || (!showPhoneField && authSettings.customer_login_with == 'email_phone')">
-                                            <div class="mb-1 fs-13 fw-500">{{ $t('email') }}</div>
-                                            <v-text-field
-                                                :placeholder="$t('email_address')"
-                                                type="email"
-                                                v-model="form.email"
-                                                :error-messages="emailErrors"
-                                                hide-details="auto"
-                                                required
-                                                outlined
-                                            ></v-text-field>
-                                            <div class="text-end font-italic fs-12 opacity-70" v-if="authSettings.customer_login_with == 'email_phone'">
-                                                <span @click="showPhoneField = !showPhoneField" class="primary--text" >{{ $t("use_phone_instead") }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="mb-6" v-if="authSettings.customer_login_with == 'phone' || (showPhoneField && authSettings.customer_login_with == 'email_phone')">
-                                            <div class="mb-1 fs-13 fw-500">
-                                                {{ $t("phone_number") }}
-                                            </div>
-                                            <vue-tel-input
-                                                v-model="form.phone"
-                                                v-bind="mobileInputProps"
-                                                :onlyCountries="availableCountries"
-                                                @validate="phoneValidate"
-                                            >
-                                                <template slot="arrow-icon" ><span class=" vti__dropdown-arrow " >&nbsp;▼</span ></template >
-                                            </vue-tel-input>
-                                            <div class=" v-text-field__details mt-2 pl-3 " v-if="$v.form.phone.$error" >
-                                                <div class=" v-messages theme--light error--text " role="alert">
-                                                    <div class=" v-messages__wrapper " >
-                                                        <div class=" v-messages__message " >{{ $t("this_field_is_required") }}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class=" v-text-field__details mt-2 pl-3" v-if="!$v.form.phone.$error && form.showInvalidPhone">
-                                                <div class=" v-messages theme--light error--text " role="alert" >
-                                                    <div class=" v-messages__wrapper " >
-                                                        <div class=" v-messages__message " >
-                                                            {{ $t("phone_number_must_be_valid") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-end font-italic fs-12 opacity-70" v-if="authSettings.customer_login_with == 'email_phone'">
-                                                <span @click="showPhoneField = !showPhoneField" class="primary--text" >{{ $t("use_phone_instead") }}</span>
-                                            </div>
-                                        </div>
-                                        <v-btn
-                                            x-large
-                                            class="px-12 mb-4"
-                                            elevation="0"
-                                            type="submit"
-                                            color="primary"
-                                            @click="resetPassword"
-                                            :loading="loading"
-                                            :disabled="loading"
-                                        >{{ $t('send_password_reset_code') }}</v-btn>
-                                    </v-form>
-                                    <div>{{ $t('back_to') }} <router-link :to="{ name: 'Login' }" class="primary--text text-decoration-underline">{{ $t('login') }}</router-link></div>
-                                </div>
-                            </v-col>
-                        </v-row>
+    <div class="forgot-password d-flex flex-column h-100">
+        <layout-navbar-auth />
+        <v-container class="d-flex flex-grow-1">
+            <v-row justify="center" align="center">
+                <v-col cols="12" sm="10" md="8" lg="6">
+                    <div class="wrap pa-3 pa-sm-5 mb-10">
+                        <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-8">
+                            <h1 class="forgot-password-title">¿Olvidó su contraseña?</h1>
+                            <v-divider class="my-4" />
+                            <p>
+                                Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
+                                industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has
+                                been the industry's • Incluye Lorem Ipsum is simply dummy text.
+                            </p>
+                            <div class="inputs mb-5">
+                                <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
+                                <custom-input
+                                    type="email"
+                                    v-model="form.email"
+                                    :error-messages="emailErrors"
+                                    hide-details="auto"
+                                    required
+                                />
+                            </div>
+                            <custom-button
+                                block
+                                color="black"
+                                text="Enviar"
+                                type="submit"
+                                @click="resetPassword"
+                                :loading="loading"
+                                :disabled="loading"
+                            />
+                        </div>
                     </div>
                 </v-col>
             </v-row>
@@ -89,92 +41,57 @@
 </template>
 
 <script>
-import { requiredIf,email } from "vuelidate/lib/validators";
-import { VueTelInput } from "vue-tel-input";
-import { mapGetters } from "vuex";
+import { required, email } from "vuelidate/lib/validators";
+
+import CarouselDescription from "../../components/global/CarouselDescription.vue";
+import CustomButton from "../../components/global/CustomButton.vue";
+import CustomInput from "../../components/global/CustomInput.vue";
+import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
+
 export default {
     data: () => ({
-        mobileInputProps: {
-            inputOptions: {
-                type: "tel",
-                placeholder: "phone number",
-            },
-            dropdownOptions: {
-                showDialCodeInSelection: false,
-                showFlags: true,
-                showDialCodeInList: true,
-            },
-            autoDefaultCountry: false,
-            validCharactersOnly: true,
-            mode: "international",
-        },
-        showPhoneField: false,
-        form: {
-            email: "",
-            phone: "",
-            invalidPhone: true,
-            showInvalidPhone: false,
-        },
-        loading: false,
+        form: { email: "" },
+        loading: false
     }),
     components: {
-        VueTelInput
+        CarouselDescription,
+        CustomButton,
+        CustomInput,
+        LayoutNavbarAuth
     },
     validations: {
         form: {
             email: {
-                requiredIf: requiredIf(function (){
-                    return this.authSettings.customer_login_with == 'email' || (this.authSettings.customer_login_with == 'email_phone' && !this.showPhoneField)
-                }),
+                required,
                 email
-            },
-            phone: {
-                requiredIf: requiredIf(function (){
-                    return this.authSettings.customer_login_with == 'phone' || (this.authSettings.customer_login_with == 'email_phone' && this.showPhoneField)
-                }),
-            },
+            }
         }
     },
     computed: {
-        ...mapGetters("app", ["availableCountries"]),
-        ...mapGetters("auth", ["authSettings"]),
         emailErrors() {
             const errors = [];
             if (!this.$v.form.email.$dirty) return errors;
-            !this.$v.form.email.requiredIf &&
-                errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.email.email &&
-                errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
             return errors;
         }
     },
     methods: {
-        phoneValidate(phone) {
-            this.form.invalidPhone = phone.valid ? false : true;
-            if (phone.valid) this.form.showInvalidPhone = false;
-        },
         async resetPassword() {
             this.$v.form.$touch();
             if (this.$v.form.$anyError) {
                 return;
             }
-            if ((this.authSettings.customer_login_with == 'phone' || (this.authSettings.customer_login_with == 'email_phone' && this.showPhoneField)) && this.form.invalidPhone) {
-                this.form.showInvalidPhone = true;
-                return;
-            }
-            this.form.phone = this.form.phone.replace(/\s/g, "");
 
             this.loading = true;
+
             const res = await this.call_api("post", "auth/password/create", this.form);
+
             if (res.data.success) {
-                if(res.data.email){
-                    this.$router.push({ name: "NewPassword", params:{email: this.form.email } });
-                }else{
-                    this.$router.push({ name: "NewPassword", params:{phone: this.form.phone } });
-                }
+                this.$router.push({ name: "NewPassword", params: { email: this.form.email } });
 
                 this.snack({
-                    message: res.data.message,
+                    message: res.data.message
                 });
             } else {
                 this.snack({
@@ -187,3 +104,55 @@ export default {
     }
 };
 </script>
+
+<style lang="scss">
+.v-application {
+    &.theme--light {
+        background: #dee0e0;
+    }
+}
+</style>
+
+<style lang="scss" scoped>
+.forgot-password {
+    &-title {
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 22px;
+
+        @media (min-width: 600px) {
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+
+    &-content {
+        border: 1px solid #e4e4e4;
+        border-radius: 10px;
+
+        p {
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            line-height: 18px;
+
+            @media (min-width: 600px) {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+.wrap {
+    background-color: #fafcfc;
+    border-radius: 10px;
+}
+
+.v-divider {
+    border-color: #e4e4e4 !important;
+}
+
+.inputs {
+    margin-top: 20px;
+}
+</style>

@@ -1,7 +1,6 @@
 <template>
     <div>
         <layout-navbar-spaces />
-
         <v-tabs
             :background-color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'"
             centered
@@ -22,10 +21,10 @@
                     </v-row>
 
                     <v-row>
-                        <v-col cols="6">
+                        <v-col cols="12" md="6" lg="6" xl="6">
                             <product-item-1 />
                         </v-col>
-                        <v-col cols="6">
+                        <v-col cols="12" md="6" lg="6" xl="6">
                             <product-item-1 />
                         </v-col>
                     </v-row>
@@ -33,14 +32,6 @@
                     <v-row>
                         <v-col cols="12">
                             <carousel-spaces :spaces="spacesSeeder" />
-                            <v-row justify="center" class="my-10">
-                                <v-btn small color="#000000" class="mr-16">
-                                    <i class="las la-angle-left"></i>
-                                </v-btn>
-                                <v-btn small color="#000000" class="ml-16">
-                                    <i class="las la-angle-right"></i>
-                                </v-btn>
-                            </v-row>
                         </v-col>
                     </v-row>
 
@@ -48,26 +39,26 @@
                         <v-col cols="12">
                             <h5>H5</h5>
                             <v-row>
-                                <v-col cols="3">
-                                    <product-item-3 />
+                                <v-col cols="12" sm="6" md="3" lg="3" xl="3">
+                                    <product-box />
                                 </v-col>
-                                <v-col cols="3">
-                                    <product-item-3
+                                <v-col cols="12" sm="6" md="3" lg="3" xl="3">
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
                                     />
                                 </v-col>
-                                <v-col cols="3">
-                                    <product-item-3
+                                <v-col cols="12" sm="6" md="3" lg="3" xl="3">
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
                                         img="/public/assets/img/landing/Pacto-Ambiental.jpg"
                                     />
                                 </v-col>
-                                <v-col cols="3">
-                                    <product-item-3
+                                <v-col cols="12" sm="6" md="3" lg="3" xl="3">
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
@@ -98,13 +89,13 @@
                     </v-row>
                     <div class="mb-2">
                         <v-row>
-                            <v-col cols="4">
+                            <v-col cols="12" sm="12" md="4" lg="4" xl="4">
                                 <product-item-1 />
                             </v-col>
-                            <v-col cols="4">
+                            <v-col cols="12" sm="12" md="4" lg="4" xl="4">
                                 <product-item-1 />
                             </v-col>
-                            <v-col cols="4">
+                            <v-col cols="12" sm="12" md="4" lg="4" xl="4">
                                 <product-item-1 />
                             </v-col>
                         </v-row>
@@ -113,23 +104,23 @@
                     <div class="mb-4 mt-16">
                         <h5>H5</h5>
                         <v-row>
-                            <v-col cols="4">
+                            <v-col cols="12" sm="8" md="4" lg="4" xl="4">
                                 <product-item
                                     title="Producto 1"
                                     descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                     idItem="1"
                                 ></product-item>
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="12" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="12" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="12" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="12" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
                         </v-row>
@@ -140,23 +131,23 @@
                     <div class="mb-4 mt-16">
                         <h5>H5</h5>
                         <v-row>
-                            <v-col cols="4">
+                            <v-col cols="12" sm="8" md="4" lg="4" xl="4">
                                 <product-item
                                     title="Producto 1"
                                     descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                     idItem="1"
                                 ></product-item>
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="12" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="12" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="12" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="12" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
                         </v-row>
@@ -169,26 +160,26 @@
                         <v-col cols="12">
                             <h5>H5</h5>
                             <v-row>
-                                <v-col cols="3">
-                                    <product-item-3 />
+                                <v-col cols="12" sm="6" md="3" lg="3" xl="3">
+                                    <product-box />
                                 </v-col>
-                                <v-col cols="3">
-                                    <product-item-3
+                                <v-col cols="12" sm="6" md="3" lg="3" xl="3">
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
                                     />
                                 </v-col>
-                                <v-col cols="3">
-                                    <product-item-3
+                                <v-col cols="12" sm="6" md="3" lg="3" xl="3">
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
                                         img="/public/assets/img/landing/Pacto-Ambiental.jpg"
                                     />
                                 </v-col>
-                                <v-col cols="3">
-                                    <product-item-3
+                                <v-col cols="12" sm="6" md="3" lg="3" xl="3">
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
@@ -228,10 +219,10 @@
                     </v-row>
                     <div class="mb-2">
                         <v-row>
-                            <v-col cols="6">
+                            <v-col cols="12" sm="12" md="6" lg="6" xl="6">
                                 <product-item-1 />
                             </v-col>
-                            <v-col cols="6">
+                            <v-col cols="12" sm="12" md="6" lg="6" xl="6">
                                 <product-item-1 />
                             </v-col>
                         </v-row>
@@ -240,23 +231,23 @@
                     <div class="mb-4 mt-16">
                         <h5>H5</h5>
                         <v-row>
-                            <v-col cols="4">
+                            <v-col cols="12" sm="8" md="4" lg="4" xl="4">
                                 <product-item
                                     title="Producto 1"
                                     descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                     idItem="1"
                                 ></product-item>
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="4" md="2" lg="2" xl="2">
                                 <product-item-4 />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="4" md="2" lg="2" xl="2">
                                 <product-item-4 />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="4" md="2" lg="2" xl="2">
                                 <product-item-4 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="4" md="2" lg="2" xl="2">
                                 <product-item-4 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
                         </v-row>
@@ -268,55 +259,47 @@
                     <div class="mb-4 mt-16">
                         <h5>H5</h5>
                         <v-row>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="6" md="4" lg="4" xl="4">
                                 <product-item-2 />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="6" md="4" lg="4" xl="4">
                                 <product-item-2 />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="6" md="4" lg="4" xl="4">
                                 <product-item-2 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="6" md="4" lg="4" xl="4">
                                 <product-item-2 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="6" md="4" lg="4" xl="4">
                                 <product-item-2 />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="6" md="4" lg="4" xl="4">
                                 <product-item-2 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
-                        </v-row>
-                        <v-row justify="center" class="my-10">
-                            <v-btn small color="#000000" class="mr-16">
-                                <i class="las la-angle-left"></i>
-                            </v-btn>
-                            <v-btn small color="#000000" class="ml-16">
-                                <i class="las la-angle-right"></i>
-                            </v-btn>
                         </v-row>
                     </div>
 
                     <div class="mb-4 mt-16">
                         <h5>H5</h5>
                         <v-row>
-                            <v-col cols="4">
+                            <v-col cols="12" sm="8" md="4" lg="4" xl="4">
                                 <product-item
                                     title="Producto 1"
                                     descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                     idItem="1"
                                 ></product-item>
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
-                            <v-col cols="2">
+                            <v-col cols="6" sm="4" md="2" lg="2" xl="2">
                                 <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                             </v-col>
                         </v-row>
@@ -329,26 +312,26 @@
                         <v-col cols="12">
                             <h5>H5</h5>
                             <v-row>
-                                <v-col cols="3">
-                                    <product-item-3 />
+                                <v-col cols="12" sm="6" md="4" lg="3" xl="3">
+                                    <product-box />
                                 </v-col>
-                                <v-col cols="3">
-                                    <product-item-3
+                                <v-col cols="12" sm="6" md="4" lg="3" xl="3">
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
                                     />
                                 </v-col>
-                                <v-col cols="3">
-                                    <product-item-3
+                                <v-col cols="12" sm="6" md="4" lg="3" xl="3">
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
                                         img="/public/assets/img/landing/Pacto-Ambiental.jpg"
                                     />
                                 </v-col>
-                                <v-col cols="3">
-                                    <product-item-3
+                                <v-col cols="12" sm="6" md="4" lg="3" xl="3">
+                                    <product-box
                                         title="Producto 1"
                                         descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
                                         idItem="1"
@@ -394,31 +377,7 @@
             </v-tab-item>
         </v-tabs>
 
-        <v-card>
-            <v-footer color="#18191A" class="px-5 py-5">
-                <v-row class="d-flex justify-space-between flex-wrap">
-                    <v-col cols="2" sm="3">
-                        <span class="subtitle1 bold text-uppercase">© Idovela 2022</span>
-                    </v-col>
-                    <v-col cols="4" sm="3">
-                        <span class="subtitle1 bold text-uppercase"><i class="las la-globe"></i> Bogota, Colombia</span>
-                    </v-col>
-                    <v-col cols="6" sm="6">
-                        <v-row>
-                            <v-col cols="4">
-                                <span class="subtitle1 bold text-uppercase">Información</span>
-                            </v-col>
-                            <v-col cols="4">
-                                <span class="subtitle1 bold text-uppercase">Solicitudes</span>
-                            </v-col>
-                            <v-col cols="4">
-                                <span class="subtitle1 bold text-uppercase">Contacto</span>
-                            </v-col>
-                        </v-row>
-                    </v-col>
-                </v-row>
-            </v-footer>
-        </v-card>
+        <footer-custom />
     </div>
 </template>
 
@@ -434,9 +393,10 @@ import CarouselProducts from "../components/global/CarouselProducts.vue";
 import CarouselSpaces from "../components/global/CarouselSpaces.vue";
 import ProductItem1 from "../components/global/ProductItem1.vue";
 import ProductItem2 from "../components/global/ProductItem2.vue";
-import ProductItem3 from "../components/global/ProductItem3.vue";
+import ProductBox from "../components/product/ProductBox.vue";
 import ProductItem4 from "../components/global/ProductItem4.vue";
 import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
+import FooterCustom from "../components/global/FooterCustom.vue";
 
 import { spacesSeeder } from "../seeders/spaces";
 import { productsSeeder, sliderSeeder } from "../seeders/products";
@@ -463,11 +423,12 @@ export default {
         CarouselProducts,
         CarouselSpaces,
         ProductItem1,
-        ProductItem3,
+        ProductBox,
         LayoutNavbarSpaces,
         ProductItem2,
         ProductItem4,
-        CarouselTabs
+        CarouselTabs,
+        FooterCustom
     },
     mounted() {
         this.$vuetify.theme.dark = true;

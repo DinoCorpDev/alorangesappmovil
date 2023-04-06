@@ -37,28 +37,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-application.theme--dark {
-    .bar {
-        &-item {
-            &::v-deep {
-                svg {
-                    path {
-                        fill: #ffffff;
-                    }
-                }
-            }
-        }
-
-        &-label {
-            color: #ffffff;
-        }
-    }
-}
-
 .bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: #dfdfdf;
 
     &-item {
         display: flex;

@@ -1,267 +1,1009 @@
 <template>
-    <v-container class="pt-7">
-        <v-row align="start">
-            <v-col lg="10" cols="12" class="main-bar">
-
-                <add-to-cart class="mb-10" :is-loading="detailsLoading" :product-details="productDetails" />
-
-                <div cols="12" class="mb-6">
-                    <v-expansion-panels
-                        v-model="panel"
-                        class="product-details-expansion"
-                        flat
-                        multiple
+    <div>
+        <layout-navbar-auth />
+        <div>
+            <!-- <chart-view /> -->
+            <v-row class="px-2 pt-8">
+                <v-col cols="12" md="4" order="3" order-md="1" sm="12" order-sm="3">
+                    <v-row dense class="px-4">
+                        <v-col cols="4">
+                            <v-row justify="center">
+                                <v-btn
+                                    light
+                                    @click="
+                                        showd = true;
+                                        showd1 = false;
+                                        showd2 = false;
+                                    "
+                                >
+                                    Especificación
+                                </v-btn>
+                            </v-row>
+                        </v-col>
+                        <v-col cols="4">
+                            <v-row justify="center">
+                                <v-btn
+                                    light
+                                    @click="
+                                        showd = false;
+                                        showd1 = true;
+                                        showd2 = false;
+                                    "
+                                >
+                                    Reseña
+                                </v-btn>
+                            </v-row>
+                        </v-col>
+                        <v-col cols="4">
+                            <v-row justify="center">
+                                <v-btn
+                                    light
+                                    @click="
+                                        showd = false;
+                                        showd1 = false;
+                                        showd2 = true;
+                                    "
+                                >
+                                    Sostenibilidad
+                                </v-btn>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                    <v-divider class="mt-6 mb-4" />
+                    <v-card
+                        v-scroll.self="onScroll"
+                        class="overflow-y-auto overflow-uw pa-2"
+                        max-height="645"
+                        v-show="showd"
                     >
-                        <v-expansion-panel class="mb-3">
-                            <v-expansion-panel-header expand-icon="las la-arrow-circle-right">
-                                <div class="d-flex align-center">
-                                    <svg id="_004-product-description" data-name="004-product-description" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" >
-                                        <g id="Group_1264" data-name="Group 1264" > <path id="Path_3166" data-name="Path 3166" d="M18.75,5H1.25A1.252,1.252,0,0,1,0,3.75V1.25A1.252,1.252,0,0,1,1.25,0h17.5A1.252,1.252,0,0,1,20,1.25v2.5A1.252,1.252,0,0,1,18.75,5ZM1.25.833a.417.417,0,0,0-.417.417v2.5a.417.417,0,0,0,.417.417h17.5a.417.417,0,0,0,.417-.417V1.25A.417.417,0,0,0,18.75.833Z" fill="#f5a100"/> </g> <g id="Group_1265" data-name="Group 1265" transform="translate(15 7.5)" > <path id="Path_3167" data-name="Path 3167" d="M20.5,14A2.5,2.5,0,1,1,23,11.5,2.5,2.5,0,0,1,20.5,14Zm0-4.167A1.667,1.667,0,1,0,22.167,11.5,1.668,1.668,0,0,0,20.5,9.833Z" transform="translate(-18 -9)" fill="#f5a100"/> </g> <g id="Group_1266" data-name="Group 1266" transform="translate(15 15)" > <path id="Path_3168" data-name="Path 3168" d="M20.5,23A2.5,2.5,0,1,1,23,20.5,2.5,2.5,0,0,1,20.5,23Zm0-4.167A1.667,1.667,0,1,0,22.167,20.5,1.668,1.668,0,0,0,20.5,18.833Z" transform="translate(-18 -18)" fill="#f5a100"/> </g> <g id="Group_1267" data-name="Group 1267" transform="translate(0 8.333)" > <path id="Path_3169" data-name="Path 3169" d="M12.917,10.833H.417a.417.417,0,1,1,0-.833h12.5a.417.417,0,1,1,0,.833Z" transform="translate(0 -10)" fill="#f5a100"/> </g> <g id="Group_1268" data-name="Group 1268" transform="translate(0 10.833)" > <path id="Path_3170" data-name="Path 3170" d="M12.917,13.833H.417a.417.417,0,1,1,0-.833h12.5a.417.417,0,1,1,0,.833Z" transform="translate(0 -13)" fill="#f5a100"/> </g> <g id="Group_1269" data-name="Group 1269" transform="translate(0 15.833)" > <path id="Path_3171" data-name="Path 3171" d="M12.917,19.833H.417a.417.417,0,1,1,0-.833h12.5a.417.417,0,1,1,0,.833Z" transform="translate(0 -19)" fill="#f5a100"/> </g> <g id="Group_1270" data-name="Group 1270" transform="translate(0 18.333)" > <path id="Path_3172" data-name="Path 3172" d="M12.917,22.833H.417a.417.417,0,0,1,0-.833h12.5a.417.417,0,1,1,0,.833Z" transform="translate(0 -22)" fill="#f5a100"/> </g>
-                                    </svg>
-                                    <span class="fs-16 ms-5">{{ $t("description") }}</span>
-                                </div>
-                            </v-expansion-panel-header>
-                            <v-expansion-panel-content>
-                                <div v-html="productDetails.description"></div>
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                        <v-expansion-panel class="mb-3">
-                            <v-expansion-panel-header expand-icon="las la-arrow-circle-right">
-                                <div class="d-flex align-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" >
-                                        <g id="Group_1286" data-name="Group 1286" transform="translate(-567 -1260.5)" > <g id="Group_1272" data-name="Group 1272" transform="translate(567 1260.5)" > <g id="Group_1271" data-name="Group 1271" transform="translate(0 0)" > <path id="Path_3173" data-name="Path 3173" d="M6.65,2.545a.417.417,0,0,0-.287-.273L4.655,1.805,3.684.325a.433.433,0,0,0-.7,0l-.971,1.48L.307,2.271a.417.417,0,0,0-.216.663L1.2,4.316,1.115,6.085a.417.417,0,0,0,.564.41l1.656-.627,1.656.627a.417.417,0,0,0,.564-.41L5.471,4.316,6.579,2.935A.417.417,0,0,0,6.65,2.545ZM4.722,3.917a.418.418,0,0,0-.091.281L4.692,5.49,3.483,5.032a.416.416,0,0,0-.3,0L1.978,5.49,2.04,4.2a.417.417,0,0,0-.091-.281L1.14,2.909l1.248-.341a.417.417,0,0,0,.239-.174l.709-1.081.709,1.081a.417.417,0,0,0,.239.174l1.247.341Z" transform="translate(0 -0.148)" fill="#fff"/> </g> </g> <g id="Group_1285" data-name="Group 1285" transform="translate(567 1274.127)" > <g id="Group_1271-2" data-name="Group 1271" transform="translate(0 0)" > <path id="Path_3173-2" data-name="Path 3173" d="M6.65,2.545a.417.417,0,0,0-.287-.273L4.655,1.805,3.684.325a.433.433,0,0,0-.7,0l-.971,1.48L.307,2.271a.417.417,0,0,0-.216.663L1.2,4.316,1.115,6.085a.417.417,0,0,0,.564.41l1.656-.627,1.656.627a.417.417,0,0,0,.564-.41L5.471,4.316,6.579,2.935A.417.417,0,0,0,6.65,2.545ZM4.722,3.917a.418.418,0,0,0-.091.281L4.692,5.49,3.483,5.032a.416.416,0,0,0-.3,0L1.978,5.49,2.04,4.2a.417.417,0,0,0-.091-.281L1.14,2.909l1.248-.341a.417.417,0,0,0,.239-.174l.709-1.081.709,1.081a.417.417,0,0,0,.239.174l1.247.341Z" transform="translate(0 -0.148)" fill="#fff"/> </g> </g> <g id="Group_1278" data-name="Group 1278" transform="translate(567 1267.314)" > <g id="Group_1277" data-name="Group 1277" > <path id="Path_3174" data-name="Path 3174" d="M6.65,169.895a.418.418,0,0,0-.287-.273l-1.708-.466-.971-1.48a.433.433,0,0,0-.7,0l-.971,1.48-1.708.466a.417.417,0,0,0-.216.663L1.2,171.666l-.084,1.769a.417.417,0,0,0,.564.41l1.656-.627,1.656.627a.417.417,0,0,0,.564-.41l-.084-1.769,1.108-1.381A.417.417,0,0,0,6.65,169.895Zm-1.928,1.372a.418.418,0,0,0-.091.281l.062,1.292-1.209-.458a.416.416,0,0,0-.3,0l-1.209.458.062-1.291a.417.417,0,0,0-.091-.281l-.809-1.009,1.248-.34a.417.417,0,0,0,.239-.174l.709-1.081.709,1.081a.417.417,0,0,0,.239.174l1.247.34Z" transform="translate(0 -167.498)" fill="#fff"/> </g> </g> <rect id="Rectangle_1289" data-name="Rectangle 1289" width="6.667" height="0.833" rx="0.417" transform="translate(575.333 1262.583)" fill="#fff"/> <rect id="Rectangle_1293" data-name="Rectangle 1293" width="6.667" height="0.833" rx="0.417" transform="translate(575.333 1276.21)" fill="#fff"/> <rect id="Rectangle_1291" data-name="Rectangle 1291" width="6.667" height="0.833" rx="0.417" transform="translate(575.333 1269.25)" fill="#fff"/> <rect id="Rectangle_1290" data-name="Rectangle 1290" width="11.667" height="0.833" rx="0.417" transform="translate(575.333 1265.083)" fill="#fff"/> <rect id="Rectangle_1294" data-name="Rectangle 1294" width="11.667" height="0.833" rx="0.417" transform="translate(575.333 1278.71)" fill="#fff"/> <rect id="Rectangle_1292" data-name="Rectangle 1292" width="11.667" height="0.833" rx="0.417" transform="translate(575.333 1271.75)" fill="#fff"/> </g>
-                                    </svg>
-                                    <span class="fs-16 ms-5">{{ $t("rating__reviews") }}</span>
-                                </div>
-                            </v-expansion-panel-header>
-                            <v-expansion-panel-content class="">
-                                <ProductReviews
-                                    :id="productDetails.id"
-                                    :is-loading="detailsLoading"
-                                    :review-summary="reviewSummary"
-                                />
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </div>
-                <div v-if="boughtTogetherProducts.length > 0" class="mb-5">
-                    <h2 class="mb-3 fs-21 opacity-80">
-                        {{ $t("frequently_bought_together") }}
-                    </h2>
-                    <swiper :options="carouselOption" class="">
-                        <swiper-slide
-                            v-for="(product, i) in boughtTogetherProducts"
-                            :key="i"
-                            class=""
-                        >
-                            <product-box :product-details="product" :is-loading="togetherLoading" />
-                        </swiper-slide>
-                    </swiper>
-                </div>
-                <div class="mb-5">
-                    <h2 class="mb-3 fs-21 opacity-80">
-                        {{ $t("more_items_to_explore") }}
-                    </h2>
-                    <swiper :options="carouselOption" class="">
-                        <swiper-slide v-for="(product, i) in moreProducts" :key="i" class="">
-                            <product-box :product-details="product" :is-loading="moreLoading" />
-                        </swiper-slide>
-                    </swiper>
-                </div>
-            </v-col>
-            <v-col lg="2" cols="12" class="sticky-top right-bar">
-                <v-row>
-                    <v-col lg="12" md="3" sm="4" cols="12">
-                        <template v-if="is_addon_activated('multi_vendor')">
-                            <template v-if="detailsLoading">
-                                <v-skeleton-loader type="image" height="158" class="mb-3" />
-                            </template>
-                            <div v-else class="border rounded bg-light px-3 py-2 mb-3 grey lighten-5 border-gray-300">
-                                <div class="fw-700 fs-12 mb-2">{{ $t('shop') }}</div>
-                                <div class="d-flex mb-2">
-                                    <img :src="productDetails.shop.logo" :alt="productDetails.shop.name" class="flex-shrink-0 border rounded-circle shadow-xl size-50px mb-2">
-                                    <div class="fs-13 fw-500 ms-3 mt-2 text-truncate-2 minw-0">{{ productDetails.shop.name }}</div>
-                                </div>
-                                <div class="d-flex align-center fs-12 mb-2">
-                                    <span class="">{{ productDetails.shop.rating.toFixed(2) }}</span>
-                                    <v-rating
-                                        class="lh-1-5 mx-1"
-                                        background-color=""
-                                        empty-icon="las la-star"
-                                        full-icon="las la-star active"
-                                        half-icon="las la-star half"
-                                        hover
-                                        half-increments
-                                        readonly
-                                        size="12"
-                                        length="5"
-                                        :value="productDetails.shop.rating"
-                                    >
-                                    </v-rating>
-                                    <span class="opacity-50"> ({{ productDetails.shop.review_count }} {{ $t("ratings") }}) </span>
-                                </div>
-                                <router-link :to="{ name: 'ShopDetails', params: {slug: productDetails.shop.slug}}" class="text-primary fw-500 fs-11">
-                                    {{ $t('visit_store') }}
-                                </router-link>
-                            </div>
-                        </template>
-                        <template v-if="detailsLoading">
-                            <v-skeleton-loader type="image" height="200" class="" />
-                        </template>
-                        <template v-else>
-                            <banner :loading="false" :banner="$store.getters['app/banners'].product_page" class="" />
-                        </template>
-
-                        <div v-if="productDetails.has_warranty == 1" class="bg-soft-primary border border-primary d-flex rounded px-4 py-3 mt-3" >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16.667" height="20" viewBox="0 0 16.667 20" >
-                                <g id="Policy" transform="translate(-8.752 -4.644)" > <path id="Path_3102" data-name="Path 3102" d="M17.085,24.644a.7.7,0,0,1-.211-.033,17.254,17.254,0,0,1-6.395-4.9C8.608,17.09,8.647,11.575,8.841,7.654a.368.368,0,0,1,.133-.267.353.353,0,0,1,.28-.077,9.543,9.543,0,0,0,7.578-2.558.354.354,0,0,1,.509,0,9.507,9.507,0,0,0,7.578,2.558.353.353,0,0,1,.28.077.368.368,0,0,1,.133.267c.194,3.921.233,9.436-1.638,12.06a17.431,17.431,0,0,1-6.395,4.9A.7.7,0,0,1,17.085,24.644ZM9.558,8.063c-.172,3.779-.161,8.855,1.516,11.2A16.654,16.654,0,0,0,17.1,23.9a16.743,16.743,0,0,0,6.029-4.634c1.66-2.339,1.67-7.415,1.5-11.2A9.979,9.979,0,0,1,17.1,5.505,10,10,0,0,1,9.558,8.063Z" fill="#b8b8b8"/> <path id="Path_3103" data-name="Path 3103" d="M25.523,30.137a.358.358,0,0,1-.258-.111L23.387,28.1a.359.359,0,1,1,.513-.5l1.613,1.652,3.405-3.724a.359.359,0,0,1,.531.484l-3.66,4a.376.376,0,0,1-.258.118Z" transform="translate(-9.323 -13.133)" fill="#b8b8b8"/> </g>
-                            </svg>
-                            <span class="ms-2">
-                                <div class="fw-700">
-                                    {{ $t("warranty_available") }}
-                                </div>
-                                <router-link :to="{ name: 'CustomPage', params: { pageSlug: 'warranty-policy' }, }" class="text-decoration-underline grey--text fs-12" >
-                                    * {{ $t("view_warranty_policy") }}
-                                </router-link>
-                            </span>
-                        </div>
-                    </v-col>
-                    <v-col lg="12" md="9" sm="8" cols="12">
-                        <div class="mb-4">
-                            <div class="mb-3">{{ $t("related_products") }}</div>
-                            <v-row class="row-cols-2 row-cols-md-3 row-cols-lg-1 gutters-10">
-                                <v-col v-for="(product, i) in relatedProducts" :key="i" class="py-2">
-                                    <product-box :product-details="product" :is-loading="relatedLoading" box-style="two"/>
+                        <div class="product-item-body pa-4 la-border">
+                            <v-row>
+                                <v-col cols="6">
+                                    <v-row justify="center" dense>
+                                        <span>Energía</span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <h5 class="subtitle2 text-uppercase mt-1">
+                                            {{ productDetails?.intake || "--" }}
+                                        </h5>
+                                    </v-row>
+                                </v-col>
+                                <v-divider inset vertical class="mb-2" />
+                                <v-col cols="6">
+                                    <v-row justify="center" dense>
+                                        <span>Material</span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <h5 class="subtitle2 text-uppercase mt-1">
+                                            {{ productDetails?.material || "--" }}
+                                        </h5>
+                                    </v-row>
                                 </v-col>
                             </v-row>
                         </div>
+                        <div class="product-item-body pa-4 la-border mt-4">
+                            <v-row>
+                                <v-col cols="5">
+                                    <v-row dense>
+                                        <v-icon class="mr-2">la-cube</v-icon>
+                                        <v-icon class="mr-2">la-cube</v-icon>
+                                        <v-icon>la-cube</v-icon>
+                                    </v-row>
+                                    <v-row dense>
+                                        <span class="subtitle2 text-uppercase mt-1">Medida de Producto</span>
+                                    </v-row>
+                                    <v-row dense>
+                                        <span class="subtitle2 text-uppercase">Medida de Embalaje</span>
+                                    </v-row>
+                                    <v-row dense>
+                                        <span class="subtitle2 text-uppercase">Medida de Engaste</span>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="5">
+                                    <v-row justify="center" dense>
+                                        <span class="subtitles-gray">(Fuente x Profundidad x Altura)</span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <span class="subtitle2 text-uppercase mt-3">
+                                            {{ productDetails?.medida_producto || "--" }}
+                                        </span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <span class="subtitle2 text-uppercase">
+                                            {{ productDetails?.medidas_de_embalaje || "--" }}
+                                        </span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <span class="subtitle2 text-uppercase">
+                                            {{ productDetails?.engaste || "--" }}
+                                        </span>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="2">
+                                    <v-row justify="center" dense>
+                                        <span class="subtitles-gray">(Unidades)</span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <span class="subtitle2 mt-3">
+                                            {{ productDetails?.unit_metering || "--" }}
+                                        </span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <span class="subtitle2">
+                                            {{ productDetails?.unit_metering || "--" }}
+                                        </span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <span class="subtitle2">
+                                            {{ productDetails?.unit_metering || "--" }}
+                                        </span>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <div class="product-item-body pa-4 la-border mt-4">
+                            <v-row>
+                                <v-col cols="6">
+                                    <v-row justify="center" dense>
+                                        <span>{{ productDetails?.peso_de_producto || "--" }}</span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <h5 class="subtitle2 text-uppercase mt-1">Peso de Producto</h5>
+                                    </v-row>
+                                </v-col>
+                                <v-divider inset vertical class="mb-2" />
+                                <v-col cols="6">
+                                    <v-row justify="center" dense>
+                                        <span>{{ productDetails?.peso_de_envio || "--" }}</span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <h5 class="subtitle2 text-uppercase mt-1">Peso de Envío</h5>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <div class="product-item-body pa-4 la-border mt-4">
+                            <v-row>
+                                <v-col cols="6">
+                                    <v-row justify="center" dense>
+                                        <span>{{ productDetails?.tipo_de_coneccion || "--" }}</span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <h5 class="subtitle2 text-uppercase mt-1">Voltaje</h5>
+                                    </v-row>
+                                </v-col>
+                                <v-divider inset vertical class="mb-2" />
+                                <v-col cols="6">
+                                    <v-row justify="center" dense>
+                                        <span>{{ productDetails?.eficiencia || "--" }} %</span>
+                                    </v-row>
+                                    <v-row justify="center" dense>
+                                        <h5 class="subtitle2 text-uppercase mt-1">Eficiencia</h5>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <h5 class="subtitle2 text-uppercase mt-5">Características</h5>
+                        <v-divider class="mt-2" />
+                        <ul>
+                            <li class="subtitle2 mt-1">{{ productDetails?.caracteristica1 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.caracteristica2 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.caracteristica3 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.caracteristica4 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.caracteristica5 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.caracteristica6 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.caracteristica7 || "--" }}</li>
+                        </ul>
+                        <div class="d-flex justify-space-between">
+                            <h5 class="subtitle2 text-uppercase mt-5">Manuales y Guías</h5>
+                            <h5 class="subtitles-gray mt-5">(Para descargar)</h5>
+                        </div>
+                        <v-divider class="mt-2" />
+                        <v-row class="mt-1 ml-1">
+                            <v-col cols="6">
+                                <v-row dense>
+                                    <a
+                                        class="subtitle2 text-white"
+                                        :href="productDetails?.manual_de_producto"
+                                        target="_blank"
+                                    >
+                                        <u>Manual de producto</u>
+                                    </a>
+                                </v-row>
+                                <v-row dense class="mt-1">
+                                    <a
+                                        class="subtitle2 text-white"
+                                        :href="productDetails?.ficha_tecnica_del_producto"
+                                        target="_blank"
+                                    >
+                                        <u>Ficha técnica del producto</u>
+                                    </a>
+                                </v-row>
+                            </v-col>
+                            <v-col cols="6">
+                                <v-row dense>
+                                    <span class="subtitle2"><u>Hora de especificaciones</u></span>
+                                </v-row>
+                                <v-row dense class="mt-1">
+                                    <a
+                                        class="subtitle2 text-white"
+                                        :href="productDetails?.manual_de_instalacion"
+                                        target="_blank"
+                                    >
+                                        <u>Guía de instalación</u>
+                                    </a>
+                                </v-row>
+                            </v-col>
+                        </v-row>
+                        <h5 class="subtitle2 text-uppercase mt-5">Beneficios</h5>
+                        <v-divider class="mt-2" />
+                        <ul>
+                            <li class="subtitle2 mt-1">{{ productDetails?.beneficio1 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.beneficio2 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.beneficio3 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.beneficio4 || "--" }}</li>
+                            <li class="subtitle2">{{ productDetails?.beneficio5 || "--" }}</li>
+                        </ul>
+                        <h5 class="subtitle2 text-uppercase mt-5">Servicio Postventa</h5>
+                        <v-divider class="mt-2" />
+                        <p class="subtitle2">
+                            {{ productDetails?.postventa || "--" }}
+                        </p>
+                    </v-card>
+                    <v-card
+                        v-scroll.self="onScroll"
+                        class="overflow-y-auto overflow-x-auto overflow-uw pa-2"
+                        max-height="645"
+                        v-show="showd1"
+                    >
+                        <div class="product-item-body pa-4 la-border">
+                            <h5 class="subtitle2 text-uppercase">Calificación</h5>
+                            <v-row class="mt-2">
+                                <v-col cols="4" class="justify-end" style="line-height: 2.4">
+                                    <h5 class="text-uppercase">5.0</h5>
+                                    <v-rating
+                                        empty-icon="las la-star"
+                                        full-icon="las la-star active"
+                                        half-icon="las la-star half half"
+                                        background-color=""
+                                        length="5"
+                                        size="11"
+                                        v-model="rating"
+                                    ></v-rating>
+                                    <span class="caption">Opiniones (22)</span>
+                                </v-col>
+                                <v-col cols="8">
+                                    <v-row>
+                                        <v-col cols="1" style="line-height: 0.1">
+                                            <span class="caption mr-2">5</span>
+                                            <span class="caption mr-2">4</span>
+                                            <span class="caption mr-2">3</span>
+                                            <span class="caption mr-2">2</span>
+                                            <span class="caption mr-2">1</span>
+                                        </v-col>
+                                        <v-col cols="9" style="line-height: 2.1">
+                                            <v-progress-linear
+                                                v-model="ratings.rating5"
+                                                color="white"
+                                                class="mt-2"
+                                            ></v-progress-linear>
+                                            <v-progress-linear
+                                                v-model="ratings.rating4"
+                                                color="white"
+                                                class="mt-4"
+                                            ></v-progress-linear>
+                                            <v-progress-linear
+                                                v-model="ratings.rating3"
+                                                color="white"
+                                                class="mt-4"
+                                            ></v-progress-linear>
+                                            <v-progress-linear
+                                                v-model="ratings.rating2"
+                                                color="white"
+                                                class="mt-4"
+                                            ></v-progress-linear>
+                                            <v-progress-linear
+                                                v-model="ratings.rating1"
+                                                color="white"
+                                                class="mt-4"
+                                            ></v-progress-linear>
+                                        </v-col>
+                                        <v-col cols="2" style="line-height: 0.1">
+                                            <span class="caption">30</span><br />
+                                            <span class="caption">10</span><br />
+                                            <span class="caption">5</span><br />
+                                            <span class="caption">0</span><br />
+                                            <span class="caption">0</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <div class="d-flex pa-2">
+                            <h5 class="subtitle2 text-uppercase mt-4">¿Deseas calificar este producto?</h5>
+                            <custom-button text="Calificar" class="ml-4 mt-2" light />
+                        </div>
+                    </v-card>
+                    <v-card
+                        v-scroll.self="onScroll"
+                        class="overflow-y-auto overflow-x-auto pa-2 overflow-uw"
+                        max-height="645"
+                        v-show="showd2"
+                    >
+                        <div class="product-item-body pa-4 la-border">
+                            <h5 class="subtitle2 text-uppercase">Vida Útil</h5>
+                            <v-row dense class="mt-2" justify="center">
+                                <v-progress-linear
+                                    style="width: 78%"
+                                    v-model="ratings.vidaUtil"
+                                    color="white"
+                                    class="mt-2"
+                                ></v-progress-linear>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="3">
+                                    <v-row justify="center">
+                                        <span>1-14</span>
+                                    </v-row>
+                                    <v-row justify="center">
+                                        <span class="caption">Semanas</span>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="3">
+                                    <v-row justify="center"> <span>1-24</span><br /> </v-row>
+                                    <v-row justify="center">
+                                        <span class="caption">Meses</span>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="3">
+                                    <v-row justify="center"> <span>1-10</span><br /> </v-row>
+                                    <v-row justify="center">
+                                        <span class="caption">Años</span>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="3">
+                                    <v-row justify="center"> <span>10-25</span><br /> </v-row>
+                                    <v-row justify="center">
+                                        <span class="caption">Años</span>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <div class="product-item-body pa-4 la-border mt-4">
+                            <h5 class="subtitle2 text-uppercase">Composición de producto</h5>
+                            <v-row class="mt-4">
+                                <v-col cols="6">
+                                    <div class="piechart"></div>
+                                </v-col>
+                                <v-col cols="6">
+                                    <tbody>
+                                        <tr v-for="item in desserts" :key="item.name">
+                                            <td style="width: 20px">
+                                                <div
+                                                    class="pa-2 bg-secondary rounded-circle d-inline-block"
+                                                    :style="item.color"
+                                                />
+                                            </td>
+                                            <td style="width: 120px" class="text-size-comp ml-1">{{ item.name }}</td>
+                                            <td style="width: 50px" class="text-size-comp ml-2">{{ item.percent }}</td>
+                                            <td class="text-size-comp ml-2">{{ item.kg }}</td>
+                                        </tr>
+                                    </tbody>
+                                </v-col>
+                            </v-row>
+                            <v-divider class="mt-3 mb-4" />
+                            <h5 class="subtitle2 text-uppercase">Impacto Ambiental</h5>
+                            <v-row class="mt-4" justify="center">
+                                <div style="width: 78%; position: relative" class="d-flex">
+                                    <v-icon large class="markerLoc" :style="{ left: impacto }">la-map-pin</v-icon>
+                                    <v-col cols="3" style="padding: 20px 0px">
+                                        <v-progress-linear background-color="green" class="mt-2"></v-progress-linear>
+                                    </v-col>
+                                    <v-col cols="3" style="padding: 15px 0px">
+                                        <v-progress-linear background-color="yellow" class="mt-2"></v-progress-linear>
+                                    </v-col>
+                                    <v-col cols="3" style="padding: 10px 0px">
+                                        <v-progress-linear background-color="orange" class="mt-2"></v-progress-linear>
+                                    </v-col>
+                                    <v-col cols="3" style="padding: 5px 0px">
+                                        <v-progress-linear background-color="red" class="mt-2"></v-progress-linear>
+                                    </v-col>
+                                </div>
+                            </v-row>
+                            <v-row class="mt-0 mb-1">
+                                <v-col cols="4">
+                                    <v-row justify="start">
+                                        <span class="caption ml-4">Sostenible</span>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="4">
+                                    <v-row justify="center">
+                                        <span class="caption">Reversible</span>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="4">
+                                    <v-row justify="end">
+                                        <span class="caption mr-4">Irreversible</span>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <div class="product-item-body pa-4 la-border mt-4">
+                            <h5 class="subtitle2 text-uppercase">Consejos Ecológicos</h5>
+                            <ul>
+                                <li class="subtitle2 mt-1">
+                                    Una vez el producto cumpla su vida útil debes ser riguroso en reciclar sus
+                                    materiales de forma correcta.
+                                </li>
+                                <li class="subtitle2 mt-2">
+                                    Realizar el mantenimiento pertinente en las fechas adecuadas para extender la vida
+                                    útil del producto.
+                                </li>
+                            </ul>
+                        </div>
+                        <v-row>
+                            <v-col cols="6">
+                                <div class="product-item-body pa-2 la-border mt-4">
+                                    <v-row dense justify="center" class="mt-3">
+                                        <v-icon x-large>la-sync</v-icon>
+                                    </v-row>
+                                    <v-row dense justify="center" class="mt-5">
+                                        <p class="subtitle2" style="text-align: center">
+                                            Deseo reciclar un viejo producto y recibir un bono adicional de descuento a
+                                            cambio.
+                                        </p>
+                                    </v-row>
+                                    <v-row dense justify="center">
+                                        <custom-button plain text="Solicitar" />
+                                    </v-row>
+                                    <v-row dense justify="center" class="mt-4 mb-2">
+                                        <custom-button light text="RENOVACIÓN UPGRADE" class="button-espe" />
+                                    </v-row>
+                                </div>
+                            </v-col>
+                            <v-col cols="6">
+                                <div class="product-item-body pa-2 la-border mt-4">
+                                    <v-row dense justify="center" class="mt-3">
+                                        <v-icon x-large>la-tools</v-icon>
+                                    </v-row>
+                                    <v-row dense justify="center" class="mt-5">
+                                        <p class="subtitle2" style="text-align: center">
+                                            Deseo programar un mantenimiento preventivo para mi producto/s.
+                                        </p>
+                                    </v-row>
+                                    <v-row dense justify="center">
+                                        <custom-button plain text="Solicitar" />
+                                    </v-row>
+                                    <v-row dense justify="center" class="mt-4 mb-2">
+                                        <custom-button light text="SOPORTE TÉCNICO" class="button-espe" />
+                                    </v-row>
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+                </v-col>
+
+                <v-col
+                    cols="12"
+                    class="positionColbuttons pt-0"
+                    lg="4"
+                    order-lg="2"
+                    md="4"
+                    order-md="1"
+                    sm="12"
+                    order-sm="1"
+                    order="1"
+                >
+                    <v-row dense class="buttons-img">
+                        <v-col cols="4">
+                            <v-row justify="center">
+                                <v-btn
+                                    class="btn-img"
+                                    light
+                                    @click="
+                                        showp = true;
+                                        showp1 = false;
+                                        showp2 = false;
+                                    "
+                                >
+                                    Imágenes
+                                </v-btn>
+                            </v-row>
+                        </v-col>
+                        <v-col cols="4">
+                            <v-row justify="center">
+                                <v-btn
+                                    class="btn-img"
+                                    light
+                                    @click="
+                                        showp = false;
+                                        showp1 = true;
+                                        showp2 = false;
+                                    "
+                                >
+                                    Videos
+                                </v-btn>
+                            </v-row>
+                        </v-col>
+                        <v-col cols="4">
+                            <v-row justify="center">
+                                <v-btn
+                                    class="btn-img"
+                                    light
+                                    @click="
+                                        showp = false;
+                                        showp1 = false;
+                                        showp2 = true;
+                                    "
+                                >
+                                    Ficha Técnica
+                                </v-btn>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                    <v-row dense justify class="pt-0">
+                        <v-col>
+                            <carousel :slides="productDetails?.imagenes" v-show="showp" style="height: 700px" />
+                            <carousel :slides="productDetails?.videos" v-show="showp1" style="height: 700px" />
+                            <v-img
+                                :src="productDetails?.ficha_tecnica_del_producto"
+                                v-show="showp2"
+                                height="700px"
+                                width="100%"
+                            />
+                        </v-col>
+                    </v-row>
+                </v-col>
+                <v-col cols="12" md="4" order-md="3" sm="12" order-sm="2" order="2" class="py-0">
+                    <div class="product-item-body pa-4 la-border">
+                        <div class="d-flex justify-space-between">
+                            <h5 class="subtitle2 text-uppercase mb-2">REFERENCIA: {{ productDetails?.reference }}</h5>
+                            <v-icon right> la-bookmark </v-icon>
+                        </div>
+                        <h5 class="subtitle1 text-uppercase font-weight-bold mb-2">{{ productDetails?.name ?? "" }}</h5>
+                        <h5 class="subtitle1 mb-2">{{ productDetails?.brand?.name ?? "" }}</h5>
+                        <div class="d-flex">
+                            <h5 class="subtitle1 mb-2 mr-2">
+                                {{ productDetails?.lowest_price ?? "000" }} {{ productDetails?.currency ?? "" }}
+                            </h5>
+                            <h5 class="caption mb-2">
+                                <del
+                                    >{{ productDetails?.highest_price ?? "000" }}
+                                    {{ productDetails?.currency ?? "" }}</del
+                                >
+                            </h5>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <h5 class="caption mb-3">{{ iva }}</h5>
+                            <div class="d-flex justify-space-around align-center">
+                                <v-btn icon @click="model = Math.max(model - 1, 0)">
+                                    <v-icon small> la-minus </v-icon>
+                                </v-btn>
+                                {{ model }}
+                                <v-btn icon @click="model = Math.min(model + 1, 8)">
+                                    <v-icon small> la-plus </v-icon>
+                                </v-btn>
+                            </div>
+                        </div>
+                        <custom-button text="Agregar a Compras" block />
+                        <custom-button light text="Consultar a un Asesor" block class="mt-3" />
+                    </div>
+                    <div class="product-item-body pa-4 la-border mt-3">
+                        <div class="d-flex justify-space-between">
+                            <h5 class="subtitle2 text-uppercase mb-1">{{ varia }}</h5>
+                            <v-btn-toggle>
+                                <v-btn class="blue toggle-btn" />
+                                <v-btn class="ml-2 white toggle-btn" />
+                                <v-btn class="ml-2 black toggle-btn" />
+                                <v-btn class="ml-2 red toggle-btn" />
+                            </v-btn-toggle>
+                        </div>
+                    </div>
+                    <div class="product-item-body pa-4 la-border mt-3">
+                        <div class="d-flex justify-space-between">
+                            <h5 class="subtitle2 text-uppercase mb-1">Disponibilidad</h5>
+                            <h5 class="subtitle1 mb-2">{{ productDetails?.stock ?? "000" }} en stock</h5>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <h5 class="subtitle2 text-uppercase mb-1">Garantía</h5>
+                            <h5 class="subtitle1 mb-2">{{ productDetails?.warranty_text ?? "--" }}</h5>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <h5 class="subtitle2 text-uppercase mb-1">Pago</h5>
+                            <h5 class="subtitle1 mb-2">--</h5>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <h5 class="subtitle2 text-uppercase">Envío</h5>
+                            <h5 class="subtitle1">{{ productDetails?.shipping ?? "--" }}</h5>
+                        </div>
+                    </div>
+                    <h5 class="subtitle2 text-uppercase mt-3 mb-2">Se incluye con la compra</h5>
+                    <div class="product-item-body mt-3">
+                        <v-divider />
+                        <product-item-6 />
+                    </div>
+                </v-col>
+            </v-row>
+
+            <div class="px-2 pt-12">
+                <div class="d-flex justify-space-between mb-8">
+                    <h5 class="mt-1">H5</h5>
+                    <div class="d-none d-lg-block" style="width: 38%">
+                        <custom-button light text="Nuevo" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                    </div>
+                    <div class="d-lg-none" style="width: 40%; text-align: end">
+                        <custom-button light text="Filtro" style="width: 40%" />
+                    </div>
+                </div>
+                <v-row>
+                    <v-col cols="6" md="4" sm="4" xs="6" lg="2" xl="2" v-for="(product, i) in moreProducts" :key="i">
+                        <product-box :product-details="product" />
                     </v-col>
                 </v-row>
-            </v-col>
-        </v-row>
-    </v-container>
+                <v-row justify="center">
+                    <custom-button light text="Ver más" class="mt-6 mb-6" style="width: 40%" />
+                </v-row>
+            </div>
+
+            <v-row class="px-2 py-12">
+                <v-col cols="12">
+                    <div class="d-flex justify-space-between mb-8">
+                        <h5 class="mt-1">H5</h5>
+                        <div class="d-none d-lg-block" style="width: 38%">
+                            <custom-button light text="Nuevo" style="width: 23%" />
+                            <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                            <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                            <custom-button light text="Nuevo" class="ml-2" style="width: 23%" />
+                        </div>
+                        <div class="d-lg-none" style="width: 40%; text-align: end">
+                            <custom-button light text="Filtro" style="width: 40%" />
+                        </div>
+                    </div>
+                    <v-row>
+                        <v-col
+                            cols="12"
+                            md="6"
+                            sm="6"
+                            xs="12"
+                            lg="3"
+                            xl="3"
+                            v-for="(product, i) in footerProducts"
+                            :key="i"
+                        >
+                            <product-box :product-details="product" boxStyle="two" />
+                        </v-col>
+                    </v-row>
+                    <v-row justify="center">
+                        <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
+                    </v-row>
+                </v-col>
+            </v-row>
+        </div>
+        <footer-custom />
+    </div>
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from "vuex";
-import ProductReviews from "../components/product/ProductReviews";
-import AddToCart from '../components/product/AddToCart.vue';
+import ProductBox from "../components/product/ProductBox.vue";
+import ProductItem6 from "../components/global/ProductItem6.vue";
+import CustomButton from "../components/global/CustomButton.vue";
+import FooterCustom from "../components/global/FooterCustom.vue";
+import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
+import Carousel from "../components/global/Carousel.vue";
+import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
+// import ChartView from "../components/global/ChartView.vue";
+
 export default {
-    metaInfo() {
-        return {
-            title: this.metaTitle,
-        }
-    },
     data: () => ({
-        metaTitle: '',
-        detailsLoading: true,
         productDetails: {},
-        reviewSummary: { average: 0 },
-        relatedLoading: true,
-        relatedProducts: [{}, {}, {}, {}, {}],
-        togetherLoading: true,
-        boughtTogetherProducts: [{}, {}, {}, {}, {}],
-        moreLoading: true,
-        moreProducts: [{}, {}, {}, {}, {}],
-        panel: [0,1],
-        carouselOption: {
-            slidesPerView: 5,
-            spaceBetween: 20,
-            breakpoints: {
-                0: {
-                    slidesPerView: 2,
-                    spaceBetween: 12,
-                },
-                // when window width is >= 320px
-                599: {
-                    slidesPerView: 3,
-                    spaceBetween: 16,
-                },
-                // when window width is >= 480px
-                960: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                },
-                // when window width is >= 640px
-                1264: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                },
-                1904: {
-                    slidesPerView: 5,
-                    spaceBetween: 20,
-                },
-            },
-        },
+        showp: true,
+        showp1: false,
+        showp2: false,
+        showd: true,
+        showd1: false,
+        showd2: false,
+        id: "0",
+        img: "/public/assets/img/item-placeholder.png",
+        iva: "* Iva Incluido",
+        varia: "Variación",
+        model: 0,
+        tags: ["1", "2", "3"],
+        ratings: { rating5: 67, rating4: 22, rating3: 11, rating2: 0, rating1: 0, vidaUtil: 0 },
+        desserts: [],
+        impacto: "28%",
+        moreProducts: [],
+        footerProducts: []
     }),
     components: {
-        ProductReviews,
-        AddToCart
-    },
-    computed: {
+        ProductBox,
+        ProductItem6,
+        CustomButton,
+        LayoutNavbarSpaces,
+        Carousel,
+        LayoutNavbarAuth,
+        FooterCustom
+        // ChartView
     },
     methods: {
-        ...mapActions("recentlyViewed", ["addNewRecentlyViewedProduct"]),
         async getDetails() {
-            const res = await this.call_api( "get", `product/details/${this.$route.params.slug}`);
+            const res = await this.call_api("get", `product/details/${this.$route.params.slug}`);
             if (res.data.success) {
-
-                this.metaTitle = res.data.data.metaTitle;
                 this.productDetails = res.data.data;
-                this.reviewSummary = this.productDetails.review_summary;
-
-                this.getRelatedProducts(this.productDetails.id);
-                this.getBoughtTogetherProducts(this.productDetails.id);
-                this.getMoreProducts(this.productDetails.id);
-                this.addNewRecentlyViewedProduct(this.productDetails.id);
-                
-            } else {
-                this.snack({
-                    message: res.data.message,
-                    color: "red",
-                });
-                this.$router.push({ name: "404" });
-            }
-            this.detailsLoading = false;
-        },
-        async getRelatedProducts(id) {
-            const res = await this.call_api("get", `product/related/${id}`);
-            if (res.data.success) {
-                this.relatedProducts = res.data.data;
-                this.relatedLoading = false;
-            }
-        },
-        async getBoughtTogetherProducts(id) {
-            const res = await this.call_api( "get", `product/bought-together/${id}` );
-            if (res.data.success) {
-                this.boughtTogetherProducts = res.data.data;
-                this.togetherLoading = false;
+                this.setVidaUtil(this.productDetails.vida_util);
+                this.setComposition(this.productDetails);
+                this.setImpacto(this.productDetails?.impacto_ambiental);
+                this.getMoreProducts(this.productDetails?.id);
+                this.getMoreProducts2(this.productDetails?.id);
             }
         },
         async getMoreProducts(id) {
-            const res = await this.call_api("get", `product/random/10/${id}`);
+            const res = await this.call_api("get", `product/random/6/${id}`);
             if (res.data.success) {
-                this.moreProducts = res.data.data;
-                this.moreLoading = false;
+                res.data?.data?.map(product => {
+                    this.moreProducts.push({
+                        name: product?.name,
+                        val: product?.base_price + " " + product?.currency,
+                        img: product?.thumbnail_image,
+                        description: product?.description,
+                        brand: product?.brandName,
+                        ref: product?.reference,
+                        slug: product?.slug
+                    });
+                });
             }
         },
-        
+        async getMoreProducts2(id) {
+            const res = await this.call_api("get", `product/random/4/${id}`);
+            if (res.data.success) {
+                res.data?.data?.map(product => {
+                    this.footerProducts.push({
+                        name: product?.name,
+                        val: product?.base_price + " " + product?.currency,
+                        img: product?.thumbnail_image,
+                        description: product?.description,
+                        brand: product?.brandName,
+                        ref: product?.reference,
+                        slug: product?.slug
+                    });
+                });
+            }
+        },
+        setVidaUtil(value) {
+            if (value) {
+                switch (value) {
+                    case "1-10 años":
+                        this.ratings.vidaUtil = 67;
+                        break;
+                    case "10-25 años":
+                        this.ratings.vidaUtil = 100;
+                        break;
+                    case "1-24 Meses":
+                        this.ratings.vidaUtil = 34;
+                        break;
+                    case "1-14 Semanas":
+                        this.ratings.vidaUtil = 0;
+                        break;
+                    default:
+                        this.ratings.vidaUtil = 0;
+                        break;
+                }
+            }
+        },
+        setComposition(data) {
+            this.desserts = [
+                {
+                    color: "background-color:#114B99",
+                    name: "Plástico",
+                    percent: data?.plastico ?? "-",
+                    kg: data?.peso_plastico ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#FEA60F",
+                    name: "Cartón",
+                    percent: data?.carton ?? "-",
+                    kg: data?.peso_carton ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#FFFFFF",
+                    name: "Papel",
+                    percent: data?.papel ?? "-",
+                    kg: data?.peso_papel ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#445056",
+                    name: "Metal",
+                    percent: data?.metal ?? "-",
+                    kg: data?.peso_metal ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#61A959",
+                    name: "Vidrio",
+                    percent: data?.vidrio ?? "-",
+                    kg: data?.peso_vidrio ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#B1771D",
+                    name: "Madera",
+                    percent: data?.madera ?? "-",
+                    kg: data?.peso_madera ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#ED847B",
+                    name: "Textil",
+                    percent: data?.textil ?? "-",
+                    kg: data?.peso_textil ?? "-" + "Kg"
+                },
+                {
+                    color: "background-color:#ED847B",
+                    name: "Baterías / Eléctrico",
+                    percent: data?.bateria_electrico ?? "-",
+                    kg: data?.peso_bateria_electrico ?? "-" + "Kg"
+                }
+            ];
+        },
+        setImpacto(value) {
+            if (value) {
+                switch (value) {
+                    case "Reversible":
+                        this.impacto = "35%";
+                        break;
+                    case "Sostenible":
+                        this.impacto = "11%";
+                        break;
+                    case "No Reversible":
+                        this.impacto = "75%";
+                        break;
+                    default:
+                        this.impacto = "11%";
+                        break;
+                }
+            }
+        }
+    },
+    mounted() {
+        this.$vuetify.theme.dark = true;
     },
     async created() {
         this.getDetails();
-    },
+    }
 };
 </script>
-<style scoped>
-@media (max-width: 1263px) {
+
+<style lang="scss" scoped>
+.v-btn {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.25px;
+
+    @media (min-width: 960px) {
+        font-size: 14px;
+    }
+
+    border-radius: 5px;
+
+    i {
+        font-size: 20px;
+    }
+
+    &:hover:before,
+    &:focus:before {
+        opacity: 1;
+    }
+
+    &.v-size--default {
+        height: 38px;
+    }
 }
-@media (min-width: 1264px) {
-    .main-bar {
-        max-width: calc(100% - 224px);
+
+.theme--light {
+    &.v-btn {
+        color: #000000;
+
+        &.v-btn--has-bg {
+            background-color: #dfdfdf;
+
+            &:before {
+                background-color: #ffffff;
+            }
+
+            &.v-btn--disabled {
+                color: #000000 !important;
+
+                &.v-btn--has-bg {
+                    background-color: #fafcfc !important;
+                }
+            }
+        }
+
+        &.v-btn--outlined {
+            color: #ffffff;
+
+            &:hover,
+            &:focus {
+                color: #000000;
+            }
+
+            &:before {
+                background-color: rgba(255, 255, 255, 0.8);
+            }
+
+            &:focus {
+                &:before {
+                    background-color: #ffffff;
+                }
+            }
+        }
     }
-    .right-bar {
-        width: 224px;
-        max-width: 224px;
-    }
+}
+
+.buttonsAct {
+    top: 20px;
+    position: absolute;
+    width: 96%;
+}
+.buttons-img {
+    position: absolute;
+    width: 95%;
+    z-index: 2;
+    top: 5%;
+    padding: 15px;
+}
+.button-espe {
+    font-size: 10px;
+}
+.markerLoc {
+    top: -37%;
+    position: absolute;
+}
+.btn-img {
+    width: 85% !important;
+}
+.positionColbuttons {
+    position: relative;
+}
+
+.la-border {
+    border-radius: 0.5em;
+}
+
+.v-btn-toggle {
+    border-radius: 0px;
+    height: 20px !important;
+}
+
+.toggle-btn {
+    height: 20px !important;
+    min-width: 20px !important;
+}
+
+.v-divider {
+    border-width: thin 0 0;
+}
+
+.v-divider--vertical {
+    border-width: 0 thin 0 0;
+}
+
+.subtitles-gray {
+    font-size: 12px;
+    color: gray;
+}
+
+.justify-end {
+    text-align: end;
+}
+
+.piechart {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background-image: conic-gradient(from 180deg, #b1771d 0 320deg, #445056 0 336deg, #114b99 0);
+}
+
+.text-size-comp {
+    font-size: 0.6rem;
 }
 </style>

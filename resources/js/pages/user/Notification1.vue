@@ -1,15 +1,19 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="12">
+            <v-col cols="12" class="notificationContainer">
                 <v-row class="d-sm-none toolbarNot">
                     <v-toolbar>
                         <v-toolbar-title>NOTIFICACIONES</v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <custom-button @click.stop="drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
+                        <custom-button @click="drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
                     </v-toolbar>
-                    <v-navigation-drawer v-model="drawer">
-                        <h5>drawer</h5>
+                    <v-navigation-drawer v-model="drawer" class="drawerNot" absolute temporary>
+                        <v-tabs class="tabsCon2" bg-color="teal-darken-3" right vertical v-model="tab">
+                            <v-tab>Novedades</v-tab>
+                            <v-tab>Solicitudes</v-tab>
+                            <v-tab>Reportes</v-tab>
+                        </v-tabs>
                     </v-navigation-drawer>
                 </v-row>
                 <v-row class="d-none d-sm-block">
@@ -21,7 +25,7 @@
                         <v-tab class="tabButton">Reportes</v-tab>
                     </v-tabs>
                 </v-row>
-                <v-row>
+                <v-row class="row-container">
                     <v-tabs-items v-model="tab">
                         <v-tab-item>
                             <v-row>
@@ -105,7 +109,7 @@ export default {
     },
     data() {
         return {
-            drawer: false,
+            drawer: null,
             tab: null
         };
     }
@@ -113,17 +117,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.notificationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .tabButton {
     display: flex;
-    justify-content: space-between;
     background-color: #dfdfdf;
     border-radius: 5px;
     font-weight: 600;
     color: #000;
     letter-spacing: 1.25px;
-    max-width: 246px;
-    width: 30vw;
+    max-width: 100%;
+    width: 100%;
     height: 38px;
+}
+
+.container {
+    padding: 10px 40px;
+}
+
+.row-container {
+    padding: 25px 0 0 0;
 }
 
 .tabButton:hover {
@@ -136,9 +153,13 @@ export default {
     color: #ffffff;
 }
 
-.tabsCon {
+.tabsCon .v-item-group {
     display: flex;
-    justify-content: space-evenly;
+    width: 100% !important;
+}
+
+.tabsCon2 {
+    background-color: #dfdfdf;
 }
 
 .divider {
@@ -148,5 +169,10 @@ export default {
 .toolbarNot {
     padding-bottom: 2vh;
     width: 100%;
+}
+
+.drawerNot {
+    background-color: #dfdfdf;
+    // display: flex;
 }
 </style>

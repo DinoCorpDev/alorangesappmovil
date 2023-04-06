@@ -2,7 +2,7 @@
     <div>
         <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="60" elevation="0">
             <v-container class="pa-0 fill-height justify-space-between" fluid>
-                <router-link :to="{ name: 'TempLanding' }" class="navbar-brand">
+                <router-link :to="{ name: 'Home2' }" class="navbar-brand">
                     <span class="d-none d-sm-block">
                         <v-img
                             v-if="$vuetify.theme.dark"
@@ -27,7 +27,7 @@
                             <template v-if="currentUser.name"> {{ shortName }} </template>
                             <template v-else> Iniciar Sesión </template>
                         </custom-button>
-                        <custom-button class="btn-cart" dark>
+                        <custom-button class="btn-cart" dark :to="{ name: 'Cart' }">
                             <shop-cart-icon class="mr-2 mr-sm-3" />
                             <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
                             <span class="status-indicator" :class="currentUser.name ? 'active' : ''"></span>
@@ -49,7 +49,7 @@ import NabvarBottomBar from "./NabvarBottomBar.vue";
 
 import ShopCartIcon from "../icons/ShopCart.vue";
 
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     components: {
@@ -68,6 +68,12 @@ export default {
         shortName() {
             return this.currentUser.name.split(" ")[0];
         }
+    },
+    methods: {
+        ...mapActions("cart", ["fetchCartProducts"])
+    },
+    created() {
+        this.fetchCartProducts();
     }
 };
 </script>

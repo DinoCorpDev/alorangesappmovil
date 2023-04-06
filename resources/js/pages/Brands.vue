@@ -23,8 +23,8 @@
                 </v-row>
             </div>
             <v-row class="mb-7">
-                <v-col cols="6" sm="6" md="4" lg="2" v-for="i in 12" :key="i">
-                    <card-brand />
+                <v-col cols="6" sm="6" md="4" lg="2" v-for="(brand, i) in brands" :key="i">
+                    <card-brand :bodyImg="brand?.logo" :id="brand?.id" />
                 </v-col>
             </v-row>
         </v-container>
@@ -37,10 +37,24 @@ import CardBrand from "../components/global/CardBrand.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
+    data: () => ({
+        brands: []
+    }),
     components: {
         NabvarBottomBar,
         CardBrand,
         LayoutNavbarAuth
+    },
+    created() {
+        this.getDetails();
+    },
+    methods: {
+        async getDetails() {
+            const res = await this.call_api("get", `all-brands`);
+            if (res.data.success) {
+                this.brands = res.data.data;
+            }
+        }
     }
 };
 </script>

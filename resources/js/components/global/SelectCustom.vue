@@ -1,5 +1,6 @@
 <template>
     <v-select
+        :clearable="clearable"
         :dark="dark"
         :error-messages="errorMessages"
         :hide-details="hideDetails"
@@ -14,7 +15,6 @@
         @input="$emit('input', $event)"
         append-icon="las la-angle-down"
         clear-icon="las la-times"
-        clearable
         flat
         outlined
         rounded
@@ -26,6 +26,10 @@
 export default {
     name: "SelectCustom",
     props: {
+        clearable: {
+            type: Boolean,
+            default: true
+        },
         dark: {
             type: Boolean,
             default: false
@@ -36,7 +40,7 @@ export default {
         },
         hideDetails: {
             type: [Boolean, String],
-            default: false
+            default: "auto"
         },
         itemText: {
             type: String,
@@ -73,7 +77,7 @@ export default {
 <style lang="scss" scoped>
 .v-select {
     font-family: "Roboto", sans-serif;
-    font-size: 15px;
+    font-size: calc(12px + (15 - 12) * var(--screen-size));
     letter-spacing: 0.5px;
 
     &::v-deep {
@@ -123,6 +127,33 @@ export default {
                         &:hover,
                         fieldset {
                             border-color: #f5f5f5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.theme--dark {
+    .v-select {
+        &::v-deep {
+            .v-input__slot {
+                background: #18191a;
+
+                &:hover {
+                    background: #000000;
+                }
+            }
+        }
+
+        &.v-text-field--outlined {
+            &::v-deep {
+                &:not(.v-input--has-state) {
+                    .v-input__slot {
+                        &:hover,
+                        fieldset {
+                            border-color: #18191a;
                         }
                     }
                 }

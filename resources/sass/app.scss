@@ -41,7 +41,11 @@
 
 .v-divider {
     border-color: #dfdfdf !important;
-    border-width: 2px 0 0;
+    // border-width: 2px 0 0;
+}
+
+.h-100 {
+    height: 100%;
 }
 
 a {
@@ -49,47 +53,64 @@ a {
 }
 
 h1 {
-    font-size: 96px;
+    font-size: var(--font-size-h1);
+    font-weight: 300;
+    line-height: calc(43px + (122 - 43) * var(--screen-size));
     letter-spacing: -1.5px;
 }
 
 h2 {
-    font-size: 60px;
+    font-size: var(--font-size-h2);
+    font-weight: 300;
+    line-height: calc(45px + (76 - 45) * var(--screen-size));
     letter-spacing: -0.5px;
 }
 
 h3 {
-    font-size: 48px;
+    font-size: var(--font-size-h3);
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 h4 {
-    font-size: 34px;
+    font-size: var(--font-size-h4);
+    font-weight: 400;
+    letter-spacing: 0.25px;
 }
 
 h5 {
-    font-size: 24px;
+    font-size: var(--font-size-h5);
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 h6 {
-    font-size: 20px;
+    font-size: var(--font-size-h6);
+    font-weight: 500;
+    letter-spacing: 0.15;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-    line-height: 1.1;
+.body1,
+.subt1 {
+    font-size: var(--font-size-body1);
 }
 
-h1,
-h2 {
-    font-weight: 300;
+.body2,
+.subt2 {
+    font-size: var(--font-size-body2);
 }
 
-h5 {
-    font-weight: 400;
-    line-height: 1.3;
+button,
+a {
+    font-size: var(--font-size-body2);
+}
+
+.caption {
+    font-size: var(--font-size-caption);
+}
+
+.overline {
+    font-size: var(--font-size-overline);
 }
 
 .subtitle1 {
@@ -131,55 +152,13 @@ h5 {
 
 @media (max-width: 960px) {
     h1 {
-        font-size: 60px;
         letter-spacing: -0.03px;
-    }
-
-    h2 {
-        font-size: 34px;
-    }
-
-    h3 {
-        font-size: 48px;
-    }
-
-    h4 {
-        font-size: 34px;
-    }
-
-    h5 {
-        font-size: 18px;
-    }
-
-    h6 {
-        font-size: 20px;
     }
 }
 
 @media (max-width: 600px) {
     h1 {
-        font-size: 34px;
         letter-spacing: -0.02px;
-    }
-
-    h2 {
-        font-size: 27px;
-    }
-
-    h3 {
-        font-size: 48px;
-    }
-
-    h4 {
-        font-size: 24px;
-    }
-
-    h5 {
-        font-size: 15px;
-    }
-
-    h6 {
-        font-size: 20px;
     }
 
     .subtitle1 {
@@ -193,25 +172,25 @@ h5 {
 //for scroll styles
 
 .overflow-uw::-webkit-scrollbar {
-width: 7px;
-height: 7px;
+    width: 7px;
+    height: 7px;
 }
 
 .overflow-uw::-webkit-scrollbar-thumb {
-background: #373737;
-border-radius: 4px;
+    background: #373737;
+    border-radius: 4px;
 }
 
 .overflow-uw::-webkit-scrollbar-thumb:hover {
-background: #b3b3b3;
-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .overflow-uw::-webkit-scrollbar-thumb:active {
-background-color: #999999;
+    background-color: #999999;
 }
 
 .overflow-uw::-webkit-scrollbar-track:hover,
 .overflow-uw::-webkit-scrollbar-track:active {
-background: #d4d4d4;
+    background: #d4d4d4;
 }

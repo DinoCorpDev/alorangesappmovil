@@ -2,52 +2,83 @@
     <div>
         <layout-navbar-auth />
         <v-container fluid>
-            <div class="bar">
-                <h5 class="filter">Filtro</h5>
-                <custom-button class="mr-2 ms-2" light text="Nuevo" />
-                <custom-button class="mr-2 ms-2" light text="Colecciones" />
-                <custom-button class="mr-2 ms-2" light text="Planes" />
-                <custom-button class="mr-2 ms-2" light text="Popular" />
-                <custom-button class="mr-2 ms-2" light text="Marcas" />
-                <custom-button class="mr-2 ms-2" light text="Ofertas" />
-            </div>
-
-            <v-divider></v-divider>
-            <div class="cards">
-                <v-row class="d-flex flex-wrap" v-if="products.length > 0">
-                    <v-col cols="12" sm="6" md="4" lg="3" xl="2" v-for="(product, i) in products" :key="i">
-                        <products :product-details="product" :is-loading="loading" />
-                    </v-col>
-                </v-row>
-            </div>
+            <v-row class="filter-bar-wrap mb-5">
+                <v-col cols="12">
+                    <div class="filter-bar">
+                        <h5 class="filter-bar-title mr-8">Filtro</h5>
+                        <div class="filter-bar-actions">
+                            <v-skeleton-loader type="actions" v-if="loading && rootCategories.length == 0" />
+                            <template v-else>
+                                <v-checkbox
+                                    on-icon="la-check"
+                                    class="filter-bar-button"
+                                    hide-details
+                                    v-for="(category, i) in rootCategories"
+                                    :input-value="handleCategoryChecked(category.id)"
+                                    :key="i"
+                                    :label="category.name"
+                                    :ripple="false"
+                                    @change="categoryChange(category.id)"
+                                ></v-checkbox>
+                            </template>
+                        </div>
+                    </div>
+                </v-col>
+            </v-row>
+            <v-row class="d-flex flex-wrap">
+                <v-col cols="12">
+                    <h5 class="search-results" v-if="queryParam.keyword">
+                        {{ $t("search_results_for") }} "{{ queryParam.keyword }}"
+                    </h5>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="2" v-if="loading">
+                    <v-skeleton-loader type="card" />
+                </v-col>
+                <template v-else>
+                    <template v-if="products.length > 0">
+                        <v-col cols="12" sm="6" md="4" lg="2" v-for="(product, i) in products" :key="i">
+                            <product-box :product-details="product" />
+                        </v-col>
+                    </template>
+                    <template v-else>
+                        <v-col cols="12">
+                            {{ $t("no_product_found") }}
+                        </v-col>
+                    </template>
+                </template>
+            </v-row>
         </v-container>
     </div>
 </template>
 
 <script>
 import CustomButton from "../components/global/CustomButton.vue";
-import Products from "../components/global/Products.vue";
+import ProductBox from "../components/product/ProductBox.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
         CustomButton,
-        Products,
-        LayoutNavbarAuth
+        LayoutNavbarAuth,
+        ProductBox
     },
     data() {
         return {
+            loading: true,
             queryParam: {
                 page: 1,
                 categorySlug: null,
                 brandIds: [],
+                categoryIds: [],
                 attributeValues: [],
                 keyword: null,
                 sortBy: "popular",
                 minPrice: null,
                 maxPrice: null
             },
-            products: []
+            products: [],
+            rootCategories: [],
+            currentCategory: {}
         };
     },
     created() {
@@ -55,6 +86,13 @@ export default {
         this.queryParam.categorySlug = this.$route.params.categorySlug || this.queryParam.categorySlug;
         this.queryParam.keyword = this.$route.params.keyword;
         this.queryParam.brandIds = this.$route.params.brandId || this.queryParam.brandIds;
+
+        const categoryIds = this.$route.query.categoryIds;
+        this.queryParam.categoryIds = categoryIds
+            ? categoryIds.length > 1
+                ? categoryIds.map(cat => Number(cat))
+                : [Number(categoryIds)]
+            : this.queryParam.categoryIds;
 
         this.queryParam.page = this.$route.query.page || this.queryParam.page;
         this.queryParam.sortBy = this.$route.query.sortBy || this.queryParam.sortBy;
@@ -73,6 +111,7 @@ export default {
             page: this.queryParam.page,
             categorySlug: this.queryParam.categorySlug,
             brandIds: this.queryParam.brandIds,
+            categoryIds: this.queryParam.categoryIds,
             attributeValues: this.queryParam.attributeValues,
             keyword: this.queryParam.keyword,
             sortBy: this.queryParam.sortBy,
@@ -89,6 +128,7 @@ export default {
             url += `&page=${this.queryParam.page}`;
             url += params.categorySlug ? `&category_slug=${params.categorySlug}` : "";
             url += params.brandIds ? `&brand_ids=${params.brandIds}` : "";
+            url += params.categoryIds ? `&category_ids=${params.categoryIds}` : "";
             url += params.attributeValues ? `&attribute_values=${params.attributeValues}` : "";
             url += params.keyword ? `&keyword=${params.keyword}` : "";
             url += params.sortBy ? `&sort_by=${params.sortBy}` : "";
@@ -111,26 +151,115 @@ export default {
                 this.totalProducts = res.data.total;
                 this.queryParam.page = res.data.currentPage;
             }
+        },
+        categoryChange(id) {
+            if (this.queryParam.categoryIds.indexOf(id) > -1) {
+                let index = this.queryParam.categoryIds.indexOf(id);
+                this.queryParam.categoryIds.splice(index, 1);
+            } else {
+                this.queryParam.categoryIds.push(id);
+            }
+
+            this.$router
+                .push({
+                    query: {
+                        ...this.$route.query,
+                        categoryIds: this.queryParam.categoryIds
+                    }
+                })
+                .catch(() => {});
+
+            this.getList({});
+        },
+        handleCategoryChecked(id) {
+            return this.queryParam.categoryIds.find(categoryId => categoryId == id);
         }
     }
 };
 </script>
 
+<style lang="scss">
+.v-application {
+    &.theme--light {
+        background: #fafcfc;
+    }
+}
+</style>
+
 <style lang="scss" scoped>
-.img {
-    background-color: #dfdfdf;
-    border-radius: 50%;
-    padding: 10px 0;
+.filter-bar {
+    display: flex;
+    align-items: center;
+
+    &-wrap {
+        border-bottom: 1px solid #e4e4e4;
+    }
+
+    &-title {
+        font-size: 15px;
+        letter-spacing: 0.15px;
+        font-weight: 400;
+
+        @media (min-width: 960px) {
+            font-size: 20px;
+        }
+    }
+
+    &-actions {
+        overflow-y: auto;
+        display: flex;
+        gap: 1rem;
+    }
+
+    &-button {
+        &::v-deep {
+            .v-input--selection-controls__input {
+                display: none;
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 38px !important;
+                padding: 0 16px;
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 12px;
+                line-height: 17px;
+                color: #000000;
+                white-space: nowrap;
+
+                @media (min-width: 960px) {
+                    font-size: 14px;
+                }
+            }
+
+            &.v-input--is-label-active {
+                label {
+                    color: #ffffff;
+                }
+            }
+        }
+
+        margin-top: 0;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        padding: 0;
+
+        &:hover {
+            background-color: #dfdfdf;
+        }
+
+        &.v-input--is-label-active {
+            background-color: #000000;
+        }
+    }
 }
 
-.cards {
-    padding: 10px 0;
-    margin: 20px 0px;
-}
-
-.filter {
-    line-height: 42px;
-    padding-right: 30px;
-    display: inline-block;
+.search-results {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 30px;
 }
 </style>
