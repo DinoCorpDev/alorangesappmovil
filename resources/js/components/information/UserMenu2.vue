@@ -3,53 +3,68 @@
         <div style="width: 100%;" class="d-none d-lg-block">
             <div class="buttons">
                 <h6 class="black--text bold">Compras</h6>
-                <custom-button block class="mb-3 mt-3" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
-                <custom-button block class="mb-3" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
-                <custom-button block class="mb-3" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
-                <div class="divider"></div>
-            </div>
-            <div class="buttons">
-                <h6 class="black--text bold">Usuario</h6>
-                <custom-button block class="mb-3 mt-3" color="nero" text="Perfil" :to="{ name: 'Profile' }" />
+                <custom-button
+                    block
+                    class="mb-3 buttons-res mt-3"
+                    color="nero"
+                    text="Terminos y condiciones"
+                    :to="{ name: 'TerminosCondiciones' }"
+                />
+                <custom-button
+                    block
+                    class="mb-3 buttons-res"
+                    color="nero"
+                    text="Poliza de garantia"
+                    :to="{ name: 'PolizaGarantia' }"
+                />
+                <custom-button
+                    block
+                    class="mb-3 buttons-res"
+                    color="nero"
+                    text="Pacto ambiental"
+                    :to="{ name: 'PactoAmbiental' }"
+                />
                 <custom-button
                     block
                     class="mb-3"
                     color="nero"
-                    text="Notificaciones"
-                    :to="{ name: 'NotificationAll' }"
+                    text="Logistica de envio"
+                    :to="{ name: 'LogisticaEnvio' }"
                 />
-                <div class="divider"></div>
-                <custom-button block class="mb-5 mt-5" color="white" @click="logout">
-                    {{ $t("logout") }}
-                </custom-button>
-                <div class="divider"></div>
+                <custom-button block class="mb-3" color="nero" text="Metodo de pago" :to="{ name: 'MetodoPago' }" />
+                <custom-button
+                    block
+                    class="mb-3"
+                    color="nero"
+                    text="Privacidad y cookies"
+                    :to="{ name: 'PrivacidadCokies' }"
+                />
             </div>
         </div>
         <div style="width: 100%;" class="mt-5 d-lg-none d-sm-flex d-md-flex">
-            <custom-button class="btn-responsive" color="white" @click="logout">
-                {{ $t("logout") }}
-            </custom-button>
             <v-row class="buttons">
-                <v-col cols="col">
-                    <custom-button block class="" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
-                </v-col>
-                <v-col cols="col">
-                    <custom-button block class="" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
-                </v-col>
-                <v-col cols="col">
-                    <custom-button block class="" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
-                </v-col>
-                <v-col cols="col">
-                    <custom-button block class="" color="nero" text="Perfil" :to="{ name: 'Profile' }" />
-                </v-col>
                 <v-col cols="col">
                     <custom-button
                         block
-                        class="mb-3"
                         color="nero"
-                        text="Notificaciones"
-                        :to="{ name: 'NotificationAll' }"
+                        text="Terminos y condiciones"
+                        :to="{ name: 'TerminosCondiciones' }"
                     />
+                </v-col>
+                <v-col cols="col">
+                    <custom-button block color="nero" text="Poliza de garantia" :to="{ name: 'PolizaGarantia' }" />
+                </v-col>
+                <v-col cols="col">
+                    <custom-button block color="nero" text="Pacto ambiental" :to="{ name: 'PactoAmbiental' }" />
+                </v-col>
+                <v-col cols="col">
+                    <custom-button block color="nero" text="Logistica de envio" :to="{ name: 'LogisticaEnvio' }" />
+                </v-col>
+                <v-col cols="col">
+                    <custom-button block class="" color="nero" text="Metodo de pago" :to="{ name: 'MetodoPago' }" />
+                </v-col>
+                <v-col cols="col">
+                    <custom-button block color="nero" text="Privacidad y cookies" :to="{ name: 'PrivacidadCokies' }" />
                 </v-col>
             </v-row>
         </div>
@@ -60,16 +75,6 @@
 import { mapGetters, mapActions } from "vuex";
 import CustomButton from "../../components/global/CustomButton.vue";
 export default {
-    data: () => ({
-        drawer: false,
-        group: null
-    }),
-
-    watch: {
-        group() {
-            this.drawer = false;
-        }
-    },
     components: {
         CustomButton
     },
@@ -181,15 +186,12 @@ export default {
 .col {
     padding: 3px;
 }
-.btn-responsive {
-    position: absolute;
-    right: 0%;
-    top: 15%;
-    font-size: 16px;
-}
 .buttons {
     padding: 0 10px;
     margin-left: 0px;
     width: 100%;
+}
+.buttons-res {
+    padding-right: 15px !important;
 }
 </style>

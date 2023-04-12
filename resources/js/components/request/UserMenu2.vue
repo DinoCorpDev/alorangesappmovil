@@ -8,21 +8,21 @@
                     class="mb-3 buttons-res mt-3"
                     color="nero"
                     text="Vista de Diseñador"
-                    :to="{ name: 'Upgrade' }"
+                    :to="{ name: 'VistaDiseñador' }"
                 />
                 <custom-button
                     block
                     class="mb-3 buttons-res"
                     color="nero"
                     text="Revision Técnica"
-                    :to="{ name: 'Upgrade' }"
+                    :to="{ name: 'RevisionTecnica' }"
                 />
                 <custom-button
                     block
                     class="mb-3 buttons-res"
                     color="nero"
                     text="Soporte Tecnico"
-                    :to="{ name: 'Upgrade' }"
+                    :to="{ name: 'SoporteTecnico' }"
                 />
                 <custom-button block class="mb-3" color="nero" text="Renovación UpGrade" :to="{ name: 'Upgrade' }" />
             </div>
@@ -30,13 +30,31 @@
         <div style="width: 100%;" class="mt-5 d-lg-none d-sm-flex d-md-flex">
             <v-row class="buttons">
                 <v-col cols="3">
-                    <custom-button block class="" color="nero" text="Vista de Diseñador" :to="{ name: 'Upgrade' }" />
+                    <custom-button
+                        block
+                        class=""
+                        color="nero"
+                        text="Vista de Diseñador"
+                        :to="{ name: 'VistaDiseñador' }"
+                    />
                 </v-col>
                 <v-col cols="3">
-                    <custom-button block class="" color="nero" text="Revision Técnica" :to="{ name: 'Upgrade' }" />
+                    <custom-button
+                        block
+                        class=""
+                        color="nero"
+                        text="Revision Técnica"
+                        :to="{ name: 'RevisionTecnica' }"
+                    />
                 </v-col>
                 <v-col cols="3">
-                    <custom-button block class="" color="nero" text="Soporte Tecnico" :to="{ name: 'Upgrade' }" />
+                    <custom-button
+                        block
+                        class=""
+                        color="nero"
+                        text="Soporte Tecnico"
+                        :to="{ name: 'SoporteTecnico' }"
+                    />
                 </v-col>
                 <v-col cols="3">
                     <custom-button block class="" color="nero" text="Renovación UpGrade" :to="{ name: 'Upgrade' }" />

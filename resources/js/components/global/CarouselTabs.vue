@@ -1,7 +1,12 @@
 <template>
     <v-row class="primary rounded-section" no-gutters>
         <v-col>
-            <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" style="height: 100%" height="600px">
+            <v-carousel
+                :hide-delimiters="hideDelimiters"
+                :show-arrows="showArrows"
+                style="height: 100%;"
+                height="600px"
+            >
                 <template v-slot:prev="{ on, attrs }">
                     <v-btn small color="#000000" v-bind="attrs" v-on="on">
                         <i class="las la-angle-left"></i>
@@ -20,10 +25,10 @@
                             :aspect-ratio="aspectRatio"
                             height="600px"
                         >
-                            <v-col cols="12" md="5" style="padding-top: 320px">
+                            <v-col cols="12" md="5" style="padding-top: 320px;">
                                 <div class="pa-4">
                                     <div>
-                                        <h2 class="text-uppercase">{{ title }}</h2>
+                                        <h3 class="title-baner">{{ title }}</h3>
                                         <p class="body1">{{ description }}</p>
                                         <h7 class="text-uppercase">{{ tags }}</h7>
                                     </div>
@@ -148,6 +153,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title-baner {
+    font-size: 35px;
+}
 .v-carousel {
     @media (max-width: 960px) {
         border-top-left-radius: 0;

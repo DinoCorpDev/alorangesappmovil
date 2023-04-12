@@ -53,10 +53,11 @@ export default {
 <style lang="scss" scoped>
 .product-item {
     border-radius: 10px;
-    background-color: #18191a;
+    background-color: #f5f5f5;
+    color: #000;
 
     &-image {
-        background-color: #242526;
+        background-color: #f5f5f5;
     }
 
     &-image,

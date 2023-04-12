@@ -26,36 +26,35 @@
                                     </v-avatar>
                                 </div>
                             </div>
-                            <p class="black--text text-uppercase bold mt-3 name-font">{{ currentUser.name }}</p>
+                            <p class="black--text text-uppercase bold mt-3 name-font">INFORMACION</p>
                         </v-list-item>
                         <div class="divider"></div>
-                        <h6 class="black--text bold ml-4 mt-2">Compras</h6>
-
-                        <v-list-item>
-                            <custom-button block class="mb-3 mt-3" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
-                        </v-list-item>
-                        <v-list-item>
-                            <custom-button
-                                block
-                                class="mb-3"
-                                color="nero"
-                                text="Favoritos"
-                                :to="{ name: 'Favorites' }"
-                            />
-                        </v-list-item>
-                        <v-list-item>
-                            <custom-button block class="mb-3" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
-                        </v-list-item>
-                        <div class="divider"></div>
-                        <h6 class="black--text bold ml-4 mt-2">Usuario</h6>
 
                         <v-list-item>
                             <custom-button
                                 block
                                 class="mb-3 mt-3"
                                 color="nero"
-                                text="Perfil"
-                                :to="{ name: 'Profile' }"
+                                text="Terminos y condiciones"
+                                :to="{ name: 'TerminosCondiciones' }"
+                            />
+                        </v-list-item>
+                        <v-list-item>
+                            <custom-button
+                                block
+                                class="mb-3"
+                                color="nero"
+                                text="Poliza de garantia"
+                                :to="{ name: 'PolizaGarantia' }"
+                            />
+                        </v-list-item>
+                        <v-list-item>
+                            <custom-button
+                                block
+                                class="mb-3"
+                                color="nero"
+                                text="Pacto ambiental"
+                                :to="{ name: 'PactoAmbiental' }"
                             />
                         </v-list-item>
 
@@ -64,8 +63,8 @@
                                 block
                                 class="mb-3"
                                 color="nero"
-                                text="Notificaciones"
-                                :to="{ name: 'NotificationAll' }"
+                                text="Logistica de envio"
+                                :to="{ name: 'LogisticaEnvio' }"
                             />
                         </v-list-item>
                         <v-list-item>
@@ -73,14 +72,9 @@
                                 block
                                 class="mb-3"
                                 color="nero"
-                                text="Informacion"
-                                :to="{ name: 'PactoAmbiental' }"
+                                text="Privacidad y cookies"
+                                :to="{ name: 'PrivacidadCokies' }"
                             />
-                        </v-list-item>
-                        <v-list-item>
-                            <custom-button block class="mb-5 mt-5" color="white" @click="logout">
-                                {{ $t("logout") }}
-                            </custom-button>
                         </v-list-item>
                     </v-list>
                 </v-navigation-drawer>

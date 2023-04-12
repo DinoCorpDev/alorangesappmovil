@@ -36,7 +36,7 @@
                 </v-col>
                 <template v-else>
                     <template v-if="products.length > 0">
-                        <v-col cols="12" sm="6" md="4" lg="2" v-for="(product, i) in products" :key="i">
+                        <v-col cols="6" sm="4" md="4" lg="2" v-for="(product, i) in products" :key="i">
                             <product-box :product-details="product" />
                         </v-col>
                     </template>

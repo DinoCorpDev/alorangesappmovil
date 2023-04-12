@@ -4,21 +4,21 @@ const spacesSeeder = [
     name: "Espacio",
     description:
       "Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text.",
-    img: "https://picsum.photos/610/720?random=1"
+    img: "/public/assets/img/cocinalinea.png"
   },
   {
     id: "2",
     name: "Espacio 2",
     description:
       "Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text.",
-    img: "https://picsum.photos/610/720?random=2"
+    img: "/public/assets/img/cocinau.png"
   },
   {
     id: "3",
     name: "Espacio 3",
     description:
       "Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text.",
-    img: "https://picsum.photos/610/720?random=3"
+    img: "/public/assets/img/lamparas.png"
   },
   {
     id: "4",
