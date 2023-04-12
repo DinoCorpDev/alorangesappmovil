@@ -695,7 +695,7 @@ import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
 import Carousel from "../components/global/Carousel.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 // import ChartView from "../components/global/ChartView.vue";
-
+import { mapActions } from "vuex";
 export default {
     data: () => ({
         productDetails: {},
@@ -744,6 +744,7 @@ export default {
             if (res.data.success) {
                 res.data?.data?.map(product => {
                     this.moreProducts.push({
+                        id: product?.id,
                         name: product?.name,
                         val: product?.base_price + " " + product?.currency,
                         img: product?.thumbnail_image,
@@ -760,6 +761,7 @@ export default {
             if (res.data.success) {
                 res.data?.data?.map(product => {
                     this.footerProducts.push({
+                        id: product?.id,
                         name: product?.name,
                         val: product?.base_price + " " + product?.currency,
                         img: product?.thumbnail_image,

@@ -179,7 +179,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $cartItems = Cart::whereIn('id',$request->cart_item_ids)->with(['variation.product'])->get();
+        $cartItems = Cart::whereIn('id',$request->cart_item_ids)->get();
         $shippingAddress = Address::find($request->shipping_address_id);
         $billingAddress = Address::find($request->billing_address_id);
         $shippingCity = City::with('zone')->find($shippingAddress->city_id);
@@ -209,32 +209,31 @@ class OrderController extends Controller
                 'message' => translate('Please select a delivery option.')
             ]);
 
-        if(!$shippingCity->zone)
-            return response()->json([
-                'success' => false,
-                'message' => translate('Sorry, delivery is not available in this shipping address.')
-            ]);
-
-        foreach ($cartItems as $cartItem) {
-            if(!$cartItem->variation->stock){
+        if(!empty($shippingCity->zone)){
+            if(!$shippingCity->zone)
                 return response()->json([
                     'success' => false,
-                    'message' => $cartItem->variation->product->getTranslation('name').' '.translate('is out of stock.')
+                    'message' => translate('Sorry, delivery is not available in this shipping address.')
                 ]);
-            }
         }
 
-        if($request->delivery_type == 'standard'){
-            $shipping_cost = $shippingCity->zone->standard_delivery_cost;
-        }elseif($request->delivery_type == 'express'){
-            $shipping_cost = $shippingCity->zone->express_delivery_cost;
+        try {
+            if($request->delivery_type == 'standard'){
+                $shipping_cost = $shippingCity->zone->standard_delivery_cost;
+            }elseif($request->delivery_type == 'express'){
+                $shipping_cost = $shippingCity->zone->express_delivery_cost;
+            }
+        } catch (\Throwable $th) {
+            $shipping_cost = 0;
         }
+
+        
 
         // generate array of shops cart items
         $shops_cart_items = array();
         foreach ($cartItems as $cartItem){
             $cart_ids = array();
-            $product = $cartItem->variation->product;
+            $product = $cartItem->product;
             if(isset($shops_cart_items[$product->shop_id])){
                 $cart_ids = $shops_cart_items[$product->shop_id];
             }
@@ -276,8 +275,8 @@ class OrderController extends Controller
 
             //shop total amount calculation
             foreach ($shop_cart_items as $cartItem) {
-                $itemPriceWithoutTax = variation_discounted_price($cartItem->variation->product,$cartItem->variation,false)*$cartItem->quantity;
-                $itemTax = product_variation_tax($cartItem->variation->product,$cartItem->variation)*$cartItem->quantity;
+                $itemPriceWithoutTax = variation_discounted_price($cartItem->product,$cartItem,false)*$cartItem->quantity;
+                $itemTax = product_variation_tax($cartItem->product,$cartItem)*$cartItem->quantity;
 
                 $shop_subTotal += $itemPriceWithoutTax;
                 $shop_tax += $itemTax;
@@ -322,8 +321,8 @@ class OrderController extends Controller
     
 
             foreach ($shop_cart_items as $cartItem) {
-                $itemPriceWithoutTax = variation_discounted_price($cartItem->variation->product,$cartItem->variation,false);
-                $itemTax = product_variation_tax($cartItem->variation->product,$cartItem->variation);
+                $itemPriceWithoutTax = variation_discounted_price($cartItem->product,$cartItem,false);
+                $itemTax = product_variation_tax($cartItem->product,$cartItem);
     
                 $orderDetail = OrderDetail::create([
                     'order_id' => $order->id,
@@ -356,7 +355,12 @@ class OrderController extends Controller
                 return $t->tax * $t->quantity;
             });
 
-            $shop_commission = Shop::find($shop_id)->commission;
+            try {
+                $shop_commission = Shop::find($shop_id)->commission;
+            } catch (\Throwable $th) {
+                $shop_commission = 0.00;
+            }
+            
             $admin_commission = 0.00;
             $seller_earning = $shop_total;
             if($shop_commission > 0){

@@ -1,7 +1,7 @@
 <template>
     <div class="product-box">
         <div class="product-box-header">
-            <button type="button" class="icon">
+            <button type="button" class="icon" @click="addNewWishlist(productDetails.id)">
                 <favorite-icon />
             </button>
         </div>
@@ -60,6 +60,10 @@ export default {
         };
     },
     methods: {
+        ...mapActions("wishlist",[
+            "addNewWishlist",
+            "removeFromWishlist",
+        ]),
         ...mapActions("cart", ["addToCart", "updateQuantity"]),
         async addCart() {
             this.addToCart({
