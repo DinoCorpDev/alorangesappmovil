@@ -29,13 +29,10 @@ export default {
     },
     data: () => ({
         currentPage: 1,
-        totalPages: 1,
+        totalPages: 1
     }),
     computed: {
-        ...mapGetters("wishlist",[
-            "wislistLoaded",
-            "getWislistProducts"
-        ]),
+        ...mapGetters("wishlist", ["wislistLoaded", "getWislistProducts"])
     }
 };
 </script>

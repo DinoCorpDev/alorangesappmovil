@@ -60,10 +60,7 @@ export default {
         };
     },
     methods: {
-        ...mapActions("wishlist",[
-            "addNewWishlist",
-            "removeFromWishlist",
-        ]),
+        ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
         ...mapActions("cart", ["addToCart", "updateQuantity"]),
         async addCart() {
             this.addToCart({

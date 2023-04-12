@@ -391,7 +391,13 @@
                                 </div>
                             </div>
                             <div>
-                                <custom-button color="nero" text="Finalizar" @click="proceedCheckout()" :loading="checkoutLoading" :disabled="checkoutLoading"/>
+                                <custom-button
+                                    color="nero"
+                                    text="Finalizar"
+                                    @click="proceedCheckout()"
+                                    :loading="checkoutLoading"
+                                    :disabled="checkoutLoading"
+                                />
                             </div>
                         </div>
                     </v-col>
@@ -897,7 +903,7 @@ export default {
         TypePayment,
         Total,
         AddressDialog,
-        ProfileDialog    
+        ProfileDialog
     },
     data() {
         return {
@@ -944,7 +950,6 @@ export default {
             this.snack({ message: `Please select a cart product`, color: "red" });
             if (res.data.success) {
                 res?.data?.data?.map(address => {
-                    
                     if (address?.default_shipping == 1) {
                         this.addressPrincipal = address;
                     }
@@ -989,26 +994,44 @@ export default {
             this.profileDialogShow = false;
             this.getUser();
         },
-        async proceedCheckout(){
+        async proceedCheckout() {
             let formData = new FormData();
-            formData.append('shipping_address_id', this.useDefaultAddress1 ? (this.addressPrincipal?.id ? this.addressPrincipal?.id : "") : (this.addressServicio.id ? this.addressServicio.id : ""));
-            formData.append('billing_address_id', this.useDefaultAddress2 ? (this.addressPrincipal?.id ? this.addressPrincipal?.id : "") : (this.addressFacturacion?.id ? this.addressFacturacion?.id : ""));
-            formData.append('delivery_type', "standard");
-            this.cartItems.forEach((item, index)=>{
-                formData.append('cart_item_ids[]', item?.cart_id); 
-            })
+            formData.append(
+                "shipping_address_id",
+                this.useDefaultAddress1
+                    ? this.addressPrincipal?.id
+                        ? this.addressPrincipal?.id
+                        : ""
+                    : this.addressServicio.id
+                    ? this.addressServicio.id
+                    : ""
+            );
+            formData.append(
+                "billing_address_id",
+                this.useDefaultAddress2
+                    ? this.addressPrincipal?.id
+                        ? this.addressPrincipal?.id
+                        : ""
+                    : this.addressFacturacion?.id
+                    ? this.addressFacturacion?.id
+                    : ""
+            );
+            formData.append("delivery_type", "standard");
+            this.cartItems.forEach((item, index) => {
+                formData.append("cart_item_ids[]", item?.cart_id);
+            });
 
-            if(this.priceTotal > 0){
+            if (this.priceTotal > 0) {
                 this.checkoutLoading = true;
                 const res = await this.call_api("post", "checkout/order/store", formData);
-                if(res.data.success){
-
-                    this.$router.push({
-                        name: "OrderConfirmed",
-                        query: { orderCode: res.data.order_code}
-                    }).catch(()=>{});
-
-                }else{
+                if (res.data.success) {
+                    this.$router
+                        .push({
+                            name: "OrderConfirmed",
+                            query: { orderCode: res.data.order_code }
+                        })
+                        .catch(() => {});
+                } else {
                     this.snack({
                         message: res.data.message,
                         color: "red"

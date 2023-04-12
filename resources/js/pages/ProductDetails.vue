@@ -695,7 +695,7 @@ import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
 import Carousel from "../components/global/Carousel.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 // import ChartView from "../components/global/ChartView.vue";
-import { mapActions } from "vuex";
+
 export default {
     data: () => ({
         productDetails: {},
