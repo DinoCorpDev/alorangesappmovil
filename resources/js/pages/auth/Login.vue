@@ -27,7 +27,7 @@
                                         required
                                     />
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mb-4">
                                     <label class="black--text">{{ $t("password") }}</label>
                                     <custom-input
                                         v-model="form.password"
@@ -45,7 +45,7 @@
                                     :text="$t('login')"
                                     block
                                     class="mt-3 mb-3"
-                                    color="#888989"
+                                    color="nero"
                                     type="submit"
                                     @click="login"
                                 />
@@ -56,7 +56,7 @@
                             <custom-button
                                 block
                                 light
-                                color="#DFDFDF"
+                                color="grey"
                                 class="mt-3"
                                 text="Registrarse"
                                 :to="{ name: 'Registration' }"
@@ -177,9 +177,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-application {
     &.theme--light {
+        background: #dee0e0;
+    }
+    &.theme--dark {
         background: #dee0e0;
     }
 }

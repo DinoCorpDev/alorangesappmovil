@@ -18,7 +18,6 @@ let Profile2 = () => import("../pages/user/ProfileOld");
 let UserLayout = () => import("../components/user/UserLayout");
 let NotificationAll = () => import("../pages/user/Notification1");
 let Notification = () => import("../pages/user/Notification2");
-let PactoAmbiental = () => import("../pages/user/PactoAmbiental");
 let Error404 = () => import("../pages/errors/404");
 
 export default [
@@ -141,12 +140,6 @@ export default [
                 path: "notification",
                 component: Notification,
                 name: "Notification",
-                meta: { requiresAuth: true }
-            },
-            {
-                path: "pactoAmbiental",
-                component: PactoAmbiental,
-                name: "PactoAmbiental",
                 meta: { requiresAuth: true }
             }
         ]

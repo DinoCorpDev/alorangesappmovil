@@ -26,7 +26,7 @@
                                     </v-avatar>
                                 </div>
                             </div>
-                            <p class="black--text text-uppercase bold mt-3 name-font">SOLICITUDES</p>
+                            <p class="black--text text-uppercase bold mt-3 name-font">INFORMACION</p>
                         </v-list-item>
                         <div class="divider"></div>
 
@@ -35,8 +35,8 @@
                                 block
                                 class="mb-3 mt-3"
                                 color="nero"
-                                text="Vista de Diseñador"
-                                :to="{ name: 'VistaDiseñador' }"
+                                text="Terminos y condiciones"
+                                :to="{ name: 'TerminosCondiciones' }"
                             />
                         </v-list-item>
                         <v-list-item>
@@ -44,8 +44,8 @@
                                 block
                                 class="mb-3"
                                 color="nero"
-                                text="Revision Técnica"
-                                :to="{ name: 'RevisionTecnica' }"
+                                text="Poliza de garantia"
+                                :to="{ name: 'PolizaGarantia' }"
                             />
                         </v-list-item>
                         <v-list-item>
@@ -53,8 +53,8 @@
                                 block
                                 class="mb-3"
                                 color="nero"
-                                text="Soporte Tecnico"
-                                :to="{ name: 'SoporteTecnico' }"
+                                text="Pacto ambiental"
+                                :to="{ name: 'PactoAmbiental' }"
                             />
                         </v-list-item>
 
@@ -63,8 +63,17 @@
                                 block
                                 class="mb-3"
                                 color="nero"
-                                text="Renovación UpGrade"
-                                :to="{ name: 'Upgrade' }"
+                                text="Logistica de envio"
+                                :to="{ name: 'LogisticaEnvio' }"
+                            />
+                        </v-list-item>
+                        <v-list-item>
+                            <custom-button
+                                block
+                                class="mb-3"
+                                color="nero"
+                                text="Privacidad y cookies"
+                                :to="{ name: 'PrivacidadCokies' }"
                             />
                         </v-list-item>
                     </v-list>

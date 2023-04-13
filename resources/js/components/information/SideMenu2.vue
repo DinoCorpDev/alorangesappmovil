@@ -16,10 +16,11 @@
                     </div>
                 </div>
                 <div class="col2">
-                    <h6 class="black--text text-uppercase bold">SOLICITUDES</h6>
+                    <h6 class="black--text text-uppercase bold">INFORMACION</h6>
                 </div>
-                <div class="d-none d-lg-block divider"></div>
+                <div class="d-none d-lg-block divider my-4"></div>
                 <UserMenu2 />
+                <div class="d-none d-lg-block divider my-4"></div>
             </div>
         </div>
     </v-card>
@@ -53,6 +54,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
 @media (max-width: 1025px) {
     .div-img {
         width: 60px;
