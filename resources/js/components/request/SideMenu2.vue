@@ -58,6 +58,7 @@ export default {
         width: 60px;
         height: 60px;
     }
+
     .avatar-res {
         width: 60px !important;
         height: 60px !important;

@@ -54,11 +54,13 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
 @media (max-width: 1025px) {
     .div-img {
         width: 60px;
         height: 60px;
     }
+
     .avatar-res {
         width: 60px !important;
         height: 60px !important;

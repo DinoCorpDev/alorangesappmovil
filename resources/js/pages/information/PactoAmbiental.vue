@@ -89,11 +89,13 @@ export default {
     // display: flex;
     width: 100%;
 }
+
 .data-container {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 }
+
 .divider {
     background-color: #ffffff;
     padding-top: 10px;
@@ -101,16 +103,20 @@ export default {
     width: 100%;
     height: 2px;
 }
+
 .notification-data {
     font: normal normal normal 15px/24px Roboto;
 }
+
 .notification-subtitle {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 .notification-img {
     background-color: #f5f5f5;
 }
+
 .div-container {
     display: flex;
     width: 100%;

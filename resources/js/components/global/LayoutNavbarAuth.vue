@@ -244,11 +244,13 @@ export default {
         background-color: #00ff3a;
     }
 }
+
 .divider {
     background-color: #ffffff;
     width: 100%;
     height: 1px;
 }
+
 .btn-menu-home {
     padding: 0 15px 0 0 !important;
     margin: 0 !important;
@@ -257,12 +259,14 @@ export default {
     color: #000000 !important;
     font-weight: 100;
 }
+
 .btn-menu-home2 {
     color: #000000 !important;
     padding: 0 !important;
     margin: 0 !important;
     background: #f5f5f5 !important;
 }
+
 .menu-color {
     background: #f5f5f5;
     color: #000000;
@@ -270,9 +274,11 @@ export default {
     margin-top: 10px;
     border-radius: 10px;
 }
+
 .v-list-item {
     min-height: 40px;
 }
+
 .btn-home {
     background-image: url("/public/assets/img/icono-home.svg");
     height: 40px !important;

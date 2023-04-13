@@ -33,7 +33,7 @@ export default [
                 component: VistaDiseñador,
                 name: "VistaDiseñador",
                 meta: { requiresAuth: true }
-            },
+            }
         ]
     }
 ];

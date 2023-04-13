@@ -66,7 +66,7 @@
                                 </v-col>
                             </v-row>
                             <v-row justify="center">
-                                <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
+                                <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
                             </v-row>
                         </v-col>
                     </v-row>
@@ -124,7 +124,7 @@
                             </v-col>
                         </v-row>
                         <v-row justify="center">
-                            <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
+                            <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
                         </v-row>
                     </div>
                     <div class="mb-4 mt-16">
@@ -151,7 +151,7 @@
                             </v-col>
                         </v-row>
                         <v-row justify="center">
-                            <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
+                            <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
                         </v-row>
                     </div>
 
@@ -187,7 +187,7 @@
                                 </v-col>
                             </v-row>
                             <v-row justify="center">
-                                <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
+                                <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
                             </v-row>
                         </v-col>
                     </v-row>
@@ -251,7 +251,7 @@
                             </v-col>
                         </v-row>
                         <v-row justify="center">
-                            <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
+                            <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
                         </v-row>
                     </div>
 
@@ -303,7 +303,7 @@
                             </v-col>
                         </v-row>
                         <v-row justify="center">
-                            <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
+                            <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
                         </v-row>
                     </div>
 
@@ -339,7 +339,7 @@
                                 </v-col>
                             </v-row>
                             <v-row justify="center">
-                                <custom-button light text="Ver más" class="mt-6" style="width: 40%;" />
+                                <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
                             </v-row>
                         </v-col>
                     </v-row>

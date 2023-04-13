@@ -125,9 +125,11 @@ export default {
     height: 2px;
     margin-left: 15px;
 }
+
 .name-font {
     font-size: 12px;
 }
+
 .user-layout {
     &-sidebar {
         background-color: #f5f5f5;
@@ -137,18 +139,22 @@ export default {
         background-color: #fafcfc;
     }
 }
+
 .data-user {
     display: flex;
     height: 35% !important;
     margin: 10px 0;
 }
+
 .list-cont {
     background: #f5f5f5 !important;
 }
+
 .v-tabs-slider {
     width: 0 !important;
     height: 0 !important;
 }
+
 .div-img {
     background-color: #dfdfdf;
     border-radius: 50%;
@@ -160,6 +166,7 @@ export default {
     align-items: center;
     padding: 35px;
 }
+
 .btn-menu {
     justify-content: flex-end;
     display: flex;

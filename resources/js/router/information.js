@@ -15,33 +15,33 @@ export default [
             {
                 path: "pactoAmbiental",
                 component: PactoAmbiental,
-                name: "PactoAmbiental",
+                name: "PactoAmbiental"
             },
             {
                 path: "terminosCondiciones",
                 component: TerminosCondiciones,
-                name: "TerminosCondiciones",
+                name: "TerminosCondiciones"
             },
             {
                 path: "polizaGarantia",
                 component: PolizaGarantia,
-                name: "PolizaGarantia",
+                name: "PolizaGarantia"
             },
             {
                 path: "privacidadCokies",
                 component: PrivacidadCokies,
-                name: "PrivacidadCokies",
+                name: "PrivacidadCokies"
             },
             {
                 path: "metodoPago",
                 component: MetodoPago,
-                name: "MetodoPago",
+                name: "MetodoPago"
             },
             {
                 path: "logisticaEnvio",
                 component: LogisticaEnvio,
-                name: "LogisticaEnvio",
-            },
+                name: "LogisticaEnvio"
+            }
         ]
     }
 ];

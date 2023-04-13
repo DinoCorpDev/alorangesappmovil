@@ -148,6 +148,7 @@ export default {
             background-color: #161616;
         }
     }
+
     &.doubleblack {
         color: #ffffff;
         background-color: rgba(#18191a, 0.5);

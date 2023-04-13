@@ -128,11 +128,13 @@ export default {
         }
     }
 }
+
 .divider {
     background-color: #707070;
     width: 100%;
     height: 1px;
 }
+
 .btn-menu-home {
     padding: 0 15px 0 0 !important;
     margin: 0 !important;
@@ -140,20 +142,24 @@ export default {
     text-transform: capitalize !important;
     font-weight: 100;
 }
+
 .btn-menu-home2 {
     padding: 0 !important;
     margin: 0 !important;
     background: #242526 !important;
 }
+
 .menu-color {
     background: #242526;
     width: 283px;
     margin-top: 10px;
     border-radius: 10px;
 }
+
 .v-list-item {
     min-height: 40px;
 }
+
 .btn-home {
     background-image: url("/public/assets/img/icono-home.svg");
     height: 40px !important;

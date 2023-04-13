@@ -1,6 +1,6 @@
 <template>
-    <div style="width: 100%;">
-        <div style="width: 100%;" class="d-none d-lg-block">
+    <div style="width: 100%">
+        <div style="width: 100%" class="d-none d-lg-block">
             <div class="buttons">
                 <h6 class="black--text bold">Compras</h6>
                 <custom-button
@@ -41,7 +41,7 @@
                 />
             </div>
         </div>
-        <div style="width: 100%;" class="mt-5 d-lg-none d-sm-flex d-md-flex">
+        <div style="width: 100%" class="mt-5 d-lg-none d-sm-flex d-md-flex">
             <v-row class="buttons">
                 <v-col cols="col">
                     <custom-button
@@ -183,14 +183,17 @@ export default {
     width: 100%;
     height: 2px;
 }
+
 .col {
     padding: 3px;
 }
+
 .buttons {
     padding: 0 10px;
     margin-left: 0px;
     width: 100%;
 }
+
 .buttons-res {
     padding-right: 15px !important;
 }

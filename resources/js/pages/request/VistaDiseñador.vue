@@ -44,8 +44,8 @@
                     </transition>
 
                     <button class="box modalButton" @click="showModalOld = true">
-                        <span style="font-size: xx-large; padding-right: 20px;">+</span>
-                        <span style="font-weight: bold; font-weight: bold;">AÑADIR PRODUCTO</span>
+                        <span style="font-size: xx-large; padding-right: 20px">+</span>
+                        <span style="font-weight: bold; font-weight: bold">AÑADIR PRODUCTO</span>
                     </button>
                 </v-row>
             </v-col>
@@ -67,8 +67,8 @@
                         </div>
                     </transition>
                     <button class="box modalButton" @click="showModalNew = true">
-                        <span style="font-size: xx-large; padding-right: 20px;">+</span>
-                        <span style="font-weight: bold; font-weight: bold;">AÑADIR PRODUCTO</span>
+                        <span style="font-size: xx-large; padding-right: 20px">+</span>
+                        <span style="font-weight: bold; font-weight: bold">AÑADIR PRODUCTO</span>
                     </button>
                 </v-row>
             </v-col>
@@ -290,6 +290,7 @@ export default {
     background-repeat: no-repeat;
     background-color: #eee;
 }
+
 .modaSpan {
     text-align: left;
     font: normal normal normal 12px/20px Roboto;
@@ -310,6 +311,7 @@ export default {
     background: white;
     z-index: 101;
 }
+
 .modal-overlay {
     position: absolute;
     top: 0;

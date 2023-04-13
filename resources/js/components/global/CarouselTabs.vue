@@ -1,12 +1,7 @@
 <template>
     <v-row class="primary rounded-section" no-gutters>
         <v-col>
-            <v-carousel
-                :hide-delimiters="hideDelimiters"
-                :show-arrows="showArrows"
-                style="height: 100%;"
-                height="600px"
-            >
+            <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" style="height: 100%" height="600px">
                 <template v-slot:prev="{ on, attrs }">
                     <v-btn small color="#000000" v-bind="attrs" v-on="on">
                         <i class="las la-angle-left"></i>
@@ -25,7 +20,7 @@
                             :aspect-ratio="aspectRatio"
                             height="600px"
                         >
-                            <v-col cols="12" md="5" style="padding-top: 320px;">
+                            <v-col cols="12" md="5" style="padding-top: 320px">
                                 <div class="pa-4">
                                     <div>
                                         <h3 class="title-baner">{{ title }}</h3>
