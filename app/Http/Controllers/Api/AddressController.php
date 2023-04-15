@@ -49,15 +49,23 @@ class AddressController extends Controller
         $address->address = $request->address;
         $address->name = $request->name;
         $address->details = $request->details;
-        $address->country = Country::find($request->country)->name;
         $address->country_id = $request->country;
-        $address->state = State::find($request->state)->name;
         $address->state_id = $request->state;
-        $address->city = City::find($request->city)->name;
         $address->city_id = $request->city;
         $address->neighborhood = $request->neighborhood;
         $address->postal_code = $request->postal_code;
         $address->phone = $request->phone;
+
+        try {
+            $address->country = Country::find($request->country)->name;
+            $address->state = State::find($request->state)->name;
+            $address->city = City::find($request->city)->name;
+        } catch (\Throwable $th) {
+            $address->country = $request->country;
+            $address->state = $request->state;
+            $address->city = $request->city;
+        }
+
         $address->default_shipping = $isShipping == true ? ($shipping_count > 0 ? 0 : 1) : 0;
         $address->default_billing = $isBilling == true ? ($billing_count > 0 ? 0 : 1) : 0;
         $address->default_service = $isService == true ? ($service_count > 0 ? 0 : 1) : 0;

@@ -12,12 +12,12 @@
                 <v-col cols="12" lg="9" class="user-layout-content">
                     <router-view />
                 </v-col>
-                <v-navigation-drawer v-model="drawer" class="drawerNot" absolute temporary>
-                    <v-tabs class="tabsCon2" bg-color="teal-darken-3" center vertical v-model="tab">
-                        <v-tab class="data-user">
+                <v-navigation-drawer v-model="drawer" class="drawerNot list-cont" absolute temporary right>
+                    <v-list class="list-cont" center vertical v-model="tab">
+                        <v-list-item class="data-user">
                             <div class="div-img">
                                 <div>
-                                    <v-avatar size="100">
+                                    <v-avatar size="50">
                                         <img
                                             :src="previewAvatar || currentUser.avatar"
                                             @error="imageFallback($event)"
@@ -26,21 +26,48 @@
                                     </v-avatar>
                                 </div>
                             </div>
-                            <h6 class="black--text text-uppercase bold mt-3">SOLICITUDES</h6>
-                        </v-tab>
-                        <v-tab>
-                            <custom-button color="white" text="Vista de Diseñador" :to="{ name: 'Upgrade' }" />
-                        </v-tab>
-                        <v-tab>
-                            <custom-button color="white" text="Revision Técnica" :to="{ name: 'Upgrade' }" />
-                        </v-tab>
-                        <v-tab>
-                            <custom-button color="white" text="Soporte Tecnico" :to="{ name: 'Upgrade' }" />
-                        </v-tab>
-                        <v-tab>
-                            <custom-button color="white" text="Renovación UpGrade" :to="{ name: 'Upgrade' }" />
-                        </v-tab>
-                    </v-tabs>
+                            <p class="black--text text-uppercase bold mt-3 name-font">SOLICITUDES</p>
+                        </v-list-item>
+                        <div class="divider"></div>
+
+                        <v-list-item>
+                            <custom-button
+                                block
+                                class="mb-3 mt-3"
+                                color="nero"
+                                text="Vista de Diseñador"
+                                :to="{ name: 'VistaDiseñador' }"
+                            />
+                        </v-list-item>
+                        <v-list-item>
+                            <custom-button
+                                block
+                                class="mb-3"
+                                color="nero"
+                                text="Revision Técnica"
+                                :to="{ name: 'RevisionTecnica' }"
+                            />
+                        </v-list-item>
+                        <v-list-item>
+                            <custom-button
+                                block
+                                class="mb-3"
+                                color="nero"
+                                text="Soporte Tecnico"
+                                :to="{ name: 'SoporteTecnico' }"
+                            />
+                        </v-list-item>
+
+                        <v-list-item>
+                            <custom-button
+                                block
+                                class="mb-3"
+                                color="nero"
+                                text="Renovación UpGrade"
+                                :to="{ name: 'Upgrade' }"
+                            />
+                        </v-list-item>
+                    </v-list>
                 </v-navigation-drawer>
             </v-row>
         </v-container>
@@ -77,6 +104,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.divider {
+    background-color: #e4e4e4;
+    width: 88%;
+    height: 2px;
+    margin-left: 15px;
+}
+
+.name-font {
+    font-size: 12px;
+}
+
 .user-layout {
     &-sidebar {
         background-color: #f5f5f5;
@@ -86,22 +124,34 @@ export default {
         background-color: #fafcfc;
     }
 }
+
 .data-user {
-    display: flow-root;
-    height: 45% !important;
+    display: flex;
+    height: 35% !important;
     margin: 10px 0;
 }
+
+.list-cont {
+    background: #f5f5f5 !important;
+}
+
+.v-tabs-slider {
+    width: 0 !important;
+    height: 0 !important;
+}
+
 .div-img {
     background-color: #dfdfdf;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 30px;
+    height: 30px;
     display: flex;
-    margin: auto;
+    margin-right: 15px;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 35px;
 }
+
 .btn-menu {
     justify-content: flex-end;
     display: flex;

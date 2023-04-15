@@ -3,7 +3,7 @@
         <layout-navbar-auth />
         <v-container class="d-flex flex-grow-1">
             <v-row justify="center" align="center">
-                <v-col cols="12" sm="10" md="8" lg="6">
+                <v-col cols="12" sm="12" md="8" lg="6">
                     <div class="wrap pa-3 pa-sm-5 mb-10">
                         <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-8">
                             <h1 class="forgot-password-title">Restablecer contraseña</h1>

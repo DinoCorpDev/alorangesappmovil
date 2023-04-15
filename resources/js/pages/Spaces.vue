@@ -1,12 +1,7 @@
 <template>
     <div>
         <layout-navbar-spaces />
-        <v-tabs
-            :background-color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'"
-            centered
-            fixed-tabs
-            slider-color="white"
-        >
+        <v-tabs :background-color="'#FAFCFC'" centered fixed-tabs slider-color="black">
             <v-tab v-for="tab in tabs" class="text-none" :key="`tab-${tab.text}`">
                 <v-icon left> {{ tab.icon }} </v-icon>
                 {{ tab.text }}
@@ -16,16 +11,20 @@
                 <v-container fluid>
                     <v-row class="mb-2">
                         <v-col cols="12">
-                            <carousel-tabs :slides="sliderSeeder" />
+                            <carousel-tabs
+                                :slides="sliderSeeder"
+                                title="Diseño de espacios"
+                                description="Desde el diseño hasta la instalación, nos encargamos de todo para que tesientas confortable en ese espacio habitable ideal."
+                            />
                         </v-col>
                     </v-row>
 
                     <v-row>
                         <v-col cols="12" md="6" lg="6" xl="6">
-                            <product-item-1 />
+                            <product-item-1 img="/public/assets/img/spacesicon1.png" />
                         </v-col>
                         <v-col cols="12" md="6" lg="6" xl="6">
-                            <product-item-1 />
+                            <product-item-1 img="/public/assets/img/spacesico2.png" />
                         </v-col>
                     </v-row>
 
@@ -440,7 +439,7 @@ export default {
 ::v-deep {
     .theme--dark {
         &.v-tabs-items {
-            background-color: #000000;
+            background-color: #f5f5f5;
         }
     }
 }
@@ -452,7 +451,7 @@ export default {
     }
 }
 .v-tab--active {
-    color: white;
+    color: black;
 }
 
 .v-input__slot,

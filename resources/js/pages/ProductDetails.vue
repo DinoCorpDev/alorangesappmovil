@@ -744,6 +744,7 @@ export default {
             if (res.data.success) {
                 res.data?.data?.map(product => {
                     this.moreProducts.push({
+                        id: product?.id,
                         name: product?.name,
                         val: product?.base_price + " " + product?.currency,
                         img: product?.thumbnail_image,
@@ -760,6 +761,7 @@ export default {
             if (res.data.success) {
                 res.data?.data?.map(product => {
                     this.footerProducts.push({
+                        id: product?.id,
                         name: product?.name,
                         val: product?.base_price + " " + product?.currency,
                         img: product?.thumbnail_image,

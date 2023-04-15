@@ -1,7 +1,7 @@
 <template>
     <v-hover v-slot:default="{ hover }">
         <v-card :class="{ 'on-hover': hover }">
-            <div class="product-item pa-10">
+            <div class="product-item pa-2">
                 <v-row align="center">
                     <v-col cols="3">
                         <div class="product-item-image">
@@ -11,7 +11,7 @@
                     <v-col cols="9" class="pl-6">
                         <h5 class="subtitle1 text-uppercase font-weight-bold mb-3">{{ data.name }}</h5>
                         <p class="mb-4">{{ data.description }}</p>
-                        <custom-button text="Acción" plain class="px-0" />
+                        <custom-button text="Acción" color="white" plain class="px-0" />
                     </v-col>
                 </v-row>
             </div>
@@ -45,10 +45,11 @@ export default {
 <style lang="scss" scoped>
 .product-item {
     border-radius: 10px;
-    background-color: #18191a;
+    background-color: #f5f5f5;
+    color: #000;
 
     &-image {
-        background-color: #242526;
+        background-color: #f5f5f5;
     }
 }
 

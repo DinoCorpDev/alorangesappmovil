@@ -23,7 +23,7 @@
                             <v-col cols="12" md="5" style="padding-top: 320px">
                                 <div class="pa-4">
                                     <div>
-                                        <h2 class="text-uppercase">{{ title }}</h2>
+                                        <h3 class="title-baner">{{ title }}</h3>
                                         <p class="body1">{{ description }}</p>
                                         <h7 class="text-uppercase">{{ tags }}</h7>
                                     </div>
@@ -148,6 +148,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title-baner {
+    font-size: 35px;
+}
 .v-carousel {
     @media (max-width: 960px) {
         border-top-left-radius: 0;

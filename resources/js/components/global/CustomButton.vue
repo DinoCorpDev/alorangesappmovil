@@ -149,8 +149,23 @@ export default {
         }
     }
 
-    &.nero {
+    &.doubleblack {
         color: #ffffff;
+        background-color: rgba(#18191a, 0.5);
+
+        &:hover {
+            background-color: rgba(#18191a, 0.8);
+            color: #000 !important;
+        }
+
+        &:focus {
+            background-color: #18191a;
+            color: #000 !important;
+        }
+    }
+
+    &.nero {
+        color: #ffffff !important;
         background-color: #858585;
 
         &:hover {

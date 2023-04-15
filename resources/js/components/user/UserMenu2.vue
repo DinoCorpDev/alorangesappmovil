@@ -18,7 +18,6 @@
                     text="Notificaciones"
                     :to="{ name: 'NotificationAll' }"
                 />
-                <custom-button block class="mb-3" color="nero" text="Informacion" :to="{ name: 'PactoAmbiental' }" />
                 <div class="divider"></div>
                 <custom-button block class="mb-5 mt-5" color="white" @click="logout">
                     {{ $t("logout") }}
@@ -179,15 +178,18 @@ export default {
     width: 100%;
     height: 2px;
 }
+
 .col {
     padding: 3px;
 }
+
 .btn-responsive {
     position: absolute;
     right: 0%;
     top: 15%;
     font-size: 16px;
 }
+
 .buttons {
     padding: 0 10px;
     margin-left: 0px;
