@@ -337,22 +337,56 @@
                             <v-row>
                                 <v-col cols="3">
                                     <type-payment img="/public/assets/img/transferir.png" text="Pse" />
+                                    <input type="radio" v-model="pick" :value="1" />
                                 </v-col>
                                 <v-col cols="3">
                                     <type-payment img="/public/assets/img/credito.png" text="Credito" />
+                                    <input type="radio" v-model="pick" :value="2" />
                                 </v-col>
                                 <v-col cols="3">
                                     <type-payment img="/public/assets/img/debito.png" text="Debito" />
+                                    <input type="radio" v-model="pick" :value="3" />
                                 </v-col>
                                 <v-col cols="3">
                                     <type-payment img="/public/assets/img/transferir.png" text="Transferir" />
+                                    <input type="radio" v-model="pick" :value="4" />
                                 </v-col>
                             </v-row>
                             <v-divider class="my-3" />
-                            <label class="text-uppercase">Tipo de Persona</label>
-                            <select-custom dark label="Tipo de persona" :items="langSelectItems" />
-                            <label class="text-uppercase">Banco</label>
-                            <select-custom dark label="Seleccionar banco" :items="langSelectItems" />
+                            <div v-if="pick != 4">
+                                <label class="text-uppercase">Tipo de Persona</label>
+                                <select-custom dark label="Tipo de persona" :items="langSelectItems" />
+                                <label class="text-uppercase">Banco</label>
+                                <select-custom dark label="Seleccionar banco" :items="langSelectItems" />
+                            </div>
+                            <div v-if="pick == 4" class="form">
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase bold">PERSONA JURÍDICA</span>
+                                    <span class="body1"> idovela sas </span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase bold">CORREO ELECTRÓNICO</span>
+                                    <span class="body1"> contabilidad@idovela.com </span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase bold">TELÉFONO</span>
+                                    <span class="body1"> 57 125 1254 1254 </span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase bold">NIT</span>
+                                    <span class="body1"> 546456546546 </span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase bold">CUENTA DE AHORROS</span>
+                                    <span class="body1"> 768678678 </span>
+                                </div>
+                                <custom-button
+                                    block
+                                    color="grey"
+                                    text="Añadir comprobante de pago"
+                                />
+                            </div>
+                            
                             <custom-button text="Aplicar" color="grey" />
                         </div>
                     </v-col>
@@ -370,7 +404,7 @@
                         </div>
                         <total :total="priceTotal" />
                         <div class="mb-2">
-                            <custom-button text="Continuar" color="nero" @click="step = 4" />
+                            <custom-button text="Continuar" color="nero" @click="proceedCheckout()" :loading="checkoutLoading" :disabled="checkoutLoading"/>
                         </div>
                     </v-col>
                 </v-row>
@@ -390,17 +424,14 @@
                                     </p>
                                 </div>
                             </div>
-                            <div>
-                                <custom-button color="nero" text="Finalizar" @click="proceedCheckout()" :loading="checkoutLoading" :disabled="checkoutLoading"/>
-                            </div>
                         </div>
                     </v-col>
                     <v-col cols="12">
                         <order
-                            order="ID1222"
-                            day="07"
-                            month="Julio"
-                            year="2020"
+                            :order="dataCheckout?.order_code"
+                            :day="fecha?.getDate()"
+                            :month="new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(fecha)"
+                            :year="fecha?.getFullYear()"
                             colorStatus="red"
                             descriptionStatus="Por aprobar pedido"
                             icon1="la-download"
@@ -915,7 +946,10 @@ export default {
             useDefaultAddress2: false,
             profileSelectedForEdit: {},
             profileDialogShow: false,
-            checkoutLoading: false
+            checkoutLoading: false,
+            dataCheckout: {},
+            fecha: new Date(),
+            pick: 1
         };
     },
     computed: {
@@ -990,31 +1024,33 @@ export default {
             this.getUser();
         },
         async proceedCheckout(){
-            let formData = new FormData();
-            formData.append('shipping_address_id', this.useDefaultAddress1 ? (this.addressPrincipal?.id ? this.addressPrincipal?.id : "") : (this.addressServicio.id ? this.addressServicio.id : ""));
-            formData.append('billing_address_id', this.useDefaultAddress2 ? (this.addressPrincipal?.id ? this.addressPrincipal?.id : "") : (this.addressFacturacion?.id ? this.addressFacturacion?.id : ""));
-            formData.append('delivery_type', "standard");
-            this.cartItems.forEach((item, index)=>{
-                formData.append('cart_item_ids[]', item?.cart_id); 
-            })
+            if(Object.entries(this.dataCheckout).length === 0){
+                let formData = new FormData();
+                formData.append('shipping_address_id', this.useDefaultAddress1 ? (this.addressPrincipal?.id ? this.addressPrincipal?.id : "") : (this.addressServicio.id ? this.addressServicio.id : ""));
+                formData.append('billing_address_id', this.useDefaultAddress2 ? (this.addressPrincipal?.id ? this.addressPrincipal?.id : "") : (this.addressFacturacion?.id ? this.addressFacturacion?.id : ""));
+                formData.append('delivery_type', "standard");
+                this.cartItems.forEach((item, index)=>{
+                    formData.append('cart_item_ids[]', item?.cart_id); 
+                })
 
-            if(this.priceTotal > 0){
-                this.checkoutLoading = true;
-                const res = await this.call_api("post", "checkout/order/store", formData);
-                if(res.data.success){
+                if(this.priceTotal > 0){
+                    this.checkoutLoading = true;
+                    const res = await this.call_api("post", "checkout/order/store", formData);
+                    if(res.data.success){
 
-                    this.$router.push({
-                        name: "OrderConfirmed",
-                        query: { orderCode: res.data.order_code}
-                    }).catch(()=>{});
+                        this.dataCheckout = res.data;
+                        this.step = 4;
 
-                }else{
-                    this.snack({
-                        message: res.data.message,
-                        color: "red"
-                    });
+                    }else{
+                        this.snack({
+                            message: res.data.message,
+                            color: "red"
+                        });
+                    }
+                    this.checkoutLoading = false;
                 }
-                this.checkoutLoading = false;
+            }else{
+                this.step = 4;
             }
         }
     },

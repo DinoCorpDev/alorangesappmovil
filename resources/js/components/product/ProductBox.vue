@@ -34,7 +34,7 @@
             </template>
         </div>
         <div class="product-box-footer pt-0">
-            <custom-button block color="nero" text="Agregar a Compras" @click="addCart()" />
+            <custom-button block color="nero" text="Agregar a Compras" @click="addCart()" :loading="actionLoading" :disabled="actionLoading"/>
         </div>
     </div>
 </template>
@@ -52,7 +52,8 @@ export default {
     },
     props: {
         boxStyle: { type: String, default: "one" },
-        productDetails: { type: Object, required: true, default: {} }
+        productDetails: { type: Object, required: true, default: {} },
+        actionLoading: false
     },
     data() {
         return {
@@ -66,6 +67,7 @@ export default {
         ]),
         ...mapActions("cart", ["addToCart", "updateQuantity"]),
         async addCart() {
+            this.actionLoading = true;
             this.addToCart({
                 variation_id: this.productDetails.id,
                 qty: 1
@@ -74,6 +76,9 @@ export default {
                 message: this.$i18n.t("product_added_to_cart"),
                 color: "green"
             });
+            setTimeout(()=>{
+                this.actionLoading = false;
+            },2000)
         }
     }
 };
