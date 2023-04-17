@@ -25,7 +25,7 @@
                                     <div>
                                         <h3 class="title-baner">{{ title }}</h3>
                                         <p class="body1">{{ description }}</p>
-                                        <h7 class="text-uppercase">{{ tags }}</h7>
+                                        <h6 class="text-uppercase">{{ tags }}</h6>
                                     </div>
                                     <div class="mt-4">
                                         <custom-button :text="namebutton" />

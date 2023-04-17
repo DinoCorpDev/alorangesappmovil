@@ -276,7 +276,7 @@
                                 img="/public/assets/img/home/portfolio-design-img.png"
                                 icon="/public/assets/img/home/portfolio-design-icon.svg"
                                 description="Proyecta tus espacias a la mediada que deseas."
-                                :to="{ name: 'Spaces' }"
+                                :to="{ name: 'Shop' }"
                             />
                         </v-col>
                         <v-col cols="12" sm="6" lg="3">
@@ -285,7 +285,7 @@
                                 img="/public/assets/img/home/portfolio-services-img.png"
                                 icon="/public/assets/img/home/portfolio-services-icon.svg"
                                 description="Contrata a profesionales para la instalación y recalibración de tus espacios habitables."
-                                :to="{ name: 'Spaces' }"
+                                :to="{ name: 'Shop' }"
                             />
                         </v-col>
                         <v-col cols="12" sm="6" lg="3">
@@ -294,7 +294,7 @@
                                 img="/public/assets/img/home/portfolio-esp-img.png"
                                 icon="/public/assets/img/home/portfolio-esp-icon.svg"
                                 description="Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar."
-                                :to="{ name: 'Spaces' }"
+                                :to="{ name: 'Shop' }"
                             />
                         </v-col>
                     </v-row>

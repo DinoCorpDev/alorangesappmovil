@@ -2,7 +2,7 @@ let RequestLayout = () => import("../components/request/RequestLayout");
 let Upgrade = () => import("../pages/request/Upgrade");
 let RevisionTecnica = () => import("../pages/request/RevisionTecnica");
 let SoporteTecnico = () => import("../pages/request/SoporteTecnico");
-let VistaDiseñador = () => import("../pages/request/VistaDiseñador");
+let VistaDisenador = () => import("../pages/request/VistaDisenador");
 
 export default [
     {
@@ -29,9 +29,9 @@ export default [
                 meta: { requiresAuth: true }
             },
             {
-                path: "vistaDiseñador",
-                component: VistaDiseñador,
-                name: "VistaDiseñador",
+                path: "vistaDisenador",
+                component: VistaDisenador,
+                name: "VistaDisenador",
                 meta: { requiresAuth: true }
             }
         ]

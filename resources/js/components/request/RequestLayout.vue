@@ -36,7 +36,7 @@
                                 class="mb-3 mt-3"
                                 color="nero"
                                 text="Vista de Diseñador"
-                                :to="{ name: 'VistaDiseñador' }"
+                                :to="{ name: 'VistaDisenador' }"
                             />
                         </v-list-item>
                         <v-list-item>
