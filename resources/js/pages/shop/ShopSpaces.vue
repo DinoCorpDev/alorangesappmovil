@@ -12,18 +12,18 @@
             </v-col>
         </v-row>
 
-        <v-row>
+        <v-row tag="section">
             <v-col cols="12" md="6">
-                <shop-action-card img="/public/assets/img/shop-spaces/icon-msg.png" />
+                <shop-action-card img="/public/assets/img/shop-spaces/icon-msg.png" href="#" />
             </v-col>
             <v-col cols="12" md="6">
-                <shop-action-card img="/public/assets/img/shop-spaces/icon-house.png" />
+                <shop-action-card img="/public/assets/img/shop-spaces/icon-house.png" href="#" />
             </v-col>
         </v-row>
 
-        <v-row>
+        <v-row tag="section">
             <v-col cols="12">
-                <carousel-spaces :spaces="spacesSeeder" />
+                <carousel-spaces :items="itemsPortfolio" />
             </v-col>
         </v-row>
 
@@ -64,7 +64,7 @@ import { productsSeeder, sliderSeeder } from "../../seeders/products";
 
 import Carousel from "../../components/global/Carousel";
 import ShopActionCard from "../../components/shop/ShopActionCard.vue";
-import CarouselSpaces from "../../components/global/CarouselSpaces.vue";
+import CarouselPortfolio from "../../components/global/CarouselPortfolio.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CarouselProducts from "../../components/global/CarouselProducts.vue";
 
@@ -79,12 +79,42 @@ export default {
                 src: "/public/assets/img/shop-spaces/banner-main.png",
                 type: "image"
             }
+        ],
+        itemsPortfolio: [
+            {
+                title: "Cocina en Linea",
+                img: "/public/assets/img/shop-spaces/cocinalinea.png",
+                icon: "/public/assets/img/home/portfolio-design-icon.svg",
+                description: "Proyecta tus espacias a la mediada que deseas.",
+                to: { name: "Shop" }
+            },
+            {
+                title: "Cocina en U",
+                img: "/public/assets/img/shop-spaces/cocinau.png",
+                icon: "/public/assets/img/home/portfolio-services-icon.svg",
+                description: "Contrata a profesionales para la instalación y recalibración de tus espacios habitables.",
+                to: { name: "Shop" }
+            },
+            {
+                title: "ESP",
+                icon: "/public/assets/img/home/portfolio-esp-icon.svg",
+                description:
+                    "Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar.",
+                to: { name: "Shop" }
+            },
+            {
+                title: "ESP",
+                icon: "/public/assets/img/home/portfolio-esp-icon.svg",
+                description:
+                    "Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar.",
+                to: { name: "Shop" }
+            }
         ]
     }),
     components: {
         Carousel,
         ShopActionCard,
-        CarouselSpaces,
+        CarouselPortfolio,
         CustomButton,
         CarouselProducts
     }

@@ -4,7 +4,7 @@
         <div>
             <h6 class="shop-action-card-title mb-3">{{ title }}</h6>
             <p class="shop-action-card-description body1 mb-4">{{ description }}</p>
-            <custom-button class="shop-action-card-btn" text="Acción" plain />
+            <custom-button class="shop-action-card-btn" text="Acción" plain :href="href" :to="to" />
         </div>
     </div>
 </template>
@@ -26,6 +26,12 @@ export default {
         description: {
             type: String,
             default: "Incluye Lorem Ipsum is simply dummy text of the printing"
+        },
+        href: {
+            type: [String, Object]
+        },
+        to: {
+            type: [String, Object]
         }
     },
     components: {

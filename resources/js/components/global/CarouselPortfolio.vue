@@ -1,9 +1,15 @@
 <template>
-    <div>
-        <h5 class="mb-3">{{ title }}</h5>
+    <div class="carousel-portfolio">
+        <h5 class="mb-3">{{ title || "H5" }}</h5>
         <swiper :options="swiperOptions">
-            <swiper-slide v-for="space in spaces" :key="`slide-space-${space.id}`">
-                <space-item :data="space" />
+            <swiper-slide v-for="item in items" :key="`slide-${item.title}`">
+                <portfolio-card
+                    :title="item.title"
+                    :img="item.img"
+                    :icon="item.icon"
+                    :description="item.description"
+                    :to="item.to"
+                />
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
             <div class="swiper-button-prev" slot="button-prev"></div>
@@ -13,23 +19,16 @@
 </template>
 
 <script>
-import SpaceItem from "./SpaceItem.vue";
+import PortfolioCard from "./PortfolioCard.vue";
 
 export default {
-    name: "CarouselSpaces",
+    name: "CarouselPortfolio",
     components: {
-        SpaceItem
+        PortfolioCard
     },
     props: {
-        img: {
-            type: String,
-            default: "/public/assets/img/placeholder-rect.jpg"
-        },
-        title: {
-            type: String,
-            default: "H5"
-        },
-        spaces: {
+        title: String,
+        items: {
             type: Array,
             default: () => []
         }
@@ -39,7 +38,6 @@ export default {
             swiperOptions: {
                 slidesPerView: 1,
                 spaceBetween: 12,
-                // loop: true,
                 pagination: {
                     el: ".swiper-pagination",
                     clickable: true
@@ -53,7 +51,7 @@ export default {
                         slidesPerView: 3,
                         spaceBetween: 20
                     },
-                    768: {
+                    600: {
                         slidesPerView: 2,
                         spaceBetween: 20
                     }
@@ -66,58 +64,74 @@ export default {
 
 <style lang="scss" scoped>
 .swiper-container {
-    @media (max-width: 960px) {
-        padding-bottom: 5rem;
-    }
+    padding-bottom: 5rem;
 
     .swiper-button-prev,
     .swiper-button-next {
-        top: calc(100% - 25px);
+        top: calc(100% - 38px);
+        background: rgba(#000000, 0.5);
+        width: 38px;
+        height: 38px;
+        border-radius: 5px;
+        transition: all 0.1s ease-in-out;
+
+        &:hover {
+            background: rgba(#000000, 0.8);
+        }
 
         &::after {
-            font-size: 16px;
+            color: #fff;
         }
     }
 
-    @media (min-width: 600px) {
-        .swiper-button-prev {
+    .swiper-button-prev {
+        left: 0;
+
+        @media (min-width: 600px) {
             left: 20%;
         }
 
-        .swiper-button-next {
-            right: 20%;
+        @media (min-width: 960px) {
+            left: 37%;
         }
     }
 
-    &::v-deep {
-        .swiper-pagination-bullet {
-            background: #18191a;
-            opacity: 0.6;
+    .swiper-button-next {
+        right: 0;
 
-            &-active {
-                opacity: 1;
-            }
+        @media (min-width: 600px) {
+            right: 20%;
         }
+
+        @media (min-width: 960px) {
+            right: 37%;
+        }
+    }
+
+    .swiper-slide {
+        height: auto;
     }
 
     .swiper-pagination-bullets {
-        width: 75%;
-        left: 12.5%;
+        bottom: 22px;
+        width: 70%;
+        right: 0;
+        margin: auto;
         display: flex;
         justify-content: space-around;
-        bottom: 4%;
 
         @media (min-width: 600px) {
-            width: 40%;
-            left: 30%;
+            width: 30%;
         }
-    }
 
-    @media (min-width: 960px) {
-        .swiper-pagination,
-        .swiper-button-prev,
-        .swiper-button-next {
-            display: none;
+        @media (min-width: 960px) {
+            width: 15%;
+        }
+
+        &::v-deep {
+            .swiper-pagination-bullet {
+                background: #18191a;
+            }
         }
     }
 }
