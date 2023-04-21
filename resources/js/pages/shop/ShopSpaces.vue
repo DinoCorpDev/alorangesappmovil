@@ -1,6 +1,6 @@
 <template>
     <v-container fluid>
-        <v-row tag="main" class="main mb-6">
+        <v-row tag="main" class="main">
             <v-col cols="12">
                 <carousel
                     class="main-carousel"
@@ -13,11 +13,11 @@
         </v-row>
 
         <v-row>
-            <v-col cols="12" md="6" lg="6" xl="6">
-                <product-item-1 img="/public/assets/img/spacesicon1.png" />
+            <v-col cols="12" md="6">
+                <shop-action-card img="/public/assets/img/shop-spaces/icon-msg.png" />
             </v-col>
-            <v-col cols="12" md="6" lg="6" xl="6">
-                <product-item-1 img="/public/assets/img/spacesico2.png" />
+            <v-col cols="12" md="6">
+                <shop-action-card img="/public/assets/img/shop-spaces/icon-house.png" />
             </v-col>
         </v-row>
 
@@ -63,7 +63,7 @@ import { spacesSeeder } from "../../seeders/spaces";
 import { productsSeeder, sliderSeeder } from "../../seeders/products";
 
 import Carousel from "../../components/global/Carousel";
-import ProductItem1 from "../../components/global/ProductItem1.vue";
+import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 import CarouselSpaces from "../../components/global/CarouselSpaces.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CarouselProducts from "../../components/global/CarouselProducts.vue";
@@ -83,7 +83,7 @@ export default {
     }),
     components: {
         Carousel,
-        ProductItem1,
+        ShopActionCard,
         CarouselSpaces,
         CustomButton,
         CarouselProducts

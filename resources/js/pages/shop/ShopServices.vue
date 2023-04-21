@@ -14,13 +14,13 @@
         <div class="mb-2">
             <v-row>
                 <v-col cols="12" sm="12" md="4" lg="4" xl="4">
-                    <product-item-1 />
+                    <shop-action-card />
                 </v-col>
                 <v-col cols="12" sm="12" md="4" lg="4" xl="4">
-                    <product-item-1 />
+                    <shop-action-card />
                 </v-col>
                 <v-col cols="12" sm="12" md="4" lg="4" xl="4">
-                    <product-item-1 />
+                    <shop-action-card />
                 </v-col>
             </v-row>
         </div>
@@ -125,7 +125,7 @@ import { sliderSeeder } from "../../seeders/products";
 
 import Carousel from "../../components/global/Carousel.vue";
 import ProductItem from "../../components/global/ProductItem.vue";
-import ProductItem1 from "../../components/global/ProductItem1.vue";
+import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 import ProductItem2 from "../../components/global/ProductItem2.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import PresentationBanner from "../../components/global/PresentationBanner.vue";
@@ -138,7 +138,7 @@ export default {
     components: {
         Carousel,
         ProductItem,
-        ProductItem1,
+        ShopActionCard,
         ProductItem2,
         CustomButton,
         PresentationBanner

@@ -1,11 +1,11 @@
 <template>
     <v-carousel :class="`carousel-${type}`" :hide-delimiters="hideDelimiters" :show-arrows="showArrows" height="100%">
-        <template v-slot:prev="{ on, attrs }">
+        <template v-if="slides.length > 1" v-slot:prev="{ on, attrs }">
             <v-btn small color="#000000" v-bind="attrs" v-on="on">
                 <i class="las la-angle-left"></i>
             </v-btn>
         </template>
-        <template v-slot:next="{ on, attrs }">
+        <template v-if="slides.length > 1" v-slot:next="{ on, attrs }">
             <v-btn small color="#000000" v-bind="attrs" v-on="on">
                 <i class="las la-angle-right"></i>
             </v-btn>

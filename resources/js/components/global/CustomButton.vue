@@ -106,6 +106,20 @@ export default {
         }
     }
 
+    &.v-btn--plain {
+        min-width: unset;
+        height: unset !important;
+        padding-left: 0;
+        padding-right: 0;
+
+        &::v-deep {
+            .v-btn__content {
+                margin-top: 0;
+                opacity: 1 !important;
+            }
+        }
+    }
+
     &.v-btn--outlined {
         &:hover,
         &:focus {

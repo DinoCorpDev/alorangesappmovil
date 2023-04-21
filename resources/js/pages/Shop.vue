@@ -37,6 +37,12 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.v-application.theme--light {
+    background: #fafcfc;
+}
+</style>
+
 <style lang="scss" scoped>
 ::v-deep {
     .theme--dark {
