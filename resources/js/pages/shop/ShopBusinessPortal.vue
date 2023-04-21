@@ -27,7 +27,7 @@
         </v-row>
         <v-row class="mb-6">
             <v-col cols="12">
-                <carousel-products :products="productsSeeder" />
+                <carousel-actions :products="productsSeeder" />
             </v-col>
         </v-row>
     </v-container>
@@ -38,7 +38,7 @@ import { productsSeeder, sliderSeeder } from "../../seeders/products";
 
 import Carousel from "../../components/global/Carousel.vue";
 import PresentationBanner from "../../components/global/PresentationBanner.vue";
-import CarouselProducts from "../../components/global/CarouselProducts.vue";
+import CarouselActions from "../../components/global/CarouselActions.vue";
 
 export default {
     name: "ShopHomeAppliances",
@@ -49,7 +49,7 @@ export default {
     components: {
         Carousel,
         PresentationBanner,
-        CarouselProducts
+        CarouselActions
     }
 };
 </script>

@@ -27,32 +27,31 @@
             </v-col>
         </v-row>
 
-        <v-row class="mb-6">
+        <v-row tag="section" class="mb-6">
             <v-col cols="12">
                 <h5>H5</h5>
-                <v-row>
-                    <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                        <product-box />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                        <product-box />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                        <product-box />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3" lg="3" xl="3">
-                        <product-box />
+                <v-row class="mb-3">
+                    <v-col
+                        v-for="product in productsSeeder.slice(0, 4)"
+                        :key="`product-col-${product.id}`"
+                        cols="12"
+                        sm="6"
+                        md="3"
+                    >
+                        <product-box boxStyle="two" :productDetails="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
-                    <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
+                    <v-col cols="12" sm="8" md="4">
+                        <custom-button block color="black" text="Ver más" />
+                    </v-col>
                 </v-row>
             </v-col>
         </v-row>
 
-        <v-row class="mb-6">
+        <v-row tag="section" class="mb-6">
             <v-col cols="12">
-                <carousel-products :products="productsSeeder" />
+                <carousel-actions :items="itemsActions" />
             </v-col>
         </v-row>
     </v-container>
@@ -66,7 +65,7 @@ import Carousel from "../../components/global/Carousel";
 import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 import CarouselPortfolio from "../../components/global/CarouselPortfolio.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
-import CarouselProducts from "../../components/global/CarouselProducts.vue";
+import CarouselActions from "../../components/global/CarouselActions.vue";
 
 export default {
     name: "ShopSpaces",
@@ -85,29 +84,30 @@ export default {
                 title: "Cocina en Linea",
                 img: "/public/assets/img/shop-spaces/cocinalinea.png",
                 icon: "/public/assets/img/home/portfolio-design-icon.svg",
-                description: "Proyecta tus espacias a la mediada que deseas.",
-                to: { name: "Shop" }
+                description: "Proyecta tus espacias a la mediada que deseas."
             },
             {
                 title: "Cocina en U",
                 img: "/public/assets/img/shop-spaces/cocinau.png",
                 icon: "/public/assets/img/home/portfolio-services-icon.svg",
-                description: "Contrata a profesionales para la instalación y recalibración de tus espacios habitables.",
-                to: { name: "Shop" }
+                description: "Contrata a profesionales para la instalación y recalibración de tus espacios habitables."
             },
             {
                 title: "ESP",
                 icon: "/public/assets/img/home/portfolio-esp-icon.svg",
                 description:
-                    "Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar.",
-                to: { name: "Shop" }
+                    "Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar."
+            }
+        ],
+        itemsActions: [
+            {
+                img: "/public/assets/img/shop-spaces/action-a.png"
             },
             {
-                title: "ESP",
-                icon: "/public/assets/img/home/portfolio-esp-icon.svg",
-                description:
-                    "Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar.",
-                to: { name: "Shop" }
+                img: "/public/assets/img/shop-spaces/action-b.png"
+            },
+            {
+                img: "/public/assets/img/shop-spaces/action-c.png"
             }
         ]
     }),
@@ -116,7 +116,7 @@ export default {
         ShopActionCard,
         CarouselPortfolio,
         CustomButton,
-        CarouselProducts
+        CarouselActions
     }
 };
 </script>

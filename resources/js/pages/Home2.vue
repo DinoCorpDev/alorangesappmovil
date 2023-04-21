@@ -180,7 +180,7 @@
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <carousel-products :products="productsSeeder" title="Integración" />
+                    <carousel-actions :products="productsSeeder" title="Integración" />
                 </v-col>
             </v-row>
 
@@ -327,7 +327,7 @@ import CustomButton from "../components/global/CustomButton.vue";
 import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
-import CarouselProducts from "../components/global/CarouselProducts.vue";
+import CarouselActions from "../components/global/CarouselActions.vue";
 import FooterCustom from "../components/global/FooterCustom.vue";
 import PolygonElement from "../components/global/PolygonElement.vue";
 import LayoutNavbar from "../components/global/LayoutNavbar.vue";
@@ -343,7 +343,7 @@ export default {
         ProductItem,
         SelectCustom,
         PresentationBanner,
-        CarouselProducts,
+        CarouselActions,
         PolygonElement,
         LayoutNavbar,
         FooterCustom,

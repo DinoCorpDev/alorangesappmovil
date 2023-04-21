@@ -61,7 +61,8 @@ export default {
             default: false
         },
         href: {
-            type: [String, Object]
+            type: String,
+            default: "#"
         },
         to: {
             type: [String, Object]

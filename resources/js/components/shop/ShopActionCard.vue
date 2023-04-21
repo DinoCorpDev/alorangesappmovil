@@ -1,7 +1,7 @@
 <template>
-    <div class="shop-action-card pa-3 pa-sm-6">
-        <img class="shop-action-card-image mr-5" :src="img" />
-        <div>
+    <div class="shop-action-card" :class="boxStyle == 'vertical' ? 'vertical' : 'pa-3 pa-sm-6'">
+        <img class="shop-action-card-image" :class="boxStyle != 'vertical' ? 'mr-5' : ''" :src="img" />
+        <div :class="boxStyle == 'vertical' ? 'pa-3 pa-sm-6' : ''">
             <h6 class="shop-action-card-title mb-3">{{ title }}</h6>
             <p class="shop-action-card-description body1 mb-4">{{ description }}</p>
             <custom-button class="shop-action-card-btn" text="Acción" plain :href="href" :to="to" />
@@ -28,10 +28,15 @@ export default {
             default: "Incluye Lorem Ipsum is simply dummy text of the printing"
         },
         href: {
-            type: [String, Object]
+            type: String,
+            default: "#"
         },
         to: {
             type: [String, Object]
+        },
+        boxStyle: {
+            type: String,
+            default: "horizontal"
         }
     },
     components: {
@@ -46,10 +51,24 @@ export default {
     align-items: center;
     background-color: #f5f5f5;
     border-radius: 10px;
-    cursor: pointer;
+    overflow: hidden;
 
-    &:hover {
-        background-color: #dfdfdf;
+    &:not(.vertical) {
+        cursor: pointer;
+
+        &:hover {
+            background-color: #dfdfdf;
+        }
+    }
+
+    &.vertical {
+        flex-direction: column;
+
+        .shop-action-card-image {
+            width: 100%;
+            height: 30vh;
+            object-fit: cover;
+        }
     }
 
     &-image {

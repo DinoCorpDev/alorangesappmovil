@@ -1,12 +1,13 @@
 <template>
-    <carousel-swiper :title="title" :options="swiperOptions">
+    <carousel-swiper class="carousel-actions" :title="title" :options="swiperOptions">
         <swiper-slide v-for="item in items" :key="`slide-${item.title}`">
-            <portfolio-card
+            <shop-action-card
                 :title="item.title"
                 :img="item.img"
-                :icon="item.icon"
                 :description="item.description"
                 :to="item.to"
+                :href="href"
+                boxStyle="vertical"
             />
         </swiper-slide>
     </carousel-swiper>
@@ -14,13 +15,13 @@
 
 <script>
 import CarouselSwiper from "./CarouselSwiper.vue";
-import PortfolioCard from "./PortfolioCard.vue";
+import ShopActionCard from "../shop/ShopActionCard.vue";
 
 export default {
-    name: "CarouselPortfolio",
+    name: "CarouselProducts",
     components: {
         CarouselSwiper,
-        PortfolioCard
+        ShopActionCard
     },
     props: {
         title: String,
@@ -32,16 +33,17 @@ export default {
     data() {
         return {
             swiperOptions: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 12,
                 breakpoints: {
-                    960: {
-                        slidesPerView: 3,
-                        spaceBetween: 20
-                    },
                     600: {
                         slidesPerView: 2,
-                        spaceBetween: 20
+                        centeredSlides: true
+                    },
+                    960: {
+                        slidesPerView: 3,
+                        spaceBetween: 20,
+                        centeredSlides: false
                     }
                 }
             }
