@@ -2,7 +2,13 @@
     <v-container fluid>
         <v-row>
             <v-col cols="12">
-                <carousel-tabs :slides="sliderSeeder" :showbutton="false" />
+                <carousel
+                    class="main-carousel"
+                    :slides="sliderSeeder"
+                    type="description"
+                    title="Diseño de espacios"
+                    description="Desde el diseño hasta la instalación, nos encargamos de todo para que te sientas confortable en ese espacio habitable ideal."
+                />
             </v-col>
         </v-row>
         <v-row>
@@ -30,7 +36,7 @@
 <script>
 import { productsSeeder, sliderSeeder } from "../../seeders/products";
 
-import CarouselTabs from "../../components/global/CarouselTabs.vue";
+import Carousel from "../../components/global/Carousel.vue";
 import PresentationBanner from "../../components/global/PresentationBanner.vue";
 import CarouselProducts from "../../components/global/CarouselProducts.vue";
 
@@ -41,7 +47,7 @@ export default {
         sliderSeeder
     }),
     components: {
-        CarouselTabs,
+        Carousel,
         PresentationBanner,
         CarouselProducts
     }

@@ -61,7 +61,7 @@ import Carousel from "./Carousel";
 import CustomButton from "./CustomButton.vue";
 
 export default {
-    name: "CarouselTabs",
+    name: "CarouselNav",
     props: {
         title: {
             type: String,

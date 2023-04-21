@@ -353,8 +353,12 @@ export default {
         return {
             selectedCode: null,
             sliderSeeder,
-            sliderItems: [{ src: "/public/assets/img/home/banner-home.png", type: "image" }],
-
+            sliderItems: [
+                {
+                    src: "/public/assets/img/home/banner-home.png",
+                    type: "image"
+                }
+            ],
             productsSeeder: [
                 {
                     id: "1",

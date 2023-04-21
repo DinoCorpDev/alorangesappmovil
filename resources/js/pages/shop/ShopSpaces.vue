@@ -1,11 +1,13 @@
 <template>
     <v-container fluid>
-        <v-row class="mb-2">
+        <v-row tag="main" class="main mb-6">
             <v-col cols="12">
-                <carousel-tabs
-                    :slides="sliderSeeder"
+                <carousel
+                    class="main-carousel"
+                    :slides="sliderItems"
+                    type="description"
                     title="Diseño de espacios"
-                    description="Desde el diseño hasta la instalación, nos encargamos de todo para que tesientas confortable en ese espacio habitable ideal."
+                    description="Desde el diseño hasta la instalación, nos encargamos de todo para que te sientas confortable en ese espacio habitable ideal."
                 />
             </v-col>
         </v-row>
@@ -60,7 +62,7 @@
 import { spacesSeeder } from "../../seeders/spaces";
 import { productsSeeder, sliderSeeder } from "../../seeders/products";
 
-import CarouselTabs from "../../components/global/CarouselTabs.vue";
+import Carousel from "../../components/global/Carousel";
 import ProductItem1 from "../../components/global/ProductItem1.vue";
 import CarouselSpaces from "../../components/global/CarouselSpaces.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
@@ -71,10 +73,16 @@ export default {
     data: () => ({
         spacesSeeder,
         productsSeeder,
-        sliderSeeder
+        sliderSeeder,
+        sliderItems: [
+            {
+                src: "/public/assets/img/shop-spaces/banner-main.png",
+                type: "image"
+            }
+        ]
     }),
     components: {
-        CarouselTabs,
+        Carousel,
         ProductItem1,
         CarouselSpaces,
         CustomButton,
@@ -82,3 +90,18 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.main {
+    &-carousel {
+        height: 77vh !important;
+        max-height: 786px;
+
+        &::v-deep {
+            .v-carousel__item {
+                height: 100%;
+            }
+        }
+    }
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" height="100%">
+    <v-carousel :class="`carousel-${type}`" :hide-delimiters="hideDelimiters" :show-arrows="showArrows" height="100%">
         <template v-slot:prev="{ on, attrs }">
             <v-btn small color="#000000" v-bind="attrs" v-on="on">
                 <i class="las la-angle-left"></i>
@@ -12,7 +12,7 @@
         </template>
         <template v-if="slides.length > 0">
             <v-carousel-item v-for="(slide, i) in slides" :key="i">
-                <img v-if="slide.type === 'image'" class="carousel-image" :src="slide.src" />
+                <img v-if="slide.type === 'image'" class="carousel-item-image" :src="slide.src" />
                 <v-responsive v-if="slide.type === 'video'" :aspect-ratio="aspectRatio">
                     <video autoplay>
                         <source :src="slide.src" type="video/mp4" />
@@ -25,6 +25,28 @@
                         allowfullscreen
                     ></iframe>
                 </v-responsive>
+                <v-row class="carousel-item-content" v-if="type == 'description'">
+                    <v-col cols="12" sm="7" md="5" lg="4">
+                        <div class="mb-4">
+                            <h4 class="carousel-item-title mb-3">{{ title }}</h4>
+                            <p class="carousel-item-description body1 mb-8">{{ description }}</p>
+                            <div class="carousel-item-hashtags">
+                                <span v-for="(hashtag, i) in hashtags" :key="i">
+                                    # {{ hashtag }}
+                                    <span v-if="i < hashtags.length - 1">•</span>
+                                </span>
+                            </div>
+                        </div>
+                        <v-row class="carousel-item-actions">
+                            <v-col cols="6">
+                                <custom-button block color="white" text="Ir a planes" />
+                            </v-col>
+                            <v-col cols="6">
+                                <custom-button block color="white" text="Ver más" />
+                            </v-col>
+                        </v-row>
+                    </v-col>
+                </v-row>
             </v-carousel-item>
         </template>
         <v-carousel-item v-else>
@@ -34,6 +56,8 @@
 </template>
 
 <script>
+import CustomButton from "./CustomButton.vue";
+
 export default {
     name: "Carousel",
     props: {
@@ -52,7 +76,22 @@ export default {
         type: {
             type: String,
             default: "single"
+        },
+        title: {
+            type: String,
+            default: ""
+        },
+        description: {
+            type: String,
+            default: ""
+        },
+        hashtags: {
+            type: Array,
+            default: () => ["Instalaciones", "Mantenimiento", "Planes"]
         }
+    },
+    components: {
+        CustomButton
     },
     data() {
         return {
@@ -112,15 +151,58 @@ export default {
 }
 
 .carousel {
-    &-image {
-        max-width: 100%;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
+    &-description {
+        &::v-deep {
+            .v-window__prev {
+                @media (min-width: 960px) {
+                    left: 60%;
+                }
+            }
 
-        &.placeholder {
-            object-fit: contain;
+            .v-carousel__controls {
+                @media (min-width: 960px) {
+                    width: 40%;
+                    right: 0 !important;
+                }
+            }
+        }
+    }
+
+    &-item {
+        &-image {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+
+            &.placeholder {
+                object-fit: contain;
+            }
+        }
+
+        &-content {
+            width: 100%;
+            color: #ffffff;
+            position: absolute;
+            left: 0.75rem;
+            bottom: 4.5rem;
+
+            @media (min-width: 600px) {
+                left: 1.1rem;
+            }
+
+            @media (min-width: 960px) {
+                bottom: 1.1rem;
+            }
+        }
+
+        &-hashtags {
+            font-size: var(--font-size-caption);
+            line-height: 16px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
     }
 }
@@ -146,6 +228,18 @@ export default {
                 opacity: 0.5;
             }
         }
+
+        .v-carousel__item {
+            &::before {
+                content: "";
+                background: linear-gradient(0deg, #000000 0%, #00000000 90%, #00000000 100%);
+                height: 100%;
+                width: 100%;
+                opacity: 50%;
+                position: absolute;
+            }
+        }
+
         .v-window__container {
             height: 100% !important;
         }
