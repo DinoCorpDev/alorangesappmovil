@@ -23,7 +23,7 @@
 
         <v-row tag="section">
             <v-col cols="12">
-                <carousel-spaces :items="itemsPortfolio" />
+                <carousel-portfolio :items="itemsPortfolio" />
             </v-col>
         </v-row>
 
