@@ -281,6 +281,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::post('/chat-reply', [ChatController::class, 'reply'])->name('chats.reply');
 
     Route::get('/update/step1', [UpdateController::class, 'step1']);
+    Route::get('dashboard_data', [AdminController::class, 'dashboard_data'])->name('dashboard.data');
 });
 
 Route::get('/addons/multivendor', [MultiVendorController::class, 'helloFromMultiVendor']);

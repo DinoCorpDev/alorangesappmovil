@@ -384,7 +384,9 @@
                                     block
                                     color="grey"
                                     text="Añadir comprobante de pago"
+                                    @click="$refs.fileInput.click()"
                                 />
+                                <input style="display: none" ref="fileInput" type="file" @change="fileSelected" enctype="multipart/form-data">
                             </div>
                             
                             <custom-button text="Aplicar" color="grey" />
@@ -1052,6 +1054,23 @@ export default {
             }else{
                 this.step = 4;
             }
+        },
+        fileSelected(evt) {
+            evt.preventDefault();
+            console.log(evt);
+            this.selectedFile = evt.target.files[0];
+            this.uploadImage();
+        },
+        async uploadImage() {
+            var formData = new FormData();
+            formData.append('image', this.selectedFile, this.selectedFile.data)
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+            const res = await this.call_api("post", "payment/image", formData, config);
+            
         }
     },
     async created() {

@@ -464,4 +464,14 @@ class OrderController extends Controller
             $order->save();
         }
     }
+
+    public function paymentImage(Request $request)
+    {
+        $imagenId= self::saveArchive($request["imagen"]);
+
+        return response()->json([
+            'success' => true,
+            'id' => $imagenId
+        ]);
+    }
 }
