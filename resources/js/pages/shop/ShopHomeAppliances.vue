@@ -1,118 +1,100 @@
 <template>
     <v-container fluid>
-        <v-row>
+        <v-row tag="main" class="main">
             <v-col cols="12">
-                <carousel
+                <Carousel
                     class="main-carousel"
-                    :slides="sliderSeeder"
+                    :slides="sliderItems"
                     type="description"
                     title="Diseño de espacios"
                     description="Desde el diseño hasta la instalación, nos encargamos de todo para que te sientas confortable en ese espacio habitable ideal."
                 />
             </v-col>
         </v-row>
-        <div class="mb-2">
-            <v-row>
-                <v-col cols="12" sm="12" md="6" lg="6" xl="6">
-                    <shop-action-card />
-                </v-col>
-                <v-col cols="12" sm="12" md="6" lg="6" xl="6">
-                    <shop-action-card />
-                </v-col>
-            </v-row>
-        </div>
 
-        <div class="mb-4 mt-16">
-            <h5>H5</h5>
-            <v-row>
-                <v-col cols="12" sm="8" md="4" lg="4" xl="4">
-                    <shop-action-card />
-                </v-col>
-                <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-item-4 />
-                </v-col>
-                <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-item-4 />
-                </v-col>
-                <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-item-4 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-                <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-item-4 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-            </v-row>
-            <v-row justify="center">
-                <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
-            </v-row>
-        </div>
+        <v-row tag="section">
+            <v-col cols="12" md="6">
+                <ShopActionCard img="/public/assets/img/shop-spaces/icon-msg.png" href="#" />
+            </v-col>
+            <v-col cols="12" md="6">
+                <ShopActionCard img="/public/assets/img/shop-spaces/icon-house.png" href="#" />
+            </v-col>
+        </v-row>
 
-        <div class="mb-4 mt-16">
-            <h5>H5</h5>
-            <v-row>
-                <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-box />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-box />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-box img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-box img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-box />
-                </v-col>
-                <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-box img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-            </v-row>
-        </div>
-
-        <div class="mb-4 mt-16">
-            <h5>H5</h5>
-            <v-row>
-                <v-col cols="12" sm="8" md="4" lg="4" xl="4">
-                    <shop-action-card />
-                </v-col>
-                <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-box headerPr="true" />
-                </v-col>
-                <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-box headerPr="true" />
-                </v-col>
-                <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-box headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-                <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-box headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
-                </v-col>
-            </v-row>
-            <v-row justify="center">
-                <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
-            </v-row>
-        </div>
-
-        <v-row class="mb-6 mt-16">
+        <v-row tag="section" class="mb-6">
             <v-col cols="12">
                 <h5>H5</h5>
-                <v-row>
-                    <v-col cols="12" sm="6" md="4" lg="3" xl="3">
-                        <product-box />
+                <v-row class="mb-3">
+                    <v-col cols="6" sm="8" md="4">
+                        <ShopActionCard boxStyle="vertical" href="#" />
                     </v-col>
-                    <v-col cols="12" sm="6" md="4" lg="3" xl="3">
-                        <product-box />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4" lg="3" xl="3">
-                        <product-box />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4" lg="3" xl="3">
-                        <product-box />
+                    <v-col
+                        v-for="product in productsSeeder.slice(0, 4)"
+                        :key="`product-col-${product.id}`"
+                        cols="6"
+                        sm="4"
+                        md="2"
+                    >
+                        <CardBrand :brandDetails="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
-                    <custom-button light text="Ver más" class="mt-6" style="width: 40%" />
+                    <v-col cols="12" sm="8" md="4">
+                        <CustomButton block color="grey2" text="Ver más" />
+                    </v-col>
+                </v-row>
+            </v-col>
+        </v-row>
+
+        <v-row tag="section">
+            <v-col cols="12">
+                <CarouselProducts :items="productsSeeder" />
+            </v-col>
+        </v-row>
+
+        <v-row tag="section" class="mb-6">
+            <v-col cols="12">
+                <h5>H5</h5>
+                <v-row class="mb-3">
+                    <v-col cols="6" sm="8" md="4">
+                        <ShopActionCard boxStyle="vertical" href="#" />
+                    </v-col>
+                    <v-col
+                        v-for="product in productsSeeder.slice(0, 4)"
+                        :key="`product-col-${product.id}`"
+                        cols="6"
+                        sm="4"
+                        md="2"
+                    >
+                        <ProductBox :productDetails="product" />
+                    </v-col>
+                </v-row>
+                <v-row justify="center">
+                    <v-col cols="12" sm="8" md="4">
+                        <CustomButton block color="grey2" text="Ver más" />
+                    </v-col>
+                </v-row>
+            </v-col>
+        </v-row>
+
+        <v-row tag="section" class="mb-6">
+            <v-col cols="12">
+                <h5>H5</h5>
+                <v-row class="mb-3">
+                    <v-col
+                        v-for="product in productsSeeder.slice(0, 4)"
+                        :key="`product-col-${product.id}`"
+                        cols="12"
+                        sm="6"
+                        md="3"
+                    >
+                        <ProductBox boxStyle="two" :productDetails="product" />
+                    </v-col>
+                </v-row>
+                <v-row justify="center">
+                    <v-col cols="12" sm="8" md="4">
+                        <CustomButton block color="grey2" text="Ver más" />
+                    </v-col>
                 </v-row>
             </v-col>
         </v-row>
@@ -120,25 +102,48 @@
 </template>
 
 <script>
-import { sliderSeeder } from "../../seeders/products";
+import { productsSeeder } from "../../seeders/products";
 
+import CardBrand from "../../components/global/CardBrand.vue";
 import Carousel from "../../components/global/Carousel.vue";
-import ShopActionCard from "../../components/shop/ShopActionCard.vue";
-import ProductBox from "../../components/product/ProductBox.vue";
-import ProductItem4 from "../../components/global/ProductItem4.vue";
+import CarouselProducts from "../../components/global/CarouselProducts.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
+import ProductBox from "../../components/product/ProductBox.vue";
+import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 
 export default {
     name: "ShopHomeAppliances",
     data: () => ({
-        sliderSeeder
+        productsSeeder,
+        sliderItems: [
+            {
+                src: "/public/assets/img/shop-spaces/banner-main.png",
+                type: "image"
+            }
+        ]
     }),
     components: {
+        CardBrand,
         Carousel,
-        ShopActionCard,
+        CarouselProducts,
+        CustomButton,
         ProductBox,
-        ProductItem4,
-        CustomButton
+        ShopActionCard
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.main {
+    &-carousel {
+        height: 77vh !important;
+        max-height: 786px;
+
+        &::v-deep {
+            .v-carousel__item {
+                height: 100%;
+            }
+        }
+    }
+}
+</style>

@@ -2,17 +2,20 @@
     <div class="brand-item">
         <div class="brand-item-header">
             <button type="button" class="icon">
-                <favorite-icon />
+                <FavoriteIcon />
             </button>
         </div>
         <div class="brand-item-body">
-            <v-img :src="bgImg" aspect-ratio="1" />
+            <v-img :src="brandDetails.bgImg || '/public/assets/img/brand-item-bg-placeholder.png'" aspect-ratio="1" />
             <div class="brand-item-body-image">
-                <v-img :src="bodyImg" aspect-ratio="1" />
+                <v-img
+                    :src="brandDetails.logo || 'public/assets/img/brand-item-img-placeholder.png'"
+                    aspect-ratio="1"
+                />
             </div>
         </div>
         <div class="brand-item-footer">
-            <custom-button block color="nero" text="Ver Detalles" @click="goToBrand" />
+            <CustomButton block color="nero" text="Ver Detalles" @click="goToBrand(brandDetails.id)" />
         </div>
     </div>
 </template>
@@ -28,22 +31,14 @@ export default {
         FavoriteIcon
     },
     props: {
-        bgImg: {
-            type: String,
-            default: "/public/assets/img/brand-item-bg-placeholder.png"
-        },
-        bodyImg: {
-            type: String,
-            default: "public/assets/img/brand-item-img-placeholder.png"
-        },
-        id: {
-            type: Number,
-            default: 0
+        brandDetails: {
+            type: Object,
+            default: () => {}
         }
     },
     methods: {
-        goToBrand() {
-            this.$router.push({ name: "Brand2", params: { brandId: this.id } });
+        goToBrand(id) {
+            this.$router.push({ name: "Brand2", params: { brandId: id } });
         }
     }
 };
