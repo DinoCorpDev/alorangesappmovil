@@ -1,38 +1,55 @@
 <template>
     <div>
-        <layout-navbar-auth :bottom-bar="false" />
-        <v-tabs :background-color="'#FAFCFC'" centered fixed-tabs slider-color="black">
-            <v-tab v-for="tab in tabs" class="text-none" :key="`tab-${tab.text}`" link :to="{ name: tab.routeName }">
-                <v-icon left> {{ tab.icon }} </v-icon>
-                {{ tab.text }}
+        <LayoutNavbarAuth :bottom-bar="false" />
+        <v-tabs fixed-tabs :show-arrows="false" class="mt-3">
+            <v-tab
+                v-for="tab in tabs"
+                :key="`tab-${tab.text}`"
+                :ripple="false"
+                :to="{ name: tab.routeName }"
+                class="text-none"
+                link
+            >
+                <component :is="tab.icon" class="mb-2 mb-sm-0 mr-sm-3" />
+                <span class="mb-1 mb-sm-0">{{ tab.text }}</span>
             </v-tab>
         </v-tabs>
 
         <router-view />
 
-        <footer-custom />
+        <FooterCustom />
     </div>
 </template>
 
 <script>
-import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import FooterCustom from "../components/global/FooterCustom.vue";
+import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
+
+import ChairIcon from "../components/icons/Chair.vue";
+import ToolsIcon from "../components/icons/Tools.vue";
+import HomeAppliancesIcon from "../components/icons/HomeAppliances.vue";
+import BuildingIcon from "../components/icons/Building.vue";
 
 export default {
     data: () => ({
         tabs: [
-            { icon: "la-chair", text: "Diseño de espacios", routeName: "ShopSpaces" },
-            { icon: "la-tools", text: "Servicios", routeName: "ShopServices" },
-            { icon: "la-tv", text: "Electrodomésticos", routeName: "ShopHomeAppliances" },
-            { icon: "la-building", text: "Portal de empresas", routeName: "ShopBusinessPortal" }
+            { icon: "ChairIcon", text: "Diseño de espacios", routeName: "ShopSpaces" },
+            { icon: "ToolsIcon", text: "Servicios", routeName: "ShopServices" },
+            { icon: "HomeAppliancesIcon", text: "Electrodomésticos", routeName: "ShopHomeAppliances" },
+            { icon: "BuildingIcon", text: "Portal de empresas", routeName: "ShopBusinessPortal" }
         ]
     }),
     components: {
+        FooterCustom,
         LayoutNavbarAuth,
-        FooterCustom
+
+        ChairIcon,
+        ToolsIcon,
+        HomeAppliancesIcon,
+        BuildingIcon
     },
     mounted() {
-        this.$vuetify.theme.dark = false;
+        this.$vuetify.theme.dark = this.$router.currentRoute.name === "ShopBusinessPortal" ? true : false;
     }
 };
 </script>
@@ -44,30 +61,53 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-::v-deep {
-    .theme--dark {
-        &.v-tabs-items {
-            background-color: #f5f5f5;
+.theme--dark.v-tabs {
+    &::v-deep {
+        .v-tabs-bar {
+            background-color: #000000;
+        }
+
+        .v-tabs-bar__content {
+            border-bottom: 1px solid #242526;
         }
     }
 }
 
-@media (min-width: 1264px) {
-    .v-toolbar__content,
-    .v-toolbar__extension {
-        padding: 4px 24px;
+.v-tabs {
+    &::v-deep {
+        .v-tabs-bar {
+            background-color: #fafcfc;
+
+            @media (max-width: 600px) {
+                height: auto;
+            }
+        }
+
+        .v-tabs-bar__content {
+            border-bottom: 1px solid #e4e4e4;
+        }
+
+        .v-tab {
+            font-size: calc(10px + (16 - 10) * var(--screen-size));
+            font-weight: 400;
+            letter-spacing: 0.15px;
+            line-height: calc(18px + (20 - 18) * var(--screen-size));
+
+            @media (max-width: 600px) {
+                flex-direction: column;
+                white-space: nowrap;
+                padding: 0 10px;
+            }
+
+            @media (min-width: 600px) {
+                font-weight: 600;
+            }
+        }
+
+        .v-slide-group__prev,
+        .v-slide-group__next {
+            display: none !important;
+        }
     }
-}
-.v-tab--active {
-    color: black;
-}
-
-.v-input__slot,
-.v-text-field__slot {
-    min-height: 38px;
-}
-
-.layout-navbar-spaces {
-    position: sticky;
 }
 </style>
