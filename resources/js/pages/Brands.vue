@@ -1,6 +1,6 @@
 <template>
     <div>
-        <layout-navbar-auth />
+        <LayoutNavbarAuth />
         <v-container fluid class="brands">
             <div class="main-wrapper mb-10">
                 <v-row align="center">
@@ -24,7 +24,7 @@
             </div>
             <v-row class="mb-7">
                 <v-col cols="6" sm="6" md="4" lg="2" v-for="(brand, i) in brands" :key="i">
-                    <card-brand :bodyImg="brand?.logo" :id="brand?.id" />
+                    <CardBrand :brandDetails="brand" />
                 </v-col>
             </v-row>
         </v-container>
@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import NabvarBottomBar from "../components/global/NabvarBottomBar.vue";
 import CardBrand from "../components/global/CardBrand.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
@@ -41,7 +40,6 @@ export default {
         brands: []
     }),
     components: {
-        NabvarBottomBar,
         CardBrand,
         LayoutNavbarAuth
     },

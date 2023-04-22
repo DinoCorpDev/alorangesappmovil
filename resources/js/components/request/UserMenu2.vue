@@ -8,7 +8,7 @@
                     class="mb-3 buttons-res mt-3"
                     color="nero"
                     text="Vista de Diseñador"
-                    :to="{ name: 'VistaDiseñador' }"
+                    :to="{ name: 'VistaDisenador' }"
                 />
                 <custom-button
                     block
@@ -35,7 +35,7 @@
                         class=""
                         color="nero"
                         text="Vista de Diseñador"
-                        :to="{ name: 'VistaDiseñador' }"
+                        :to="{ name: 'VistaDisenador' }"
                     />
                 </v-col>
                 <v-col cols="3">

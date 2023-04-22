@@ -61,7 +61,8 @@ export default {
             default: false
         },
         href: {
-            type: [String, Object]
+            type: String,
+            default: "#"
         },
         to: {
             type: [String, Object]
@@ -106,6 +107,20 @@ export default {
         }
     }
 
+    &.v-btn--plain {
+        min-width: unset;
+        height: unset !important;
+        padding-left: 0;
+        padding-right: 0;
+
+        &::v-deep {
+            .v-btn__content {
+                margin-top: 0;
+                opacity: 1 !important;
+            }
+        }
+    }
+
     &.v-btn--outlined {
         &:hover,
         &:focus {
@@ -122,7 +137,7 @@ export default {
     }
 
     &.grey {
-        color: #000;
+        color: #000000;
         background-color: rgba(#dfdfdf, 0.5) !important;
 
         &:hover {
@@ -133,6 +148,21 @@ export default {
         &:focus {
             color: #fff;
             background-color: #161616 !important;
+        }
+    }
+
+    &.grey2 {
+        color: #000000;
+        background-color: #dfdfdf;
+
+        &:hover {
+            color: #fff;
+            background-color: #000000;
+        }
+
+        &:focus {
+            color: #fff;
+            background-color: #000000;
         }
     }
 
