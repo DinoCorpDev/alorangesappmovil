@@ -1,16 +1,16 @@
 <template>
-    <carousel-swiper class="carousel-actions" :title="title" :options="swiperOptions">
+    <CarouselSwiper class="carousel-actions" :title="title" :options="swiperOptions">
         <swiper-slide v-for="item in items" :key="`slide-${item.title}`">
-            <shop-action-card
+            <ShopActionCard
                 :title="item.title"
                 :img="item.img"
                 :description="item.description"
                 :to="item.to"
-                :href="href"
+                :href="item.href"
                 boxStyle="vertical"
             />
         </swiper-slide>
-    </carousel-swiper>
+    </CarouselSwiper>
 </template>
 
 <script>

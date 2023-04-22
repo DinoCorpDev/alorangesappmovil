@@ -2,7 +2,7 @@
     <v-container fluid>
         <v-row tag="main" class="main">
             <v-col cols="12">
-                <carousel
+                <Carousel
                     class="main-carousel"
                     :slides="sliderItems"
                     type="description"
@@ -14,16 +14,16 @@
 
         <v-row tag="section">
             <v-col cols="12" md="6">
-                <shop-action-card img="/public/assets/img/shop-spaces/icon-msg.png" href="#" />
+                <ShopActionCard img="/public/assets/img/shop-spaces/icon-msg.png" href="#" />
             </v-col>
             <v-col cols="12" md="6">
-                <shop-action-card img="/public/assets/img/shop-spaces/icon-house.png" href="#" />
+                <ShopActionCard img="/public/assets/img/shop-spaces/icon-house.png" href="#" />
             </v-col>
         </v-row>
 
         <v-row tag="section">
             <v-col cols="12">
-                <carousel-portfolio :items="itemsPortfolio" />
+                <CarouselPortfolio :items="itemsPortfolio" />
             </v-col>
         </v-row>
 
@@ -38,12 +38,12 @@
                         sm="6"
                         md="3"
                     >
-                        <product-box boxStyle="two" :productDetails="product" />
+                        <ProductBox boxStyle="two" :productDetails="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
                     <v-col cols="12" sm="8" md="4">
-                        <custom-button block color="black" text="Ver más" />
+                        <CustomButton block color="black" text="Ver más" />
                     </v-col>
                 </v-row>
             </v-col>
@@ -51,7 +51,7 @@
 
         <v-row tag="section" class="mb-6">
             <v-col cols="12">
-                <carousel-actions :items="itemsActions" />
+                <CarouselActions :items="itemsActions" />
             </v-col>
         </v-row>
     </v-container>
@@ -62,10 +62,11 @@ import { spacesSeeder } from "../../seeders/spaces";
 import { productsSeeder, sliderSeeder } from "../../seeders/products";
 
 import Carousel from "../../components/global/Carousel";
-import ShopActionCard from "../../components/shop/ShopActionCard.vue";
+import CarouselActions from "../../components/global/CarouselActions.vue";
 import CarouselPortfolio from "../../components/global/CarouselPortfolio.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
-import CarouselActions from "../../components/global/CarouselActions.vue";
+import ProductBox from "../../components/product/ProductBox.vue";
+import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 
 export default {
     name: "ShopSpaces",
@@ -100,23 +101,18 @@ export default {
             }
         ],
         itemsActions: [
-            {
-                img: "/public/assets/img/shop-spaces/action-a.png"
-            },
-            {
-                img: "/public/assets/img/shop-spaces/action-b.png"
-            },
-            {
-                img: "/public/assets/img/shop-spaces/action-c.png"
-            }
+            { img: "/public/assets/img/shop-spaces/action-a.png" },
+            { img: "/public/assets/img/shop-spaces/action-b.png" },
+            { img: "/public/assets/img/shop-spaces/action-c.png" }
         ]
     }),
     components: {
         Carousel,
-        ShopActionCard,
+        CarouselActions,
         CarouselPortfolio,
         CustomButton,
-        CarouselActions
+        ProductBox,
+        ShopActionCard
     }
 };
 </script>
