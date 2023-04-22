@@ -11,19 +11,30 @@
                     <h5 class="presentation-banner-preamble mb-2 mb-md-5">{{ preamble }}</h5>
                     <h2 class="presentation-banner-title">{{ title }}</h2>
                     <v-divider class="mb-5" />
-                    <p class="presentation-banner-description">
+                    <p class="presentation-banner-description body1">
                         <slot name="description"> Description </slot>
                     </p>
                 </div>
-                <div v-if="false">
-                    <custom-button light text="Agregar a Compras" block class="mb-4" />
-                    <custom-button light text="Compartir" block />
+                <div>
+                    <v-row v-if="actions" class="presentation-banner-actions">
+                        <v-col cols="6" md="12" class="pb-md-0">
+                            <custom-button block color="nero" text="Conoce Más" />
+                        </v-col>
+                        <v-col cols="6" md="12">
+                            <custom-button block color="grey" text="Compartir" />
+                        </v-col>
+                    </v-row>
                 </div>
             </div>
         </v-col>
         <v-col cols="12" md="7">
             <carousel v-if="slidesCarousel.length > 0" type="banner" :slides="slidesCarousel" />
-            <img v-else-if="image" :src="image" alt="" class="presentation-banner-image" />
+            <img v-else-if="image" :src="image" class="presentation-banner-image" />
+            <img
+                v-else
+                src="/public/assets/img/carousel-item-placeholder.png"
+                class="presentation-banner-image placeholder"
+            />
         </v-col>
     </v-row>
 </template>
@@ -35,7 +46,10 @@ import CustomButton from "./CustomButton.vue";
 export default {
     name: "PresentationBanner",
     props: {
-        icon: { type: String },
+        icon: {
+            type: String,
+            default: "/public/assets/img/idovela-logo.png"
+        },
         preamble: { type: String, default: "Preamble" },
         title: { type: String, default: "Title" },
         orientation: { type: String, default: "left" },
@@ -43,7 +57,8 @@ export default {
             type: Array,
             default: () => []
         },
-        image: { type: String }
+        image: { type: String },
+        actions: { type: Boolean, default: false }
     },
     data() {
         return {
@@ -65,6 +80,7 @@ export default {
 }
 
 .presentation-banner {
+    overflow: hidden;
     height: auto;
     min-height: 60vh;
     // max-height: 600px;
@@ -87,14 +103,8 @@ export default {
         }
     }
 
-    &-description {
-        font-family: "Roboto", sans-serif;
-        font-size: calc(13px + (20 - 13) * var(--screen-size));
-        line-height: calc(20px + (35 - 20) * var(--screen-size));
-        letter-spacing: 0.5px;
-    }
-
     &-image {
+        background-color: #dfdfdf;
         object-fit: cover;
         height: 100%;
         width: 100%;

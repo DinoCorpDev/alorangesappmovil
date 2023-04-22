@@ -170,7 +170,7 @@
             </div>
             <v-row>
                 <v-col cols="6" md="4" sm="4" xs="6" lg="2" xl="2" v-for="(product, i) in moreProducts" :key="i">
-                    <product-item-2 headerPr="true" :data="product" />
+                    <product-box headerPr="true" :data="product" />
                 </v-col>
             </v-row>
             <v-row justify="center">
@@ -208,7 +208,6 @@
 <script>
 import { mapActions } from "vuex";
 import ProductBox from "../components/product/ProductBox.vue";
-import ProductItem2 from "../components/global/ProductItem2.vue";
 import ProductItem6 from "../components/global/ProductItem6.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import Carousel from "../components/global/Carousel.vue";
@@ -238,7 +237,6 @@ export default {
     }),
     components: {
         ProductBox,
-        ProductItem2,
         ProductItem6,
         CustomButton,
         Carousel,

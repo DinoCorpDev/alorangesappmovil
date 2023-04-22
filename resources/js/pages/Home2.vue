@@ -324,7 +324,6 @@ import { mapGetters, mapActions } from "vuex";
 import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vue";
 import Carousel from "../components/global/Carousel.vue";
 import CustomButton from "../components/global/CustomButton.vue";
-import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
 import CarouselActions from "../components/global/CarouselActions.vue";
@@ -340,7 +339,6 @@ export default {
         BannerCategoryProduct,
         Carousel,
         CustomButton,
-        ProductItem,
         SelectCustom,
         PresentationBanner,
         CarouselActions,

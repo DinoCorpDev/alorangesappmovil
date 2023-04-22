@@ -1,6 +1,12 @@
 <template>
     <div class="shop-action-card" :class="boxStyle == 'vertical' ? 'vertical' : 'pa-3 pa-sm-6'">
-        <img class="shop-action-card-image" :class="boxStyle != 'vertical' ? 'mr-5' : ''" :src="img" />
+        <img v-if="img" class="shop-action-card-image" :class="boxStyle != 'vertical' ? 'mr-5' : ''" :src="img" />
+        <img
+            v-else
+            class="shop-action-card-image placeholder"
+            :class="boxStyle != 'vertical' ? 'mr-5' : ''"
+            src="/public/assets/img/item-placeholder.png"
+        />
         <div :class="boxStyle == 'vertical' ? 'pa-3 pa-sm-6' : ''">
             <h6 class="shop-action-card-title mb-3">{{ title }}</h6>
             <p class="shop-action-card-description body1 mb-4">{{ description }}</p>
@@ -19,10 +25,7 @@ export default {
             type: String,
             default: "Titulo"
         },
-        img: {
-            type: String,
-            default: "/public/assets/img/item-placeholder.png"
-        },
+        img: String,
         description: {
             type: String,
             default: "Incluye Lorem Ipsum is simply dummy text of the printing"
@@ -62,12 +65,17 @@ export default {
     }
 
     &.vertical {
+        height: 100%;
         flex-direction: column;
 
         .shop-action-card-image {
             width: 100%;
             height: 30vh;
             object-fit: cover;
+
+            &.placeholder {
+                object-fit: contain;
+            }
         }
     }
 

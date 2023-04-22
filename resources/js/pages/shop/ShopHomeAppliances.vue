@@ -26,11 +26,7 @@
             <h5>H5</h5>
             <v-row>
                 <v-col cols="12" sm="8" md="4" lg="4" xl="4">
-                    <product-item
-                        title="Producto 1"
-                        descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                        idItem="1"
-                    ></product-item>
+                    <shop-action-card />
                 </v-col>
                 <v-col cols="6" sm="4" md="2" lg="2" xl="2">
                     <product-item-4 />
@@ -54,22 +50,22 @@
             <h5>H5</h5>
             <v-row>
                 <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-item-2 />
+                    <product-box />
                 </v-col>
                 <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-item-2 />
+                    <product-box />
                 </v-col>
                 <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-item-2 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
+                    <product-box img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                 </v-col>
                 <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-item-2 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
+                    <product-box img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                 </v-col>
                 <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-item-2 />
+                    <product-box />
                 </v-col>
                 <v-col cols="6" sm="6" md="4" lg="4" xl="4">
-                    <product-item-2 img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
+                    <product-box img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                 </v-col>
             </v-row>
         </div>
@@ -78,23 +74,19 @@
             <h5>H5</h5>
             <v-row>
                 <v-col cols="12" sm="8" md="4" lg="4" xl="4">
-                    <product-item
-                        title="Producto 1"
-                        descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                        idItem="1"
-                    ></product-item>
+                    <shop-action-card />
                 </v-col>
                 <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-item-2 headerPr="true" />
+                    <product-box headerPr="true" />
                 </v-col>
                 <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-item-2 headerPr="true" />
+                    <product-box headerPr="true" />
                 </v-col>
                 <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
+                    <product-box headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                 </v-col>
                 <v-col cols="6" sm="4" md="2" lg="2" xl="2">
-                    <product-item-2 headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
+                    <product-box headerPr="true" img="/public/assets/img/landing/Pacto-Ambiental.jpg" />
                 </v-col>
             </v-row>
             <v-row justify="center">
@@ -131,9 +123,8 @@
 import { sliderSeeder } from "../../seeders/products";
 
 import Carousel from "../../components/global/Carousel.vue";
-import ProductItem from "../../components/global/ProductItem.vue";
 import ShopActionCard from "../../components/shop/ShopActionCard.vue";
-import ProductItem2 from "../../components/global/ProductItem2.vue";
+import ProductBox from "../../components/product/ProductBox.vue";
 import ProductItem4 from "../../components/global/ProductItem4.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 
@@ -144,9 +135,8 @@ export default {
     }),
     components: {
         Carousel,
-        ProductItem,
         ShopActionCard,
-        ProductItem2,
+        ProductBox,
         ProductItem4,
         CustomButton
     }

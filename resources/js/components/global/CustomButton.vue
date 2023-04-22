@@ -137,7 +137,7 @@ export default {
     }
 
     &.grey {
-        color: #000;
+        color: #000000;
         background-color: rgba(#dfdfdf, 0.5) !important;
 
         &:hover {
@@ -148,6 +148,21 @@ export default {
         &:focus {
             color: #fff;
             background-color: #161616 !important;
+        }
+    }
+
+    &.grey2 {
+        color: #000000;
+        background-color: #dfdfdf;
+
+        &:hover {
+            color: #fff;
+            background-color: #000000;
+        }
+
+        &:focus {
+            color: #fff;
+            background-color: #000000;
         }
     }
 

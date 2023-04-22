@@ -60,22 +60,13 @@
                     <h5>Item Producto</h5>
                     <v-row>
                         <v-col cols="4">
-                            <product-item />
+                            <shop-action-card />
                         </v-col>
                         <v-col cols="4">
-                            <product-item
-                                title="Producto 1"
-                                descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                                idItem="1"
-                            ></product-item>
+                            <shop-action-card />
                         </v-col>
                         <v-col cols="4">
-                            <product-item
-                                title="Producto 1"
-                                descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                                idItem="1"
-                                img="/public/assets/img/landing/Pacto-Ambiental.jpg"
-                            ></product-item>
+                            <shop-action-card />
                         </v-col>
                     </v-row>
                 </div>
@@ -104,9 +95,9 @@ import Carousel from "../components/global/Carousel.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
 import CarouselActions from "../components/global/CarouselActions.vue";
 import CustomButton from "../components/global/CustomButton.vue";
-import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PolygonElement from "../components/global/PolygonElement.vue";
+import ShopActionCard from "../components/shop/ShopActionCard.vue";
 
 export default {
     components: {
@@ -115,9 +106,9 @@ export default {
         PresentationBanner,
         CarouselActions,
         CustomButton,
-        ProductItem,
         SelectCustom,
-        PolygonElement
+        PolygonElement,
+        ShopActionCard
     },
     mounted() {
         this.$vuetify.theme.dark = true;
