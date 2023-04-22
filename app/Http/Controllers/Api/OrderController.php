@@ -29,12 +29,23 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return new OrderCollection(CombinedOrder::with(['user', 'orders.orderDetails.variation.product', 'orders.orderDetails.variation.combinations', 'orders.shop'])->where('user_id', auth('api')->user()->id)->latest()->paginate(12));
+        return new OrderCollection(CombinedOrder::with([
+            'user',
+            'orders.orderDetails.variation.product',
+            'orders.orderDetails.variation.combinations',
+            'orders.shop'
+        ])->where('user_id', auth('api')->user()->id)->latest()->paginate(12));
     }
 
     public function show($order_code)
     {
-        $order = CombinedOrder::where('code', $order_code)->with(['user', 'orders.orderDetails.variation.product', 'orders.orderDetails.variation.combinations', 'orders.shop'])->first();
+        $order = CombinedOrder::where('code', $order_code)->with([
+            'user',
+            'orders.orderDetails.variation.product',
+            'orders.orderDetails.variation.combinations',
+            'orders.shop'
+        ])->first();
+
         if ($order) {
             if (auth('api')->user()->id == $order->user_id) {
                 return new OrderSingleCollection($order);
@@ -226,8 +237,6 @@ class OrderController extends Controller
             $shipping_cost = 0;
         }
 
-
-
         // generate array of shops cart items
         $shops_cart_items = array();
         foreach ($cartItems as $cartItem) {
@@ -250,8 +259,6 @@ class OrderController extends Controller
                 }
             })->get();
         }
-
-
 
         $combined_order = new CombinedOrder;
         $combined_order->user_id = $user->id;
@@ -317,7 +324,6 @@ class OrderController extends Controller
 
             $package_number++;
             $grand_total += $shop_total;
-
 
             foreach ($shop_cart_items as $cartItem) {
                 $itemPriceWithoutTax = variation_discounted_price($cartItem->product, $cartItem, false);
@@ -401,6 +407,7 @@ class OrderController extends Controller
         try {
             Notification::send($user, new OrderPlacedNotification($combined_order));
         } catch (\Exception $e) {
+            //
         }
 
         if ($request->payment_type == 'cash_on_delivery' || $request->payment_type == 'wallet' || strpos($request->payment_type, 'offline_payment')  !== false) {
@@ -458,5 +465,15 @@ class OrderController extends Controller
             $order->payment_details = $payment_info;
             $order->save();
         }
+    }
+
+    public function paymentImage(Request $request)
+    {
+        $imagenId = self::saveArchive($request["imagen"]);
+
+        return response()->json([
+            'success' => true,
+            'id' => $imagenId
+        ]);
     }
 }
