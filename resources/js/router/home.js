@@ -11,12 +11,17 @@ let BlogDetails = () => import("../pages/BlogDetails");
 let TempLanding = () => import("../pages/TempLanding");
 let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
-let Spaces = () => import("../pages/Spaces");
+let Shop = () => import("../pages/Shop");
 let Brand2 = () => import("../pages/Brand2");
 let About = () => import("../pages/About");
 let Brands = () => import("../pages/Brands");
 let Search = () => import("../pages/Search");
 let Collection = () => import("../pages/Collection");
+
+let ShopSpaces = () => import("../pages/shop/ShopSpaces");
+let ShopServices = () => import("../pages/shop/ShopServices");
+let ShopHomeAppliances = () => import("../pages/shop/ShopHomeAppliances");
+let ShopBusinessPortal = () => import("../pages/shop/ShopBusinessPortal");
 
 export default [
     {
@@ -50,10 +55,37 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/spaces",
-        component: Spaces,
-        name: "Spaces",
-        meta: { requiresAuth: false }
+        path: "/shop",
+        component: Shop,
+        name: "Shop",
+        redirect: "/shop/spaces",
+        meta: { requiresAuth: false },
+        children: [
+            {
+                path: "spaces",
+                component: ShopSpaces,
+                name: "ShopSpaces",
+                meta: { requiresAuth: false }
+            },
+            {
+                path: "services",
+                component: ShopServices,
+                name: "ShopServices",
+                meta: { requiresAuth: false }
+            },
+            {
+                path: "home-appliances",
+                component: ShopHomeAppliances,
+                name: "ShopHomeAppliances",
+                meta: { requiresAuth: false }
+            },
+            {
+                path: "business-portal",
+                component: ShopBusinessPortal,
+                name: "ShopBusinessPortal",
+                meta: { requiresAuth: false }
+            }
+        ]
     },
     {
         path: "/home2",
@@ -91,12 +123,12 @@ export default [
         name: "OfferDetails",
         meta: { requiresAuth: false }
     },
-    {
-        path: "/shop",
-        component: ProductListing,
-        name: "Shop",
-        meta: { requiresAuth: false }
-    },
+    // {
+    //     path: "/shop",
+    //     component: ProductListing,
+    //     name: "Shop",
+    //     meta: { requiresAuth: false }
+    // },
     {
         path: "/category/:categorySlug?",
         component: ProductListing,

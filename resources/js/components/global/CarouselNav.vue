@@ -25,7 +25,7 @@
                                     <div>
                                         <h2 class="text-uppercase">{{ title }}</h2>
                                         <p class="body1">{{ description }}</p>
-                                        <h7 class="text-uppercase">{{ tags }}</h7>
+                                        <h6 class="text-uppercase">{{ tags }}</h6>
                                     </div>
                                     <div class="mt-4">
                                         <custom-button :text="namebutton" />
@@ -61,7 +61,7 @@ import Carousel from "./Carousel";
 import CustomButton from "./CustomButton.vue";
 
 export default {
-    name: "CarouselTabs",
+    name: "CarouselNav",
     props: {
         title: {
             type: String,

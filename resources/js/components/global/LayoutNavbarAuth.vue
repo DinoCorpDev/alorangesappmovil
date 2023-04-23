@@ -51,7 +51,7 @@
                                             class="btn-menu-home"
                                             icon="la-store-alt"
                                             text="Aspecto: Noche"
-                                            :to="{ name: 'Spaces' }"
+                                            :to="{ name: 'Shop' }"
                                         /> -->
                                     </v-list-item>
                                     <div class="divider"></div>
@@ -61,7 +61,7 @@
                                             class="btn-menu-home"
                                             icon="la-store-alt"
                                             text="Idioma: Español"
-                                            :to="{ name: 'Spaces' }"
+                                            :to="{ name: 'Shop' }"
                                         />
                                     </v-list-item>
                                     <div class="divider"></div>
@@ -70,7 +70,7 @@
                                             class="btn-menu-home"
                                             icon="la-store-alt"
                                             text="Pais: Colombia"
-                                            :to="{ name: 'Spaces' }"
+                                            :to="{ name: 'Shop' }"
                                         />
                                     </v-list-item>
                                     <div class="divider"></div>
@@ -79,7 +79,7 @@
                                             class="btn-menu-home"
                                             icon="la-store-alt"
                                             text="Divisa: COP"
-                                            :to="{ name: 'Spaces' }"
+                                            :to="{ name: 'Shop' }"
                                         />
                                     </v-list-item>
                                     <div class="divider"></div>
@@ -88,7 +88,7 @@
                                             class="btn-menu-home"
                                             icon="la-store-alt"
                                             text="Mediciones: CGS"
-                                            :to="{ name: 'Spaces' }"
+                                            :to="{ name: 'Shop' }"
                                         />
                                     </v-list-item>
                                     <div class="divider"></div>
@@ -124,7 +124,7 @@
                 </div>
             </v-container>
         </v-app-bar>
-        <nabvar-bottom-bar />
+        <nabvar-bottom-bar v-if="bottomBar" />
     </div>
 </template>
 
@@ -139,6 +139,12 @@ import ShopCartIcon from "../icons/ShopCart.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+    props: {
+        bottomBar: {
+            type: Boolean,
+            default: true
+        }
+    },
     components: {
         CustomButton,
         ThemeToggleSwitch,

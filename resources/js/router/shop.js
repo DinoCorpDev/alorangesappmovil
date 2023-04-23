@@ -24,29 +24,29 @@ export default [
         component: ShopConfirmation,
         name: "ShopConfirmation",
         meta: { requiresAuth: false }
-    },
-    {
-        path: "/shop/",
-        component: ShopLayout,
-        children: [
-            {
-                path: ":slug",
-                component: ShopDetails,
-                name: "ShopDetails",
-                meta: { requiresAuth: false }
-            },
-            {
-                path: ":slug/coupons",
-                component: ShopCoupons,
-                name: "ShopCoupons",
-                meta: { requiresAuth: false }
-            },
-            {
-                path: ":slug/products/:categorySlug?",
-                component: ShopProducts,
-                name: "ShopProducts",
-                meta: { requiresAuth: false }
-            }
-        ]
     }
+    // {
+    //     path: "/shop/",
+    //     component: ShopLayout,
+    //     children: [
+    //         {
+    //             path: ":slug",
+    //             component: ShopDetails,
+    //             name: "ShopDetails",
+    //             meta: { requiresAuth: false }
+    //         },
+    //         {
+    //             path: ":slug/coupons",
+    //             component: ShopCoupons,
+    //             name: "ShopCoupons",
+    //             meta: { requiresAuth: false }
+    //         },
+    //         {
+    //             path: ":slug/products/:categorySlug?",
+    //             component: ShopProducts,
+    //             name: "ShopProducts",
+    //             meta: { requiresAuth: false }
+    //         }
+    //     ]
+    // }
 ];

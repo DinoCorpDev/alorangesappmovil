@@ -4,10 +4,15 @@
             <h6 class="subt2 text-uppercase">{{ title }}</h6>
         </div>
         <div class="portfolio-card-body">
-            <img class="portfolio-card-image" :src="img" />
+            <img v-if="img" class="portfolio-card-image" :src="img" />
+            <img
+                v-else
+                class="portfolio-card-image placeholder"
+                src="/public/assets/img/carousel-item-placeholder.png"
+            />
             <div class="portfolio-card-hover">
-                <div class="portfolio-card-hover-wrap mx-5 my-10">
-                    <div class="portfolio-card-hover-box mb-10">
+                <div class="portfolio-card-hover-wrap mt-8">
+                    <div class="portfolio-card-hover-box mb-8">
                         <img class="portfolio-card-hover-icon" :src="icon" />
                     </div>
                     <p class="portfolio-card-hover-description">
@@ -27,14 +32,15 @@ export default {
     name: "PortfolioCard",
     props: {
         title: String,
-        img: {
-            type: String,
-            default: "/public/assets/img/carousel-item-placeholder.png"
-        },
+        img: String,
         icon: String,
         description: String,
-        href: { type: [String, Object] },
-        to: { type: [String, Object] }
+        href: {
+            type: [String, Object]
+        },
+        to: {
+            type: [String, Object]
+        }
     },
     components: {
         CustomButton
@@ -58,6 +64,7 @@ export default {
     }
 
     &-header {
+        color: #ffffff;
         background-color: #000000;
         text-align: center;
         border-top-left-radius: 10px;
@@ -73,6 +80,7 @@ export default {
     }
 
     &-body {
+        color: #ffffff;
         height: 100%;
         position: relative;
         background-color: #dfdfdf;
@@ -110,9 +118,14 @@ export default {
         height: 100%;
         object-fit: cover;
         transition: all 0.1s linear;
+
+        &.placeholder {
+            object-fit: contain;
+        }
     }
 
     &-hover {
+        box-sizing: border-box;
         width: 100%;
         height: 100%;
         position: absolute;
@@ -123,8 +136,10 @@ export default {
 
         display: flex;
         flex-direction: column;
+        align-items: center;
 
         &-wrap {
+            width: 80%;
             height: 100%;
         }
 
@@ -148,11 +163,8 @@ export default {
             font-family: "Roboto", sans-serif;
             font-size: calc(16px + (17 - 16) * var(--screen-size));
             line-height: calc(20px + (24 - 20) * var(--screen-size));
-            letter-spacing: 0.5;
-
+            letter-spacing: 0.5px;
             text-align: center;
-            width: 75%;
-            margin: auto;
         }
 
         button,

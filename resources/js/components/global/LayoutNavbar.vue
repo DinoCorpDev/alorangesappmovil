@@ -7,7 +7,7 @@
                     <v-img v-else src="/public/assets/img/idovela-logo.png" max-width="117" />
                 </router-link>
                 <div class="d-flex">
-                    <custom-button light class="mr-4" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Spaces' }" />
+                    <custom-button light class="mr-4" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
                     <custom-button light class="mr-4" text="Iniciar Sesión" :to="{ name: 'Login' }" />
                     <div class="text-center">
                         <v-menu offset-y>
@@ -26,7 +26,7 @@
                                         class="btn-menu-home"
                                         icon="la-store-alt"
                                         text="Aspecto: Noche"
-                                        :to="{ name: 'Spaces' }"
+                                        :to="{ name: 'Shop' }"
                                     /> -->
                                 </v-list-item>
                                 <div class="divider"></div>
@@ -36,7 +36,7 @@
                                         class="btn-menu-home"
                                         icon="la-store-alt"
                                         text="Idioma: Español"
-                                        :to="{ name: 'Spaces' }"
+                                        :to="{ name: 'Shop' }"
                                     />
                                 </v-list-item>
                                 <div class="divider"></div>
@@ -45,7 +45,7 @@
                                         class="btn-menu-home"
                                         icon="la-store-alt"
                                         text="Pais: Colombia"
-                                        :to="{ name: 'Spaces' }"
+                                        :to="{ name: 'Shop' }"
                                     />
                                 </v-list-item>
                                 <div class="divider"></div>
@@ -54,7 +54,7 @@
                                         class="btn-menu-home"
                                         icon="la-store-alt"
                                         text="Divisa: COP"
-                                        :to="{ name: 'Spaces' }"
+                                        :to="{ name: 'Shop' }"
                                     />
                                 </v-list-item>
                                 <div class="divider"></div>
@@ -63,7 +63,7 @@
                                         class="btn-menu-home"
                                         icon="la-store-alt"
                                         text="Mediciones: CGS"
-                                        :to="{ name: 'Spaces' }"
+                                        :to="{ name: 'Shop' }"
                                     />
                                 </v-list-item>
                                 <div class="divider"></div>

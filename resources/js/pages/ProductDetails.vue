@@ -691,7 +691,6 @@ import ProductBox from "../components/product/ProductBox.vue";
 import ProductItem6 from "../components/global/ProductItem6.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import FooterCustom from "../components/global/FooterCustom.vue";
-import LayoutNavbarSpaces from "../components/global/LayoutNavbarSpaces.vue";
 import Carousel from "../components/global/Carousel.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 // import ChartView from "../components/global/ChartView.vue";
@@ -721,7 +720,6 @@ export default {
         ProductBox,
         ProductItem6,
         CustomButton,
-        LayoutNavbarSpaces,
         Carousel,
         LayoutNavbarAuth,
         FooterCustom

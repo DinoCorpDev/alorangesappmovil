@@ -2,7 +2,7 @@
     <div class="product-box">
         <div class="product-box-header">
             <button type="button" class="icon" @click="addNewWishlist(productDetails.id)">
-                <favorite-icon />
+                <FavoriteIcon />
             </button>
         </div>
         <div class="product-box-image">
@@ -12,7 +12,7 @@
                 :aspect-ratio="1"
             />
             <div class="product-box-image-hover">
-                <custom-button
+                <CustomButton
                     block
                     color="black"
                     text="Ver Detalles"
@@ -34,15 +34,23 @@
             </template>
         </div>
         <div class="product-box-footer pt-0">
-            <custom-button block color="nero" text="Agregar a Compras" @click="addCart()" :loading="actionLoading" :disabled="actionLoading"/>
+            <CustomButton
+                block
+                color="nero"
+                text="Agregar a Compras"
+                @click="addCart()"
+                :loading="actionLoading"
+                :disabled="actionLoading"
+            />
         </div>
     </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import CustomButton from "../global/CustomButton.vue";
 import FavoriteIcon from "../icons/Favorite.vue";
-import { mapActions } from "vuex";
 
 export default {
     name: "ProductBox",
@@ -73,9 +81,9 @@ export default {
                 message: this.$i18n.t("product_added_to_cart"),
                 color: "green"
             });
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.actionLoading = false;
-            },2000)
+            }, 2000);
         }
     }
 };
@@ -97,6 +105,7 @@ export default {
     background-color: #f5f5f5;
     height: 100%;
     overflow: hidden;
+    box-sizing: border-box;
 
     &-header,
     &-body,

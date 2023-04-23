@@ -180,7 +180,7 @@
 
             <v-row class="mb-6">
                 <v-col cols="12">
-                    <carousel-products :products="productsSeeder" title="Integración" />
+                    <carousel-actions :products="productsSeeder" title="Integración" />
                 </v-col>
             </v-row>
 
@@ -276,7 +276,7 @@
                                 img="/public/assets/img/home/portfolio-design-img.png"
                                 icon="/public/assets/img/home/portfolio-design-icon.svg"
                                 description="Proyecta tus espacias a la mediada que deseas."
-                                :to="{ name: 'Spaces' }"
+                                :to="{ name: 'Shop' }"
                             />
                         </v-col>
                         <v-col cols="12" sm="6" lg="3">
@@ -285,7 +285,7 @@
                                 img="/public/assets/img/home/portfolio-services-img.png"
                                 icon="/public/assets/img/home/portfolio-services-icon.svg"
                                 description="Contrata a profesionales para la instalación y recalibración de tus espacios habitables."
-                                :to="{ name: 'Spaces' }"
+                                :to="{ name: 'Shop' }"
                             />
                         </v-col>
                         <v-col cols="12" sm="6" lg="3">
@@ -294,7 +294,7 @@
                                 img="/public/assets/img/home/portfolio-esp-img.png"
                                 icon="/public/assets/img/home/portfolio-esp-icon.svg"
                                 description="Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar."
-                                :to="{ name: 'Spaces' }"
+                                :to="{ name: 'Shop' }"
                             />
                         </v-col>
                     </v-row>
@@ -324,10 +324,9 @@ import { mapGetters, mapActions } from "vuex";
 import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vue";
 import Carousel from "../components/global/Carousel.vue";
 import CustomButton from "../components/global/CustomButton.vue";
-import ProductItem from "../components/global/ProductItem.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
-import CarouselProducts from "../components/global/CarouselProducts.vue";
+import CarouselActions from "../components/global/CarouselActions.vue";
 import FooterCustom from "../components/global/FooterCustom.vue";
 import PolygonElement from "../components/global/PolygonElement.vue";
 import LayoutNavbar from "../components/global/LayoutNavbar.vue";
@@ -340,10 +339,9 @@ export default {
         BannerCategoryProduct,
         Carousel,
         CustomButton,
-        ProductItem,
         SelectCustom,
         PresentationBanner,
-        CarouselProducts,
+        CarouselActions,
         PolygonElement,
         LayoutNavbar,
         FooterCustom,
@@ -353,8 +351,12 @@ export default {
         return {
             selectedCode: null,
             sliderSeeder,
-            sliderItems: [{ src: "/public/assets/img/home/banner-home.png", type: "image" }],
-
+            sliderItems: [
+                {
+                    src: "/public/assets/img/home/banner-home.png",
+                    type: "image"
+                }
+            ],
             productsSeeder: [
                 {
                     id: "1",

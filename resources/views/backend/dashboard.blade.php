@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('backend.layouts.dash')
 
 @section('content')
     @if (env('MAIL_USERNAME') == null && env('MAIL_PASSWORD') == null && auth()->user()->can('smtp_setting'))
@@ -15,7 +15,7 @@
                     style="background-color: #91A8D0">
                     <div class="pb-5">
                         <div class="fw-500">{{ translate('Total Customers') }}</div>
-                        <div class="h2 fw-700">{{ \App\Models\User::where('user_type', 'customer')->count() }}</div>
+                        <div class="h2 fw-700" id="totalCustomers">--</div>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64.001" viewBox="0 0 64 64.001">
                         <g id="Group_8872" data-name="Group 8872" transform="translate(330 100)" opacity="0.5">
@@ -39,8 +39,8 @@
                 <div class="shadow-xl rounded-lg pt-5 px-4 mb-5 d-flex justify-content-between align-items-end"
                     style="background-color: #F0C05A">
                     <div class="pb-5">
-                        <div class="fw-500">{{ translate('Total Products') }}</div>
-                        <div class="h2 fw-700">{{ \App\Models\Product::count() }}</div>
+                        <div class="fw-500" >{{ translate('Total Products') }}</div>
+                        <div class="h2 fw-700" id="totalProducts">--</div>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64.001" viewBox="0 0 64 64.001">
                         <path id="Union_29" data-name="Union 29"
@@ -53,7 +53,7 @@
                     style="background-color: #7BC4C4">
                     <div class="pb-5">
                         <div class="fw-500">{{ translate('Total Orders') }}</div>
-                        <div class="h2 fw-700">{{ \App\Models\Order::count() }}</div>
+                        <div class="h2 fw-700" id="totalOrderss">--</div>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
                         <path id="Union_30" data-name="Union 30"
@@ -67,8 +67,8 @@
                     style="background-color: #FF6F61">
                     <div class="pb-5">
                         <div class="fw-500">{{ translate('Total Sales') }}</div>
-                        <div class="h2 fw-700">
-                            {{ format_price(\App\Models\Order::where('delivery_status', '!=', 'cancelled')->sum('grand_total'), true) }}
+                        <div class="h2 fw-700"id="totalSales">
+                           --
                         </div>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="64.002" height="64" viewBox="0 0 64.002 64">
@@ -95,7 +95,7 @@
                     <div class="col-6">
                         <div class="rounded-lg p-3 d-flex align-items-center border mb-4 bg-light">
                             <div class="flex-grow-1 py-5px">
-                                <div class="fs-20 fw-700 opacity-90">{{ \App\Models\Category::count() }}</div>
+                                <div class="fs-20 fw-700 opacity-90" id="totalCategories">--</div>
                                 <div class="opacity-60">{{ translate('Total Category') }}</div>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -108,7 +108,7 @@
                     <div class="col-6">
                         <div class="rounded-lg p-3 d-flex align-items-center border mb-4 bg-light">
                             <div class="flex-grow-1 py-5px">
-                                <div class="fs-20 fw-700 opacity-90">{{ \App\Models\Brand::count() }}</div>
+                                <div class="fs-20 fw-700 opacity-90" id="totalBrands">--</div>
                                 <div class="opacity-60">{{ translate('Total Brands') }}</div>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23.999" viewBox="0 0 24 23.999">
@@ -129,7 +129,7 @@
                     <div class="col-6">
                         <div class="rounded-lg p-3 d-flex align-items-center border mb-4 bg-light">
                             <div class="flex-grow-1 py-5px">
-                                <div class="fs-20 fw-700 opacity-90">{{ \App\Models\Coupon::count() }}</div>
+                                <div class="fs-20 fw-700 opacity-90" id="totalCoupon">--</div>
                                 <div class="opacity-60">{{ translate('Coupons') }}</div>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -149,7 +149,7 @@
                     <div class="col-6">
                         <div class="rounded-lg p-3 d-flex align-items-center border mb-4 bg-light">
                             <div class="flex-grow-1 py-5px">
-                                <div class="fs-20 fw-700 opacity-90">{{ \App\Models\Offer::count() }}</div>
+                                <div class="fs-20 fw-700 opacity-90" id="totalOffers">--</div>
                                 <div class="opacity-60">{{ translate('Offers') }}</div>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="19.53" height="24" viewBox="0 0 19.53 24">
@@ -175,8 +175,7 @@
                             </g>
                         </svg>
                         <div class="flex-grow-1 fw-700 mx-4">{{ translate('Order Placed') }}</div>
-                        <div class="fs-20 fw-600" style="color: #F0C05A">
-                            {{ \App\Models\Order::where('delivery_status', 'order_placed')->count() }}</div>
+                        <div class="fs-20 fw-600" style="color: #F0C05A" id="totalOrders">--</div>
                     </div>
                 </div>
                 <div class="rounded-lg p-4 border mb-4 bg-light">
@@ -195,8 +194,8 @@
                             </g>
                         </svg>
                         <div class="flex-grow-1 fw-700 mx-4">{{ translate('Confirmed Order') }}</div>
-                        <div class="fs-20 fw-600" style="color: #7BC4C4">
-                            {{ \App\Models\Order::where('delivery_status', 'confirmed')->count() }}</div>
+                        <div class="fs-20 fw-600" style="color: #7BC4C4" id="confirmedOrder">
+                            --</div>
                     </div>
                 </div>
                 <div class="rounded-lg p-4 border mb-4 bg-light">
@@ -207,8 +206,8 @@
                                 transform="translate(-4)" fill="#91a8d0" />
                         </svg>
                         <div class="flex-grow-1 fw-700 mx-4">{{ translate('Processed Order') }}</div>
-                        <div class="fs-20 fw-600" style="color: #91A8D0">
-                            {{ \App\Models\Order::where('delivery_status', 'processed')->count() }}</div>
+                        <div class="fs-20 fw-600" style="color: #91A8D0" id="processedOrder">
+                            --</div>
                     </div>
                 </div>
                 <div class="rounded-lg p-4 border mb-4 bg-light">
@@ -219,8 +218,8 @@
                                 transform="translate(-1 -2.5)" fill="#ff6f61" />
                         </svg>
                         <div class="flex-grow-1 fw-700 mx-4">{{ translate('Order Delivered') }}</div>
-                        <div class="fs-20 fw-600" style="color: #FF6F61">
-                            {{ \App\Models\Order::where('delivery_status', 'delivered')->count() }}</div>
+                        <div class="fs-20 fw-600" style="color: #FF6F61" id="orderDelivered">
+                            --</div>
                     </div>
                 </div>
             </div>
@@ -228,7 +227,7 @@
                 <div class="border rounded-lg px-4 pt-4 pb-3">
                     <div class="fs-16 fw-700 mb-2">{{ translate('Top Category') }}</div>
                     <ul class="list-group list-group-raw">
-                        @foreach (\App\Models\Category::orderBy('sales_amount', 'desc')->take(6)->get()
+                        @foreach (\App\Models\Category::orderBy('sales_amount', 'desc')->take(4)->get()
             as $category)
                             <li class="list-group-item d-flex align-items-center px-0 py-5px mt-1">
                                 <img src="{{ static_asset('assets/img/placeholder.jpg') }}"
@@ -247,7 +246,7 @@
                 <div class="border rounded-lg px-4 pt-4 pb-3">
                     <div class="fs-16 fw-700 mb-2">{{ translate('Top Brands') }}</div>
                     <ul class="list-group list-group-raw">
-                        @foreach (\App\Models\Brand::orderBy('sales_amount', 'desc')->take(6)->get()
+                        @foreach (\App\Models\Brand::orderBy('sales_amount', 'desc')->take(4)->get()
             as $brand)
                             <li class="list-group-item d-flex align-items-center px-0 py-5px mt-1">
                                 <span class="d-flex align-items-center size-50px">
@@ -266,240 +265,23 @@
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-lg-6">
-                <div class="border rounded-lg p-4 mb-4">
-                    <div class="fs-16 fw-700 mb-4">{{ translate('Sales stat') }}</div>
-                    <canvas id="graph-2" class="w-100" height="300"></canvas>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="border rounded-lg p-4 mb-4">
-                    <div class="fs-16 fw-700 mb-4">{{ translate('Sales by Category ') }}</div>
-                    <canvas id="graph-3" class="w-100" height="300"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <div class="fs-16 fw-700 mb-3">{{ translate('Top Products') }}</div>
-            <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="7" data-xl-items="6" data-lg-items="4"
-                data-md-items="3" data-sm-items="2">
-                @foreach (\App\Models\Product::where('published', 1)->orderBy('num_of_sale', 'desc')->limit(12)->get()
-            as $key => $product)
-                    <div class="carousel-box">
-                        <div class="aiz-card-box border rounded mb-2 bg-white">
-                            <div class="position-relative">
-                                <a href="/product/{{ $product->slug }}" class="d-block" target="_blank">
-                                    <img class="img-fit lazyload mx-auto h-210px"
-                                        src="{{ static_asset('assets/img/placeholder.jpg') }}"
-                                        data-src="{{ uploaded_asset($product->thumbnail_img) }}"
-                                        alt="{{ $product->getTranslation('name') }}"
-                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
-                                </a>
-                            </div>
-                            <div class="p-md-3 p-2 text-left">
-                                <div class="fs-15">
-                                    @if (product_base_price($product) != product_discounted_base_price($product))
-                                        <del
-                                            class="fw-600 opacity-50 mr-1">{{ format_price(product_base_price($product)) }}</del>
-                                    @endif
-                                    <span
-                                        class="fw-700 text-primary">{{ format_price(product_discounted_base_price($product)) }}</span>
-                                </div>
-                                <div class="rating rating-sm mt-1">
-                                    {{ renderStarRating($product->rating) }}
-                                </div>
-                                <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0">
-                                    <a href="/product/{{ $product->slug }}" class="d-block text-reset"
-                                        target="_blank">{{ $product->getTranslation('name') }}</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-
-
     @endcan
 
 @endsection
 
 @section('script')
-    <script>
-        let draw = Chart.controllers.line.prototype.draw;
-        Chart.controllers.line = Chart.controllers.line.extend({
-            draw: function() {
-                draw.apply(this, arguments);
-                let ctx = this.chart.chart.ctx;
-                let _stroke = ctx.stroke;
-                ctx.stroke = function() {
-                    ctx.save();
-                    ctx.shadowColor = 'rgb(0, 0, 0, .16)';
-                    ctx.shadowBlur = 3;
-                    ctx.shadowOffsetX = 0;
-                    ctx.shadowOffsetY = 3;
-                    _stroke.apply(this, arguments)
-                    ctx.restore();
-                }
-            }
-        });
-
-        AIZ.plugins.chart('#graph-1', {
-            type: 'line',
-            data: {
-                labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
-                datasets: [{
-                    data: [
-                        {{ $cached_graph_data['sales_number_per_month'][1] }},
-                        {{ $cached_graph_data['sales_number_per_month'][2] }},
-                        {{ $cached_graph_data['sales_number_per_month'][3] }},
-                        {{ $cached_graph_data['sales_number_per_month'][4] }},
-                        {{ $cached_graph_data['sales_number_per_month'][5] }},
-                        {{ $cached_graph_data['sales_number_per_month'][6] }},
-                        {{ $cached_graph_data['sales_number_per_month'][7] }},
-                        {{ $cached_graph_data['sales_number_per_month'][8] }},
-                        {{ $cached_graph_data['sales_number_per_month'][9] }},
-                        {{ $cached_graph_data['sales_number_per_month'][10] }},
-                        {{ $cached_graph_data['sales_number_per_month'][11] }},
-                        {{ $cached_graph_data['sales_number_per_month'][12] }}
-                    ],
-                    fill: false,
-                    borderColor: "rgb(221, 65, 36)",
-                    borderWidth: 4,
-                }]
-            },
-            options: {
-                legend: {
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        display: false,
-                        ticks: {
-                            min: 0,
-                            max: 150,
-                        },
-                    }],
-                    xAxes: [{
-                        display: false,
-                    }],
-                    ticks: {
-                        min: 0
-                    },
-                },
-            }
-        })
-
-        AIZ.plugins.chart('#graph-2', {
-            type: 'bar',
-            data: {
-                labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
-                datasets: [{
-                    label: '{{ translate('Sales ($)') }}',
-                    data: [
-                        {{ $cached_graph_data['sales_amount_per_month'][1] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][2] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][3] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][4] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][5] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][6] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][7] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][8] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][9] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][10] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][11] }},
-                        {{ $cached_graph_data['sales_amount_per_month'][12] }}
-                    ],
-                    backgroundColor: '#DD4124',
-                    borderColor: '#DD4124',
-                    borderWidth: 1,
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            color: '#fff',
-                            zeroLineColor: '#f2f3f8'
-                        },
-                        ticks: {
-                            fontColor: "#8b8b8b",
-                            fontFamily: 'Roboto',
-                            fontSize: 10,
-                            beginAtZero: true
-                        },
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            color: '#fff'
-                        },
-                        ticks: {
-                            fontColor: "#8b8b8b",
-                            fontFamily: 'Roboto',
-                            fontSize: 10
-                        },
-                        barThickness: 20,
-                        barPercentage: .5,
-                        categoryPercentage: .5,
-                    }],
-                },
-                legend: {
-                    display: false
-                }
-            }
-        });
-        AIZ.plugins.chart('#graph-3', {
-            type: 'bar',
-            data: {
-                labels: [
-                    @foreach ($root_categories as $key => $category)
-                        '{{ $category->getTranslation('name') }}',
-                    @endforeach
-                ],
-                datasets: [{
-                    label: '{{ translate('Sales ($)') }}',
-                    data: [
-                        {{ $cached_graph_data['sales_amount_string'] }}
-                    ],
-                    backgroundColor: '#91A8D0',
-                    borderColor: '#91A8D0',
-                    borderWidth: 1,
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            color: '#fff',
-                            zeroLineColor: '#f2f3f8'
-                        },
-                        ticks: {
-                            fontColor: "#8b8b8b",
-                            fontFamily: 'Roboto',
-                            fontSize: 10,
-                            beginAtZero: true
-                        },
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            color: '#fff'
-                        },
-                        ticks: {
-                            fontColor: "#8b8b8b",
-                            fontFamily: 'Roboto',
-                            fontSize: 10
-                        },
-                        barThickness: 20,
-                        barPercentage: .5,
-                        categoryPercentage: .5,
-                    }],
-                },
-                legend: {
-                    display: false
-                }
+    
+    <script type="text/javascript">
+        $.get('{{ route('dashboard.data') }}', {_token:'{{ csrf_token() }}'}, function(data){
+            if(data?.success){
+                data?.totals?.map(it=>{
+                    console.log(it);
+                    $("#"+it.tag).html(it.value);
+                });
             }
         });
     </script>
+
+
 @endsection
+

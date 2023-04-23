@@ -384,6 +384,14 @@
                                     block
                                     color="grey"
                                     text="Añadir comprobante de pago"
+                                    @click="$refs.fileInput.click()"
+                                />
+                                <input
+                                    style="display: none"
+                                    ref="fileInput"
+                                    type="file"
+                                    @change="fileSelected"
+                                    enctype="multipart/form-data"
                                 />
                             </div>
                             <custom-button text="Aplicar" color="grey" />
@@ -403,7 +411,13 @@
                         </div>
                         <total :total="priceTotal" />
                         <div class="mb-2">
-                            <custom-button text="Continuar" color="nero" @click="proceedCheckout()" :loading="checkoutLoading" :disabled="checkoutLoading"/>
+                            <custom-button
+                                text="Continuar"
+                                color="nero"
+                                @click="proceedCheckout()"
+                                :loading="checkoutLoading"
+                                :disabled="checkoutLoading"
+                            />
                         </div>
                     </v-col>
                 </v-row>
@@ -429,7 +443,7 @@
                         <order
                             :order="dataCheckout?.order_code"
                             :day="fecha?.getDate()"
-                            :month="new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(fecha)"
+                            :month="new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(fecha)"
                             :year="fecha?.getFullYear()"
                             colorStatus="red"
                             descriptionStatus="Por aprobar pedido"
@@ -1021,25 +1035,41 @@ export default {
             this.profileDialogShow = false;
             this.getUser();
         },
-        async proceedCheckout(){
-            if(Object.entries(this.dataCheckout).length === 0){
+        async proceedCheckout() {
+            if (Object.entries(this.dataCheckout).length === 0) {
                 let formData = new FormData();
-                formData.append('shipping_address_id', this.useDefaultAddress1 ? (this.addressPrincipal?.id ? this.addressPrincipal?.id : "") : (this.addressServicio.id ? this.addressServicio.id : ""));
-                formData.append('billing_address_id', this.useDefaultAddress2 ? (this.addressPrincipal?.id ? this.addressPrincipal?.id : "") : (this.addressFacturacion?.id ? this.addressFacturacion?.id : ""));
-                formData.append('delivery_type', "standard");
-                this.cartItems.forEach((item, index)=>{
-                    formData.append('cart_item_ids[]', item?.cart_id); 
-                })
+                formData.append(
+                    "shipping_address_id",
+                    this.useDefaultAddress1
+                        ? this.addressPrincipal?.id
+                            ? this.addressPrincipal?.id
+                            : ""
+                        : this.addressServicio.id
+                        ? this.addressServicio.id
+                        : ""
+                );
+                formData.append(
+                    "billing_address_id",
+                    this.useDefaultAddress2
+                        ? this.addressPrincipal?.id
+                            ? this.addressPrincipal?.id
+                            : ""
+                        : this.addressFacturacion?.id
+                        ? this.addressFacturacion?.id
+                        : ""
+                );
+                formData.append("delivery_type", "standard");
+                this.cartItems.forEach((item, index) => {
+                    formData.append("cart_item_ids[]", item?.cart_id);
+                });
 
-                if(this.priceTotal > 0){
+                if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
                     const res = await this.call_api("post", "checkout/order/store", formData);
-                    if(res.data.success){
-
+                    if (res.data.success) {
                         this.dataCheckout = res.data;
                         this.step = 4;
-
-                    }else{
+                    } else {
                         this.snack({
                             message: res.data.message,
                             color: "red"
@@ -1047,9 +1077,25 @@ export default {
                     }
                     this.checkoutLoading = false;
                 }
-            }else{
+            } else {
                 this.step = 4;
             }
+        },
+        fileSelected(evt) {
+            evt.preventDefault();
+            console.log(evt);
+            this.selectedFile = evt.target.files[0];
+            this.uploadImage();
+        },
+        async uploadImage() {
+            var formData = new FormData();
+            formData.append("image", this.selectedFile, this.selectedFile.data);
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            };
+            const res = await this.call_api("post", "payment/image", formData, config);
         }
     },
     async created() {
