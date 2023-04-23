@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldsToAddressesTable extends Migration
+class AddIdFacturaPagoToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddFieldsToAddressesTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->int('id_factura_pago')->after('tracking_url');
+            $table->integer('id_factura_pago')->after('tracking_url');
         });
     }
 
