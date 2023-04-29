@@ -138,7 +138,7 @@ export default {
 
     &.grey {
         color: #000000;
-        background-color: rgba(#dfdfdf, 0.5) !important;
+        background-color: #dfdfdf !important;
 
         &:hover {
             color: #fff;

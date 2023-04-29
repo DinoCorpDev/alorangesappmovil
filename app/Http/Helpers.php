@@ -526,7 +526,6 @@ if (!function_exists('seller_package_validity_check')) {
 if (!function_exists('calculate_seller_commision')) {
     function calculate_seller_commision($order)
     {
-
         $shop = $order->shop;
         if ($order->commission_calculated == 0 && $shop->user->user_type != 'admin') {
 
@@ -546,9 +545,8 @@ if (!function_exists('calculate_seller_commision')) {
                 $commission->admin_commission = $admin_commission;
                 $commission->seller_earning = $order->grand_total - $admin_commission;
                 $commission->type = 'Deducted';
-                $commission->details = format_price($admin_commission).' is Deducted for Cash On Delivery Order.';
+                $commission->details = format_price($admin_commission) . ' is Deducted for Cash On Delivery Order.';
                 $commission->save();
-
             } else {
                 //admin received full money. that's why seller commmision is added with his old balance
                 $shop->current_balance += $order->grand_total - $admin_commission;
@@ -561,7 +559,6 @@ if (!function_exists('calculate_seller_commision')) {
                 $commission->details = 'Order Payment.';
                 $commission->save();
             }
-            
 
             $order->commission_calculated = 1;
             $order->save();
@@ -569,7 +566,6 @@ if (!function_exists('calculate_seller_commision')) {
         }
     }
 }
-
 
 // for shop banners
 if (!function_exists('get_banners')) {
@@ -610,7 +606,7 @@ function translate($key, $lang = null, $addslashes = false)
         $translation_def->save();
         cache_clear();
     }
-    
+
     // return user session lang
     $translation_locale = Cache::rememberForever("translations-{$lang}", function () use ($lang) {
         return Translation::where('lang', $lang)->pluck('lang_value', 'lang_key')->toArray();
@@ -655,6 +651,20 @@ if (!function_exists('api_asset')) {
         if (($asset = \App\Models\Upload::find($id)) != null) {
             return my_asset($asset->file_name);
         }
+        return "";
+    }
+}
+
+if (!function_exists('api_asset_new')) {
+    function api_asset_new($id)
+    {
+        if (($asset = \App\Models\Upload::find($id)) != null) {
+            return (object) [
+                'src' => my_asset($asset->file_name),
+                'type' => $asset->type
+            ];
+        }
+
         return "";
     }
 }

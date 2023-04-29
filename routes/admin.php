@@ -65,7 +65,6 @@ Route::delete('/aiz-uploader/destroy/{id}', [AizUploadController::class, 'destro
 Route::post('/aiz-uploader/get_file_by_ids', [AizUploadController::class, 'get_preview_files']);
 Route::get('/aiz-uploader/download/{id}', [AizUploadController::class, 'attachment_download'])->name('download_attachment');
 
-
 Route::get('/demo/cron_1', [DemoController::class, 'cron_1']);
 Route::get('/demo/cron_2', [DemoController::class, 'cron_2']);
 Route::get('/insert_translation_keys', [DemoController::class, 'insert_trasnalation_keys']);
@@ -73,7 +72,6 @@ Route::get('/customer-products/admin', [SettingController::class, 'initSetting']
 
 Auth::routes(['register' => false]);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 

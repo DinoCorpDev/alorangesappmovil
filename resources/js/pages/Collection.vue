@@ -117,7 +117,7 @@
                 </div>
                 <h5 class="subtitle2 text-uppercase mt-3 mb-2">Se incluye con la compra</h5>
                 <v-divider />
-                <product-item-6 />
+                <ProductBoxShort />
             </v-col>
         </v-row>
 
@@ -208,7 +208,7 @@
 <script>
 import { mapActions } from "vuex";
 import ProductBox from "../components/product/ProductBox.vue";
-import ProductItem6 from "../components/global/ProductItem6.vue";
+import ProductBoxShort from "../components/product/ProductBoxShort.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import Carousel from "../components/global/Carousel.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
@@ -237,7 +237,7 @@ export default {
     }),
     components: {
         ProductBox,
-        ProductItem6,
+        ProductBoxShort,
         CustomButton,
         Carousel,
         LayoutNavbarAuth
