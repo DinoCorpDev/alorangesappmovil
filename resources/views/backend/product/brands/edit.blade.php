@@ -44,6 +44,107 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Biografia') }}</label>
+                    <div class="col-sm-9">
+                        <input type="text" placeholder="{{ translate('Biografia') }}" name="biografia" class="form-control"
+                        value="{{$brand->biografia}}" required>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Banner') }}
+                        <small>({{ translate('120x80') }})</small></label>
+                    <div class="col-sm-9">
+                        <div class="input-group" data-toggle="aizuploader" data-type="image">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-soft-secondary font-weight-medium">
+                                    {{ translate('Browse') }}</div>
+                            </div>
+                            <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                            <input type="hidden" name="banner" value="{{$brand->banner}}" class="selected-files">
+                        </div>
+                        <div class="file-preview box sm">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Fundacion') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Fundacion') }}" name="fundacion" class="form-control"
+                    value="{{$brand->fundacion}}" required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Ensamblado') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Ensamblado') }}" name="ensamblado" class="form-control"
+                    value="{{$brand->ensamblado}}" required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Segmento1') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Segmento1') }}" name="segmento1" class="form-control"
+                    value="{{$brand->segmento1}}" required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Segmento2') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Segmento2') }}" name="segmento2" class="form-control"
+                    value="{{$brand->segmento2}}" required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Segmento3') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Segmento3') }}" name="segmento3" class="form-control"
+                    value="{{$brand->segmento3}}"   required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Segmento4') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Segmento4') }}" name="segmento4" class="form-control"
+                    value="{{$brand->segmento4}}"  required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Linea1') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Linea1') }}" name="linea1" class="form-control"
+                    value="{{$brand->linea1}}" required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Linea2') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Linea2') }}" name="linea2" class="form-control"
+                    value="{{$brand->linea2}}"  required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Linea3') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Linea3') }}" name="linea3" class="form-control"
+                    value="{{$brand->linea3}}"  required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Linea4') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Linea4') }}" name="linea4" class="form-control"
+                    value="{{$brand->linea4}}" required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Diseño') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Diseño') }}" name="diseno" class="form-control"
+                    value="{{$brand->diseno}}"   required></div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Resumen') }}</label>
+                    <div class="col-sm-9"><textarea rowspan="5" type="text" placeholder="{{ translate('Resumen') }}" name="resumen" class="form-control"
+                    value="{{$brand->resumen}}"  required>{{$brand->resumen}}</textarea> </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-from-label" for="name">{{ translate('Pais') }}</label>
+                    <div class="col-sm-9">
+                    <input type="text" placeholder="{{ translate('Pais') }}" name="pais" class="form-control"
+                    value="{{$brand->pais}}"   required> </div>
+                </div>
+
                 {{-- <div class="form-group row">
                     <label class="col-sm-3 col-from-label">{{translate('Meta Title')}}</label>
                     <div class="col-sm-9">

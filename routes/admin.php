@@ -91,6 +91,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('brands', BrandController::class);
     Route::get('/brands/edit/{id}', [BrandController::class, 'edit'])->name('brands.edit');
     Route::get('/brands/destroy/{id}', [BrandController::class, 'destroy'])->name('brands.destroy');
+    Route::post('/brands/import', [BrandController::class, 'import'])->name('brands.import');
 
     Route::resource('attributes', AttributeController::class)->except(['destroy']);
     Route::get('/attributes/edit/{id}', [AttributeController::class, 'edit'])->name('attributes.edit');
