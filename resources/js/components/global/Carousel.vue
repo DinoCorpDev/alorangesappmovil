@@ -1,11 +1,11 @@
 <template>
     <v-carousel :class="`carousel-${type}`" :hide-delimiters="hideDelimiters" :show-arrows="showArrows" height="100%">
-        <template v-if="slides.length > 1" v-slot:prev="{ on, attrs }">
+        <template v-slot:prev="{ on, attrs }">
             <v-btn small color="#000000" v-bind="attrs" v-on="on">
                 <i class="las la-angle-left"></i>
             </v-btn>
         </template>
-        <template v-if="slides.length > 1" v-slot:next="{ on, attrs }">
+        <template v-slot:next="{ on, attrs }">
             <v-btn small color="#000000" v-bind="attrs" v-on="on">
                 <i class="las la-angle-right"></i>
             </v-btn>
@@ -13,11 +13,9 @@
         <template v-if="slides.length > 0">
             <v-carousel-item v-for="(slide, i) in slides" :key="i">
                 <img v-if="slide.type === 'image'" class="carousel-item-image" :src="slide.src" />
-                <v-responsive v-if="slide.type === 'video'" :aspect-ratio="aspectRatio">
-                    <video autoplay>
-                        <source :src="slide.src" type="video/mp4" />
-                    </video>
-                </v-responsive>
+                <video v-if="slide.type === 'video'" class="carousel-item-video" controls>
+                    <source :src="slide.src" type="video/mp4" />
+                </video>
                 <v-responsive v-if="slide.type === 'iframe'" :aspect-ratio="aspectRatio">
                     <iframe
                         :src="`${slide.src}?controls=0&autoplay=1&fs=0&modestbranding&rel=0&showinfo=0&disablekb=0`"
@@ -159,6 +157,17 @@ export default {
                 }
             }
 
+            .v-carousel__item {
+                &::before {
+                    content: "";
+                    background: linear-gradient(0deg, #000000 0%, #00000000 90%, #00000000 100%);
+                    height: 100%;
+                    width: 100%;
+                    opacity: 50%;
+                    position: absolute;
+                }
+            }
+
             .v-carousel__controls {
                 @media (min-width: 960px) {
                     width: 40%;
@@ -229,20 +238,10 @@ export default {
             }
         }
 
-        .v-carousel__item {
-            &::before {
-                content: "";
-                background: linear-gradient(0deg, #000000 0%, #00000000 90%, #00000000 100%);
-                height: 100%;
-                width: 100%;
-                opacity: 50%;
-                position: absolute;
-            }
-        }
-
         .v-window__container {
             height: 100% !important;
         }
+
         .v-carousel__controls {
             background: transparent;
 
