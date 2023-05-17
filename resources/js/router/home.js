@@ -1,5 +1,6 @@
 let Home = () => import("../pages/Home");
 let ProductDetails = () => import("../pages/ProductDetails");
+let ServiceDetails = () => import("../pages/ServiceDetails");
 let ProductListing = () => import("../pages/ProductListing");
 let TrackOrder = () => import("../pages/TrackOrder");
 let AllCategories = () => import("../pages/AllCategories");
@@ -166,6 +167,12 @@ export default [
         meta: { requiresAuth: false }
     },
     {
+        path: "/service/:slug",
+        component: ServiceDetails,
+        name: "ServiceDetails",
+        meta: { requiresAuth: false }
+    },
+    {
         path: "/track-order",
         component: TrackOrder,
         name: "TrackOrder",
@@ -199,6 +206,12 @@ export default [
         path: "/collection/:slug",
         component: Collection,
         name: "Collection",
+        meta: { requiresAuth: false }
+    },
+    {
+        path: "/plan/:slug",
+        component: Collection,
+        name: "PlanDetails",
         meta: { requiresAuth: false }
     }
 ];
