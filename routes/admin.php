@@ -22,6 +22,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
@@ -119,6 +120,26 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::post('/get_products_by_subcategory', [ProductController::class, 'get_products_by_subcategory'])->name('product.get_products_by_subcategory');
     });
 
+    // Service
+    Route::resource('/service', ServiceController::class);
+    Route::group(['prefix' => 'service'], function () {
+        Route::post('/new-attribte', [ServiceController::class, 'new_attribute'])->name('service.new_attribute');
+        Route::post('/get-attribte-value', [ServiceController::class, 'get_attribute_values'])->name('service.get_attribute_values');
+        Route::post('/new-option', [ServiceController::class, 'new_option'])->name('service.new_option');
+        Route::post('/get-option-choices', [ServiceController::class, 'get_option_choices'])->name('service.get_option_choices');
+
+        Route::post('/sku-combination', [ServiceController::class, 'sku_combination'])->name('service.sku_combination');
+
+        Route::post('/import', [ServiceController::class, 'import'])->name('service.import');
+
+        Route::get('/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
+        Route::get('/duplicate/{id}', [ServiceController::class, 'duplicate'])->name('service.duplicate');
+        Route::post('/update/{id}', [ServiceController::class, 'update'])->name('service.update');
+        Route::post('/published', [ServiceController::class, 'updatePublished'])->name('service.published');
+        Route::get('/destroy/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
+
+        Route::post('/get_services_by_subcategory', [ServiceController::class, 'get_services_by_subcategory'])->name('service.get_services_by_subcategory');
+    });
 
     Route::resource('customers', CustomerController::class);
     Route::get('customers_ban/{customer}', [CustomerController::class, 'ban'])->name('customers.ban');
