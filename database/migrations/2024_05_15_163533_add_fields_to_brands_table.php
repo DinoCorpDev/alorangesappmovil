@@ -55,7 +55,6 @@ class AddFieldsToBrandsTable extends Migration
             $table->dropColumn('linea4');
             $table->dropColumn('diseno');
             $table->dropColumn('resumen');
-            
         });
     }
 }

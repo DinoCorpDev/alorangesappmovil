@@ -1,49 +1,26 @@
 @extends('backend.layouts.app')
 
 @section('content')
-
     <div class="aiz-titlebar text-left mt-2 mb-3">
         <div class="align-items-center">
             <h1 class="h3 mb-5">
                 {{ translate('All Brands') }}
-            
-                <label
-                        class="btn btn-secondary mb-0 float-right"
-                        for="openCSV"
-                        href="#"
-                        style="width: 160px;"
-                    >
-                        <span id="span-btn-excel">{{ translate('Import Brands') }}</span>
-                        <div
-                            class="spinner-border m-auto"
-                            id="spinner-excel"
-                            role="status"
-                            style="width: 20px; height: 20px; display: none"
-                        >
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </label>
-                    <form
-                        class="d-none"
-                        id="formCSV"
-                        action="{{ route('brands.import') }}"
-                        method="post"
-                        enctype="multipart/form-data"
-                    >
-                        @csrf
-                        <input
-                            class="form-control"
-                            id="openCSV"
-                            id="uploaded_file"
-                            name="uploaded_file"
-                            type="file"
-                            onchange="document.getElementById('formCSV').submit();document.getElementById('span-btn-excel').style.display = 'none';document.getElementById('spinner-excel').style.display = 'block'"
-                            required
-                        >
-                    </form>
-            </h1>
 
-            
+                <label class="btn btn-secondary mb-0 float-right" for="openCSV" href="#" style="width: 160px;">
+                    <span id="span-btn-excel">{{ translate('Import Brands') }}</span>
+                    <div class="spinner-border m-auto" id="spinner-excel" role="status"
+                        style="width: 20px; height: 20px; display: none">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </label>
+                <form class="d-none" id="formCSV" action="{{ route('brands.import') }}" method="post"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <input class="form-control" id="openCSV" id="uploaded_file" name="uploaded_file" type="file"
+                        onchange="document.getElementById('formCSV').submit();document.getElementById('span-btn-excel').style.display = 'none';document.getElementById('spinner-excel').style.display = 'block'"
+                        required>
+                </form>
+            </h1>
         </div>
     </div>
 
@@ -53,12 +30,12 @@
                 <div class="card-header row gutters-5">
                     <div class="col text-center text-md-left">
                         <h5 class="mb-md-0 h6">{{ translate('Brands') }}</h5>
-                        
                     </div>
                     <div class="col-md-4">
                         <form class="" id="sort_brands" action="" method="GET">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" id="search" name="search" @isset($sort_search)
+                                <input type="text" class="form-control" id="search" name="search"
+                                    @isset($sort_search)
                                     value="{{ $sort_search }}" @endisset
                                     placeholder="{{ translate('Type name & Enter') }}">
                             </div>
@@ -82,8 +59,8 @@
                                     <td>{{ $brand->getTranslation('name') }}</td>
                                     <td>
                                         <div class="h-50px w-100px d-flex align-items-center justify-content-center">
-                                            <img src="{{ uploaded_asset($brand->logo) }}"
-                                                alt="{{ translate('Brand') }}" class="img-fluid"
+                                            <img src="{{ uploaded_asset($brand->logo) }}" alt="{{ translate('Brand') }}"
+                                                class="img-fluid"
                                                 onerror="this.onerror=null;this.src='{{ static_asset('/assets/img/placeholder.jpg') }}';">
                                         </div>
                                     </td>
@@ -96,7 +73,8 @@
                                             </a>
                                         @endcan
                                         @can('delete_brands')
-                                            <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
+                                            <a href="#"
+                                                class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
                                                 data-href="{{ route('brands.destroy', $brand->id) }}"
                                                 title="{{ translate('Delete') }}">
                                                 <i class="las la-trash"></i>
@@ -143,8 +121,8 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Biografia') }}</label>
-                                <input type="text" placeholder="{{ translate('Biografia') }}" name="biografia" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Biografia') }}" name="biografia"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Banner') }}
@@ -162,68 +140,68 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Fundacion') }}</label>
-                                <input type="text" placeholder="{{ translate('Fundacion') }}" name="fundacion" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Fundacion') }}" name="fundacion"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Ensamblado') }}</label>
-                                <input type="text" placeholder="{{ translate('Ensamblado') }}" name="ensamblado" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Ensamblado') }}" name="ensamblado"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Segmento1') }}</label>
-                                <input type="text" placeholder="{{ translate('Segmento1') }}" name="segmento1" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Segmento1') }}" name="segmento1"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Segmento2') }}</label>
-                                <input type="text" placeholder="{{ translate('Segmento2') }}" name="segmento2" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Segmento2') }}" name="segmento2"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Segmento3') }}</label>
-                                <input type="text" placeholder="{{ translate('Segmento3') }}" name="segmento3" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Segmento3') }}" name="segmento3"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Segmento4') }}</label>
-                                <input type="text" placeholder="{{ translate('Segmento4') }}" name="segmento4" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Segmento4') }}" name="segmento4"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Linea1') }}</label>
-                                <input type="text" placeholder="{{ translate('Linea1') }}" name="linea1" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Linea1') }}" name="linea1"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Linea2') }}</label>
-                                <input type="text" placeholder="{{ translate('Linea2') }}" name="linea2" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Linea2') }}" name="linea2"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Linea3') }}</label>
-                                <input type="text" placeholder="{{ translate('Linea3') }}" name="linea3" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Linea3') }}" name="linea3"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Linea4') }}</label>
-                                <input type="text" placeholder="{{ translate('Linea4') }}" name="linea4" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Linea4') }}" name="linea4"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Diseño') }}</label>
-                                <input type="text" placeholder="{{ translate('Diseño') }}" name="diseno" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Diseño') }}" name="diseno"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Resumen') }}</label>
-                                <textarea rowspan="5" type="text" placeholder="{{ translate('Resumen') }}" name="resumen" class="form-control"
-                                    required></textarea>
+                                <textarea rowspan="5" type="text" placeholder="{{ translate('Resumen') }}" name="resumen"
+                                    class="form-control" required></textarea>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">{{ translate('Pais') }}</label>
-                                <input type="text" placeholder="{{ translate('Pais') }}" name="pais" class="form-control"
-                                    required>
+                                <input type="text" placeholder="{{ translate('Pais') }}" name="pais"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group mb-3 text-right">
                                 <button type="submit" class="btn btn-primary">{{ translate('Save') }}</button>
@@ -234,7 +212,6 @@
             @endcan
         </div>
     </div>
-
 @endsection
 
 @section('modal')
