@@ -24,6 +24,7 @@
             :old-address="addressSelectedForEdit"
         />
         <profile-dialog :show="profileDialogShow" @close="profileDialogClosed" :old-profile="profileSelectedForEdit" />
+        <factory-dialog :show="factoryDialogShow" @close="factoryDialogClosed" :old-factory="factorySelectedForEdit" />
         <v-row>
             <v-col cols="12" md="6">
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
@@ -35,8 +36,8 @@
                         v-on:submit.prevent="updateBasic()"
                         enctype="multipart/form-data"
                     >
-                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
+                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
                         <v-row>
                             <v-col class="text-start">
                                 <label class="profile-label">{{ $t("email_address") }}</label>
@@ -207,7 +208,7 @@
                     <h5 class="bold">Empresa</h5>
                     <v-divider class="my-4" />
                     <div>
-                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true">
+                        <custom-button class="my-4" block color="grey" @click="editFactory()">
                             AÑADIR MI EMPRESA
                         </custom-button>
                         <div class="cards">
@@ -219,7 +220,7 @@
                     <h5 class="bold">Contraseña</h5>
                     <v-divider class="my-4" />
                     <div>
-                        <custom-button class="my-4" block color="grey" @click.stop="addDialogShow = true">
+                        <custom-button class="my-4" block color="grey" @click="editProfile()">
                             CAMBIAR CONTRASEÑA
                         </custom-button>
                     </div>
@@ -277,6 +278,7 @@ import CustomButton from "../../components/global/CustomButton.vue";
 import { VueTelInput } from "vue-tel-input";
 import AddressDialog from "../../components/address/AddressDialog.vue";
 import ProfileDialog from "../../components/user/ProfileDialog.vue";
+import FactoryDialog from "../../components/user/FactoryDialog.vue";
 
 import CustomInput from "../../components/global/CustomInput.vue";
 
@@ -310,9 +312,11 @@ export default {
         passwordShow: false,
         addDialogShow: false,
         profileDialogShow: false,
+        factoryDialogShow: false,
         infoUpdateLoading: false,
         addressSelectedForEdit: {},
         profileSelectedForEdit: {},
+        factorySelectedForEdit: {},
         defaultAddress: {},
         otherAdress: [],
         typeAddress: "shipping"
@@ -321,6 +325,7 @@ export default {
         VueTelInput,
         AddressDialog,
         ProfileDialog,
+        FactoryDialog,
         CustomButton,
         CustomInput
     },
@@ -469,6 +474,10 @@ export default {
             this.profileSelectedForEdit = this.currentUser;
             this.profileDialogShow = true;
         },
+        editFactory() {
+            this.factorySelectedForEdit = this.currentUser;
+            this.factoryDialogShow = true;
+        },
         addressDialogClosed() {
             this.addressSelectedForEdit = {};
             this.addDialogShow = false;
@@ -477,6 +486,11 @@ export default {
         profileDialogClosed() {
             this.profileSelectedForEdit = {};
             this.profileDialogShow = false;
+            this.getUser();
+        },
+        factoryDialogClosed() {
+            this.factorySelectedForEdit = {};
+            this.factoryDialogShow = false;
             this.getUser();
         },
         openAdress(type) {

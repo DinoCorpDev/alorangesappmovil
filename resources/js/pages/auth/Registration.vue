@@ -176,11 +176,11 @@
                             <v-row v-if="form.personType == 'Juridical'">
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Documento (Representante)</span>
-                                    <custom-button block class="mt-3" text="Añadir Mi Empresa" />
+                                    <custom-button block class="mt-3" color="nero" text="Añadir Mi Empresa" />
                                 </v-col>
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Documento (Representante)</span>
-                                    <custom-button block class="mt-3" text="Añadir Mi Empresa" />
+                                    <custom-button block class="mt-3" color="nero" text="Añadir Mi Empresa" />
                                 </v-col>
                             </v-row>
                             <v-row>

@@ -23,7 +23,7 @@
                 <search-input />
                 <div class="d-flex">
                     <div class="double-button d-flex mr-4">
-                        <custom-button class="btn-login" dark :to="{ name: 'Login' }">
+                        <custom-button class="btn-login" dark :to="{ name: 'Cart' }">
                             <template v-if="currentUser.name"> {{ shortName }} </template>
                             <template v-else> Iniciar Sesión </template>
                         </custom-button>
