@@ -15,7 +15,7 @@ class CreateServiceAttributesTable extends Migration
     {
         Schema::create('service_attributes', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
+            $table->integer('service_id');
             $table->integer('attribute_id');
             $table->timestamps();
         });

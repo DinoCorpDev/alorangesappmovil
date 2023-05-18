@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServiceVariation extends Model
 {
-
     public function service()
     {
         return $this->belongsTo(Service::class, 'service_id');

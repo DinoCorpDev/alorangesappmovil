@@ -108,7 +108,7 @@
                                     </li>
                                 @endcan
                             @endif
-                            @can('show_services')
+                            @can('show_products')
                                 <li class="aiz-side-nav-item">
                                     <a href="{{ route('service.index') }}"
                                         class="aiz-side-nav-link {{ areActiveRoutes(['service.index', 'service.create', 'service.edit', 'service_bulk_upload.index']) }}">

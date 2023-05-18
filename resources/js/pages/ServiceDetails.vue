@@ -464,7 +464,7 @@
                 </v-col>
 
                 <v-col cols="8">
-                    <AddToCart class="mb-10" :is-loading="detailsLoading" :service-details="serviceDetails" />
+                    <AddToCart class="mb-10" :is-loading="detailsLoading" :product-details="serviceDetails" />
                 </v-col>
             </v-row>
 
@@ -473,7 +473,7 @@
                     <h5>H5</h5>
                     <v-row class="mb-3">
                         <v-col v-for="service in moreServices" :key="`service-col-${service.id}`" cols="2">
-                            <ServiceBox :serviceDetails="service" />
+                            <ServiceBox :productDetails="service" />
                         </v-col>
                     </v-row>
                     <v-row justify="center">
@@ -520,7 +520,14 @@ import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import AddToCart from "../components/product/AddToCart.vue";
 
 export default {
+    metaInfo() {
+        return {
+            title: this.metaTitle
+        };
+    },
     data: () => ({
+        metaTitle: "",
+        detailsLoading: true,
         serviceDetails: {},
         img: "/public/assets/img/item-placeholder.png",
         model: 0,

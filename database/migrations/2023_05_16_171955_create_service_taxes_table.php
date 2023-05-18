@@ -15,7 +15,7 @@ class CreateServiceTaxesTable extends Migration
     {
         Schema::create('service_taxes', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
+            $table->integer('service_id');
             $table->integer('tax_id');
             $table->double('tax', 20, 2);
             $table->string('tax_type', 10);

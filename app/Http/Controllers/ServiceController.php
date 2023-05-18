@@ -29,12 +29,12 @@ class ServiceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:show_services'])->only('index');
-        $this->middleware(['permission:add_services'])->only('create');
-        $this->middleware(['permission:view_services'])->only('show');
-        $this->middleware(['permission:edit_services'])->only('edit');
-        $this->middleware(['permission:duplicate_services'])->only('duplicate');
-        $this->middleware(['permission:delete_services'])->only('destroy');
+        $this->middleware(['permission:show_products'])->only('index');
+        $this->middleware(['permission:add_products'])->only('create');
+        $this->middleware(['permission:view_products'])->only('show');
+        $this->middleware(['permission:edit_products'])->only('edit');
+        $this->middleware(['permission:duplicate_products'])->only('duplicate');
+        $this->middleware(['permission:delete_products'])->only('destroy');
     }
 
     /**
@@ -49,6 +49,7 @@ class ServiceController extends Controller
         $query = null;
         $sort_search = null;
         $services = Service::orderBy('created_at', 'desc')->where('shop_id', auth()->user()->shop_id);
+
         if ($request->search != null) {
             $services = $services->where('name', 'like', '%' . $request->search . '%');
             $sort_search = $request->search;
@@ -109,7 +110,7 @@ class ServiceController extends Controller
         // SEO meta
         $service->meta_title        = (!is_null($request->meta_title)) ? $request->meta_title : $service->name;
         $service->meta_description  = (!is_null($request->meta_description)) ? $request->meta_description : strip_tags($service->description);
-        $service->meta_image          = (!is_null($request->meta_image)) ? $request->meta_image : $service->thumbnail_img;
+        $service->meta_image        = (!is_null($request->meta_image)) ? $request->meta_image : $service->thumbnail_img;
         $service->slug              = Str::slug($request->name, '-') . '-' . strtolower(Str::random(5));
 
         // warranty

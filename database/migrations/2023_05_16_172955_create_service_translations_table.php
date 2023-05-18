@@ -15,7 +15,7 @@ class CreateServiceTranslationsTable extends Migration
     {
         Schema::create('service_translations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id');
+            $table->bigInteger('service_id');
             $table->string('name', 200)->nullable();
             $table->string('unit', 20)->nullable();
             $table->longText('description')->nullable();
