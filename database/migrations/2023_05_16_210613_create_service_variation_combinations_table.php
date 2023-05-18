@@ -15,8 +15,8 @@ class CreateServiceVariationCombinationsTable extends Migration
     {
         Schema::create('service_variation_combinations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id');
-            $table->bigInteger('product_variation_id');
+            $table->bigInteger('service_id');
+            $table->bigInteger('service_variation_id');
             $table->bigInteger('attribute_id');
             $table->bigInteger('attribute_value_id');
             $table->timestamps();

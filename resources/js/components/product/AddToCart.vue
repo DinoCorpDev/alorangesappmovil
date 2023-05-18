@@ -91,10 +91,10 @@
                     <h5 class="subt2 text-uppercase">Pago</h5>
                     <img src="/public/assets/img/product/icons-payments.png" alt="" />
                 </li>
-                <dli class="add-to-cart-list-box-item">
+                <li class="add-to-cart-list-box-item">
                     <h5 class="subt2 text-uppercase">Envío</h5>
                     <span class="subt2">{{ productDetails?.shipping ?? "--" }}</span>
-                </dli>
+                </li>
             </ul>
 
             <div>
@@ -108,7 +108,7 @@
 
 <script>
 import { mapGetters, mapActions, mapMutations } from "vuex";
-import ProductGallery from "../product/ProductGallery";
+import ProductGallery from "../product/ProductGallery.vue";
 import ProductBoxShort from "../product/ProductBoxShort.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 

@@ -15,7 +15,7 @@ class CreateServiceVariationsTable extends Migration
     {
         Schema::create('service_variations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id');
+            $table->bigInteger('service_id');
             $table->string('code', 50)->nullable();
             $table->string('sku', 100)->nullable();
             $table->double('price', 20, 2);

@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\RefundRequestController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Api\SubscribeController;
@@ -74,6 +75,17 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::get('random/{limit}/{product_id?}', [ProductController::class, 'random_products']);
         Route::get('latest/{limit}', [ProductController::class, 'latest_products']);
         Route::get('reviews/{product_id}', [ReviewController::class, 'index']);
+    });
+
+    Route::group(['prefix' => 'service'], function () {
+        Route::get('/details/{service_slug}', [ServiceController::class, 'show']);
+        Route::post('get-by-ids', [ServiceController::class, 'get_by_ids']);
+        Route::get('search', [ServiceController::class, 'search']);
+        Route::get('related/{service_id}', [ServiceController::class, 'related']);
+        Route::get('bought-together/{service_id}', [ServiceController::class, 'bought_together']);
+        Route::get('random/{limit}/{service_id?}', [ServiceController::class, 'random_services']);
+        Route::get('latest/{limit}', [ServiceController::class, 'latest_services']);
+        Route::get('reviews/{service_id}', [ReviewController::class, 'index']);
     });
 
     Route::get('all-countries', [AddressController::class, 'get_all_countries']);

@@ -520,7 +520,14 @@ import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import AddToCart from "../components/product/AddToCart.vue";
 
 export default {
+    metaInfo() {
+        return {
+            title: this.metaTitle
+        };
+    },
     data: () => ({
+        metaTitle: "",
+        detailsLoading: true,
         productDetails: {},
         img: "/public/assets/img/item-placeholder.png",
         model: 0,
