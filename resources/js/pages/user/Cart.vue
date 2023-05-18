@@ -330,13 +330,13 @@
             </v-stepper-content>
             <v-stepper-content step="3">
                 <v-row>
-                    <v-col cols="12" md="6" order="1" order-md="2" order-sm="2">
+                    <v-col cols="12" md="6" order="1" order-md="1" order-sm="2">
                         <div class="form">
                             <h6 class="black--text bold">Medio de Pago</h6>
                             <v-divider class="my-3" />
                             <v-row>
                                 <v-col cols="3">
-                                    <type-payment img="/public/assets/img/transferir.png" text="Pse" />
+                                    <type-payment img="/public/assets/img/pse.png" text="Pse" />
                                     <input type="radio" v-model="pick" :value="1" />
                                 </v-col>
                                 <v-col cols="3">
@@ -353,13 +353,45 @@
                                 </v-col>
                             </v-row>
                             <v-divider class="my-3" />
-                            <div v-if="pick != 4">
+                            <div v-if="pick === 1">
                                 <label class="text-uppercase">Tipo de Persona</label>
                                 <select-custom dark label="Tipo de persona" :items="langSelectItems" />
                                 <label class="text-uppercase">Banco</label>
                                 <select-custom dark label="Seleccionar banco" :items="langSelectItems" />
                             </div>
-                            <div v-if="pick == 4" class="form">
+                            <div v-if="pick === 2">
+                                <label class="text-uppercase">Numero de tarjeta</label>
+                                <custom-input />
+                                <label class="text-uppercase">Nombre titular de la tarjeta</label>
+                                <custom-input />
+                                <label class="text-uppercase">Fecha de expedicion</label>
+                                <select-custom dark label="Tipo de persona" :items="langSelectItems" />
+                                <label class="text-uppercase">Codigo de seguridad</label>
+                                <custom-input />
+                                <label class="text-uppercase">Numero de CVV2</label>
+                                <custom-input />
+                                <label class="text-uppercase">Documento</label>
+                                <select-custom dark label="Seleccionar banco" :items="langSelectItems" />
+                                <label class="text-uppercase">Numero de documento</label>
+                                <custom-input />
+                            </div>
+                            <div v-if="pick === 3">
+                                <label class="text-uppercase">Numero de tarjeta</label>
+                                <custom-input />
+                                <label class="text-uppercase">Nombre titular de la tarjeta</label>
+                                <custom-input />
+                                <label class="text-uppercase">Fecha de expedicion</label>
+                                <select-custom dark label="Tipo de persona" :items="langSelectItems" />
+                                <label class="text-uppercase">Codigo de seguridad</label>
+                                <custom-input />
+                                <label class="text-uppercase">Numero de CVV2</label>
+                                <custom-input />
+                                <label class="text-uppercase">Documento</label>
+                                <select-custom dark label="Seleccionar banco" :items="langSelectItems" />
+                                <label class="text-uppercase">Numero de documento</label>
+                                <custom-input />
+                            </div>
+                            <div v-if="pick === 4" class="form">
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase bold">PERSONA JURÍDICA</span>
                                     <span class="body1"> idovela sas </span>
@@ -394,10 +426,10 @@
                                     enctype="multipart/form-data"
                                 />
                             </div>
-                            <custom-button text="Aplicar" color="grey" />
+                            <custom-button class="mt-2" text="Aplicar" color="grey" />
                         </div>
                     </v-col>
-                    <v-col cols="12" md="6" order="2" order-md="1" order-sm="1">
+                    <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
                         <div class="form">
                             <h6 class="black--text bold">Codigo Promocional</h6>
                             <v-divider class="my-3" />
