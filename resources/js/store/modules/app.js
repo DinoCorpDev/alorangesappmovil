@@ -1,5 +1,7 @@
 import Mixin from "./../../utils/mixin";
+
 const shopSetting = window.shopSetting;
+
 const loadState = () => ({
     appName: shopSetting.appName,
     appMetaTitle: shopSetting.appMetaTitle,
@@ -22,8 +24,14 @@ const loadState = () => ({
     refundSettings: shopSetting.refundSettings,
     productQuerries: [],
     unseenProductQuerries: 0,
-    previewAvatar: null
+    previewAvatar: null,
+    authFooterLinks: [
+        { label: "Información", link: "#" },
+        { label: "Solicitudes", link: "#" },
+        { label: "Contacto", link: "#" }
+    ]
 });
+
 export default {
     namespaced: true,
     state: loadState(),

@@ -2,7 +2,7 @@
     --border: #e0e0e1;
     --screen-size: (100vw - 425px) / (1920 - 425);
 
-    --font-size-body1: calc(15px + (15 - 12) * var(--screen-size));
+    --font-size-body1: calc(12px + (15 - 12) * var(--screen-size));
     --font-size-body2: calc(12px + (14 - 12) * var(--screen-size));
     --font-size-btn: var(--font-size-body2);
     // --font-size-overline: 1rem;

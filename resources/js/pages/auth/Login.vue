@@ -124,6 +124,9 @@ export default {
             return errors;
         }
     },
+    mounted() {
+        this.$vuetify.theme.dark = false;
+    },
     methods: {
         ...mapActions("auth", { actionLogin: "login" }),
         ...mapActions("app", ["fetchProductQuerries"]),
