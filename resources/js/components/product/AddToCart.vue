@@ -1,6 +1,6 @@
 <template>
     <v-row class="">
-        <v-col cols="7">
+        <v-col cols="12" md="7">
             <ProductGallery
                 :is-loading="isLoading"
                 :galleryImages="productDetails.photos"
@@ -8,7 +8,7 @@
                 :dataSheet="productDetails.data_sheet"
             />
         </v-col>
-        <v-col cols="5">
+        <v-col cols="12" md="5">
             <div v-if="!isLoading" class="add-to-cart-list-box pa-4 mb-5">
                 <div class="d-flex justify-space-between">
                     <h5 class="subt2 font-weight-bold text-uppercase mb-2">
@@ -55,15 +55,16 @@
                         size="132px"
                     />
                 </div>
-                <Custom-Button
-                    :disabled="actionLoading"
-                    :loading="actionLoading"
-                    @click="addCart()"
-                    block
-                    color="nero mb-3"
-                    text="Agregar a Compras"
-                />
-                <CustomButton text="Consultar a un Asesor" block color="grey" />
+                <div class="add-to-cart-actions">
+                    <Custom-Button
+                        :disabled="actionLoading"
+                        :loading="actionLoading"
+                        @click="addCart()"
+                        color="nero"
+                        text="Agregar a Compras"
+                    />
+                    <CustomButton text="Consultar a un Asesor" color="grey" />
+                </div>
             </div>
 
             <div class="add-to-cart-list-box pa-4 mb-5">
@@ -102,6 +103,8 @@
                 <v-divider class="mb-3" />
                 <ProductBoxShort />
             </div>
+
+            <v-divider class="d-sm-none mt-3" />
         </v-col>
     </v-row>
 </template>
@@ -313,6 +316,19 @@ export default {
 
         & + .add-to-cart-price {
             font-size: var(--font-size-body1);
+        }
+    }
+
+    &-actions {
+        display: grid;
+        gap: 1rem;
+
+        @media (min-width: 600px) and (max-width: 959px) {
+            display: flex;
+        }
+
+        a {
+            flex: 1;
         }
     }
 }
