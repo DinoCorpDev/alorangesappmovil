@@ -1,6 +1,6 @@
 <template>
     <div>
-        <layout-navbar-auth />
+        <LayoutNavbarAuth />
         <v-container fluid class="product-details pa-4">
             <v-row tag="section" class="flex-column-reverse flex-lg-row mb-6">
                 <v-col cols="12" lg="4">
@@ -307,7 +307,7 @@
                                     <h5 class="product-details-list-box-label mr-4">
                                         ¿Deseas calificar este producto?
                                     </h5>
-                                    <custom-button color="grey" text="Calificar" />
+                                    <CustomButton color="grey" text="Calificar" />
                                 </div>
                             </div>
                         </v-tab-item>
@@ -446,7 +446,7 @@
                                                 descuento a cambio.
                                             </p>
                                             <span class="list-box-caption mb-4">Solicitar</span>
-                                            <custom-button color="grey" text="Renovación UpGrade" />
+                                            <CustomButton color="grey" text="Renovación UpGrade" />
                                         </div>
                                     </v-col>
                                     <v-col cols="6">
@@ -456,7 +456,7 @@
                                                 Deseo programar un mantenimiento preventivo para mi producto/s.
                                             </p>
                                             <span class="list-box-caption mb-4">Solicitar</span>
-                                            <custom-button color="grey" text="Soporte Ténico" />
+                                            <CustomButton color="grey" text="Soporte Ténico" />
                                         </div>
                                     </v-col>
                                 </v-row>
@@ -464,7 +464,6 @@
                         </v-tab-item>
                     </v-tabs-items>
                 </v-col>
-
                 <v-col cols="12" lg="8">
                     <AddToCart :is-loading="detailsLoading" :product-details="productDetails" />
                 </v-col>
@@ -515,7 +514,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <footer-custom />
+        <FooterCustom />
     </div>
 </template>
 
@@ -523,7 +522,6 @@
 import ProductBox from "../components/product/ProductBox.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import FooterCustom from "../components/global/FooterCustom.vue";
-import Carousel from "../components/global/Carousel.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 // import ChartView from "../components/global/ChartView.vue";
 import AddToCart from "../components/product/AddToCart.vue";
@@ -543,22 +541,17 @@ export default {
         metaTitle: "",
         detailsLoading: true,
         productDetails: {},
-        img: "/public/assets/img/item-placeholder.png",
-        model: 0,
-        tags: ["1", "2", "3"],
         ratings: { rating5: 67, rating4: 22, rating3: 11, rating2: 0, rating1: 0, vidaUtil: 0 },
         desserts: [],
         impacto: "28%",
         moreProducts: [],
         footerProducts: [],
         tab: null,
-        relatedProducts: [{}, {}, {}, {}, {}],
-        actionLoading: false
+        relatedProducts: [{}, {}, {}, {}, {}]
     }),
     components: {
         ProductBox,
         CustomButton,
-        Carousel,
         LayoutNavbarAuth,
         FooterCustom,
         AddToCart,
@@ -735,21 +728,6 @@ export default {
     background-color: #fafcfc;
 
     .v-tabs {
-        &.assets-tabs {
-            position: absolute;
-            z-index: 2;
-            width: 92.5%;
-            margin: auto;
-            left: 0;
-            right: 0;
-            top: 0.75rem;
-
-            @media (min-width: 600px) {
-                width: 90%;
-                top: 1.5rem;
-            }
-        }
-
         &::v-deep {
             .v-slide-group__prev,
             .v-slide-group__next {
@@ -801,10 +779,6 @@ export default {
         padding-right: 8px;
     }
 
-    &-assets {
-        position: relative;
-    }
-
     &-list-box {
         border-radius: 10px;
         border: 1px solid #e4e4e4;
@@ -845,27 +819,6 @@ export default {
             text-decoration: underline;
         }
 
-        .v-btn-toggle {
-            gap: 0.75rem;
-
-            .v-btn {
-                min-width: 28px;
-                height: 28px !important;
-                padding: 0;
-                border-radius: 2px;
-
-                &--active,
-                &:hover:not(.v-btn--active) {
-                    box-shadow: 0px 0px 0px 5px #dfdfdf;
-                }
-            }
-
-            & > .v-btn:first-child,
-            & > .v-btn:last-child {
-                border-radius: 2px;
-            }
-        }
-
         &::v-deep {
             .v-rating {
                 .v-icon {
@@ -873,21 +826,6 @@ export default {
                     padding: 0.25rem;
                 }
             }
-        }
-    }
-
-    &-price {
-        font-family: "Roboto", sans-serif;
-        font-size: var(--font-size-h5);
-        line-height: 24px;
-
-        &.discounted {
-            background-color: #e8ff00;
-            margin-right: 0.5rem;
-        }
-
-        & + .product-details-price {
-            font-size: var(--font-size-body1);
         }
     }
 }
