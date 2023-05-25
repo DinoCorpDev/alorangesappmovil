@@ -95,6 +95,14 @@
                                         </span>
                                     </a>
                                 </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="{{ route('collection.index') }}"
+                                        class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text">
+                                            Collections
+                                        </span>
+                                    </a>
+                                </li>
                             @endcan
                             @if (addon_is_activated('multi_vendor'))
                                 @can('show_seller_products')
