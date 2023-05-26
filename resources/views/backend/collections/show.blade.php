@@ -11,15 +11,63 @@
                     >
                 </div>
                 <div class="col-lg">
-                    <h1 class="h5 fw-700">{{ $collection->coleccion }}</h1>
+                    <h1 class="h5 fw-700">
+                        {{ $collection->coleccion }}
+                        <a
+                            class="btn btn-success mb-0 float-right"
+                            for="openCSV"
+                            href="{{ route('collection.add', $collection->id) }}"
+                        >
+                            <span id="span-btn-excel">{{ translate('Add products') }}</span>
+                        </a>
+                    </h1>
 
-                    <a
-                        class="btn btn-success mb-0"
-                        for="openCSV"
-                        href="{{ route('collection.add', $collection->id) }}"
-                    >
-                        <span id="span-btn-excel">{{ translate('Add products') }}</span>
-                    </a>
+                    
+
+                    <br>
+                    <br>
+
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th class="w-40px">#</th>
+                                <th>{{ translate('Name') }}</th>
+                                <th class="text-right">{{ translate('Price') }}</th>
+                                <th
+                                    class="text-right"
+                                   
+                                >{{ translate('Options') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($products as $product)
+                                @php
+                                    $pr =  \App\Models\Product::find($product->id_product);
+                                @endphp
+                                <tr>
+                                    <td>
+                                        {{ $pr->id }}
+                                    </td>
+                                    <td>
+                                        {{ $pr->name }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ $pr->lowest_price }} {{ $pr->currency }}
+                                    </td>
+                                    <td>
+                                        <a
+                                            class="float-right"
+                                            href="{{ route('collection.destroyProduct', $product->id) }}"
+                                            title="{{ translate('Add') }}"
+                                        >
+                                            <span>Quitar</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    
+                    </table>
                 </div>
             </div>
         </div>

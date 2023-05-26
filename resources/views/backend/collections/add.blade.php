@@ -18,7 +18,18 @@
         >
             <div class="card-header row gutters-5">
                 <div class="col text-center text-md-left">
-                    <h5 class="mb-md-0 h6">{{ translate('Add product to collection') }} {{$collection->coleccion}}</h5>
+                    <h5 class="mb-md-0 h6">
+                        {{ translate('Add product to collection') }} 
+                        {{$collection->coleccion}}
+                        <a
+                            class="font-weight-bold ml-3"
+                            href="{{ route('collection.show', $collection->id) }}"
+                            title="{{ translate('Add') }}"
+                        >
+                            <span>Volver</span>
+                        </a>
+                    </h5>
+                    
                 </div>
                 <div class="col-md-2 ml-auto">
                     <select
@@ -175,7 +186,7 @@
                             <td>
                                 <a
                                     class="btn btn-soft-primary"
-                                    href="#"
+                                    href="{{ route('collection.addProduct', ['id' => $collection->id, 'idProduct' => $product->id]) }}"
                                     title="{{ translate('Add') }}"
                                 >
                                     <span>Agregar a colección</span>

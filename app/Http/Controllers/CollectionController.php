@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\CollectionProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -241,8 +242,10 @@ class CollectionController extends Controller
      */
     public function show($id)
     {
+        
         return view('backend.collections.show', [
-            'collection' => Collection::findOrFail($id)
+            'collection' => Collection::findOrFail($id),
+            "products" => CollectionProduct::where("id_collection", $id)->get()
         ]);
     }
 
@@ -428,5 +431,26 @@ class CollectionController extends Controller
         $type = 'All';
 
         return view('backend.collections.add', compact('products', 'type', 'col_name', 'query', 'sort_search', 'collection'));
+    }
+
+    public function addProduct($id, $idProduct)
+    {   
+
+        $product = new CollectionProduct;
+        $product->id_collection = $id;
+        $product->id_product = $idProduct;
+        $product->save();
+
+        flash(translate('Product has been added successfully'))->success();
+        return back();
+    }
+
+    public function destroyProduct($id)
+    {   
+
+        CollectionProduct::destroy($id);
+
+        flash(translate('Product has been delete successfully'))->success();
+        return back();
     }
 }

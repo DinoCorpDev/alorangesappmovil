@@ -108,7 +108,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::get('/destroy/{id}', [CollectionController::class, 'destroy'])->name('collection.destroy');
         Route::get('/collection/{id}', [CollectionController::class, 'show'])->name('collection');
         Route::get('/add/{id}', [CollectionController::class, 'add'])->name('collection.add');
-   });
+        Route::get('/add/{id}/product/{idProduct}', [CollectionController::class, 'addProduct'])->name('collection.addProduct');
+        Route::get('/destroy/{id}/product', [CollectionController::class, 'destroyProduct'])->name('collection.destroyProduct');
+    });
 
     // Product
     Route::resource('/product', ProductController::class);
