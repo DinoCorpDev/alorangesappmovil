@@ -20,8 +20,7 @@
         <v-divider />
         <v-stepper-items>
             <v-stepper-content step="1">
-                <h6>Productos</h6>
-                <v-row>
+                <v-row v-if="cartItems != 0">
                     <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
                         <product-cart
                             :reference="product?.reference"
@@ -44,6 +43,13 @@
                         </div>
                     </v-col>
                 </v-row>
+                <div class="emptycart" v-else>
+                    <div class="cuadro-emptycart">
+                        <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoCarrito.png" />
+                        <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
+                        <custom-button text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }"/>
+                    </div>
+                </div>
             </v-stepper-content>
             <v-stepper-content step="2">
                 <v-row>
@@ -419,7 +425,7 @@
                                     @click="$refs.fileInput.click()"
                                 />
                                 <input
-                                    style="display: none"
+                                    style="display: none;"
                                     ref="fileInput"
                                     type="file"
                                     @change="fileSelected"
@@ -1184,6 +1190,30 @@ export default {
     }
 }
 
+// Estilos carrito vacio //
+
+.emptycart {
+    display: flex;
+    justify-content: center;
+}
+.cuadro-emptycart {
+    padding: 40px 50px;
+    text-align: center;
+    border: 1px solid #dfdfdf;
+    margin-top: 7%;
+    border-radius: 10px;
+}
+.text-cartempty {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.img-cartempty {
+    width: 26%;
+    margin: auto;
+}
+
+// Fin estilos //
 .container {
     background-color: #ffffff;
 }
