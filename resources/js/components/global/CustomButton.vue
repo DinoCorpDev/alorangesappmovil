@@ -149,6 +149,13 @@ export default {
             color: #fff;
             background-color: #161616 !important;
         }
+
+        &.theme--dark {
+            &:is(:hover, :focus) {
+                color: #000000;
+                background-color: #ffffff !important;
+            }
+        }
     }
 
     &.grey2 {

@@ -13,7 +13,9 @@ const loadState = () => ({
     paymentMethods: shopSetting.paymentMethods,
     offlinePaymentMethods: shopSetting.offlinePaymentMethods,
     userLanguage: localStorage.getItem("shopSelectedLanguage") || shopSetting.appLanguage,
+    userCurrency: localStorage.getItem("shopSelectedCurrency") || shopSetting.appCurrency,
     availableCountries: shopSetting.availableCountries.length > 0 ? shopSetting.availableCountries : ["US"],
+    availableCurrencies: shopSetting.availableCurrencies.length > 0 ? shopSetting.availableCurrencies : ["USD"],
     allLanguages: shopSetting.allLanguages,
     allCurrencies: shopSetting.allCurrencies,
     generalSettings: shopSetting.general_settings,
@@ -66,6 +68,12 @@ export default {
         userLanguageObj(state) {
             return state.allLanguages.find(language => language.code === state.userLanguage);
         },
+        userCurrency(state) {
+            return state.userCurrency;
+        },
+        userCurrencyObj(state) {
+            return state.allCurrencies.find(currency => currency.code === state.userCurrency);
+        },
         paymentMethods(state) {
             return state.paymentMethods;
         },
@@ -74,6 +82,9 @@ export default {
         },
         availableCountries(state) {
             return state.availableCountries;
+        },
+        availableCurrencies(state) {
+            return state.availableCurrencies;
         },
         allLanguages(state) {
             return state.allLanguages;
@@ -122,6 +133,18 @@ export default {
         removeLanguage(state) {
             state.userLanguage = state.appLanguage;
             localStorage.removeItem("shopSelectedLanguage");
+        },
+        setCurrency(state, currency) {
+            if(state.userCurrency !== currency) {
+                state.userCurrency = currency;
+
+                localStorage.removeItem("shopSelectedCurrency");
+                localStorage.setItem("shopSelectedCurrency", currency);
+            }
+        },
+        removeCurrency(state) {
+            state.userCurrency = state.appCurrency;
+            localStorage.removeItem("shopSelectedCurrency");
         },
         setRouterLoading(state, status) {
             state.routerLoading = status;

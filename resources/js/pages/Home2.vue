@@ -403,7 +403,7 @@ export default {
 
 <style lang="scss">
 .v-list-item {
-    text-transform: uppercase;
+    // text-transform: uppercase;
 }
 </style>
 
