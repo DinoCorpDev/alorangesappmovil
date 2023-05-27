@@ -24,6 +24,11 @@
             :old-address="addressSelectedForEdit"
         />
         <profile-dialog :show="profileDialogShow" @close="profileDialogClosed" :old-profile="profileSelectedForEdit" />
+        <password-dialog
+            :show="passwordDialogShow"
+            @close="passwordDialogClosed"
+            :old-password="passwordSelectedForEdit"
+        />
         <factory-dialog :show="factoryDialogShow" @close="factoryDialogClosed" :old-factory="factorySelectedForEdit" />
         <v-row>
             <v-col cols="12" md="6">
@@ -36,8 +41,8 @@
                         v-on:submit.prevent="updateBasic()"
                         enctype="multipart/form-data"
                     >
-                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
+                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0;" />
                         <v-row>
                             <v-col class="text-start">
                                 <label class="profile-label">{{ $t("email_address") }}</label>
@@ -220,7 +225,7 @@
                     <h5 class="bold">Contraseña</h5>
                     <v-divider class="my-4" />
                     <div>
-                        <custom-button class="my-4" block color="grey" @click="editProfile()">
+                        <custom-button class="my-4" block color="grey" @click="editPassword()">
                             CAMBIAR CONTRASEÑA
                         </custom-button>
                     </div>
@@ -278,6 +283,7 @@ import CustomButton from "../../components/global/CustomButton.vue";
 import { VueTelInput } from "vue-tel-input";
 import AddressDialog from "../../components/address/AddressDialog.vue";
 import ProfileDialog from "../../components/user/ProfileDialog.vue";
+import PasswordDialog from "../../components/user/PasswordDialog.vue";
 import FactoryDialog from "../../components/user/FactoryDialog.vue";
 
 import CustomInput from "../../components/global/CustomInput.vue";
@@ -312,10 +318,12 @@ export default {
         passwordShow: false,
         addDialogShow: false,
         profileDialogShow: false,
+        passwordDialogShow: false,
         factoryDialogShow: false,
         infoUpdateLoading: false,
         addressSelectedForEdit: {},
         profileSelectedForEdit: {},
+        passwordSelectedForEdit: {},
         factorySelectedForEdit: {},
         defaultAddress: {},
         otherAdress: [],
@@ -325,6 +333,7 @@ export default {
         VueTelInput,
         AddressDialog,
         ProfileDialog,
+        PasswordDialog,
         FactoryDialog,
         CustomButton,
         CustomInput
@@ -474,6 +483,10 @@ export default {
             this.profileSelectedForEdit = this.currentUser;
             this.profileDialogShow = true;
         },
+        editPassword() {
+            this.passwordSelectedForEdit = this.currentUser;
+            this.passwordDialogShow = true;
+        },
         editFactory() {
             this.factorySelectedForEdit = this.currentUser;
             this.factoryDialogShow = true;
@@ -486,6 +499,11 @@ export default {
         profileDialogClosed() {
             this.profileSelectedForEdit = {};
             this.profileDialogShow = false;
+            this.getUser();
+        },
+        passwordDialogClosed() {
+            this.passwordSelectedForEdit = {};
+            this.passwordDialogShow = false;
             this.getUser();
         },
         factoryDialogClosed() {

@@ -1,5 +1,9 @@
 <template>
-    <div class="shop-action-card" :class="boxStyle == 'vertical' ? 'vertical' : 'pa-3 pa-sm-6'">
+    <div
+        class="shop-action-card"
+        :class="boxStyle == 'vertical' ? 'vertical' : 'pa-3 pa-sm-6'"
+        @click.stop="$emit('click')"
+    >
         <img v-if="img" class="shop-action-card-image" :class="boxStyle != 'vertical' ? 'mr-5' : ''" :src="img" />
         <img
             v-else
