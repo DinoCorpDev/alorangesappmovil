@@ -12,7 +12,6 @@
             </a>
         </div>
 
-
         <div class="aiz-side-nav-wrap">
             <ul class="aiz-side-nav-list" data-toggle="aiz-side-menu">
                 <li class="aiz-side-nav-item">
@@ -92,6 +91,13 @@
                                         class="aiz-side-nav-link {{ areActiveRoutes(['product.index', 'product.create', 'product.edit', 'product_bulk_upload.index']) }}">
                                         <span class="aiz-side-nav-text">
                                             {{ addon_is_activated('multi_vendor') ? translate('Inhouse Products') : translate('Products') }}
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="{{ route('collection.index') }}" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text">
+                                            {{ translate('Collections') }}
                                         </span>
                                     </a>
                                 </li>

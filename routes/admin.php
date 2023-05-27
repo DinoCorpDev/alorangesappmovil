@@ -37,6 +37,7 @@ use App\Addons\MultiVendor\Http\Controllers\MultiVendorController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\CollectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +99,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('attribute_values', AttributeValueController::class)->except(['destroy']);;
     Route::get('/attribute_values/edit/{id}', [AttributeValueController::class, 'edit'])->name('attribute_values.edit');
 
+    // Collection
+    Route::resource('/collection', CollectionController::class);
+    Route::group(['prefix' => 'collection'], function () {
+        Route::post('/import', [CollectionController::class, 'import'])->name('collection.import');
+        Route::get('/{id}/edit', [CollectionController::class, 'edit'])->name('collection.edit');
+        Route::post('/update/{id}', [CollectionController::class, 'update'])->name('collection.update');
+        Route::get('/destroy/{id}', [CollectionController::class, 'destroy'])->name('collection.destroy');
+        Route::get('/collection/{id}', [CollectionController::class, 'show'])->name('collection');
+        Route::get('/add/{id}', [CollectionController::class, 'add'])->name('collection.add');
+        Route::get('/add/{id}/product/{idProduct}', [CollectionController::class, 'addProduct'])->name('collection.addProduct');
+        Route::get('/destroy/{id}/product', [CollectionController::class, 'destroyProduct'])->name('collection.destroyProduct');
+    });
 
     // Product
     Route::resource('/product', ProductController::class);
