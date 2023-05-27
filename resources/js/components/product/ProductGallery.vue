@@ -50,19 +50,34 @@ export default {
 .product-gallery {
     position: relative;
     height: 100%;
+    min-height: 70vh;
 
     .v-tabs {
         position: absolute;
         z-index: 2;
-        width: 90%;
+        width: 92.5%;
         margin: auto;
         left: 0;
         right: 0;
-        top: 1.5rem;
+        top: 0.75rem;
+
+        @media (min-width: 600px) {
+            width: 90%;
+            top: 1.5rem;
+        }
 
         &::v-deep {
+            .v-slide-group__prev,
+            .v-slide-group__next {
+                display: none !important;
+            }
+
             .v-tabs-bar__content {
-                gap: 1.5rem;
+                gap: 0.75rem;
+
+                @media (min-width: 600px) {
+                    gap: 1.5rem;
+                }
             }
         }
 
