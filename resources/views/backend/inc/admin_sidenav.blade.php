@@ -12,7 +12,6 @@
             </a>
         </div>
 
-
         <div class="aiz-side-nav-wrap">
             <ul class="aiz-side-nav-list" data-toggle="aiz-side-menu">
                 <li class="aiz-side-nav-item">
@@ -96,10 +95,9 @@
                                     </a>
                                 </li>
                                 <li class="aiz-side-nav-item">
-                                    <a href="{{ route('collection.index') }}"
-                                        class="aiz-side-nav-link">
+                                    <a href="{{ route('collection.index') }}" class="aiz-side-nav-link">
                                         <span class="aiz-side-nav-text">
-                                            Collections
+                                            {{ translate('Collections') }}
                                         </span>
                                     </a>
                                 </li>

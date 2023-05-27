@@ -4,19 +4,10 @@
     <div class="aiz-titlebar text-left mt-2 mb-3">
         <h1 class="mb-0 h6">{{ translate('Edit Collection') }}</h5>
     </div>
-    <form
-        class="form form-horizontal mar-top"
-        id="product_form"
-        action="{{ route('collection.update', $collection->id) }}"
-        method="POST"
-        enctype="multipart/form-data"
-    >
+    <form class="form form-horizontal mar-top" id="product_form" action="{{ route('collection.update', $collection->id) }}"
+        method="POST" enctype="multipart/form-data">
         @csrf
-        <input
-            name="id"
-            type="hidden"
-            value="{{ $collection->id }}"
-        >
+        <input name="id" type="hidden" value="{{ $collection->id }}">
         <div class="row gutters-5">
             <div class="col-lg">
                 <div class="card">
@@ -28,32 +19,19 @@
                             <label class="col-md-3 col-from-label">{{ translate('Referencia') }} <span
                                     class="text-danger">*</span></label>
                             <div class="col-md-8">
-                                <input
-                                    class="form-control"
-                                    name="reference"
-                                    type="text"
-                                    value="{{ $collection->referencia }}"
-                                    placeholder="{{ translate('Reference') }}"
-                                    required
-                                >
+                                <input class="form-control" name="reference" type="text"
+                                    value="{{ $collection->referencia }}" placeholder="{{ translate('Reference') }}"
+                                    required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-from-label">{{ translate('Collection Name') }} <span
-                                    class="text-danger"
-                                >*</span> <i
-                                    class="las la-language text-danger"
-                                    title="{{ translate('Translatable') }}"
-                                ></i></label>
+                                    class="text-danger">*</span> <i class="las la-language text-danger"
+                                    title="{{ translate('Translatable') }}"></i></label>
                             <div class="col-md-8">
-                                <input
-                                    class="form-control"
-                                    name="coleccion"
-                                    type="text"
-                                    value="{{ $collection->coleccion }}"
-                                    placeholder="{{ translate('Collection Name') }}"
-                                    required
-                                >
+                                <input class="form-control" name="coleccion" type="text"
+                                    value="{{ $collection->coleccion }}" placeholder="{{ translate('Collection Name') }}"
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -64,56 +42,34 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-                            <label
-                                class="col-md-3 col-form-label"
-                                for="signinSrEmail"
-                            >{{ translate('Imagen 1') }}
+                            <label class="col-md-3 col-form-label" for="signinSrEmail">{{ translate('Imagen 1') }}
                             </label>
                             <div class="col-md-8">
-                                <div
-                                    class="input-group"
-                                    data-toggle="aizuploader"
-                                    data-type="image"
-                                    data-mu
-                                >
+                                <div class="input-group" data-toggle="aizuploader" data-type="image" data-mu>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
                                             {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input
-                                        class="selected-files"
-                                        name="imagen1"
-                                        type="hidden"
-                                        value="{{ $collection->imagen1 }}"
-                                    >
+                                    <input class="selected-files" name="imagen1" type="hidden"
+                                        value="{{ $collection->imagen1 }}">
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{ translate('Imagen 2') }}</label>
                             <div class="col-md-8">
-                                <div
-                                    class="input-group"
-                                    data-toggle="aizuploader"
-                                    data-type="image"
-                                >
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
                                             {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input
-                                        class="selected-files"
-                                        name="imagen2"
-                                        type="hidden"
-                                        value="{{ $collection->imagen2 }}"
-                                        required
-                                        readonly
-                                    >
+                                    <input class="selected-files" name="imagen2" type="hidden"
+                                        value="{{ $collection->imagen2 }}" required readonly>
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
@@ -122,24 +78,14 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{ translate('Imagen 3') }}</label>
                             <div class="col-md-8">
-                                <div
-                                    class="input-group"
-                                    data-toggle="aizuploader"
-                                    data-type="image"
-                                >
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
                                             {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input
-                                        class="selected-files"
-                                        name="imagen3"
-                                        type="hidden"
-                                        value="{{ $collection->imagen3 }}"
-                                        required
-                                        readonly
-                                    >
+                                    <input class="selected-files" name="imagen3" type="hidden"
+                                        value="{{ $collection->imagen3 }}" required readonly>
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
@@ -148,24 +94,14 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{ translate('Imagen 4') }}</label>
                             <div class="col-md-8">
-                                <div
-                                    class="input-group"
-                                    data-toggle="aizuploader"
-                                    data-type="image"
-                                >
+                                <div class="input-group" data-toggle="aizuploader" data-type="image">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
                                             {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input
-                                        class="selected-files"
-                                        name="imagen4"
-                                        type="hidden"
-                                        value="{{ $collection->imagen4 }}"
-                                        required
-                                        readonly
-                                    >
+                                    <input class="selected-files" name="imagen4" type="hidden"
+                                        value="{{ $collection->imagen4 }}" required readonly>
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
@@ -183,43 +119,27 @@
                             <div class="form-group row">
                                 <label class="col-md-3 col-from-label">{{ translate('Currency') }}</label>
                                 <div class="col-md-8">
-                                    <input
-                                        class="form-control"
-                                        name="divisa"
-                                        type="text"
-                                        value="{{ $collection->divisa }}"
-                                        placeholder="{{ translate('Currency') }}"
-                                    >
+                                    <input class="form-control" name="divisa" type="text"
+                                        value="{{ $collection->divisa }}" placeholder="{{ translate('Currency') }}">
                                 </div>
                             </div>
                         </div>
                         <div class="no_product_variant">
                             <div class="form-group row">
                                 <label class="col-md-3 col-from-label">{{ translate('Price') }} <span
-                                        class="text-danger"
-                                    >*</span></label>
+                                        class="text-danger">*</span></label>
                                 <div class="col-md-8">
-                                    <input
-                                        class="form-control"
-                                        name="precio"
-                                        type="number"
-                                        value="{{ $collection->precio }}"
-                                        step="0.01"
-                                        min="0"
-                                        placeholder="{{ translate('PriPricece') }}"
-                                        required
-                                    >
+                                    <input class="form-control" name="precio" type="number"
+                                        value="{{ $collection->precio }}" step="0.01" min="0"
+                                        placeholder="{{ translate('PriPricece') }}" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 col-from-label">{{ translate('Stock') }} <span
                                         class="text-danger">*</span></label>
                                 <div class="col-md-8">
-                                    <select
-                                        class="form-control aiz-selectpicker"
-                                        name="stock"
-                                        data-selected="{{ $collection->stock }}"
-                                    >
+                                    <select class="form-control aiz-selectpicker" name="stock"
+                                        data-selected="{{ $collection->stock }}">
                                         <option value="1">{{ translate('In stock') }}</option>
                                         <option value="0">{{ translate('Out of stock') }}</option>
                                     </select>
@@ -239,13 +159,9 @@
                             <label class="col-md-3 col-from-label">{{ translate('Envio') }}</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input
-                                        class="form-control"
-                                        name="envio"
-                                        type="text"
+                                    <input class="form-control" name="envio" type="text"
                                         value="{{ $collection->envio }}"
-                                        placeholder="{{ translate('Informacion de envio') }}"
-                                    >
+                                        placeholder="{{ translate('Informacion de envio') }}">
                                 </div>
                             </div>
                         </div>
@@ -260,13 +176,9 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-from-label">{{ translate('Description') }} <i
                                     class="las la-language text-danger"
-                                    title="{{ translate('Translatable') }}"
-                                ></i></label>
+                                    title="{{ translate('Translatable') }}"></i></label>
                             <div class="col-md-8">
-                                <textarea
-                                    class="aiz-text-editor"
-                                    name="description"
-                                >{!! $collection->descripcion !!}</textarea>
+                                <textarea class="aiz-text-editor" name="description">{!! $collection->descripcion !!}</textarea>
                             </div>
                         </div>
 
@@ -274,13 +186,8 @@
                             <label class="col-md-3 col-from-label">{{ translate('Material') }}</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input
-                                        class="form-control"
-                                        name="material"
-                                        type="text"
-                                        value="{{ $collection->material }}"
-                                        placeholder="{{ translate('Material') }}"
-                                    >
+                                    <input class="form-control" name="material" type="text"
+                                        value="{{ $collection->material }}" placeholder="{{ translate('Material') }}">
                                 </div>
                             </div>
                         </div>
@@ -289,13 +196,8 @@
                             <label class="col-md-3 col-from-label">{{ translate('SI1') }}</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input
-                                        class="form-control"
-                                        name="unit_metering"
-                                        type="text"
-                                        value="{{ $collection->unit_metering }}"
-                                        placeholder="{{ translate('SI1') }}"
-                                    >
+                                    <input class="form-control" name="unit_metering" type="text"
+                                        value="{{ $collection->unit_metering }}" placeholder="{{ translate('SI1') }}">
                                 </div>
                             </div>
                         </div>
@@ -304,13 +206,8 @@
                             <label class="col-md-3 col-from-label">{{ translate('aforo') }}</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input
-                                        class="form-control"
-                                        name="aforo"
-                                        type="text"
-                                        value="{{ $collection->aforo }}"
-                                        placeholder="{{ translate('aforo') }}"
-                                    >
+                                    <input class="form-control" name="aforo" type="text"
+                                        value="{{ $collection->aforo }}" placeholder="{{ translate('aforo') }}">
                                 </div>
                             </div>
                         </div>
@@ -319,13 +216,9 @@
                             <label class="col-md-3 col-from-label">{{ translate('medida_de_proyecto') }}</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input
-                                        class="form-control"
-                                        name="medida_de_proyecto"
-                                        type="text"
+                                    <input class="form-control" name="medida_de_proyecto" type="text"
                                         value="{{ $collection->medida_de_proyecto }}"
-                                        placeholder="{{ translate('medida_de_proyecto') }}"
-                                    >
+                                        placeholder="{{ translate('medida_de_proyecto') }}">
                                 </div>
                             </div>
                         </div>
@@ -333,24 +226,14 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{ translate('Video') }}</label>
                             <div class="col-md-8">
-                                <div
-                                    class="input-group"
-                                    data-toggle="aizuploader"
-                                    data-type="video"
-                                >
+                                <div class="input-group" data-toggle="aizuploader" data-type="video">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
                                             {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input
-                                        class="selected-files"
-                                        name="video1"
-                                        type="hidden"
-                                        value="{{ $collection->video1 }}"
-                                        required
-                                        readonly
-                                    >
+                                    <input class="selected-files" name="video1" type="hidden"
+                                        value="{{ $collection->video1 }}" required readonly>
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
@@ -359,24 +242,14 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{ translate('Video 2') }}</label>
                             <div class="col-md-8">
-                                <div
-                                    class="input-group"
-                                    data-toggle="aizuploader"
-                                    data-type="video"
-                                >
+                                <div class="input-group" data-toggle="aizuploader" data-type="video">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
                                             {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input
-                                        class="selected-files"
-                                        name="video2"
-                                        type="hidden"
-                                        value="{{ $collection->video2 }}"
-                                        required
-                                        readonly
-                                    >
+                                    <input class="selected-files" name="video2" type="hidden"
+                                        value="{{ $collection->video2 }}" required readonly>
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
@@ -385,24 +258,14 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{ translate('Video 3') }}</label>
                             <div class="col-md-8">
-                                <div
-                                    class="input-group"
-                                    data-toggle="aizuploader"
-                                    data-type="video"
-                                >
+                                <div class="input-group" data-toggle="aizuploader" data-type="video">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
                                             {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input
-                                        class="selected-files"
-                                        name="video3"
-                                        type="hidden"
-                                        value="{{ $collection->video3 }}"
-                                        required
-                                        readonly
-                                    >
+                                    <input class="selected-files" name="video3" type="hidden"
+                                        value="{{ $collection->video3 }}" required readonly>
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
@@ -411,24 +274,14 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{ translate('Video 4') }}</label>
                             <div class="col-md-8">
-                                <div
-                                    class="input-group"
-                                    data-toggle="aizuploader"
-                                    data-type="video"
-                                >
+                                <div class="input-group" data-toggle="aizuploader" data-type="video">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
                                             {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input
-                                        class="selected-files"
-                                        name="video4"
-                                        type="hidden"
-                                        value="{{ $collection->video4 }}"
-                                        required
-                                        readonly
-                                    >
+                                    <input class="selected-files" name="video4" type="hidden"
+                                        value="{{ $collection->video4 }}" required readonly>
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
@@ -444,16 +297,10 @@
                         <h5 class="mb-0 h6">{{ translate('Product Status') }}</h5>
                     </div>
                     <div class="card-body">
-                        <select
-                            class="form-control aiz-selectpicker"
-                            name="status"
-                            data-selected="{{ $collection->status }}"
-                        >
+                        <select class="form-control aiz-selectpicker" name="status"
+                            data-selected="{{ $collection->status }}">
                             <option value="0">{{ translate('Draft') }}</option>
-                            <option
-                                value="1"
-                                selected
-                            >{{ translate('Published') }}</option>
+                            <option value="1" selected>{{ translate('Published') }}</option>
                         </select>
                     </div>
                 </div>
@@ -462,13 +309,9 @@
                         <h5 class="mb-0 h6">{{ translate('Product Brand') }}</h5>
                     </div>
                     <div class="card-body">
-                        <select
-                            class="form-control aiz-selectpicker"
-                            name="brand_id"
-                            data-selected="{{ $collection->marca }}"
-                            data-live-search="true"
-                            title="{{ translate('Select Brand') }}"
-                        >
+                        <select class="form-control aiz-selectpicker" name="brand_id"
+                            data-selected="{{ $collection->marca }}" data-live-search="true"
+                            title="{{ translate('Select Brand') }}">
                             @foreach (\App\Models\Brand::all() as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                             @endforeach
@@ -485,11 +328,7 @@
                                 @foreach ($categories as $category)
                                     <li>
                                         <label class="aiz-checkbox">
-                                            <input
-                                                name="category_ids[]"
-                                                type="checkbox"
-                                                value="{{ $category->id }}"
-                                            >
+                                            <input name="category_ids[]" type="checkbox" value="{{ $category->id }}">
                                             <span class="aiz-square-check"></span>
                                             <span>{{ $category->getTranslation('name') }}</span>
                                         </label>
@@ -498,11 +337,8 @@
                                                 @foreach ($category->childrenCategories as $childCategory)
                                                     <li>
                                                         <label class="aiz-checkbox">
-                                                            <input
-                                                                name="category_ids[]"
-                                                                type="checkbox"
-                                                                value="{{ $childCategory->id }}"
-                                                            >
+                                                            <input name="category_ids[]" type="checkbox"
+                                                                value="{{ $childCategory->id }}">
                                                             <span class="aiz-square-check"></span>
                                                             <span>{{ $childCategory->getTranslation('name') }}</span>
                                                         </label>
@@ -511,11 +347,8 @@
                                                                 @foreach ($childCategory->childrenCategories as $grandChildCategory)
                                                                     <li>
                                                                         <label class="aiz-checkbox">
-                                                                            <input
-                                                                                name="category_ids[]"
-                                                                                type="checkbox"
-                                                                                value="{{ $grandChildCategory->id }}"
-                                                                            >
+                                                                            <input name="category_ids[]" type="checkbox"
+                                                                                value="{{ $grandChildCategory->id }}">
                                                                             <span class="aiz-square-check"></span>
                                                                             <span>{{ $grandChildCategory->getTranslation('name') }}</span>
                                                                         </label>
@@ -537,14 +370,10 @@
             </div>
         </div>
         <div class="mar-all text-right mb-3">
-            <button
-                class="btn btn-primary"
-                id="upload-product"
-                type="submit"
-            >{{ translate('Update Product') }}</button>
+            <button class="btn btn-primary" id="upload-product"
+                type="submit">{{ translate('Update Product') }}</button>
         </div>
     </form>
-
 @endsection
 
 @section('script')

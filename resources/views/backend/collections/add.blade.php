@@ -10,83 +10,53 @@
     </div>
 
     <div class="card">
-        <form
-            class=""
-            id="sort_products"
-            action=""
-            method="GET"
-        >
+        <form class="" id="sort_products" action="" method="GET">
             <div class="card-header row gutters-5">
                 <div class="col text-center text-md-left">
                     <h5 class="mb-md-0 h6">
-                        {{ translate('Add product to collection') }} 
-                        {{$collection->coleccion}}
-                        <a
-                            class="font-weight-bold ml-3"
-                            href="{{ route('collection.show', $collection->id) }}"
-                            title="{{ translate('Add') }}"
-                        >
+                        {{ translate('Add product to collection') }}
+                        {{ $collection->coleccion }}
+                        <a class="font-weight-bold ml-3" href="{{ route('collection.show', $collection->id) }}"
+                            title="{{ translate('Add') }}">
                             <span>Volver</span>
                         </a>
                     </h5>
-                    
                 </div>
                 <div class="col-md-2 ml-auto">
-                    <select
-                        class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0"
-                        id="type"
-                        name="type"
-                        onchange="sort_products()"
-                    >
+                    <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" id="type" name="type"
+                        onchange="sort_products()">
                         <option value="">{{ translate('Sort By') }}</option>
-                        <option
-                            value="rating,desc"
-                            @isset($col_name, $query) @if ($col_name == 'rating' && $query == 'desc') selected @endif @endisset
-                        >
+                        <option value="rating,desc"
+                            @isset($col_name, $query) @if ($col_name == 'rating' && $query == 'desc') selected @endif @endisset>
                             {{ translate('Rating (High > Low)') }}
                         </option>
-                        <option
-                            value="rating,asc"
-                            @isset($col_name, $query) @if ($col_name == 'rating' && $query == 'asc') selected @endif @endisset
-                        >
+                        <option value="rating,asc"
+                            @isset($col_name, $query) @if ($col_name == 'rating' && $query == 'asc') selected @endif @endisset>
                             {{ translate('Rating (Low > High)') }}
                         </option>
-                        <option
-                            value="num_of_sale,desc"
-                            @isset($col_name, $query) @if ($col_name == 'num_of_sale' && $query == 'desc') selected @endif @endisset
-                        >
+                        <option value="num_of_sale,desc"
+                            @isset($col_name, $query) @if ($col_name == 'num_of_sale' && $query == 'desc') selected @endif @endisset>
                             {{ translate('Num of Sale (High > Low)') }}
                         </option>
-                        <option
-                            value="num_of_sale,asc"
-                            @isset($col_name, $query) @if ($col_name == 'num_of_sale' && $query == 'asc') selected @endif @endisset
-                        >
+                        <option value="num_of_sale,asc"
+                            @isset($col_name, $query) @if ($col_name == 'num_of_sale' && $query == 'asc') selected @endif @endisset>
                             {{ translate('Num of Sale (Low > High)') }}
                         </option>
-                        <option
-                            value="unit_price,desc"
-                            @isset($col_name, $query) @if ($col_name == 'unit_price' && $query == 'desc') selected @endif @endisset
-                        >
+                        <option value="unit_price,desc"
+                            @isset($col_name, $query) @if ($col_name == 'unit_price' && $query == 'desc') selected @endif @endisset>
                             {{ translate('Base Price (High > Low)') }}
                         </option>
-                        <option
-                            value="unit_price,asc"
-                            @isset($col_name, $query) @if ($col_name == 'unit_price' && $query == 'asc') selected @endif @endisset
-                        >
+                        <option value="unit_price,asc"
+                            @isset($col_name, $query) @if ($col_name == 'unit_price' && $query == 'asc') selected @endif @endisset>
                             {{ translate('Base Price (Low > High)') }}
                         </option>
                     </select>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
-                        <input
-                            class="form-control form-control-sm"
-                            id="search"
-                            name="search"
-                            type="text"
+                        <input class="form-control form-control-sm" id="search" name="search" type="text"
                             @isset($sort_search) value="{{ $sort_search }}" @endisset
-                            placeholder="{{ translate('Type & Enter') }}"
-                        >
+                            placeholder="{{ translate('Type & Enter') }}">
                     </div>
                 </div>
             </div>
@@ -98,16 +68,10 @@
                         <th class="w-40px">#</th>
                         <th class="col-xl-2">{{ translate('Name') }}</th>
                         <th data-breakpoints="md">{{ translate('Info') }}</th>
-                        <th
-                            data-breakpoints="md"
-                            width="20%"
-                        >{{ translate('Categories') }}</th>
+                        <th data-breakpoints="md" width="20%">{{ translate('Categories') }}</th>
                         <th data-breakpoints="md">{{ translate('Brand') }}</th>
                         <th data-breakpoints="md">{{ translate('Published') }}</th>
-                        <th
-                            class="text-right"
-                            data-breakpoints="md"
-                        >{{ translate('Options') }}</th>
+                        <th class="text-right" data-breakpoints="md">{{ translate('Options') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,18 +79,12 @@
                         <tr>
                             <td>{{ $key + 1 + ($products->currentPage() - 1) * $products->perPage() }}</td>
                             <td>
-                                <a
-                                    class="text-reset d-block"
-                                    href="{{ route('product', $product->slug) }}"
-                                    target="_blank"
-                                >
+                                <a class="text-reset d-block" href="{{ route('product', $product->slug) }}"
+                                    target="_blank">
                                     <div class="d-flex align-items-center">
-                                        <img
-                                            class="size-60px size-xxl-80px mr-2"
-                                            src="{{ uploaded_asset($product->thumbnail_img) }}"
-                                            alt="Image"
-                                            onerror="this.onerror=null;this.src='{{ static_asset('/assets/img/placeholder.jpg') }}';"
-                                        />
+                                        <img class="size-60px size-xxl-80px mr-2"
+                                            src="{{ uploaded_asset($product->thumbnail_img) }}" alt="Image"
+                                            onerror="this.onerror=null;this.src='{{ static_asset('/assets/img/placeholder.jpg') }}';" />
                                         <span class="flex-grow-1 minw-0">
                                             <div class=" text-truncate-2 fs-12">
                                                 {{ $product->name }}</div>
@@ -161,12 +119,9 @@
                             <td>
                                 @if ($product->brand)
                                     <div class="h-50px w-100px d-flex align-items-center justify-content-center">
-                                        <img
-                                            class="mw-100 mh-100"
-                                            src="{{ uploaded_asset($product->brand->logo) }}"
+                                        <img class="mw-100 mh-100" src="{{ uploaded_asset($product->brand->logo) }}"
                                             alt="{{ translate('Brand') }}"
-                                            onerror="this.onerror=null;this.src='{{ static_asset('/assets/img/placeholder.jpg') }}';"
-                                        />
+                                            onerror="this.onerror=null;this.src='{{ static_asset('/assets/img/placeholder.jpg') }}';" />
                                     </div>
                                 @else
                                     <span>{{ translate('No brand') }}</span>
@@ -174,21 +129,15 @@
                             </td>
                             <td>
                                 <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input
-                                        type="checkbox"
-                                        value="{{ $product->id }}"
-                                        onchange="update_published(this)"
-                                        @if ($product->published == 1) checked @endif
-                                    >
+                                    <input type="checkbox" value="{{ $product->id }}" onchange="update_published(this)"
+                                        @if ($product->published == 1) checked @endif>
                                     <span class="slider round"></span>
                                 </label>
                             </td>
                             <td>
-                                <a
-                                    class="btn btn-soft-primary"
+                                <a class="btn btn-soft-primary"
                                     href="{{ route('collection.addProduct', ['id' => $collection->id, 'idProduct' => $product->id]) }}"
-                                    title="{{ translate('Add') }}"
-                                >
+                                    title="{{ translate('Add') }}">
                                     <span>Agregar a colección</span>
                                 </a>
                             </td>

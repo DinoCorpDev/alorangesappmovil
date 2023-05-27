@@ -15,8 +15,8 @@ use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class CollectionController extends Controller
-{   
-    
+{
+
     /**
      * Display a listing of the resource.
      *
@@ -28,10 +28,12 @@ class CollectionController extends Controller
         $query = null;
         $sort_search = null;
         $collections = Collection::orderBy('created_at', 'desc');
+
         if ($request->search != null) {
             $products = $products->where('name', 'like', '%' . $request->search . '%');
             $sort_search = $request->search;
         }
+
         if ($request->type != null) {
             $var = explode(",", $request->type);
             $col_name = $var[0];
@@ -52,7 +54,7 @@ class CollectionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $categories = Category::where('level', 0)->get();
         return view('backend.collections.create', compact('categories'));
     }
@@ -92,14 +94,18 @@ class CollectionController extends Controller
         $collection->video3          = $request->video3;
         $collection->video4          = $request->video4;
 
-        if(isset($request->category_ids)){
+        if (isset($request->category_ids)) {
             try {
                 $collection->categoria = $request->category_ids[0];
-            } catch (\Throwable $th) {}
+            } catch (\Throwable $th) {
+                //
+            }
 
             try {
                 $collection->subcategoria = $request->category_ids[1];
-            } catch (\Throwable $th) {}
+            } catch (\Throwable $th) {
+                //
+            }
         }
 
         $collection->save();
@@ -161,7 +167,7 @@ class CollectionController extends Controller
                     $collection->coleccion         = $row_data["coleccion"];
                     //$collection->marca          = $row_data["marca"];
                     $collection->descripcion       = $row_data["descripcion"];
-                    
+
                     $collection->slug              = Str::slug($row_data["coleccion"], '-') . '-' . strtolower(Str::random(5));
                     $collection->stock              = $row_data["stock"];
                     $collection->descuento          = $row_data["descuento"];
@@ -242,7 +248,6 @@ class CollectionController extends Controller
      */
     public function show($id)
     {
-        
         return view('backend.collections.show', [
             'collection' => Collection::findOrFail($id),
             "products" => CollectionProduct::where("id_collection", $id)->get()
@@ -299,14 +304,18 @@ class CollectionController extends Controller
         $collection->video3          = $request->video3;
         $collection->video4          = $request->video4;
 
-        if(isset($request->category_ids)){
+        if (isset($request->category_ids)) {
             try {
                 $collection->categoria = $request->category_ids[0];
-            } catch (\Throwable $th) {}
+            } catch (\Throwable $th) {
+                //
+            }
 
             try {
                 $collection->subcategoria = $request->category_ids[1];
-            } catch (\Throwable $th) {}
+            } catch (\Throwable $th) {
+                //
+            }
         }
 
         $collection->save();
@@ -407,18 +416,19 @@ class CollectionController extends Controller
 
 
     public function add(Request $request, $id)
-    {   
-
+    {
         $collection = Collection::findOrFail($id);
 
         $col_name = null;
         $query = null;
         $sort_search = null;
         $products = Product::orderBy('created_at', 'desc')->where('shop_id', auth()->user()->shop_id);
+
         if ($request->search != null) {
             $products = $products->where('name', 'like', '%' . $request->search . '%');
             $sort_search = $request->search;
         }
+
         if ($request->type != null) {
             $var = explode(",", $request->type);
             $col_name = $var[0];
@@ -434,8 +444,7 @@ class CollectionController extends Controller
     }
 
     public function addProduct($id, $idProduct)
-    {   
-
+    {
         $product = new CollectionProduct;
         $product->id_collection = $id;
         $product->id_product = $idProduct;
@@ -446,8 +455,7 @@ class CollectionController extends Controller
     }
 
     public function destroyProduct($id)
-    {   
-
+    {
         CollectionProduct::destroy($id);
 
         flash(translate('Product has been delete successfully'))->success();
