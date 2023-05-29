@@ -134,6 +134,7 @@ export default {
     &-label {
         font-family: "Roboto", sans-serif;
         font-size: var(--font-size-body1);
+        cursor: pointer;
     }
 }
 </style>

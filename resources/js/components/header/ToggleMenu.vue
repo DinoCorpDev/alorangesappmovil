@@ -1,24 +1,35 @@
 <template>
-    <v-menu class="toggle-menu" offset-y min-width="280" :close-on-content-click="false">
+    <v-menu class="toggle-menu" eager offset-y min-width="280" :close-on-content-click="false">
         <template v-slot:activator="{ on, attrs }">
             <v-btn class="toggle-menu-button" v-bind="attrs" v-on="on" depressed :ripple="false" plain>
                 <MenuIcon />
             </v-btn>
         </template>
         <v-list class="toggle-menu-nav" flat>
-            <v-list-item>
-                <v-list-item-title>MENU</v-list-item-title>
-            </v-list-item>
-            <v-divider />
+            <template v-if="!navElementExpanded">
+                <v-list-item>
+                    <v-list-item-title class="text-uppercase">
+                        {{ $t("Menu") }}
+                    </v-list-item-title>
+                </v-list-item>
+                <v-divider />
+            </template>
 
             <template v-for="item in items">
-                <v-list-group :key="`list-${item.key}`" v-model="item.active" no-action>
+                <v-list-group :key="`list-${item.key}`" no-action @click="setList">
                     <template v-slot:activator>
                         <v-list-item :ripple="false">
                             <v-list-item-icon>
                                 <component :is="item.icon" />
                             </v-list-item-icon>
-                            <v-list-item-title> {{ $t(item.title) }}: {{ $t(item.titleValue) }} </v-list-item-title>
+                            <v-list-item-title>
+                                <template v-if="!navElementExpanded">
+                                    {{ $t(item.title) }}: {{ $t(item.titleValue) }}
+                                </template>
+                                <template v-else>
+                                    {{ $t(item.title) }}
+                                </template>
+                            </v-list-item-title>
                         </v-list-item>
                     </template>
                     <template v-slot:appendIcon>
@@ -34,25 +45,60 @@
                             </v-list-item>
                         </template>
                     </v-list-item-group>
+                    <v-list-item-group v-if="item.key == 'lang'" v-model="selectedLang">
+                        <template v-for="lang in allLanguages">
+                            <v-divider :key="`divider-${lang.name}`" />
+                            <v-list-item :key="lang.name">
+                                <template v-slot:default="{ active }">
+                                    <CustomCheckbox :checked="active" :label="$t(lang.name)" />
+                                </template>
+                            </v-list-item>
+                        </template>
+                    </v-list-item-group>
+                    <v-list-item-group v-if="item.key == 'country'" v-model="selectedCountry">
+                        <template v-for="country in allCountries">
+                            <v-divider :key="`divider-${country.name}`" />
+                            <v-list-item :key="country.name">
+                                <template v-slot:default="{ active }">
+                                    <CustomCheckbox :checked="active" :label="$t(country.name)" />
+                                </template>
+                            </v-list-item>
+                        </template>
+                    </v-list-item-group>
+                    <v-list-item-group v-if="item.key == 'currency'" v-model="selectedCurrency">
+                        <template v-for="currency in allCurrencies">
+                            <v-divider :key="`divider-${currency.code}`" />
+                            <v-list-item :key="currency.code">
+                                <template v-slot:default="{ active }">
+                                    <CustomCheckbox :checked="active" :label="$t(currency.code)" />
+                                </template>
+                            </v-list-item>
+                        </template>
+                    </v-list-item-group>
                 </v-list-group>
-                <v-divider :key="`divider-${item.key}`" />
+                <v-divider :key="`divider-${item.key}`" v-if="!navElementExpanded" />
             </template>
 
-            <v-list-item :to="{ name: 'PactoAmbiental' }"> Informacion </v-list-item>
-            <v-list-item :to="{ name: 'Upgrade' }"> Solicitudes </v-list-item>
-            <v-list-item :to="{ name: 'PactoAmbiental' }"> Contacto </v-list-item>
-            <v-list-item>
-                <span>© Idovela 2022</span>
-            </v-list-item>
+            <template v-if="!navElementExpanded">
+                <v-list-item :to="{ name: 'PactoAmbiental' }"> {{ $t("Information") }} </v-list-item>
+                <v-list-item :to="{ name: 'Upgrade' }"> {{ $t("Requests") }} </v-list-item>
+                <v-list-item :to="{ name: 'PactoAmbiental' }"> {{ $t("Contact") }} </v-list-item>
+                <v-list-item class="v-list-item--caption text-uppercase"> © Idovela 2023 </v-list-item>
+            </template>
+            <template v-else>
+                <v-divider />
+                <v-list-item class="v-list-item--caption">
+                    {{ $t("This setting only applies to this browser") }}
+                </v-list-item>
+            </template>
         </v-list>
     </v-menu>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
-import ThemeToggleSwitch from "../global/ThemeToggleSwitch.vue";
 import CustomCheckbox from "../global/CustomCheckbox.vue";
 
 import MenuIcon from "../icons/Menu.vue";
@@ -66,7 +112,6 @@ import RightArrowIcon from "../icons/RightArrowIcon.vue";
 export default {
     components: {
         CustomButton,
-        ThemeToggleSwitch,
         CustomCheckbox,
 
         MenuIcon,
@@ -79,62 +124,114 @@ export default {
     },
     data() {
         return {
-            selectedTheme: 0,
-            themeItems: [
-                {
-                    key: "day",
-                    label: "Day"
-                },
-                {
-                    key: "night",
-                    label: "Night"
-                },
-                {
-                    key: "device",
-                    label: "Device"
-                }
-            ]
+            selectedCountry: null,
+            selectedCurrency: null,
+            selectedLang: null,
+            selectedTheme: null,
+            navElementExpanded: false
         };
     },
+    mounted() {
+        this.selectedCountry = this.allCountries.indexOf(this.userCountryObj);
+        this.selectedCurrency = this.allCurrencies.indexOf(this.userCurrencyObj);
+        this.selectedLang = this.allLanguages.indexOf(this.userLanguageObj);
+        this.selectedTheme = this.themeItems.indexOf(this.userThemeObj);
+        this.runColorMode();
+    },
     computed: {
-        ...mapGetters("app", ["userLanguageObj", "userCurrencyObj"]),
+        ...mapState("app", ["allCountries", "allCurrencies", "allLanguages", "prefersDark", "userTheme", "themeItems"]),
+        ...mapGetters("app", ["userCountryObj", "userCurrencyObj", "userLanguageObj", "userThemeObj"]),
         items() {
             return [
                 {
                     key: "theme",
                     icon: "CrescentMoonIcon",
-                    title: "Aspecto",
-                    titleValue: this.selectedThemeString,
-                    active: true
+                    title: "Appearance",
+                    titleValue: this.userThemeObj.label
                 },
                 {
                     key: "lang",
                     icon: "TranslateIcon",
-                    title: "Idioma",
+                    title: "Language",
                     titleValue: this.userLanguageObj.name
                 },
                 {
                     key: "country",
                     icon: "WorldGlobeIcon",
-                    title: "País",
-                    titleValue: "Colombia"
+                    title: "Country",
+                    titleValue: this.userCountryObj.name
                 },
                 {
                     key: "currency",
                     icon: "CoinIcon",
-                    title: "Divisa",
+                    title: "Currency",
                     titleValue: this.userCurrencyObj.code
                 },
                 {
                     key: "measure",
                     icon: "TonIcon",
-                    title: "Mediciones",
+                    title: "Measure",
                     titleValue: "CGS"
                 }
             ];
+        }
+    },
+    watch: {
+        selectedCountry() {
+            const code = this.allCountries[this.selectedCountry].code;
+            this.setCountry(code);
         },
-        selectedThemeString() {
-            return this.themeItems.find((item, index) => index == this.selectedTheme).label;
+        selectedCurrency() {
+            const code = this.allCurrencies[this.selectedCurrency].code;
+            this.setCurrency(code);
+        },
+        selectedLang() {
+            const code = this.allLanguages[this.selectedLang].code;
+
+            if (this.$i18n.locale !== code) {
+                this.setLanguage(code);
+                window.location.reload();
+            }
+        },
+        selectedTheme() {
+            this.setTheme(this.selectedTheme);
+            this.runColorMode();
+        }
+    },
+    methods: {
+        ...mapActions("app", ["setCountry", "setCurrency", "setLanguage", "setTheme"]),
+        runColorMode() {
+            if (!window.matchMedia) return;
+
+            if (this.userTheme == "day") {
+                this.$vuetify.theme.dark = false;
+            } else if (this.userTheme == "night") {
+                this.$vuetify.theme.dark = true;
+            } else if (this.userTheme == "device") {
+                this.$vuetify.theme.dark = this.prefersDark;
+            }
+        },
+        setList() {
+            setTimeout(() => {
+                const listGroupEl = document.querySelectorAll(".toggle-menu-nav .v-list-group");
+                const navElementExpanded = Array.from(listGroupEl).some(item =>
+                    item.classList.contains("v-list-group--active")
+                );
+
+                if (navElementExpanded) {
+                    Array.from(listGroupEl).forEach(item => {
+                        if (!item.classList.contains("v-list-group--active")) {
+                            item.classList.add("d-none");
+                        }
+                    });
+                } else {
+                    Array.from(listGroupEl).forEach(item => {
+                        item.classList.remove("d-none");
+                    });
+                }
+
+                this.navElementExpanded = navElementExpanded;
+            }, 100);
         }
     }
 };
@@ -225,9 +322,14 @@ export default {
     }
 
     &-nav {
-        background: #242526;
+        background: #fafcfc;
         margin-top: 10px;
         border-radius: 10px;
+        padding: 0;
+
+        &.theme--dark {
+            background: #242526;
+        }
 
         .v-divider {
             border-color: #707070 !important;
@@ -256,17 +358,47 @@ export default {
                 font-family: "Roboto", sans-serif;
                 font-size: var(--font-size-body1);
             }
-        }
 
-        .v-list-group {
-            &.v-list-group--active {
-                .v-list-group__header__append-icon svg {
-                    transform: rotate(-90deg);
-                }
+            &[href] {
+                text-transform: uppercase;
+                font-size: var(--font-size-caption);
+                font-weight: 700;
             }
 
-            .v-list-group__header__append-icon svg {
-                transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), visibility 0s;
+            &--caption {
+                font-size: var(--font-size-caption);
+            }
+        }
+
+        &::v-deep {
+            .v-list-group__header {
+                &.v-list-item--active {
+                    flex-direction: row-reverse;
+
+                    .v-list-item {
+                        .v-list-item__icon {
+                            display: none;
+                        }
+
+                        .v-list-item__title {
+                            text-transform: uppercase;
+                            font-weight: 500;
+                        }
+                    }
+
+                    .v-list-group__header__append-icon {
+                        justify-content: flex-start;
+                        min-width: 30px;
+
+                        svg {
+                            transform: rotate(-180deg);
+                        }
+                    }
+                }
+
+                .v-list-group__header__append-icon svg {
+                    transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), visibility 0s;
+                }
             }
         }
     }

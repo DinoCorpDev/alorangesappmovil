@@ -79,10 +79,10 @@ class HomeController extends Controller
             'cacheVersion' => get_setting('force_cache_clear_version'),
             'appLanguage' => env('DEFAULT_LANGUAGE'),
             'appCurrency' => env('DEFAULT_CURRENCY_CODE'),
+            'allCountries' => Country::where('status', 1)->get(['name', 'code']),
+            'allCurrencies' => Currency::where('status', 1)->get(['name', 'code']),
             'allLanguages' => Language::where('status', 1)->get(['name', 'code', 'flag', 'rtl']),
-            'allCurrencies' => Currency::all(),
             'availableCountries' => Country::where('status', 1)->pluck('code')->toArray(),
-            'availableCurrencies' => Currency::where('status', 1)->pluck('code')->toArray(),
             'paymentMethods' => [
                 [
                     'status' => get_setting('paypal_payment'),
