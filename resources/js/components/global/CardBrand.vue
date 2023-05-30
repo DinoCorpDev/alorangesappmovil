@@ -15,7 +15,12 @@
             </div>
         </div>
         <div class="brand-item-footer">
-            <CustomButton block color="nero" text="Ver Detalles" @click="goToBrand(brandDetails.id)" />
+            <CustomButton
+                block
+                color="nero"
+                text="Ver Detalles"
+                :to="{ name: 'BrandDetails', params: { slug: brandDetails.slug } }"
+            />
         </div>
     </div>
 </template>
@@ -34,11 +39,6 @@ export default {
         brandDetails: {
             type: Object,
             default: () => {}
-        }
-    },
-    methods: {
-        goToBrand(id) {
-            this.$router.push({ name: "Brand2", params: { brandId: id } });
         }
     }
 };

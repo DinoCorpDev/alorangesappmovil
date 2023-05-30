@@ -1,6 +1,7 @@
 let Home = () => import("../pages/Home");
 let ProductDetails = () => import("../pages/ProductDetails");
 let ServiceDetails = () => import("../pages/ServiceDetails");
+let BrandDetails = () => import("../pages/BrandDetails");
 let ProductListing = () => import("../pages/ProductListing");
 let TrackOrder = () => import("../pages/TrackOrder");
 let AllCategories = () => import("../pages/AllCategories");
@@ -13,9 +14,7 @@ let TempLanding = () => import("../pages/TempLanding");
 let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
 let Shop = () => import("../pages/Shop");
-let Brand2 = () => import("../pages/Brand2");
 let About = () => import("../pages/About");
-let Brands = () => import("../pages/Brands");
 let Search = () => import("../pages/Search");
 let Collection = () => import("../pages/Collection");
 
@@ -50,8 +49,14 @@ export default [
         meta: { requiresAuth: false }
     },
     {
+        path: "/about/brand/:slug?",
+        component: About,
+        name: "AboutBrand",
+        meta: { requiresAuth: false }
+    },
+    {
         path: "/brands",
-        component: Brands,
+        component: AllBrands,
         name: "Brands",
         meta: { requiresAuth: false }
     },
@@ -107,12 +112,6 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/all-brands",
-        component: AllBrands,
-        name: "AllBrands",
-        meta: { requiresAuth: false }
-    },
-    {
         path: "/all-offers",
         component: AllOffers,
         name: "AllOffers",
@@ -143,18 +142,6 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/brand/:brandId?",
-        component: ProductListing,
-        name: "Brand",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/brand2/:brandId?",
-        component: Brand2,
-        name: "Brand2",
-        meta: { requiresAuth: false }
-    },
-    {
         path: "/search/:keyword?",
         component: ProductListing,
         name: "Search",
@@ -170,6 +157,12 @@ export default [
         path: "/service/:slug",
         component: ServiceDetails,
         name: "ServiceDetails",
+        meta: { requiresAuth: false }
+    },
+    {
+        path: "/brand/:slug?",
+        component: BrandDetails,
+        name: "BrandDetails",
         meta: { requiresAuth: false }
     },
     {
