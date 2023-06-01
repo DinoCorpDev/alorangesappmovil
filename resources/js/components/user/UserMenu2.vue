@@ -1,11 +1,11 @@
 <template>
-    <div style="width: 100%">
-        <div style="width: 100%" class="d-none d-lg-block">
+    <div style="width: 100%;">
+        <div style="width: 100%;" class="d-none d-lg-block">
             <div class="buttons">
                 <h6 class="black--text bold">Compras</h6>
                 <custom-button block class="mb-3 mt-3" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
                 <custom-button block class="mb-3" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
-                <custom-button block class="mb-3" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
+                <custom-button block class="mb-3" color="nero" text="Facturas" :to="{ name: 'PurchaseHistory' }" />
                 <div class="divider"></div>
             </div>
             <div class="buttons">
@@ -25,7 +25,7 @@
                 <div class="divider"></div>
             </div>
         </div>
-        <div style="width: 100%" class="mt-5 d-lg-none d-sm-flex d-md-flex">
+        <div style="width: 100%;" class="mt-5 d-lg-none d-sm-flex d-md-flex">
             <custom-button class="btn-responsive" color="white" @click="logout">
                 {{ $t("logout") }}
             </custom-button>
@@ -37,7 +37,7 @@
                     <custom-button block class="" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
                 </v-col>
                 <v-col cols="col">
-                    <custom-button block class="" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
+                    <custom-button block class="" color="nero" text="Facturas" :to="{ name: 'PurchaseHistory' }" />
                 </v-col>
                 <v-col cols="col">
                     <custom-button block class="" color="nero" text="Perfil" :to="{ name: 'Profile' }" />
