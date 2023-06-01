@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Collection;
 use App\Models\CollectionProduct;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use App\Models\Category;
-use Illuminate\Support\Str;
 use App\Models\Upload;
 use Auth;
-
-use PhpOffice\PhpSpreadsheet\Reader\Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use App\Http\Resources\ProductCollection;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
 
 class CollectionController extends Controller
 {
-
     public function details($product_slug)
     {
         $collection = Collection::where('slug', $product_slug)->first();
@@ -55,51 +53,52 @@ class CollectionController extends Controller
             $videos = array();
             $diagrama = "";
 
-            if($collection->imagen1){
+            if ($collection->imagen1) {
                 $img1 = api_asset($collection->imagen1);
                 array_push($images, $img1);
             }
 
-            if($collection->imagen2){
+            if ($collection->imagen2) {
                 $img2 = api_asset($collection->imagen2);
                 array_push($images, $img2);
             }
 
-            if($collection->imagen3){
+            if ($collection->imagen3) {
                 $img3 = api_asset($collection->imagen3);
                 array_push($images, $img3);
             }
 
-            if($collection->imagen4){
+            if ($collection->imagen4) {
                 $img4 = api_asset($collection->imagen4);
                 array_push($images, $img4);
             }
 
-            if($collection->video1){
+            if ($collection->video1) {
                 $video1 = api_asset($collection->video1);
                 array_push($videos, $video1);
             }
 
-            if($collection->video2){
+            if ($collection->video2) {
                 $video2 = api_asset($collection->video2);
                 array_push($videos, $video2);
             }
 
-            if($collection->video3){
+            if ($collection->video3) {
                 $video3 = api_asset($collection->video3);
                 array_push($videos, $video3);
             }
 
-            if($collection->video4){
+            if ($collection->video4) {
                 $video4 = api_asset($collection->video4);
                 array_push($videos, $video4);
             }
 
-            if($collection->diagrama_proyecto){
+            if ($collection->diagrama_proyecto) {
                 $diagrama = api_asset($collection->diagrama_proyecto);
             }
+
             $marca = "";
-            if($collection->marca){
+            if ($collection->marca) {
                 $marca = optional($collection->marca)->getTranslation('name');
             }
 
@@ -115,7 +114,6 @@ class CollectionController extends Controller
                 ),
                 'status' => 200
             ]);
-
         } else {
             return response()->json([
                 'success' => false,
@@ -358,7 +356,7 @@ class CollectionController extends Controller
     {
         return view('backend.collections.show', [
             'collection' => Collection::findOrFail($id),
-            "products" => CollectionProduct::where("id_collection", $id)->get()
+            'products' => CollectionProduct::where("id_collection", $id)->get()
         ]);
     }
 

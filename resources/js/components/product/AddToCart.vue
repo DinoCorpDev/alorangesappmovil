@@ -101,11 +101,8 @@
             <div v-if="products.length > 0">
                 <h5 class="subt2 fw-600 text-uppercase mb-2">Se incluye con la compra</h5>
                 <v-divider class="mb-3" />
-                <div
-                    v-for="product in products"
-                    class="mb-1"
-                >
-                    <ProductBoxShort :productDetails="product"/>
+                <div v-for="product in products" class="mb-1" :key="product.id">
+                    <ProductBoxShort :productDetails="product" />
                 </div>
             </div>
 

@@ -4,7 +4,7 @@
         <v-container fluid class="product-details pa-4">
             <v-row tag="section" class="flex-column-reverse flex-lg-row mb-6">
                 <v-col cols="12">
-                    <AddToCart :is-loading="detailsLoading" :product-details="productDetails" :products = "products" />
+                    <AddToCart :is-loading="detailsLoading" :product-details="productDetails" :products="products" />
                 </v-col>
             </v-row>
 
@@ -90,7 +90,7 @@ export default {
     methods: {
         async getDetails() {
             const res = await this.call_api("get", `collection/details/${this.$route.params.slug}`);
-            console.log(res);
+
             if (res.data.success) {
                 let collection = res.data.data.collection;
                 this.productDetails = {
@@ -101,21 +101,20 @@ export default {
                     id: collection.id,
                     name: collection.coleccion,
                     brand: {
-                        name: res.data.data.marca,
+                        name: res.data.data.marca
                     },
                     base_price: collection.precio,
-                    base_discounted_price : collection.precio,
+                    base_discounted_price: collection.precio,
                     stock: collection.stock,
                     warranty_text: collection.descuento,
-                    shipping: collection.envio,
-
-                }
+                    shipping: collection.envio
+                };
 
                 this.products = res.data.data.products;
 
                 this.getMoreProducts(this.products[0]?.id);
                 this.getMoreProducts2(this.products[0]?.id);
-                this.getRelatedProducts(this.products[0].id);
+                this.getRelatedProducts(this.products[0]?.id);
             } else {
                 this.snack({
                     message: res.data.message,
