@@ -257,9 +257,7 @@
                                 <span class="body1"> -- </span>
                             </div>
                             <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold">
-                                    Nombre de quien lo va a recibir
-                                </span>
+                                <span class="subtitle1 text-uppercase bold"> Nombre de quien lo va a recibir </span>
                                 <span class="body1">{{ orderDetails.shipping_address?.name }}</span>
                             </div>
                             <div class="d-flex justify-space-between mb-2">
@@ -271,10 +269,10 @@
                 </v-row>
             </v-col>
         </v-row>
-        <div class="grey lighten-4 border border-gray-200 pa-4 rounded fs-18 fw-700 lh-1">
+        <!-- <div class="grey lighten-4 border border-gray-200 pa-4 rounded fs-18 fw-700 lh-1">
             {{ $t("order_summary") }}
-        </div>
-        <v-row class="mb-3">
+        </div> -->
+        <!-- <v-row class="mb-3">
             <v-col md="6" cols="12" class="pb-0 pb-md-3">
                 <v-list dense>
                     <v-list-item>
@@ -321,7 +319,6 @@
                             $t(orderDetails.orders[0].payment_type)
                         }}</v-list-item-content>
                     </v-list-item>
-                    <!-- show offline payment data -->
                     <v-list-item v-if="orderDetails.orders[0].payment_type === 'offline_payment'">
                         <v-list-item-content class="fw-700">{{ $t("payment_details") }} :</v-list-item-content>
                         <v-list-item-content class="align-end text-capitalize">
@@ -343,7 +340,6 @@
                             </span>
                         </v-list-item-content>
                     </v-list-item>
-                    <!-- show offline payment data -->
 
                     <v-list-item>
                         <v-list-item-content class="fw-700">{{ $t("delivery_type") }} :</v-list-item-content>
@@ -369,7 +365,7 @@
                     </v-list-item>
                 </v-list>
             </v-col>
-        </v-row>
+        </v-row> -->
         <v-sheet class="" color="white" elevation="0" v-for="(order, i) in orderDetails.orders" :key="i">
             <order-package :order-details="order" />
         </v-sheet>
@@ -389,3 +385,14 @@ export default {
     }
 };
 </script>
+<style>
+.container {
+    background-color: #ffffff;
+}
+
+.form {
+    border: 1px solid #e4e4e4;
+    border-radius: 10px;
+    padding: 10px;
+}
+</style>
