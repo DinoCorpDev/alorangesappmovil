@@ -13,9 +13,117 @@ use Auth;
 
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use App\Http\Resources\ProductCollection;
 
 class CollectionController extends Controller
 {
+
+    public function details($product_slug)
+    {
+        $collection = Collection::where('slug', $product_slug)->first();
+        $products = array();
+        if ($collection) {
+
+            $_products = CollectionProduct::where("id_collection", $collection->id)->get();
+
+            foreach ($_products as $pr) {
+
+                $product = Product::findOrFail($pr->id_product);
+
+                array_push($products, array(
+                    'id' => (int) $product->id,
+                    'name' => $product->getTranslation('name'),
+                    'slug' => $product->slug,
+                    'thumbnail_image' => api_asset($product->thumbnail_img),
+                    'base_price' => (float) $product->lowest_price,
+                    'base_discounted_price' => (float) product_discounted_base_price($product),
+                    'stock' => $product->stock,
+                    'unit' => $product->getTranslation('unit'),
+                    'min_qty' => $product->min_qty,
+                    'max_qty' => $product->max_qty,
+                    'rating' => (float) $product->rating,
+                    'is_variant' => (int) $product->is_variant,
+                    'variations' => $product->variations,
+                    'description' => $product->description,
+                    'brandName' => optional($product->brand)->getTranslation('name'),
+                    'reference' => $product->reference,
+                    'currency' => $product->currency,
+                ));
+            }
+
+            $images = array();
+            $videos = array();
+            $diagrama = "";
+
+            if($collection->imagen1){
+                $img1 = api_asset($collection->imagen1);
+                array_push($images, $img1);
+            }
+
+            if($collection->imagen2){
+                $img2 = api_asset($collection->imagen2);
+                array_push($images, $img2);
+            }
+
+            if($collection->imagen3){
+                $img3 = api_asset($collection->imagen3);
+                array_push($images, $img3);
+            }
+
+            if($collection->imagen4){
+                $img4 = api_asset($collection->imagen4);
+                array_push($images, $img4);
+            }
+
+            if($collection->video1){
+                $video1 = api_asset($collection->video1);
+                array_push($videos, $video1);
+            }
+
+            if($collection->video2){
+                $video2 = api_asset($collection->video2);
+                array_push($videos, $video2);
+            }
+
+            if($collection->video3){
+                $video3 = api_asset($collection->video3);
+                array_push($videos, $video3);
+            }
+
+            if($collection->video4){
+                $video4 = api_asset($collection->video4);
+                array_push($videos, $video4);
+            }
+
+            if($collection->diagrama_proyecto){
+                $diagrama = api_asset($collection->diagrama_proyecto);
+            }
+            $marca = "";
+            if($collection->marca){
+                $marca = optional($collection->marca)->getTranslation('name');
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => array(
+                    "collection" => $collection,
+                    "products" => $products,
+                    "images" => $images,
+                    "videos" => $videos,
+                    "diagrama" => $diagrama,
+                    "marca" => $marca
+                ),
+                'status' => 200
+            ]);
+
+        } else {
+            return response()->json([
+                'success' => false,
+                'data' => null,
+                'message' => translate('Collection not found')
+            ]);
+        }
+    }
 
     /**
      * Display a listing of the resource.
