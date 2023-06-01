@@ -47,7 +47,7 @@
                     <div class="cuadro-emptycart">
                         <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoCarrito.png" />
                         <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
-                        <custom-button text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }"/>
+                        <custom-button text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                     </div>
                 </div>
             </v-stepper-content>
@@ -425,7 +425,7 @@
                                     @click="$refs.fileInput.click()"
                                 />
                                 <input
-                                    style="display: none;"
+                                    style="display: none"
                                     ref="fileInput"
                                     type="file"
                                     @change="fileSelected"

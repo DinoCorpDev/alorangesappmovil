@@ -257,9 +257,7 @@
                                 <span class="body1"> -- </span>
                             </div>
                             <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold">
-                                    Nombre de quien lo va a recibir
-                                </span>
+                                <span class="subtitle1 text-uppercase bold"> Nombre de quien lo va a recibir </span>
                                 <span class="body1">{{ orderDetails.shipping_address?.name }}</span>
                             </div>
                             <div class="d-flex justify-space-between mb-2">

@@ -57,9 +57,7 @@
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
                                 <v-col>
-                                    <span class="body2 text-uppercase font-weight-bold">
-                                        Entregado a cliente
-                                    </span>
+                                    <span class="body2 text-uppercase font-weight-bold"> Entregado a cliente </span>
                                 </v-col>
                                 <v-col>
                                     <span class="body2 font-weight-bold">viernes 09, julio</span>
@@ -113,9 +111,7 @@
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
                                 <v-col>
-                                    <span class="body2 text-uppercase font-weight-bold">
-                                        Instalación concluida
-                                    </span>
+                                    <span class="body2 text-uppercase font-weight-bold"> Instalación concluida </span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>

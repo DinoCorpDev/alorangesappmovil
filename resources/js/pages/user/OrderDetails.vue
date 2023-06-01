@@ -4,7 +4,7 @@
         <v-row>
             <v-col cols="12 invoice-div">
                 <order-history
-                    style="background-color: #f5f5f5;"
+                    style="background-color: #f5f5f5"
                     :order="order?.code"
                     :date="order?.date"
                     colorStatus="red"
