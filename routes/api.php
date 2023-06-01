@@ -26,6 +26,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WalletController;
 use App\Http\Controllers\Api\WishlistController;
 use App\Http\Controllers\Payment\PaymentController;
+use App\Http\Controllers\CollectionController;
 
 Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
 
@@ -75,6 +76,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::get('random/{limit}/{product_id?}', [ProductController::class, 'random_products']);
         Route::get('latest/{limit}', [ProductController::class, 'latest_products']);
         Route::get('reviews/{product_id}', [ReviewController::class, 'index']);
+    });
+
+    Route::group(['prefix' => 'collection'], function () {
+        Route::get('/details/{collection_slug}', [CollectionController::class, 'details']);
     });
 
     Route::group(['prefix' => 'service'], function () {

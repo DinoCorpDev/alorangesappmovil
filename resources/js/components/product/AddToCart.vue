@@ -98,10 +98,12 @@
                 </li>
             </ul>
 
-            <div>
+            <div v-if="products.length > 0">
                 <h5 class="subt2 fw-600 text-uppercase mb-2">Se incluye con la compra</h5>
                 <v-divider class="mb-3" />
-                <ProductBoxShort />
+                <div v-for="product in products" class="mb-1" :key="product.id">
+                    <ProductBoxShort :productDetails="product" />
+                </div>
             </div>
 
             <v-divider class="d-sm-none mt-3" />
@@ -120,7 +122,8 @@ import FavoriteIcon from "../../components/icons/Favorite.vue";
 export default {
     props: {
         isLoading: { type: Boolean, required: true, default: true },
-        productDetails: { type: Object, required: true, default: {} }
+        productDetails: { type: Object, required: true, default: {} },
+        products: { type: Array, required: false, default: [] }
     },
     data: () => ({
         cartQuantity: 1,
