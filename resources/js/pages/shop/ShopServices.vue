@@ -2,7 +2,7 @@
     <v-container fluid>
         <v-row tag="main" class="main">
             <v-col cols="12">
-                <carousel
+                <Carousel
                     class="main-carousel"
                     :slides="sliderItems"
                     type="description"
@@ -14,13 +14,13 @@
 
         <v-row tag="section">
             <v-col cols="12" md="4">
-                <shop-action-card img="/public/assets/img/shop-spaces/icon-msg.png" href="#" />
+                <ShopActionCard img="/public/assets/img/shop-spaces/icon-msg.png" href="#" />
             </v-col>
             <v-col cols="12" md="4">
-                <shop-action-card img="/public/assets/img/shop-spaces/icon-house.png" href="#" />
+                <ShopActionCard img="/public/assets/img/shop-spaces/icon-house.png" href="#" />
             </v-col>
             <v-col cols="12" md="4">
-                <shop-action-card img="/public/assets/img/shop-spaces/icon-house.png" href="#" />
+                <ShopActionCard img="/public/assets/img/shop-spaces/icon-house.png" href="#" />
             </v-col>
         </v-row>
 
@@ -29,7 +29,7 @@
                 <h5>H5</h5>
                 <v-row class="mb-3">
                     <v-col cols="6" sm="8" md="4">
-                        <shop-action-card boxStyle="vertical" href="#" />
+                        <ShopActionCard boxStyle="vertical" href="#" />
                     </v-col>
                     <v-col
                         v-for="product in productsSeeder.slice(0, 4)"
@@ -38,12 +38,12 @@
                         sm="4"
                         md="2"
                     >
-                        <product-box :productDetails="product" />
+                        <ProductBox :productDetails="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
                     <v-col cols="12" sm="8" md="4">
-                        <custom-button block color="grey2" text="Ver más" />
+                        <CustomButton block color="grey2" text="Ver más" />
                     </v-col>
                 </v-row>
             </v-col>
@@ -54,7 +54,7 @@
                 <h5>H5</h5>
                 <v-row class="mb-3">
                     <v-col cols="6" sm="8" md="4">
-                        <shop-action-card boxStyle="vertical" href="#" />
+                        <ShopActionCard boxStyle="vertical" href="#" />
                     </v-col>
                     <v-col
                         v-for="product in productsSeeder.slice(0, 4)"
@@ -63,12 +63,12 @@
                         sm="4"
                         md="2"
                     >
-                        <product-box :productDetails="product" />
+                        <ProductBox :productDetails="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
                     <v-col cols="12" sm="8" md="4">
-                        <custom-button block color="grey2" text="Ver más" />
+                        <CustomButton block color="grey2" text="Ver más" />
                     </v-col>
                 </v-row>
             </v-col>
@@ -85,12 +85,12 @@
                         sm="6"
                         md="3"
                     >
-                        <product-box boxStyle="two" :productDetails="product" />
+                        <ProductBox boxStyle="two" :productDetails="product" />
                     </v-col>
                 </v-row>
                 <v-row justify="center">
                     <v-col cols="12" sm="8" md="4">
-                        <custom-button block color="grey2" text="Ver más" />
+                        <CustomButton block color="grey2" text="Ver más" />
                     </v-col>
                 </v-row>
             </v-col>
@@ -102,9 +102,10 @@
 import { sliderSeeder, productsSeeder } from "../../seeders/products";
 
 import Carousel from "../../components/global/Carousel.vue";
-import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import PresentationBanner from "../../components/global/PresentationBanner.vue";
+import ProductBox from "../../components/product/ProductBox.vue";
+import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 
 export default {
     name: "ShopServices",
@@ -120,9 +121,10 @@ export default {
     }),
     components: {
         Carousel,
-        ShopActionCard,
         CustomButton,
-        PresentationBanner
+        PresentationBanner,
+        ProductBox,
+        ShopActionCard
     }
 };
 </script>

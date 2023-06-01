@@ -88,6 +88,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::get('reviews/{service_id}', [ReviewController::class, 'index']);
     });
 
+    Route::group(['prefix' => 'brand'], function () {
+        Route::get('/details/{brand_slug}', [BrandController::class, 'show']);
+    });
+
     Route::get('all-countries', [AddressController::class, 'get_all_countries']);
     Route::get('states/{country_id}', [AddressController::class, 'get_states_by_country_id']);
     Route::get('cities/{state_id}', [AddressController::class, 'get_cities_by_state_id']);
