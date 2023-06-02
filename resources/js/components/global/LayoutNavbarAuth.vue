@@ -20,7 +20,7 @@
                         <v-img v-else src="/public/assets/img/idovela-logo.png" max-width="48" />
                     </span>
                 </router-link>
-                <SearchInput />
+                <SearchInput class="d-none d-sm-flex" />
                 <div class="d-flex">
                     <div class="double-button d-flex mr-4">
                         <CustomButton class="btn-login" dark :to="{ name: 'Cart' }">

@@ -1,5 +1,5 @@
 <template>
-    <v-row class="">
+    <v-row>
         <v-col cols="12" md="7">
             <ProductGallery
                 :is-loading="isLoading"

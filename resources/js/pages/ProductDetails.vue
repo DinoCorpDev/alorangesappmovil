@@ -469,67 +469,33 @@
                 </v-col>
             </v-row>
 
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col
-                            v-for="product in moreProducts"
-                            :key="`product-col-${product.id}`"
-                            cols="6"
-                            sm="4"
-                            md="3"
-                            lg="2"
-                        >
-                            <ProductBox :productDetails="product" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
+            <ProductsGrid class="mb-6" :products="moreProducts" filtrable cols="6" sm="4" md="3" lg="2" />
 
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col
-                            v-for="product in footerProducts"
-                            :key="`product-col-${product.id}`"
-                            cols="12"
-                            sm="6"
-                            md="3"
-                        >
-                            <ProductBox boxStyle="two" :productDetails="product" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
+            <ProductsGrid
+                class="mb-6"
+                :products="footerProducts"
+                productStyle="two"
+                filtrable
+                cols="12"
+                sm="6"
+                md="3"
+            />
         </v-container>
         <FooterCustom />
     </div>
 </template>
 
 <script>
-import ProductBox from "../components/product/ProductBox.vue";
+import AddToCart from "../components/product/AddToCart.vue";
 import CustomButton from "../components/global/CustomButton.vue";
 import FooterCustom from "../components/global/FooterCustom.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
-// import ChartView from "../components/global/ChartView.vue";
-import AddToCart from "../components/product/AddToCart.vue";
+import ProductsGrid from "../components/global/ProductsGrid.vue";
 
 import CubesIcon from "../components/icons/Cubes.vue";
 import MapPinIcon from "../components/icons/MapPin.vue";
-import ToolsIcon from "../components/icons/Tools.vue";
 import SyncIcon from "../components/icons/Sync.vue";
+import ToolsIcon from "../components/icons/Tools.vue";
 
 export default {
     metaInfo() {
@@ -550,16 +516,16 @@ export default {
         relatedProducts: [{}, {}, {}, {}, {}]
     }),
     components: {
-        ProductBox,
-        CustomButton,
-        LayoutNavbarAuth,
-        FooterCustom,
         AddToCart,
+        CustomButton,
+        FooterCustom,
+        LayoutNavbarAuth,
+        ProductsGrid,
+
         CubesIcon,
         MapPinIcon,
-        ToolsIcon,
-        SyncIcon
-        // ChartView
+        SyncIcon,
+        ToolsIcon
     },
     methods: {
         async getDetails() {
@@ -747,6 +713,7 @@ export default {
             height: 100%;
 
             .v-window-item {
+                height: 100%;
                 flex: 1;
             }
         }
@@ -774,7 +741,7 @@ export default {
     }
 
     &-specs {
-        max-height: 80vh;
+        height: 72vh;
         overflow-x: hidden;
         padding-right: 8px;
     }

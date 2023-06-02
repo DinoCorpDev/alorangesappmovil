@@ -64,121 +64,31 @@
 
             <v-divider />
 
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col
-                            v-for="product in productsSeeder.slice(0, 6)"
-                            :key="`product-col-${product.id}`"
-                            cols="6"
-                            sm="4"
-                            md="2"
-                        >
-                            <ProductBox :productDetails="product" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey2" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
+            <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 6)" filtrable cols="6" sm="4" md="2" />
 
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col
-                            v-for="product in productsSeeder.slice(0, 6)"
-                            :key="`product-col-${product.id}`"
-                            cols="6"
-                            sm="4"
-                            md="2"
-                        >
-                            <ProductBox :productDetails="product" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey2" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
+            <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 6)" filtrable cols="6" sm="4" md="2" />
 
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col cols="6" sm="8" md="4">
-                            <ShopActionCard boxStyle="vertical" href="#" />
-                        </v-col>
-                        <v-col
-                            v-for="product in productsSeeder.slice(0, 4)"
-                            :key="`product-col-${product.id}`"
-                            cols="6"
-                            sm="4"
-                            md="2"
-                        >
-                            <ProductBox :productDetails="product" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey2" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
+            <ProductsGrid
+                class="mb-6"
+                :products="productsSeeder.slice(0, 4)"
+                filtrable
+                shopCard
+                cols="6"
+                sm="4"
+                md="2"
+            />
 
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col cols="6" sm="8" md="4">
-                            <ShopActionCard boxStyle="vertical" href="#" />
-                        </v-col>
-                        <v-col
-                            v-for="product in productsSeeder.slice(0, 4)"
-                            :key="`product-col-${product.id}`"
-                            cols="6"
-                            sm="4"
-                            md="2"
-                        >
-                            <ProductBox :productDetails="product" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey2" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
+            <ProductsGrid
+                class="mb-6"
+                :products="productsSeeder.slice(0, 4)"
+                filtrable
+                shopCard
+                cols="6"
+                sm="4"
+                md="2"
+            />
 
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col
-                            v-for="product in productsSeeder.slice(0, 4)"
-                            :key="`product-col-${product.id}`"
-                            cols="12"
-                            sm="6"
-                            md="3"
-                        >
-                            <ProductBox boxStyle="two" :productDetails="product" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey2" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
+            <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 4)" filtrable cols="12" sm="6" md="3" />
         </v-container>
         <FooterCustom />
     </div>
@@ -193,6 +103,8 @@ import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import ProductBox from "../components/product/ProductBox.vue";
 import ShopActionCard from "../components/shop/ShopActionCard.vue";
 
+import ProductsGrid from "../components/global/ProductsGrid.vue";
+
 export default {
     name: "BrandDetails",
     components: {
@@ -200,7 +112,8 @@ export default {
         FooterCustom,
         LayoutNavbarAuth,
         ProductBox,
-        ShopActionCard
+        ShopActionCard,
+        ProductsGrid
     },
     data: () => ({
         productsSeeder,

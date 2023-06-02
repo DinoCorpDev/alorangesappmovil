@@ -48,7 +48,7 @@
             </v-carousel-item>
         </template>
         <v-carousel-item v-else>
-            <img class="carousel-image" :src="itemPlaceholderUrl" />
+            <img class="carousel-item-image" :src="itemPlaceholderUrl" />
         </v-carousel-item>
     </v-carousel>
 </template>

@@ -162,7 +162,7 @@ export default {
 
         &:hover {
             color: #fff;
-            background-color: #000000;
+            background-color: rgba(#000000, 0.8);
         }
 
         &:focus {

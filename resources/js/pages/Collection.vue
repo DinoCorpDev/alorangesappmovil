@@ -8,61 +8,27 @@
                 </v-col>
             </v-row>
 
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col
-                            v-for="product in moreProducts"
-                            :key="`product-col-${product.id}`"
-                            cols="6"
-                            sm="4"
-                            md="3"
-                            lg="2"
-                        >
-                            <ProductBox :productDetails="product" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
+            <ProductsGrid class="mb-6" :products="moreProducts" filtrable cols="6" sm="4" md="3" lg="2" />
 
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col
-                            v-for="product in footerProducts"
-                            :key="`product-col-${product.id}`"
-                            cols="12"
-                            sm="6"
-                            md="3"
-                        >
-                            <ProductBox boxStyle="two" :productDetails="product" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
+            <ProductsGrid
+                class="mb-6"
+                :products="footerProducts"
+                productStyle="two"
+                filtrable
+                cols="12"
+                sm="6"
+                md="3"
+            />
         </v-container>
         <FooterCustom />
     </div>
 </template>
 
 <script>
-import ProductBox from "../components/product/ProductBox.vue";
-import CustomButton from "../components/global/CustomButton.vue";
+import AddToCart from "../components/product/AddToCart.vue";
 import FooterCustom from "../components/global/FooterCustom.vue";
 import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
-import AddToCart from "../components/product/AddToCart.vue";
+import ProductsGrid from "../components/global/ProductsGrid.vue";
 
 export default {
     metaInfo() {
@@ -80,12 +46,10 @@ export default {
         products: []
     }),
     components: {
-        ProductBox,
-        CustomButton,
-        LayoutNavbarAuth,
+        AddToCart,
         FooterCustom,
-        AddToCart
-        // ChartView
+        LayoutNavbarAuth,
+        ProductsGrid
     },
     methods: {
         async getDetails() {

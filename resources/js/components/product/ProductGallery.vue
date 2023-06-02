@@ -50,7 +50,7 @@ export default {
 .product-gallery {
     position: relative;
     height: 100%;
-    min-height: 70vh;
+    height: 82vh;
 
     .v-tabs {
         position: absolute;
@@ -85,6 +85,7 @@ export default {
             height: 100%;
 
             .v-window-item {
+                height: 100%;
                 flex: 1;
             }
         }
