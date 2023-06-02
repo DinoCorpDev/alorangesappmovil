@@ -33,7 +33,7 @@
         <v-row>
             <v-col cols="12" md="6">
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <h5 class="bold">Usuario principal</h5>
+                    <h5 class="fw-600">Usuario principal</h5>
                     <v-divider class="my-4" />
                     <v-form
                         class="form-profile"
@@ -153,36 +153,36 @@
                     </v-form>
                 </v-card>
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <h5 class="bold">Otras direcciones</h5>
+                    <h5 class="fw-600">Otras direcciones</h5>
                     <v-divider class="my-4" />
 
                     <div class="form" v-for="(otherAdd, i) in otherAdress" :key="i">
                         <div class="d-flex justify-space-between mb-2">
-                            <span class="subtitle1 text-uppercase bold">Dirección</span>
+                            <span class="subtitle1 text-uppercase fw-600">Dirección</span>
                             <span class="body1 text-right">{{ otherAdd?.address }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
-                            <span class="subtitle1 text-uppercase bold">Descripción de Dirección</span>
+                            <span class="subtitle1 text-uppercase fw-600">Descripción de Dirección</span>
                             <span class="body1 text-right">{{ otherAdd?.address }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
-                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                            <span class="subtitle1 text-uppercase fw-600">Codigo Postal</span>
                             <span class="body1">{{ otherAdd?.postal_code }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
-                            <span class="subtitle1 text-uppercase bold">Departamento</span>
+                            <span class="subtitle1 text-uppercase fw-600">Departamento</span>
                             <span class="body1">{{ otherAdd?.state }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
-                            <span class="subtitle1 text-uppercase bold">Municipio</span>
+                            <span class="subtitle1 text-uppercase fw-600">Municipio</span>
                             <span class="body1">{{ otherAdd?.city }}</span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
-                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                            <span class="subtitle1 text-uppercase fw-600">Barrio</span>
                             <span class="body1"> -- </span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
-                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                            <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>
                             <span class="body1">{{ otherAdd?.phone }}</span>
                         </div>
                         <custom-button
@@ -197,79 +197,51 @@
                         <v-divider class="my-4" />
                     </div>
 
-                    <div>
-                        <custom-button class="my-4" block color="grey" @click="openAdress('billing')"
-                            >AÑADIR DIRECCION</custom-button
-                        >
-                        <div class="cards">
-                            Puedes registrar otras direcciones para los envios de facturacion, entregas de productos y
-                            solicitudes de servicio.
-                        </div>
-                    </div>
+                    <CustomButton
+                        class="mb-4"
+                        block
+                        color="grey"
+                        text="Añadir Dirección"
+                        @click="openAdress('billing')"
+                    />
+                    <p class="mb-0">
+                        Puedes registrar otras direcciones para los envios de facturacion, entregas de productos y
+                        solicitudes de servicio.
+                    </p>
                 </v-card>
             </v-col>
             <v-col cols="12" md="6">
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <h5 class="bold">Empresa</h5>
+                    <h5 class="fw-600">Empresa</h5>
                     <v-divider class="my-4" />
-                    <div>
-                        <custom-button class="my-4" block color="grey" @click="editFactory()">
-                            AÑADIR MI EMPRESA
-                        </custom-button>
-                        <div class="cards">
-                            Realiza las compras como persona juridica agregando los datos de facturación como empresa.
-                        </div>
-                    </div>
+                    <CustomButton class="mb-4" block color="grey" text="Añadir mi Empresa" @click="editFactory()" />
+                    <p class="mb-0">
+                        Realiza las compras como persona juridica agregando los datos de facturación como empresa.
+                    </p>
                 </v-card>
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <h5 class="bold">Contraseña</h5>
+                    <h5 class="fw-600">Contraseña</h5>
                     <v-divider class="my-4" />
-                    <div>
-                        <custom-button class="my-4" block color="grey" @click="editPassword()">
-                            CAMBIAR CONTRASEÑA
-                        </custom-button>
-                    </div>
+                    <CustomButton block color="grey" text="Cambiar Contraseña" @click="editPassword()" />
                 </v-card>
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <h5 class="bold">Terminos y condiciones</h5>
+                    <h5 class="fw-600">Terminos y condiciones</h5>
                     <v-divider class="my-4" />
-                    <div class="tyc">
-                        <label class="label">
-                            <input type="checkbox" />
-                            <span class="body-1 black--text text cards">
-                                Quiero recibir comunicaciones comerciales personalizadas de idovela a través de email.
-                                <b>Conocer newsletter.</b>
-                            </span>
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="label">
-                            <input type="checkbox" />
-                            <span class="body-1 black--text text cards">
-                                He podido leer y entiendo la <b>Política de privacidad y cookies.</b>
-                            </span>
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="label">
-                            <input type="checkbox" />
-                            <span class="body-1 black--text text cards">
-                                Acepto los <b>Terminos y condiciones para la compra con idovela.</b>
-                            </span>
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="label">
-                            <input type="checkbox" />
-                            <span class="body-1 black--text text cards"> Acepto las <b>Polizas de garantia.</b> </span>
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="label">
-                            <input type="checkbox" />
-                            <span class="body-1 black--text text cards">
-                                Acepto los terminos de <b>La logistica de envió.</b>
-                            </span>
-                            <span class="checkmark"></span>
-                        </label>
-                        <custom-button color="grey" text="SABER MÁS" />
+                    <div class="tyc mb-3">
+                        <CustomCheckbox v-model="form.offersConsent">
+                            Quiero recibir comunicaciones comerciales personalizadas de Idovela a través de email.
+                            <a href="#">Conocer newsletter.</a>
+                        </CustomCheckbox>
+                        <CustomCheckbox v-model="form.policiesAndCookiesConsent">
+                            He podido leer y entiendo la <a href="#">Política de privacidad y cookies.</a>
+                        </CustomCheckbox>
+                        <CustomCheckbox>
+                            Acepto los <a href="#">Términos y condiciones para la compra con Idovela.</a>
+                        </CustomCheckbox>
+                        <CustomCheckbox> Acepto las <a href="#">Pólizas de garantía.</a> </CustomCheckbox>
+                        <CustomCheckbox> Acepto los términos de <a href="#">La logística de envió.</a> </CustomCheckbox>
                     </div>
+                    <CustomButton color="grey" text="Saber Más" />
                 </v-card>
             </v-col>
         </v-row>
@@ -287,6 +259,7 @@ import PasswordDialog from "../../components/user/PasswordDialog.vue";
 import FactoryDialog from "../../components/user/FactoryDialog.vue";
 
 import CustomInput from "../../components/global/CustomInput.vue";
+import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
 
 export default {
     data: () => ({
@@ -313,7 +286,9 @@ export default {
             previewAvatar: "",
             oldPassword: "",
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
+            policiesAndCookiesConsent: false,
+            offersConsent: false
         },
         passwordShow: false,
         addDialogShow: false,
@@ -336,7 +311,8 @@ export default {
         PasswordDialog,
         FactoryDialog,
         CustomButton,
-        CustomInput
+        CustomInput,
+        CustomCheckbox
     },
     validations: {
         form: {
@@ -388,9 +364,12 @@ export default {
             return errors;
         }
     },
-    created() {
-        this.getUser();
+    async created() {
+        await this.getUser();
         this.getAddressUser();
+
+        this.form.policiesAndCookiesConsent = Boolean(this.currentUser.policiesAndCookiesConsent);
+        this.form.offersConsent = Boolean(this.currentUser.offersConsent);
     },
     methods: {
         ...mapActions("auth", ["getUser"]),

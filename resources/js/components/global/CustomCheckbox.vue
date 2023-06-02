@@ -1,14 +1,7 @@
 <template>
-    <div class="custom-checkbox">
+    <div class="custom-checkbox" @click="toggleCheckbox">
         <div class="custom-checkbox-input">
-            <input
-                type="checkbox"
-                :required="required"
-                :checked="checked"
-                :value="value"
-                @blur="$emit('blur', $event)"
-                @input="$emit('input', $event)"
-            />
+            <input type="checkbox" :required="required" :checked="isChecked" />
             <span class="custom-checkbox-checkmark">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15.673" height="12.19" viewBox="0 0 15.673 12.19">
                     <path
@@ -19,7 +12,10 @@
                 </svg>
             </span>
         </div>
-        <label class="custom-checkbox-label"> {{ label }} </label>
+        <label class="custom-checkbox-label">
+            <template v-if="label">{{ label }}</template>
+            <slot v-else />
+        </label>
     </div>
 </template>
 
@@ -27,19 +23,31 @@
 export default {
     props: {
         label: {
-            type: String
+            type: String,
+            default: ""
         },
         required: {
             type: Boolean,
             default: false
         },
-        checked: {
+        value: {
             type: Boolean,
             default: false
-        },
-        value: {
-            type: String,
-            default: ""
+        }
+    },
+    computed: {
+        isChecked: {
+            get() {
+                return this.value;
+            },
+            set(value) {
+                this.$emit("input", value);
+            }
+        }
+    },
+    methods: {
+        toggleCheckbox() {
+            this.isChecked = !this.isChecked;
         }
     }
 };
@@ -79,7 +87,8 @@ export default {
 }
 
 .custom-checkbox {
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
     padding-left: 35px;
     cursor: pointer;
@@ -87,10 +96,10 @@ export default {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    min-height: 38px;
 
     &-input {
         position: absolute;
-        top: 0;
         left: 0;
     }
 
@@ -135,6 +144,11 @@ export default {
         font-family: "Roboto", sans-serif;
         font-size: var(--font-size-body1);
         cursor: pointer;
+
+        a {
+            text-decoration: underline;
+            font-weight: 700;
+        }
     }
 }
 </style>
