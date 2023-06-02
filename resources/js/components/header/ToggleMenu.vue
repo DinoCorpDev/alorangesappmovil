@@ -40,7 +40,7 @@
                             <v-divider :key="`divider-${item.label}`" />
                             <v-list-item :key="item.label">
                                 <template v-slot:default="{ active }">
-                                    <CustomCheckbox :checked="active" :label="$t(item.label)" />
+                                    <CustomCheckbox :value="active" :label="$t(item.label)" />
                                 </template>
                             </v-list-item>
                         </template>
@@ -50,7 +50,7 @@
                             <v-divider :key="`divider-${lang.name}`" />
                             <v-list-item :key="lang.name">
                                 <template v-slot:default="{ active }">
-                                    <CustomCheckbox :checked="active" :label="$t(lang.name)" />
+                                    <CustomCheckbox :value="active" :label="$t(lang.name)" />
                                 </template>
                             </v-list-item>
                         </template>
@@ -60,7 +60,7 @@
                             <v-divider :key="`divider-${country.name}`" />
                             <v-list-item :key="country.name">
                                 <template v-slot:default="{ active }">
-                                    <CustomCheckbox :checked="active" :label="$t(country.name)" />
+                                    <CustomCheckbox :value="active" :label="$t(country.name)" />
                                 </template>
                             </v-list-item>
                         </template>
@@ -70,7 +70,7 @@
                             <v-divider :key="`divider-${currency.code}`" />
                             <v-list-item :key="currency.code">
                                 <template v-slot:default="{ active }">
-                                    <CustomCheckbox :checked="active" :label="$t(currency.code)" />
+                                    <CustomCheckbox :value="active" :label="$t(currency.code)" />
                                 </template>
                             </v-list-item>
                         </template>

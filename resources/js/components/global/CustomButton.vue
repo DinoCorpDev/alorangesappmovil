@@ -18,9 +18,7 @@
     >
         <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
         <template v-if="text">{{ text }}</template>
-        <template v-else>
-            <slot></slot>
-        </template>
+        <slot v-else />
     </v-btn>
 </template>
 
