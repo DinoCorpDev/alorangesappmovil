@@ -1016,12 +1016,24 @@ export default {
                 this.cartItems.map(product => {
                     this.priceTotal += product?.regular_price * product?.qty;
                 });
-            } else {
-                this.snack({
-                    message: res.data.message,
-                    color: "red"
+            }
+
+            const res2 = await this.call_api("post", `carts/collections`, {});
+            if (res2.data.success) {
+                let cartItems2 = res2.data?.cart_items;
+                cartItems2?.map(collection => {
+                    this.priceTotal += parseFloat(collection?.collection?.precio) * collection?.quantity;
+
+                    this.cartItems.push({
+                        reference: collection?.collection?.referencia,
+                        name: collection?.collection?.coleccion,
+                        regular_price: collection?.collection?.precio,
+                        brandName: collection?.collection?.marca,
+                        cart_id: collection?.id,
+                        qty: collection?.quantity
+                    })
                 });
-                this.$router.push({ name: "404" });
+                
             }
         },
         async getAddresses() {

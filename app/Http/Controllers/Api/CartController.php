@@ -11,6 +11,8 @@ use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\CollectionCart;
+use App\Models\Collection;
 
 class CartController extends Controller
 {
@@ -21,6 +23,18 @@ class CartController extends Controller
         return response()->json([
             'success' => true,
             'cart_items' => new CartCollection($carts)
+        ], 200);
+    }
+
+
+    public function indexCollection(Request $request)
+    {
+        $carts = CollectionCart::with(['collection'])->where('user_id', auth('api')->user()->id)->get();
+        
+
+        return response()->json([
+            'success' => true,
+            'cart_items' => $carts
         ], 200);
     }
 
@@ -84,6 +98,23 @@ class CartController extends Controller
             'success' => true,
             'data' => $product,
             'message' => translate('Product added to cart successfully'),
+        ], 200);
+    }
+
+    public function addCollection(Request $request)
+    {
+        $collection = Collection::findOrFail($request->variation_id);
+        $user_id = (auth('api')->check()) ? auth('api')->user()->id : null;
+
+        $cart = CollectionCart::updateOrCreate([
+            'user_id' => $user_id,
+            'temp_user_id' => $user_id,
+            'collection_id' => $collection->id
+        ], ['quantity' => DB::raw('quantity + ' . $request->qty)]);
+
+        return response()->json([
+            'success' => true,
+            'message' => translate('Collection added to cart successfully'),
         ], 200);
     }
 

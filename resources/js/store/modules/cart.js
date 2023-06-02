@@ -330,6 +330,23 @@ export default {
                 dispatch("proccessCoupon");
             }
         },
+        async addToCartCollection({ commit, getters, dispatch }, { variation_id, qty }) {
+            let temp_user_id = getters.getTempUserId;
+            if (!this.getters["auth/isAuthenticated"] && !temp_user_id) {
+                temp_user_id = Math.floor(Math.random() * 10000) + new Date().getTime();
+                commit("setTempUserId", temp_user_id);
+            }
+            const res = await Mixin.methods.call_api("post", `carts/addCollection`, {
+                variation_id: variation_id,
+                qty: qty,
+                temp_user_id: temp_user_id
+            });
+
+            if (res.data.success) {
+                commit("addToCart", res.data.data);
+                commit("updateCartShops", res.data.shop);
+            }
+        },
         async updateQuantity({ commit, getters, dispatch }, { type, cart_id }) {
             /* let cartItem = getters.findCartItemByCartId(cart_id);
             if (type == "plus" && cartItem.qty + 1 > cartItem.max_qty) {
