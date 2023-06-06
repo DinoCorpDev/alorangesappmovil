@@ -123,7 +123,7 @@
             </v-col>
             <v-col cols="12" class="d-flex justify-space-between">
                 <div class="mb-2">
-                    <custom-button text="Volver" color="nero" @click="step = 3" />
+                    <CustomButton text="Volver" color="nero" @click="step = 3" />
                 </div>
                 <total :total="priceTotal" />
             </v-col>
@@ -152,9 +152,14 @@
 </template>
 
 <script>
+import CustomButton from "../global/CustomButton.vue";
+
 export default {
     props: {
         orderDetails: { type: Object, default: {} }
+    },
+    components: {
+        CustomButton
     },
     data: () => ({}),
     computed: {
