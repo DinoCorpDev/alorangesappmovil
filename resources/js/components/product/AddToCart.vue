@@ -205,20 +205,21 @@ export default {
                 });
                 return;
             }
-            if(this.productDetails?.isCollection){
+
+            if (this.productDetails?.isCollection) {
                 this.addToCartCollection({
                     // variation_id: this.selectedVariation?.id,
                     variation_id: this.productDetails?.id,
                     qty: this.cartQuantity
                 });
-            }else{
+            } else {
                 this.addToCart({
                     // variation_id: this.selectedVariation?.id,
                     variation_id: this.productDetails?.id,
                     qty: this.cartQuantity
                 });
             }
-            
+
             this.snack({
                 message: this.$i18n.t("product_added_to_cart"),
                 color: "green"

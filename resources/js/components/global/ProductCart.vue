@@ -19,8 +19,8 @@
                         <div class="product-box-short">
                             <div class="product-box-short-body">
                                 <div>
-                                    <p class="product-box-short-reference mb-0">{{product?.product?.reference}}</p>
-                                    <h2 class="product-box-short-name mb-0">{{product?.product?.name}}</h2>
+                                    <p class="product-box-short-reference mb-0">{{ product?.product?.reference }}</p>
+                                    <h2 class="product-box-short-name mb-0">{{ product?.product?.name }}</h2>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="d-md-none">
-                        <custom-button block icon="la-ellipsis-v" class="btn-res" />
+                        <CustomButton block icon="la-ellipsis-v" class="btn-res" />
                     </div>
                 </div>
             </div>
@@ -77,8 +77,9 @@
 </template>
 
 <script>
-import CustomButton from "../../components/global/CustomButton.vue";
 import { mapActions } from "vuex";
+
+import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     name: "ProductCart",
@@ -105,11 +106,11 @@ export default {
             default: "Marca"
         },
         price: {
-            type: Number|String,
+            type: Number | String,
             default: 0
         },
         price2: {
-            type: Number|String,
+            type: Number | String,
             default: 0
         },
         cart_id: {
@@ -349,7 +350,7 @@ input[type="number"] {
         align-items: center;
         justify-content: space-between;
         padding: 0px;
-        
+
         & > div:first-child {
             flex: 1;
             margin-right: 1rem;

@@ -2,31 +2,28 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Models\Order;
-use App\Models\Cart;
-use App\Models\OrderDetail;
-use App\Models\Address;
 use App\Http\Resources\OrderCollection;
 use App\Http\Resources\OrderSingleCollection;
+use App\Models\Address;
+use App\Models\Cart;
 use App\Models\City;
+use App\Models\CollectionCart;
+use App\Models\CollectionOrderDetail;
 use App\Models\CombinedOrder;
-use App\Models\CommissionHistory;
 use App\Models\Coupon;
 use App\Models\CouponUsage;
 use App\Models\Language;
 use App\Models\ManualPaymentMethod;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\OrderUpdate;
 use App\Models\Shop;
 use App\Models\Wallet;
 use App\Notifications\OrderPlacedNotification;
-use PDF;
 use DB;
+use Illuminate\Http\Request;
 use Notification;
-use stdClass;
-use App\Models\CollectionCart;
-use App\Models\CollectionProduct;
-use App\Models\CollectionOrderDetail;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -192,13 +189,14 @@ class OrderController extends Controller
     }
 
     public function store(Request $request)
-    {   
+    {
         $cart_item_ids = array();
-        if(isset($request->cart_item_ids)){
+        if (isset($request->cart_item_ids)) {
             $cart_item_ids = $request->cart_item_ids;
         }
+
         $cart_collection_ids = array();
-        if(isset($request->cart_collection_ids)){
+        if (isset($request->cart_collection_ids)) {
             $cart_collection_ids = $request->cart_collection_ids;
         }
 
@@ -297,12 +295,12 @@ class OrderController extends Controller
             $shop_cart_items = array();
             $shop_collection_item = array();
 
-            if(strpos($shop_id . "" , "collection") !== false){
+            if (strpos($shop_id . "", "collection") !== false) {
                 $shop_collection_item = $cartCollections->whereIn('id', $shop_cart_item_ids);
-            }else{
+            } else {
                 $shop_cart_items = $cartItems->whereIn('id', $shop_cart_item_ids);
             }
-      
+
             $shop_subTotal = 0;
             $shop_tax = 0;
             $shop_coupon_discount = 0;
@@ -376,7 +374,6 @@ class OrderController extends Controller
                 ]);
             }
 
-
             foreach ($shop_cart_items as $cartItem) {
                 $itemPriceWithoutTax = variation_discounted_price($cartItem->product, $cartItem, false);
                 $itemTax = product_variation_tax($cartItem->product, $cartItem);
@@ -406,8 +403,6 @@ class OrderController extends Controller
                     $brand->save();
                 }
             }
-
-            
 
             $order_price = $order->grand_total - $order->shipping_cost - $order->orderDetails->sum(function ($t) {
                 return $t->tax * $t->quantity;

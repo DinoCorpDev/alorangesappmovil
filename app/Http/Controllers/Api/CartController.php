@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Http\Resources\CartCollection;
 use App\Http\Resources\ShopCollection;
 use App\Http\Resources\ShopResource;
+use App\Models\Brand;
 use App\Models\Cart;
-use App\Models\ProductVariation;
+use App\Models\Collection;
+use App\Models\CollectionCart;
+use App\Models\CollectionProduct;
 use App\Models\Product;
+use App\Models\ProductVariation;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\CollectionCart;
-use App\Models\Collection;
-use App\Models\CollectionProduct;
-use App\Models\Brand;
 
 class CartController extends Controller
 {
@@ -27,8 +27,8 @@ class CartController extends Controller
         foreach ($collections as $value) {
             $_products = CollectionProduct::with(['product'])->where("id_collection", $value->collection->id)->get();
             $value->products = $_products;
-            
-            if($value->collection->marca != "" && $value->collection->marca != NULL){
+
+            if ($value->collection->marca != "" && $value->collection->marca != NULL) {
                 $value->brand = Brand::where('id', $value->collection->marca)->first();
             }
         }
@@ -164,12 +164,14 @@ class CartController extends Controller
     }
 
     public function changeQuantity(Request $request)
-    {   
+    {
         $isCollection = false;
-        if(isset($request->isCollection)){
+
+        if (isset($request->isCollection)) {
             $isCollection = $request->isCollection;
         }
-        if($isCollection == false){
+
+        if ($isCollection == false) {
             $cart = Cart::find($request->cart_id);
             if ($cart != null) {
                 if ((auth('api')->check() && auth('api')->user()->id == $cart->user_id) || ($request->has('temp_user_id') && $request->temp_user_id == $cart->temp_user_id)) {
@@ -210,7 +212,7 @@ class CartController extends Controller
                     return response()->json(null, 401);
                 }
             }
-        }else{
+        } else {
             $cart = CollectionCart::find($request->cart_id);
             if ($cart != null) {
                 if ((auth('api')->check() && auth('api')->user()->id == $cart->user_id) || ($request->has('temp_user_id') && $request->temp_user_id == $cart->temp_user_id)) {
@@ -224,9 +226,9 @@ class CartController extends Controller
                             'message' => translate('Cart updated')
                         ]);
                     } elseif ($request->type == 'minus') {
-                        if($cart->quantity == 1){
+                        if ($cart->quantity == 1) {
                             $cart->delete();
-                        }else{
+                        } else {
                             $cart->update([
                                 'quantity' => DB::raw('quantity - 1')
                             ]);
@@ -245,12 +247,12 @@ class CartController extends Controller
                 }
             }
         }
-        
     }
 
     public function destroy(Request $request)
     {
         $cart = Cart::find($request->cart_id);
+
         if ($cart != null) {
             if ((auth('api')->check() && auth('api')->user()->id == $cart->user_id) || ($request->has('temp_user_id') && $request->temp_user_id == $cart->temp_user_id)) {
                 $cart->delete();

@@ -1,5 +1,6 @@
 import Mixin from "./../../utils/mixin";
 import { i18n } from "./../../plugins/i18n";
+
 const loadState = () => ({
     cartLoaded: false,
     cartPrice: 0,
@@ -7,6 +8,7 @@ const loadState = () => ({
     cartShops: [],
     tempUserId: localStorage.getItem("shopTempUserId") || null
 });
+
 export default {
     namespaced: true,
     state: loadState(),

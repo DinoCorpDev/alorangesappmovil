@@ -15,7 +15,7 @@ export default {
     name: "Total",
     props: {
         total: {
-            type: String|Number,
+            type: String | Number,
             default: "000.000.000"
         },
         text1: {

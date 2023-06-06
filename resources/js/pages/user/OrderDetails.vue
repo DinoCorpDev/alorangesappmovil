@@ -1,9 +1,8 @@
 <template>
     <v-container>
-        <!-- <h1 class="text-h6 fw-700 mb-3">{{ $t("order_code") }}: {{ order.code }}</h1> -->
         <v-row>
             <v-col cols="12 invoice-div">
-                <order-history
+                <OrderHistory
                     style="background-color: #f5f5f5"
                     :order="order?.code"
                     :date="order?.date"
@@ -23,6 +22,7 @@
 <script>
 import OrderHistory from "../../components/global/OrderHistory.vue";
 import Summary from "./../../components/order/Summary.vue";
+
 export default {
     data() {
         return {
@@ -31,8 +31,8 @@ export default {
         };
     },
     components: {
-        Summary,
-        OrderHistory
+        OrderHistory,
+        Summary
     },
     methods: {
         async getDetails(orderCode) {

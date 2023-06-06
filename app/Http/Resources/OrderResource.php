@@ -23,30 +23,32 @@ class OrderResource extends JsonResource
             ],
             'payment_type' => $this->payment_type,
             'manual_payment' => $this->manual_payment,
-            'manual_payment_data' => $this->manual_payment_data ? json_decode($this->manual_payment_data): null,
+            'manual_payment_data' => $this->manual_payment_data ? json_decode($this->manual_payment_data) : null,
             'delivery_type' => $this->delivery_type,
             'delivery_status' => $this->delivery_status,
             'payment_status' => $this->payment_status,
-            'coupon_discount' => (double) $this->coupon_discount,
-            'shipping_cost' => (double) $this->shipping_cost,
-            'grand_total' => (double) $this->grand_total,
-            'subtotal' => (double) $this->orderDetails->sum('total') - $this->calculateTotalTax($this->orderDetails),
-            'tax' => (double) $this->calculateTotalTax($this->orderDetails),
+            'coupon_discount' => (float) $this->coupon_discount,
+            'shipping_cost' => (float) $this->shipping_cost,
+            'grand_total' => (float) $this->grand_total,
+            'subtotal' => (float) $this->orderDetails->sum('total') - $this->calculateTotalTax($this->orderDetails),
+            'tax' => (float) $this->calculateTotalTax($this->orderDetails),
             'products' => new OrderProductCollection($this->orderDetails),
             'collections' => $this->collectionDetails,
             'created_at' => strtotime($this->created_at),
-            'has_refund_request' => $this->refundRequests->count() > 0 ? true : false, 
-            'courier_name' => $this->courier_name, 
-            'tracking_number' => $this->tracking_number, 
-            'tracking_url' => $this->tracking_url, 
+            'has_refund_request' => $this->refundRequests->count() > 0 ? true : false,
+            'courier_name' => $this->courier_name,
+            'tracking_number' => $this->tracking_number,
+            'tracking_url' => $this->tracking_url,
         ];
     }
 
-    protected function calculateTotalTax($orderDetails){
+    protected function calculateTotalTax($orderDetails)
+    {
         $tax = 0;
-        foreach($orderDetails as $item){
-            $tax += $item->tax*$item->quantity;
+        foreach ($orderDetails as $item) {
+            $tax += $item->tax * $item->quantity;
         }
+
         return $tax;
     }
 }
