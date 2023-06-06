@@ -4,7 +4,7 @@
             <h6>Lista de Pedido</h6>
             <v-divider class="my-3" />
             <v-row>
-                <v-col cols="12" v-for="(product, i) in order.products.data" :key="i">
+                <v-col cols="12" v-for="(product, i) in items" :key="i">
                     <ProductCart
                         :name="product?.name"
                         :price="product?.price"
@@ -14,6 +14,8 @@
                         :cart_id="product?.id"
                         :quantity="product?.quantity"
                         :showOperation="false"
+                        :isCollection="product?.isCollection ?? false"
+                        :productsCollection="product?.products"
                     />
                 </v-col>
             </v-row>
@@ -87,11 +89,11 @@ export default {
     props: {
         orderDetails: { type: Object, default: () => {} }
     },
-    data: () => ({
-        cod_sticker: Vue.helpers.asset("/assets/img/cod_sticker.svg"),
-        paid_sticker: Vue.helpers.asset("/assets/img/paid_sticker.svg"),
-        today: new Date().getTime() / 1000
-    }),
+    data() {
+        return {
+            items: []
+        };
+    },
     computed: {
         order: {
             get() {
@@ -168,6 +170,24 @@ export default {
             } else {
                 this.snack({ message: res.data.message, color: "red" });
             }
+        }
+    },
+    created() {
+        this.items = this.order?.products?.data;
+
+        if (this.order?.collections && this.order?.collections.length > 0) {
+            this.order?.collections.map(col => {
+                this.items.push({
+                    reference: col?.collection?.referencia,
+                    name: col?.collection?.coleccion,
+                    price: col?.price,
+                    brandName: col?.brand?.name,
+                    cart_id: col?.id,
+                    qty: col?.quantity,
+                    isCollection: true,
+                    products: col?.collection?.productos
+                });
+            });
         }
     }
 };

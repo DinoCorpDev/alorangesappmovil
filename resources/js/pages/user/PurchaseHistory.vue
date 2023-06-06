@@ -1,15 +1,15 @@
 <template>
     <v-container>
         <h6>Compras</h6>
-        <v-divider class="my-3"></v-divider>
+        <v-divider class="my-3" />
         <v-row v-for="(item, i) in orders" :key="i">
             <v-col cols="12 invoice-div">
-                <order-history
+                <OrderHistor
                     style="background-color: #f5f5f5"
                     :order="item?.code"
                     :date="item?.date"
                     colorStatus="red"
-                    :descriptionStatus="item.orders[0].payment_status"
+                    :descriptionStatus="item.orders[0]?.payment_status"
                     icon1="la-download"
                     icon2="la-eye"
                     icon3="la-print"
@@ -21,7 +21,6 @@
 
 <script>
 import OrderHistory from "../../components/global/OrderHistory.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     data: () => ({
@@ -32,8 +31,7 @@ export default {
         selectedOrder: {}
     }),
     components: {
-        OrderHistory,
-        CustomButton
+        OrderHistory
     },
     computed: {
         headers() {

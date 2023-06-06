@@ -160,7 +160,7 @@ export default {
     },
     methods: {
         ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
-        ...mapActions("cart", ["addToCart", "updateQuantity"]),
+        ...mapActions("cart", ["addToCart", "updateQuantity", "addToCartCollection"]),
         ...mapActions("auth", ["showConversationDialog"]),
         ...mapMutations("auth", ["updateChatWindow"]),
 
@@ -206,11 +206,20 @@ export default {
                 return;
             }
 
-            this.addToCart({
-                // variation_id: this.selectedVariation?.id,
-                variation_id: this.productDetails?.id,
-                qty: this.cartQuantity
-            });
+            if (this.productDetails?.isCollection) {
+                this.addToCartCollection({
+                    // variation_id: this.selectedVariation?.id,
+                    variation_id: this.productDetails?.id,
+                    qty: this.cartQuantity
+                });
+            } else {
+                this.addToCart({
+                    // variation_id: this.selectedVariation?.id,
+                    variation_id: this.productDetails?.id,
+                    qty: this.cartQuantity
+                });
+            }
+
             this.snack({
                 message: this.$i18n.t("product_added_to_cart"),
                 color: "green"

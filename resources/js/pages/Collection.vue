@@ -71,7 +71,8 @@ export default {
                     base_discounted_price: collection.precio,
                     stock: collection.stock,
                     warranty_text: collection.descuento,
-                    shipping: collection.envio
+                    shipping: collection.envio,
+                    isCollection: true
                 };
 
                 this.products = res.data.data.products;

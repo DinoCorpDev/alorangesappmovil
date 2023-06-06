@@ -21,7 +21,7 @@
 
 <script>
 import OrderHistory from "../../components/global/OrderHistory.vue";
-import Summary from "./../../components/order/Summary";
+import Summary from "./../../components/order/Summary.vue";
 
 export default {
     data() {
