@@ -30,7 +30,7 @@
             <div class="div-body">
                 <div class="divider"></div>
                 <div>
-                    <span class="black--text price">{{ format_price(price2) }} COP</span>
+                    <span class="black--text price">{{ format_price(price) }} COP</span>
                 </div>
                 <div class="divider"></div>
                 <div class="quanty-res">
@@ -109,10 +109,6 @@ export default {
             type: Number | String,
             default: 0
         },
-        price2: {
-            type: Number | String,
-            default: 0
-        },
         cart_id: {
             type: Number,
             default: 0
@@ -149,14 +145,7 @@ export default {
         async update(type) {
             await this.updateQuantity({ type: type, cart_id: this.cart_id, isCollection: this.isCollection });
             this.$emit("changeQty", 1);
-            //this.calculatedPrice();
-        },
-        async calculatedPrice() {
-            this.price2 = this.price;
         }
-    },
-    async created() {
-        this.calculatedPrice();
     }
 };
 </script>

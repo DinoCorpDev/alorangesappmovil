@@ -36,9 +36,9 @@ export default {
     },
     props: {
         order: String,
-        day: String,
+        day: [String, Number],
         month: String,
-        year: String,
+        year: [String, Number],
         descriptionStatus: String,
         colorStatus: String,
         icon1: String,

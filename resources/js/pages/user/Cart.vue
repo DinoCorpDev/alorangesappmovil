@@ -1095,27 +1095,14 @@ export default {
         },
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
+                // prettier-ignore
+                const shippingAddressId = this.useDefaultAddress1 ? this.addressPrincipal?.id ?? "" : this.addressServicio?.id ?? "";
+                // prettier-ignore
+                const billingAddressId = this.useDefaultAddress2 ? this.addressPrincipal?.id ?? "" : this.addressFacturacion?.id ?? "";
+
                 let formData = new FormData();
-                formData.append(
-                    "shipping_address_id",
-                    this.useDefaultAddress1
-                        ? this.addressPrincipal?.id
-                            ? this.addressPrincipal?.id
-                            : ""
-                        : this.addressServicio.id
-                        ? this.addressServicio.id
-                        : ""
-                );
-                formData.append(
-                    "billing_address_id",
-                    this.useDefaultAddress2
-                        ? this.addressPrincipal?.id
-                            ? this.addressPrincipal?.id
-                            : ""
-                        : this.addressFacturacion?.id
-                        ? this.addressFacturacion?.id
-                        : ""
-                );
+                formData.append("shipping_address_id", shippingAddressId);
+                formData.append("billing_address_id", billingAddressId);
                 formData.append("delivery_type", "standard");
 
                 this.cartItems.forEach((item, index) => {
@@ -1129,6 +1116,7 @@ export default {
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
                     const res = await this.call_api("post", "checkout/order/store", formData);
+
                     if (res.data.success) {
                         this.dataCheckout = res.data;
                         this.step = 4;
@@ -1138,6 +1126,7 @@ export default {
                             color: "red"
                         });
                     }
+
                     this.checkoutLoading = false;
                 }
             } else {
