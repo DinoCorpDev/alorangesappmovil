@@ -12,4 +12,9 @@ class Collection extends Model
     {
         return $this->hasMany(CollectionProduct::class);
     }
+
+    public function productos()
+    {
+        return $this->hasMany(CollectionProduct::class, "id_collection");
+    }
 }

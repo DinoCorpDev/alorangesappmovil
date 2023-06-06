@@ -33,6 +33,7 @@ class OrderResource extends JsonResource
             'subtotal' => (double) $this->orderDetails->sum('total') - $this->calculateTotalTax($this->orderDetails),
             'tax' => (double) $this->calculateTotalTax($this->orderDetails),
             'products' => new OrderProductCollection($this->orderDetails),
+            'collections' => $this->collectionDetails,
             'created_at' => strtotime($this->created_at),
             'has_refund_request' => $this->refundRequests->count() > 0 ? true : false, 
             'courier_name' => $this->courier_name, 

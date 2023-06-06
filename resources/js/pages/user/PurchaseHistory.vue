@@ -9,7 +9,7 @@
                     :order="item?.code"
                     :date="item?.date"
                     colorStatus="red"
-                    :descriptionStatus="item.orders[0].payment_status"
+                    :descriptionStatus="item.orders[0]?.payment_status"
                     icon1="la-download"
                     icon2="la-eye"
                     icon3="la-print"

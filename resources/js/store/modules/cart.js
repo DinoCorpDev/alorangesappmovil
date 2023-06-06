@@ -197,7 +197,7 @@ export default {
                 state.cartProducts.push(product);
             }
         },
-        updateQuantity(state, { type, cart_id }) {
+        updateQuantity(state, { type, cart_id, isCollection }) {
             let item = state.cartProducts.find(cartProduct => cartProduct.cart_id === cart_id);
             if (type == "plus") {
                 state.cartProducts.map(cartProduct => {
@@ -347,7 +347,7 @@ export default {
                 commit("updateCartShops", res.data.shop);
             }
         },
-        async updateQuantity({ commit, getters, dispatch }, { type, cart_id }) {
+        async updateQuantity({ commit, getters, dispatch }, { type, cart_id, isCollection = false }) {
             /* let cartItem = getters.findCartItemByCartId(cart_id);
             if (type == "plus" && cartItem.qty + 1 > cartItem.max_qty) {
                 Mixin.methods.snack({
@@ -359,10 +359,11 @@ export default {
             const res = await Mixin.methods.call_api("post", `carts/change-quantity`, {
                 type: type,
                 cart_id: cart_id,
-                temp_user_id: getters.getTempUserId
+                temp_user_id: getters.getTempUserId,
+                isCollection: isCollection
             });
             if (res.data.success) {
-                commit("updateQuantity", { type, cart_id });
+                commit("updateQuantity", { type, cart_id, isCollection });
                 commit("updateCartShops");
                 dispatch("proccessCoupon");
             } else {

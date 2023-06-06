@@ -33,6 +33,8 @@
                             @changeQtyMinus="changeQty"
                             :cart_id="product?.cart_id"
                             :quantity="product?.qty"
+                            :isCollection= "product?.isCollection ?? false"
+                            :productsCollection= "product?.products"
                         />
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
@@ -800,6 +802,8 @@
                                 :cart_id="product?.cart_id"
                                 :quantity="product?.qty"
                                 :showOperation="false"
+                                :isCollection= "product?.isCollection ?? false"
+                                :productsCollection= "product?.products"
                             />
                         </v-col>
                     </v-row>
@@ -1010,30 +1014,32 @@ export default {
         ...mapActions("auth", ["getUser"]),
         async getCart() {
             const res = await this.call_api("post", `carts`, {});
+            let _cartItems = [];
             if (res.data.success) {
-                this.cartItems = res.data?.cart_items?.data;
                 this.priceTotal = 0;
-                this.cartItems.map(product => {
+                
+                _cartItems = res.data?.cart_items?.data;
+                _cartItems.map(product => {
                     this.priceTotal += product?.regular_price * product?.qty;
                 });
-            }
 
-            const res2 = await this.call_api("post", `carts/collections`, {});
-            if (res2.data.success) {
-                let cartItems2 = res2.data?.cart_items;
-                cartItems2?.map(collection => {
-                    this.priceTotal += parseFloat(collection?.collection?.precio) * collection?.quantity;
+                let cartcollections = res.data?.cart_collections;
+                cartcollections?.map(col => {
+                    this.priceTotal += parseFloat(col?.collection?.precio) * col?.quantity;
 
-                    this.cartItems.push({
-                        reference: collection?.collection?.referencia,
-                        name: collection?.collection?.coleccion,
-                        regular_price: collection?.collection?.precio,
-                        brandName: collection?.collection?.marca,
-                        cart_id: collection?.id,
-                        qty: collection?.quantity
+                    _cartItems.push({
+                        reference: col?.collection?.referencia,
+                        name: col?.collection?.coleccion,
+                        regular_price: parseFloat(col?.collection?.precio),
+                        brandName: col?.brand?.name,
+                        cart_id: col?.id,
+                        qty: col?.quantity,
+                        isCollection: true,
+                        products: col?.products
                     })
                 });
                 
+                this.cartItems=_cartItems;
             }
         },
         async getAddresses() {
@@ -1109,10 +1115,16 @@ export default {
                         : ""
                 );
                 formData.append("delivery_type", "standard");
+
                 this.cartItems.forEach((item, index) => {
-                    formData.append("cart_item_ids[]", item?.cart_id);
+                    if(item?.isCollection){
+                        formData.append("cart_collection_ids[]", item?.cart_id);
+                    }else{
+                        formData.append("cart_item_ids[]", item?.cart_id);
+                    }
                 });
 
+                
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
                     const res = await this.call_api("post", "checkout/order/store", formData);

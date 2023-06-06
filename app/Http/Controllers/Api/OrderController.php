@@ -24,6 +24,9 @@ use PDF;
 use DB;
 use Notification;
 use stdClass;
+use App\Models\CollectionCart;
+use App\Models\CollectionProduct;
+use App\Models\CollectionOrderDetail;
 
 class OrderController extends Controller
 {
@@ -43,7 +46,8 @@ class OrderController extends Controller
             'user',
             'orders.orderDetails.variation.product',
             'orders.orderDetails.variation.combinations',
-            'orders.shop'
+            'orders.shop',
+            'orders.collectionDetails.collection.productos.product'
         ])->first();
 
         if ($order) {
@@ -188,14 +192,25 @@ class OrderController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $cartItems = Cart::whereIn('id', $request->cart_item_ids)->get();
+    {   
+        $cart_item_ids = array();
+        if(isset($request->cart_item_ids)){
+            $cart_item_ids = $request->cart_item_ids;
+        }
+        $cart_collection_ids = array();
+        if(isset($request->cart_collection_ids)){
+            $cart_collection_ids = $request->cart_collection_ids;
+        }
+
+        $cartItems = Cart::whereIn('id', $cart_item_ids)->get();
+        $cartCollections = CollectionCart::with(['collection'])->whereIn('id', $cart_collection_ids)->get();
+
         $shippingAddress = Address::find($request->shipping_address_id);
         $billingAddress = Address::find($request->billing_address_id);
         $shippingCity = City::with('zone')->find($shippingAddress->city_id);
         $user = auth('api')->user();
 
-        if ($cartItems->count() < 1)
+        if ($cartItems->count() < 1 && $cartCollections->count() < 1)
             return response()->json([
                 'success' => false,
                 'message' => translate('Your cart is empty. Please select a product.')
@@ -250,6 +265,12 @@ class OrderController extends Controller
             $shops_cart_items[$product->shop_id] = $cart_ids;
         }
 
+        foreach ($cartCollections as $cartCollection) {
+            $cart_ids = array();
+            array_push($cart_ids, $cartCollection->id);
+            $shops_cart_items[("collection_" . $cartCollection->id)] = $cart_ids;
+        }
+
         // get coupon data based on request
         $coupons = collect();
         if ($request->coupon_codes && !empty($request->coupon_codes)) {
@@ -273,8 +294,15 @@ class OrderController extends Controller
         $package_number = 1;
         foreach ($shops_cart_items as $shop_id => $shop_cart_item_ids) {
 
-            $shop_cart_items = $cartItems->whereIn('id', $shop_cart_item_ids);
+            $shop_cart_items = array();
+            $shop_collection_item = array();
 
+            if(strpos($shop_id . "" , "collection") !== false){
+                $shop_collection_item = $cartCollections->whereIn('id', $shop_cart_item_ids);
+            }else{
+                $shop_cart_items = $cartItems->whereIn('id', $shop_cart_item_ids);
+            }
+      
             $shop_subTotal = 0;
             $shop_tax = 0;
             $shop_coupon_discount = 0;
@@ -289,6 +317,15 @@ class OrderController extends Controller
             }
             $shop_total = $shop_subTotal + $shipping_cost + $shop_tax;
 
+            //shop total amount calculation
+            foreach ($shop_collection_item as $cartCollection) {
+                $itemPriceWithoutTax = $cartCollection->collection->precio * $cartCollection->quantity;
+                $itemTax = $cartCollection->collection->precio * $cartCollection->quantity;
+
+                $shop_subTotal += $itemPriceWithoutTax;
+                $shop_tax += $itemTax;
+            }
+            $shop_total = $shop_subTotal + $shipping_cost + $shop_tax;
 
             // shop coupon check & disount calculation
             if ($request->coupon_codes && !empty($request->coupon_codes)) {
@@ -325,6 +362,21 @@ class OrderController extends Controller
             $package_number++;
             $grand_total += $shop_total;
 
+            foreach ($shop_collection_item as $cartCollection) {
+                $itemPriceWithoutTax = $cartCollection->collection->precio * $cartCollection->quantity;
+                $itemTax = $cartCollection->collection->precio * $cartCollection->quantity;
+
+                $orderDetail = CollectionOrderDetail::create([
+                    'order_id' => $order->id,
+                    'collection_id' => $cartCollection->collection_id,
+                    'price' => $itemPriceWithoutTax,
+                    'tax' => $itemTax,
+                    'total' => $itemTax * $cartCollection->quantity,
+                    'quantity' => $cartCollection->quantity,
+                ]);
+            }
+
+
             foreach ($shop_cart_items as $cartItem) {
                 $itemPriceWithoutTax = variation_discounted_price($cartItem->product, $cartItem, false);
                 $itemTax = product_variation_tax($cartItem->product, $cartItem);
@@ -333,9 +385,9 @@ class OrderController extends Controller
                     'order_id' => $order->id,
                     'product_id' => $cartItem->product_id,
                     'product_variation_id' => $cartItem->product_variation_id,
-                    'price' => $itemPriceWithoutTax,
+                    'price' => $cartItem->product->lowest_price,
                     'tax' => $itemTax,
-                    'total' => ($itemPriceWithoutTax + $itemTax) * $cartItem->quantity,
+                    'total' => $cartItem->product->lowest_price * $cartItem->quantity,
                     'quantity' => $cartItem->quantity,
                 ]);
 
@@ -354,6 +406,8 @@ class OrderController extends Controller
                     $brand->save();
                 }
             }
+
+            
 
             $order_price = $order->grand_total - $order->shipping_cost - $order->orderDetails->sum(function ($t) {
                 return $t->tax * $t->quantity;
@@ -389,6 +443,7 @@ class OrderController extends Controller
 
         // clear user's cart
         Cart::destroy($request->cart_item_ids);
+        CollectionCart::destroy($request->cart_collection_ids);
 
         if ($request->payment_type == 'wallet') {
             $user->balance -= $combined_order->grand_total;

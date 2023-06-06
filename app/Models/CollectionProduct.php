@@ -9,4 +9,10 @@ class CollectionProduct extends Model
 {
     //use HasFactory;
     protected $table = "collections_products";
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'id_product');
+    }
+
 }
