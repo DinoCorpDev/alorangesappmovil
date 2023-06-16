@@ -193,9 +193,16 @@ export default {
                 window.location.reload();
             }
         },
-        selectedTheme() {
+        selectedTheme(newVal, oldVal) {
             this.setTheme(this.selectedTheme);
-            this.runColorMode();
+
+            // 2 is the index of the "device" theme
+            // check if the user changed the theme from device to day or night
+            if (oldVal != null && newVal === 2) {
+                window.location.reload();
+            } else {
+                this.runColorMode();
+            }
         }
     },
     methods: {
@@ -208,7 +215,8 @@ export default {
             } else if (this.userTheme == "night") {
                 this.$vuetify.theme.dark = true;
             } else if (this.userTheme == "device") {
-                this.$vuetify.theme.dark = this.prefersDark;
+                /* Set the theme to match the prefers-color-scheme media query */
+                // this.$vuetify.theme.dark = this.prefersDark;
             }
         },
         setList() {
