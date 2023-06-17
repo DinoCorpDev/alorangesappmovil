@@ -41,7 +41,7 @@ export default {
     background-size: contain;
     position: relative;
     display: block;
-    z-index: 999;
+    z-index: 2;
 
     @media (min-width: 960px) {
         background-image: url("/public/assets/img/home/img-polygon-md.svg");

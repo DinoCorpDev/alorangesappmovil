@@ -14,7 +14,7 @@ class ProductSingleCollection extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $productArray = [
             'id' => (int) $this->id,
             'name' => $this->getTranslation('name'),
             'slug' => $this->slug,
@@ -108,6 +108,10 @@ class ProductSingleCollection extends JsonResource
             'shipping' => $this->shipping,
             'imagenes' => [
                 array(
+                    'src' => api_asset($this->thumbnail_img),
+                    'type' => 'image'
+                ),
+                array(
                     'src' => api_asset($this->imagen1),
                     'type' => 'image'
                 ),
@@ -152,6 +156,16 @@ class ProductSingleCollection extends JsonResource
                 'slug' => $this->shop->slug,
             ]*/
         ];
+
+        $productArray['imagenes'] = array_filter($productArray['imagenes'], function ($value) {
+            return !empty($value['src']);
+        });
+
+        $productArray['videos'] = array_filter($productArray['videos'], function ($value) {
+            return !empty($value['src']);
+        });
+
+        return $productArray;
     }
 
     public function with($request)
@@ -166,7 +180,7 @@ class ProductSingleCollection extends JsonResource
     {
         $result = array();
         foreach (explode(',', $this->photos) as $item) {
-            array_push($result, api_asset($item));
+            array_push($result, api_asset_new($item));
         }
         return $result;
     }

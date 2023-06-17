@@ -18,9 +18,7 @@
     >
         <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
         <template v-if="text">{{ text }}</template>
-        <template v-else>
-            <slot></slot>
-        </template>
+        <slot v-else />
     </v-btn>
 </template>
 
@@ -103,7 +101,7 @@ export default {
 
     &::v-deep {
         .v-btn__content {
-            margin-top: 3px;
+            margin-top: 2px;
         }
     }
 
@@ -138,7 +136,7 @@ export default {
 
     &.grey {
         color: #000000;
-        background-color: rgba(#dfdfdf, 0.5) !important;
+        background-color: #dfdfdf !important;
 
         &:hover {
             color: #fff;
@@ -149,6 +147,13 @@ export default {
             color: #fff;
             background-color: #161616 !important;
         }
+
+        &.theme--dark {
+            &:is(:hover, :focus) {
+                color: #000000;
+                background-color: #ffffff !important;
+            }
+        }
     }
 
     &.grey2 {
@@ -157,7 +162,7 @@ export default {
 
         &:hover {
             color: #fff;
-            background-color: #000000;
+            background-color: rgba(#000000, 0.8);
         }
 
         &:focus {
@@ -168,10 +173,23 @@ export default {
 
     &.black {
         color: #ffffff;
-        background-color: rgba(#000000, 0.5);
+        background-color: rgba(#000000, 0.5) !important;
 
         &:hover {
-            background-color: rgba(#858585, 0.8);
+            background-color: rgba(#858585, 0.8) !important;
+        }
+
+        &:focus {
+            background-color: #161616;
+        }
+    }
+
+    &.black2 {
+        color: #ffffff;
+        background-color: rgba(#161616, 0.5);
+
+        &:hover {
+            background-color: rgba(#161616, 0.8) !important;
         }
 
         &:focus {

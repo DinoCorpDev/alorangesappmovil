@@ -1,23 +1,21 @@
 <template>
-    <div class="auth-footer">
+    <v-footer class="auth-footer">
         <span class="auth-footer-copyright">© Idovela 2022</span>
         <ul class="auth-footer-links">
             <li class="auth-footer-link" v-for="link in authFooterLinks" :key="`link-${link.label}`">
-                <a :href="link.link"> {{ link.label }} </a>
+                <router-link :to="link.link"> {{ link.label }} </router-link>
             </li>
         </ul>
-    </div>
+    </v-footer>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-    data: () => ({
-        authFooterLinks: [
-            { label: "Información", link: "#" },
-            { label: "Solicitudes", link: "#" },
-            { label: "Contacto", link: "#" }
-        ]
-    })
+    computed: {
+        ...mapState("app", ["authFooterLinks"])
+    }
 };
 </script>
 
@@ -26,19 +24,16 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0;
 
     &-copyright,
     &-link a {
-        font-size: 12px;
+        font-size: var(--font-size-body1);
         font-weight: 700;
         letter-spacing: 0;
-        line-height: 24px;
+        line-height: 1;
         color: #000000;
         text-transform: uppercase;
-
-        @media (min-width: 600px) {
-            font-size: 15px;
-        }
     }
 
     &-links {

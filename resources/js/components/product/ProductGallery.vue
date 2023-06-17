@@ -1,122 +1,115 @@
 <template>
-    <div>
-        <template v-if="isLoading">
-            <v-skeleton-loader
-                type="image"
-                class="mb-4"
-                height="420"
-            ></v-skeleton-loader>
-            <v-row class="gutters-10">
-                <v-col>
-                    <v-skeleton-loader
-                        type="image"
-                        class="mb-2"
-                        height="90"
-                    ></v-skeleton-loader>
-                </v-col>
-                <v-col>
-                    <v-skeleton-loader
-                        type="image"
-                        class="mb-2"
-                        height="90"
-                    ></v-skeleton-loader>
-                </v-col>
-                <v-col>
-                    <v-skeleton-loader
-                        type="image"
-                        class="mb-2"
-                        height="90"
-                    ></v-skeleton-loader>
-                </v-col>
-                <v-col>
-                    <v-skeleton-loader
-                        type="image"
-                        class="mb-2"
-                        height="90"
-                    ></v-skeleton-loader>
-                </v-col>
-            </v-row>
-        </template>
-        <div class="" v-show="!isLoading">
-            <VueSlickCarousel
-                ref="c1"
-                :asNavFor="$refs.c2"
-                v-bind="galleryImagesOption"
-                v-if="galleryImgaes.length"
-                class="mb-4 border rounded"
-                @beforeChange="syncGallery"
-            >
-                <template
-                    v-for="(photo, i) in galleryImgaes"
-                >
-                    <div :key="i" class="">
-                        <img
-                            :src="photo"
-                            alt=""
-                            class="img-fluid "
-                        />
-                    </div>
-                </template>
-            </VueSlickCarousel>
-            <VueSlickCarousel
-                ref="c2"
-                :asNavFor="$refs.c1"
-                v-bind="galleryThumbsOption"
-                v-if="galleryImgaes.length"
-                class="gutters-5 md-gutters-10 gallery-thumbs"
-                @beforeChange="syncGallery"
-            >
-                <template
-                    v-for="(photo, i) in galleryImgaes"
-                >
-                    <div :key="i" class="carousel-box">
-                        <div class="border rounded overflow-hidden c-pointer">
-                            <img
-                                :src="photo"
-                                alt=""
-                                class="img-fluid"
-                            />
-                        </div>
-                    </div>
-                </template>
-            </VueSlickCarousel>
-        </div>
+    <div class="product-gallery" v-show="!isLoading">
+        <v-tabs :hide-slider="true" background-color="transparent" grow height="38px" v-model="currentTab">
+            <v-tab :ripple="false">Imagenes</v-tab>
+            <v-tab :ripple="false">Videos</v-tab>
+            <v-tab :ripple="false">Ficha Técnica</v-tab>
+        </v-tabs>
+        <v-tabs-items v-model="currentTab">
+            <v-tab-item>
+                <Carousel
+                    :slides="galleryImages"
+                    :showArrows="galleryImages.length > 1"
+                    :hideDelimiters="galleryImages.length <= 1"
+                />
+            </v-tab-item>
+            <v-tab-item>
+                <Carousel
+                    :slides="galleryVideos"
+                    :showArrows="galleryVideos.length > 1"
+                    :hideDelimiters="galleryVideos.length <= 1"
+                />
+            </v-tab-item>
+            <v-tab-item>
+                <img :src="dataSheet" />
+            </v-tab-item>
+        </v-tabs-items>
     </div>
 </template>
 
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
+import Carousel from "../../components/global/Carousel.vue";
+
 export default {
     props: {
         isLoading: { type: Boolean, default: true },
-        galleryImgaes: { type: Array, required: true, default: () => [] },
+        galleryImages: { type: Array, required: true, default: () => [] },
+        galleryVideos: { type: Array, required: true, default: () => [] },
+        dataSheet: { type: String, required: true, default: "" }
     },
     data: () => ({
-        c1: undefined,
-        c2: undefined,
-        galleryImagesOption: {
-            focusOnSelect: true,
-            arrows: false,
-            adaptiveHeight:true
-        },
-        galleryThumbsOption: {
-            slidesToShow:4,
-            arrows: false,
-            focusOnSelect:true
-        },
+        currentTab: 0
     }),
-    components:{
-        VueSlickCarousel,
-    },
-    methods: {
-        syncGallery(currentPosition, nextPosition) {
-            this.$refs.c1.goTo(nextPosition)
-            this.$refs.c2.goTo(nextPosition)
-        },
-    },
-    mounted() {
-        this.c1 = this.$refs.c1;
-        this.c2 = this.$refs.c2;
+    components: {
+        Carousel
+    }
+};
+</script>
+
+<style lang="scss" scoped>
+.product-gallery {
+    position: relative;
+    height: 100%;
+    height: 82vh;
+
+    .v-tabs {
+        position: absolute;
+        z-index: 2;
+        width: 92.5%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0.75rem;
+
+        @media (min-width: 600px) {
+            width: 90%;
+            top: 1.5rem;
+        }
+
+        &::v-deep {
+            .v-slide-group__prev,
+            .v-slide-group__next {
+                display: none !important;
+            }
+
+            .v-tabs-bar__content {
+                gap: 0.75rem;
+
+                @media (min-width: 600px) {
+                    gap: 1.5rem;
+                }
+            }
+        }
+
+        &-items {
+            height: 100%;
+
+            .v-window-item {
+                height: 100%;
+                flex: 1;
+            }
+        }
+
+        .v-tab {
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            color: #000000 !important;
+            font-size: var(--font-size-btn);
+            font-weight: 600;
+            letter-spacing: 1.25px;
+            line-height: 17px;
+            // flex: 1; // All tabs same width
+
+            &:not(.v-tab--active):hover {
+                background-color: rgba(#000000, 0.5);
+                color: #ffffff !important;
+            }
+
+            &--active {
+                background-color: #000000;
+                color: #ffffff !important;
+            }
+        }
     }
 }
-</script>
+</style>

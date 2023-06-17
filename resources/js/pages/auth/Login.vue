@@ -124,6 +124,9 @@ export default {
             return errors;
         }
     },
+    mounted() {
+        this.$vuetify.theme.dark = false;
+    },
     methods: {
         ...mapActions("auth", { actionLogin: "login" }),
         ...mapActions("app", ["fetchProductQuerries"]),
@@ -152,7 +155,7 @@ export default {
                     this.fetchWislistProducts();
                     this.fetchProductQuerries();
                     this.fetchCartProducts();
-                    this.$router.push(this.$route.query.redirect || { name: "DashBoard" });
+                    this.$router.push(this.$route.query.redirect || { name: "Cart" });
                 } else {
                     if (this.authSettings.customer_login_with == "email") {
                         this.$router.push({

@@ -7,12 +7,16 @@ use App\Models\User;
 
 class Order extends Model
 {
-
     protected $guarded = [];
 
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function collectionDetails()
+    {
+        return $this->hasMany(CollectionOrderDetail::class);
     }
 
     public function user()
@@ -44,5 +48,4 @@ class Order extends Model
     {
         return $this->hasMany(RefundRequest::class);
     }
-
 }

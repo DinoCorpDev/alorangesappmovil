@@ -13,6 +13,7 @@ use App\Models\Language;
 use App\Models\ManualPaymentMethod;
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\Service;
 use Cache;
 use Route;
 
@@ -26,6 +27,7 @@ class HomeController extends Controller
             'meta_image' => api_asset(get_setting('meta_image')),
             'meta_keywords' => get_setting('meta_keywords'),
         ];
+
         $meta['meta_title'] = $meta['meta_title'] ? $meta['meta_title'] : config('app.name');
 
         if (Route::currentRouteName() == 'product') {
@@ -41,6 +43,13 @@ class HomeController extends Controller
                 $meta['meta_title'] = $category->meta_title ? $category->meta_title : $meta['meta_title'];
                 $meta['meta_description'] = $category->meta_description ? $category->meta_description : $meta['meta_description'];
                 $meta['meta_image'] = $category->meta_image ? api_asset($category->meta_image) : $meta['meta_image'];
+            }
+        } elseif (Route::currentRouteName() == 'service') {
+            $service = Service::where('slug', $slug)->first();
+            if ($service) {
+                $meta['meta_title'] = $service->meta_title ? $service->meta_title : $meta['meta_title'];
+                $meta['meta_description'] = $service->meta_description ? $service->meta_description : $meta['meta_description'];
+                $meta['meta_image'] = $service->meta_image ? api_asset($service->meta_image) : $meta['meta_image'];
             }
         } elseif (Route::currentRouteName() == 'blog.details') {
             $blog = Blog::where('slug', $slug)->first();
@@ -69,8 +78,10 @@ class HomeController extends Controller
             'maintenanceMode' => env('MAINTENANCE_MODE') == "On" ? true : false,
             'cacheVersion' => get_setting('force_cache_clear_version'),
             'appLanguage' => env('DEFAULT_LANGUAGE'),
+            'appCurrency' => env('DEFAULT_CURRENCY_CODE'),
+            'allCountries' => Country::where('status', 1)->get(['name', 'code']),
+            'allCurrencies' => Currency::where('status', 1)->get(['name', 'code']),
             'allLanguages' => Language::where('status', 1)->get(['name', 'code', 'flag', 'rtl']),
-            // 'allCurrencies' => Currency::all(),
             'availableCountries' => Country::where('status', 1)->pluck('code')->toArray(),
             'paymentMethods' => [
                 [

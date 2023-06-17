@@ -22,6 +22,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
@@ -36,6 +37,7 @@ use App\Addons\MultiVendor\Http\Controllers\MultiVendorController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\CollectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +67,6 @@ Route::delete('/aiz-uploader/destroy/{id}', [AizUploadController::class, 'destro
 Route::post('/aiz-uploader/get_file_by_ids', [AizUploadController::class, 'get_preview_files']);
 Route::get('/aiz-uploader/download/{id}', [AizUploadController::class, 'attachment_download'])->name('download_attachment');
 
-
 Route::get('/demo/cron_1', [DemoController::class, 'cron_1']);
 Route::get('/demo/cron_2', [DemoController::class, 'cron_2']);
 Route::get('/insert_translation_keys', [DemoController::class, 'insert_trasnalation_keys']);
@@ -73,7 +74,6 @@ Route::get('/customer-products/admin', [SettingController::class, 'initSetting']
 
 Auth::routes(['register' => false]);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 
@@ -91,6 +91,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('brands', BrandController::class);
     Route::get('/brands/edit/{id}', [BrandController::class, 'edit'])->name('brands.edit');
     Route::get('/brands/destroy/{id}', [BrandController::class, 'destroy'])->name('brands.destroy');
+    Route::post('/brands/import', [BrandController::class, 'import'])->name('brands.import');
 
     Route::resource('attributes', AttributeController::class)->except(['destroy']);
     Route::get('/attributes/edit/{id}', [AttributeController::class, 'edit'])->name('attributes.edit');
@@ -98,6 +99,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('attribute_values', AttributeValueController::class)->except(['destroy']);;
     Route::get('/attribute_values/edit/{id}', [AttributeValueController::class, 'edit'])->name('attribute_values.edit');
 
+    // Collection
+    Route::resource('/collection', CollectionController::class);
+    Route::group(['prefix' => 'collection'], function () {
+        Route::post('/import', [CollectionController::class, 'import'])->name('collection.import');
+        Route::get('/{id}/edit', [CollectionController::class, 'edit'])->name('collection.edit');
+        Route::post('/update/{id}', [CollectionController::class, 'update'])->name('collection.update');
+        Route::get('/destroy/{id}', [CollectionController::class, 'destroy'])->name('collection.destroy');
+        Route::get('/collection/{id}', [CollectionController::class, 'show'])->name('collection');
+        Route::get('/add/{id}', [CollectionController::class, 'add'])->name('collection.add');
+        Route::get('/add/{id}/product/{idProduct}', [CollectionController::class, 'addProduct'])->name('collection.addProduct');
+        Route::get('/destroy/{id}/product', [CollectionController::class, 'destroyProduct'])->name('collection.destroyProduct');
+    });
 
     // Product
     Route::resource('/product', ProductController::class);
@@ -120,6 +133,26 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::post('/get_products_by_subcategory', [ProductController::class, 'get_products_by_subcategory'])->name('product.get_products_by_subcategory');
     });
 
+    // Service
+    Route::resource('/service', ServiceController::class);
+    Route::group(['prefix' => 'service'], function () {
+        Route::post('/new-attribte', [ServiceController::class, 'new_attribute'])->name('service.new_attribute');
+        Route::post('/get-attribte-value', [ServiceController::class, 'get_attribute_values'])->name('service.get_attribute_values');
+        Route::post('/new-option', [ServiceController::class, 'new_option'])->name('service.new_option');
+        Route::post('/get-option-choices', [ServiceController::class, 'get_option_choices'])->name('service.get_option_choices');
+
+        Route::post('/sku-combination', [ServiceController::class, 'sku_combination'])->name('service.sku_combination');
+
+        Route::post('/import', [ServiceController::class, 'import'])->name('service.import');
+
+        Route::get('/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
+        Route::get('/duplicate/{id}', [ServiceController::class, 'duplicate'])->name('service.duplicate');
+        Route::post('/update/{id}', [ServiceController::class, 'update'])->name('service.update');
+        Route::post('/published', [ServiceController::class, 'updatePublished'])->name('service.published');
+        Route::get('/destroy/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
+
+        Route::post('/get_services_by_subcategory', [ServiceController::class, 'get_services_by_subcategory'])->name('service.get_services_by_subcategory');
+    });
 
     Route::resource('customers', CustomerController::class);
     Route::get('customers_ban/{customer}', [CustomerController::class, 'ban'])->name('customers.ban');

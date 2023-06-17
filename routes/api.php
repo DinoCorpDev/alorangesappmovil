@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\RefundRequestController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Api\SubscribeController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WalletController;
 use App\Http\Controllers\Api\WishlistController;
 use App\Http\Controllers\Payment\PaymentController;
+use App\Http\Controllers\CollectionController;
 
 Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
 
@@ -76,12 +78,32 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::get('reviews/{product_id}', [ReviewController::class, 'index']);
     });
 
+    Route::group(['prefix' => 'collection'], function () {
+        Route::get('/details/{collection_slug}', [CollectionController::class, 'details']);
+    });
+
+    Route::group(['prefix' => 'service'], function () {
+        Route::get('/details/{service_slug}', [ServiceController::class, 'show']);
+        Route::post('get-by-ids', [ServiceController::class, 'get_by_ids']);
+        Route::get('search', [ServiceController::class, 'search']);
+        Route::get('related/{service_id}', [ServiceController::class, 'related']);
+        Route::get('bought-together/{service_id}', [ServiceController::class, 'bought_together']);
+        Route::get('random/{limit}/{service_id?}', [ServiceController::class, 'random_services']);
+        Route::get('latest/{limit}', [ServiceController::class, 'latest_services']);
+        Route::get('reviews/{service_id}', [ReviewController::class, 'index']);
+    });
+
+    Route::group(['prefix' => 'brand'], function () {
+        Route::get('/details/{brand_slug}', [BrandController::class, 'show']);
+    });
+
     Route::get('all-countries', [AddressController::class, 'get_all_countries']);
     Route::get('states/{country_id}', [AddressController::class, 'get_states_by_country_id']);
     Route::get('cities/{state_id}', [AddressController::class, 'get_cities_by_state_id']);
 
     Route::post('carts', [CartController::class, 'index']);
     Route::post('carts/add', [CartController::class, 'add']);
+    Route::post('carts/addCollection', [CartController::class, 'addCollection']);
     Route::post('carts/change-quantity', [CartController::class, 'changeQuantity']);
     Route::post('carts/destroy', [CartController::class, 'destroy']);
 

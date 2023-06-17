@@ -1,5 +1,7 @@
 import Mixin from "./../../utils/mixin";
+
 const shopSetting = window.shopSetting;
+
 const loadState = () => ({
     appName: shopSetting.appName,
     appMetaTitle: shopSetting.appMetaTitle,
@@ -10,10 +12,14 @@ const loadState = () => ({
     appLanguage: shopSetting.appLanguage,
     paymentMethods: shopSetting.paymentMethods,
     offlinePaymentMethods: shopSetting.offlinePaymentMethods,
+    userCountry: localStorage.getItem("shopSelectedCountry") || "US",
+    userCurrency: localStorage.getItem("shopSelectedCurrency") || shopSetting.appCurrency,
     userLanguage: localStorage.getItem("shopSelectedLanguage") || shopSetting.appLanguage,
-    availableCountries: shopSetting.availableCountries.length > 0 ? shopSetting.availableCountries : ["US"],
-    allLanguages: shopSetting.allLanguages,
+    userTheme: localStorage.getItem("shopSelectedTheme") || "day",
+    allCountries: shopSetting.allCountries,
     allCurrencies: shopSetting.allCurrencies,
+    allLanguages: shopSetting.allLanguages,
+    availableCountries: shopSetting.availableCountries.length > 0 ? shopSetting.availableCountries : ["US"],
     generalSettings: shopSetting.general_settings,
     addons: shopSetting.addons,
     banners: shopSetting.banners,
@@ -22,8 +28,20 @@ const loadState = () => ({
     refundSettings: shopSetting.refundSettings,
     productQuerries: [],
     unseenProductQuerries: 0,
-    previewAvatar: null
+    previewAvatar: null,
+    authFooterLinks: [
+        { label: "Información", link: "#" },
+        { label: "Solicitudes", link: "#" },
+        { label: "Contacto", link: "#" }
+    ],
+    themeItems: [
+        { code: "day", label: "Day" },
+        { code: "night", label: "Night" },
+        { code: "device", label: "Device" }
+    ],
+    prefersDark: window.matchMedia("(prefers-color-scheme: dark)").matches
 });
+
 export default {
     namespaced: true,
     state: loadState(),
@@ -52,11 +70,20 @@ export default {
         appLanguage(state) {
             return state.appLanguage;
         },
+        userCountryObj(state) {
+            return state.allCountries.find(country => country.code === state.userCountry);
+        },
+        userCurrencyObj(state) {
+            return state.allCurrencies.find(currency => currency.code === state.userCurrency);
+        },
         userLanguage(state) {
             return state.userLanguage;
         },
         userLanguageObj(state) {
             return state.allLanguages.find(language => language.code === state.userLanguage);
+        },
+        userThemeObj(state) {
+            return state.themeItems.find(theme => theme.code === state.userTheme);
         },
         paymentMethods(state) {
             return state.paymentMethods;
@@ -64,14 +91,11 @@ export default {
         offlinePaymentMethods(state) {
             return state.offlinePaymentMethods;
         },
-        availableCountries(state) {
-            return state.availableCountries;
-        },
         allLanguages(state) {
             return state.allLanguages;
         },
-        allCurrencies(state) {
-            return state.allCurrencies;
+        availableCountries(state) {
+            return state.availableCountries;
         },
         generalSettings(state) {
             return state.generalSettings;
@@ -96,12 +120,21 @@ export default {
         }
     },
     mutations: {
-        setProductQuerries(state, data) {
-            state.productQuerries = data;
-            let unseenData = data.filter(data => {
-                return data.sender_viewed == 0;
-            });
-            state.unseenProductQuerries = unseenData.length;
+        setCountry(state, country) {
+            if (state.userCountry !== country) {
+                state.userCountry = country;
+
+                localStorage.removeItem("shopSelectedCountry");
+                localStorage.setItem("shopSelectedCountry", country);
+            }
+        },
+        setCurrency(state, currency) {
+            if (state.userCurrency !== currency) {
+                state.userCurrency = currency;
+
+                localStorage.removeItem("shopSelectedCurrency");
+                localStorage.setItem("shopSelectedCurrency", currency);
+            }
         },
         setLanguage(state, lang) {
             if (state.userLanguage !== lang) {
@@ -111,24 +144,35 @@ export default {
                 localStorage.setItem("shopSelectedLanguage", lang);
             }
         },
-        removeLanguage(state) {
-            state.userLanguage = state.appLanguage;
-            localStorage.removeItem("shopSelectedLanguage");
+        setPreviewAvatar(state, avatar) {
+            state.previewAvatar = avatar;
+        },
+        setProductQuerries(state, data) {
+            state.productQuerries = data;
+            let unseenData = data.filter(data => {
+                return data.sender_viewed == 0;
+            });
+            state.unseenProductQuerries = unseenData.length;
         },
         setRouterLoading(state, status) {
             state.routerLoading = status;
         },
-        setPreviewAvatar(state, avatar) {
-            state.previewAvatar = avatar;
+        setTheme(state, theme) {
+            state.userTheme = state.themeItems[theme].code;
+
+            localStorage.removeItem("shopSelectedTheme");
+            localStorage.setItem("shopSelectedTheme", state.userTheme);
+        },
+        removeCurrency(state) {
+            state.userCurrency = state.appCurrency;
+            localStorage.removeItem("shopSelectedCurrency");
+        },
+        removeLanguage(state) {
+            state.userLanguage = state.appLanguage;
+            localStorage.removeItem("shopSelectedLanguage");
         }
     },
     actions: {
-        setLanguage({ commit }, lang) {
-            commit("setLanguage", lang);
-        },
-        removeLanguage({ commit }) {
-            commit("removeLanguage");
-        },
         async fetchProductQuerries({ commit }) {
             if (this.getters["auth/isAuthenticated"]) {
                 const res = await Mixin.methods.call_api("get", `user/querries`);
@@ -136,6 +180,21 @@ export default {
                     commit("setProductQuerries", res.data.data);
                 }
             }
+        },
+        removeLanguage({ commit }) {
+            commit("removeLanguage");
+        },
+        setCountry({ commit }, country) {
+            commit("setCountry", country);
+        },
+        setCurrency({ commit }, currency) {
+            commit("setCurrency", currency);
+        },
+        setLanguage({ commit }, lang) {
+            commit("setLanguage", lang);
+        },
+        setTheme({ commit }, theme) {
+            commit("setTheme", theme);
         }
     }
 };

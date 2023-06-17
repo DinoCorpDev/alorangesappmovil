@@ -2,28 +2,27 @@
     <v-stepper elevation="0" v-model="step">
         <v-stepper-header>
             <v-stepper-step step="1">
-                <step-order text="Lista de Pedido" short-text="Pedido" active first />
+                <StepOrder text="Lista de Pedido" short-text="Pedido" active first />
             </v-stepper-step>
 
             <v-stepper-step step="2">
-                <step-order text="Datos" :active="step >= 2" />
+                <StepOrder text="Datos" :active="step >= 2" />
             </v-stepper-step>
 
             <v-stepper-step step="3">
-                <step-order text="Pago" :active="step >= 3" />
+                <StepOrder text="Pago" :active="step >= 3" />
             </v-stepper-step>
 
             <v-stepper-step step="4">
-                <step-order text="Resumen" :active="step >= 4" last />
+                <StepOrder text="Resumen" :active="step >= 4" last />
             </v-stepper-step>
         </v-stepper-header>
         <v-divider />
         <v-stepper-items>
             <v-stepper-content step="1">
-                <h6>Productos</h6>
-                <v-row>
+                <v-row v-if="cartItems != 0">
                     <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
-                        <product-cart
+                        <ProductCart
                             :reference="product?.reference"
                             :name="product?.name"
                             :price="product?.regular_price"
@@ -34,16 +33,25 @@
                             @changeQtyMinus="changeQty"
                             :cart_id="product?.cart_id"
                             :quantity="product?.qty"
+                            :isCollection="product?.isCollection ?? false"
+                            :productsCollection="product?.products"
                         />
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
                         <div class="mb-2"></div>
                         <total :total="priceTotal" />
                         <div class="mb-2">
-                            <custom-button text="Continuar" color="nero" @click="step = 2" />
+                            <CustomButton text="Continuar" color="nero" @click="step = 2" />
                         </div>
                     </v-col>
                 </v-row>
+                <div class="emptycart" v-else>
+                    <div class="cuadro-emptycart">
+                        <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoCarrito.png" />
+                        <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
+                        <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                    </div>
+                </div>
             </v-stepper-content>
             <v-stepper-content step="2">
                 <v-row>
@@ -53,7 +61,7 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Facturar a</h6>
                                     <v-divider class="my-3" />
-                                    <select-custom dark label="Usuario Principal" :items="langSelectItems" />
+                                    <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Correo electronico</span>
                                         <span class="body1">{{ currentUser.email || "--" }}</span>
@@ -73,7 +81,7 @@
                                             {{ currentUser.documentNumber || "--" }}
                                         </span>
                                     </div>
-                                    <custom-button color="grey" class="mr-3" text="Editar" @click="editProfile()" />
+                                    <CustomButton color="grey" class="mr-3" text="Editar" @click="editProfile()" />
                                 </div>
                             </v-col>
                             <v-col cols="12">
@@ -129,7 +137,7 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button
+                                    <CustomButton
                                         v-if="
                                             Object.entries(addressServicio).length !== 0 && useDefaultAddress1 == false
                                         "
@@ -138,7 +146,7 @@
                                         text="Editar"
                                         @click="editAddress(addressServicio, 'service')"
                                     />
-                                    <custom-button
+                                    <CustomButton
                                         v-if="
                                             Object.entries(addressServicio).length === 0 && useDefaultAddress1 == false
                                         "
@@ -202,7 +210,7 @@
                                         <span class="checkmark"></span>
                                     </label>
                                     <v-divider class="my-3" />
-                                    <custom-button
+                                    <CustomButton
                                         v-if="
                                             Object.entries(addressFacturacion).length !== 0 &&
                                             useDefaultAddress2 == false
@@ -212,7 +220,7 @@
                                         text="Editar"
                                         @click="editAddress(addressFacturacion, 'billing')"
                                     />
-                                    <custom-button
+                                    <CustomButton
                                         v-if="
                                             Object.entries(addressFacturacion).length === 0 &&
                                             useDefaultAddress2 == false
@@ -227,13 +235,13 @@
                         </v-row>
                     </v-col>
                     <v-col cols="12" md="6">
-                        <address-dialog
+                        <AddressDialog
                             :typeAddress="typeAddress"
                             :show="addDialogShow"
                             @close="addressDialogClosed"
                             :old-address="addressSelectedForEdit"
                         />
-                        <profile-dialog
+                        <ProfileDialog
                             :show="profileDialogShow"
                             @close="profileDialogClosed"
                             :old-profile="profileSelectedForEdit"
@@ -243,7 +251,7 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de envio</h6>
                                     <v-divider class="my-3" />
-                                    <select-custom dark label="Usuario Principal" :items="langSelectItems" />
+                                    <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                         <span class="body1">Dirección principal</span>
@@ -282,14 +290,14 @@
                                         <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
                                         <span class="body1">{{ addressPrincipal?.phone }}</span>
                                     </div>
-                                    <custom-button
+                                    <CustomButton
                                         v-if="Object.entries(addressPrincipal).length !== 0"
                                         class="mr-3"
                                         color="grey"
                                         text="Editar"
                                         @click="editAddress(addressPrincipal, 'shipping')"
                                     />
-                                    <custom-button
+                                    <CustomButton
                                         v-if="Object.entries(addressPrincipal).length === 0"
                                         block
                                         color="grey"
@@ -319,47 +327,79 @@
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
                         <div class="mb-2">
-                            <custom-button text="Volver" color="nero" @click="step = 1" />
+                            <CustomButton text="Volver" color="nero" @click="step = 1" />
                         </div>
                         <total :total="priceTotal" />
                         <div class="mb-2">
-                            <custom-button text="Continuar" color="nero" @click="step = 3" />
+                            <CustomButton text="Continuar" color="nero" @click="step = 3" />
                         </div>
                     </v-col>
                 </v-row>
             </v-stepper-content>
             <v-stepper-content step="3">
                 <v-row>
-                    <v-col cols="12" md="6" order="1" order-md="2" order-sm="2">
+                    <v-col cols="12" md="6" order="1" order-md="1" order-sm="2">
                         <div class="form">
                             <h6 class="black--text bold">Medio de Pago</h6>
                             <v-divider class="my-3" />
                             <v-row>
                                 <v-col cols="3">
-                                    <type-payment img="/public/assets/img/transferir.png" text="Pse" />
+                                    <TypePayment img="/public/assets/img/pse.png" text="Pse" />
                                     <input type="radio" v-model="pick" :value="1" />
                                 </v-col>
                                 <v-col cols="3">
-                                    <type-payment img="/public/assets/img/credito.png" text="Credito" />
+                                    <TypePayment img="/public/assets/img/credito.png" text="Credito" />
                                     <input type="radio" v-model="pick" :value="2" />
                                 </v-col>
                                 <v-col cols="3">
-                                    <type-payment img="/public/assets/img/debito.png" text="Debito" />
+                                    <TypePayment img="/public/assets/img/debito.png" text="Debito" />
                                     <input type="radio" v-model="pick" :value="3" />
                                 </v-col>
                                 <v-col cols="3">
-                                    <type-payment img="/public/assets/img/transferir.png" text="Transferir" />
+                                    <TypePayment img="/public/assets/img/transferir.png" text="Transferir" />
                                     <input type="radio" v-model="pick" :value="4" />
                                 </v-col>
                             </v-row>
                             <v-divider class="my-3" />
-                            <div v-if="pick != 4">
+                            <div v-if="pick === 1">
                                 <label class="text-uppercase">Tipo de Persona</label>
-                                <select-custom dark label="Tipo de persona" :items="langSelectItems" />
+                                <SelectCustom dark label="Tipo de persona" :items="langSelectItems" />
                                 <label class="text-uppercase">Banco</label>
-                                <select-custom dark label="Seleccionar banco" :items="langSelectItems" />
+                                <SelectCustom dark label="Seleccionar banco" :items="langSelectItems" />
                             </div>
-                            <div v-if="pick == 4" class="form">
+                            <div v-if="pick === 2">
+                                <label class="text-uppercase">Numero de tarjeta</label>
+                                <CustomInput />
+                                <label class="text-uppercase">Nombre titular de la tarjeta</label>
+                                <CustomInput />
+                                <label class="text-uppercase">Fecha de expedicion</label>
+                                <SelectCustom dark label="Tipo de persona" :items="langSelectItems" />
+                                <label class="text-uppercase">Codigo de seguridad</label>
+                                <CustomInput />
+                                <label class="text-uppercase">Numero de CVV2</label>
+                                <CustomInput />
+                                <label class="text-uppercase">Documento</label>
+                                <SelectCustom dark label="Seleccionar banco" :items="langSelectItems" />
+                                <label class="text-uppercase">Numero de documento</label>
+                                <CustomInput />
+                            </div>
+                            <div v-if="pick === 3">
+                                <label class="text-uppercase">Numero de tarjeta</label>
+                                <CustomInput />
+                                <label class="text-uppercase">Nombre titular de la tarjeta</label>
+                                <CustomInput />
+                                <label class="text-uppercase">Fecha de expedicion</label>
+                                <SelectCustom dark label="Tipo de persona" :items="langSelectItems" />
+                                <label class="text-uppercase">Codigo de seguridad</label>
+                                <CustomInput />
+                                <label class="text-uppercase">Numero de CVV2</label>
+                                <CustomInput />
+                                <label class="text-uppercase">Documento</label>
+                                <SelectCustom dark label="Seleccionar banco" :items="langSelectItems" />
+                                <label class="text-uppercase">Numero de documento</label>
+                                <CustomInput />
+                            </div>
+                            <div v-if="pick === 4" class="form">
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase bold">PERSONA JURÍDICA</span>
                                     <span class="body1"> idovela sas </span>
@@ -380,7 +420,7 @@
                                     <span class="subtitle1 text-uppercase bold">CUENTA DE AHORROS</span>
                                     <span class="body1"> 768678678 </span>
                                 </div>
-                                <custom-button
+                                <CustomButton
                                     block
                                     color="grey"
                                     text="Añadir comprobante de pago"
@@ -394,24 +434,24 @@
                                     enctype="multipart/form-data"
                                 />
                             </div>
-                            <custom-button text="Aplicar" color="grey" />
+                            <CustomButton class="mt-2" text="Aplicar" color="grey" />
                         </div>
                     </v-col>
-                    <v-col cols="12" md="6" order="2" order-md="1" order-sm="1">
+                    <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
                         <div class="form">
                             <h6 class="black--text bold">Codigo Promocional</h6>
                             <v-divider class="my-3" />
                             <label class="black--text text-uppercase">(Regalo / Referido)</label>
-                            <custom-input />
+                            <CustomInput />
                         </div>
                     </v-col>
                     <v-col cols="12" order="3" order-md="3" order-sm="3" class="d-flex justify-space-between">
                         <div class="mb-2">
-                            <custom-button text="Volver" color="nero" @click="step = 2" />
+                            <CustomButton text="Volver" color="nero" @click="step = 2" />
                         </div>
                         <total :total="priceTotal" />
                         <div class="mb-2">
-                            <custom-button
+                            <CustomButton
                                 text="Continuar"
                                 color="nero"
                                 @click="proceedCheckout()"
@@ -440,7 +480,7 @@
                         </div>
                     </v-col>
                     <v-col cols="12">
-                        <order
+                        <Order
                             :order="dataCheckout?.order_code"
                             :day="fecha?.getDate()"
                             :month="new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(fecha)"
@@ -575,7 +615,7 @@
                                         </div>
                                     </div>
 
-                                    <custom-button
+                                    <CustomButton
                                         v-if="
                                             Object.entries(addressFacturacion).length === 0 &&
                                             useDefaultAddress1 == false
@@ -681,7 +721,7 @@
                                         </div>
                                     </div>
 
-                                    <custom-button
+                                    <CustomButton
                                         v-if="
                                             Object.entries(addressFacturacion).length === 0 &&
                                             useDefaultAddress2 == false
@@ -701,7 +741,7 @@
                                 <div class="form">
                                     <h6 class="black--text bold">Dirección de envio</h6>
                                     <v-divider class="my-3" />
-                                    <select-custom dark label="Usuario Principal" :items="langSelectItems" />
+                                    <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                         <span class="body1">Dirección principal</span>
@@ -750,7 +790,7 @@
                     <v-divider class="my-3" />
                     <v-row>
                         <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
-                            <product-cart
+                            <ProductCart
                                 :reference="product?.reference"
                                 :name="product?.name"
                                 :price="product?.regular_price"
@@ -762,6 +802,8 @@
                                 :cart_id="product?.cart_id"
                                 :quantity="product?.qty"
                                 :showOperation="false"
+                                :isCollection="product?.isCollection ?? false"
+                                :productsCollection="product?.products"
                             />
                         </v-col>
                     </v-row>
@@ -907,7 +949,7 @@
                     </v-col>
                     <v-col cols="12" class="d-flex justify-space-between">
                         <div class="mb-2">
-                            <custom-button text="Volver" color="nero" @click="step = 3" />
+                            <CustomButton text="Volver" color="nero" @click="step = 3" />
                         </div>
                         <total :total="priceTotal" />
                     </v-col>
@@ -918,30 +960,31 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
+import AddressDialog from "../../components/address/AddressDialog.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import Order from "../../components/global/Order.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
+import ProfileDialog from "../../components/user/ProfileDialog.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
 import StepOrder from "../../components/icons/StepOrder.vue";
 import Total from "../../components/global/Total.vue";
 import TypePayment from "../../components/global/TypePayment.vue";
-import AddressDialog from "../../components/address/AddressDialog.vue";
-import { mapGetters, mapMutations, mapActions } from "vuex";
-import ProfileDialog from "../../components/user/ProfileDialog.vue";
 
 export default {
     components: {
+        AddressDialog,
         CustomButton,
         CustomInput,
+        Order,
         ProductCart,
+        ProfileDialog,
         SelectCustom,
         StepOrder,
-        Order,
-        TypePayment,
         Total,
-        AddressDialog,
-        ProfileDialog
+        TypePayment
     },
     data() {
         return {
@@ -968,22 +1011,40 @@ export default {
     computed: {
         ...mapGetters("auth", ["currentUser"])
     },
+    mounted() {
+        this.$vuetify.theme.dark = false;
+    },
     methods: {
         ...mapActions("auth", ["getUser"]),
         async getCart() {
             const res = await this.call_api("post", `carts`, {});
+            let _cartItems = [];
+
             if (res.data.success) {
-                this.cartItems = res.data?.cart_items?.data;
                 this.priceTotal = 0;
-                this.cartItems.map(product => {
+
+                _cartItems = res.data?.cart_items?.data;
+                _cartItems.map(product => {
                     this.priceTotal += product?.regular_price * product?.qty;
                 });
-            } else {
-                this.snack({
-                    message: res.data.message,
-                    color: "red"
+
+                let cartcollections = res.data?.cart_collections;
+                cartcollections?.map(col => {
+                    this.priceTotal += parseFloat(col?.collection?.precio) * col?.quantity;
+
+                    _cartItems.push({
+                        reference: col?.collection?.referencia,
+                        name: col?.collection?.coleccion,
+                        regular_price: parseFloat(col?.collection?.precio),
+                        brandName: col?.brand?.name,
+                        cart_id: col?.id,
+                        qty: col?.quantity,
+                        isCollection: true,
+                        products: col?.products
+                    });
                 });
-                this.$router.push({ name: "404" });
+
+                this.cartItems = _cartItems;
             }
         },
         async getAddresses() {
@@ -1037,35 +1098,28 @@ export default {
         },
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
+                // prettier-ignore
+                const shippingAddressId = this.useDefaultAddress1 ? this.addressPrincipal?.id ?? "" : this.addressServicio?.id ?? "";
+                // prettier-ignore
+                const billingAddressId = this.useDefaultAddress2 ? this.addressPrincipal?.id ?? "" : this.addressFacturacion?.id ?? "";
+
                 let formData = new FormData();
-                formData.append(
-                    "shipping_address_id",
-                    this.useDefaultAddress1
-                        ? this.addressPrincipal?.id
-                            ? this.addressPrincipal?.id
-                            : ""
-                        : this.addressServicio.id
-                        ? this.addressServicio.id
-                        : ""
-                );
-                formData.append(
-                    "billing_address_id",
-                    this.useDefaultAddress2
-                        ? this.addressPrincipal?.id
-                            ? this.addressPrincipal?.id
-                            : ""
-                        : this.addressFacturacion?.id
-                        ? this.addressFacturacion?.id
-                        : ""
-                );
+                formData.append("shipping_address_id", shippingAddressId);
+                formData.append("billing_address_id", billingAddressId);
                 formData.append("delivery_type", "standard");
+
                 this.cartItems.forEach((item, index) => {
-                    formData.append("cart_item_ids[]", item?.cart_id);
+                    if (item?.isCollection) {
+                        formData.append("cart_collection_ids[]", item?.cart_id);
+                    } else {
+                        formData.append("cart_item_ids[]", item?.cart_id);
+                    }
                 });
 
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
                     const res = await this.call_api("post", "checkout/order/store", formData);
+
                     if (res.data.success) {
                         this.dataCheckout = res.data;
                         this.step = 4;
@@ -1075,6 +1129,7 @@ export default {
                             color: "red"
                         });
                     }
+
                     this.checkoutLoading = false;
                 }
             } else {
@@ -1152,6 +1207,30 @@ export default {
     }
 }
 
+// Estilos carrito vacio //
+
+.emptycart {
+    display: flex;
+    justify-content: center;
+}
+.cuadro-emptycart {
+    padding: 40px 50px;
+    text-align: center;
+    border: 1px solid #dfdfdf;
+    margin-top: 7%;
+    border-radius: 10px;
+}
+.text-cartempty {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.img-cartempty {
+    width: 26%;
+    margin: auto;
+}
+
+// Fin estilos //
 .container {
     background-color: #ffffff;
 }

@@ -1,5 +1,7 @@
 <template>
     <v-container fluid>
+        <contact-dialog :show="contactDialogShow" @close="contactDialogClosed" />
+
         <v-row tag="main" class="main">
             <v-col cols="12">
                 <Carousel
@@ -14,10 +16,10 @@
 
         <v-row tag="section">
             <v-col cols="12" md="6">
-                <ShopActionCard img="/public/assets/img/shop-spaces/icon-msg.png" href="#" />
+                <ShopActionCard img="/public/assets/img/shop-spaces/icon-msg.png" @click="contactDialogOpen()" />
             </v-col>
             <v-col cols="12" md="6">
-                <ShopActionCard img="/public/assets/img/shop-spaces/icon-house.png" href="#" />
+                <ShopActionCard img="/public/assets/img/shop-spaces/icon-house.png" @click="contactDialogOpen()" />
             </v-col>
         </v-row>
 
@@ -67,6 +69,7 @@ import CarouselPortfolio from "../../components/global/CarouselPortfolio.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import ProductBox from "../../components/product/ProductBox.vue";
 import ShopActionCard from "../../components/shop/ShopActionCard.vue";
+import ContactDialog from "../../pages/shop/ContactDialog.vue";
 
 export default {
     name: "ShopSpaces",
@@ -104,7 +107,8 @@ export default {
             { img: "/public/assets/img/shop-spaces/action-a.png" },
             { img: "/public/assets/img/shop-spaces/action-b.png" },
             { img: "/public/assets/img/shop-spaces/action-c.png" }
-        ]
+        ],
+        contactDialogShow: false
     }),
     components: {
         Carousel,
@@ -112,7 +116,16 @@ export default {
         CarouselPortfolio,
         CustomButton,
         ProductBox,
-        ShopActionCard
+        ShopActionCard,
+        ContactDialog
+    },
+    methods: {
+        contactDialogOpen() {
+            this.contactDialogShow = true;
+        },
+        contactDialogClosed() {
+            this.contactDialogShow = false;
+        }
     }
 };
 </script>
@@ -120,7 +133,7 @@ export default {
 <style lang="scss" scoped>
 .main {
     &-carousel {
-        height: 77vh !important;
+        height: 62vh !important;
         max-height: 786px;
 
         &::v-deep {

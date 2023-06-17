@@ -24,6 +24,11 @@ class Shop extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
     public function top_3_products()
     {
         return $this->hasMany(Product::class)->where('published', 1)->orderBy('num_of_sale', 'desc')->limit(3);

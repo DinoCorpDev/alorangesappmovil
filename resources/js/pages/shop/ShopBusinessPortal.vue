@@ -30,6 +30,24 @@
                 <CarouselActions :items="itemsActions" />
             </v-col>
         </v-row>
+
+        <v-row tag="section" class="mb-6">
+            <v-col cols="12">
+                <h5>H5</h5>
+                <v-row>
+                    <v-col cols="12">
+                        <presentation-banner orientation="right" title="TITULO" :slidesCarousel="sliderSeeder" actions>
+                            <template v-slot:description>
+                                Nos esforzamos por interiorizar una sólida comprensión y extracción de los materiales
+                                que componen un espacio vital para garantizar su construcción, uso y mantenimiento a lo
+                                largo de su vida. Nos comprometemos a que sea lo más fácil de usar y respetuoso con el
+                                medio ambiente posible.
+                            </template>
+                        </presentation-banner>
+                    </v-col>
+                </v-row>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 
@@ -67,7 +85,7 @@ export default {
 <style lang="scss" scoped>
 .main {
     &-carousel {
-        height: 77vh !important;
+        height: 62vh !important;
         max-height: 786px;
 
         &::v-deep {

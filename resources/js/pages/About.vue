@@ -1,52 +1,34 @@
 <template>
     <div>
-        <layout-navbar-auth />
+        <LayoutNavbarAuth />
         <v-container class="about my-4" fluid>
             <div class="main-wrapper">
-                <v-row>
+                <v-row v-if="!detailsLoading">
                     <v-col cols="12" md="4">
                         <aside class="about-info">
                             <div class="about-info-header">
                                 <v-img class="mr-4" aspect-ratio="1" src="/public/assets/img/bio-placeholder.png" />
-                                <h1 class="text-uppercase black--text">Información</h1>
+                                <h1 class="text-uppercase black--text">
+                                    {{ itemData.name || "Información" }}
+                                </h1>
                             </div>
                             <v-divider class="my-5" />
                             <div class="about-info-content pr-4">
                                 <p class="black--text">
-                                    Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
-                                    industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                                    has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum
-                                    is simply dummy text of the printing • Lorem Ipsum has been the industry's Incluye
-                                    Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
-                                    industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                                    has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum
-                                    is simply dummy text of the printing • Lorem Ipsum has been the industry's • Lorem
-                                    Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the
-                                    printing • Lorem Ipsum has been the industry's Incluye Lorem Ipsum is simply dummy
-                                    text of the printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is
-                                    simply dummy text of the printing • Lorem Ipsum has been the industry's • Lorem
-                                    Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text of the
-                                    printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy
-                                    text of the printing • Lorem Ipsum has been the industry's • Lorem Ipsum has been
-                                    the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem
-                                    Ipsum has been the industry's Incluye Lorem Ipsum is simply dummy text of the
-                                    printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy
-                                    text of the printing • Lorem Ipsum has been the industry's • Lorem Ipsum has been
-                                    the industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem
-                                    Ipsum has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem
-                                    Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's
-                                    Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
-                                    industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum
-                                    has been the industry's • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum
-                                    is simply dummy text of the printing • Lorem Ipsum has been the industry's
+                                    {{ itemData.biografia }}
                                 </p>
                             </div>
                             <v-divider class="my-5" />
-                            <custom-button text="Perfil" block color="grey" />
+                            <CustomButton
+                                text="Perfil"
+                                block
+                                color="grey"
+                                :to="{ name: 'BrandDetails', params: { slug: itemData.slug } }"
+                            />
                         </aside>
                     </v-col>
                     <v-col cols="12" md="8">
-                        <carousel-description />
+                        <CarouselDescription />
                     </v-col>
                 </v-row>
             </div>
@@ -55,15 +37,46 @@
 </template>
 
 <script>
-import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import CarouselDescription from "../components/global/CarouselDescription.vue";
 import CustomButton from "../components/global/CustomButton.vue";
+import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
         CarouselDescription,
-        LayoutNavbarAuth,
-        CustomButton
+        CustomButton,
+        LayoutNavbarAuth
+    },
+    data() {
+        return {
+            itemData: null,
+            detailsLoading: true
+        };
+    },
+    async created() {
+        this.getDetails();
+    },
+    methods: {
+        async getDetails() {
+            const routeName = this.$route.name;
+
+            if (routeName == "AboutBrand") {
+                const res = await this.call_api("get", `brand/details/${this.$route.params.slug}`);
+
+                if (res.data.success) {
+                    this.itemData = res.data.data;
+                } else {
+                    this.snack({
+                        message: res.data.message,
+                        color: "red"
+                    });
+
+                    this.$router.push({ name: "404" });
+                }
+
+                this.detailsLoading = false;
+            }
+        }
     }
 };
 </script>

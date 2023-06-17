@@ -5,7 +5,7 @@
                 <h6 class="black--text bold">Compras</h6>
                 <custom-button block class="mb-3 mt-3" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
                 <custom-button block class="mb-3" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
-                <custom-button block class="mb-3" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
+                <custom-button block class="mb-3" color="nero" text="Facturas" :to="{ name: 'PurchaseHistory' }" />
                 <div class="divider"></div>
             </div>
             <div class="buttons">
@@ -37,7 +37,7 @@
                     <custom-button block class="" color="nero" text="Favoritos" :to="{ name: 'Favorites' }" />
                 </v-col>
                 <v-col cols="col">
-                    <custom-button block class="" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
+                    <custom-button block class="" color="nero" text="Facturas" :to="{ name: 'PurchaseHistory' }" />
                 </v-col>
                 <v-col cols="col">
                     <custom-button block class="" color="nero" text="Perfil" :to="{ name: 'Profile' }" />

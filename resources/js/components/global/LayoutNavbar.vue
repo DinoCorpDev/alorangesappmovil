@@ -1,168 +1,121 @@
 <template>
-    <div>
-        <v-app-bar :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'" height="100">
-            <v-container class="pa-0 fill-height justify-space-between" fluid>
-                <router-link :to="{ name: 'Home2' }" class="navbar-brand">
-                    <v-img v-if="$vuetify.theme.dark" src="/public/assets/img/idovela-logo-dark.png" max-width="117" />
-                    <v-img v-else src="/public/assets/img/idovela-logo.png" max-width="117" />
-                </router-link>
-                <div class="d-flex">
-                    <custom-button light class="mr-4" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
-                    <custom-button light class="mr-4" text="Iniciar Sesión" :to="{ name: 'Login' }" />
-                    <div class="text-center">
-                        <v-menu offset-y>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn dark v-bind="attrs" v-on="on" class="btn-home"> </v-btn>
-                            </template>
-                            <v-list class="menu-color">
-                                <v-list-item>
-                                    <v-list-item-title>MENU</v-list-item-title>
-                                </v-list-item>
-                                <div class="divider"></div>
-
-                                <v-list-item>
-                                    <theme-toggle-switch class="btn-menu-home" />
-                                    <!-- <custom-button
-                                        class="btn-menu-home"
-                                        icon="la-store-alt"
-                                        text="Aspecto: Noche"
-                                        :to="{ name: 'Shop' }"
-                                    /> -->
-                                </v-list-item>
-                                <div class="divider"></div>
-
-                                <v-list-item>
-                                    <custom-button
-                                        class="btn-menu-home"
-                                        icon="la-store-alt"
-                                        text="Idioma: Español"
-                                        :to="{ name: 'Shop' }"
-                                    />
-                                </v-list-item>
-                                <div class="divider"></div>
-                                <v-list-item>
-                                    <custom-button
-                                        class="btn-menu-home"
-                                        icon="la-store-alt"
-                                        text="Pais: Colombia"
-                                        :to="{ name: 'Shop' }"
-                                    />
-                                </v-list-item>
-                                <div class="divider"></div>
-                                <v-list-item>
-                                    <custom-button
-                                        class="btn-menu-home"
-                                        icon="la-store-alt"
-                                        text="Divisa: COP"
-                                        :to="{ name: 'Shop' }"
-                                    />
-                                </v-list-item>
-                                <div class="divider"></div>
-                                <v-list-item>
-                                    <custom-button
-                                        class="btn-menu-home"
-                                        icon="la-store-alt"
-                                        text="Mediciones: CGS"
-                                        :to="{ name: 'Shop' }"
-                                    />
-                                </v-list-item>
-                                <div class="divider"></div>
-                                <v-list-item>
-                                    <custom-button
-                                        class="btn-menu-home2"
-                                        text="Informacion"
-                                        :to="{ name: 'PactoAmbiental' }"
-                                    />
-                                </v-list-item>
-                                <v-list-item>
-                                    <custom-button
-                                        class="btn-menu-home2"
-                                        text="Solicitudes"
-                                        :to="{ name: 'Upgrade' }"
-                                    />
-                                </v-list-item>
-                                <v-list-item>
-                                    <custom-button
-                                        class="btn-menu-home2"
-                                        text="Contacto"
-                                        :to="{ name: 'PactoAmbiental' }"
-                                    />
-                                </v-list-item>
-                                <v-list-item>
-                                    <span>© Idovela 2022</span>
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
-                    </div>
-                </div>
-            </v-container>
-        </v-app-bar>
-    </div>
+    <v-app-bar
+        ref="layoutNavbar"
+        class="layout-navbar"
+        :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'"
+        elevation="0"
+        prominent
+        dense
+        shrink-on-scroll
+        :fixed="headerFixed"
+    >
+        <v-container class="pa-0 fill-height justify-space-between" fluid>
+            <router-link :to="{ name: 'Home2' }" class="layout-navbar-brand">
+                <LogoIdovela :large="logoLarge" />
+            </router-link>
+            <div class="layout-navbar-nav">
+                <CustomButton color="grey" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
+                <CustomButton v-if="!userIsLoggedIn" color="grey" text="Iniciar Sesión" :to="{ name: 'Login' }" />
+                <DoubleButton v-else />
+                <ToggleMenu />
+            </div>
+        </v-container>
+    </v-app-bar>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import CustomButton from "./CustomButton.vue";
-import ThemeToggleSwitch from "./ThemeToggleSwitch.vue";
-import NabvarBottomBar from "./NabvarBottomBar.vue";
+import DoubleButton from "../header/DoubleButton.vue";
+import LogoIdovela from "../header/LogoIdovela.vue";
+import ToggleMenu from "../header/ToggleMenu.vue";
 
 export default {
+    name: "LayoutNavbar",
     components: {
         CustomButton,
-        ThemeToggleSwitch,
-        NabvarBottomBar
+        DoubleButton,
+        LogoIdovela,
+        ToggleMenu
+    },
+    data() {
+        return {
+            headerFixed: false,
+            logoLarge: false,
+            scrollThreshold: 50
+        };
+    },
+    computed: {
+        ...mapGetters("auth", ["userIsLoggedIn"])
+    },
+    mounted() {
+        window.addEventListener("resize", this.handleScroll);
+        window.addEventListener("scroll", this.handleScroll, { passive: true });
+    },
+    methods: {
+        handleScroll() {
+            const currentScroll = this.$refs.layoutNavbar.currentScroll;
+            const windowWidth = window.innerWidth;
+
+            this.headerFixed = currentScroll >= this.scrollThreshold;
+            this.logoLarge = windowWidth < 960 ? false : this.headerFixed;
+        }
     }
 };
 </script>
 
 <style lang="scss" scoped>
-.navbar-brand {
-    .v-image {
-        width: 60px;
+.container {
+    gap: 1rem;
+}
 
-        @media (min-width: 600px) {
-            width: 90px;
-        }
+.layout-navbar {
+    min-height: 60px;
+    z-index: 10;
 
-        @media (min-width: 960px) {
-            width: 117px;
+    @media (max-width: 600px) {
+        max-height: 60px;
+    }
+
+    &::v-deep {
+        .v-toolbar__content {
+            min-height: 60px;
+
+            @media (max-width: 600px) {
+                max-height: 60px;
+            }
         }
     }
-}
 
-.divider {
-    background-color: #707070;
-    width: 100%;
-    height: 1px;
-}
+    &-brand {
+        text-decoration: none;
 
-.btn-menu-home {
-    padding: 0 15px 0 0 !important;
-    margin: 0 !important;
-    background: #242526 !important;
-    text-transform: capitalize !important;
-    font-weight: 100;
-}
+        &::v-deep {
+            .logo-idovela {
+                width: 60px;
+                height: 38px;
 
-.btn-menu-home2 {
-    padding: 0 !important;
-    margin: 0 !important;
-    background: #242526 !important;
-}
+                @media (min-width: 960px) {
+                    width: 90px;
+                    height: 55px;
+                }
 
-.menu-color {
-    background: #242526;
-    width: 283px;
-    margin-top: 10px;
-    border-radius: 10px;
-}
+                @media (min-width: 1264px) {
+                    width: 117px;
+                    height: 72px;
+                }
+            }
+        }
+    }
 
-.v-list-item {
-    min-height: 40px;
-}
+    &-nav {
+        display: flex;
+        gap: 0.5rem;
 
-.btn-home {
-    background-image: url("/public/assets/img/icono-home.svg");
-    height: 40px !important;
-    min-width: 40px !important;
+        @media (min-width: 600px) {
+            gap: 1rem;
+        }
+    }
 }
 </style>

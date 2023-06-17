@@ -48,6 +48,10 @@
     height: 100%;
 }
 
+.fw-600 {
+    font-weight: 600;
+}
+
 a {
     text-decoration: none;
 }
@@ -79,9 +83,11 @@ h4 {
     letter-spacing: 0.25px;
 }
 
-h5 {
+h5,
+.h5 {
     font-size: var(--font-size-h5);
     font-weight: 400;
+    line-height: 22px;
     letter-spacing: 0;
 }
 
@@ -108,6 +114,12 @@ h6 {
     font-size: var(--font-size-body2);
 }
 
+.tx-caption {
+    font-size: var(--font-size-caption);
+    font-weight: 400;
+    letter-spacing: 0.4px;
+}
+
 button,
 a {
     font-size: var(--font-size-body2);
@@ -117,37 +129,14 @@ a {
     font-size: var(--font-size-overline);
 }
 
-.subtitle1 {
-    font-size: 15px;
-    font-weight: 400;
-    letter-spacing: 0.15px;
-}
-
-.bold {
-    font-weight: 700;
-}
-
-.subtitle2 {
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.15px;
-}
-
 .text-white {
     color: #ddd !important;
-}
-
-@media (max-width: 600px) {
-    .subtitle1 {
-        font-size: 13px;
-    }
 }
 
 //for scroll styles
 
 .overflow-uw::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
+    width: 3px;
 }
 
 .overflow-uw::-webkit-scrollbar-thumb {
@@ -168,3 +157,8 @@ a {
 .overflow-uw::-webkit-scrollbar-track:active {
     background: #d4d4d4;
 }
+
+// html * {
+//     background: rgba(255, 0, 0, 0.1);
+//     box-shadow: 0 0 0 1px red;
+// }
