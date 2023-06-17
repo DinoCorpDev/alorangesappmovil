@@ -85,7 +85,7 @@ export default {
 <style lang="scss" scoped>
 .main {
     &-carousel {
-        height: 77vh !important;
+        height: 62vh !important;
         max-height: 786px;
 
         &::v-deep {

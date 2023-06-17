@@ -52,8 +52,8 @@ export default {
 
     border-radius: 10px;
     background-color: #f5f5f5;
-    height: 100%;
-    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     box-sizing: border-box;
 
     &-image {
@@ -61,6 +61,9 @@ export default {
         background-color: #dfdfdf;
         height: auto;
         width: 100px;
+
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
 
         img {
             &.placeholder {

@@ -10,7 +10,7 @@
                     <CustomButton color="grey2" text="Nuevo" />
                 </div>
             </div>
-            <v-row class="mb-3">
+            <v-row dense class="mb-3">
                 <v-col v-if="shopCard" cols="6" sm="8" md="4">
                     <ShopActionCard boxStyle="vertical" :href="shopCardLink" :to="shopCardTo" />
                 </v-col>
@@ -81,6 +81,11 @@ export default {
                 }
             }
         }
+    }
+
+    .row--dense > .col,
+    .row--dense > [class*="col-"] {
+        padding: 5px;
     }
 }
 </style>

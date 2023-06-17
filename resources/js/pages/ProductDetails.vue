@@ -1,15 +1,15 @@
 <template>
     <div>
         <LayoutNavbarAuth />
-        <v-container fluid class="product-details pa-4">
-            <v-row tag="section" class="flex-column-reverse flex-lg-row mb-6">
+        <v-container fluid class="product-details">
+            <v-row tag="main" class="flex-column-reverse flex-lg-row mb-6">
                 <v-col cols="12" lg="4">
                     <v-tabs v-model="tab" grow height="38px" :hide-slider="true">
                         <v-tab :ripple="false">Especificación</v-tab>
                         <v-tab :ripple="false">Reseña</v-tab>
                         <v-tab :ripple="false">Sostenibilidad</v-tab>
                     </v-tabs>
-                    <v-divider class="my-4" />
+                    <v-divider class="my-3" />
                     <v-tabs-items v-model="tab">
                         <v-tab-item>
                             <div v-scroll.self="onScroll" class="product-details-specs overflow-y-auto overflow-uw">
@@ -465,7 +465,11 @@
                     </v-tabs-items>
                 </v-col>
                 <v-col cols="12" lg="8">
-                    <AddToCart :is-loading="detailsLoading" :product-details="productDetails" />
+                    <AddToCart
+                        :is-loading="detailsLoading"
+                        :product-details="productDetails"
+                        :products="moreProducts"
+                    />
                 </v-col>
             </v-row>
 
@@ -693,6 +697,13 @@ export default {
 .product-details {
     background-color: #fafcfc;
 
+    @media (min-width: 1264px) {
+        main {
+            height: 85vh;
+            overflow: hidden;
+        }
+    }
+
     .v-tabs {
         &::v-deep {
             .v-slide-group__prev,
@@ -706,15 +717,6 @@ export default {
                 @media (min-width: 600px) {
                     gap: 1.5rem;
                 }
-            }
-        }
-
-        &-items {
-            height: 100%;
-
-            .v-window-item {
-                height: 100%;
-                flex: 1;
             }
         }
 
@@ -741,9 +743,13 @@ export default {
     }
 
     &-specs {
-        height: 72vh;
+        height: 65vh;
         overflow-x: hidden;
         padding-right: 8px;
+
+        @media (min-width: 600px) {
+            height: 75vh;
+        }
     }
 
     &-list-box {

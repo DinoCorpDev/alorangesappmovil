@@ -15,7 +15,8 @@
             </router-link>
             <div class="layout-navbar-nav">
                 <CustomButton color="grey" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
-                <CustomButton color="grey" text="Iniciar Sesión" :to="{ name: 'Login' }" />
+                <CustomButton v-if="!userIsLoggedIn" color="grey" text="Iniciar Sesión" :to="{ name: 'Login' }" />
+                <DoubleButton v-else />
                 <ToggleMenu />
             </div>
         </v-container>
@@ -23,7 +24,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import CustomButton from "./CustomButton.vue";
+import DoubleButton from "../header/DoubleButton.vue";
 import LogoIdovela from "../header/LogoIdovela.vue";
 import ToggleMenu from "../header/ToggleMenu.vue";
 
@@ -31,6 +35,7 @@ export default {
     name: "LayoutNavbar",
     components: {
         CustomButton,
+        DoubleButton,
         LogoIdovela,
         ToggleMenu
     },
@@ -40,6 +45,9 @@ export default {
             logoLarge: false,
             scrollThreshold: 50
         };
+    },
+    computed: {
+        ...mapGetters("auth", ["userIsLoggedIn"])
     },
     mounted() {
         window.addEventListener("resize", this.handleScroll);
@@ -83,11 +91,20 @@ export default {
     &-brand {
         text-decoration: none;
 
-        .v-image {
-            width: 48px;
+        &::v-deep {
+            .logo-idovela {
+                width: 60px;
+                height: 38px;
 
-            @media (min-width: 600px) {
-                width: 158px;
+                @media (min-width: 960px) {
+                    width: 90px;
+                    height: 55px;
+                }
+
+                @media (min-width: 1264px) {
+                    width: 117px;
+                    height: 72px;
+                }
             }
         }
     }

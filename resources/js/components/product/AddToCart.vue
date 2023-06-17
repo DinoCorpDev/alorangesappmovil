@@ -9,7 +9,7 @@
             />
         </v-col>
         <v-col cols="12" md="5">
-            <div v-if="!isLoading" class="add-to-cart-list-box pa-4 mb-5">
+            <div v-if="!isLoading" class="add-to-cart-list-box pa-4 mb-3">
                 <div class="d-flex justify-space-between">
                     <h5 class="subt2 font-weight-bold text-uppercase mb-2">
                         Referencia: {{ productDetails.reference }}
@@ -67,7 +67,7 @@
                 </div>
             </div>
 
-            <div class="add-to-cart-list-box pa-4 mb-5">
+            <div class="add-to-cart-list-box pa-4 mb-3">
                 <div class="add-to-cart-list-box-item">
                     <h5 class="subt2 fw-600 text-uppercase">Variación</h5>
                     <v-btn-toggle multiple borderless>
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <ul class="add-to-cart-list-box pa-4 mb-5">
+            <ul class="add-to-cart-list-box pa-4 mb-3">
                 <li class="add-to-cart-list-box-item mb-2">
                     <h5 class="subt2 text-uppercase">Disponibilidad</h5>
                     <span class="subt2">{{ productDetails?.stock ?? "000" }} en stock</span>
@@ -101,8 +101,8 @@
             <div v-if="products.length > 0">
                 <h5 class="subt2 fw-600 text-uppercase mb-2">Se incluye con la compra</h5>
                 <v-divider class="mb-3" />
-                <div v-for="product in products" class="mb-1" :key="product.id">
-                    <ProductBoxShort :productDetails="product" />
+                <div class="add-to-cart-related-products overflow-y-auto overflow-uw">
+                    <ProductBoxShort v-for="product in products" :key="product.id" :productDetails="product" />
                 </div>
             </div>
 
@@ -333,7 +333,7 @@ export default {
 
     &-actions {
         display: grid;
-        gap: 1rem;
+        gap: 0.75rem;
 
         @media (min-width: 600px) and (max-width: 959px) {
             display: flex;
@@ -341,6 +341,20 @@ export default {
 
         a {
             flex: 1;
+        }
+    }
+
+    &-related-products {
+        height: 37vh;
+        overflow-x: hidden;
+        padding-right: 8px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        @media (min-width: 600px) {
+            height: 22vh;
         }
     }
 }

@@ -111,7 +111,11 @@ export default {
     &-body,
     &-image-hover,
     &-footer {
-        padding: 0.65rem 0.85rem;
+        padding: 0.5rem;
+
+        @media (min-width: 600px) {
+            padding: 0.65rem 0.85rem;
+        }
     }
 
     &-header {
@@ -190,6 +194,15 @@ export default {
 
         .v-divider {
             background-color: #e4e4e4;
+        }
+    }
+
+    &-footer {
+        .v-btn {
+            @media (max-width: 600px) {
+                font-size: 11px;
+                height: 30px !important;
+            }
         }
     }
 

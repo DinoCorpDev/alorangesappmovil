@@ -53,6 +53,12 @@ export default {
         },
         authSettings(state) {
             return state.authSettings;
+        },
+        userIsLoggedIn(state) {
+            return Object.keys(state.currentUser).length > 0;
+        },
+        userShortName(state, getters) {
+            return getters.userIsLoggedIn ? state.currentUser.name.split(" ")[0] : null;
         }
     },
     mutations: {

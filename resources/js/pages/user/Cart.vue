@@ -1011,6 +1011,9 @@ export default {
     computed: {
         ...mapGetters("auth", ["currentUser"])
     },
+    mounted() {
+        this.$vuetify.theme.dark = false;
+    },
     methods: {
         ...mapActions("auth", ["getUser"]),
         async getCart() {

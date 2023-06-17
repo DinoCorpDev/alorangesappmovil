@@ -101,7 +101,7 @@ export default {
 
     &::v-deep {
         .v-btn__content {
-            margin-top: 3px;
+            margin-top: 2px;
         }
     }
 
@@ -173,10 +173,23 @@ export default {
 
     &.black {
         color: #ffffff;
-        background-color: rgba(#000000, 0.5);
+        background-color: rgba(#000000, 0.5) !important;
 
         &:hover {
-            background-color: rgba(#858585, 0.8);
+            background-color: rgba(#858585, 0.8) !important;
+        }
+
+        &:focus {
+            background-color: #161616;
+        }
+    }
+
+    &.black2 {
+        color: #ffffff;
+        background-color: rgba(#161616, 0.5);
+
+        &:hover {
+            background-color: rgba(#161616, 0.8) !important;
         }
 
         &:focus {

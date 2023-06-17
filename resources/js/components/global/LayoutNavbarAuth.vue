@@ -11,27 +11,13 @@
             :fixed="headerFixed"
         >
             <v-container class="pa-0 fill-height justify-space-between" fluid>
-                <router-link :to="{ name: 'Home2' }" class="navbar-brand">
+                <router-link :to="{ name: 'Home2' }" class="layout-navbar-auth-brand">
                     <LogoIdovela :large="logoLarge" />
                 </router-link>
                 <SearchInput class="d-none d-sm-flex" />
-                <div class="d-flex">
-                    <div class="double-button d-flex mr-4">
-                        <CustomButton class="btn-login" dark :to="{ name: 'Cart' }">
-                            <template v-if="currentUser.name"> {{ shortName }} </template>
-                            <template v-else> Iniciar Sesión </template>
-                        </CustomButton>
-                        <CustomButton class="btn-cart" dark :to="{ name: 'Cart' }">
-                            <shop-cart-icon class="mr-2 mr-sm-3" />
-                            <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
-                            <span class="status-indicator" :class="currentUser.name ? 'active' : ''"></span>
-                        </CustomButton>
-                    </div>
-                    <div class="d-flex">
-                        <div class="text-center">
-                            <ToggleMenu />
-                        </div>
-                    </div>
+                <div class="layout-navbar-auth-nav">
+                    <DoubleButton />
+                    <ToggleMenu />
                 </div>
             </v-container>
         </v-app-bar>
@@ -40,15 +26,14 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 import CustomButton from "./CustomButton.vue";
+import DoubleButton from "../header/DoubleButton.vue";
 import LogoIdovela from "../header/LogoIdovela.vue";
 import NabvarBottomBar from "./NabvarBottomBar.vue";
 import SearchInput from "./SearchInput.vue";
 import ToggleMenu from "../header/ToggleMenu.vue";
-
-import ShopCartIcon from "../icons/ShopCart.vue";
 
 export default {
     name: "LayoutNavbarAuth",
@@ -59,14 +44,12 @@ export default {
         }
     },
     components: {
-        NabvarBottomBar,
         CustomButton,
+        DoubleButton,
         LogoIdovela,
+        NabvarBottomBar,
         SearchInput,
-        ToggleMenu,
-
-        // Icons
-        ShopCartIcon
+        ToggleMenu
     },
     data() {
         return {
@@ -76,21 +59,13 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("cart", ["getCartCount"]),
-        ...mapGetters("auth", ["currentUser"]),
-        shortName() {
-            return this.currentUser.name.split(" ")[0];
-        }
-    },
-    created() {
-        this.fetchCartProducts();
+        ...mapGetters("auth", ["userShortName"])
     },
     mounted() {
         window.addEventListener("resize", this.handleScroll);
         window.addEventListener("scroll", this.handleScroll, { passive: true });
     },
     methods: {
-        ...mapActions("cart", ["fetchCartProducts"]),
         handleScroll() {
             const currentScroll = this.$refs.layoutNavbar.currentScroll;
             const windowWidth = window.innerWidth;
@@ -124,97 +99,35 @@ export default {
             }
         }
     }
-}
 
-.navbar-brand {
-    text-decoration: none;
+    &-brand {
+        text-decoration: none;
 
-    .v-image {
-        width: 48px;
+        &::v-deep {
+            .logo-idovela {
+                width: 60px;
+                height: 38px;
 
-        @media (min-width: 600px) {
-            width: 158px;
-        }
-    }
+                @media (min-width: 960px) {
+                    width: 90px;
+                    height: 55px;
+                }
 
-    &::v-deep {
-        .logo-idovela {
-            width: 60px;
-            height: 38px;
-
-            @media (min-width: 960px) {
-                width: 90px;
-                height: 55px;
-            }
-
-            @media (min-width: 1264px) {
-                width: 117px;
-                height: 72px;
+                @media (min-width: 1264px) {
+                    width: 117px;
+                    height: 72px;
+                }
             }
         }
     }
-}
 
-.btn-login {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-
-    &::after {
-        content: "";
-        display: block;
-        width: 1px;
-        height: 55%;
-        background-color: #ffffff;
-        position: absolute;
-        right: -1px;
-        z-index: 2;
-    }
-}
-
-.btn-cart {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-
-    font-family: "Roboto", sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0;
-
-    @media (min-width: 960px) {
-        font-size: 15px;
-    }
-
-    svg {
-        width: 20px;
+    &-nav {
+        display: flex;
+        gap: 0.5rem;
 
         @media (min-width: 600px) {
-            width: 24px;
+            gap: 1rem;
         }
-    }
-}
-
-.double-button {
-    .v-btn {
-        background-color: rgba(#161616, 0.5);
-        // height: 40px !important;
-    }
-
-    &:hover {
-        .v-btn {
-            background-color: rgba(#161616, 0.8);
-        }
-    }
-}
-
-.status-indicator {
-    width: 5px;
-    height: 5px;
-    background-color: rgba(#000000, 0.35);
-    display: block;
-    border-radius: 50%;
-
-    &.active {
-        background-color: #00ff3a;
     }
 }
 </style>
