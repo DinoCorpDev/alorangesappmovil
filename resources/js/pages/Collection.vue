@@ -1,33 +1,19 @@
 <template>
-    <div>
-        <LayoutNavbarAuth />
-        <v-container fluid class="product-details pa-4">
-            <v-row tag="section" class="flex-column-reverse flex-lg-row mb-6">
-                <v-col cols="12">
-                    <AddToCart :is-loading="detailsLoading" :product-details="productDetails" :products="products" />
-                </v-col>
-            </v-row>
+    <v-container fluid class="product-details pa-4">
+        <v-row tag="section" class="flex-column-reverse flex-lg-row mb-6">
+            <v-col cols="12">
+                <AddToCart :is-loading="detailsLoading" :product-details="productDetails" :products="products" />
+            </v-col>
+        </v-row>
 
-            <ProductsGrid class="mb-6" :products="moreProducts" filtrable cols="6" sm="4" md="3" lg="2" />
+        <ProductsGrid class="mb-6" :products="moreProducts" filtrable cols="6" sm="4" md="3" lg="2" />
 
-            <ProductsGrid
-                class="mb-6"
-                :products="footerProducts"
-                productStyle="two"
-                filtrable
-                cols="12"
-                sm="6"
-                md="3"
-            />
-        </v-container>
-        <FooterCustom />
-    </div>
+        <ProductsGrid class="mb-6" :products="footerProducts" productStyle="two" filtrable cols="12" sm="6" md="3" />
+    </v-container>
 </template>
 
 <script>
 import AddToCart from "../components/product/AddToCart.vue";
-import FooterCustom from "../components/global/FooterCustom.vue";
-import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import ProductsGrid from "../components/global/ProductsGrid.vue";
 
 export default {
@@ -47,8 +33,6 @@ export default {
     }),
     components: {
         AddToCart,
-        FooterCustom,
-        LayoutNavbarAuth,
         ProductsGrid
     },
     methods: {

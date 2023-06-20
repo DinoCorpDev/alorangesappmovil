@@ -158,10 +158,12 @@ export default {
             state.routerLoading = status;
         },
         setTheme(state, theme) {
-            state.userTheme = state.themeItems[theme].code;
+            if (state.userTheme !== theme) {
+                state.userTheme = theme;
 
-            localStorage.removeItem("shopSelectedTheme");
-            localStorage.setItem("shopSelectedTheme", state.userTheme);
+                localStorage.removeItem("shopSelectedTheme");
+                localStorage.setItem("shopSelectedTheme", state.userTheme);
+            }
         },
         removeCurrency(state) {
             state.userCurrency = state.appCurrency;

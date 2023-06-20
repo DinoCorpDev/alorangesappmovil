@@ -1,37 +1,29 @@
 <template>
-    <div>
-        <v-app class="d-flex flex-column">
-            <Header v-if="!maintenanceMode" />
+    <v-app class="d-flex flex-column">
+        <Navbar v-if="$route.meta.hasHeader && $route.name == 'Home2'" />
+        <NavbarAuth v-if="$route.meta.hasHeader && $route.name != 'Home2'" />
 
-            <v-main class="aiz-main-wrap">
-                <!-- prettier-ignore -->
-                <router-view :key="['ShopDetails','ShopCoupons','ShopProducts'].includes($route.name) ? null : $route.path"></router-view>
-            </v-main>
+        <v-main class="aiz-main-wrap">
+            <!-- prettier-ignore -->
+            <router-view :key="['ShopDetails','ShopCoupons','ShopProducts'].includes($route.name) ? null : $route.path"></router-view>
+        </v-main>
 
-            <template v-if="!maintenanceMode">
-                <Footer :class="['mt-auto', { 'd-none': routerLoading }]" />
-
-                <BottomChat />
-                <SidebarCart />
-                <AddToCartDialog />
-                <LoginDialog v-if="!isAuthenticated" />
-                <MobileMenu class="d-lg-none" />
-                <SnackBar />
-            </template>
-        </v-app>
-    </div>
+        <Footer v-if="$route.meta.hasFooter" :class="[{ 'd-none': routerLoading }]" />
+        <AddToCartDialog />
+        <LoginDialog v-if="!isAuthenticated" />
+        <SnackBar />
+    </v-app>
 </template>
 
 <script>
-import Header from "./header/Header";
-import Footer from "./footer/Footer";
-import SidebarCart from "./cart/SidebarCart";
-import BottomChat from "./inc/BottomChat";
-import SnackBar from "./inc/SnackBar";
-import MobileMenu from "./inc/MobileMenu";
-import LoginDialog from "./auth/LoginDialog.vue";
-import AddToCartDialog from "./product/AddToCartDialog";
 import { mapGetters, mapActions, mapMutations } from "vuex";
+
+import AddToCartDialog from "./product/AddToCartDialog";
+import Footer from "./footer/Footer";
+import LoginDialog from "./auth/LoginDialog.vue";
+import Navbar from "./header/Navbar.vue";
+import NavbarAuth from "./header/NavbarAuth.vue";
+import SnackBar from "./inc/SnackBar";
 
 export default {
     metaInfo() {
@@ -40,14 +32,12 @@ export default {
         };
     },
     components: {
-        Header,
+        AddToCartDialog,
         Footer,
-        BottomChat,
-        SidebarCart,
-        SnackBar,
         LoginDialog,
-        MobileMenu,
-        AddToCartDialog
+        Navbar,
+        NavbarAuth,
+        SnackBar
     },
     computed: {
         ...mapGetters("auth", ["isAuthenticated"]),
@@ -73,6 +63,7 @@ export default {
     }
 };
 </script>
+
 <style scoped>
 .absolute-full {
     background: #fff;

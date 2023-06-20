@@ -1,6 +1,5 @@
 <template>
     <div>
-        <LayoutNavbarAuth :bottom-bar="false" />
         <v-tabs fixed-tabs :show-arrows="false" class="mt-3">
             <v-tab
                 v-for="tab in tabs"
@@ -16,19 +15,14 @@
         </v-tabs>
 
         <router-view />
-
-        <FooterCustom />
     </div>
 </template>
 
 <script>
-import FooterCustom from "../components/global/FooterCustom.vue";
-import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
-
-import ChairIcon from "../components/icons/Chair.vue";
-import ToolsIcon from "../components/icons/Tools.vue";
-import HomeAppliancesIcon from "../components/icons/HomeAppliances.vue";
 import BuildingIcon from "../components/icons/Building.vue";
+import ChairIcon from "../components/icons/Chair.vue";
+import HomeAppliancesIcon from "../components/icons/HomeAppliances.vue";
+import ToolsIcon from "../components/icons/Tools.vue";
 
 export default {
     data: () => ({
@@ -40,9 +34,6 @@ export default {
         ]
     }),
     components: {
-        FooterCustom,
-        LayoutNavbarAuth,
-
         ChairIcon,
         ToolsIcon,
         HomeAppliancesIcon,

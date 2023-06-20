@@ -1,12 +1,11 @@
 <template>
     <div class="user-layout">
-        <layout-navbar-auth />
         <v-container fluid>
             <v-row>
                 <v-col lg="3" class="user-layout-sidebar d-lg-block">
                     <SideMenu2 class="d-none d-sm-block" />
                     <div class="d-sm-none btn-menu">
-                        <custom-button @click="drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
+                        <CustomButton @click="drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
                     </div>
                 </v-col>
                 <v-col cols="12" lg="9" class="user-layout-content">
@@ -31,7 +30,7 @@
                         <div class="divider"></div>
 
                         <v-list-item>
-                            <custom-button
+                            <CustomButton
                                 block
                                 class="mb-3 mt-3"
                                 color="nero"
@@ -40,7 +39,7 @@
                             />
                         </v-list-item>
                         <v-list-item>
-                            <custom-button
+                            <CustomButton
                                 block
                                 class="mb-3"
                                 color="nero"
@@ -49,7 +48,7 @@
                             />
                         </v-list-item>
                         <v-list-item>
-                            <custom-button
+                            <CustomButton
                                 block
                                 class="mb-3"
                                 color="nero"
@@ -57,9 +56,8 @@
                                 :to="{ name: 'SoporteTecnico' }"
                             />
                         </v-list-item>
-
                         <v-list-item>
-                            <custom-button
+                            <CustomButton
                                 block
                                 class="mb-3"
                                 color="nero"
@@ -76,15 +74,14 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
-import SideMenu2 from "./SideMenu2";
+
 import CustomButton from "../../components/global/CustomButton.vue";
-import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
+import SideMenu2 from "./SideMenu2";
 
 export default {
     components: {
-        SideMenu2,
-        LayoutNavbarAuth,
-        CustomButton
+        CustomButton,
+        SideMenu2
     },
     data: () => ({
         drawer: false,

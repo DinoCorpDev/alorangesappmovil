@@ -1,39 +1,35 @@
 <template>
-    <div>
-        <LayoutNavbarAuth />
-        <v-container fluid class="brands">
-            <div class="main-wrapper mb-10">
-                <v-row align="center">
-                    <v-col cols="12" sm="4" md="3" lg="2">
-                        <div class="brands-info-header pb-5 pb-sm-0">
-                            <v-img class="mr-4" aspect-ratio="1" src="/public/assets/img/bio-placeholder.png" />
-                            <div>
-                                <h1 class="text-uppercase black--text mb-2">{{ $t("all_brands") }}</h1>
-                                <h3 class="text-uppercase black--text"># Marcas</h3>
-                            </div>
+    <v-container fluid class="brands">
+        <div class="main-wrapper mb-10">
+            <v-row align="center">
+                <v-col cols="12" sm="4" md="3" lg="2">
+                    <div class="brands-info-header pb-5 pb-sm-0">
+                        <v-img class="mr-4" aspect-ratio="1" src="/public/assets/img/bio-placeholder.png" />
+                        <div>
+                            <h1 class="text-uppercase black--text mb-2">{{ $t("all_brands") }}</h1>
+                            <h3 class="text-uppercase black--text"># Marcas</h3>
                         </div>
-                    </v-col>
-                    <v-col cols="12" sm="8" md="6" lg="4">
-                        <p class="brands-info-content black--text mb-0">
-                            Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the
-                            industry's • Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been
-                            the industry's • Incluye Lorem Ipsum is simply dummy text.
-                        </p>
-                    </v-col>
-                </v-row>
-            </div>
-            <v-row v-if="brands.length" class="mb-7">
-                <v-col cols="6" sm="6" md="4" lg="2" v-for="(brand, i) in brands" :key="i">
-                    <CardBrand :brandDetails="brand" />
+                    </div>
+                </v-col>
+                <v-col cols="12" sm="8" md="6" lg="4">
+                    <p class="brands-info-content black--text mb-0">
+                        Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                        Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
+                        Incluye Lorem Ipsum is simply dummy text.
+                    </p>
                 </v-col>
             </v-row>
-        </v-container>
-    </div>
+        </div>
+        <v-row v-if="brands.length" class="mb-7">
+            <v-col cols="6" sm="6" md="4" lg="2" v-for="(brand, i) in brands" :key="i">
+                <CardBrand :brandDetails="brand" />
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
 import CardBrand from "../components/global/CardBrand.vue";
-import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
     data: () => ({
@@ -41,8 +37,7 @@ export default {
         brands: []
     }),
     components: {
-        CardBrand,
-        LayoutNavbarAuth
+        CardBrand
     },
     created() {
         this.getDetails();

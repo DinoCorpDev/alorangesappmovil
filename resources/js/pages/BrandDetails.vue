@@ -1,119 +1,94 @@
 <template>
-    <div>
-        <LayoutNavbarAuth />
-        <v-container fluid>
-            <v-row class="mr-1 ms-1 mb-5 border-div">
-                <v-col cols="12" md="5" class="brand">
-                    <div class="div-container">
-                        <div class="col1">
-                            <div class="div-img">
-                                <div>
-                                    <v-img
-                                        max-width="100px"
-                                        src="../../public/assets/img/carousel-item-placeholder.png"
-                                    ></v-img>
-                                </div>
+    <v-container fluid>
+        <v-row class="mr-1 ms-1 mb-5 border-div">
+            <v-col cols="12" md="5" class="brand">
+                <div class="div-container">
+                    <div class="col1">
+                        <div class="div-img">
+                            <div>
+                                <v-img
+                                    max-width="100px"
+                                    src="../../public/assets/img/carousel-item-placeholder.png"
+                                ></v-img>
                             </div>
                         </div>
-                        <div class="col2">
-                            <h5 class="black--text bold">{{ brandDetails.name }}</h5>
-                            <span class="black--text body-2 text-uppercase"># Marcas</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="col3">
-                            <p class="black--text">
-                                {{ brandDetails.resumen }}
-                            </p>
-                        </div>
                     </div>
-                    <v-row class="d-flex justify-center">
-                        <v-col cols="12" md="6" lg="6" xl="6">
-                            <CustomButton block color="nero" text="Ir a colección" />
-                        </v-col>
-                        <v-col cols="12" md="6" lg="6" xl="6">
-                            <CustomButton block color="grey2" text="Descargar catalogo" />
-                        </v-col>
-                        <v-col cols="12">
-                            <CustomButton
-                                block
-                                color="white"
-                                text="Conocer historia de marca"
-                                :to="{ name: 'AboutBrand', params: { slug: brandDetails.slug } }"
-                            />
-                        </v-col>
-                    </v-row>
-                </v-col>
-                <v-col cols="12" md="7" class="banner">
-                    <v-img class="img-banner" src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
-                </v-col>
-            </v-row>
-            <div class="bar">
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-                <CustomButton class="mr-2 ms-2" light text="Nuevo" />
-            </div>
+                    <div class="col2">
+                        <h5 class="black--text bold">{{ brandDetails.name }}</h5>
+                        <span class="black--text body-2 text-uppercase"># Marcas</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="col3">
+                        <p class="black--text">
+                            {{ brandDetails.resumen }}
+                        </p>
+                    </div>
+                </div>
+                <v-row class="d-flex justify-center">
+                    <v-col cols="12" md="6" lg="6" xl="6">
+                        <CustomButton block color="nero" text="Ir a colección" />
+                    </v-col>
+                    <v-col cols="12" md="6" lg="6" xl="6">
+                        <CustomButton block color="grey2" text="Descargar catalogo" />
+                    </v-col>
+                    <v-col cols="12">
+                        <CustomButton
+                            block
+                            color="white"
+                            text="Conocer historia de marca"
+                            :to="{ name: 'AboutBrand', params: { slug: brandDetails.slug } }"
+                        />
+                    </v-col>
+                </v-row>
+            </v-col>
+            <v-col cols="12" md="7" class="banner">
+                <v-img class="img-banner" src="../../public/assets/img/carousel-item-placeholder.png"></v-img>
+            </v-col>
+        </v-row>
+        <div class="bar">
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+            <CustomButton class="mr-2 ms-2" light text="Nuevo" />
+        </div>
 
-            <v-divider />
+        <v-divider />
 
-            <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 6)" filtrable cols="6" sm="4" md="2" />
+        <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 6)" filtrable cols="6" sm="4" md="2" />
 
-            <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 6)" filtrable cols="6" sm="4" md="2" />
+        <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 6)" filtrable cols="6" sm="4" md="2" />
 
-            <ProductsGrid
-                class="mb-6"
-                :products="productsSeeder.slice(0, 4)"
-                filtrable
-                shopCard
-                cols="6"
-                sm="4"
-                md="2"
-            />
+        <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 4)" filtrable shopCard cols="6" sm="4" md="2" />
 
-            <ProductsGrid
-                class="mb-6"
-                :products="productsSeeder.slice(0, 4)"
-                filtrable
-                shopCard
-                cols="6"
-                sm="4"
-                md="2"
-            />
+        <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 4)" filtrable shopCard cols="6" sm="4" md="2" />
 
-            <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 4)" filtrable cols="12" sm="6" md="3" />
-        </v-container>
-        <FooterCustom />
-    </div>
+        <ProductsGrid class="mb-6" :products="productsSeeder.slice(0, 4)" filtrable cols="12" sm="6" md="3" />
+    </v-container>
 </template>
 
 <script>
 import { productsSeeder, sliderSeeder } from "../seeders/products.js";
 
 import CustomButton from "../components/global/CustomButton.vue";
-import FooterCustom from "../components/global/FooterCustom.vue";
-import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 import ProductBox from "../components/product/ProductBox.vue";
 import ShopActionCard from "../components/shop/ShopActionCard.vue";
-
 import ProductsGrid from "../components/global/ProductsGrid.vue";
 
 export default {
     name: "BrandDetails",
     components: {
         CustomButton,
-        FooterCustom,
-        LayoutNavbarAuth,
         ProductBox,
-        ShopActionCard,
-        ProductsGrid
+        ProductsGrid,
+        ShopActionCard
     },
     data: () => ({
         productsSeeder,

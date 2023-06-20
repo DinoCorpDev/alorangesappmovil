@@ -35,46 +35,62 @@
                     <template v-slot:appendIcon>
                         <RightArrowIcon />
                     </template>
-                    <v-list-item-group v-if="item.key == 'theme'" v-model="selectedTheme">
+                    <v-item-group v-if="item.key == 'theme'">
                         <template v-for="item in themeItems">
                             <v-divider :key="`divider-${item.label}`" />
                             <v-list-item :key="item.label">
-                                <template v-slot:default="{ active }">
-                                    <CustomCheckbox :value="active" :label="$t(item.label)" />
-                                </template>
+                                <CustomCheckbox
+                                    :inputValue="item.code"
+                                    :label="$t(item.label)"
+                                    name="selectedTheme"
+                                    type="radio"
+                                    v-model="selectedTheme"
+                                />
                             </v-list-item>
                         </template>
-                    </v-list-item-group>
-                    <v-list-item-group v-if="item.key == 'lang'" v-model="selectedLang">
+                    </v-item-group>
+                    <v-item-group v-if="item.key == 'lang'">
                         <template v-for="lang in allLanguages">
                             <v-divider :key="`divider-${lang.name}`" />
                             <v-list-item :key="lang.name">
-                                <template v-slot:default="{ active }">
-                                    <CustomCheckbox :value="active" :label="$t(lang.name)" />
-                                </template>
+                                <CustomCheckbox
+                                    :inputValue="lang.code"
+                                    :label="$t(lang.name)"
+                                    name="selectedLang"
+                                    type="radio"
+                                    v-model="selectedLang"
+                                />
                             </v-list-item>
                         </template>
-                    </v-list-item-group>
-                    <v-list-item-group v-if="item.key == 'country'" v-model="selectedCountry">
+                    </v-item-group>
+                    <v-item-group v-if="item.key == 'country'">
                         <template v-for="country in allCountries">
                             <v-divider :key="`divider-${country.name}`" />
                             <v-list-item :key="country.name">
-                                <template v-slot:default="{ active }">
-                                    <CustomCheckbox :value="active" :label="$t(country.name)" />
-                                </template>
+                                <CustomCheckbox
+                                    :inputValue="country.code"
+                                    :label="$t(country.name)"
+                                    name="selectedCountry"
+                                    type="radio"
+                                    v-model="selectedCountry"
+                                />
                             </v-list-item>
                         </template>
-                    </v-list-item-group>
-                    <v-list-item-group v-if="item.key == 'currency'" v-model="selectedCurrency">
+                    </v-item-group>
+                    <v-item-group v-if="item.key == 'currency'">
                         <template v-for="currency in allCurrencies">
                             <v-divider :key="`divider-${currency.code}`" />
                             <v-list-item :key="currency.code">
-                                <template v-slot:default="{ active }">
-                                    <CustomCheckbox :value="active" :label="$t(currency.code)" />
-                                </template>
+                                <CustomCheckbox
+                                    :inputValue="currency.code"
+                                    :label="$t(currency.code)"
+                                    v-model="selectedCurrency"
+                                    name="selectedCurrency"
+                                    type="radio"
+                                />
                             </v-list-item>
                         </template>
-                    </v-list-item-group>
+                    </v-item-group>
                 </v-list-group>
                 <v-divider :key="`divider-${item.key}`" v-if="!navElementExpanded" />
             </template>
@@ -132,14 +148,24 @@ export default {
         };
     },
     mounted() {
-        this.selectedCountry = this.allCountries.indexOf(this.userCountryObj);
-        this.selectedCurrency = this.allCurrencies.indexOf(this.userCurrencyObj);
-        this.selectedLang = this.allLanguages.indexOf(this.userLanguageObj);
-        this.selectedTheme = this.themeItems.indexOf(this.userThemeObj);
+        this.selectedCountry = this.userCountry;
+        this.selectedCurrency = this.userCurrency;
+        this.selectedLang = this.userLanguage;
+        this.selectedTheme = this.userTheme;
         this.runColorMode();
     },
     computed: {
-        ...mapState("app", ["allCountries", "allCurrencies", "allLanguages", "prefersDark", "userTheme", "themeItems"]),
+        ...mapState("app", [
+            "allCountries",
+            "allCurrencies",
+            "allLanguages",
+            "prefersDark",
+            "themeItems",
+            "userCountry",
+            "userCurrency",
+            "userLanguage",
+            "userTheme"
+        ]),
         ...mapGetters("app", ["userCountryObj", "userCurrencyObj", "userLanguageObj", "userThemeObj"]),
         items() {
             return [
@@ -178,18 +204,14 @@ export default {
     },
     watch: {
         selectedCountry() {
-            const code = this.allCountries[this.selectedCountry].code;
-            this.setCountry(code);
+            this.setCountry(this.selectedCountry);
         },
         selectedCurrency() {
-            const code = this.allCurrencies[this.selectedCurrency].code;
-            this.setCurrency(code);
+            this.setCurrency(this.selectedCurrency);
         },
         selectedLang() {
-            const code = this.allLanguages[this.selectedLang].code;
-
-            if (this.$i18n.locale !== code) {
-                this.setLanguage(code);
+            if (this.$i18n.locale !== this.selectedLang) {
+                this.setLanguage(this.selectedLang);
                 window.location.reload();
             }
         },
@@ -198,7 +220,7 @@ export default {
 
             // 2 is the index of the "device" theme
             // check if the user changed the theme from device to day or night
-            if (oldVal != null && newVal === 2) {
+            if (oldVal != null && newVal === "device") {
                 window.location.reload();
             } else {
                 this.runColorMode();

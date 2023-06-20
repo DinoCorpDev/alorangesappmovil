@@ -28,7 +28,7 @@ export default [
         path: "/",
         component: TempLanding,
         name: "TempLanding",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, hasHeader: false, hasFooter: false }
     },
     {
         path: "/test-components",
@@ -71,25 +71,25 @@ export default [
                 path: "spaces",
                 component: ShopSpaces,
                 name: "ShopSpaces",
-                meta: { requiresAuth: false }
+                meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
                 path: "services",
                 component: ShopServices,
                 name: "ShopServices",
-                meta: { requiresAuth: false }
+                meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
                 path: "home-appliances",
                 component: ShopHomeAppliances,
                 name: "ShopHomeAppliances",
-                meta: { requiresAuth: false }
+                meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
                 path: "business-portal",
                 component: ShopBusinessPortal,
                 name: "ShopBusinessPortal",
-                meta: { requiresAuth: false }
+                meta: { requiresAuth: false, hasBottomBar: false }
             }
         ]
     },
@@ -145,13 +145,13 @@ export default [
         path: "/search/:keyword?",
         component: ProductListing,
         name: "Search",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, shareble: true }
     },
     {
         path: "/product/:slug",
         component: ProductDetails,
         name: "ProductDetails",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, shareble: true }
     },
     {
         path: "/service/:slug",

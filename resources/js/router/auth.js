@@ -10,36 +10,36 @@ export default [
         path: "/user/login",
         component: Login,
         name: "Login",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, hasFooter: false }
     },
     {
         path: "/user/registration",
         component: Registration,
         name: "Registration",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, hasFooter: false }
     },
     {
         path: "/user/registration/success",
         component: RegistrationSuccess,
         name: "RegistrationSuccess",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, hasFooter: false }
     },
     {
         path: "/user/forgot-password",
         component: ForgotPassword,
         name: "ForgotPassword",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, hasFooter: false }
     },
     {
         path: "/user/new-password",
         component: NewPassword,
         name: "NewPassword",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, hasFooter: false }
     },
     {
         path: "/user/verify-account",
         component: VerifyAccount,
         name: "VerifyAccount",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, hasFooter: false }
     }
 ];

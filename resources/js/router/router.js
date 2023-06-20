@@ -33,10 +33,17 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+    to.meta.hasHeader = to.meta.hasHeader == undefined ? true : to.meta.hasHeader;
+    to.meta.hasFooter = to.meta.hasFooter == undefined ? true : to.meta.hasFooter;
+    to.meta.hasBottomBar = to.meta.hasBottomBar == undefined ? true : to.meta.hasBottomBar;
+    to.meta.shareble = to.meta.shareble == undefined ? false : to.meta.shareble;
+
     if (from.name == "ConversationsDetails") {
         clearInterval(window.intervalCall);
     }
+
     store.commit("app/setRouterLoading", true);
+
     if (to.query.social_login == "failed") {
         store.commit("auth/setSociaLoginStatus", "failed");
     } else if (to.query.access_token) {
@@ -46,6 +53,7 @@ router.beforeEach((to, from, next) => {
 
     const locale = store.getters["app/userLanguage"];
     const allLocales = store.getters["app/allLanguages"];
+
     if (!allLocales.find(lang => lang.code == locale)) {
         store.dispatch("app/removeLanguage");
     }
@@ -76,7 +84,9 @@ router.beforeEach((to, from, next) => {
         }
     });
 });
+
 router.afterEach((to, from) => {
     store.commit("app/setRouterLoading", false);
 });
+
 export default router;

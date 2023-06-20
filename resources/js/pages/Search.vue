@@ -1,65 +1,58 @@
 <template>
-    <div>
-        <layout-navbar-auth />
-        <v-container fluid>
-            <v-row class="filter-bar-wrap mb-5">
-                <v-col cols="12">
-                    <div class="filter-bar">
-                        <h5 class="filter-bar-title mr-8">Filtro</h5>
-                        <div class="filter-bar-actions">
-                            <v-skeleton-loader type="actions" v-if="loading && rootCategories.length == 0" />
-                            <template v-else>
-                                <v-checkbox
-                                    on-icon="la-check"
-                                    class="filter-bar-button"
-                                    hide-details
-                                    v-for="(category, i) in rootCategories"
-                                    :input-value="handleCategoryChecked(category.id)"
-                                    :key="i"
-                                    :label="category.name"
-                                    :ripple="false"
-                                    @change="categoryChange(category.id)"
-                                ></v-checkbox>
-                            </template>
-                        </div>
+    <v-container class="search" fluid>
+        <v-row class="filter-bar-wrap mb-5">
+            <v-col cols="12">
+                <div class="filter-bar">
+                    <h5 class="filter-bar-title mr-8">Filtro</h5>
+                    <div class="filter-bar-actions">
+                        <v-skeleton-loader type="actions" v-if="loading && rootCategories.length == 0" />
+                        <template v-else>
+                            <v-checkbox
+                                on-icon="la-check"
+                                class="filter-bar-button"
+                                hide-details
+                                v-for="(category, i) in rootCategories"
+                                :input-value="handleCategoryChecked(category.id)"
+                                :key="i"
+                                :label="category.name"
+                                :ripple="false"
+                                @change="categoryChange(category.id)"
+                            ></v-checkbox>
+                        </template>
                     </div>
-                </v-col>
-            </v-row>
-            <v-row class="d-flex flex-wrap">
-                <v-col cols="12">
-                    <h5 class="search-results" v-if="queryParam.keyword">
-                        {{ $t("search_results_for") }} "{{ queryParam.keyword }}"
-                    </h5>
-                </v-col>
-                <v-col cols="12" sm="6" md="4" lg="2" v-if="loading">
-                    <v-skeleton-loader type="card" />
-                </v-col>
-                <template v-else>
-                    <template v-if="products.length > 0">
-                        <v-col cols="6" sm="4" md="4" lg="2" v-for="(product, i) in products" :key="i">
-                            <product-box :product-details="product" />
-                        </v-col>
-                    </template>
-                    <template v-else>
-                        <v-col cols="12">
-                            {{ $t("no_product_found") }}
-                        </v-col>
-                    </template>
+                </div>
+            </v-col>
+        </v-row>
+        <v-row class="d-flex flex-wrap">
+            <v-col cols="12">
+                <h5 class="search-results" v-if="queryParam.keyword">
+                    {{ $t("search_results_for") }} "{{ queryParam.keyword }}"
+                </h5>
+            </v-col>
+            <v-col cols="12" sm="6" md="4" lg="2" v-if="loading">
+                <v-skeleton-loader type="card" />
+            </v-col>
+            <template v-else>
+                <template v-if="products.length > 0">
+                    <v-col cols="6" sm="4" md="4" lg="2" v-for="(product, i) in products" :key="i">
+                        <ProductBox :product-details="product" />
+                    </v-col>
                 </template>
-            </v-row>
-        </v-container>
-    </div>
+                <template v-else>
+                    <v-col cols="12">
+                        {{ $t("no_product_found") }}
+                    </v-col>
+                </template>
+            </template>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
-import CustomButton from "../components/global/CustomButton.vue";
 import ProductBox from "../components/product/ProductBox.vue";
-import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
-        CustomButton,
-        LayoutNavbarAuth,
         ProductBox
     },
     data() {
@@ -178,15 +171,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.v-application {
-    &.theme--light {
-        background: #fafcfc;
-    }
-}
-</style>
-
 <style lang="scss" scoped>
+.search {
+    background: #fafcfc;
+}
+
 .filter-bar {
     display: flex;
     align-items: center;

@@ -21,28 +21,22 @@
                 </div>
             </v-container>
         </v-app-bar>
-        <NabvarBottomBar v-if="bottomBar" />
+        <NabvarBottomBar v-if="$route.meta.hasBottomBar" />
     </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 
-import CustomButton from "./CustomButton.vue";
-import DoubleButton from "../header/DoubleButton.vue";
-import LogoIdovela from "../header/LogoIdovela.vue";
+import CustomButton from "../global/CustomButton.vue";
+import DoubleButton from "./DoubleButton.vue";
+import LogoIdovela from "./LogoIdovela.vue";
 import NabvarBottomBar from "./NabvarBottomBar.vue";
-import SearchInput from "./SearchInput.vue";
-import ToggleMenu from "../header/ToggleMenu.vue";
+import SearchInput from "../global/SearchInput.vue";
+import ToggleMenu from "./ToggleMenu.vue";
 
 export default {
     name: "LayoutNavbarAuth",
-    props: {
-        bottomBar: {
-            type: Boolean,
-            default: true
-        }
-    },
     components: {
         CustomButton,
         DoubleButton,
@@ -102,6 +96,10 @@ export default {
 
     &-brand {
         text-decoration: none;
+
+        @media (min-width: 960px) {
+            min-width: 160px;
+        }
 
         &::v-deep {
             .logo-idovela {

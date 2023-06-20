@@ -1,6 +1,5 @@
 <template>
     <div class="forgot-password d-flex flex-column h-100">
-        <layout-navbar-auth />
         <v-container class="d-flex flex-grow-1">
             <v-row justify="center" align="center">
                 <v-col cols="12" sm="10" md="8" lg="6">
@@ -15,7 +14,7 @@
                             </p>
                             <div class="inputs mb-5">
                                 <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
-                                <custom-input
+                                <CustomInput
                                     type="email"
                                     v-model="form.email"
                                     :error-messages="emailErrors"
@@ -23,7 +22,7 @@
                                     required
                                 />
                             </div>
-                            <custom-button
+                            <CustomButton
                                 block
                                 color="black"
                                 text="Enviar"
@@ -43,10 +42,8 @@
 <script>
 import { required, email } from "vuelidate/lib/validators";
 
-import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
-import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
 
 export default {
     data: () => ({
@@ -54,10 +51,8 @@ export default {
         loading: false
     }),
     components: {
-        CarouselDescription,
         CustomButton,
-        CustomInput,
-        LayoutNavbarAuth
+        CustomInput
     },
     validations: {
         form: {

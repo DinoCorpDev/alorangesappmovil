@@ -1,51 +1,46 @@
 <template>
-    <div>
-        <LayoutNavbarAuth />
-        <v-container class="about my-4" fluid>
-            <div class="main-wrapper">
-                <v-row v-if="!detailsLoading">
-                    <v-col cols="12" md="4">
-                        <aside class="about-info">
-                            <div class="about-info-header">
-                                <v-img class="mr-4" aspect-ratio="1" src="/public/assets/img/bio-placeholder.png" />
-                                <h1 class="text-uppercase black--text">
-                                    {{ itemData.name || "Información" }}
-                                </h1>
-                            </div>
-                            <v-divider class="my-5" />
-                            <div class="about-info-content pr-4">
-                                <p class="black--text">
-                                    {{ itemData.biografia }}
-                                </p>
-                            </div>
-                            <v-divider class="my-5" />
-                            <CustomButton
-                                text="Perfil"
-                                block
-                                color="grey"
-                                :to="{ name: 'BrandDetails', params: { slug: itemData.slug } }"
-                            />
-                        </aside>
-                    </v-col>
-                    <v-col cols="12" md="8">
-                        <CarouselDescription />
-                    </v-col>
-                </v-row>
-            </div>
-        </v-container>
-    </div>
+    <v-container class="about my-4" fluid>
+        <div class="main-wrapper">
+            <v-row v-if="!detailsLoading">
+                <v-col cols="12" md="4">
+                    <aside class="about-info">
+                        <div class="about-info-header">
+                            <v-img class="mr-4" aspect-ratio="1" src="/public/assets/img/bio-placeholder.png" />
+                            <h1 class="text-uppercase black--text">
+                                {{ itemData.name || "Información" }}
+                            </h1>
+                        </div>
+                        <v-divider class="my-5" />
+                        <div class="about-info-content pr-4">
+                            <p class="black--text">
+                                {{ itemData.biografia }}
+                            </p>
+                        </div>
+                        <v-divider class="my-5" />
+                        <CustomButton
+                            text="Perfil"
+                            block
+                            color="grey"
+                            :to="{ name: 'BrandDetails', params: { slug: itemData.slug } }"
+                        />
+                    </aside>
+                </v-col>
+                <v-col cols="12" md="8">
+                    <CarouselDescription />
+                </v-col>
+            </v-row>
+        </div>
+    </v-container>
 </template>
 
 <script>
 import CarouselDescription from "../components/global/CarouselDescription.vue";
 import CustomButton from "../components/global/CustomButton.vue";
-import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
 
 export default {
     components: {
         CarouselDescription,
-        CustomButton,
-        LayoutNavbarAuth
+        CustomButton
     },
     data() {
         return {

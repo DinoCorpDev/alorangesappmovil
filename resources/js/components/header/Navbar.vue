@@ -26,10 +26,10 @@
 <script>
 import { mapGetters } from "vuex";
 
-import CustomButton from "./CustomButton.vue";
-import DoubleButton from "../header/DoubleButton.vue";
-import LogoIdovela from "../header/LogoIdovela.vue";
-import ToggleMenu from "../header/ToggleMenu.vue";
+import CustomButton from "../global/CustomButton.vue";
+import DoubleButton from "./DoubleButton.vue";
+import LogoIdovela from "./LogoIdovela.vue";
+import ToggleMenu from "./ToggleMenu.vue";
 
 export default {
     name: "LayoutNavbar",
@@ -43,7 +43,7 @@ export default {
         return {
             headerFixed: false,
             logoLarge: false,
-            scrollThreshold: 50
+            scrollThreshold: 10
         };
     },
     computed: {
