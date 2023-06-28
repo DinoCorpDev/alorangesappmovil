@@ -40,9 +40,16 @@ export default {
 
 <style lang="scss" scoped>
 .double-button {
+    padding: 0 10px !important;
+
+    @media (min-width: 960px) {
+        padding: 0 14px !important;
+    }
+
     &-label {
         position: relative;
         display: block;
+        letter-spacing: 0;
 
         &::after {
             content: "";
@@ -74,7 +81,7 @@ export default {
         svg {
             width: 20px;
 
-            @media (min-width: 600px) {
+            @media (min-width: 960px) {
                 width: 24px;
             }
         }

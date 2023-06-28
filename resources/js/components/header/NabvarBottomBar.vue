@@ -65,7 +65,7 @@ export default {
         font-weight: 700;
         letter-spacing: 0.15px;
         color: #000000;
-        margin-top: 3px;
+        margin-top: 2px;
 
         @media (min-width: 600px) {
             font-size: 16px;

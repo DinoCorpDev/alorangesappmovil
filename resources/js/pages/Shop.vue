@@ -83,6 +83,7 @@ export default {
             font-weight: 400;
             letter-spacing: 0.15px;
             line-height: calc(18px + (20 - 18) * var(--screen-size));
+            max-width: 100%;
 
             @media (max-width: 600px) {
                 flex-direction: column;
@@ -98,6 +99,25 @@ export default {
         .v-slide-group__prev,
         .v-slide-group__next {
             display: none !important;
+        }
+    }
+}
+
+::v-deep {
+    .main {
+        &-carousel {
+            height: 76.5vh !important;
+            max-height: 786px;
+
+            @media (min-width: 1601px) {
+                height: 64vh !important;
+            }
+
+            &::v-deep {
+                .v-carousel__item {
+                    height: 100%;
+                }
+            }
         }
     }
 }

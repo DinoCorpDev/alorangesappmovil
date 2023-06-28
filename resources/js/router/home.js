@@ -15,7 +15,6 @@ let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
 let Shop = () => import("../pages/Shop");
 let About = () => import("../pages/About");
-let Search = () => import("../pages/Search");
 let Collection = () => import("../pages/Collection");
 
 let ShopSpaces = () => import("../pages/shop/ShopSpaces");
@@ -34,12 +33,6 @@ export default [
         path: "/test-components",
         component: TestComponents,
         name: "TestComponents",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/search2/:keyword?",
-        component: Search,
-        name: "SearchProducts",
         meta: { requiresAuth: false }
     },
     {
@@ -137,7 +130,7 @@ export default [
     },
     {
         path: "/category2/:categorySlug?",
-        component: Search,
+        component: ProductListing,
         name: "Category2",
         meta: { requiresAuth: false }
     },

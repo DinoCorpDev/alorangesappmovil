@@ -14,7 +14,7 @@
                 <router-link :to="{ name: 'Home2' }" class="layout-navbar-auth-brand">
                     <LogoIdovela :large="logoLarge" />
                 </router-link>
-                <SearchInput class="d-none d-sm-flex" />
+                <SearchInput />
                 <div class="layout-navbar-auth-nav">
                     <DoubleButton />
                     <ToggleMenu />
@@ -49,7 +49,7 @@ export default {
         return {
             headerFixed: false,
             logoLarge: false,
-            scrollThreshold: 50
+            scrollThreshold: 70
         };
     },
     computed: {
@@ -62,10 +62,11 @@ export default {
     methods: {
         handleScroll() {
             const currentScroll = this.$refs.layoutNavbar.currentScroll;
+            console.log(currentScroll);
             const windowWidth = window.innerWidth;
 
             this.headerFixed = currentScroll >= this.scrollThreshold;
-            this.logoLarge = windowWidth < 960 ? false : this.headerFixed;
+            this.logoLarge = windowWidth < 960 ? false : currentScroll >= this.scrollThreshold / 2;
         }
     }
 };
@@ -73,14 +74,22 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    gap: 1rem;
+    gap: 0.65rem;
+
+    @media (min-width: 960px) {
+        gap: 1rem;
+    }
+
+    @media (max-width: 600px) {
+        flex-wrap: nowrap;
+    }
 }
 
 .layout-navbar-auth {
     min-height: 60px;
     z-index: 10;
 
-    @media (max-width: 600px) {
+    @media (max-width: 960px) {
         max-height: 60px;
     }
 
@@ -88,8 +97,9 @@ export default {
         .v-toolbar__content {
             min-height: 60px;
 
-            @media (max-width: 600px) {
+            @media (max-width: 960px) {
                 max-height: 60px;
+                padding: 0 12px;
             }
         }
     }
@@ -121,9 +131,9 @@ export default {
 
     &-nav {
         display: flex;
-        gap: 0.5rem;
+        gap: 0.65rem;
 
-        @media (min-width: 600px) {
+        @media (min-width: 960px) {
             gap: 1rem;
         }
     }

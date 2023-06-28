@@ -1,15 +1,16 @@
 <template>
     <div class="search-input">
         <input
-            type="search"
-            class="search-input-input"
+            @keyup.enter="search()"
+            class="search-input-input d-none d-sm-block"
             :placeholder="placeholder"
             v-model="searchKeyword"
-            @keyup.enter="search()"
+            type="search"
+            required
         />
         <button class="search-input-button" type="button" @click.stop.prevent="search()">
-            <search-icon />
-            <span class="ml-2 d-none d-md-block">
+            <SearchIcon />
+            <span class="ml-2 d-none d-sm-block">
                 {{ buttonLabel }}
             </span>
         </button>
@@ -39,14 +40,11 @@ export default {
             searchKeyword: ""
         };
     },
-    created() {
-        this.searchKeyword = this.$route.params.keyword;
-    },
     methods: {
         search() {
             this.$router
                 .push({
-                    name: "SearchProducts",
+                    name: "Search",
                     params: this.searchKeyword.length > 0 ? { keyword: this.searchKeyword } : {},
                     query: {
                         page: 1
@@ -110,6 +108,7 @@ export default {
     display: flex;
     flex: 1;
     max-width: 836px;
+    justify-content: flex-end;
 
     &-input {
         font-family: "Roboto";
@@ -138,14 +137,19 @@ export default {
         background-color: #dfdfdf;
 
         border: 1px solid #dfdfdf;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-radius: 5px;
 
-        padding: 0.5rem 1rem;
+        padding: 0 10px;
+        height: 40px;
 
         transition: all 0.2s ease-in-out;
 
         @media (min-width: 600px) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        @media (min-width: 960px) {
             padding: 0.5rem 2rem;
         }
 
@@ -159,13 +163,15 @@ export default {
 
         span {
             color: #000000;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.25px;
             line-height: 1;
-
             margin-top: 3px;
+
+            @media (min-width: 960px) {
+                font-size: 14px;
+            }
         }
     }
 }
