@@ -9,6 +9,7 @@
         </v-main>
 
         <Footer v-if="$route.meta.hasFooter" :class="[{ 'd-none': routerLoading }]" />
+
         <AddToCartDialog />
         <LoginDialog v-if="!isAuthenticated" />
         <SnackBar />

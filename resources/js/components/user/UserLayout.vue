@@ -1,113 +1,43 @@
 <template>
-    <div class="user-layout">
-        <v-container fluid>
-            <v-row>
-                <v-col lg="3" class="user-layout-sidebar d-lg-block">
-                    <SideMenu2 class="d-none d-sm-block" />
-                    <div class="d-sm-none btn-menu">
-                        <CustomButton @click="drawer = !drawer" dark text="MENU" icon="la-ellipsis-v" />
-                    </div>
-                </v-col>
-                <v-col cols="12" lg="9" class="user-layout-content">
-                    <router-view />
-                </v-col>
-                <v-navigation-drawer v-model="drawer" class="drawerNot list-cont" absolute temporary right>
-                    <v-list class="list-cont" center vertical v-model="tab">
-                        <v-list-item class="data-user">
-                            <div class="div-img">
-                                <div>
-                                    <v-avatar size="50">
-                                        <img
-                                            :src="previewAvatar || currentUser.avatar"
-                                            @error="imageFallback($event)"
-                                            class="border border-4"
-                                        />
-                                    </v-avatar>
-                                </div>
-                            </div>
-                            <p class="black--text text-uppercase bold mt-3 name-font">{{ currentUser.name }}</p>
-                        </v-list-item>
-                        <div class="divider"></div>
-                        <h6 class="black--text bold ml-4 mt-2">Compras</h6>
-
-                        <v-list-item>
-                            <CustomButton block class="mb-3 mt-3" color="nero" text="Carrito" :to="{ name: 'Cart' }" />
-                        </v-list-item>
-                        <v-list-item>
-                            <CustomButton
-                                block
-                                class="mb-3"
-                                color="nero"
-                                text="Favoritos"
-                                :to="{ name: 'Favorites' }"
-                            />
-                        </v-list-item>
-                        <v-list-item>
-                            <CustomButton block class="mb-3" color="nero" text="Facturas" :to="{ name: 'Invoices' }" />
-                        </v-list-item>
-                        <div class="divider"></div>
-                        <h6 class="black--text bold ml-4 mt-2">Usuario</h6>
-
-                        <v-list-item>
-                            <CustomButton
-                                block
-                                class="mb-3 mt-3"
-                                color="nero"
-                                text="Perfil"
-                                :to="{ name: 'Profile' }"
-                            />
-                        </v-list-item>
-
-                        <v-list-item>
-                            <CustomButton
-                                block
-                                class="mb-3"
-                                color="nero"
-                                text="Notificaciones"
-                                :to="{ name: 'NotificationAll' }"
-                            />
-                        </v-list-item>
-                        <v-list-item>
-                            <CustomButton
-                                block
-                                class="mb-3"
-                                color="nero"
-                                text="Informacion"
-                                :to="{ name: 'PactoAmbiental' }"
-                            />
-                        </v-list-item>
-                        <v-list-item>
-                            <CustomButton block class="mb-5 mt-5" color="white" @click="logout">
-                                {{ $t("logout") }}
-                            </CustomButton>
-                        </v-list-item>
-                    </v-list>
-                </v-navigation-drawer>
-            </v-row>
-        </v-container>
-    </div>
+    <v-container class="user-layout" fluid>
+        <v-row>
+            <v-col lg="3" class="user-layout-sidebar d-lg-block">
+                <SideMenu class="d-none d-sm-block" />
+                <div class="user-layout-button d-sm-none">
+                    <h6>Perfil</h6>
+                    <CustomButton @click="userNavDrawerActive = !userNavDrawerActive" dark>
+                        <BarsIcon />
+                        <span>{{ $t("Menu") }}</span>
+                    </CustomButton>
+                </div>
+            </v-col>
+            <v-col cols="12" lg="9" class="user-layout-content">
+                <router-view />
+            </v-col>
+        </v-row>
+        <v-navigation-drawer v-model="userNavDrawerActive" absolute temporary right>
+            <SideMenu class="pa-3" />
+        </v-navigation-drawer>
+    </v-container>
 </template>
 
 <script>
 import { mapGetters, mapState } from "vuex";
 
 import CustomButton from "../../components/global/CustomButton.vue";
-import SideMenu2 from "./SideMenu2";
+import SideMenu from "./SideMenu";
+import BarsIcon from "../icons/BarsIcon.vue";
 
 export default {
     components: {
         CustomButton,
-        SideMenu2
+        SideMenu,
+        BarsIcon
     },
-    data: () => ({
-        drawer: false,
-        group: null
-    }),
-
-    watch: {
-        group() {
-            this.drawer = false;
-        }
+    data() {
+        return {
+            userNavDrawerActive: false
+        };
     },
     computed: {
         ...mapGetters("auth", ["currentUser"]),
@@ -117,31 +47,77 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.divider {
-    background-color: #e4e4e4;
-    width: 88%;
-    height: 2px;
-    margin-left: 15px;
-}
-
-.name-font {
-    font-size: 12px;
-}
-
 .user-layout {
+    min-height: 85vh;
+
     &-sidebar {
-        background-color: #f5f5f5;
+        background-color: #7c7c7c;
+
+        @media (min-width: 600px) {
+            background-color: #f5f5f5;
+        }
+
+        @media (min-width: 1264px) {
+            &.col-lg-3 {
+                flex: 0 0 22%;
+                max-width: 22%;
+            }
+        }
+    }
+
+    &-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h6 {
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .v-btn {
+            background-color: #161616;
+            letter-spacing: 0;
+            padding: 0 12px;
+
+            &::v-deep {
+                .v-btn__content {
+                    display: flex;
+                    gap: 0.5rem;
+                }
+            }
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
     }
 
     &-content {
         background-color: #fafcfc;
-    }
-}
 
-.data-user {
-    display: flex;
-    height: 35% !important;
-    margin: 10px 0;
+        &.col-lg-9 {
+            @media (min-width: 1264px) {
+                flex: 0 0 78%;
+                max-width: 78%;
+            }
+        }
+    }
+
+    &::v-deep {
+        .v-overlay--active {
+            .v-overlay__scrim {
+                backdrop-filter: blur(30px);
+                background-color: rgba(0, 0, 0, 0.15) !important;
+                opacity: 1 !important;
+            }
+        }
+    }
+
+    .v-navigation-drawer {
+        box-shadow: none;
+    }
 }
 
 .list-cont {
@@ -151,22 +127,5 @@ export default {
 .v-tabs-slider {
     width: 0 !important;
     height: 0 !important;
-}
-
-.div-img {
-    background-color: #dfdfdf;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    margin-right: 15px;
-    justify-content: center;
-    align-items: center;
-    padding: 35px;
-}
-
-.btn-menu {
-    justify-content: flex-end;
-    display: flex;
 }
 </style>

@@ -96,10 +96,10 @@ export default {
     &::v-deep {
         .v-toolbar__content {
             min-height: 60px;
+            padding: 0 12px;
 
             @media (max-width: 960px) {
                 max-height: 60px;
-                padding: 0 12px;
             }
         }
     }

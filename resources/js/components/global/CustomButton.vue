@@ -77,8 +77,16 @@ export default {
 .v-btn {
     font-size: var(--font-size-btn);
     font-weight: 600;
-    letter-spacing: 1.25px;
+    letter-spacing: 0;
     transition: all 0.2s ease-in-out;
+
+    @media (max-width: 959px) {
+        padding: 0 12px !important;
+    }
+
+    @media (min-width: 960px) {
+        letter-spacing: 1.25px;
+    }
 
     &:before {
         content: unset;
@@ -218,6 +226,19 @@ export default {
 
         &:hover {
             background-color: rgba(#434343, 0.8);
+        }
+
+        &:focus {
+            background-color: #161616;
+        }
+    }
+
+    &.nero2 {
+        color: #ffffff !important;
+        background-color: rgba(#161616, 0.5);
+
+        &:hover {
+            background-color: rgba(#161616, 0.8);
         }
 
         &:focus {
