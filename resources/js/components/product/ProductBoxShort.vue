@@ -42,7 +42,7 @@ export default {
 .theme--dark {
     .product-box-short {
         &-body {
-            color: #000;
+            color: #000000;
         }
     }
 }
@@ -61,11 +61,15 @@ export default {
         background-color: #dfdfdf;
         height: auto;
         width: 100px;
+        overflow: hidden;
 
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
 
         img {
+            width: 100%;
+            height: auto;
+
             &.placeholder {
                 width: 70%;
                 margin: auto;

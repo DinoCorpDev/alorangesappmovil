@@ -7,25 +7,25 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class CartCollection extends ResourceCollection
 {
     public function toArray($request)
-    {   
+    {
         return [
-            'data' => $this->collection->map(function($data) {
+            'data' => $this->collection->map(function ($data) {
                 return [
-                    'cart_id' => (integer) $data->id,
-                    'product_id' => (integer) $data->product_id,
-                    'shop_id' => (integer) $data->product->shop_id,
-                    'variation_id' => (integer) $data->product_variation_id,
+                    'cart_id' => (int) $data->id,
+                    'product_id' => (int) $data->product_id,
+                    'shop_id' => (int) $data->product->shop_id,
+                    'variation_id' => (int) $data->product_variation_id,
                     'name' => $data->product->name,
-                    'thumbnail' => api_asset($data->product->thumbnail),
-                    'regular_price' => (double) $data->product->lowest_price,
-                    'dicounted_price' => (double) $data->product->lowest_price,
-                    'tax' => (double) $data->product->lowest_price,
-                    'stock' => (integer) $data->product->stock,
-                    'min_qty' => (integer) $data->product->min_qty,
-                    'max_qty' => (integer) $data->product->max_qty,
-                    'standard_delivery_time' => (integer) $data->product->standard_delivery_time,
-                    'express_delivery_time' => (integer) $data->product->express_delivery_time,
-                    'qty' => (integer) $data->quantity,
+                    'thumbnail' => api_asset($data->product->thumbnail_img),
+                    'regular_price' => (float) $data->product->lowest_price,
+                    'dicounted_price' => (float) $data->product->lowest_price,
+                    'tax' => (float) $data->product->lowest_price,
+                    'stock' => (int) $data->product->stock,
+                    'min_qty' => (int) $data->product->min_qty,
+                    'max_qty' => (int) $data->product->max_qty,
+                    'standard_delivery_time' => (int) $data->product->standard_delivery_time,
+                    'express_delivery_time' => (int) $data->product->express_delivery_time,
+                    'qty' => (int) $data->quantity,
                     'brandName' => optional($data->product->brand)->getTranslation('name'),
                     'reference' => $data->product->reference
                 ];

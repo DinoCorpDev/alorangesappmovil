@@ -62,7 +62,6 @@ export default {
     methods: {
         handleScroll() {
             const currentScroll = this.$refs.layoutNavbar.currentScroll;
-            console.log(currentScroll);
             const windowWidth = window.innerWidth;
 
             this.headerFixed = currentScroll >= this.scrollThreshold;

@@ -128,17 +128,15 @@ export default {
     }
 
     &.v-btn--outlined {
-        &:hover,
-        &:focus {
+        &:hover {
+            background-color: rgba(#ffffff, 0.8);
             color: #000000;
         }
 
-        &:hover {
-            background-color: rgba(#ffffff, 0.8);
-        }
-
-        &:focus {
+        &:focus,
+        &.v-btn--active {
             background-color: #ffffff;
+            color: #000000;
         }
     }
 
@@ -151,7 +149,8 @@ export default {
             background-color: rgba(#434343, 0.8) !important;
         }
 
-        &:focus {
+        &:focus,
+        &.v-btn--active {
             color: #fff;
             background-color: #161616 !important;
         }
@@ -173,7 +172,8 @@ export default {
             background-color: rgba(#000000, 0.8);
         }
 
-        &:focus {
+        &:focus,
+        &.v-btn--active {
             color: #fff;
             background-color: #000000;
         }
@@ -187,7 +187,8 @@ export default {
             background-color: rgba(#858585, 0.8) !important;
         }
 
-        &:focus {
+        &:focus,
+        &.v-btn--active {
             background-color: #161616;
         }
     }
@@ -200,7 +201,8 @@ export default {
             background-color: rgba(#161616, 0.8) !important;
         }
 
-        &:focus {
+        &:focus,
+        &.v-btn--active {
             background-color: #161616;
         }
     }
@@ -214,7 +216,8 @@ export default {
             color: #000 !important;
         }
 
-        &:focus {
+        &:focus,
+        &.v-btn--active {
             background-color: #18191a;
             color: #000 !important;
         }
@@ -228,7 +231,8 @@ export default {
             background-color: rgba(#434343, 0.8);
         }
 
-        &:focus {
+        &:focus,
+        &.v-btn--active {
             background-color: #161616;
         }
     }
@@ -241,7 +245,8 @@ export default {
             background-color: rgba(#161616, 0.8);
         }
 
-        &:focus {
+        &:focus,
+        &.v-btn--active {
             background-color: #161616;
         }
     }
@@ -250,17 +255,15 @@ export default {
         color: #000;
         background-color: #f5f5f5 !important;
 
-        &:hover,
-        &:focus {
+        &:hover {
+            background-color: rgba(#161616, 0.8) !important;
             color: #ffffff;
         }
 
-        &:hover {
-            background-color: rgba(#161616, 0.8) !important;
-        }
-
-        &:focus {
+        &:focus,
+        &.v-btn--active {
             background-color: #161616 !important;
+            color: #ffffff;
         }
     }
 }
