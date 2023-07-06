@@ -141,29 +141,34 @@ class AizUploadController extends Controller
         if ($request->hasFile('aiz_file')) {
             $upload = new Upload;
             $upload->file_original_name = null;
-
-            $arr = explode('.', $request->file('aiz_file')->getClientOriginalName());
-
-            for ($i = 0; $i < count($arr) - 1; $i++) {
-                if ($i == 0) {
-                    $upload->file_original_name .= $arr[$i];
-                } else {
-                    $upload->file_original_name .= "." . $arr[$i];
-                }
-            }
-
-            $upload->file_name = $request->file('aiz_file')->store('uploads/all');
-            $upload->user_id = Auth::user()->id;
             $upload->extension = $request->file('aiz_file')->getClientOriginalExtension();
 
-            if (isset($type[$upload->extension])) {
-                $upload->type = $type[$upload->extension];
-            } else {
-                $upload->type = "others";
+            if (
+                env('DEMO_MODE') == 'On' &&
+                isset($type[$extension]) &&
+                $type[$extension] == 'archive'
+            ) {
+                return '{}';
             }
 
-            $upload->file_size = $request->file('aiz_file')->getSize();
-            $upload->save();
+            if (isset($type[$upload->extension])) {
+
+                $arr = explode('.', $request->file('aiz_file')->getClientOriginalName());
+
+                for ($i = 0; $i < count($arr) - 1; $i++) {
+                    if ($i == 0) {
+                        $upload->file_original_name .= $arr[$i];
+                    } else {
+                        $upload->file_original_name .= "." . $arr[$i];
+                    }
+                }
+
+                $upload->file_name = $request->file('aiz_file')->store('uploads/all');
+                $upload->user_id = Auth::user()->id;
+                $upload->type = $type[$upload->extension];
+                $upload->file_size = $request->file('aiz_file')->getSize();
+                $upload->save();
+            }
 
             return '{}';
         }

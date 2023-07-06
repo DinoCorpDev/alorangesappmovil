@@ -98,7 +98,14 @@
                     <h3 class="opacity-80 mb-3 fs-20">{{ $t("order_summary") }}</h3>
                     <div class="mb-4">
                         <v-row>
+                            
                             <v-col cols="12" sm="8" >
+                                <div class="bg-soft-primary text-reset px-6 rounded-sm" v-if="generalSettings.club_point == 1">
+                                    <v-row class="mb-2">
+                                        <v-col cols="8" class="fw-500 opacity-80">{{$t("total_club_points")}}</v-col>
+                                        <v-col cols="4" class="fw-700">{{ getCartClubPoints }}</v-col>
+                                    </v-row>
+                                </div>
                                 <div class="border border-gray-200 rounded px-6 py-5 grey lighten-5">
                                     <v-row class="">
                                         <v-col cols="8" class="fw-500 opacity-80">{{ $t("sub_total") }}</v-col>
@@ -141,7 +148,14 @@
                         
                         <!-- online payment methods -->
                         <v-col cols="6" sm="4" md="3" v-for="(paymentMethod, i) in paymentMethods" :key="i" :class="[paymentMethod.status == 1 ? '' : 'd-none']">
-                            <label class="aiz-megabox d-block">
+                            <label class="aiz-megabox d-block" v-if="getIsDigital && paymentMethod.code != 'cash_on_delivery'">
+                                <input type="radio" name="checkout_payment_method" :checked="selectedPaymentMethod && paymentMethod.code == selectedPaymentMethod.code" @change="paymentSelected($event,paymentMethod)">
+                                <span class="d-block pa-3 aiz-megabox-elem text-center">
+                                    <img :src="paymentMethod.img" class="img-fluid w-100">
+                                    <span class="fw-700 fs-14">{{ paymentMethod.name }}</span>
+                                </span>
+                            </label>
+                            <label class="aiz-megabox d-block" v-else-if="!getIsDigital">
                                 <input type="radio" name="checkout_payment_method" :checked="selectedPaymentMethod && paymentMethod.code == selectedPaymentMethod.code" @change="paymentSelected($event,paymentMethod)">
                                 <span class="d-block pa-3 aiz-megabox-elem text-center">
                                     <img :src="paymentMethod.img" class="img-fluid w-100">
@@ -368,13 +382,15 @@ export default {
         ...mapGetters("cart",[
             "getCartPrice",
             "getTotalCouponDiscount",
+            "getCartClubPoints",
             "getCartTax",
             "getCartShops",
             "getStandardTime",
             "getExpressTime",
             "getAllCouponCodes",
             "getSelectedCartIds",
-            "checkShopMinOrder"
+            "checkShopMinOrder",
+            "getIsDigital"
         ]),
         ...mapGetters("auth",[
             "currentUser",
@@ -388,7 +404,8 @@ export default {
     methods: {
         ...mapActions("cart",[
             "resetCoupon",
-            'removeMultipleFromCart'
+            'removeMultipleFromCart',
+            'fetchCartProducts'
         ]),
         ...mapActions("address",[
             "fetchAddresses",
@@ -546,6 +563,7 @@ export default {
         this.dateLoop = dateArray;
     },
     mounted(){
+        
 
         if(this.$route.query.cart_payment && this.$route.query.order_code){
 
@@ -570,6 +588,7 @@ export default {
             
         }
         this.rechargeWallet(this.$route.query.wallet_payment)
+        this.fetchCartProducts();
     }
 };
 </script>

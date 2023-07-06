@@ -1,16 +1,18 @@
 <template>
     <div class="forgot-password d-flex flex-column h-100">
-        <layout-navbar-auth />
         <v-container class="d-flex flex-grow-1">
             <v-row justify="center" align="center">
                 <v-col cols="12" sm="12" md="8" lg="6">
                     <div class="wrap pa-3 pa-sm-5 mb-10">
                         <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-8">
                             <h1 class="forgot-password-title">Restablecer contraseña</h1>
+
                             <v-divider class="my-4" />
+
                             <p v-if="resetWith == 'email'">
                                 {{ $t("a_verification_code_has_been_sent_to_your_email") }}
                             </p>
+
                             <p v-else>
                                 {{ $t("a_verification_code_has_been_sent_to_your_phone_number") }}
                             </p>
@@ -21,9 +23,10 @@
                             <p v-else>
                                 {{ $t("enter_your_phone_number_code__new_password") }}
                             </p>
+
                             <div class="inputs mb-5">
                                 <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
-                                <custom-input
+                                <CustomInput
                                     type="email"
                                     v-model="form.email"
                                     :error-messages="emailErrors"
@@ -31,9 +34,10 @@
                                     required
                                 />
                             </div>
+
                             <div class="inputs mb-5">
                                 <label class="black--text text-uppercase">{{ $t("code") }}</label>
-                                <custom-input
+                                <CustomInput
                                     type="email"
                                     v-model="form.code"
                                     :error-messages="codeErrors"
@@ -41,9 +45,10 @@
                                     required
                                 />
                             </div>
+
                             <div class="inputs mb-5">
                                 <label class="black--text text-uppercase">{{ $t("password") }}</label>
-                                <custom-input
+                                <CustomInput
                                     type="email"
                                     v-model="form.password"
                                     :error-messages="passwordErrors"
@@ -51,9 +56,10 @@
                                     required
                                 />
                             </div>
+
                             <div class="inputs mb-5">
                                 <label class="black--text text-uppercase">{{ $t("confirm_password") }}</label>
-                                <custom-input
+                                <CustomInput
                                     type="email"
                                     v-model="form.confirmPassword"
                                     :error-messages="confirmPasswordErrors"
@@ -61,7 +67,8 @@
                                     required
                                 />
                             </div>
-                            <custom-button
+
+                            <CustomButton
                                 block
                                 color="black"
                                 text="Reset Password"
@@ -79,13 +86,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
+
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
-import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
 
-import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
-import { VueTelInput } from "vue-tel-input";
-import { mapGetters } from "vuex";
 export default {
     data: () => ({
         mobileInputProps: {
@@ -114,7 +120,6 @@ export default {
         loading: false
     }),
     components: {
-        VueTelInput,
         CustomButton,
         CustomInput
     },

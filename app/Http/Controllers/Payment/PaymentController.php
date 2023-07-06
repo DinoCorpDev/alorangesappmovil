@@ -14,17 +14,18 @@ use Auth;
 class PaymentController extends Controller
 {
 
-    public function payment_initialize(Request $request, $gateway){
+    public function payment_initialize(Request $request, $gateway)
+    {
         session()->put('redirect_to', $request->redirect_to);
         session()->put('amount', $request->amount);
         session()->put('payment_method', $request->payment_method);
         session()->put('payment_type', $request->payment_type);
         session()->put('user_id', $request->user_id);
         session()->put('order_code', $request->order_code);
-        
+
         session()->put('transactionId', $request->transactionId ?? null);
-        session()->put('receipt', null); 
-        session()->put('receiptFile', null); 
+        session()->put('receipt', null);
+        session()->put('receiptFile', null);
 
         // Authorize Net
         session()->put('card_number', $request->card_number);
@@ -33,46 +34,38 @@ class PaymentController extends Controller
         session()->put('expiration_year', $request->expiration_year);
 
         if ($request->hasFile('receipt')) {
-            if($request->payment_type == "seller_package_payment"){ 
+            if ($request->payment_type == "seller_package_payment") {
                 session()->put('receiptFile', $request->file('receipt')->store('uploads/offline_payments'));
-            }else{
+            } else {
                 session()->put('receipt', $request->file('receipt'));
             }
         }
-        session()->put('seller_package_id', $request->seller_package_id ?? null); 
+        session()->put('seller_package_id', $request->seller_package_id ?? null);
 
-        if($gateway == 'paypal'){
-            return ( new PaypalPaymentController )->index();
-        }
-        elseif ($gateway == 'stripe') {
-            return ( new StripePaymentController )->index();
-        }
-        elseif ($gateway == 'sslcommerz') {
-            return ( new SSLCommerzPaymentController )->index();
-        }
-        elseif ($gateway == 'paystack') {
-            return ( new PaystackPaymentController )->index($request);
-        }
-        elseif ($gateway == 'flutterwave') {
-            return ( new FlutterwavePaymentController )->index();
-        }
-        elseif ($gateway == 'paytm') {
-            return ( new PaytmPaymentController )->index();
-        }
-        elseif ($gateway == 'razorpay') {
-            return ( new RazorpayPaymentController )->index();
-        }
-        elseif ($gateway == 'payfast') {
-            return ( new PayfastPaymentController )->index();
-        }
-        elseif ($gateway == 'authorizenet') {
-            return ( new AuthorizenetPaymentController )->index();
-        }
-        elseif ($gateway == 'mercadopago') {
-            return ( new MercadopagoPaymentController )->index();
-        }
-        elseif (strpos($gateway, 'offline_payment') !== true) { 
-            return ( new ManualPaymentController )->index();
+        if ($gateway == 'paypal') {
+            return (new PaypalPaymentController)->index();
+        } elseif ($gateway == 'stripe') {
+            return (new StripePaymentController)->index();
+        } elseif ($gateway == 'sslcommerz') {
+            return (new SSLCommerzPaymentController)->index();
+        } elseif ($gateway == 'paystack') {
+            return (new PaystackPaymentController)->index($request);
+        } elseif ($gateway == 'flutterwave') {
+            return (new FlutterwavePaymentController)->index();
+        } elseif ($gateway == 'paytm') {
+            return (new PaytmPaymentController)->index();
+        } elseif ($gateway == 'razorpay') {
+            return (new RazorpayPaymentController)->index();
+        } elseif ($gateway == 'payfast') {
+            return (new PayfastPaymentController)->index();
+        } elseif ($gateway == 'authorizenet') {
+            return (new AuthorizenetPaymentController)->index();
+        } elseif ($gateway == 'mercadopago') {
+            return (new MercadopagoPaymentController)->index();
+        } elseif ($gateway == 'iyzico') {
+            return (new IyzicoPaymentController)->index();
+        } elseif (strpos($gateway, 'offline_payment') !== true) {
+            return (new ManualPaymentController)->index();
         }
     }
 
@@ -80,36 +73,34 @@ class PaymentController extends Controller
     {
         if (session('payment_type') == 'cart_payment') {
 
-            $order = CombinedOrder::where('code',session('order_code'))->first();
+            $order = CombinedOrder::where('code', session('order_code'))->first();
 
             (new OrderController)->paymentDone($order, session('payment_method'), json_encode($payment_details));
-
-        }elseif (session('payment_type') == 'wallet_payment') {
+        } elseif (session('payment_type') == 'wallet_payment') {
 
             $payment_data['amount'] = session('amount');
             $payment_data['user_id'] = session('user_id');
             $payment_data['payment_method'] = session('payment_method');
-            
+
             $payment_data['transactionId'] = session('transactionId');
-            $payment_data['receipt'] = session('receipt'); 
+            $payment_data['receipt'] = session('receipt');
 
             (new WalletController)->wallet_payment_done($payment_data, json_encode($payment_details));
+        } elseif (session('payment_type') == 'seller_package_payment') {
 
-        }elseif(session('payment_type') == 'seller_package_payment'){
-            
             (new SellerPackageController)->purchase_payment_done(session('seller_package_id'), session('payment_method'), json_encode($payment_details));
 
-            if(!Auth::check()){
+            if (!Auth::check()) {
                 Auth::login(User::find(session('user_id')));
             }
 
             return redirect()->route('seller.dashboard');
         }
 
-        $redirect_to = session('redirect_to')."?";
-        $redirect_to .= session('payment_type')."=success";
-        $redirect_to .= "&payment_method=".session('payment_method');
-        $redirect_to .= session('payment_type') == 'cart_payment' ? "&order_code=".session('order_code') : "";
+        $redirect_to = session('redirect_to') . "?";
+        $redirect_to .= session('payment_type') . "=success";
+        $redirect_to .= "&payment_method=" . session('payment_method');
+        $redirect_to .= session('payment_type') == 'cart_payment' ? "&order_code=" . session('order_code') : "";
 
         $this->clear_session();
 
@@ -118,16 +109,16 @@ class PaymentController extends Controller
 
     public function payment_failed()
     {
-        
-        if(session('payment_type') == 'seller_package_payment'){
+
+        if (session('payment_type') == 'seller_package_payment') {
             flash(translate('Package purchasing failed'))->error();
             return redirect()->route('seller.dashboard');
         }
 
-        $redirect_to = session('redirect_to')."?";
-        $redirect_to .= session('payment_type')."=failed";
-        $redirect_to .= "&payment_method=".session('payment_method');
-        $redirect_to .= session('payment_type') == 'cart_payment' ? "&order_code=".session('order_code') : "";
+        $redirect_to = session('redirect_to') . "?";
+        $redirect_to .= session('payment_type') . "=failed";
+        $redirect_to .= "&payment_method=" . session('payment_method');
+        $redirect_to .= session('payment_type') == 'cart_payment' ? "&order_code=" . session('order_code') : "";
 
         $this->clear_session();
 

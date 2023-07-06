@@ -1,65 +1,53 @@
 <template>
-    <div>
-        <v-app-bar
-            ref="layoutNavbar"
-            class="layout-navbar-auth"
-            :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'"
-            elevation="0"
-            prominent
-            dense
-            shrink-on-scroll
-            :fixed="headerFixed"
-        >
-            <v-container class="pa-0 fill-height justify-space-between" fluid>
-                <router-link :to="{ name: 'Home2' }" class="layout-navbar-auth-brand">
-                    <LogoIdovela :large="logoLarge" />
-                </router-link>
-                <SearchInput class="d-none d-sm-flex" />
-                <div class="layout-navbar-auth-nav">
-                    <DoubleButton />
-                    <ToggleMenu />
-                </div>
-            </v-container>
-        </v-app-bar>
-        <NabvarBottomBar v-if="bottomBar" />
-    </div>
+    <v-app-bar
+        ref="layoutNavbar"
+        class="layout-navbar"
+        :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'"
+        elevation="0"
+        prominent
+        dense
+        shrink-on-scroll
+        :fixed="headerFixed"
+    >
+        <v-container class="pa-0 fill-height justify-space-between" fluid>
+            <router-link :to="{ name: 'Home2' }" class="layout-navbar-brand">
+                <LogoIdovela :large="logoLarge" />
+            </router-link>
+            <div class="layout-navbar-nav">
+                <CustomButton color="grey" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
+                <CustomButton v-if="!userIsLoggedIn" color="grey" text="Iniciar Sesión" :to="{ name: 'Login' }" />
+                <DoubleButton v-else />
+                <ToggleMenu />
+            </div>
+        </v-container>
+    </v-app-bar>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 
-import CustomButton from "./CustomButton.vue";
-import DoubleButton from "../header/DoubleButton.vue";
-import LogoIdovela from "../header/LogoIdovela.vue";
-import NabvarBottomBar from "./NabvarBottomBar.vue";
-import SearchInput from "./SearchInput.vue";
-import ToggleMenu from "../header/ToggleMenu.vue";
+import CustomButton from "../global/CustomButton.vue";
+import DoubleButton from "./DoubleButton.vue";
+import LogoIdovela from "./LogoIdovela.vue";
+import ToggleMenu from "./ToggleMenu.vue";
 
 export default {
-    name: "LayoutNavbarAuth",
-    props: {
-        bottomBar: {
-            type: Boolean,
-            default: true
-        }
-    },
+    name: "LayoutNavbar",
     components: {
         CustomButton,
         DoubleButton,
         LogoIdovela,
-        NabvarBottomBar,
-        SearchInput,
         ToggleMenu
     },
     data() {
         return {
             headerFixed: false,
             logoLarge: false,
-            scrollThreshold: 50
+            scrollThreshold: 10
         };
     },
     computed: {
-        ...mapGetters("auth", ["userShortName"])
+        ...mapGetters("auth", ["userIsLoggedIn"])
     },
     mounted() {
         window.addEventListener("resize", this.handleScroll);
@@ -82,7 +70,7 @@ export default {
     gap: 1rem;
 }
 
-.layout-navbar-auth {
+.layout-navbar {
     min-height: 60px;
     z-index: 10;
 

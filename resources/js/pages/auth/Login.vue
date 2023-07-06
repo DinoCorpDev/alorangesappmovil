@@ -1,69 +1,72 @@
 <template>
     <div class="login d-flex flex-column h-100">
-        <layout-navbar-auth />
-        <v-container class="flex-grow-1 mb-5">
-            <v-row class="wrap pa-5" no-gutters>
-                <v-col cols="12" lg="6">
-                    <div class="d-lg-none">
-                        <h1 class="login-title">Inicio de sesión</h1>
-                        <v-divider class="my-4" />
-                    </div>
-                    <carousel-description />
-                </v-col>
-                <v-col cols="12" lg="6" class="pt-5 pt-lg-0 pl-lg-5">
-                    <div class="login-content h-100 pa-lg-5 pt-lg-8">
-                        <div class="inputs mb-8">
-                            <div class="d-none d-lg-block">
+        <v-container class="flex-grow-1 mb-5" fluid>
+            <v-row justify="center">
+                <v-col cols="12" sm="11" md="10" lg="8">
+                    <v-row class="wrap pa-5" no-gutters>
+                        <v-col cols="12" lg="6">
+                            <div class="d-lg-none">
                                 <h1 class="login-title">Inicio de sesión</h1>
                                 <v-divider class="my-4" />
                             </div>
-                            <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
-                                <div class="form-group">
-                                    <label class="black--text">{{ $t("email_address") }}</label>
-                                    <custom-input
-                                        v-model="form.email"
-                                        type="text"
-                                        :error-messages="emailErrors"
-                                        required
+                            <CarouselDescription />
+                        </v-col>
+                        <v-col cols="12" lg="6" class="pt-5 pt-lg-0 pl-lg-5">
+                            <div class="login-content h-100 pa-lg-5 pt-lg-8">
+                                <div class="inputs mb-8">
+                                    <div class="d-none d-lg-block">
+                                        <h1 class="login-title">Inicio de sesión</h1>
+                                        <v-divider class="my-4" />
+                                    </div>
+                                    <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
+                                        <div class="form-group">
+                                            <label class="black--text">{{ $t("email_address") }}</label>
+                                            <CustomInput
+                                                v-model="form.email"
+                                                type="text"
+                                                :error-messages="emailErrors"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <label class="black--text">{{ $t("password") }}</label>
+                                            <CustomInput
+                                                v-model="form.password"
+                                                type="password"
+                                                :error-messages="passwordErrors"
+                                                required
+                                            />
+                                        </div>
+                                        <router-link :to="{ name: 'ForgotPassword' }" class="black--text link-custom">
+                                            {{ $t("forgot_password") }}?
+                                        </router-link>
+                                        <CustomButton
+                                            :disabled="loading"
+                                            :loading="loading"
+                                            :text="$t('login')"
+                                            block
+                                            class="mt-3 mb-3"
+                                            color="nero"
+                                            type="submit"
+                                            @click="login"
+                                        />
+                                    </v-form>
+                                    <router-link :to="{ name: 'Registration' }" class="black--text link-custom">
+                                        ¿No tienes ninguna cuenta?
+                                    </router-link>
+                                    <CustomButton
+                                        block
+                                        light
+                                        color="grey"
+                                        class="mt-3"
+                                        text="Registrarse"
+                                        :to="{ name: 'Registration' }"
                                     />
                                 </div>
-                                <div class="form-group mb-4">
-                                    <label class="black--text">{{ $t("password") }}</label>
-                                    <custom-input
-                                        v-model="form.password"
-                                        type="password"
-                                        :error-messages="passwordErrors"
-                                        required
-                                    />
-                                </div>
-                                <router-link :to="{ name: 'ForgotPassword' }" class="black--text link-custom">
-                                    {{ $t("forgot_password") }}?
-                                </router-link>
-                                <custom-button
-                                    :disabled="loading"
-                                    :loading="loading"
-                                    :text="$t('login')"
-                                    block
-                                    class="mt-3 mb-3"
-                                    color="nero"
-                                    type="submit"
-                                    @click="login"
-                                />
-                            </v-form>
-                            <router-link :to="{ name: 'Registration' }" class="black--text link-custom">
-                                ¿No tienes ninguna cuenta?
-                            </router-link>
-                            <custom-button
-                                block
-                                light
-                                color="grey"
-                                class="mt-3"
-                                text="Registrarse"
-                                :to="{ name: 'Registration' }"
-                            />
-                        </div>
-                        <auth-footer />
-                    </div>
+                                <AuthFooter />
+                            </div>
+                        </v-col>
+                    </v-row>
                 </v-col>
             </v-row>
         </v-container>
@@ -71,22 +74,20 @@
 </template>
 
 <script>
-import CarouselDescription from "../../components/global/CarouselDescription.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
-import CustomInput from "../../components/global/CustomInput.vue";
-import LayoutNavbarAuth from "../../components/global/LayoutNavbarAuth.vue";
-import AuthFooter from "./AuthFooter.vue";
-
 import { required, email } from "vuelidate/lib/validators";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 
+import AuthFooter from "./AuthFooter.vue";
+import CarouselDescription from "../../components/global/CarouselDescription.vue";
+import CustomButton from "../../components/global/CustomButton.vue";
+import CustomInput from "../../components/global/CustomInput.vue";
+
 export default {
     components: {
+        AuthFooter,
         CarouselDescription,
         CustomButton,
-        CustomInput,
-        LayoutNavbarAuth,
-        AuthFooter
+        CustomInput
     },
     data: () => ({
         form: {
@@ -181,17 +182,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-application {
-    &.theme--light {
-        background: #dee0e0;
-    }
-    &.theme--dark {
-        background: #dee0e0;
-    }
-}
-</style>
-
-<style lang="scss" scoped>
 .login {
     &-title {
         font-size: 24px;
@@ -231,8 +221,7 @@ export default {
 }
 
 .link-custom {
-    font-family: "Overpass", sans-serif;
-    font-size: 12px;
+    font-size: var(--font-size-caption);
     letter-spacing: 0.4px;
     text-transform: uppercase;
 }

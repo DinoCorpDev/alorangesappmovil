@@ -18,57 +18,27 @@ class AddressController extends Controller
 
     public function createShippingAddress(Request $request)
     {
-        $user_id = $request->has('customer_id') ? $request->customer_id : auth('api')->user()->id;
-
-        $shipping_count = Address::where('user_id', $user_id)->where('default_shipping', 1)->count();
-        $billing_count = Address::where('user_id', $user_id)->where('default_billing', 1)->count();
-        $service_count = Address::where('user_id', $user_id)->where('default_service', 1)->count();
-
-        $isShipping  = false;
-        $isBilling  = false;
-        $isService  = false;
-
-        if ($request->type == "shipping") {
-            $isShipping = true;
-        }
-
-        if ($request->type == "billing") {
-            $isBilling = true;
-        }
-
-        if ($request->type == "service") {
-            $isService = true;
-        }
-
-        if ($isShipping == false && $isBilling == false && $isService == false) {
-            $isShipping = true;
-        }
+        $shipping_count = Address::where('user_id', auth('api')->user()->id)->where('default_shipping', 1)->count();
+        $billing_count = Address::where('user_id', auth('api')->user()->id)->where('default_billing', 1)->count();
+        $service_count = Address::where('user_id', auth('api')->user()->id)->where('default_service', 1)->count();
 
         $address = new Address;
-        $address->user_id = $user_id;
+        $address->user_id = auth('api')->user()->id;
         $address->address = $request->address;
         $address->name = $request->name;
         $address->details = $request->details;
+        $address->country = Country::find($request->country)->name;
         $address->country_id = $request->country;
+        $address->state = State::find($request->state)->name;
         $address->state_id = $request->state;
+        $address->city = City::find($request->city)->name;
         $address->city_id = $request->city;
         $address->neighborhood = $request->neighborhood;
         $address->postal_code = $request->postal_code;
         $address->phone = $request->phone;
-
-        try {
-            $address->country = Country::find($request->country)->name;
-            $address->state = State::find($request->state)->name;
-            $address->city = City::find($request->city)->name;
-        } catch (\Throwable $th) {
-            $address->country = $request->country;
-            $address->state = $request->state;
-            $address->city = $request->city;
-        }
-
-        $address->default_shipping = $isShipping == true ? ($shipping_count > 0 ? 0 : 1) : 0;
-        $address->default_billing = $isBilling == true ? ($billing_count > 0 ? 0 : 1) : 0;
-        $address->default_service = $isService == true ? ($service_count > 0 ? 0 : 1) : 0;
+        $address->default_shipping = $shipping_count > 0 ? 0 : 1;
+        $address->default_billing = $billing_count > 0 ? 0 : 1;
+        $address->default_service = $service_count > 0 ? 0 : 1;
         $address->save();
 
         return response()->json([
@@ -129,11 +99,11 @@ class AddressController extends Controller
         }
 
         $address->address = $request->address;
-        //$address->country = Country::find($request->country)->name;
+        $address->country = Country::find($request->country)->name;
         $address->country_id = $request->country;
-        //$address->state = State::find($request->state)->name;
+        $address->state = State::find($request->state)->name;
         $address->state_id = $request->state;
-        //$address->city = City::find($request->city)->name;
+        $address->city = City::find($request->city)->name;
         $address->city_id = $request->city;
         $address->postal_code = $request->postal_code;
         $address->phone = $request->phone;

@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicon -->
-    <link rel="icon" sizes="512x512" href="{{ static_asset('web-assets/img/icons/icon-512x512.png') }}">
+    <link rel="icon" sizes="512x512" href="{{ uploaded_asset(get_setting('site_icon')) }}">
     <title>{{ config('app.name', 'The Shop') }}</title>
 
     <!-- google font -->
@@ -73,7 +73,7 @@
                 </div>
                 <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                     <p class="mb-0">&copy; {{ get_setting('site_name') }}
-                        v{{ get_setting('current_version') }}</p>
+                        {{ get_setting('current_version') }}</p>
                 </div>
             </div><!-- .aiz-main-content -->
         </div><!-- .aiz-content-wrapper -->

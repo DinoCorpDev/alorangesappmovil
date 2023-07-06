@@ -40,10 +40,10 @@
 					<div class="col-sm-10">
 						<div class="input-group">
 							@if($page->type == 'custom_page')
-								<div class="input-group-prepend"><span class="input-group-text">{{ route('home') }}/</span></div>
+								<div class="input-group-prepend"><span class="input-group-text">{{ route('home') }}/page/</span></div>
 								<input type="text" class="form-control" placeholder="{{ translate('Slug') }}" name="slug" value="{{ $page->slug }}">
 							@else
-								<input class="form-control" value="{{ route('home') }}/{{ $page->slug }}" disabled>
+								<input class="form-control" value="{{ route('home') }}/page/{{ $page->slug }}" disabled>
 							@endif
 						</div>
 						<small class="form-text text-muted">{{ translate('Use character, number, hypen only') }}</small>

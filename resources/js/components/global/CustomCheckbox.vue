@@ -1,7 +1,15 @@
 <template>
-    <div class="custom-checkbox" @click="toggleCheckbox">
+    <div class="custom-checkbox" :class="{ 'error--text': error }" @click="toggleCheckbox">
         <div class="custom-checkbox-input">
-            <input type="checkbox" :required="required" :checked="isChecked" />
+            <input
+                :id="id"
+                :name="name"
+                :required="required"
+                :type="type"
+                :value="inputValue"
+                ref="input"
+                v-model="isChecked"
+            />
             <span class="custom-checkbox-checkmark">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15.673" height="12.19" viewBox="0 0 15.673 12.19">
                     <path
@@ -21,6 +29,7 @@
 
 <script>
 export default {
+    name: "CustomCheckbox",
     props: {
         label: {
             type: String,
@@ -31,8 +40,27 @@ export default {
             default: false
         },
         value: {
+            type: [Boolean, String, Number]
+        },
+        inputValue: {
+            type: [Boolean, String, Number],
+            default: ""
+        },
+        error: {
             type: Boolean,
             default: false
+        },
+        type: {
+            type: String,
+            default: "checkbox"
+        },
+        name: {
+            type: String,
+            default: undefined
+        },
+        id: {
+            type: String,
+            default: undefined
         }
     },
     computed: {
@@ -47,7 +75,13 @@ export default {
     },
     methods: {
         toggleCheckbox() {
-            this.isChecked = !this.isChecked;
+            if (this.type === "radio") {
+                this.$refs.input.click();
+            }
+
+            if (this.type === "checkbox") {
+                this.isChecked = !this.isChecked;
+            }
         }
     }
 };
@@ -111,9 +145,12 @@ export default {
         width: 24px;
         border-radius: 5px;
         border: 1px solid #000000;
+        background-color: #f5f5f5;
+    }
 
-        &:is(:hover) {
-            background-color: #000000;
+    &:hover {
+        .custom-checkbox-checkmark {
+            background-color: #dfdfdf;
         }
     }
 
@@ -148,6 +185,13 @@ export default {
         a {
             text-decoration: underline;
             font-weight: 700;
+        }
+    }
+
+    &.error--text {
+        .custom-checkbox-checkmark {
+            border-color: currentColor;
+            border-width: 2px;
         }
     }
 }

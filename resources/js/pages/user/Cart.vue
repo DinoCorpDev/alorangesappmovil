@@ -20,38 +20,33 @@
         <v-divider />
         <v-stepper-items>
             <v-stepper-content step="1">
-                <v-row v-if="cartItems != 0">
-                    <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
-                        <ProductCart
-                            :reference="product?.reference"
-                            :name="product?.name"
-                            :price="product?.regular_price"
-                            icon1="/public/assets/img/icons/back.svg"
-                            icon3="/public/assets/img/icons/marker.svg"
-                            :brand="product?.brandName"
-                            @changeQty="changeQty"
-                            @changeQtyMinus="changeQty"
-                            :cart_id="product?.cart_id"
-                            :quantity="product?.qty"
-                            :isCollection="product?.isCollection ?? false"
-                            :productsCollection="product?.products"
-                        />
-                    </v-col>
-                    <v-col cols="12" class="d-flex justify-space-between">
-                        <div class="mb-2"></div>
-                        <total :total="priceTotal" />
-                        <div class="mb-2">
-                            <CustomButton text="Continuar" color="nero" @click="step = 2" />
+                <v-container fluid>
+                    <v-row>
+                        <v-col cols="5">Productos</v-col>
+                        <v-col cols="2">Precio</v-col>
+                        <v-col cols="2">Cantidad</v-col>
+                        <v-col cols="3">Opciones</v-col>
+                    </v-row>
+                    <v-row class="car-items" v-if="cartItems != 0">
+                        <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
+                            <ProductCart :productDetails="product" @changeQty="changeQty" @changeQtyMinus="changeQty" />
+                        </v-col>
+                        <v-col cols="12" class="d-flex justify-space-between">
+                            <div class="mb-2"></div>
+                            <total :total="priceTotal" />
+                            <div class="mb-2">
+                                <CustomButton text="Continuar" color="nero" @click="step = 2" />
+                            </div>
+                        </v-col>
+                    </v-row>
+                    <div class="emptycart" v-else>
+                        <div class="cuadro-emptycart">
+                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoCarrito.png" />
+                            <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
+                            <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                         </div>
-                    </v-col>
-                </v-row>
-                <div class="emptycart" v-else>
-                    <div class="cuadro-emptycart">
-                        <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoCarrito.png" />
-                        <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
-                        <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                     </div>
-                </div>
+                </v-container>
             </v-stepper-content>
             <v-stepper-content step="2">
                 <v-row>
@@ -790,21 +785,7 @@
                     <v-divider class="my-3" />
                     <v-row>
                         <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
-                            <ProductCart
-                                :reference="product?.reference"
-                                :name="product?.name"
-                                :price="product?.regular_price"
-                                icon1="/public/assets/img/icons/back.svg"
-                                icon3="/public/assets/img/icons/marker.svg"
-                                :brand="product?.brandName"
-                                @changeQty="changeQty"
-                                @changeQtyMinus="changeQty"
-                                :cart_id="product?.cart_id"
-                                :quantity="product?.qty"
-                                :showOperation="false"
-                                :isCollection="product?.isCollection ?? false"
-                                :productsCollection="product?.products"
-                            />
+                            <ProductCart :productDetails="product" @changeQty="changeQty" @changeQtyMinus="changeQty" />
                         </v-col>
                     </v-row>
                     <v-divider class="my-3" />
@@ -1049,7 +1030,7 @@ export default {
         },
         async getAddresses() {
             const res = await this.call_api("get", `user/addresses`);
-            this.snack({ message: `Please select a cart product`, color: "red" });
+            // this.snack({ message: `Please select a cart product`, color: "red" });
             if (res.data.success) {
                 res?.data?.data?.map(address => {
                     if (address?.default_shipping == 1) {
@@ -1205,6 +1186,10 @@ export default {
         display: flex;
         justify-content: flex-start;
     }
+}
+
+.car-items {
+    gap: 0.5rem;
 }
 
 // Estilos carrito vacio //

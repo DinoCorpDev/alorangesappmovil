@@ -26,7 +26,7 @@
                 </template>
                 <template v-else>
                     <v-list class="d-flex py-0">
-                        <v-list-item class="flex-grow-0 flex-fill">
+                        <!-- <v-list-item class="flex-grow-0 flex-fill">
                             <v-list-item-title>
                                 <router-link
                                     :to="{ name: 'Home' }"
@@ -85,7 +85,7 @@
                                     {{ $t("offers") }}
                                 </router-link>
                             </v-list-item-title>
-                        </v-list-item>
+                        </v-list-item> -->
                         <v-list-item
                             v-for="(link, label, i) in $optional(
                                 'data.header_menu'

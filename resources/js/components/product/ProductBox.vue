@@ -127,6 +127,13 @@ export default {
             .icon {
                 line-height: 0.5;
 
+                @media (max-width: 600px) {
+                    svg {
+                        height: 14px;
+                        width: 14px;
+                    }
+                }
+
                 path {
                     fill: #040405;
                     opacity: 0.5;
@@ -207,7 +214,7 @@ export default {
     }
 
     &-reference {
-        font-size: 10px;
+        font-size: var(--font-size-caption2);
         font-weight: 600;
         line-height: 13px;
         letter-spacing: 1.5px;
@@ -215,7 +222,7 @@ export default {
     }
 
     &-name {
-        font-size: 15px;
+        font-size: var(--font-size-body1);
         font-weight: 700;
         line-height: 24px;
         letter-spacing: 0;
@@ -237,7 +244,7 @@ export default {
         letter-spacing: 0;
 
         &.discounted {
-            font-size: 15px;
+            font-size: var(--font-size-body1);
 
             & + .product-box-price {
                 background-color: #e8ff00;

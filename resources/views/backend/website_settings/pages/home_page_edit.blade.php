@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 @section('content')
 @php
-	$all_products = \App\Models\Product::where('published',1)->get();
+	$all_products = \App\Models\Product::where('published',1)->where('approved', 1)->get();
 	$all_shops = filter_shops(\App\Models\Shop::query())->get();
 @endphp
 <h6 class="fw-600">{{ translate('Home Page Settings') }}</h6>

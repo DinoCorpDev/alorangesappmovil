@@ -39,7 +39,9 @@ const loadState = () => ({
         { code: "night", label: "Night" },
         { code: "device", label: "Device" }
     ],
-    prefersDark: window.matchMedia("(prefers-color-scheme: dark)").matches
+    prefersDark: window.matchMedia("(prefers-color-scheme: dark)").matches,
+    shopRegistrationMessageTitle: shopSetting.shop_registration_message.shop_registration_message_title,
+    shopRegistrationMessageContent: shopSetting.shop_registration_message.shop_registration_message_content
 });
 
 export default {
@@ -97,6 +99,9 @@ export default {
         availableCountries(state) {
             return state.availableCountries;
         },
+        allCurrencies(state) {
+            return state.allCurrencies;
+        },
         generalSettings(state) {
             return state.generalSettings;
         },
@@ -117,6 +122,12 @@ export default {
         },
         getUnseenProductQuerries(state) {
             return state.unseenProductQuerries;
+        },
+        shopRegistrationMessageTitle(state) {
+            return state.shopRegistrationMessageTitle;
+        },
+        shopRegistrationMessageContent(state) {
+            return state.shopRegistrationMessageContent;
         }
     },
     mutations: {
@@ -158,10 +169,12 @@ export default {
             state.routerLoading = status;
         },
         setTheme(state, theme) {
-            state.userTheme = state.themeItems[theme].code;
+            if (state.userTheme !== theme) {
+                state.userTheme = theme;
 
-            localStorage.removeItem("shopSelectedTheme");
-            localStorage.setItem("shopSelectedTheme", state.userTheme);
+                localStorage.removeItem("shopSelectedTheme");
+                localStorage.setItem("shopSelectedTheme", state.userTheme);
+            }
         },
         removeCurrency(state) {
             state.userCurrency = state.appCurrency;
@@ -170,6 +183,9 @@ export default {
         removeLanguage(state) {
             state.userLanguage = state.appLanguage;
             localStorage.removeItem("shopSelectedLanguage");
+        },
+        setRouterLoading(state, status) {
+            state.routerLoading = status;
         }
     },
     actions: {

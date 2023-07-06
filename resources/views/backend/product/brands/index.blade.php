@@ -3,24 +3,21 @@
 @section('content')
     <div class="aiz-titlebar text-left mt-2 mb-3">
         <div class="align-items-center">
-            <h1 class="h3 mb-5">
-                {{ translate('All Brands') }}
-
-                <label class="btn btn-secondary mb-0 float-right" for="openCSV" href="#" style="width: 160px;">
-                    <span id="span-btn-excel">{{ translate('Import Brands') }}</span>
-                    <div class="spinner-border m-auto" id="spinner-excel" role="status"
-                        style="width: 20px; height: 20px; display: none">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </label>
-                <form class="d-none" id="formCSV" action="{{ route('brands.import') }}" method="post"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <input class="form-control" id="openCSV" id="uploaded_file" name="uploaded_file" type="file"
-                        onchange="document.getElementById('formCSV').submit();document.getElementById('span-btn-excel').style.display = 'none';document.getElementById('spinner-excel').style.display = 'block'"
-                        required>
-                </form>
-            </h1>
+            <h1 class="h3 mb-5">{{ translate('All Brands') }}</h1>
+            <label class="btn btn-secondary mb-0 float-right" for="openCSV" href="#" style="width: 160px;">
+                <span id="span-btn-excel">{{ translate('Import Brands') }}</span>
+                <div class="spinner-border m-auto" id="spinner-excel" role="status"
+                    style="width: 20px; height: 20px; display: none">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </label>
+            <form class="d-none" id="formCSV" action="{{ route('brands.import') }}" method="post"
+                enctype="multipart/form-data">
+                @csrf
+                <input class="form-control" id="openCSV" id="uploaded_file" name="uploaded_file" type="file"
+                    onchange="document.getElementById('formCSV').submit();document.getElementById('span-btn-excel').style.display = 'none';document.getElementById('spinner-excel').style.display = 'block'"
+                    required>
+            </form>
         </div>
     </div>
 
@@ -34,8 +31,7 @@
                     <div class="col-md-4">
                         <form class="" id="sort_brands" action="" method="GET">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" id="search" name="search"
-                                    @isset($sort_search)
+                                <input type="text" class="form-control" id="search" name="search" @isset($sort_search)
                                     value="{{ $sort_search }}" @endisset
                                     placeholder="{{ translate('Type name & Enter') }}">
                             </div>
@@ -59,8 +55,8 @@
                                     <td>{{ $brand->getTranslation('name') }}</td>
                                     <td>
                                         <div class="h-50px w-100px d-flex align-items-center justify-content-center">
-                                            <img src="{{ uploaded_asset($brand->logo) }}" alt="{{ translate('Brand') }}"
-                                                class="img-fluid"
+                                            <img src="{{ uploaded_asset($brand->logo) }}"
+                                                alt="{{ translate('Brand') }}" class="img-fluid"
                                                 onerror="this.onerror=null;this.src='{{ static_asset('/assets/img/placeholder.jpg') }}';">
                                         </div>
                                     </td>
@@ -73,8 +69,7 @@
                                             </a>
                                         @endcan
                                         @can('delete_brands')
-                                            <a href="#"
-                                                class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
+                                            <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
                                                 data-href="{{ route('brands.destroy', $brand->id) }}"
                                                 title="{{ translate('Delete') }}">
                                                 <i class="las la-trash"></i>

@@ -52,6 +52,19 @@
                                         <i class="las la-eye"></i>
                                     </a>
                                 @endcan
+                                @if ($user->banned != 1)
+                                    <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm"
+                                        onclick="confirm_ban('{{ route('customers.ban', encrypt($user->id)) }}');"
+                                        title="{{ translate('Ban this Customer') }}">
+                                        <i class="las la-user-slash"></i>
+                                    </a>
+                                @else
+                                    <a href="#" class="btn btn-soft-success btn-icon btn-circle btn-sm"
+                                        onclick="confirm_unban('{{ route('customers.ban', encrypt($user->id)) }}');"
+                                        title="{{ translate('Unban this Customer') }}">
+                                        <i class="las la-user-check"></i>
+                                    </a>
+                                @endif
                                 @can('delete_customers')
                                     <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
                                         data-href="{{ route('customers.destroy', $user->id) }}"

@@ -31,6 +31,10 @@ class PaystackPaymentController extends Controller
         return Paystack::getAuthorizationUrl()->redirectNow();
     }
 
+    public function paystackNewCallback()
+    {
+        Paystack::getCallbackData();
+    }
 
     /**
      * Obtain Paystack payment information
@@ -56,4 +60,5 @@ class PaystackPaymentController extends Controller
             return ( new PaymentController )->payment_failed();
         }
     }
+    
 }

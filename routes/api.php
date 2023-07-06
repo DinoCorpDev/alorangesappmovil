@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ChatController;
+use App\Http\Controllers\Api\ClubPointController;
 use App\Http\Controllers\Api\ConversationController;
 use App\Http\Controllers\Api\CouponController;
 use App\Http\Controllers\Api\FollowController;
@@ -35,19 +36,25 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
     });
 
     Route::group(['prefix' => 'auth'], function () {
-        Route::post('login', [AuthController::class, 'login']);
-        Route::post('signup', [AuthController::class, 'signup']);
-        Route::post('verify', [AuthController::class, 'verify']);
-        Route::post('resend-code', [AuthController::class, 'resend_code']);
+        // Banned User
+        Route::group(['middleware' => 'unbanned'], function () {
+            Route::post('login', [AuthController::class, 'login']);
+            Route::post('signup', [AuthController::class, 'signup']);
+            Route::post('verify', [AuthController::class, 'verify']);
+            Route::post('resend-code', [AuthController::class, 'resend_code']);
 
-        Route::post('password/create', [PasswordResetController::class, 'create']);
-        Route::post('password/reset', [PasswordResetController::class, 'reset']);
+            Route::post('password/create', [PasswordResetController::class, 'create']);
+            Route::post('password/reset', [PasswordResetController::class, 'reset']);
+        });
 
         Route::group(['middleware' => 'auth:api'], function () {
             Route::get('logout', [AuthController::class, 'logout']);
             Route::get('user', [AuthController::class, 'user']);
         });
     });
+
+    Route::post('temp-id-cart', [AuthController::class, 'tempIdCart']);
+    Route::post('temp-id-cart-update', [AuthController::class, 'tempIdCartUpdate']);
 
     Route::get('locale/{language_code}', [TranslationController::class, 'index']);
     Route::get('setting/home/{section}', [SettingController::class, 'home_setting']);
@@ -97,6 +104,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::get('/details/{brand_slug}', [BrandController::class, 'show']);
     });
 
+    Route::post('compared-list', [ProductController::class, 'productComparedList']);
+    Route::get('search.ajax/{keyword}', [ProductController::class, 'ajax_search']);
+
     Route::get('all-countries', [AddressController::class, 'get_all_countries']);
     Route::get('states/{country_id}', [AddressController::class, 'get_states_by_country_id']);
     Route::get('cities/{state_id}', [AddressController::class, 'get_cities_by_state_id']);
@@ -113,7 +123,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
 
     Route::post('payment/image', [OrderController::class, 'paymentImage']);
 
-    Route::group(['middleware' => 'auth:api'], function () {
+    Route::group(['middleware' => ['auth:api', 'unbanned']], function () {
 
         Route::group(['prefix' => 'checkout'], function () {
             Route::get('get-shipping-cost/{address_id}', [OrderController::class, 'get_shipping_cost']);
@@ -135,6 +145,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::get('coupons', [CouponController::class, 'index']);
 
             Route::get('orders', [OrderController::class, 'index']);
+            Route::get('orders/downloads', [OrderController::class, 'productDownloads']);
+            Route::get('orders/product/download/{id}', [OrderController::class, 'download']);
             Route::get('order/{order_code}', [OrderController::class, 'show']);
             Route::get('order/cancel/{order_id}', [OrderController::class, 'cancel']);
             Route::get('order/invoice-download/{order_code}', [OrderController::class, 'invoice_download']);
@@ -146,6 +158,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::apiResource('follow', FollowController::class)->except(['update', 'show']);
 
             Route::get('addresses', [AddressController::class, 'addresses']);
+            Route::post('address/create', [AddressController::class, 'createShippingAddress']);
             Route::post('address/update', [AddressController::class, 'updateShippingAddress']);
             Route::get('address/delete/{id}', [AddressController::class, 'deleteShippingAddress']);
             Route::get('address/default-shipping/{id}', [AddressController::class, 'defaultShippingAddress']);
@@ -157,8 +170,13 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::get('querries/{id}', [ConversationController::class, 'show']);
             Route::post('new-message-query', [ConversationController::class, 'storeMessage']);
 
+            # wallet
             Route::post('wallet/recharge', [WalletController::class, 'recharge']);
             Route::get('wallet/history', [WalletController::class, 'walletRechargeHistory']);
+
+            # club points
+            Route::get('earning/history', [ClubPointController::class, 'earningRechargeHistory']);
+            Route::post('convert-point-into-wallet', [ClubPointController::class, 'convert_point_into_wallet']);
 
             // Refund Addon
             Route::get('refund-requests', [RefundRequestController::class, 'index']);

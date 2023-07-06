@@ -57,7 +57,7 @@
 								<i class="las la-truck"></i>
 							</button>
                         </div>
-                    
+
                         <div class="" id="cart-details">
                             <div class="aiz-pos-cart-list mb-4 mt-3 c-scrollbar-light">
                                 @php
@@ -139,42 +139,41 @@
                                 </div>
                             </div>
                         </div>
-                <div class="pos-footer mar-btm">
-                    <div class="justify-content-between">
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="dropdown mr-3 ml-0 dropup">
-                                <button class="btn btn-outline-dark btn-styled dropdown-toggle" type="button" data-toggle="dropdown">
-                                    {{translate('Shipping')}}
-                                </button>
-                                <div class="dropdown-menu p-3 dropdown-menu-lg">
-                                    <div class="input-group">
-                                        <input type="number" min="0" placeholder="Amount" name="shipping" class="form-control" value="{{ Session::get('pos.shipping', 0) }}" required onchange="setShipping()">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">{{ translate('Flat') }}</span>
+                        <div class="pos-footer mar-btm">
+                            <div class="justify-content-between">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <div class="dropdown mr-3 ml-0 dropup">
+                                        <button class="btn btn-outline-dark btn-styled dropdown-toggle" type="button" data-toggle="dropdown">
+                                            {{translate('Shipping')}}
+                                        </button>
+                                        <div class="dropdown-menu p-3 dropdown-menu-lg">
+                                            <div class="input-group">
+                                                <input type="number" min="0" placeholder="Amount" name="shipping" class="form-control" value="{{ Session::get('pos.shipping', 0) }}" required onchange="setShipping()">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">{{ translate('Flat') }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown dropup">
+                                        <button class="btn btn-outline-dark btn-styled dropdown-toggle" type="button" data-toggle="dropdown">
+                                            {{translate('Discount')}}
+                                        </button>
+                                        <div class="dropdown-menu p-3 dropdown-menu-lg discount-popover">
+                                            <div class="input-group">
+                                                <input type="number" min="0" placeholder="Amount" name="discount" class="form-control" value="{{ Session::get('pos.discount', 0) }}" required onchange="setDiscount()">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">{{ translate('Flat') }}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="dropdown dropup">
-                                <button class="btn btn-outline-dark btn-styled dropdown-toggle" type="button" data-toggle="dropdown">
-                                    {{translate('Discount')}}
-                                </button>
-                                <div class="dropdown-menu p-3 dropdown-menu-lg discount-popover">
-                                    <div class="input-group">
-                                        <input type="number" min="0" placeholder="Amount" name="discount" class="form-control" value="{{ Session::get('pos.discount', 0) }}" required onchange="setDiscount()">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">{{ translate('Flat') }}</span>
-                                        </div>
-                                    </div>
+                                <div class="my-2 my-md-0">
+                                    <button type="button" class="btn btn-primary btn-block h-60px fs-20 font-weight-bold" onclick="orderConfirmation()">{{ translate('Place Order') }}</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="my-2 my-md-0">
-                            <button type="button" class="btn btn-primary btn-block h-60px fs-20 font-weight-bold" onclick="orderConfirmation()">{{ translate('Place Order') }}</button>
-                        </div>
-                    </div>
-                </div>
-                
                     </div>
                 </div>
             </div>
@@ -247,7 +246,7 @@
                                 </div>
                                 <div class="col-sm-10">
                                     <select class="form-control mb-3" data-live-search="true" name="state_id" required>
-                        
+
                                     </select>
                                 </div>
                             </div>
@@ -259,7 +258,7 @@
                                 </div>
                                 <div class="col-sm-10">
                                     <select class="form-control mb-3" data-live-search="true" name="city_id" required>
-                        
+
                                     </select>
                                 </div>
                             </div>
@@ -338,7 +337,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <label class="col-sm-3 control-label" for="trx_id">{{translate('Transaction ID')}}</label>
                         <div class="col-md-9">
@@ -371,7 +370,6 @@
 
 @endsection
 
-
 @section('script')
     <script type="text/javascript">
 
@@ -388,16 +386,15 @@
                     }else{
                         AIZ.plugins.notify('danger', data.message);
                     }
-                    
                 });
             });
             filterProducts();
             getShippingAddress();
         });
-        
+
         $("#confirm-address").click(function (){
             var data = new FormData($('#shipping_form')[0]);
-            
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': AIZ.data.csrf
@@ -552,30 +549,28 @@
             var offline_payment_amount = $('input[name=offline_payment_amount]').val();
             var offline_trx_id = $('input[name=trx_id]').val();
             var offline_payment_proof = $('input[name=payment_proof]').val();
-            
+
             $.post('{{ route('pos.order_place') }}',{
-                _token                  : AIZ.data.csrf, 
+                _token                  : AIZ.data.csrf,
                 user_id                 : user_id,
-                shipping_address        : shipping_address, 
-                payment_type            : payment_type, 
-                shipping                : shipping, 
+                shipping_address        : shipping_address,
+                payment_type            : payment_type,
+                shipping                : shipping,
                 discount                : discount,
                 offline_payment_method  : offline_payment_method,
                 offline_payment_amount  : offline_payment_amount,
                 offline_trx_id          : offline_trx_id,
                 offline_payment_proof   : offline_payment_proof
-                
+
             }, function(data){
-                if(data.success == 1){
+                if (data.success == 1) {
                     AIZ.plugins.notify('success', data.message );
                     location.reload();
-                }
-                else{
+                } else {
                     AIZ.plugins.notify('danger', data.message );
                 }
             });
         }
-
 
         //address
         $(document).on('change', '[name=country_id]', function() {
@@ -587,7 +582,7 @@
             var state_id = $(this).val();
             get_city(state_id);
         });
-        
+
         function get_states(country_id) {
             $('[name="state_id"]').html("");
             $.ajax({
@@ -602,7 +597,6 @@
                 success: function (response) {
                     var obj = JSON.parse(response);
                     if(obj != '') {
-                        console.log(obj);
                         $('[name="state_id"]').html(obj);
                         AIZ.plugins.bootstrapSelect('refresh');
                     }

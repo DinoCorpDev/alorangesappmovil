@@ -1,523 +1,505 @@
 <template>
-    <div>
-        <layout-navbar-auth />
-        <v-container fluid class="service-details pa-4">
-            <v-row>
-                <v-col cols="4">
-                    <v-tabs v-model="tab" grow height="38px" :hide-slider="true">
-                        <v-tab :ripple="false">Especificación</v-tab>
-                        <v-tab :ripple="false">Reseña</v-tab>
-                        <v-tab :ripple="false">Sostenibilidad</v-tab>
-                    </v-tabs>
-                    <v-divider class="my-4" />
-                    <v-tabs-items v-model="tab">
-                        <v-tab-item>
-                            <v-card v-scroll.self="onScroll" class="overflow-y-auto overflow-uw pa-2" max-height="645">
-                                <div class="service-item-body pa-4 la-border">
-                                    <v-row>
-                                        <v-col cols="6">
-                                            <v-row justify="center" dense>
-                                                <span>Energía</span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <h5 class="subtitle2 text-uppercase mt-1">
-                                                    {{ serviceDetails?.intake || "--" }}
-                                                </h5>
-                                            </v-row>
-                                        </v-col>
-                                        <v-divider inset vertical class="mb-2" />
-                                        <v-col cols="6">
-                                            <v-row justify="center" dense>
-                                                <span>Material</span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <h5 class="subtitle2 text-uppercase mt-1">
-                                                    {{ serviceDetails?.material || "--" }}
-                                                </h5>
-                                            </v-row>
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                                <div class="service-item-body pa-4 la-border mt-4">
-                                    <v-row>
-                                        <v-col cols="5">
-                                            <v-row dense>
-                                                <v-icon class="mr-2">la-cube</v-icon>
-                                                <v-icon class="mr-2">la-cube</v-icon>
-                                                <v-icon>la-cube</v-icon>
-                                            </v-row>
-                                            <v-row dense>
-                                                <span class="subtitle2 text-uppercase mt-1">Medida de Servicio</span>
-                                            </v-row>
-                                            <v-row dense>
-                                                <span class="subtitle2 text-uppercase">Medida de Embalaje</span>
-                                            </v-row>
-                                            <v-row dense>
-                                                <span class="subtitle2 text-uppercase">Medida de Engaste</span>
-                                            </v-row>
-                                        </v-col>
-                                        <v-col cols="5">
-                                            <v-row justify="center" dense>
-                                                <span class="subtitles-gray">(Fuente x Profundidad x Altura)</span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <span class="subtitle2 text-uppercase mt-3">
-                                                    {{ serviceDetails?.medida_servicio || "--" }}
-                                                </span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <span class="subtitle2 text-uppercase">
-                                                    {{ serviceDetails?.medidas_de_embalaje || "--" }}
-                                                </span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <span class="subtitle2 text-uppercase">
-                                                    {{ serviceDetails?.engaste || "--" }}
-                                                </span>
-                                            </v-row>
-                                        </v-col>
-                                        <v-col cols="2">
-                                            <v-row justify="center" dense>
-                                                <span class="subtitles-gray">(Unidades)</span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <span class="subtitle2 mt-3">
-                                                    {{ serviceDetails?.unit_metering || "--" }}
-                                                </span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <span class="subtitle2">
-                                                    {{ serviceDetails?.unit_metering || "--" }}
-                                                </span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <span class="subtitle2">
-                                                    {{ serviceDetails?.unit_metering || "--" }}
-                                                </span>
-                                            </v-row>
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                                <div class="service-item-body pa-4 la-border mt-4">
-                                    <v-row>
-                                        <v-col cols="6">
-                                            <v-row justify="center" dense>
-                                                <span>{{ serviceDetails?.peso_de_servicio || "--" }}</span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <h5 class="subtitle2 text-uppercase mt-1">Peso de servicio</h5>
-                                            </v-row>
-                                        </v-col>
-                                        <v-divider inset vertical class="mb-2" />
-                                        <v-col cols="6">
-                                            <v-row justify="center" dense>
-                                                <span>{{ serviceDetails?.peso_de_envio || "--" }}</span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <h5 class="subtitle2 text-uppercase mt-1">Peso de Envío</h5>
-                                            </v-row>
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                                <div class="service-item-body pa-4 la-border mt-4">
-                                    <v-row>
-                                        <v-col cols="6">
-                                            <v-row justify="center" dense>
-                                                <span>{{ serviceDetails?.tipo_de_coneccion || "--" }}</span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <h5 class="subtitle2 text-uppercase mt-1">Voltaje</h5>
-                                            </v-row>
-                                        </v-col>
-                                        <v-divider inset vertical class="mb-2" />
-                                        <v-col cols="6">
-                                            <v-row justify="center" dense>
-                                                <span>{{ serviceDetails?.eficiencia || "--" }} %</span>
-                                            </v-row>
-                                            <v-row justify="center" dense>
-                                                <h5 class="subtitle2 text-uppercase mt-1">Eficiencia</h5>
-                                            </v-row>
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                                <h5 class="subtitle2 text-uppercase mt-5">Características</h5>
-                                <v-divider class="mt-2" />
-                                <ul>
-                                    <li class="subtitle2 mt-1">{{ serviceDetails?.caracteristica1 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.caracteristica2 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.caracteristica3 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.caracteristica4 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.caracteristica5 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.caracteristica6 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.caracteristica7 || "--" }}</li>
-                                </ul>
-                                <div class="d-flex justify-space-between">
-                                    <h5 class="subtitle2 text-uppercase mt-5">Manuales y Guías</h5>
-                                    <h5 class="subtitles-gray mt-5">(Para descargar)</h5>
-                                </div>
-                                <v-divider class="mt-2" />
-                                <v-row class="mt-1 ml-1">
-                                    <v-col cols="6">
-                                        <v-row dense>
-                                            <a
-                                                class="subtitle2 text-white"
-                                                :href="serviceDetails?.manual_de_servicio"
-                                                target="_blank"
-                                            >
-                                                <u>Manual de servicio</u>
-                                            </a>
-                                        </v-row>
-                                        <v-row dense class="mt-1">
-                                            <a
-                                                class="subtitle2 text-white"
-                                                :href="serviceDetails?.ficha_tecnica_del_servicio"
-                                                target="_blank"
-                                            >
-                                                <u>Ficha técnica del servicio</u>
-                                            </a>
-                                        </v-row>
-                                    </v-col>
-                                    <v-col cols="6">
-                                        <v-row dense>
-                                            <span class="subtitle2"><u>Hora de especificaciones</u></span>
-                                        </v-row>
-                                        <v-row dense class="mt-1">
-                                            <a
-                                                class="subtitle2 text-white"
-                                                :href="serviceDetails?.manual_de_instalacion"
-                                                target="_blank"
-                                            >
-                                                <u>Guía de instalación</u>
-                                            </a>
-                                        </v-row>
-                                    </v-col>
-                                </v-row>
-                                <h5 class="subtitle2 text-uppercase mt-5">Beneficios</h5>
-                                <v-divider class="mt-2" />
-                                <ul>
-                                    <li class="subtitle2 mt-1">{{ serviceDetails?.beneficio1 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.beneficio2 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.beneficio3 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.beneficio4 || "--" }}</li>
-                                    <li class="subtitle2">{{ serviceDetails?.beneficio5 || "--" }}</li>
-                                </ul>
-                                <h5 class="subtitle2 text-uppercase mt-5">Servicio Postventa</h5>
-                                <v-divider class="mt-2" />
-                                <p class="subtitle2">
-                                    {{ serviceDetails?.postventa || "--" }}
-                                </p>
-                            </v-card>
-                        </v-tab-item>
-
-                        <v-tab-item>
-                            <v-card
-                                v-scroll.self="onScroll"
-                                class="overflow-y-auto overflow-x-auto overflow-uw pa-2"
-                                max-height="645"
-                            >
-                                <div class="service-item-body pa-4 la-border">
-                                    <h5 class="subtitle2 text-uppercase">Calificación</h5>
-                                    <v-row class="mt-2">
-                                        <v-col cols="4" class="justify-end" style="line-height: 2.4">
-                                            <h5 class="text-uppercase">5.0</h5>
-                                            <v-rating
-                                                empty-icon="las la-star"
-                                                full-icon="las la-star active"
-                                                half-icon="las la-star half half"
-                                                background-color=""
-                                                length="5"
-                                                size="11"
-                                                v-model="rating"
-                                            ></v-rating>
-                                            <span class="caption">Opiniones (22)</span>
-                                        </v-col>
-                                        <v-col cols="8">
-                                            <v-row>
-                                                <v-col cols="1" style="line-height: 0.1">
-                                                    <span class="caption mr-2">5</span>
-                                                    <span class="caption mr-2">4</span>
-                                                    <span class="caption mr-2">3</span>
-                                                    <span class="caption mr-2">2</span>
-                                                    <span class="caption mr-2">1</span>
-                                                </v-col>
-                                                <v-col cols="9" style="line-height: 2.1">
-                                                    <v-progress-linear
-                                                        v-model="ratings.rating5"
-                                                        color="white"
-                                                        class="mt-2"
-                                                    ></v-progress-linear>
-                                                    <v-progress-linear
-                                                        v-model="ratings.rating4"
-                                                        color="white"
-                                                        class="mt-4"
-                                                    ></v-progress-linear>
-                                                    <v-progress-linear
-                                                        v-model="ratings.rating3"
-                                                        color="white"
-                                                        class="mt-4"
-                                                    ></v-progress-linear>
-                                                    <v-progress-linear
-                                                        v-model="ratings.rating2"
-                                                        color="white"
-                                                        class="mt-4"
-                                                    ></v-progress-linear>
-                                                    <v-progress-linear
-                                                        v-model="ratings.rating1"
-                                                        color="white"
-                                                        class="mt-4"
-                                                    ></v-progress-linear>
-                                                </v-col>
-                                                <v-col cols="2" style="line-height: 0.1">
-                                                    <span class="caption">30</span><br />
-                                                    <span class="caption">10</span><br />
-                                                    <span class="caption">5</span><br />
-                                                    <span class="caption">0</span><br />
-                                                    <span class="caption">0</span>
-                                                </v-col>
-                                            </v-row>
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                                <div class="d-flex pa-2">
-                                    <h5 class="subtitle2 text-uppercase mt-4">¿Deseas calificar este servicio?</h5>
-                                    <custom-button text="Calificar" class="ml-4 mt-2" light />
-                                </div>
-                            </v-card>
-                        </v-tab-item>
-                        <v-tab-item>
-                            <v-card
-                                v-scroll.self="onScroll"
-                                class="overflow-y-auto overflow-x-auto pa-2 overflow-uw"
-                                max-height="645"
-                            >
-                                <div class="service-item-body pa-4 la-border">
-                                    <h5 class="subtitle2 text-uppercase">Vida Útil</h5>
-                                    <v-row dense class="mt-2" justify="center">
-                                        <v-progress-linear
-                                            style="width: 78%"
-                                            v-model="ratings.vidaUtil"
-                                            color="white"
-                                            class="mt-2"
-                                        ></v-progress-linear>
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="3">
-                                            <v-row justify="center">
-                                                <span>1-14</span>
-                                            </v-row>
-                                            <v-row justify="center">
-                                                <span class="caption">Semanas</span>
-                                            </v-row>
-                                        </v-col>
-                                        <v-col cols="3">
-                                            <v-row justify="center"> <span>1-24</span><br /> </v-row>
-                                            <v-row justify="center">
-                                                <span class="caption">Meses</span>
-                                            </v-row>
-                                        </v-col>
-                                        <v-col cols="3">
-                                            <v-row justify="center"> <span>1-10</span><br /> </v-row>
-                                            <v-row justify="center">
-                                                <span class="caption">Años</span>
-                                            </v-row>
-                                        </v-col>
-                                        <v-col cols="3">
-                                            <v-row justify="center"> <span>10-25</span><br /> </v-row>
-                                            <v-row justify="center">
-                                                <span class="caption">Años</span>
-                                            </v-row>
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                                <div class="service-item-body pa-4 la-border mt-4">
-                                    <h5 class="subtitle2 text-uppercase">Composición de servicio</h5>
-                                    <v-row class="mt-4">
-                                        <v-col cols="6">
-                                            <div class="piechart"></div>
-                                        </v-col>
-                                        <v-col cols="6">
-                                            <tbody>
-                                                <tr v-for="item in desserts" :key="item.name">
-                                                    <td style="width: 20px">
-                                                        <div
-                                                            class="pa-2 bg-secondary rounded-circle d-inline-block"
-                                                            :style="item.color"
-                                                        />
-                                                    </td>
-                                                    <td style="width: 120px" class="text-size-comp ml-1">
-                                                        {{ item.name }}
-                                                    </td>
-                                                    <td style="width: 50px" class="text-size-comp ml-2">
-                                                        {{ item.percent }}
-                                                    </td>
-                                                    <td class="text-size-comp ml-2">{{ item.kg }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </v-col>
-                                    </v-row>
-                                    <v-divider class="mt-3 mb-4" />
-                                    <h5 class="subtitle2 text-uppercase">Impacto Ambiental</h5>
-                                    <v-row class="mt-4" justify="center">
-                                        <div style="width: 78%; position: relative" class="d-flex">
-                                            <v-icon large class="markerLoc" :style="{ left: impacto }"
-                                                >la-map-pin</v-icon
-                                            >
-                                            <v-col cols="3" style="padding: 20px 0px">
-                                                <v-progress-linear
-                                                    background-color="green"
-                                                    class="mt-2"
-                                                ></v-progress-linear>
-                                            </v-col>
-                                            <v-col cols="3" style="padding: 15px 0px">
-                                                <v-progress-linear
-                                                    background-color="yellow"
-                                                    class="mt-2"
-                                                ></v-progress-linear>
-                                            </v-col>
-                                            <v-col cols="3" style="padding: 10px 0px">
-                                                <v-progress-linear
-                                                    background-color="orange"
-                                                    class="mt-2"
-                                                ></v-progress-linear>
-                                            </v-col>
-                                            <v-col cols="3" style="padding: 5px 0px">
-                                                <v-progress-linear
-                                                    background-color="red"
-                                                    class="mt-2"
-                                                ></v-progress-linear>
-                                            </v-col>
-                                        </div>
-                                    </v-row>
-                                    <v-row class="mt-0 mb-1">
-                                        <v-col cols="4">
-                                            <v-row justify="start">
-                                                <span class="caption ml-4">Sostenible</span>
-                                            </v-row>
-                                        </v-col>
-                                        <v-col cols="4">
-                                            <v-row justify="center">
-                                                <span class="caption">Reversible</span>
-                                            </v-row>
-                                        </v-col>
-                                        <v-col cols="4">
-                                            <v-row justify="end">
-                                                <span class="caption mr-4">Irreversible</span>
-                                            </v-row>
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                                <div class="service-item-body pa-4 la-border mt-4">
-                                    <h5 class="subtitle2 text-uppercase">Consejos Ecológicos</h5>
-                                    <ul>
-                                        <li class="subtitle2 mt-1">
-                                            Una vez el servicio cumpla su vida útil debes ser riguroso en reciclar sus
-                                            materiales de forma correcta.
-                                        </li>
-                                        <li class="subtitle2 mt-2">
-                                            Realizar el mantenimiento pertinente en las fechas adecuadas para extender
-                                            la vida útil del servicio.
-                                        </li>
-                                    </ul>
-                                </div>
+    <v-container fluid class="service-details pa-4">
+        <v-row>
+            <v-col cols="4">
+                <v-tabs v-model="tab" grow height="38px" :hide-slider="true">
+                    <v-tab :ripple="false">Especificación</v-tab>
+                    <v-tab :ripple="false">Reseña</v-tab>
+                    <v-tab :ripple="false">Sostenibilidad</v-tab>
+                </v-tabs>
+                <v-divider class="my-4" />
+                <v-tabs-items v-model="tab">
+                    <v-tab-item>
+                        <v-card v-scroll.self="onScroll" class="overflow-y-auto overflow-uw pa-2" max-height="645">
+                            <div class="service-item-body pa-4 la-border">
                                 <v-row>
                                     <v-col cols="6">
-                                        <div class="service-item-body pa-2 la-border mt-4">
-                                            <v-row dense justify="center" class="mt-3">
-                                                <v-icon x-large>la-sync</v-icon>
-                                            </v-row>
-                                            <v-row dense justify="center" class="mt-5">
-                                                <p class="subtitle2" style="text-align: center">
-                                                    Deseo reciclar un viejo servicio y recibir un bono adicional de
-                                                    descuento a cambio.
-                                                </p>
-                                            </v-row>
-                                            <v-row dense justify="center">
-                                                <custom-button plain text="Solicitar" />
-                                            </v-row>
-                                            <v-row dense justify="center" class="mt-4 mb-2">
-                                                <custom-button light text="RENOVACIÓN UPGRADE" class="button-espe" />
-                                            </v-row>
-                                        </div>
+                                        <v-row justify="center" dense>
+                                            <span>Energía</span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <h5 class="subtitle2 text-uppercase mt-1">
+                                                {{ serviceDetails?.intake || "--" }}
+                                            </h5>
+                                        </v-row>
                                     </v-col>
+                                    <v-divider inset vertical class="mb-2" />
                                     <v-col cols="6">
-                                        <div class="service-item-body pa-2 la-border mt-4">
-                                            <v-row dense justify="center" class="mt-3">
-                                                <v-icon x-large>la-tools</v-icon>
-                                            </v-row>
-                                            <v-row dense justify="center" class="mt-5">
-                                                <p class="subtitle2" style="text-align: center">
-                                                    Deseo programar un mantenimiento preventivo para mi servicio/s.
-                                                </p>
-                                            </v-row>
-                                            <v-row dense justify="center">
-                                                <custom-button plain text="Solicitar" />
-                                            </v-row>
-                                            <v-row dense justify="center" class="mt-4 mb-2">
-                                                <custom-button light text="SOPORTE TÉCNICO" class="button-espe" />
-                                            </v-row>
-                                        </div>
+                                        <v-row justify="center" dense>
+                                            <span>Material</span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <h5 class="subtitle2 text-uppercase mt-1">
+                                                {{ serviceDetails?.material || "--" }}
+                                            </h5>
+                                        </v-row>
                                     </v-col>
                                 </v-row>
-                            </v-card>
-                        </v-tab-item>
-                    </v-tabs-items>
-                </v-col>
+                            </div>
+                            <div class="service-item-body pa-4 la-border mt-4">
+                                <v-row>
+                                    <v-col cols="5">
+                                        <v-row dense>
+                                            <v-icon class="mr-2">la-cube</v-icon>
+                                            <v-icon class="mr-2">la-cube</v-icon>
+                                            <v-icon>la-cube</v-icon>
+                                        </v-row>
+                                        <v-row dense>
+                                            <span class="subtitle2 text-uppercase mt-1">Medida de Servicio</span>
+                                        </v-row>
+                                        <v-row dense>
+                                            <span class="subtitle2 text-uppercase">Medida de Embalaje</span>
+                                        </v-row>
+                                        <v-row dense>
+                                            <span class="subtitle2 text-uppercase">Medida de Engaste</span>
+                                        </v-row>
+                                    </v-col>
+                                    <v-col cols="5">
+                                        <v-row justify="center" dense>
+                                            <span class="subtitles-gray">(Fuente x Profundidad x Altura)</span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <span class="subtitle2 text-uppercase mt-3">
+                                                {{ serviceDetails?.medida_servicio || "--" }}
+                                            </span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <span class="subtitle2 text-uppercase">
+                                                {{ serviceDetails?.medidas_de_embalaje || "--" }}
+                                            </span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <span class="subtitle2 text-uppercase">
+                                                {{ serviceDetails?.engaste || "--" }}
+                                            </span>
+                                        </v-row>
+                                    </v-col>
+                                    <v-col cols="2">
+                                        <v-row justify="center" dense>
+                                            <span class="subtitles-gray">(Unidades)</span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <span class="subtitle2 mt-3">
+                                                {{ serviceDetails?.unit_metering || "--" }}
+                                            </span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <span class="subtitle2">
+                                                {{ serviceDetails?.unit_metering || "--" }}
+                                            </span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <span class="subtitle2">
+                                                {{ serviceDetails?.unit_metering || "--" }}
+                                            </span>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                            <div class="service-item-body pa-4 la-border mt-4">
+                                <v-row>
+                                    <v-col cols="6">
+                                        <v-row justify="center" dense>
+                                            <span>{{ serviceDetails?.peso_de_servicio || "--" }}</span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <h5 class="subtitle2 text-uppercase mt-1">Peso de servicio</h5>
+                                        </v-row>
+                                    </v-col>
+                                    <v-divider inset vertical class="mb-2" />
+                                    <v-col cols="6">
+                                        <v-row justify="center" dense>
+                                            <span>{{ serviceDetails?.peso_de_envio || "--" }}</span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <h5 class="subtitle2 text-uppercase mt-1">Peso de Envío</h5>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                            <div class="service-item-body pa-4 la-border mt-4">
+                                <v-row>
+                                    <v-col cols="6">
+                                        <v-row justify="center" dense>
+                                            <span>{{ serviceDetails?.tipo_de_coneccion || "--" }}</span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <h5 class="subtitle2 text-uppercase mt-1">Voltaje</h5>
+                                        </v-row>
+                                    </v-col>
+                                    <v-divider inset vertical class="mb-2" />
+                                    <v-col cols="6">
+                                        <v-row justify="center" dense>
+                                            <span>{{ serviceDetails?.eficiencia || "--" }} %</span>
+                                        </v-row>
+                                        <v-row justify="center" dense>
+                                            <h5 class="subtitle2 text-uppercase mt-1">Eficiencia</h5>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                            <h5 class="subtitle2 text-uppercase mt-5">Características</h5>
+                            <v-divider class="mt-2" />
+                            <ul>
+                                <li class="subtitle2 mt-1">{{ serviceDetails?.caracteristica1 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.caracteristica2 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.caracteristica3 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.caracteristica4 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.caracteristica5 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.caracteristica6 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.caracteristica7 || "--" }}</li>
+                            </ul>
+                            <div class="d-flex justify-space-between">
+                                <h5 class="subtitle2 text-uppercase mt-5">Manuales y Guías</h5>
+                                <h5 class="subtitles-gray mt-5">(Para descargar)</h5>
+                            </div>
+                            <v-divider class="mt-2" />
+                            <v-row class="mt-1 ml-1">
+                                <v-col cols="6">
+                                    <v-row dense>
+                                        <a
+                                            class="subtitle2 text-white"
+                                            :href="serviceDetails?.manual_de_servicio"
+                                            target="_blank"
+                                        >
+                                            <u>Manual de servicio</u>
+                                        </a>
+                                    </v-row>
+                                    <v-row dense class="mt-1">
+                                        <a
+                                            class="subtitle2 text-white"
+                                            :href="serviceDetails?.ficha_tecnica_del_servicio"
+                                            target="_blank"
+                                        >
+                                            <u>Ficha técnica del servicio</u>
+                                        </a>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="6">
+                                    <v-row dense>
+                                        <span class="subtitle2"><u>Hora de especificaciones</u></span>
+                                    </v-row>
+                                    <v-row dense class="mt-1">
+                                        <a
+                                            class="subtitle2 text-white"
+                                            :href="serviceDetails?.manual_de_instalacion"
+                                            target="_blank"
+                                        >
+                                            <u>Guía de instalación</u>
+                                        </a>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <h5 class="subtitle2 text-uppercase mt-5">Beneficios</h5>
+                            <v-divider class="mt-2" />
+                            <ul>
+                                <li class="subtitle2 mt-1">{{ serviceDetails?.beneficio1 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.beneficio2 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.beneficio3 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.beneficio4 || "--" }}</li>
+                                <li class="subtitle2">{{ serviceDetails?.beneficio5 || "--" }}</li>
+                            </ul>
+                            <h5 class="subtitle2 text-uppercase mt-5">Servicio Postventa</h5>
+                            <v-divider class="mt-2" />
+                            <p class="subtitle2">
+                                {{ serviceDetails?.postventa || "--" }}
+                            </p>
+                        </v-card>
+                    </v-tab-item>
 
-                <v-col cols="8">
-                    <AddToCart class="mb-10" :is-loading="detailsLoading" :product-details="serviceDetails" />
-                </v-col>
-            </v-row>
-
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col v-for="service in moreServices" :key="`service-col-${service.id}`" cols="2">
-                            <ServiceBox :productDetails="service" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
-
-            <v-row tag="section" class="mb-6">
-                <v-col cols="12">
-                    <h5>H5</h5>
-                    <v-row class="mb-3">
-                        <v-col
-                            v-for="service in footerServices"
-                            :key="`service-col-${service.id}`"
-                            cols="12"
-                            sm="6"
-                            md="3"
+                    <v-tab-item>
+                        <v-card
+                            v-scroll.self="onScroll"
+                            class="overflow-y-auto overflow-x-auto overflow-uw pa-2"
+                            max-height="645"
                         >
-                            <ServiceBox boxStyle="two" :serviceDetails="service" />
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
-                        <v-col cols="12" sm="8" md="4">
-                            <CustomButton block color="grey" text="Ver más" />
-                        </v-col>
-                    </v-row>
-                </v-col>
-            </v-row>
-        </v-container>
-        <footer-custom />
-    </div>
+                            <div class="service-item-body pa-4 la-border">
+                                <h5 class="subtitle2 text-uppercase">Calificación</h5>
+                                <v-row class="mt-2">
+                                    <v-col cols="4" class="justify-end" style="line-height: 2.4">
+                                        <h5 class="text-uppercase">5.0</h5>
+                                        <v-rating
+                                            empty-icon="las la-star"
+                                            full-icon="las la-star active"
+                                            half-icon="las la-star half half"
+                                            background-color=""
+                                            length="5"
+                                            size="11"
+                                            v-model="rating"
+                                        ></v-rating>
+                                        <span class="caption">Opiniones (22)</span>
+                                    </v-col>
+                                    <v-col cols="8">
+                                        <v-row>
+                                            <v-col cols="1" style="line-height: 0.1">
+                                                <span class="caption mr-2">5</span>
+                                                <span class="caption mr-2">4</span>
+                                                <span class="caption mr-2">3</span>
+                                                <span class="caption mr-2">2</span>
+                                                <span class="caption mr-2">1</span>
+                                            </v-col>
+                                            <v-col cols="9" style="line-height: 2.1">
+                                                <v-progress-linear
+                                                    v-model="ratings.rating5"
+                                                    color="white"
+                                                    class="mt-2"
+                                                ></v-progress-linear>
+                                                <v-progress-linear
+                                                    v-model="ratings.rating4"
+                                                    color="white"
+                                                    class="mt-4"
+                                                ></v-progress-linear>
+                                                <v-progress-linear
+                                                    v-model="ratings.rating3"
+                                                    color="white"
+                                                    class="mt-4"
+                                                ></v-progress-linear>
+                                                <v-progress-linear
+                                                    v-model="ratings.rating2"
+                                                    color="white"
+                                                    class="mt-4"
+                                                ></v-progress-linear>
+                                                <v-progress-linear
+                                                    v-model="ratings.rating1"
+                                                    color="white"
+                                                    class="mt-4"
+                                                ></v-progress-linear>
+                                            </v-col>
+                                            <v-col cols="2" style="line-height: 0.1">
+                                                <span class="caption">30</span><br />
+                                                <span class="caption">10</span><br />
+                                                <span class="caption">5</span><br />
+                                                <span class="caption">0</span><br />
+                                                <span class="caption">0</span>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                            <div class="d-flex pa-2">
+                                <h5 class="subtitle2 text-uppercase mt-4">¿Deseas calificar este servicio?</h5>
+                                <CustomButton text="Calificar" class="ml-4 mt-2" light />
+                            </div>
+                        </v-card>
+                    </v-tab-item>
+                    <v-tab-item>
+                        <v-card
+                            v-scroll.self="onScroll"
+                            class="overflow-y-auto overflow-x-auto pa-2 overflow-uw"
+                            max-height="645"
+                        >
+                            <div class="service-item-body pa-4 la-border">
+                                <h5 class="subtitle2 text-uppercase">Vida Útil</h5>
+                                <v-row dense class="mt-2" justify="center">
+                                    <v-progress-linear
+                                        style="width: 78%"
+                                        v-model="ratings.vidaUtil"
+                                        color="white"
+                                        class="mt-2"
+                                    ></v-progress-linear>
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="3">
+                                        <v-row justify="center">
+                                            <span>1-14</span>
+                                        </v-row>
+                                        <v-row justify="center">
+                                            <span class="caption">Semanas</span>
+                                        </v-row>
+                                    </v-col>
+                                    <v-col cols="3">
+                                        <v-row justify="center"> <span>1-24</span><br /> </v-row>
+                                        <v-row justify="center">
+                                            <span class="caption">Meses</span>
+                                        </v-row>
+                                    </v-col>
+                                    <v-col cols="3">
+                                        <v-row justify="center"> <span>1-10</span><br /> </v-row>
+                                        <v-row justify="center">
+                                            <span class="caption">Años</span>
+                                        </v-row>
+                                    </v-col>
+                                    <v-col cols="3">
+                                        <v-row justify="center"> <span>10-25</span><br /> </v-row>
+                                        <v-row justify="center">
+                                            <span class="caption">Años</span>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                            <div class="service-item-body pa-4 la-border mt-4">
+                                <h5 class="subtitle2 text-uppercase">Composición de servicio</h5>
+                                <v-row class="mt-4">
+                                    <v-col cols="6">
+                                        <div class="piechart"></div>
+                                    </v-col>
+                                    <v-col cols="6">
+                                        <tbody>
+                                            <tr v-for="item in desserts" :key="item.name">
+                                                <td style="width: 20px">
+                                                    <div
+                                                        class="pa-2 bg-secondary rounded-circle d-inline-block"
+                                                        :style="item.color"
+                                                    />
+                                                </td>
+                                                <td style="width: 120px" class="text-size-comp ml-1">
+                                                    {{ item.name }}
+                                                </td>
+                                                <td style="width: 50px" class="text-size-comp ml-2">
+                                                    {{ item.percent }}
+                                                </td>
+                                                <td class="text-size-comp ml-2">{{ item.kg }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </v-col>
+                                </v-row>
+                                <v-divider class="mt-3 mb-4" />
+                                <h5 class="subtitle2 text-uppercase">Impacto Ambiental</h5>
+                                <v-row class="mt-4" justify="center">
+                                    <div style="width: 78%; position: relative" class="d-flex">
+                                        <v-icon large class="markerLoc" :style="{ left: impacto }">la-map-pin</v-icon>
+                                        <v-col cols="3" style="padding: 20px 0px">
+                                            <v-progress-linear
+                                                background-color="green"
+                                                class="mt-2"
+                                            ></v-progress-linear>
+                                        </v-col>
+                                        <v-col cols="3" style="padding: 15px 0px">
+                                            <v-progress-linear
+                                                background-color="yellow"
+                                                class="mt-2"
+                                            ></v-progress-linear>
+                                        </v-col>
+                                        <v-col cols="3" style="padding: 10px 0px">
+                                            <v-progress-linear
+                                                background-color="orange"
+                                                class="mt-2"
+                                            ></v-progress-linear>
+                                        </v-col>
+                                        <v-col cols="3" style="padding: 5px 0px">
+                                            <v-progress-linear background-color="red" class="mt-2"></v-progress-linear>
+                                        </v-col>
+                                    </div>
+                                </v-row>
+                                <v-row class="mt-0 mb-1">
+                                    <v-col cols="4">
+                                        <v-row justify="start">
+                                            <span class="caption ml-4">Sostenible</span>
+                                        </v-row>
+                                    </v-col>
+                                    <v-col cols="4">
+                                        <v-row justify="center">
+                                            <span class="caption">Reversible</span>
+                                        </v-row>
+                                    </v-col>
+                                    <v-col cols="4">
+                                        <v-row justify="end">
+                                            <span class="caption mr-4">Irreversible</span>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                            <div class="service-item-body pa-4 la-border mt-4">
+                                <h5 class="subtitle2 text-uppercase">Consejos Ecológicos</h5>
+                                <ul>
+                                    <li class="subtitle2 mt-1">
+                                        Una vez el servicio cumpla su vida útil debes ser riguroso en reciclar sus
+                                        materiales de forma correcta.
+                                    </li>
+                                    <li class="subtitle2 mt-2">
+                                        Realizar el mantenimiento pertinente en las fechas adecuadas para extender la
+                                        vida útil del servicio.
+                                    </li>
+                                </ul>
+                            </div>
+                            <v-row>
+                                <v-col cols="6">
+                                    <div class="service-item-body pa-2 la-border mt-4">
+                                        <v-row dense justify="center" class="mt-3">
+                                            <v-icon x-large>la-sync</v-icon>
+                                        </v-row>
+                                        <v-row dense justify="center" class="mt-5">
+                                            <p class="subtitle2" style="text-align: center">
+                                                Deseo reciclar un viejo servicio y recibir un bono adicional de
+                                                descuento a cambio.
+                                            </p>
+                                        </v-row>
+                                        <v-row dense justify="center">
+                                            <CustomButton plain text="Solicitar" />
+                                        </v-row>
+                                        <v-row dense justify="center" class="mt-4 mb-2">
+                                            <CustomButton light text="RENOVACIÓN UPGRADE" class="button-espe" />
+                                        </v-row>
+                                    </div>
+                                </v-col>
+                                <v-col cols="6">
+                                    <div class="service-item-body pa-2 la-border mt-4">
+                                        <v-row dense justify="center" class="mt-3">
+                                            <v-icon x-large>la-tools</v-icon>
+                                        </v-row>
+                                        <v-row dense justify="center" class="mt-5">
+                                            <p class="subtitle2" style="text-align: center">
+                                                Deseo programar un mantenimiento preventivo para mi servicio/s.
+                                            </p>
+                                        </v-row>
+                                        <v-row dense justify="center">
+                                            <CustomButton plain text="Solicitar" />
+                                        </v-row>
+                                        <v-row dense justify="center" class="mt-4 mb-2">
+                                            <CustomButton light text="SOPORTE TÉCNICO" class="button-espe" />
+                                        </v-row>
+                                    </div>
+                                </v-col>
+                            </v-row>
+                        </v-card>
+                    </v-tab-item>
+                </v-tabs-items>
+            </v-col>
+
+            <v-col cols="8">
+                <AddToCart class="mb-10" :is-loading="detailsLoading" :product-details="serviceDetails" />
+            </v-col>
+        </v-row>
+
+        <v-row tag="section" class="mb-6">
+            <v-col cols="12">
+                <h5>H5</h5>
+                <v-row class="mb-3">
+                    <v-col v-for="service in moreServices" :key="`service-col-${service.id}`" cols="2">
+                        <ServiceBox :productDetails="service" />
+                    </v-col>
+                </v-row>
+                <v-row justify="center">
+                    <v-col cols="12" sm="8" md="4">
+                        <CustomButton block color="grey" text="Ver más" />
+                    </v-col>
+                </v-row>
+            </v-col>
+        </v-row>
+
+        <v-row tag="section" class="mb-6">
+            <v-col cols="12">
+                <h5>H5</h5>
+                <v-row class="mb-3">
+                    <v-col v-for="service in footerServices" :key="`service-col-${service.id}`" cols="12" sm="6" md="3">
+                        <ServiceBox boxStyle="two" :serviceDetails="service" />
+                    </v-col>
+                </v-row>
+                <v-row justify="center">
+                    <v-col cols="12" sm="8" md="4">
+                        <CustomButton block color="grey" text="Ver más" />
+                    </v-col>
+                </v-row>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
-import ServiceBox from "../components/product/ProductBox.vue";
-import CustomButton from "../components/global/CustomButton.vue";
-import FooterCustom from "../components/global/FooterCustom.vue";
-import Carousel from "../components/global/Carousel.vue";
-import LayoutNavbarAuth from "../components/global/LayoutNavbarAuth.vue";
-// import ChartView from "../components/global/ChartView.vue";
 import AddToCart from "../components/product/AddToCart.vue";
+import Carousel from "../components/global/Carousel.vue";
+import CustomButton from "../components/global/CustomButton.vue";
+import ServiceBox from "../components/product/ProductBox.vue";
 
 export default {
     metaInfo() {
@@ -542,13 +524,10 @@ export default {
         actionLoading: false
     }),
     components: {
-        ServiceBox,
-        CustomButton,
+        AddToCart,
         Carousel,
-        LayoutNavbarAuth,
-        FooterCustom,
-        AddToCart
-        // ChartView
+        CustomButton,
+        ServiceBox
     },
     methods: {
         async getDetails() {

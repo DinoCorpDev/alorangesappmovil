@@ -7,13 +7,14 @@
     --font-size-btn: var(--font-size-body2);
     // --font-size-overline: 1rem;
     --font-size-caption: 12px;
+    --font-size-caption2: calc(8px + (10 - 8) * var(--screen-size));
 
     --font-size-h1: calc(34px + (96 - 34) * var(--screen-size));
     --font-size-h2: calc(31px + (60 - 31) * var(--screen-size));
     // --font-size-h3: 1rem;
     --font-size-h4: calc(24px + (34 - 24) * var(--screen-size));
     --font-size-h5: calc(15px + (24 - 15) * var(--screen-size));
-    // --font-size-h6: 1rem;
+    --font-size-h6: 16px;
 
     --swiper-navigation-size: 1rem;
 }

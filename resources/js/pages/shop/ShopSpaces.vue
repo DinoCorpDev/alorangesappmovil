@@ -129,18 +129,3 @@ export default {
     }
 };
 </script>
-
-<style lang="scss" scoped>
-.main {
-    &-carousel {
-        height: 62vh !important;
-        max-height: 786px;
-
-        &::v-deep {
-            .v-carousel__item {
-                height: 100%;
-            }
-        }
-    }
-}
-</style>

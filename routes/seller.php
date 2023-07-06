@@ -13,6 +13,8 @@ use App\Addons\Multivendor\Http\Controllers\Seller\CouponController;
 use App\Addons\Multivendor\Http\Controllers\Seller\SellerPackageController;
 use App\Addons\Multivendor\Http\Controllers\Seller\SellerPayoutController;
 use App\Addons\Multivendor\Http\Controllers\Seller\ConversationController;
+use App\Addons\Multivendor\Http\Controllers\Seller\ProductBulkUploadController;
+use App\Addons\Multivendor\Http\Controllers\Seller\DigitalProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OrderController;
@@ -63,6 +65,28 @@ Route::group([
         Route::post('/new-option', [ProductController::class, 'new_option'])->name('product.new_option');
         Route::post('/get-option-choices', [ProductController::class, 'get_option_choices'])->name('product.get_option_choices');
         Route::post('/sku-combination', [ProductController::class, 'sku_combination'])->name('product.sku_combination');
+    });
+
+    Route::controller(ProductBulkUploadController::class)->group(function () {
+        //Product Export
+        Route::get('/product-bulk-export', 'export')->name('product_bulk_export.index');
+
+        //Product Bulk Upload
+        Route::get('/product-bulk-upload/index', 'index')->name('product_bulk_upload.index');
+        Route::post('/bulk-product-upload', 'bulk_upload')->name('bulk_product_upload');
+        Route::get('/product-csv-download/{type}', 'import_product')->name('product_csv.download');
+        Route::get('/vendor-product-csv-download/{id}', 'import_vendor_product')->name('import_vendor_product.download');
+        Route::group(['prefix' => 'bulk-upload/download'], function () {
+            Route::get('/category', 'pdf_download_category')->name('pdf.download_category');
+            Route::get('/brand', 'pdf_download_brand')->name('pdf.download_brand');
+            Route::get('/seller', 'pdf_download_seller')->name('pdf.download_seller');
+        });
+    });
+
+    Route::resource('digitalproducts', DigitalProductController::class);
+    Route::controller(DigitalProductController::class)->group(function () {
+        Route::get('/digitalproducts/destroy/{id}', 'destroy')->name('digitalproducts.destroy');
+        Route::get('/digitalproducts/download/{id}', 'download')->name('digitalproducts.download');
     });
 
     // Seller packages

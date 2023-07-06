@@ -4,7 +4,7 @@
     <div class="row mb-3">
         <div class="col-10">
             <h1 class="h4 fw-700 mb-3">
-                {{ translate('Order code') }}: {{ $order->combined_order ? $order->combined_order->code : '' }}
+                {{ translate('Order code') }}: {{ $order->combined_order->code }}
             </h1>
         </div>
         <div class="col-2">
@@ -51,18 +51,12 @@
                         <div class="col-md mb-3">
                             <div>
                                 <div class="fs-15 fw-600 mb-2">{{ translate('Customer info') }}</div>
-                                <div>
-                                    <span class="opacity-80 mr-2 ml-0">{{ translate('Name') }}:</span>
-                                    {{ $order->user->name ?? '' }}
-                                </div>
-                                <div>
-                                    <span class="opacity-80 mr-2 ml-0">{{ translate('Email') }}:</span>
-                                    {{ $order->user->email ?? '' }}
-                                </div>
-                                <div>
-                                    <span class="opacity-80 mr-2 ml-0">{{ translate('Phone') }}:</span>
-                                    {{ $order->user->phone ?? '' }}
-                                </div>
+                                <div><span class="opacity-80 mr-2 ml-0">{{ translate('Name') }}:</span>
+                                    {{ $order->user->name ?? '' }}</div>
+                                <div><span class="opacity-80 mr-2 ml-0">{{ translate('Email') }}:</span>
+                                    {{ $order->user->email ?? '' }}</div>
+                                <div><span class="opacity-80 mr-2 ml-0">{{ translate('Phone') }}:</span>
+                                    {{ $order->user->phone ?? '' }}</div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
@@ -70,9 +64,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="">{{ translate('Order code') }}:</td>
-                                        <td class="text-right text-info fw-700">
-                                            {{ $order->combined_order ? $order->combined_order->code : '' }}
-                                        </td>
+                                        <td class="text-right text-info fw-700">{{ $order->combined_order->code }}</td>
                                     </tr>
                                     <tr>
                                         <td class="">{{ translate('Order Date') }}:</td>
@@ -87,11 +79,9 @@
                                     <tr>
                                         <td class="">{{ translate('Payment method') }}:</td>
                                         <td class="text-right fw-700">
-                                            {{ ucfirst(str_replace('_', ' ', $order->payment_type)) }}
-                                        </td>
+                                            {{ ucfirst(str_replace('_', ' ', $order->payment_type)) }}</td>
                                     </tr>
-
-                                    @if ($order->payment_type == 'offline_payment')
+                                    @if ($order->manual_payment == 1 && $order->manual_payment_data !== null)
                                         @php
                                             $manual_payment_data = json_decode($order->manual_payment_data);
                                         @endphp
@@ -141,10 +131,7 @@
                                     id="update_payment_status"
                                     data-minimum-results-for-search="Infinity"
                                     data-selected="{{ $order->payment_status }}"
-                                    @if (
-                                        $order->payment_status == 'paid' ||
-                                            $order->delivery_status == 'delivered' ||
-                                            $order->delivery_status == 'cancelled') disabled @endif
+                                    @if ($order->payment_status == 'paid' || $order->delivery_status == 'cancelled') disabled @endif
                                 >
                                     <option value="paid">{{ translate('Paid') }}</option>
                                     <option value="unpaid">{{ translate('Unpaid') }}</option>
@@ -173,12 +160,10 @@
                             @endphp
                             <h5 class="fs-14 mb-3">{{ translate('Shipping address') }}</h5>
                             <address class="">
-                                {{ $shipping_address ? $shipping_address->phone : '' }}<br>
-                                {{ $shipping_address ? $shipping_address->address : '' }}<br>
-                                {{ $shipping_address ? $shipping_address->city : '' }},
-                                {{ $shipping_address ? $shipping_address->postal_code : '' }}<br>
-                                {{ $shipping_address ? $shipping_address->state : '' }},
-                                {{ $shipping_address ? $shipping_address->country : '' }}
+                                {{ $shipping_address->phone }}<br>
+                                {{ $shipping_address->address }}<br>
+                                {{ $shipping_address->city }}, {{ $shipping_address->postal_code }}<br>
+                                {{ $shipping_address->state }}, {{ $shipping_address->country }}
                             </address>
                         </div>
                         <div class="col-md-auto w-md-250px">
@@ -187,12 +172,10 @@
                             @endphp
                             <h5 class="fs-14 mb-3">{{ translate('Billing address') }}</h5>
                             <address class="">
-                                {{ $billing_address ? $billing_address->phone : '' }}<br>
-                                {{ $billing_address ? $billing_address->address : '' }}<br>
-                                {{ $billing_address ? $billing_address->city : '' }},
-                                {{ $billing_address ? $billing_address->postal_code : '' }}<br>
-                                {{ $billing_address ? $billing_address->state : '' }},
-                                {{ $billing_address ? $billing_address->country : '' }}
+                                {{ $billing_address->phone }}<br>
+                                {{ $billing_address->address }}<br>
+                                {{ $billing_address->city }}, {{ $billing_address->postal_code }}<br>
+                                {{ $billing_address->state }}, {{ $billing_address->country }}
                             </address>
                         </div>
                     </div>
@@ -204,8 +187,8 @@
                             <tr class="">
                                 <th
                                     class="text-center"
-                                    data-breakpoints="lg"
                                     width="5%"
+                                    data-breakpoints="lg"
                                 >#</th>
                                 <th width="40%">{{ translate('Product') }}</th>
                                 <th
@@ -234,8 +217,8 @@
                                         @if ($orderDetail->product != null)
                                             <div class="media">
                                                 <img
-                                                    class="size-60px mr-3"
                                                     src="{{ uploaded_asset($orderDetail->product->thumbnail_img) }}"
+                                                    class="size-60px mr-3"
                                                 >
                                                 <div class="media-body">
                                                     <h4 class="fs-14 fw-400">{{ $orderDetail->product->name }}</h4>
@@ -244,9 +227,8 @@
                                                             @foreach ($orderDetail->variation->combinations as $combination)
                                                                 <span class="mr-2">
                                                                     <span class="opacity-50">
-                                                                        {{ optional($combination->attribute)->name }}
-                                                                    </span>
-                                                                    :{{ optional($combination->attribute_value)->name }}
+                                                                        {{ optional($combination->attribute)->name }}</span>:
+                                                                    {{ optional($combination->attribute_value)->name }}
                                                                 </span>
                                                             @endforeach
                                                         </div>
@@ -340,8 +322,8 @@
                                     $refund_request == null &&
                                     $today_date <= $last_refund_date)
                                 <a
-                                    class="btn btn-sm btn-primary"
                                     href="{{ route('admin.refund_request.create', $order->id) }}"
+                                    class="btn btn-sm btn-primary"
                                 >{{ translate('Create Refund') }}</a>
                             @endif
                         </div>
@@ -370,8 +352,8 @@
                                                 <td>
                                                     <div class="media">
                                                         <img
-                                                            class="size-60px mr-3"
                                                             src="{{ uploaded_asset($refundRequestItem->orderDetail->product->thumbnail_img) }}"
+                                                            class="size-60px mr-3"
                                                         >
                                                         <div class="media-body">
                                                             <h4 class="fs-14 fw-400">
@@ -421,43 +403,36 @@
                                                 @if ($refund_request->shop->user->user_type == 'seller')
                                                     <tr>
                                                         <td>
-                                                            <strong class="">
-                                                                {{ translate('Seller Approval') }}:
-                                                            </strong>
+                                                            <strong
+                                                                class="">{{ translate('Seller Approval') }}:</strong>
                                                         </td>
                                                         <td>
                                                             @if ($refund_request->seller_approval == 0)
-                                                                <span class="badge badge-inline badge-info">
-                                                                    {{ translate('Pending') }}
-                                                                </span>
+                                                                <span
+                                                                    class="badge badge-inline badge-info">{{ translate('Pending') }}</span>
                                                             @elseif($refund_request->seller_approval == 1)
-                                                                <span class="badge badge-inline badge-success">
-                                                                    {{ translate('Accepted') }}
-                                                                </span>
+                                                                <span
+                                                                    class="badge badge-inline badge-success">{{ translate('Accepted') }}</span>
                                                             @elseif($refund_request->seller_approval == 2)
-                                                                <span class="badge badge-inline badge-danger">
-                                                                    {{ translate('Rejected') }}
-                                                                </span>
+                                                                <span
+                                                                    class="badge badge-inline badge-danger">{{ translate('Rejected') }}</span>
                                                             @endif
                                                         </td>
                                                     </tr>
                                                 @endif
                                                 <tr>
-                                                    <td>
-                                                        <strong class="">{{ translate('Status') }}:</strong>
-                                                    </td>
+                                                    <td><strong class="">{{ translate('Status') }}
+                                                            :</strong></td>
                                                     <td>
                                                         @if ($refund_request->admin_approval == 0)
-                                                            <span class="badge badge-inline badge-info">
-                                                                {{ translate('Pending') }}
-                                                            </span>
+                                                            <span
+                                                                class="badge badge-inline badge-info">{{ translate('Pending') }}</span>
                                                         @elseif($refund_request->admin_approval == 1)
-                                                            <span class="badge badge-inline badge-success">
-                                                                {{ translate('Accepted') }}</span>
+                                                            <span
+                                                                class="badge badge-inline badge-success">{{ translate('Accepted') }}</span>
                                                         @elseif($refund_request->admin_approval == 2)
-                                                            <span class="badge badge-inline badge-danger">
-                                                                {{ translate('Rejected') }}
-                                                            </span>
+                                                            <span
+                                                                class="badge badge-inline badge-danger">{{ translate('Rejected') }}</span>
                                                         @endif
                                                     </td>
                                                 </tr>
@@ -468,26 +443,26 @@
                                                     <td>
                                                         <a
                                                             class="btn btn-soft-info btn-icon btn-circle btn-sm"
-                                                            href="javascript:void(0)"
-                                                            title="{{ translate('Refund Request Info') }}"
                                                             onclick="show_refund_request_info('{{ $refund_request->id }}');"
+                                                            title="{{ translate('Refund Request Info') }}"
+                                                            href="javascript:void(0)"
                                                         >
                                                             <i class="las la-eye"></i>
                                                         </a>
                                                         @if ($refund_request->admin_approval == 0)
                                                             <a
                                                                 class="btn btn-soft-success btn-icon btn-circle btn-sm"
-                                                                href="javascript:void(0)"
-                                                                title="{{ translate('Accept Refund Request') }}"
                                                                 onclick="accept_refund_request({{ $refund_request->id }},{{ $refund_request->amount }})"
+                                                                title="{{ translate('Accept Refund Request') }}"
+                                                                href="javascript:void(0)"
                                                             >
                                                                 <i class="las la-check"></i>
                                                             </a>
                                                             <a
                                                                 class="btn btn-soft-danger btn-icon btn-circle btn-sm"
-                                                                href="javascript:void(0)"
-                                                                title="{{ translate('Reject Refund Request') }}"
                                                                 onclick="reject_refund_request('{{ route('admin.refund_request.reject', $refund_request->id) }}')"
+                                                                title="{{ translate('Reject Refund Request') }}"
+                                                                href="javascript:void(0)"
                                                             >
                                                                 <i class="las la-times"></i>
                                                             </a>
@@ -518,11 +493,9 @@
                                     <th data-breakpoints="lg">{{ translate('Details') }}</th>
                                     <th class="text-center">{{ translate('Type') }}</th>
                                     <th
-                                        class="text-right"
                                         data-breakpoints="lg"
-                                    >
-                                        {{ translate('Calculated At') }}
-                                    </th>
+                                        class="text-right"
+                                    >{{ translate('Calculated At') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -534,13 +507,11 @@
                                         <td>{{ $history->details }}</td>
                                         <td class="text-center">
                                             @if ($history->type == 'Added')
-                                                <span class="badge badge-inline badge-success">
-                                                    {{ translate($history->type) }}
-                                                </span>
+                                                <span
+                                                    class="badge badge-inline badge-success">{{ translate($history->type) }}</span>
                                             @else
-                                                <span class="badge badge-inline badge-danger">
-                                                    {{ translate($history->type) }}
-                                                </span>
+                                                <span
+                                                    class="badge badge-inline badge-danger">{{ translate($history->type) }}</span>
                                             @endif
                                         </td>
                                         <td class="text-right">{{ $history->created_at }}</td>
@@ -564,16 +535,16 @@
                     >
                         @csrf
                         <input
-                            name="order_id"
                             type="hidden"
+                            name="order_id"
                             value="{{ $order->id }}"
                         >
                         <div class="form-group mb-1">
                             <label class="mb-0">{{ translate('Courier name') }}:</label>
                             <input
+                                type="text"
                                 class="form-control form-control-sm"
                                 name="courier_name"
-                                type="text"
                                 value="{{ $order->courier_name }}"
                                 required
                             >
@@ -581,9 +552,9 @@
                         <div class="form-group mb-1">
                             <label class="mb-0">{{ translate('Tracking number') }}:</label>
                             <input
+                                type="text"
                                 class="form-control form-control-sm"
                                 name="tracking_number"
-                                type="text"
                                 value="{{ $order->tracking_number }}"
                                 required
                             >
@@ -591,9 +562,9 @@
                         <div class="form-group mb-1">
                             <label class="mb-0">{{ translate('Tracking url') }}:</label>
                             <input
+                                type="text"
                                 class="form-control form-control-sm"
                                 name="tracking_url"
-                                type="text"
                                 value="{{ $order->tracking_url }}"
                                 required
                             >
@@ -640,23 +611,25 @@
             <div
                 class="modal-content"
                 id="refund-request-info-modal-content"
-            > </div>
+            >
+
+            </div>
         </div>
     </div>
 
     {{-- Accept refund request Modal --}}
     <div
-        class="modal fade"
         id="accept_refund_request_modal"
+        class="modal fade"
     >
         <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-zoom">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title h6">{{ translate('Accept Refund Request.') }}</h4>
                     <button
+                        type="button"
                         class="close"
                         data-dismiss="modal"
-                        type="button"
                         aria-hidden="true"
                     ></button>
                 </div>
@@ -667,9 +640,9 @@
                 >
                     @csrf
                     <input
-                        id="refund_request_id"
-                        name="refund_request_id"
                         type="hidden"
+                        name="refund_request_id"
+                        id="refund_request_id"
                         value=""
                     >
 
@@ -678,19 +651,17 @@
                             <label
                                 class="col-md-3 col-from-label"
                                 for="amount"
-                            >
-                                {{ translate('Amount') }}
-                            </label>
+                            >{{ translate('Amount') }}</label>
                             <div class="col-md-9">
                                 <input
-                                    class="form-control"
-                                    id="amount"
-                                    name="amount"
                                     type="number"
-                                    value=""
                                     lang="en"
                                     min="0"
                                     step="0.01"
+                                    name="amount"
+                                    id="amount"
+                                    value=""
+                                    class="form-control"
                                     required
                                 >
                             </div>
@@ -704,21 +675,21 @@
                     </div>
                     <div class="modal-footer">
                         <button
+                            type="button"
                             class="btn btn-secondary mt-2"
                             data-dismiss="modal"
-                            type="button"
                         >{{ translate('Cancel') }}</button>
                         <button
-                            class="btn btn-success"
-                            name="button"
                             type="submit"
+                            name="button"
                             value="manual"
+                            class="btn btn-success"
                         >{{ translate('Pay Manually') }}</button>
                         <button
-                            class="btn btn-primary"
-                            name="button"
                             type="submit"
+                            name="button"
                             value="wallet"
+                            class="btn btn-primary"
                         >{{ translate('Pay in Wallet') }}</button>
                     </div>
                 </form>
@@ -728,38 +699,34 @@
 
     {{-- Reject Refund request Modal --}}
     <div
-        class="modal fade"
         id="reject_refund_request_modal"
+        class="modal fade"
     >
         <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-zoom">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title h6">{{ translate('Reject Refund Request.') }}</h4>
                     <button
+                        type="button"
                         class="close"
                         data-dismiss="modal"
-                        type="button"
                         aria-hidden="true"
                     ></button>
                 </div>
                 <div class="modal-body text-center">
-                    <p class='fs-14'>{{ translate('Do you really want to reject this refund Request?') }}</p>
+                    <p class='fs-14'>{{ translate('Do you really want to reject this refund Request?') }}
                 </div>
                 <div class="modal-footer">
                     <button
+                        type="button"
                         class="btn btn-secondary mt-2"
                         data-dismiss="modal"
-                        type="button"
-                    >
-                        {{ translate('Cancel') }}
-                    </button>
+                    >{{ translate('Cancel') }}</button>
                     <a
-                        class="btn btn-primary"
-                        id="reject_refund_request_link"
                         href=""
-                    >
-                        {{ translate('Reject') }}
-                    </a>
+                        id="reject_refund_request_link"
+                        class="btn btn-primary"
+                    >{{ translate('Reject') }}</a>
                 </div>
             </div>
         </div>

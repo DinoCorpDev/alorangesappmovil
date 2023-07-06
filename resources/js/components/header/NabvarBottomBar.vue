@@ -1,24 +1,24 @@
 <template>
     <v-container class="bar" fluid>
         <div class="bar-item bar-link" @click="$router.back()">
-            <back-arrow-icon />
+            <BackArrowIcon />
             <span class="bar-label ml-3"> Volver </span>
         </div>
-        <a v-if="share" class="bar-item" href="#">
+        <a v-if="$route.meta.shareble" class="bar-item" href="#">
             <span class="bar-label mr-3"> Compartir </span>
-            <share-icon />
+            <ShareIcon />
         </a>
         <div v-else class="bar-item">
             <span class="bar-label mr-3"> Seguro </span>
-            <pad-lock-icon />
+            <PadLockIcon />
         </div>
     </v-container>
 </template>
 
 <script>
 import BackArrowIcon from "../icons/BackArrow.vue";
-import ShareIcon from "../icons/Share.vue";
 import PadLockIcon from "../icons/PadLock.vue";
+import ShareIcon from "../icons/Share.vue";
 
 export default {
     name: "NabvarBottomBar",
@@ -65,7 +65,7 @@ export default {
         font-weight: 700;
         letter-spacing: 0.15px;
         color: #000000;
-        margin-top: 3px;
+        margin-top: 2px;
 
         @media (min-width: 600px) {
             font-size: 16px;

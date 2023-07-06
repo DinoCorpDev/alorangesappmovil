@@ -47,8 +47,8 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        if(User::where('email', $request->email)->first() == null){
-            $admin = User::where('user_type','admin')->first();
+        if (User::where('email', $request->email)->first() == null) {
+            $admin = User::where('user_type', 'admin')->first();
             $user             = new User;
             $user->name       = $request->name;
             $user->shop_id    = $admin->shop_id;
@@ -89,7 +89,7 @@ class StaffController extends Controller
     {
         $user = User::findOrFail(decrypt($id));
         $roles = Role::latest()->get();
-        return view('backend.staff.staffs.edit', compact('user','roles'));
+        return view('backend.staff.staffs.edit', compact('user', 'roles'));
     }
 
     /**
@@ -107,12 +107,12 @@ class StaffController extends Controller
         $user->phone      = $request->mobile;
         $user->role_id    = $request->role_id;
 
-        if(strlen($request->password) > 0){
+        if (strlen($request->password) > 0) {
             $user->password = Hash::make($request->password);
         }
 
         $user->save();
-        $user->assignRole(Role::findOrFail($request->role_id)->name);
+        $user->syncRoles(Role::findOrFail($request->role_id)->name);
 
         flash(translate('Staff has been updated successfully'))->success();
         return redirect()->route('staffs.index');

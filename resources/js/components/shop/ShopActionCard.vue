@@ -1,7 +1,7 @@
 <template>
     <div
         class="shop-action-card"
-        :class="boxStyle == 'vertical' ? 'vertical' : 'pa-3 pa-sm-6'"
+        :class="boxStyle == 'vertical' ? 'vertical' : 'pa-3 pa-sm-5'"
         @click.stop="$emit('click')"
     >
         <img v-if="img" class="shop-action-card-image" :class="boxStyle != 'vertical' ? 'mr-5' : ''" :src="img" />
@@ -11,7 +11,7 @@
             class="shop-action-card-image placeholder"
             src="/public/assets/img/item-placeholder.png"
         />
-        <div class="shop-action-card-body" :class="boxStyle == 'vertical' ? 'pa-3 pa-sm-6' : ''">
+        <div class="shop-action-card-body" :class="boxStyle == 'vertical' ? 'pa-3 pa-sm-5' : ''">
             <h6 class="shop-action-card-title mb-3">{{ title }}</h6>
             <p class="shop-action-card-description body1 mb-4">{{ description }}</p>
             <CustomButton class="shop-action-card-btn" text="Acción" plain :href="href" :to="to" />
@@ -77,6 +77,7 @@ export default {
     &.vertical {
         height: 100%;
         flex-direction: column;
+        box-sizing: border-box;
 
         .shop-action-card-image {
             width: 100%;
@@ -92,6 +93,10 @@ export default {
     &-image {
         height: 100px;
         width: 100px;
+    }
+
+    &-body {
+        width: 100%;
     }
 
     &-title {

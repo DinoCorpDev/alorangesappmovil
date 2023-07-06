@@ -65,7 +65,7 @@
                                 data-title="{{ translate('Choose Products') }}"
                                 data-selected="{{ json_encode($offer_products_id) }}" data-selected-text-format="count"  data-live-search="true">
 
-                                @foreach (\App\Models\Product::where('published', 1)->get() as $product)
+                                @foreach (\App\Models\Product::where('published', 1)->where('approved', 1)->get() as $product)
                                     <option value="{{ $product->id }}">{{ $product->getTranslation('name') }}</option>
                                 @endforeach
 

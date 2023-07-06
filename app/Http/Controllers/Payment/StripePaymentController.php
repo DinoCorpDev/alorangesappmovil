@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Payment;
 use App\Http\Controllers\Controller;
 use App\Models\CombinedOrder;
 use Illuminate\Http\Request;
+use App\Models\Currency;
 
 class StripePaymentController extends Controller
 {
@@ -18,15 +19,16 @@ class StripePaymentController extends Controller
         return view('frontend.payment.stripe');
     }
 
-    public function create_checkout_session() {
-        
+    public function create_checkout_session()
+    {
+
         $amount = 0;
         if (session('payment_type') == 'cart_payment') {
-            $order = CombinedOrder::where('code',session('order_code'))->first();
+            $order = CombinedOrder::where('code', session('order_code'))->first();
             $amount = round($order->grand_total * 100);
         } elseif (session('payment_type') == 'wallet_payment') {
             $amount = round(session('amount') * 100);
-        }elseif(session('payment_type') == 'seller_package_payment'){
+        } elseif (session('payment_type') == 'seller_package_payment') {
             $amount = session('amount') * 100;
         }
 
@@ -37,7 +39,7 @@ class StripePaymentController extends Controller
             'line_items' => [
                 [
                     'price_data' => [
-                        'currency' => 'USD',
+                        'currency' => Currency::findOrFail(get_setting('system_default_currency'))->code,
                         'product_data' => [
                             'name' => "Payment"
                         ],
@@ -55,17 +57,18 @@ class StripePaymentController extends Controller
         return response()->json(['id' => $session->id, 'status' => 200]);
     }
 
-    public function success() {
-        try{
-            return ( new PaymentController )->payment_success(null);
-        }
-        catch (\Exception $e) {
+    public function success()
+    {
+        try {
+            return (new PaymentController)->payment_success(null);
+        } catch (\Exception $e) {
             // dd($e);
-            return ( new PaymentController )->payment_failed();
+            return (new PaymentController)->payment_failed();
         }
     }
 
-    public function cancel(){
-        return ( new PaymentController )->payment_failed();
+    public function cancel()
+    {
+        return (new PaymentController)->payment_failed();
     }
 }

@@ -175,8 +175,8 @@ return [
         /*
          * Package Service Providers...
          */
-        Laracon21\Colorcodeconverter\ColorcodeconverterServiceProvider::class,
-        Laracon21\Timezones\TimezonesServiceProvider::class,
+        // Laracon21\Colorcodeconverter\ColorcodeconverterServiceProvider::class,
+        // Laracon21\Timezones\TimezonesServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,

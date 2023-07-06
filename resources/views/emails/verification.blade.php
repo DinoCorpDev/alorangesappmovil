@@ -142,7 +142,9 @@
 															<td class="h2 center pb10" style="color:#000000; font-family:'Ubuntu', Arial,sans-serif; font-size:50px; line-height:60px; text-align:center; padding-bottom:10px;">{{ $array['subject'] }}</td>
 														</tr>
 														<tr>
-															<td class="h5 center blue pb30" style="font-family:'Ubuntu', Arial,sans-serif; font-size:20px; line-height:26px; text-align:center; color:#2e57ae; padding-bottom:30px;">{{ $array['content'] }} </td>
+															<td class="h5 center blue pb30" style="font-family:'Ubuntu', Arial,sans-serif; font-size:20px; line-height:26px; text-align:center; color:#2e57ae; padding-bottom:30px;">
+															    {{ $array['content'] }} <span>{{ $array['verification_code'] ?? '' }}</span>
+															</td>
 														</tr>
                                                         @if(!empty( $array['link']))
                                                             <tr>

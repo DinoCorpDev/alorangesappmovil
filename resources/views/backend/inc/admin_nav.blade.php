@@ -1,9 +1,7 @@
 <div class="aiz-topbar border-bottom px-15px px-lg-25px d-flex align-items-stretch justify-content-between">
     <div class=" d-flex">
-        <div class="aiz-topbar-nav-toggler d-flex align-items-center justify-content-start mr-2 mr-md-3"
-            data-toggle="aiz-mobile-nav">
-            <button
-                class="btn btn-icon btn-outline-secondary border-gray-300 p-0 d-flex align-items-center justify-content-center">
+        <div class="aiz-topbar-nav-toggler d-flex align-items-center justify-content-start mr-2 mr-md-3" data-toggle="aiz-mobile-nav">
+            <button class="btn btn-icon btn-outline-secondary border-gray-300 p-0 d-flex align-items-center justify-content-center">
                 <span class="aiz-mobile-toggler d-inline-block">
                     <span></span>
                 </span>
@@ -17,8 +15,7 @@
                 @if ($logo != null)
                     <img src="{{ uploaded_asset($logo) }}" class="brand-icon" alt="{{ get_setting('site_name') }}">
                 @else
-                    <img src="{{ static_asset('assets/img/logo.png') }}" class="brand-icon"
-                        alt="{{ get_setting('site_name') }}">
+                    <img src="{{ static_asset('assets/img/logo.png') }}" class="brand-icon" alt="{{ get_setting('site_name') }}">
                 @endif
             </a>
         </div>
@@ -26,43 +23,36 @@
     <div class="d-flex justify-content-between align-items-stretch flex-grow-xl-1">
         <div class="d-none d-md-flex justify-content-around align-items-center align-items-stretch">
             <div class="aiz-topbar-item align-items-center">
-                <a class="btn btn-outline-secondary border-gray-300 d-flex align-items-center px-3"
-                    href="{{ route('cache.clear') }}">
+                <a class="btn btn-outline-secondary border-gray-300 d-flex align-items-center px-3" href="{{ route('cache.clear')}}">
                     <i class="las la-hdd opacity-60"></i>
                     <span class="fw-500 fs-13 ml-2 mr-0 opacity-60">{{ translate('Clear Cache') }}</span>
                 </a>
             </div>
 
             <div class="aiz-topbar-item align-items-center ml-3">
-                <a class="btn btn-outline-secondary border-gray-300 d-flex align-items-center px-3"
-                    href="{{ route('home') }}" target="_blank">
+                <a class="btn btn-outline-secondary border-gray-300 d-flex align-items-center px-3" href="{{ route('home')}}" target="_blank">
                     <i class="las la-globe opacity-60"></i>
                     <span class="fw-500 fs-13 ml-2 mr-0 opacity-60">{{ translate('Browse Website') }}</span>
                 </a>
             </div>
             <div class="aiz-topbar-item align-items-center dropdown ml-3 mr-0 ">
-                <a class="btn btn-outline-secondary border-gray-300 d-flex align-items-center px-3"
-                    href="javascript:void(0);" data-toggle="dropdown">
+                <a class="btn btn-outline-secondary border-gray-300 d-flex align-items-center px-3" href="javascript:void(0);" data-toggle="dropdown">
                     <i class="las la-plus ts-08 opacity-60"></i>
                     <span class="fw-500 fs-13 ml-2 mr-0 opacity-60">{{ translate('Add New') }}</span>
                 </a>
                 <div class="dropdown-menu p-3">
                     <ul class="list-group list-group-raw text-capitalize">
                         <li class="list-group-item p-2">
-                            <a href="{{ route('product.create') }}"
-                                class="text-reset fs-14 opacity-60">{{ translate('Add new product') }}</a>
+                            <a href="{{ route('product.create') }}" class="text-reset fs-14 opacity-60">{{ translate('Add new product') }}</a>
                         </li>
                         <li class="list-group-item p-2">
-                            <a href="{{ route('coupon.create') }}"
-                                class="text-reset fs-14 opacity-60">{{ translate('Add new coupon') }}</a>
+                            <a href="{{ route('coupon.create') }}" class="text-reset fs-14 opacity-60">{{ translate('Add new coupon') }}</a>
                         </li>
                         <li class="list-group-item p-2">
-                            <a href="{{ route('offers.create') }}"
-                                class="text-reset fs-14 opacity-60">{{ translate('Add New Offer') }}</a>
+                            <a href="{{ route('offers.create') }}" class="text-reset fs-14 opacity-60">{{ translate('Add New Offer') }}</a>
                         </li>
                         <li class="list-group-item p-2">
-                            <a href="{{ route('staffs.create') }}"
-                                class="text-reset fs-14 opacity-60">{{ translate('Add New Staff') }}</a>
+                            <a href="{{ route('staffs.create') }}" class="text-reset fs-14 opacity-60">{{ translate('Add New Staff') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -105,22 +95,18 @@
             @endphp
             <div class="aiz-topbar-item ml-3 mr-0">
                 <div class="align-items-center d-flex dropdown" id="lang-change">
-                    <a class="dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button"
-                        aria-haspopup="false" aria-expanded="false">
+                    <a class="dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
                         <span class="btn btn btn-outline-secondary border-gray-300 px-3 px-md-4">
-                            <img src="{{ static_asset('assets/img/flags/' . $language->flag . '.png') }}" height="11">
-                            <span
-                                class="fw-500 fs-13 ml-2 mr-0 opacity-60  d-none d-md-inline-block">{{ $language->name }}</span>
+                            <img src="{{ static_asset('assets/img/flags/'.$language->flag.'.png') }}" height="11">
+                            <span class="fw-500 fs-13 ml-2 mr-0 opacity-60  d-none d-md-inline-block">{{ $language->name }}</span>
                         </span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
 
-                        @foreach (\App\Models\Language::where('status', 1)->get() as $key => $language)
+                        @foreach (\App\Models\Language::where('status',1)->get() as $key => $language)
                             <li>
-                                <a href="javascript:void(0)" data-flag="{{ $language->code }}"
-                                    class="dropdown-item @if ($locale == $language->code) active @endif">
-                                    <img src="{{ static_asset('assets/img/flags/' . $language->flag . '.png') }}"
-                                        class="mr-2">
+                                <a href="javascript:void(0)" data-flag="{{ $language->code }}" class="dropdown-item @if($locale == $language->code) active @endif">
+                                    <img src="{{ static_asset('assets/img/flags/'.$language->flag.'.png') }}" class="mr-2">
                                     <span class="language">{{ $language->name }}</span>
                                 </a>
                             </li>
@@ -131,16 +117,17 @@
 
             <div class="aiz-topbar-item ml-3 mr-0">
                 <div class="align-items-center d-flex dropdown">
-                    <a class="dropdown-toggle no-arrow text-dark" data-toggle="dropdown" href="javascript:void(0);"
-                        role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="dropdown-toggle no-arrow text-dark" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
                         <span class="d-flex align-items-center">
                             <span class="d-none d-md-block">
                                 <span class="d-block fw-500">{{ Auth::user()->name }}</span>
                                 <span class="d-block small opacity-60">{{ Auth::user()->user_type }}</span>
                             </span>
                             <span class="avatar avatar-sm ml-md-2 mr-0">
-                                <img src="{{ uploaded_asset(Auth::user()->avatar) }}"
-                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                                <img
+                                    src="{{ uploaded_asset(Auth::user()->avatar) }}"
+                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';"
+                                >
                             </span>
                         </span>
                     </a>

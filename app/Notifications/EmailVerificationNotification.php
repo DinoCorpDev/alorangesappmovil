@@ -21,15 +21,17 @@ class EmailVerificationNotification extends Notification
 
     public function toMail($notifiable)
     {
-        $notifiable->verification_code = rand(100000,999999);
+        $verification_code = rand(100000, 999999);
+        $notifiable->verification_code = $verification_code;
         $notifiable->save();
 
         $array['subject'] = translate('Email Verification');
-        $array['content'] = translate('You verification code is').' '. $notifiable->verification_code;
+        $array['content'] = translate('You verification code is ');
+        $array['verification_code'] = $verification_code;
 
         return (new MailMessage)
             ->view('emails.verification', ['array' => $array])
-            ->subject(translate('Email Verification').' - '.env('APP_NAME'));
+            ->subject(translate('Email Verification') . ' - ' . env('APP_NAME'));
     }
 
     public function toArray($notifiable)

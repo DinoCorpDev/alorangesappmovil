@@ -13,7 +13,7 @@ export default function init(store, router) {
         response => {
             return response;
         },
-        function(error) {
+        function (error) {
             if (error.response.status == 401) {
                 store.dispatch("auth/logout");
                 router.push({ name: "Login" });
@@ -32,8 +32,7 @@ export default function init(store, router) {
         }
 
         // send locale
-        request.headers.common["Accept-Language"] =
-            store.getters["app/userLanguage"];
+        request.headers.common["Accept-Language"] = store.getters["app/userLanguage"];
 
         return request;
     });
@@ -44,8 +43,8 @@ async function deleteCaches() {
         const keys = await window.caches.keys();
         await Promise.all(keys.map(key => caches.delete(key)));
 
-        console.log("deleteCache succeed");
+        // console.log("deleteCache succeed");
     } catch (err) {
-        console.log("deleteCache err: ", err);
+        // console.log("deleteCache err: ", err);
     }
 }

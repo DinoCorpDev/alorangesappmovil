@@ -1,8 +1,7 @@
-
-let Error404 = () => import('../pages/errors/404')
-let Error500 = () => import('../pages/errors/500')
-let CustomPage = () =>  import('../pages/CustomPage')
-
+let Error404 = () => import("../pages/errors/404");
+let Error500 = () => import("../pages/errors/500");
+let CustomPage = () => import("../pages/CustomPage");
+let ComparedProductList = () => import("../pages/ComparedProductList");
 
 export default [
     // {
@@ -12,21 +11,27 @@ export default [
     //     meta: { requiresAuth: false },
     // },
     {
-        path: '/404',
+        path: "/404",
         component: Error404,
-        name: '404',
-        meta: { requiresAuth: false },
+        name: "404",
+        meta: { requiresAuth: false }
     },
     {
-        path: '/:pageSlug?',
+        path: "/page/:pageSlug?",
         component: CustomPage,
-        name: 'CustomPage',
-        meta: { requiresAuth: false },
+        name: "CustomPage",
+        meta: { requiresAuth: false }
     },
     {
-        path: '*',
-        component: Error404,
-        name: 'NotFound',
-        meta: { requiresAuth: false },
+        path: "/compared-list",
+        component: ComparedProductList,
+        name: "ComparedList",
+        meta: { requiresAuth: false }
     },
-]
+    {
+        path: "*",
+        component: Error404,
+        name: "NotFound",
+        meta: { requiresAuth: false }
+    }
+];

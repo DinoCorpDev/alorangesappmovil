@@ -1296,16 +1296,13 @@ hr,
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
 }
 .shadow-md {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 .shadow-lg {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
 }
 .shadow-xl {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-        0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
 }
 .shadow-2xl {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
@@ -1327,16 +1324,13 @@ hr,
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
 }
 .hov-shadow-md:hover {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 .hov-shadow-lg:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
 }
 .hov-shadow-xl:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-        0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
 }
 .hov-shadow-2xl:hover {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
@@ -2993,36 +2987,21 @@ label {
 .v-data-table > .v-data-table__wrapper > table > thead > tr > th {
     padding: 12px 16px;
 }
-.theme--light.v-data-table
-    > .v-data-table__wrapper
-    > table
-    > tbody
-    > tr:not(:last-child)
-    > td:last-child,
+.theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr:not(:last-child) > td:last-child,
 .theme--light.v-data-table
     > .v-data-table__wrapper
     > table
     > tbody
     > tr:not(:last-child)
     > td:not(.v-data-table__mobile-row),
-.theme--light.v-data-table
-    > .v-data-table__wrapper
-    > table
-    > tbody
-    > tr:not(:last-child)
-    > th:last-child,
+.theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr:not(:last-child) > th:last-child,
 .theme--light.v-data-table
     > .v-data-table__wrapper
     > table
     > tbody
     > tr:not(:last-child)
     > th:not(.v-data-table__mobile-row),
-.theme--light.v-data-table
-    > .v-data-table__wrapper
-    > table
-    > thead
-    > tr:last-child
-    > th,
+.theme--light.v-data-table > .v-data-table__wrapper > table > thead > tr:last-child > th,
 .theme--light.v-data-table .v-data-footer {
     border-color: var(--border-color);
 }
@@ -3045,10 +3024,7 @@ label {
     border-radius: 0 !important;
     transition: all 0.2s;
 }
-.product-details-expansion
-    .v-expansion-panel-header
-    .v-expansion-panel-header__icon
-    .v-icon {
+.product-details-expansion .v-expansion-panel-header .v-expansion-panel-header__icon .v-icon {
     color: var(--primary) !important;
 }
 .product-details-expansion .v-expansion-panel-header g,
@@ -3060,10 +3036,7 @@ label {
     background: var(--primary);
     color: #ffff;
 }
-.product-details-expansion
-    .v-expansion-panel-header--active
-    .v-expansion-panel-header__icon
-    .v-icon {
+.product-details-expansion .v-expansion-panel-header--active .v-expansion-panel-header__icon .v-icon {
     color: #ffff !important;
 }
 .product-details-expansion .v-expansion-panel-header--active g,
@@ -3109,15 +3082,11 @@ label {
     font-size: 14px !important;
     -webkit-text-stroke: 0.5px;
 }
-.order-steps
-    .v-stepper__step--active:not(.v-stepper__step--error)
-    .v-stepper__step__step {
+.order-steps .v-stepper__step--active:not(.v-stepper__step--error) .v-stepper__step__step {
     border-color: #4caf50 !important;
     background: transparent !important;
 }
-.order-steps
-    .v-stepper__step--active:not(.v-stepper__step--error)
-    .v-stepper__step__step:before {
+.order-steps .v-stepper__step--active:not(.v-stepper__step--error) .v-stepper__step__step:before {
     position: absolute;
     content: "";
     height: calc(100% - 16px);
@@ -3127,15 +3096,11 @@ label {
     background: #4caf50 !important;
     border-radius: 50%;
 }
-.order-steps
-    .v-stepper__step--inactive:not(.v-stepper__step--error)
-    .v-stepper__step__step {
+.order-steps .v-stepper__step--inactive:not(.v-stepper__step--error) .v-stepper__step__step {
     background: transparent !important;
     border-color: rgb(204 204 204) !important;
 }
-.order-steps
-    .v-stepper__step--inactive:not(.v-stepper__step--error)
-    .v-stepper__step__step:before {
+.order-steps .v-stepper__step--inactive:not(.v-stepper__step--error) .v-stepper__step__step:before {
     position: absolute;
     content: "";
     height: calc(100% - 16px);
@@ -3190,12 +3155,8 @@ label {
     .order-steps .v-stepper__step__step i {
         font-size: 8px !important;
     }
-    .order-steps
-        .v-stepper__step--inactive:not(.v-stepper__step--error)
-        .v-stepper__step__step:before,
-    .order-steps
-        .v-stepper__step--active:not(.v-stepper__step--error)
-        .v-stepper__step__step:before {
+    .order-steps .v-stepper__step--inactive:not(.v-stepper__step--error) .v-stepper__step__step:before,
+    .order-steps .v-stepper__step--active:not(.v-stepper__step--error) .v-stepper__step__step:before {
         height: 6px;
         width: 6px;
         top: 4px;
@@ -3252,6 +3213,26 @@ label {
 .blog-details-description img {
     width: 100% !important;
 }
+
+.text-white {
+    color: #ffffff !important;
+}
+
+.club-badge {
+    background-color: var(--primary);
+    text-transform: uppercase;
+    position: relative;
+    color: #fff;
+    transform-origin: bottom left;
+    top: 0;
+    left: 0;
+    padding: 2px 9px;
+    font-size: 11px;
+}
+.max-w-80px {
+    max-width: 80px;
+}
+
 /* lg */
 @media (min-width: 992px) {
     .w-lg-270px,

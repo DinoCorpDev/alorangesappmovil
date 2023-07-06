@@ -95,8 +95,8 @@
                             <label class="col-sm-3 col-from-label">{{ translate('Default dimensions unit') }}</label>
                             <div class="col-sm-9">
                                 <input type="hidden" name="types[]" value="dimension_unit">
-                                <select name="dimension_unit" class="form-control aiz-selectpicker" data-live-search="true"
-                                    data-selected="{{ get_setting('dimension_unit') }}">
+                                <select name="dimension_unit" class="form-control aiz-selectpicker"
+                                    data-live-search="true" data-selected="{{ get_setting('dimension_unit') }}">
                                     <option value="m">m</option>
                                     <option value="cm">cm</option>
                                     <option value="mm">mm</option>
@@ -113,7 +113,36 @@
             </div>
         </div>
     </div>
-
+    @if (addon_is_activated('multi_vendor'))
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="mb-0 h6">{{ translate('Seller Minimum Withdrawal Amount') }}</h1>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-horizontal" action="{{ route('settings.update') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row">
+                                <label
+                                    class="col-sm-3 col-from-label">{{ translate('Minimum withdrawal amount') }}</label>
+                                <div class="col-sm-9">
+                                    <input type="hidden" name="types[]" value="min_withdrawal_amount">
+                                    <input type="number" class="form-control" name="min_withdrawal_amount"
+                                        min="0" step="0.01" value="{{ get_setting('min_withdrawal_amount') }}"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="card">
@@ -127,8 +156,8 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-from-label">{{ translate('Minimum order amount') }}</label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control" name="min_order" min="0" step="0.01"
-                                    value="{{ auth()->user()->shop->min_order }}" required>
+                                <input type="number" class="form-control" name="min_order" min="0"
+                                    step="0.01" value="{{ auth()->user()->shop->min_order }}" required>
                                 <small
                                     class="text-muted">{{ translate('Customer need to purchase minimum this amount of admin shop products to place an order.') }}</small>
                             </div>
@@ -188,6 +217,18 @@
                             </label>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-from-label">{{ translate('Maintenance Mode') }}</label>
+                        <div class="col-sm-6">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'maintenance_mode')"
+                                    <?php if (get_setting('maintenance_mode') == 1) {
+                                        echo 'checked';
+                                    } ?>>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
                     {{-- <div class="form-group row">
                         <div class="col-sm-6">
                             <label class="col-from-label">{{translate('Email Verification')}}</label>
@@ -212,6 +253,47 @@
                             </label>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-from-label">{{ translate('Club Point Activation') }}</label>
+                        <div class="col-sm-6">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'club_point')"
+                                    @if (get_setting('club_point') == 1) checked @endif>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-from-label">{{ translate('Product Comparison') }}</label>
+                        <div class="col-sm-6">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'product_comparison')"
+                                    <?php if (get_setting('product_comparison') == 1) {
+                                        echo 'checked';
+                                    } ?>>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    @if (addon_is_activated('multi_vendor'))
+                        <div class="form-group row">
+                            <label
+                                class="col-sm-6 col-from-label">{{ translate('Admin Approval On Seller Product') }}</label>
+                            <div class="col-sm-6">
+                                <label class="aiz-switch aiz-switch-success mb-0">
+                                    <input type="checkbox" onchange="updateSettings(this, 'product_approve_by_admin')"
+                                        <?php if (get_setting('product_approve_by_admin') == 1) {
+                                            echo 'checked';
+                                        } ?>>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    @endif
+
                     @if ((float) get_setting('current_version') > 1.3 && addon_is_activated('multi_vendor'))
                         <div class="form-group row">
                             <label
@@ -228,8 +310,7 @@
 
                     @if ((float) get_setting('current_version') > 1.6)
                         <div class="form-group row">
-                            <label
-                                class="col-sm-6 col-from-label">{{ translate('Offline Payment') }}</label>
+                            <label class="col-sm-6 col-from-label">{{ translate('Offline Payment') }}</label>
                             <div class="col-sm-6">
                                 <label class="aiz-switch aiz-switch-success mb-0">
                                     <input type="checkbox" onchange="updateSettings(this, 'offline_payment')"
@@ -240,8 +321,7 @@
                         </div>
                     @endif
 
-
-                     <div class="form-group row">
+                    <div class="form-group row">
                         <label class="col-sm-6 col-from-label">{{ translate('Sticky Header') }}</label>
                         <div class="col-sm-6">
                             <label class="aiz-switch aiz-switch-success mb-0">

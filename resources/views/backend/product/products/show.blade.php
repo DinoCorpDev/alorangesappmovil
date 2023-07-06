@@ -6,12 +6,12 @@
             <div class="row align-items-center">
                 <div class="col-lg-auto">
                     <img
-                        class="size-200px"
                         src="{{ uploaded_asset($product->thumbnail_img) }}"
+                        class="size-200px"
                     >
                 </div>
                 <div class="col-lg">
-                    <h1 class="h5 fw-700">{{ $product->name }}</h1>
+                    <h1 class="h5 fw-700">{{ $product->getTranslation('name') }}</h1>
                     <div class="d-flex align-items-center mb-3">
                         <span class="rating">
                             {{ renderStarRating($product->rating) }}
@@ -79,9 +79,9 @@
                         @if ($product->brand)
                             <div class="h-30px w-100px d-flex align-items-center justify-content-end">
                                 <img
-                                    class="mw-100 mh-100"
                                     src="{{ uploaded_asset($product->brand->logo) }}"
                                     alt="{{ translate('Brand') }}"
+                                    class="mw-100 mh-100"
                                 >
                             </div>
                         @else
@@ -148,9 +148,9 @@
                                 <label for="name">
                                     {{ $tax->name }}
                                     <input
-                                        name="tax_ids[]"
                                         type="hidden"
                                         value="{{ $tax->id }}"
+                                        name="tax_ids[]"
                                     >
                                 </label>
                             </div>
@@ -190,34 +190,34 @@
                                 @if ($product->is_variant)
                                     <td class="">
                                         <label
-                                            class="control-label"
                                             for=""
+                                            class="control-label"
                                         >{{ translate('Variant') }}</label>
                                     </td>
                                 @endif
                                 <td class="">
                                     <label
-                                        class="control-label"
                                         for=""
+                                        class="control-label"
                                     >{{ translate('Price') }}</label>
                                 </td>
                                 <td class="">
                                     <label
-                                        class="control-label"
                                         for=""
+                                        class="control-label"
                                     >{{ translate('Stock') }}</label>
                                 </td>
                                 <td class="">
                                     <label
-                                        class="control-label"
                                         for=""
+                                        class="control-label"
                                     >{{ translate('SKU') }}</label>
                                 </td>
                                 @if ($product->is_variant)
                                     <td class="">
                                         <label
-                                            class="control-label"
                                             for=""
+                                            class="control-label"
                                         >{{ translate('Image') }}</label>
                                     </td>
                                 @endif
@@ -270,8 +270,8 @@
                                     @if ($product->is_variant)
                                         <td>
                                             <img
-                                                class="size-50px"
                                                 src="{{ uploaded_asset($variation->img) }}"
+                                                class="size-50px"
                                             >
                                         </td>
                                     @endif
@@ -297,8 +297,8 @@
                         @foreach (explode(',', $product->photos) as $key => $image)
                             <div class="carousel-box">
                                 <img
-                                    class="img-fluid"
                                     src="{{ uploaded_asset($image) }}"
+                                    class="img-fluid"
                                 >
                             </div>
                         @endforeach
@@ -329,11 +329,11 @@
                         <div class="col-md-8">
                             <div class="input-group">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="standard_delivery_time"
-                                    type="number"
-                                    value="{{ $product->standard_delivery_time }}"
                                     min="0"
+                                    value="{{ $product->standard_delivery_time }}"
                                     required
                                     readonly
                                 >
@@ -346,11 +346,11 @@
                         <div class="col-md-8">
                             <div class="input-group">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="express_delivery_time"
-                                    type="number"
-                                    value="{{ $product->express_delivery_time }}"
                                     min="0"
+                                    value="{{ $product->express_delivery_time }}"
                                     required
                                     readonly
                                 >
@@ -363,11 +363,11 @@
                         <div class="col-md-8">
                             <div class="input-group">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="weight"
-                                    type="number"
-                                    value="{{ $product->weight }}"
                                     min="0"
+                                    value="{{ $product->weight }}"
                                     required
                                     readonly
                                 >
@@ -381,11 +381,11 @@
                         <div class="col-md-8">
                             <div class="input-group">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="height"
-                                    type="number"
-                                    value="{{ $product->height }}"
                                     min="0"
+                                    value="{{ $product->height }}"
                                     required
                                     readonly
                                 >
@@ -399,11 +399,11 @@
                         <div class="col-md-8">
                             <div class="input-group">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="length"
-                                    type="number"
-                                    value="{{ $product->length }}"
                                     min="0"
+                                    value="{{ $product->length }}"
                                     required
                                     readonly
                                 >
@@ -417,11 +417,11 @@
                         <div class="col-md-8">
                             <div class="input-group">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="width"
-                                    type="number"
-                                    value="{{ $product->width }}"
                                     min="0"
+                                    value="{{ $product->width }}"
                                     required
                                     readonly
                                 >
@@ -498,7 +498,6 @@
                             />
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">{{ translate('si2') }}</label>
                         <div class="col-md-8">

@@ -376,3 +376,34 @@ Please enter cvv
 Please enter valid card number
 Select Month
 Select Year
+Earning Points
+My Points
+Exchange rate
+Point
+Wallet Money
+Point Earning history
+Order Code
+Points
+Converted
+Date
+Action
+Pts
+Yes
+Convert Now
+No
+Done
+Club point converted to wallet successfully
+Convert club points to wallet?
+Club Points
+Total Club Points
+The order is not paid
+Sorry, nothing found.
+Popular Suggestions
+products
+Category Suggestions
+compare
+my compared list
+reset list
+compared product list is empty
+Downloads
+Download Your Products

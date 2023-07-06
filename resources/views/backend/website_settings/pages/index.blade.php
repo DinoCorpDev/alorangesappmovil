@@ -33,7 +33,7 @@
 					@if($page->type == 'home_page')
 						{{ route('home') }}
 					@else
-						{{ route('home') }}/{{ $page->slug }}
+						{{ route('home') }}/page/{{ $page->slug }}
 					@endif
 				</td>
         		<td class="text-right">

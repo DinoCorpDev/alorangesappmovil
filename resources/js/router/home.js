@@ -15,7 +15,6 @@ let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
 let Shop = () => import("../pages/Shop");
 let About = () => import("../pages/About");
-let Search = () => import("../pages/Search");
 let Collection = () => import("../pages/Collection");
 
 let ShopSpaces = () => import("../pages/shop/ShopSpaces");
@@ -28,18 +27,12 @@ export default [
         path: "/",
         component: TempLanding,
         name: "TempLanding",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, hasHeader: false, hasFooter: false }
     },
     {
         path: "/test-components",
         component: TestComponents,
         name: "TestComponents",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/search2/:keyword?",
-        component: Search,
-        name: "SearchProducts",
         meta: { requiresAuth: false }
     },
     {
@@ -71,33 +64,27 @@ export default [
                 path: "spaces",
                 component: ShopSpaces,
                 name: "ShopSpaces",
-                meta: { requiresAuth: false }
+                meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
                 path: "services",
                 component: ShopServices,
                 name: "ShopServices",
-                meta: { requiresAuth: false }
+                meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
                 path: "home-appliances",
                 component: ShopHomeAppliances,
                 name: "ShopHomeAppliances",
-                meta: { requiresAuth: false }
+                meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
                 path: "business-portal",
                 component: ShopBusinessPortal,
                 name: "ShopBusinessPortal",
-                meta: { requiresAuth: false }
+                meta: { requiresAuth: false, hasBottomBar: false }
             }
         ]
-    },
-    {
-        path: "/home2",
-        component: Home2,
-        name: "Home2",
-        meta: { requiresAuth: false }
     },
     {
         path: "/home",
@@ -106,9 +93,21 @@ export default [
         meta: { requiresAuth: false }
     },
     {
+        path: "/home2",
+        component: Home2,
+        name: "Home2",
+        meta: { requiresAuth: false }
+    },
+    {
         path: "/all-categories",
         component: AllCategories,
         name: "AllCategories",
+        meta: { requiresAuth: false }
+    },
+    {
+        path: "/all-brands",
+        component: AllBrands,
+        name: "AllBrands",
         meta: { requiresAuth: false }
     },
     {
@@ -136,8 +135,14 @@ export default [
         meta: { requiresAuth: false }
     },
     {
+        path: "/brand/:brandId?",
+        component: ProductListing,
+        name: "Brand",
+        meta: { requiresAuth: false }
+    },
+    {
         path: "/category2/:categorySlug?",
-        component: Search,
+        component: ProductListing,
         name: "Category2",
         meta: { requiresAuth: false }
     },
@@ -145,13 +150,13 @@ export default [
         path: "/search/:keyword?",
         component: ProductListing,
         name: "Search",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, shareble: true }
     },
     {
         path: "/product/:slug",
         component: ProductDetails,
         name: "ProductDetails",
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: false, shareble: true }
     },
     {
         path: "/service/:slug",

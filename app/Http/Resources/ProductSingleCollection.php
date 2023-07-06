@@ -36,9 +36,7 @@ class ProductSingleCollection extends JsonResource
             'discount' => $this->discount,
             'discount_type' => $this->discount_type,
             'base_price' => (float) product_base_price($this),
-            'lowest_price' => $this->lowest_price,
             'highest_price' => (float) product_highest_price($this),
-            'highest_price' => $this->highest_price,
             'base_discounted_price' => (float) product_discounted_base_price($this),
             'highest_discounted_price' => (float) product_discounted_highest_price($this),
             'standard_delivery_time' => (int) $this->standard_delivery_time,
@@ -147,14 +145,15 @@ class ProductSingleCollection extends JsonResource
                 )
             ],
             'ficha_tecnica_del_producto' => api_asset($this->ficha_tecnica_del_producto),
-            /*
             'shop' => [
                 'name' => $this->shop->name,
                 'logo' => api_asset($this->shop->logo),
-                'rating' => (double) $this->shop->rating,
+                'rating' => (float) $this->shop->rating,
                 'review_count' => $this->shop->reviews_count,
                 'slug' => $this->shop->slug,
-            ]*/
+            ],
+            'earn_point' => (float) $this->earn_point,
+            'is_digital' => $this->digital == 1 ? true : false,
         ];
 
         $productArray['imagenes'] = array_filter($productArray['imagenes'], function ($value) {
@@ -179,9 +178,11 @@ class ProductSingleCollection extends JsonResource
     protected function convertPhotos()
     {
         $result = array();
+
         foreach (explode(',', $this->photos) as $item) {
-            array_push($result, api_asset_new($item));
+            array_push($result, api_asset($item));
         }
+
         return $result;
     }
 }

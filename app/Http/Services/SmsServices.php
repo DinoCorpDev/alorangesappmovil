@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Http;
 
 class SmsServices
 {
-    public function sendSMS($to, $text, $from = null){
-        try{
-            
-            if(get_setting('active_sms_gateway') == 'twilio'){
+    public function sendSMS($to, $text, $from = null)
+    {
+        try {
+            if (get_setting('active_sms_gateway') == 'twilio') {
                 $TWILIO_SID = env('TWILIO_SID');
                 $TWILIO_AUTH_TOKEN = env('TWILIO_AUTH_TOKEN');
 
@@ -21,8 +21,7 @@ class SmsServices
                     "From" => env('VALID_TWILLO_NUMBER'),
                     "To" => $to,
                 ]);
-
-            }elseif(get_setting('active_sms_gateway') == 'vonage'){
+            } elseif (get_setting('active_sms_gateway') == 'vonage') {
                 Http::post('https://rest.nexmo.com/sms/json', [
                     'from' => env('APP_NAME'),
                     'text' => $text,
@@ -31,17 +30,20 @@ class SmsServices
                     'api_secret' => env('VONAGE_SECRET'),
                 ]);
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             // dd($e);
         }
     }
 
-    public function phoneVerificationSms($to,$code){
-        $sms = 'Your verification code for '.env('APP_NAME').' is '.$code.'.';
-        $this->sendSMS($to,$sms);
+    public function phoneVerificationSms($to, $code)
+    {
+        $sms = 'Your verification code for ' . env('APP_NAME') . ' is ' . $code . '.';
+        $this->sendSMS($to, $sms);
     }
-    public function forgotPasswordSms($to,$code){
-        $sms = 'Your password reset code for '.env('APP_NAME').' is '.$code.'.';
-        $this->sendSMS($to,$sms);
+
+    public function forgotPasswordSms($to, $code)
+    {
+        $sms = 'Your password reset code for ' . env('APP_NAME') . ' is ' . $code . '.';
+        $this->sendSMS($to, $sms);
     }
 }
