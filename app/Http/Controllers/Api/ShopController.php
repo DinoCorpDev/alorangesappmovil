@@ -17,8 +17,8 @@ use App\Models\Product;
 use App\Models\Shop;
 use App\Models\Attribute;
 use App\Models\AttributeCategory;
-use App\Models\Brand;
 use App\Models\User;
+use App\Notifications\SellerRegistrationNotification;
 use App\Utility\CategoryUtility;
 use Hash;
 use Str;
@@ -74,6 +74,9 @@ class ShopController extends Controller
         $user->shop_id = $shop->id;
         $user->save();
 
+        $admin = User::where('user_type', 'admin')->first();
+        $admin->notify(new SellerRegistrationNotification($shop));
+
         return response()->json([
             'success' => true,
             'message' => translate('Thanks for registering your shop.'),
@@ -124,10 +127,10 @@ class ShopController extends Controller
         $shop = filter_shops(Shop::where('slug', $slug)->with([])->withCount(['reviews']))->first();
 
         if ($shop) {
-            $featured_products =  Product::whereIn('id', json_decode($shop->featured_products ?? '[]'))->where('published', 1)->get();
-            $new_arrival_products =  Product::where('shop_id', $shop->id)->where('published', 1)->latest()->limit(10)->get();
-            $best_rated_products =  Product::where('shop_id', $shop->id)->where('published', 1)->orderBy('rating', 'desc')->limit(10)->get();
-            $best_selling_products =  Product::where('shop_id', $shop->id)->where('published', 1)->orderBy('num_of_sale', 'desc')->limit(10)->get();
+            $featured_products =  Product::whereIn('id', json_decode($shop->featured_products ?? '[]'))->where('published', 1)->where('approved', 1)->get();
+            $new_arrival_products =  Product::where('shop_id', $shop->id)->where('published', 1)->where('approved', 1)->latest()->limit(10)->get();
+            $best_rated_products =  Product::where('shop_id', $shop->id)->where('published', 1)->where('approved', 1)->orderBy('rating', 'desc')->limit(10)->get();
+            $best_selling_products =  Product::where('shop_id', $shop->id)->where('published', 1)->where('approved', 1)->orderBy('num_of_sale', 'desc')->limit(10)->get();
             $latest_coupons = Coupon::where('shop_id', $shop->id)->where('start_date', '<=', strtotime(date('d-m-Y H:i:s')))->where('end_date', '>=', strtotime(date('d-m-Y H:i:s')))->limit(5)->get();
 
             return response()->json([

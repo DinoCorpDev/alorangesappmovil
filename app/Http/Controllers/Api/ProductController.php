@@ -8,12 +8,14 @@ use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategorySingleCollection;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductSingleCollection;
+use App\Http\Resources\ShopCollection;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Attribute;
 use App\Models\AttributeCategory;
 use App\Models\OrderDetail;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Utility\CategoryUtility;
 
@@ -26,8 +28,8 @@ class ProductController extends Controller
 
     public function show($product_slug)
     {
-        //$product = filter_products(Product::query())
-        $product = Product::where('slug', $product_slug)
+        $product = filter_products(Product::query())
+            ->where('slug', $product_slug)
             ->with(['brand', 'variations', 'variation_combinations', 'shop' => function ($query) {
                 $query->withCount('reviews');
             }])
@@ -75,8 +77,7 @@ class ProductController extends Controller
 
     public function random_products($limit, $product_id = null)
     {
-        //return new ProductCollection(filter_products(Product::where('id', '!=', $product_id))->inRandomOrder()->limit($limit)->get());
-        return new ProductCollection(Product::where('id', '!=', $product_id)->inRandomOrder()->limit($limit)->get());
+        return new ProductCollection(filter_products(Product::where('id', '!=', $product_id))->inRandomOrder()->limit($limit)->get());
     }
     public function latest_products($limit)
     {
@@ -96,8 +97,7 @@ class ProductController extends Controller
         $attributes                 = Attribute::with('attribute_values')->get();
         $selected_attribute_values  = $request->attribute_values ? explode(',', $request->attribute_values) : null;
 
-        //$products = filter_products(Product::with(['variations']));
-        $products = Product::query();
+        $products = filter_products(Product::with(['variations']));
 
         //brand check
         if ($brand_ids != null) {
@@ -119,13 +119,6 @@ class ProductController extends Controller
             $category_ids = CategoryUtility::children_ids($category_id);
             $category_ids[] = $category_id;
 
-            $products->with('product_categories')->whereHas('product_categories', function ($query) use ($category_ids) {
-                return $query->whereIn('category_id', $category_ids);
-            });
-
-            $attribute_ids = AttributeCategory::whereIn('category_id', $category_ids)->pluck('attribute_id')->toArray();
-            $attributes = Attribute::with('attribute_values')->whereIn('id', $attribute_ids)->get();
-        } else if ($category_ids != null) {
             $products->with('product_categories')->whereHas('product_categories', function ($query) use ($category_ids) {
                 return $query->whereIn('category_id', $category_ids);
             });
@@ -200,6 +193,97 @@ class ProductController extends Controller
             'rootCategories' => new CategoryCollection(Category::where('level', 0)->orderBy('order_level', 'desc')->get()),
             'allBrands' => new BrandCollection(Brand::all()),
             'attributes' => new AttributeCollection($attributes)
+        ]);
+    }
+
+    public function ajax_search($search_keyword)
+    {
+        $keywords = array();
+        $products = Product::where('published', 1)->where('approved', 1)->where('tags', 'like', '%' . $search_keyword . '%')->get();
+
+        foreach ($products as $key => $product) {
+            foreach (explode(',', $product->tags) as $key => $tag) {
+                if (stripos($tag, $search_keyword) !== false) {
+                    if (sizeof($keywords) > 5) {
+                        break;
+                    } else {
+                        if (!in_array(strtolower($tag), $keywords)) {
+                            array_push($keywords, strtolower($tag));
+                        }
+                    }
+                }
+            }
+        }
+
+        $products_query = filter_products(Product::query());
+        $products_query = $products_query->where('published', 1)->where('approved', 1)
+            ->where(function ($q) use ($search_keyword) {
+                foreach (explode(' ', trim($search_keyword)) as $word) {
+                    $q->where('name', 'like', '%' . $word . '%')
+                        ->orWhere('tags', 'like', '%' . $word . '%')
+                        ->orWhereHas('product_translations', function ($q) use ($word) {
+                            $q->where('name', 'like', '%' . $word . '%');
+                        })
+                        ->orWhereHas('variations', function ($q) use ($word) {
+                            $q->where('sku', 'like', '%' . $word . '%');
+                        });
+                }
+            });
+
+
+        $case1 = $search_keyword . '%';
+        $case2 = '%' . $search_keyword . '%';
+
+        $products_query->orderByRaw("CASE 
+                WHEN name LIKE '$case1' THEN 1 
+                WHEN name LIKE '$case2' THEN 2 
+                ELSE 3 
+                END");
+
+        $products = new ProductCollection($products_query->limit(3)->get());
+
+        $categories = Category::where('level', 0)->where('name', 'like', '%' . $search_keyword . '%')->get()->take(3);
+        $brands = Brand::where('name', 'like', '%' . $search_keyword . '%')->get()->take(3);
+        $shops = new ShopCollection(filter_shops(Shop::where('name', 'like', '%' . $search_keyword . '%')->get()->take(3)));
+
+        if (sizeof($keywords) > 0 || sizeof($categories) > 0 || sizeof($products) > 0 || sizeof($shops) > 0 || sizeof($brands) > 0) {
+            return response()->json([
+                'success' => true,
+                'keywords' => $keywords,
+                'categories' => $categories,
+                'brands' => $brands,
+                'products' => $products,
+                'shops' => $shops,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false
+            ]);
+        }
+    }
+
+    public function productComparedList(Request $request)
+    {
+        $products = Product::whereIn('id', $request->data)->get();
+        $products_array = array();
+
+        foreach ($products as $product) {
+            $products_array['name'][] = $product->name;
+            $products_array['image'][] = api_asset($product->thumbnail_img);
+            if ($product->lowest_price != $product->highest_price) {
+                $products_array['price'][] = format_price($product->lowest_price) . "-" . format_price($product->highest_price);
+            } else {
+                $products_array['price'][] = format_price($product->lowest_price);
+            }
+            $products_array['brand'][] = $product->brand->name ?? "none";
+            $products_array['Shop'][] = $product->shop->name ?? "none";
+            $products_array['slug'][] = $product->slug;
+            $products_array['id'][] = $product->id;
+        }
+
+        return response()->json([
+            'success' => true,
+            'specifications' => $products_array,
         ]);
     }
 }

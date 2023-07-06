@@ -187,7 +187,7 @@ class OrderController extends Controller
                         $brand->save();
                     }
                 } catch (\Exception $e) {
-                    //
+                    // dd($e);
                 }
             }
             if ($order->payment_status == 'paid') {

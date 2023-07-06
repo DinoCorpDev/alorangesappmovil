@@ -47,7 +47,7 @@ class CartController extends Controller
     public function indexOld(Request $request)
     {
         if (auth('api')->check()) {
-            $carts = Cart::with('product')->where('user_id', auth('api')->user()->id)->get();
+            $carts = Cart::with(['product', 'variation.combinations.attribute', 'variation.combinations.attribute_value'])->where('user_id', auth('api')->user()->id)->get();
         } elseif ($request->has('temp_user_id') && $request->temp_user_id) {
             $carts = Cart::with(['product', 'variation.combinations.attribute', 'variation.combinations.attribute_value'])->where('temp_user_id', $request->temp_user_id)->get();
         } else {
@@ -89,6 +89,7 @@ class CartController extends Controller
             'cart_id' => (int) $cart->id,
             'product_id' => (int) $cart->product_id,
             'shop_id' => (int) $product->shop_id,
+            'earn_point' => (float) $cart->product->earn_point,
             'name' => $product->name,
             'thumbnail' => api_asset($product->thumbnail_img),
             'regular_price' => (float) $product->lowest_price,
@@ -129,6 +130,7 @@ class CartController extends Controller
             'cart_id' => (int) $cart->id,
             'product_id' => (int) $cart->product_id,
             'shop_id' => (int) $product_variation->product->shop_id,
+            'earn_point' => (float) $cart->product->earn_point,
             'variation_id' => (int) $cart->product_variation_id,
             'name' => $product_variation->product->name,
             'combinations' => filter_variation_combinations($product_variation->combinations),

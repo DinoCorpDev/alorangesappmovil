@@ -50,16 +50,26 @@ export default {
     },
     computed: {
         ...mapGetters("auth", ["isAuthenticated"]),
+        ...mapGetters("cart", ["getTempUserId"]),
         ...mapGetters("app", ["appMetaTitle", "userLanguageObj", "routerLoading"])
     },
     methods: {
         ...mapActions("auth", ["getUser", "checkSocialLoginStatus"]),
+        ...mapActions("cart", ["fetchCartProducts"]),
         ...mapMutations("auth", ["setSociaLoginStatus"]),
         changeRTL() {
             if (this.userLanguageObj.rtl == 1) {
                 this.$vuetify.rtl = true;
             } else {
                 this.$vuetify.rtl = false;
+            }
+        },
+        async getTempCartData() {
+            if (this.isAuthenticated && this.getTempUserId) {
+                const res = await this.call_api("post", "temp-id-cart-update", {
+                    temp_user_id: this.getTempUserId
+                });
+                this.fetchCartProducts();
             }
         }
     },
@@ -68,6 +78,7 @@ export default {
         await this.getUser();
         setTimeout(() => {
             this.checkSocialLoginStatus();
+            this.getTempCartData();
         }, 200);
     }
 };

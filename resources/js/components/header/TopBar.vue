@@ -152,6 +152,12 @@
                             <span class="">Compare (0)</span>
                         </router-link> -->
                         <router-link
+                            :to="{ name: 'ComparedList' }"
+                            class="text-reset opacity-60 me-3"
+                        v-if="generalSettings.product_comparison==1">
+                            <span class="">{{ $t("compare") }} ({{ getTotalComparedList }})</span>
+                        </router-link>
+                        <router-link
                             :to="{ name: 'Wishlist' }"
                             class="text-reset opacity-60"
                         >
@@ -205,7 +211,9 @@ export default {
         menuCloseOnClick: true,
     }),
     computed: {
+        ...mapGetters("app", ["generalSettings"]),
         ...mapGetters("wishlist", ["getTotalWishlisted"]),
+        ...mapGetters("compareList", ["getTotalComparedList"]),
         ...mapGetters("app", ["userLanguageObj", "allLanguages", "allCurrencies"]),
     },
     methods: {

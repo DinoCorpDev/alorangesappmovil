@@ -6,20 +6,20 @@
     </div>
     <form
         class="form form-horizontal mar-top"
-        id="product_form"
         action="{{ route('product.update', $product->id) }}"
         method="POST"
         enctype="multipart/form-data"
+        id="product_form"
     >
         @csrf
         <input
-            name="id"
             type="hidden"
+            name="id"
             value="{{ $product->id }}"
         >
         <input
-            name="lang"
             type="hidden"
+            name="lang"
             value="{{ $lang }}"
         >
         <ul class="nav nav-tabs nav-fill border-light">
@@ -30,9 +30,9 @@
                         href="{{ route('product.edit', ['id' => $product->id, 'lang' => $language->code]) }}"
                     >
                         <img
-                            class="mr-1"
                             src="{{ static_asset('assets/img/flags/' . $language->flag . '.png') }}"
                             height="11"
+                            class="mr-1"
                         >
                         <span>{{ $language->name }}</span>
                     </a>
@@ -69,11 +69,11 @@
                                 ></i></label>
                             <div class="col-md-8">
                                 <input
+                                    type="text"
                                     class="form-control"
                                     name="name"
-                                    type="text"
-                                    value="{{ $product->name }}"
                                     placeholder="{{ translate('Product Name') }}"
+                                    value="{{ $product->name }}"
                                     required
                                 >
                             </div>
@@ -85,11 +85,11 @@
                                 ></i></label>
                             <div class="col-md-8">
                                 <input
+                                    type="text"
                                     class="form-control"
                                     name="unit"
-                                    type="text"
-                                    value="{{ $product->getTranslation('unit', $lang) }}"
                                     placeholder="{{ translate('Unit (e.g. 500 Gram, 2 Litre, 5 Pc etc)') }}"
+                                    value="{{ $product->getTranslation('unit', $lang) }}"
                                 >
                             </div>
                         </div>
@@ -99,11 +99,11 @@
                                 >*</span></label>
                             <div class="col-md-8">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="min_qty"
-                                    type="number"
-                                    value="{{ $product->min_qty }}"
                                     min="1"
+                                    value="{{ $product->min_qty }}"
                                     required
                                 >
                                 <small
@@ -114,9 +114,9 @@
                             <label class="col-md-3 col-from-label">{{ translate('Maximum Purchase Qty') }}</label>
                             <div class="col-md-8">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="max_qty"
-                                    type="number"
                                     value="{{ $product->max_qty }}"
                                     min="0"
                                 >
@@ -150,9 +150,9 @@
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
                                     <input
-                                        class="selected-files"
-                                        name="thumbnail_img"
                                         type="hidden"
+                                        name="thumbnail_img"
+                                        class="selected-files"
                                         value="{{ $product->thumbnail_img }}"
                                     >
                                 </div>
@@ -180,9 +180,9 @@
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
                                     <input
-                                        class="selected-files"
-                                        name="photos"
                                         type="hidden"
+                                        name="photos"
+                                        class="selected-files"
                                         value="{{ $product->photos }}"
                                     >
                                 </div>
@@ -202,8 +202,8 @@
                             <label class="mb-0 mr-3 ml-0">{{ translate('Variant Product') }}</label>
                             <label class="aiz-switch aiz-switch-success mb-0">
                                 <input
-                                    name="is_variant"
                                     type="checkbox"
+                                    name="is_variant"
                                     onchange="is_variant_product(this)"
                                     @if ($product->is_variant) checked @endif
                                 >
@@ -214,14 +214,9 @@
                     <div class="card-body">
                         @php
                             $first_variation = $product->variations->first();
-                            $price = 0;
-                            $sku = null;
-                            $stock = 1;
-                            if ($product->is_variant) {
-                                $price = $first_variation->price;
-                                $sku = $first_variation->sku;
-                                $stock = $first_variation->stock;
-                            }
+                            $price = !$product->is_variant ? $first_variation->price : 0;
+                            $sku = !$product->is_variant ? $first_variation->sku : null;
+                            $stock = !$product->is_variant ? $first_variation->stock : 1;
                         @endphp
                         <div>
                             <div class="form-group row">
@@ -247,13 +242,13 @@
                                     >*</span></label>
                                 <div class="col-md-8">
                                     <input
-                                        class="form-control"
-                                        name="price"
                                         type="number"
-                                        value="{{ $price }}"
                                         step="0.01"
                                         min="0"
+                                        value="{{ $price }}"
                                         placeholder="{{ translate('Price') }}"
+                                        name="price"
+                                        class="form-control"
                                         required
                                     >
                                 </div>
@@ -262,11 +257,11 @@
                                 <label class="col-md-3 col-from-label">{{ translate('SKU') }}</label>
                                 <div class="col-md-8">
                                     <input
-                                        class="form-control"
-                                        name="sku"
                                         type="test"
-                                        value="{{ $sku }}"
                                         placeholder="{{ translate('SKU') }}"
+                                        value="{{ $sku }}"
+                                        name="sku"
+                                        class="form-control"
                                     >
                                 </div>
                             </div>
@@ -301,10 +296,10 @@
                                             <select
                                                 class="form-control aiz-selectpicker"
                                                 name="product_options[]"
-                                                data-live-search="true"
-                                                data-selected="{{ $combination['id'] }}"
-                                                title="{{ translate('Select an option') }}"
                                                 onchange="get_option_choices(this)"
+                                                data-live-search="true"
+                                                title="{{ translate('Select an option') }}"
+                                                data-selected="{{ $combination['id'] }}"
                                             >
                                                 @foreach ($all_attributes as $attribute)
                                                     <option value="{{ $attribute->id }}">
@@ -322,10 +317,10 @@
                                             <select
                                                 class="form-control aiz-selectpicker"
                                                 name="option_{{ $combination['id'] }}_choices[]"
-                                                data-live-search="true"
-                                                data-selected="{{ json_encode($old_val) }}"
                                                 multiple
+                                                data-live-search="true"
                                                 onchange="update_sku()"
+                                                data-selected="{{ json_encode($old_val) }}"
                                             >
                                                 @foreach ($attribute_values as $attribute_value)
                                                     <option value="{{ $attribute_value->id }}">
@@ -336,8 +331,8 @@
                                         @if ($key == 0)
                                             <div class="col-auto">
                                                 <button
-                                                    class="btn btn-icon btn-soft-secondary"
                                                     type="button"
+                                                    class="btn btn-icon btn-soft-secondary"
                                                     onclick="add_new_option()"
                                                 >
                                                     <i class="la-plus las opacity-70"></i>
@@ -346,10 +341,10 @@
                                         @else
                                             <div class="col-auto">
                                                 <button
-                                                    class="btn btn-icon p-0"
-                                                    data-toggle="remove-parent"
-                                                    data-parent=".row"
                                                     type="button"
+                                                    data-toggle="remove-parent"
+                                                    class="btn btn-icon p-0"
+                                                    data-parent=".row"
                                                     onclick="update_sku()"
                                                 >
                                                     <i class="la-2x la-trash las opacity-70"></i>
@@ -363,9 +358,9 @@
                                             <select
                                                 class="form-control aiz-selectpicker"
                                                 name="product_options[]"
+                                                onchange="get_option_choices(this)"
                                                 data-live-search="true"
                                                 title="{{ translate('Select an option') }}"
-                                                onchange="get_option_choices(this)"
                                             >
                                                 @foreach ($all_attributes as $key => $attribute)
                                                     <option value="{{ $attribute->id }}">
@@ -380,8 +375,8 @@
                                         </div>
                                         <div class="col-auto">
                                             <button
-                                                class="btn btn-icon btn-soft-secondary"
                                                 type="button"
+                                                class="btn btn-icon btn-soft-secondary"
                                                 onclick="add_new_option()"
                                             >
                                                 <i class=" la-plus las opacity-70"></i>
@@ -443,14 +438,14 @@
                             >{{ translate('Discount Date Range') }}</label>
                             <div class="col-sm-9">
                                 <input
+                                    type="text"
                                     class="form-control aiz-date-range"
                                     name="date_range"
+                                    placeholder="Select Date"
                                     data-time-picker="true"
                                     data-format="DD-MM-Y HH:mm:ss"
                                     data-separator=" to "
-                                    type="text"
                                     value="{{ $discount_date }}"
-                                    placeholder="Select Date"
                                     autocomplete="off"
                                 >
                             </div>
@@ -461,14 +456,14 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-6">
                                 <input
-                                    class="form-control"
-                                    name="discount"
                                     type="number"
-                                    value="{{ $product->discount }}"
                                     lang="en"
                                     min="0"
+                                    value="{{ $product->discount }}"
                                     step="0.01"
                                     placeholder="{{ translate('Discount') }}"
+                                    name="discount"
+                                    class="form-control"
                                     required
                                 >
                             </div>
@@ -486,36 +481,50 @@
                     </div>
                 </div>
 
+                @if (get_setting('club_point'))
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">{{ translate('Club Point') }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label
+                                    class="col-sm-3 control-label"
+                                    for="start_date"
+                                >{{ translate('Set Point') }}</label>
+                                <div class="col-sm-9">
+                                    <input
+                                        type="number"
+                                        lang="en"
+                                        min="0"
+                                        value="{{ $product->earn_point }}"
+                                        step="1"
+                                        placeholder="1"
+                                        name="earn_point"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{ translate('Shipping Information') }}</h5>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-md-3 col-from-label">{{ translate('Shipping') }}</label>
-                            <div class="col-md-8">
-                                <div class="input-group">
-                                    <input
-                                        class="form-control"
-                                        name="shipping"
-                                        type="text"
-                                        value="{{ $product->shipping }}"
-                                        placeholder="{{ translate('Shipping') }}"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-md-3 col-from-label">{{ translate('Standard delivery time') }}</label>
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
                                         class="form-control"
                                         name="standard_delivery_time"
-                                        type="number"
-                                        value="{{ $product->standard_delivery_time }}"
-                                        step="0.01"
                                         min="0"
+                                        value="{{ $product->standard_delivery_time }}"
                                         required
                                     >
                                     <div class="input-group-append"><span class="input-group-text">hr(s)</span></div>
@@ -527,12 +536,12 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
                                         class="form-control"
                                         name="express_delivery_time"
-                                        type="number"
-                                        value="{{ $product->express_delivery_time }}"
-                                        step="0.01"
                                         min="0"
+                                        value="{{ $product->express_delivery_time }}"
                                         required
                                     >
                                     <div class="input-group-append"><span class="input-group-text">hr(s)</span></div>
@@ -544,12 +553,12 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
                                         class="form-control"
                                         name="weight"
-                                        type="number"
-                                        value="{{ $product->weight }}"
-                                        step="0.01"
                                         min="0"
+                                        value="{{ $product->weight }}"
                                         required
                                     >
                                     <div class="input-group-append"><span
@@ -562,12 +571,12 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
                                         class="form-control"
                                         name="height"
-                                        type="number"
-                                        value="{{ $product->height }}"
-                                        step="0.01"
                                         min="0"
+                                        value="{{ $product->height }}"
                                         required
                                     >
                                     <div class="input-group-append"><span
@@ -580,12 +589,12 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
                                         class="form-control"
                                         name="length"
-                                        type="number"
-                                        value="{{ $product->length }}"
-                                        step="0.01"
                                         min="0"
+                                        value="{{ $product->length }}"
                                         required
                                     >
                                     <div class="input-group-append"><span
@@ -598,12 +607,12 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
                                         class="form-control"
                                         name="width"
-                                        type="number"
-                                        value="{{ $product->width }}"
-                                        step="0.01"
                                         min="0"
+                                        value="{{ $product->width }}"
                                         required
                                     >
                                     <div class="input-group-append"><span
@@ -611,7 +620,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -629,7 +637,7 @@
                                 <textarea
                                     class="aiz-text-editor"
                                     name="description"
-                                >{!! $product->description !!}</textarea>
+                                >{!! $product->getTranslation('description', $lang) !!}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -1617,9 +1625,9 @@
                                         <select
                                             class="form-control aiz-selectpicker"
                                             name="product_attributes[]"
+                                            onchange="get_attributes_values(this)"
                                             data-selected="{{ $product_attribute->attribute_id }}"
                                             data-live-search="true"
-                                            onchange="get_attributes_values(this)"
                                             readonly
                                         >
                                             <option value="">{{ translate('Select an attribute') }}</option>
@@ -1637,8 +1645,8 @@
                                             class="form-control aiz-selectpicker"
                                             name="attribute_{{ $product_attribute->attribute_id }}_values[]"
                                             data-selected="{{ $product->attribute_values->where('attribute_id', $product_attribute->attribute_id)->pluck('attribute_value_id') }}"
-                                            data-live-search="true"
                                             multiple
+                                            data-live-search="true"
                                         >
                                             @foreach ($attribute_values as $key => $attribute_value)
                                                 <option value="{{ $attribute_value->id }}">
@@ -1648,10 +1656,10 @@
                                     </div>
                                     <div class="col-auto">
                                         <button
-                                            class="btn btn-icon p-0"
-                                            data-toggle="remove-parent"
-                                            data-parent=".row"
                                             type="button"
+                                            data-toggle="remove-parent"
+                                            class="btn btn-icon p-0"
+                                            data-parent=".row"
                                         >
                                             <i class="la-2x la-trash las opacity-70"></i>
                                         </button>
@@ -1671,11 +1679,11 @@
                             <label class="col-md-3 col-from-label">{{ translate('Meta Title') }}</label>
                             <div class="col-md-8">
                                 <input
+                                    type="text"
                                     class="form-control"
                                     name="meta_title"
-                                    type="text"
-                                    value="{{ $product->meta_title }}"
                                     placeholder="{{ translate('Meta Title') }}"
+                                    value="{{ $product->meta_title }}"
                                 >
                             </div>
                         </div>
@@ -1683,9 +1691,9 @@
                             <label class="col-md-3 col-from-label">{{ translate('Description') }}</label>
                             <div class="col-md-8">
                                 <textarea
-                                    class="form-control"
                                     name="meta_description"
                                     rows="8"
+                                    class="form-control"
                                 >{{ $product->meta_description }}</textarea>
                             </div>
                         </div>
@@ -1706,9 +1714,9 @@
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
                                     <input
-                                        class="selected-files"
-                                        name="meta_image"
                                         type="hidden"
+                                        name="meta_image"
+                                        class="selected-files"
                                         value="{{ $product->meta_image }}"
                                     >
                                 </div>
@@ -1720,12 +1728,12 @@
                             <label class="col-md-3 col-form-label">{{ translate('Slug') }}</label>
                             <div class="col-md-8">
                                 <input
-                                    class="form-control"
+                                    type="text"
+                                    placeholder="{{ translate('Slug') }}"
                                     id="slug"
                                     name="slug"
-                                    type="text"
                                     value="{{ $product->slug }}"
-                                    placeholder="{{ translate('Slug') }}"
+                                    class="form-control"
                                 >
                             </div>
                         </div>
@@ -1783,9 +1791,9 @@
                                     <li>
                                         <label class="aiz-checkbox">
                                             <input
-                                                name="category_ids[]"
                                                 type="checkbox"
                                                 value="{{ $category->id }}"
+                                                name="category_ids[]"
                                                 @if (in_array($category->id, $old_categories)) checked @endif
                                             >
                                             <span class="aiz-square-check"></span>
@@ -1797,9 +1805,9 @@
                                                     <li>
                                                         <label class="aiz-checkbox">
                                                             <input
-                                                                name="category_ids[]"
                                                                 type="checkbox"
                                                                 value="{{ $childCategory->id }}"
+                                                                name="category_ids[]"
                                                                 @if (in_array($childCategory->id, $old_categories)) checked @endif
                                                             >
                                                             <span class="aiz-square-check"></span>
@@ -1811,9 +1819,9 @@
                                                                     <li>
                                                                         <label class="aiz-checkbox">
                                                                             <input
-                                                                                name="category_ids[]"
                                                                                 type="checkbox"
                                                                                 value="{{ $grandChildCategory->id }}"
+                                                                                name="category_ids[]"
                                                                                 @if (in_array($grandChildCategory->id, $old_categories)) checked @endif
                                                                             >
                                                                             <span class="aiz-square-check"></span>
@@ -1839,11 +1847,11 @@
                     </div>
                     <div class="card-body">
                         <input
+                            type="text"
                             class="form-control aiz-tag-input"
                             name="tags"
-                            type="text"
-                            value="{{ $product->tags }}"
                             placeholder="{{ translate('Type and hit enter to add a tag') }}"
+                            value="{{ $product->tags }}"
                         >
                         <small class="text-muted">{{ translate('These will be used for product search.') }}</small>
                     </div>
@@ -1858,9 +1866,9 @@
                             <label for="name">
                                 {{ $tax->name }}
                                 <input
-                                    name="tax_ids[]"
                                     type="hidden"
                                     value="{{ $tax->id }}"
+                                    name="tax_ids[]"
                                 >
                             </label>
 
@@ -1878,14 +1886,14 @@
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <input
-                                        class="form-control"
-                                        name="taxes[]"
                                         type="number"
-                                        value="{{ $tax_amount }}"
                                         lang="en"
                                         min="0"
+                                        value="{{ $tax_amount }}"
                                         step="0.01"
                                         placeholder="{{ translate('Tax') }}"
+                                        name="taxes[]"
+                                        class="form-control"
                                         required
                                     >
                                 </div>
@@ -1913,8 +1921,8 @@
                         <div class="mb-2">{{ translate('Warranty available for this product?') }}</div>
                         <label class="aiz-switch aiz-switch-success mb-0">
                             <input
-                                name="has_warranty"
                                 type="checkbox"
+                                name="has_warranty"
                                 @if ($product->has_warranty) checked @endif
                             >
                             <span></span>
@@ -1925,9 +1933,9 @@
         </div>
         <div class="mar-all text-right mb-3">
             <button
+                type="submit"
                 class="btn btn-primary"
                 id="upload-product"
-                type="submit"
             >{{ translate('Update Product') }}</button>
         </div>
     </form>

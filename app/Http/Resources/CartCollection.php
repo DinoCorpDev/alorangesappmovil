@@ -14,6 +14,7 @@ class CartCollection extends ResourceCollection
                     'cart_id' => (int) $data->id,
                     'product_id' => (int) $data->product_id,
                     'shop_id' => (int) $data->product->shop_id,
+                    'earn_point' => (float) $data->product->earn_point,
                     'variation_id' => (int) $data->product_variation_id,
                     'name' => $data->product->name,
                     'thumbnail' => api_asset($data->product->thumbnail_img),
@@ -27,7 +28,8 @@ class CartCollection extends ResourceCollection
                     'express_delivery_time' => (int) $data->product->express_delivery_time,
                     'qty' => (int) $data->quantity,
                     'brandName' => optional($data->product->brand)->getTranslation('name'),
-                    'reference' => $data->product->reference
+                    'reference' => $data->product->reference,
+                    'is_digital' => $data->product->digital
                 ];
             })
         ];
@@ -38,6 +40,7 @@ class CartCollection extends ResourceCollection
                     'cart_id' => (integer) $data->id,
                     'product_id' => (integer) $data->product_id,
                     'shop_id' => (integer) $data->product->shop_id,
+                    'earn_point' => (float) $data->product->earn_point,
                     'variation_id' => (integer) $data->product_variation_id,
                     'name' => $data->product->name,
                     'combinations' => filter_variation_combinations($data->variation->combinations),
@@ -51,6 +54,7 @@ class CartCollection extends ResourceCollection
                     'standard_delivery_time' => (integer) $data->product->standard_delivery_time,
                     'express_delivery_time' => (integer) $data->product->express_delivery_time,
                     'qty' => (integer) $data->quantity,
+                    'is_digital'=> $data->product->digital,
                 ];
             })
         ];

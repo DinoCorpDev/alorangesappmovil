@@ -4,9 +4,11 @@ import { i18n } from "./../../plugins/i18n";
 const loadState = () => ({
     cartLoaded: false,
     cartPrice: 0,
+    earn_point: 0,
     cartProducts: [],
     cartShops: [],
-    tempUserId: localStorage.getItem("shopTempUserId") || null
+    tempUserId: localStorage.getItem("shopTempUserId") || null,
+    isDigital: false
 });
 
 export default {
@@ -54,6 +56,13 @@ export default {
                 if (item.selected) total += item.dicounted_price * item.qty;
             });
             return (state.cartPrice = total);
+        },
+        getCartClubPoints(state) {
+            let points = 0;
+            state.cartProducts.forEach(item => {
+                if (item.selected && item.earn_point !== null) points += item.earn_point * item.qty;
+            });
+            return (state.earn_point = points);
         },
         getCartTax(state) {
             let total = 0;
@@ -142,9 +151,20 @@ export default {
                 }
             });
             return result;
+        },
+        getIsDigital(state) {
+            return state.isDigital;
         }
     },
     mutations: {
+        setIsDigital(state, data) {
+            let status = data.map(cartProduct => {
+                return cartProduct.is_digital == 1 ? true : false;
+            });
+            if (status.includes(true)) {
+                state.isDigital = true;
+            }
+        },
         setTempUserId(state, temp_user_id) {
             state.tempUserId = temp_user_id;
             localStorage.setItem("shopTempUserId", temp_user_id);
@@ -205,8 +225,7 @@ export default {
                 state.cartProducts.map(cartProduct => {
                     if (cartProduct.cart_id === cart_id) return (cartProduct.qty = cartProduct.qty + 1);
                 });
-            } else if (type == "minus") {
-                /* && item.qty > item.min_qty */
+            } else if (type == "minus" && item.qty > item.min_qty) {
                 state.cartProducts.map(cartProduct => {
                     if (cartProduct.cart_id === cart_id) return (cartProduct.qty = cartProduct.qty - 1);
                 });
@@ -309,6 +328,7 @@ export default {
                 });
                 if (res.data.success) {
                     commit("setCartProducts", res.data.cart_items.data);
+                    commit("setIsDigital", res.data.cart_items.data);
                     commit("setCartShops", res.data.shops.data);
                 }
             }
@@ -350,14 +370,14 @@ export default {
             }
         },
         async updateQuantity({ commit, getters, dispatch }, { type, cart_id, isCollection = false }) {
-            /* let cartItem = getters.findCartItemByCartId(cart_id);
+            let cartItem = getters.findCartItemByCartId(cart_id);
             if (type == "plus" && cartItem.qty + 1 > cartItem.max_qty) {
                 Mixin.methods.snack({
                     message: `${i18n.t("you_can_purchase_maximum_quantity")} ${cartItem.max_qty}.`,
                     color: "red"
                 });
                 return;
-            } */
+            }
             const res = await Mixin.methods.call_api("post", `carts/change-quantity`, {
                 type: type,
                 cart_id: cart_id,
@@ -463,7 +483,10 @@ export default {
                         }
                     }
 
-                    commit("setShopCouponDiscount", { amount: couponDiscount, shop_id: shop.id });
+                    commit("setShopCouponDiscount", {
+                        amount: couponDiscount,
+                        shop_id: shop.id
+                    });
                 }
             });
         }

@@ -28,26 +28,26 @@ use Mail;
 
 class PosController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         // Staff Permission Check
-        if(Auth::user() && Auth::user()->user_type != 'seller'){
+        if (Auth::user() && Auth::user()->user_type != 'seller') {
             $this->middleware(['permission:pos_manager'])->only('index');
         }
+
         $this->middleware(['permission:pos_configuration'])->only('pos_activation');
     }
 
     public function index()
     {
         $customers = User::where('user_type', 'customer')->orderBy('created_at', 'desc')->get();
-		
+
         if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'staff') {
             return view('backend.pos.index', compact('customers'));
-        }
-        else {
+        } else {
             if (get_setting('pos_activation_for_seller') == 1) {
                 return view('backend.pos.frontend.seller.pos.index', compact('customers'));
-            }
-            else {
+            } else {
                 flash(translate('POS is disabled for Sellers!!!'))->error();
                 return back();
             }
@@ -57,44 +57,48 @@ class PosController extends Controller
     public function search(Request $request)
     {
         $products = Product::with('variations')->leftJoin('product_variation_combinations', 'product_variation_combinations.product_id', '=', 'products.id')
-                        ->leftJoin('attribute_values','product_variation_combinations.attribute_value_id', '=', 'attribute_values.id')
-                        ->select('products.*', 'product_variation_combinations.id as product_variation_combination_id', 'attribute_values.name as attribute_value_name')
-                        ->where('products.shop_id', Auth::user()->shop_id)
-                        ->where('published', '1');
-        if($request->category != null){
-            $category_id = (int) Str::replace('category-','', $request->category);
+            ->leftJoin('attribute_values', 'product_variation_combinations.attribute_value_id', '=', 'attribute_values.id')
+            ->select('products.*', 'product_variation_combinations.id as product_variation_combination_id', 'attribute_values.name as attribute_value_name')
+            ->where('products.shop_id', Auth::user()->shop_id)
+            ->where('approved', '1')
+            ->where('approved', 1)
+            ->where('published', '1');
+
+        if ($request->category != null) {
+            $category_id = (int) Str::replace('category-', '', $request->category);
             $category_ids = CategoryUtility::children_ids($category_id);
             $category_ids[] = $category_id;
 
             $product_categories_products = ProductCategory::whereIn('category_id', $category_ids)->pluck('product_id');
-            $products->whereIn('product_id', $product_categories_products);
+            $products->whereIn('products.id', $product_categories_products);
         }
 
-        if($request->brand != null){
+        if ($request->brand != null) {
             $products = $products->where('products.brand_id', $request->brand);
         }
 
         if ($request->keyword != null) {
-            $products = $products->where('products.name', 'like', '%'.$request->keyword.'%');
-        } 
+            $products = $products->where('products.name', 'like', '%' . $request->keyword . '%');
+        }
 
         $stocks = new PosProductCollection($products->paginate(16));
-        $stocks->appends(['keyword' =>  $request->keyword,'category' => $request->category, 'brand' => $request->brand]);
+        $stocks->appends(['keyword' =>  $request->keyword, 'category' => $request->category, 'brand' => $request->brand]);
         return $stocks;
     }
 
     public function addToCart(Request $request)
     {
         $data = array();
-        if(!is_null($request->product_variation_combination_id)){
+
+        if (!is_null($request->product_variation_combination_id)) {
             $combination = ProductVariationCombination::find((int)$request->product_variation_combination_id);
             $product_variation = $combination->variation;
             $data['variant'] = $combination->attribute_value->name;
-        }else{
+        } else {
             $product_variation = ProductVariation::find((int) $request->variation_id);
-            $data['variant'] ='';
+            $data['variant'] = '';
         }
-        
+
         $data['variation_id'] = $product_variation->id;
         $data['id'] = $product_variation->product->id;
         $data['quantity'] = $product_variation->product->min_qty;
@@ -106,26 +110,26 @@ class PosController extends Controller
         $discount_applicable = false;
         if ($product_variation->product->discount_start_date == null) {
             $discount_applicable = true;
-        }
-        elseif (strtotime(date('d-m-Y H:i:s')) >= $product_variation->product->discount_start_date &&
-            strtotime(date('d-m-Y H:i:s')) <= $product_variation->product->discount_end_date) {
+        } elseif (
+            strtotime(date('d-m-Y H:i:s')) >= $product_variation->product->discount_start_date &&
+            strtotime(date('d-m-Y H:i:s')) <= $product_variation->product->discount_end_date
+        ) {
             $discount_applicable = true;
         }
+
         if ($discount_applicable) {
-            if($product_variation->product->discount_type == 'percent'){
-                $price -= ($price*$product_variation->product->discount)/100;
-            }
-            elseif($product_variation->product->discount_type == 'amount'){
+            if ($product_variation->product->discount_type == 'percent') {
+                $price -= ($price * $product_variation->product->discount) / 100;
+            } elseif ($product_variation->product->discount_type == 'amount') {
                 $price -= $product_variation->product->discount;
             }
         }
 
         //tax calculation
         foreach ($product_variation->product->taxes as $product_tax) {
-            if($product_tax->tax_type == 'percent'){
+            if ($product_tax->tax_type == 'percent') {
                 $tax += ($price * $product_tax->tax) / 100;
-            }
-            elseif($product_tax->tax_type == 'amount'){
+            } elseif ($product_tax->tax_type == 'amount') {
                 $tax += $product_tax->tax;
             }
         }
@@ -133,14 +137,14 @@ class PosController extends Controller
         $data['price'] = $price;
         $data['tax'] = $tax;
 
-        if($request->session()->has('pos.cart')){
+        if ($request->session()->has('pos.cart')) {
             $foundInCart = false;
             $cart = collect();
 
-            foreach ($request->session()->get('pos.cart') as $key => $cartItem){
-                if($cartItem['id'] ==$product_variation->product->id && $cartItem['variation_id'] == $product_variation->id){
-                    $foundInCart = true; 
-                    $cartItem['quantity'] += 1; 
+            foreach ($request->session()->get('pos.cart') as $key => $cartItem) {
+                if ($cartItem['id'] == $product_variation->product->id && $cartItem['variation_id'] == $product_variation->id) {
+                    $foundInCart = true;
+                    $cartItem['quantity'] += 1;
                 }
                 $cart->push($cartItem);
             }
@@ -149,8 +153,7 @@ class PosController extends Controller
                 $cart->push($data);
             }
             $request->session()->put('pos.cart', $cart);
-        }
-        else{
+        } else {
             $cart = collect([$data]);
             $request->session()->put('pos.cart', $cart);
         }
@@ -165,11 +168,12 @@ class PosController extends Controller
     {
         $cart = $request->session()->get('pos.cart', collect([]));
         $cart = $cart->map(function ($object, $key) use ($request) {
-            if($key == $request->key){
+            if ($key == $request->key) {
                 $object['quantity'] = $request->quantity;
             }
             return $object;
         });
+
         $request->session()->put('pos.cart', $cart);
 
         return array('success' => 1, 'message' => '', 'view' => view('backend.pos.cart')->render());
@@ -178,7 +182,7 @@ class PosController extends Controller
     //removes from Cart
     public function removeFromCart(Request $request)
     {
-        if(Session::has('pos.cart')){
+        if (Session::has('pos.cart')) {
             $cart = Session::get('pos.cart', collect([]));
             $cart->forget($request->key);
             Session::put('pos.cart', $cart);
@@ -190,28 +194,31 @@ class PosController extends Controller
     }
 
     //Shipping Address for admin
-    public function getShippingAddress(Request $request){
+    public function getShippingAddress(Request $request)
+    {
         $user_id = $request->id;
-        if($user_id == ''){
+
+        if ($user_id == '') {
             return view('backend.pos.guest_shipping_address');
-        }
-        else{
+        } else {
             return view('backend.pos.shipping_address', compact('user_id'));
         }
     }
 
     //Shipping Address for seller
-    public function getShippingAddressForSeller(Request $request){
+    public function getShippingAddressForSeller(Request $request)
+    {
         $user_id = $request->id;
-        if($user_id == ''){
+
+        if ($user_id == '') {
             return view('backend.pos.frontend.seller.pos.guest_shipping_address');
-        }
-        else{
+        } else {
             return view('backend.pos.frontend.seller.pos.shipping_address', compact('user_id'));
         }
     }
 
-    public function set_shipping_address(Request $request) {
+    public function set_shipping_address(Request $request)
+    {
         if ($request->address_id != null) {
             $address = Address::findOrFail($request->address_id);
             $data['name'] = $address->user->name;
@@ -238,33 +245,37 @@ class PosController extends Controller
     }
 
     //set Discount
-    public function setDiscount(Request $request){
-        if($request->discount >= 0){
+    public function setDiscount(Request $request)
+    {
+        if ($request->discount >= 0) {
             Session::put('pos.discount', $request->discount);
         }
         return view('backend.pos.cart');
     }
 
     //set Shipping Cost
-    public function setShipping(Request $request){
-        if($request->shipping != null){
+    public function setShipping(Request $request)
+    {
+        if ($request->shipping != null) {
             Session::put('pos.shipping', $request->shipping);
         }
         return view('backend.pos.cart');
     }
 
     //order summary
-    public function get_order_summary(Request $request){
+    public function get_order_summary(Request $request)
+    {
         return view('backend.pos.order_summary');
     }
 
     //order place
-    public function order_store(Request $request){
-        if(Session::get('pos.shipping_info') == null || Session::get('pos.shipping_info')['name'] == null || Session::get('pos.shipping_info')['phone'] == null || Session::get('pos.shipping_info')['address'] == null){
+    public function order_store(Request $request)
+    {
+        if (Session::get('pos.shipping_info') == null || Session::get('pos.shipping_info')['name'] == null || Session::get('pos.shipping_info')['phone'] == null || Session::get('pos.shipping_info')['address'] == null) {
             return array('success' => 0, 'message' => translate("Please Add Shipping Information."));
         }
 
-        if(Session::has('pos.cart') && count(Session::get('pos.cart')) > 0){
+        if (Session::has('pos.cart') && count(Session::get('pos.cart')) > 0) {
 
             $shipping_info = Session::get('pos.shipping_info');
             $data['name']           = $shipping_info['name'];
@@ -277,34 +288,33 @@ class PosController extends Controller
             $data['phone']          = $shipping_info['phone'];
 
             $combined_order = new CombinedOrder;
-            
+
             if ($request->user_id == null) {
                 $combined_order->guest_id    = mt_rand(100000, 999999);
-            }
-            else {
+            } else {
                 $combined_order->user_id = $request->user_id;
             }
- 
+
             $combined_order->code = date('Ymd-His') . rand(10, 99);
             $combined_order->shipping_address = json_encode($data);
             $combined_order->billing_address = json_encode($data);
-                 
+
             $grand_total = 0;
             $package_number = 1;
 
-            if($combined_order->save()){
-                
+            if ($combined_order->save()) {
+
                 $subtotal = 0;
                 $tax = 0;
                 $shop_id = Auth::user()->shop_id;
                 $order = Order::create([
-                    'user_id' => $request->user_id == null ? mt_rand(100000, 999999):  $request->user_id,
+                    'user_id' => $request->user_id == null ? mt_rand(100000, 999999) :  $request->user_id,
                     'shop_id' => $shop_id,
                     'combined_order_id' => $combined_order->id,
                     'code' => $package_number,
                     'shipping_address' => $combined_order->shipping_address,
                     'billing_address' => $combined_order->billing_address,
-                    'shipping_cost' => Session::get('pos.shipping', 0), 
+                    'shipping_cost' => Session::get('pos.shipping', 0),
                     'grand_total' => 0,
                     'coupon_code' => null,
                     'coupon_discount' => 0,
@@ -313,52 +323,54 @@ class PosController extends Controller
                     'payment_status' => $request->payment_type != 'cash_on_delivery' ? 'paid' : 'unpaid',
                 ]);
 
-                foreach (Session::get('pos.cart') as $key => $cartItem){
-                    $product_variation = ProductVariation::where('id', $cartItem['variation_id'] )->first();
+                foreach (Session::get('pos.cart') as $key => $cartItem) {
+                    $product_variation = ProductVariation::where('id', $cartItem['variation_id'])->first();
 
-                    $itemPriceWithoutTax = variation_discounted_price($product_variation->product, $product_variation,false) * $cartItem['quantity'];
-                    $itemTax = product_variation_tax($product_variation->product,$product_variation) * $cartItem['quantity'];
-                    
+                    $itemUnitPriceWithoutTax = variation_discounted_price($product_variation->product, $product_variation, false);
+                    $itemPriceWithoutTax = variation_discounted_price($product_variation->product, $product_variation, false) * $cartItem['quantity'];
+                    $itemTax = product_variation_tax($product_variation->product, $product_variation);
+                    $totalTax = product_variation_tax($product_variation->product, $product_variation) * $cartItem['quantity'];
+
                     $subtotal += $itemPriceWithoutTax;
-                    $tax += $itemTax;
+                    $tax += $totalTax;
 
                     $orderDetail = OrderDetail::create([
                         'order_id' => $order->id,
                         'product_id' => $product_variation->product->id,
                         'product_variation_id' => $product_variation->id,
-                        'price' => $itemPriceWithoutTax,
+                        'price' => $itemUnitPriceWithoutTax,
                         'tax' => $itemTax,
-                        'total' => ($itemPriceWithoutTax+$itemTax)*$cartItem['quantity'],
+                        'total' => ($itemUnitPriceWithoutTax + $itemTax) * $cartItem['quantity'],
                         'quantity' => $cartItem['quantity'],
                     ]);
-    
+
                     $product_variation->product->update([
                         'num_of_sale' => DB::raw('num_of_sale + ' . $cartItem['quantity'])
                     ]);
-    
-                    foreach($orderDetail->product->categories as $category){
+
+                    foreach ($orderDetail->product->categories as $category) {
                         $category->sales_amount += $orderDetail->total;
                         $category->save();
                     }
-    
+
                     $brand = $orderDetail->product->brand;
-                    if($brand){
+                    if ($brand) {
                         $brand->sales_amount += $orderDetail->total;
                         $brand->save();
                     }
                 }
-                
+
                 $grand_total = $subtotal + $tax + Session::get('pos.shipping', 0);
 
-                if(Session::has('pos.discount')){
+                if (Session::has('pos.discount')) {
                     $grand_total -= Session::get('pos.discount');
-                    $order->coupon_discount =Session::get('pos.discount');
+                    $order->coupon_discount = Session::get('pos.discount');
                 }
 
                 $order->grand_total = $grand_total;
                 $combined_order->grand_total = $grand_total;
                 $combined_order->save();
-                
+
                 $order_price = $order->grand_total - $order->shipping_cost - $order->orderDetails->sum(function ($t) {
                     return $t->tax * $t->quantity;
                 });
@@ -366,7 +378,7 @@ class PosController extends Controller
                 $shop_commission = Shop::find($shop_id)->commission;
                 $admin_commission = 0.00;
                 $seller_earning = $subtotal;
-                if($shop_commission > 0){
+                if ($shop_commission > 0) {
                     $admin_commission = ($shop_commission * $order_price) / 100;
                     $seller_earning = $subtotal - $admin_commission;
                 }
@@ -378,26 +390,25 @@ class PosController extends Controller
 
                 OrderUpdate::create([
                     'order_id' => $order->id,
-                    'user_id' => $request->user_id == null ? mt_rand(100000, 999999):  $request->user_id,
+                    'user_id' => $request->user_id == null ? mt_rand(100000, 999999) :  $request->user_id,
                     'note' => 'Order has been placed.',
                 ]);
-                 
-            
+
+
                 $array['view'] = 'emails.invoice';
-                $array['subject'] = 'Your order has been placed - '.$order->code;
+                $array['subject'] = 'Your order has been placed - ' . $order->code;
                 $array['from'] = env('MAIL_USERNAME');
                 $array['order'] = $order;
 
                 $admin_products = array();
                 $seller_products = array();
 
-                foreach ($order->orderDetails as $key => $orderDetail){
-                    if($orderDetail->product->added_by == 'admin'){
+                foreach ($order->orderDetails as $key => $orderDetail) {
+                    if ($orderDetail->product->added_by == 'admin') {
                         array_push($admin_products, $orderDetail->product->id);
-                    }
-                    else{
+                    } else {
                         $product_ids = array();
-                        if(array_key_exists($orderDetail->product->user_id, $seller_products)){
+                        if (array_key_exists($orderDetail->product->user_id, $seller_products)) {
                             $product_ids = $seller_products[$orderDetail->product->user_id];
                         }
                         array_push($product_ids, $orderDetail->product->id);
@@ -405,21 +416,19 @@ class PosController extends Controller
                     }
                 }
 
-                foreach($seller_products as $key => $seller_product){
+                foreach ($seller_products as $key => $seller_product) {
                     try {
                         Mail::to(User::find($key)->email)->queue(new InvoiceEmailManager($array));
                     } catch (\Exception $e) {
-
                     }
                 }
 
                 //sends email to customer with the invoice pdf attached
-                if(env('MAIL_USERNAME') != null){
+                if (env('MAIL_USERNAME') != null) {
                     try {
                         Mail::to($request->session()->get('pos.shipping_info')['email'])->queue(new InvoiceEmailManager($array));
                         Mail::to(User::where('user_type', 'admin')->first()->email)->queue(new InvoiceEmailManager($array));
                     } catch (\Exception $e) {
-
                     }
                 }
 
@@ -427,9 +436,8 @@ class PosController extends Controller
                 Session::forget('pos.shipping');
                 Session::forget('pos.discount');
                 Session::forget('pos.cart');
-               return array('success' => 1, 'message' => translate('Order Completed Successfully.'));
-            }
-            else {
+                return array('success' => 1, 'message' => translate('Order Completed Successfully.'));
+            } else {
                 return array('success' => 0, 'message' => translate('Please input customer information.'));
             }
         }

@@ -46,8 +46,8 @@
             <div class="col-md-3 text-md-right">
                 @can('add_products')
                     <a
-                        class="btn btn-primary w-100"
                         href="{{ route('product.create') }}"
+                        class="btn btn-primary w-100"
                     >
                         <span>{{ translate('Add New Product') }}</span>
                     </a>
@@ -70,8 +70,8 @@
                 <div class="col-md-2 ml-auto">
                     <select
                         class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0"
-                        id="type"
                         name="type"
+                        id="type"
                         onchange="sort_products()"
                     >
                         <option value="">{{ translate('Sort By') }}</option>
@@ -116,10 +116,10 @@
                 <div class="col-md-2">
                     <div class="input-group">
                         <input
+                            type="text"
                             class="form-control form-control-sm"
                             id="search"
                             name="search"
-                            type="text"
                             @isset($sort_search) value="{{ $sort_search }}" @endisset
                             placeholder="{{ translate('Type & Enter') }}"
                         >
@@ -141,8 +141,8 @@
                         <th data-breakpoints="md">{{ translate('Brand') }}</th>
                         <th data-breakpoints="md">{{ translate('Published') }}</th>
                         <th
-                            class="text-right"
                             data-breakpoints="md"
+                            class="text-right"
                         >{{ translate('Options') }}</th>
                     </tr>
                 </thead>
@@ -152,20 +152,20 @@
                             <td>{{ $key + 1 + ($products->currentPage() - 1) * $products->perPage() }}</td>
                             <td>
                                 <a
-                                    class="text-reset d-block"
                                     href="{{ route('product', $product->slug) }}"
                                     target="_blank"
+                                    class="text-reset d-block"
                                 >
                                     <div class="d-flex align-items-center">
                                         <img
-                                            class="size-60px size-xxl-80px mr-2"
                                             src="{{ uploaded_asset($product->thumbnail_img) }}"
                                             alt="Image"
+                                            class="size-60px size-xxl-80px mr-2"
                                             onerror="this.onerror=null;this.src='{{ static_asset('/assets/img/placeholder.jpg') }}';"
                                         />
                                         <span class="flex-grow-1 minw-0">
                                             <div class=" text-truncate-2 fs-12">
-                                                {{ $product->name }}</div>
+                                                {{ $product->getTranslation('name') }}</div>
                                         </span>
                                     </div>
                                 </a>
@@ -175,7 +175,7 @@
                                     <div><span>{{ translate('Rating') }}</span>: <span
                                             class="rating rating-sm my-2">{{ renderStarRating($product->rating) }}</span>
                                     </div>
-                                    <div><span>{{ translate('Toal Sold') }}</span>: <span
+                                    <div><span>{{ translate('Total Sold') }}</span>: <span
                                             class="fw-600">{{ $product->num_of_sale }}</span></div>
                                     <div>
                                         <span>{{ translate('Price') }}</span>:
@@ -198,9 +198,9 @@
                                 @if ($product->brand)
                                     <div class="h-50px w-100px d-flex align-items-center justify-content-center">
                                         <img
-                                            class="mw-100 mh-100"
                                             src="{{ uploaded_asset($product->brand->logo) }}"
                                             alt="{{ translate('Brand') }}"
+                                            class="mw-100 mh-100"
                                             onerror="this.onerror=null;this.src='{{ static_asset('/assets/img/placeholder.jpg') }}';"
                                         />
                                     </div>
@@ -211,9 +211,9 @@
                             <td>
                                 <label class="aiz-switch aiz-switch-success mb-0">
                                     <input
-                                        type="checkbox"
-                                        value="{{ $product->id }}"
                                         onchange="update_published(this)"
+                                        value="{{ $product->id }}"
+                                        type="checkbox"
                                         @if ($product->published == 1) checked @endif
                                     >
                                     <span class="slider round"></span>
@@ -249,9 +249,9 @@
                                 @endcan
                                 @can('delete_products')
                                     <a
+                                        href="#"
                                         class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
                                         data-href="{{ route('product.destroy', $product->id) }}"
-                                        href="#"
                                         title="{{ translate('Delete') }}"
                                     >
                                         <i class="las la-trash"></i>

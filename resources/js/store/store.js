@@ -8,6 +8,7 @@ import recentlyViewed from "./modules/recentlyViewed";
 import snackBar from "./modules/snackbar";
 import wishlistModule from "./modules/wishlist";
 import followModule from "./modules/follow";
+import compareList from "./modules/compareList";
 
 Vue.use(Vuex);
 
@@ -21,7 +22,8 @@ const store = new Vuex.Store({
         cart: cartModule,
         snackbar: snackBar,
         recentlyViewed: recentlyViewed,
-    },
+        compareList: compareList
+    }
 });
 
 export default store;

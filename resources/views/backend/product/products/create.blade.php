@@ -6,10 +6,10 @@
     </div>
     <form
         class="form form-horizontal mar-top"
-        id="product_form"
         action="{{ route('product.store') }}"
         method="POST"
         enctype="multipart/form-data"
+        id="product_form"
     >
         @csrf
         <div class="row gutters-5">
@@ -21,14 +21,13 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-md-3 col-from-label">
-                                {{ translate('Product Name') }} <span class="text-danger">*</span>
-                            </label>
+                            <label class="col-md-3 col-from-label">{{ translate('Product Name') }} <span
+                                    class="text-danger">*</span></label>
                             <div class="col-md-8">
                                 <input
+                                    type="text"
                                     class="form-control"
                                     name="name"
-                                    type="text"
                                     placeholder="{{ translate('Product Name') }}"
                                     required
                                 >
@@ -38,44 +37,42 @@
                             <label class="col-md-3 col-from-label">{{ translate('Unit') }}</label>
                             <div class="col-md-8">
                                 <input
+                                    type="text"
                                     class="form-control"
                                     name="unit"
-                                    type="text"
                                     placeholder="{{ translate('Unit (e.g. 500 Gram, 2 Litre, 5 Pc etc)') }}"
                                 >
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3 col-from-label">
-                                {{ translate('Minimum Purchase Qty') }} <span class="text-danger">*</span>
-                            </label>
+                            <label class="col-md-3 col-from-label">{{ translate('Minimum Purchase Qty') }} <span
+                                    class="text-danger"
+                                >*</span></label>
                             <div class="col-md-8">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="min_qty"
-                                    type="number"
                                     value="1"
                                     min="1"
                                     required
                                 >
-                                <small class="text-muted">
-                                    {{ translate('Customer need to purchase this minimum quantity for this product. Minimum should be 1.') }}
-                                </small>
+                                <small
+                                    class="text-muted">{{ translate('Customer need to purchase this minimum quantity for this product. Minimum should be 1.') }}</small>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-from-label">{{ translate('Maximum Purchase Qty') }}</label>
                             <div class="col-md-8">
                                 <input
+                                    type="number"
                                     class="form-control"
                                     name="max_qty"
-                                    type="number"
                                     value="0"
                                     min="0"
                                 >
-                                <small class="text-muted">
-                                    {{ translate('Customer will be able to purchase this maximum quantity for this product. Default 0 for unlimited.') }}
-                                </small>
+                                <small
+                                    class="text-muted">{{ translate('Customer will be able to purchase this maximum quantity for this product. Default 0 for unlimited.') }}</small>
                             </div>
                         </div>
                     </div>
@@ -89,9 +86,8 @@
                             <label
                                 class="col-md-3 col-form-label"
                                 for="signinSrEmail"
-                            >
-                                {{ translate('Thumbnail Image') }} <small>(300x300)</small>
-                            </label>
+                            >{{ translate('Thumbnail Image') }}
+                                <small>(300x300)</small></label>
                             <div class="col-md-8">
                                 <div
                                     class="input-group"
@@ -101,20 +97,19 @@
                                 >
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
-                                            {{ translate('Browse') }}
-                                        </div>
+                                            {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
                                     <input
-                                        class="selected-files"
-                                        name="thumbnail_img"
                                         type="hidden"
+                                        name="thumbnail_img"
+                                        class="selected-files"
                                     >
                                 </div>
-                                <div class="file-preview box sm"></div>
-                                <small class="text-muted">
-                                    {{ translate('This image is visible in all product box. Use 300x300 sizes image. Keep some blank space around the main object of your image as we had to crop some edge in different devices to make it responsive.') }}
-                                </small>
+                                <div class="file-preview box sm">
+                                </div>
+                                <small
+                                    class="text-muted">{{ translate('This image is visible in all product box. Use 300x300 sizes image. Keep some blank space around the main object of your image as we had to crop some edge in different devices to make it responsive.') }}</small>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -135,9 +130,9 @@
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
                                     <input
-                                        class="selected-files"
-                                        name="photos"
                                         type="hidden"
+                                        name="photos"
+                                        class="selected-files"
                                     >
                                 </div>
                                 <div class="file-preview box sm">
@@ -156,8 +151,8 @@
                             <label class="mb-0 mr-3 ml-0">{{ translate('Variant Product') }}</label>
                             <label class="aiz-switch aiz-switch-success mb-0">
                                 <input
-                                    name="is_variant"
                                     type="checkbox"
+                                    name="is_variant"
                                     onchange="is_variant_product(this)"
                                 >
                                 <span></span>
@@ -172,13 +167,13 @@
                                     >*</span></label>
                                 <div class="col-md-8">
                                     <input
-                                        class="form-control"
-                                        name="price"
                                         type="number"
-                                        value="1"
                                         step="0.01"
                                         min="0"
+                                        value="1"
                                         placeholder="{{ translate('Price') }}"
+                                        name="price"
+                                        class="form-control"
                                         required
                                     >
                                 </div>
@@ -187,10 +182,10 @@
                                 <label class="col-md-3 col-from-label">{{ translate('SKU') }}</label>
                                 <div class="col-md-8">
                                     <input
-                                        class="form-control"
-                                        name="sku"
                                         type="test"
                                         placeholder="{{ translate('SKU') }}"
+                                        name="sku"
+                                        class="form-control"
                                     >
                                 </div>
                             </div>
@@ -222,9 +217,9 @@
                                         <select
                                             class="form-control aiz-selectpicker"
                                             name="product_options[]"
+                                            onchange="get_option_choices(this)"
                                             data-live-search="true"
                                             title="{{ translate('Select an option') }}"
-                                            onchange="get_option_choices(this)"
                                         >
                                             @foreach ($attributes as $key => $attribute)
                                                 <option value="{{ $attribute->id }}">
@@ -239,8 +234,8 @@
                                     </div>
                                     <div class="col-auto">
                                         <button
-                                            class="btn btn-icon btn-soft-secondary"
                                             type="button"
+                                            class="btn btn-icon btn-soft-secondary"
                                             onclick="add_new_option()"
                                         >
                                             <i class=" la-plus las opacity-70"></i>
@@ -270,13 +265,13 @@
                             >{{ translate('Discount Date Range') }}</label>
                             <div class="col-sm-9">
                                 <input
+                                    type="text"
                                     class="form-control aiz-date-range"
                                     name="date_range"
+                                    placeholder="Select Date"
                                     data-time-picker="true"
                                     data-format="DD-MM-Y HH:mm:ss"
                                     data-separator=" to "
-                                    type="text"
-                                    placeholder="Select Date"
                                     autocomplete="off"
                                 >
                             </div>
@@ -287,14 +282,14 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-6">
                                 <input
-                                    class="form-control"
-                                    name="discount"
                                     type="number"
-                                    value="0"
                                     lang="en"
                                     min="0"
+                                    value="0"
                                     step="0.01"
                                     placeholder="{{ translate('Discount') }}"
+                                    name="discount"
+                                    class="form-control"
                                     required
                                 >
                             </div>
@@ -311,6 +306,34 @@
                     </div>
                 </div>
 
+                @if (get_setting('club_point'))
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">{{ translate('Club Point') }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label
+                                    class="col-sm-3 control-label"
+                                    for="start_date"
+                                >{{ translate('Set Point') }}</label>
+                                <div class="col-sm-9">
+                                    <input
+                                        type="number"
+                                        lang="en"
+                                        min="0"
+                                        value="0"
+                                        step="1"
+                                        placeholder="1"
+                                        name="earn_point"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{ translate('Shipping Information') }}</h5>
@@ -321,11 +344,11 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
                                         class="form-control"
                                         name="standard_delivery_time"
-                                        type="number"
                                         value="24"
-                                        step="0.01"
                                         min="0"
                                         required
                                     >
@@ -338,11 +361,11 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
                                         class="form-control"
                                         name="express_delivery_time"
-                                        type="number"
                                         value="24"
-                                        step="0.01"
                                         min="0"
                                         required
                                     >
@@ -355,11 +378,11 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
+                                        value="0"
                                         class="form-control"
                                         name="weight"
-                                        type="number"
-                                        value="0"
-                                        step="0.01"
                                         min="0"
                                         required
                                     >
@@ -373,11 +396,11 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
+                                        value="0"
                                         class="form-control"
                                         name="height"
-                                        type="number"
-                                        value="0"
-                                        step="0.01"
                                         min="0"
                                         required
                                     >
@@ -391,11 +414,11 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
+                                        value="0"
                                         class="form-control"
                                         name="length"
-                                        type="number"
-                                        value="0"
-                                        step="0.01"
                                         min="0"
                                         required
                                     >
@@ -409,11 +432,11 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input
+                                        type="number"
+                                        step="0.01"
+                                        value="0"
                                         class="form-control"
                                         name="width"
-                                        type="number"
-                                        value="0"
-                                        step="0.01"
                                         min="0"
                                         required
                                     >
@@ -422,7 +445,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -1348,7 +1370,6 @@
                     </div>
                 </div>
 
-
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{ translate('Product attributes') }}</h5>
@@ -1375,9 +1396,9 @@
                             <label class="col-md-3 col-from-label">{{ translate('Meta Title') }}</label>
                             <div class="col-md-8">
                                 <input
+                                    type="text"
                                     class="form-control"
                                     name="meta_title"
-                                    type="text"
                                     placeholder="{{ translate('Meta Title') }}"
                                 >
                             </div>
@@ -1386,9 +1407,9 @@
                             <label class="col-md-3 col-from-label">{{ translate('Description') }}</label>
                             <div class="col-md-8">
                                 <textarea
-                                    class="form-control"
                                     name="meta_description"
                                     rows="8"
+                                    class="form-control"
                                 ></textarea>
                             </div>
                         </div>
@@ -1409,9 +1430,9 @@
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
                                     <input
-                                        class="selected-files"
-                                        name="meta_image"
                                         type="hidden"
+                                        name="meta_image"
+                                        class="selected-files"
                                     >
                                 </div>
                                 <div class="file-preview box sm">
@@ -1467,9 +1488,9 @@
                                     <li>
                                         <label class="aiz-checkbox">
                                             <input
-                                                name="category_ids[]"
                                                 type="checkbox"
                                                 value="{{ $category->id }}"
+                                                name="category_ids[]"
                                             >
                                             <span class="aiz-square-check"></span>
                                             <span>{{ $category->getTranslation('name') }}</span>
@@ -1480,9 +1501,9 @@
                                                     <li>
                                                         <label class="aiz-checkbox">
                                                             <input
-                                                                name="category_ids[]"
                                                                 type="checkbox"
                                                                 value="{{ $childCategory->id }}"
+                                                                name="category_ids[]"
                                                             >
                                                             <span class="aiz-square-check"></span>
                                                             <span>{{ $childCategory->getTranslation('name') }}</span>
@@ -1493,9 +1514,9 @@
                                                                     <li>
                                                                         <label class="aiz-checkbox">
                                                                             <input
-                                                                                name="category_ids[]"
                                                                                 type="checkbox"
                                                                                 value="{{ $grandChildCategory->id }}"
+                                                                                name="category_ids[]"
                                                                             >
                                                                             <span class="aiz-square-check"></span>
                                                                             <span>{{ $grandChildCategory->getTranslation('name') }}</span>
@@ -1520,9 +1541,9 @@
                     </div>
                     <div class="card-body">
                         <input
+                            type="text"
                             class="form-control aiz-tag-input"
                             name="tags"
-                            type="text"
                             placeholder="{{ translate('Type and hit enter to add a tag') }}"
                         >
                         <small class="text-muted">{{ translate('These will be used for product search.') }}</small>
@@ -1538,23 +1559,23 @@
                             <label for="name">
                                 {{ $tax->name }}
                                 <input
-                                    name="tax_ids[]"
                                     type="hidden"
                                     value="{{ $tax->id }}"
+                                    name="tax_ids[]"
                                 >
                             </label>
 
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <input
-                                        class="form-control"
-                                        name="taxes[]"
                                         type="number"
-                                        value="0"
                                         lang="en"
                                         min="0"
+                                        value="0"
                                         step="0.01"
                                         placeholder="{{ translate('Tax') }}"
+                                        name="taxes[]"
+                                        class="form-control"
                                         required
                                     >
                                 </div>
@@ -1580,8 +1601,8 @@
                         <div class="mb-2">{{ translate('Warranty available for this product?') }}</div>
                         <label class="aiz-switch aiz-switch-success mb-0">
                             <input
-                                name="has_warranty"
                                 type="checkbox"
+                                name="has_warranty"
                             >
                             <span></span>
                         </label>
@@ -1591,9 +1612,9 @@
         </div>
         <div class="mar-all text-right mb-3">
             <button
+                type="submit"
                 class="btn btn-primary"
                 id="upload-product"
-                type="submit"
             >{{ translate('Upload Product') }}</button>
         </div>
     </form>

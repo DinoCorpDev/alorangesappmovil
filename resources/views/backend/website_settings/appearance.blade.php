@@ -19,6 +19,21 @@
         						<small class="text-muted">{{ translate('Hex Color Code') }}</small>
                             </div>
     	                </div>
+						<div class="form-group row">
+    						<label class="col-md-2 col-from-label">{{ translate('Site Icon') }}</label>
+                            <div class="col-md-10">
+        						<div class="input-group " data-toggle="aizuploader" data-type="image">
+        							<div class="input-group-prepend">
+        								<div class="input-group-text bg-soft-secondary">{{ translate('Browse') }}</div>
+        							</div>
+        							<div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                    <input type="hidden" name="types[]" value="site_icon">
+        							<input type="hidden" name="site_icon" value="{{ get_setting('site_icon') }}" class="selected-files">
+        						</div>
+        						<div class="file-preview box"></div>
+        						<small class="text-muted">{{ translate('Site Icon. 152x152 .png') }}</small>
+                            </div>
+    					</div>
     					<div class="text-right">
     						<button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
     					</div>
@@ -105,6 +120,38 @@
                                 <small class="">{{  translate('Write script with') .' <script> '. translate('tag') }}</small>
                             </div>
                         </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="fw-600 mb-0">{{ translate('Shop Registration Message') }}</h6>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label
+                                class="col-md-3 col-from-label">{{ translate('Shop Registration Message Title') }}</label>
+                            <div class="col-md-8">
+                                <input type="hidden" name="types[]" value="shop_registration_message_title">
+                                <textarea name="shop_registration_message_title" rows="4" class="aiz-text-editor form-control"
+                                    data-buttons='[["font", ["bold"]],["insert", ["link"]]]'>{{ get_setting('shop_registration_message_title') }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label
+                                class="col-md-3 col-from-label">{{ translate('Shop Registration Message Content') }}</label>
+                            <div class="col-md-8">
+                                <input type="hidden" name="types[]" value="shop_registration_message_content">
+                                <textarea name="shop_registration_message_content" rows="4" class="aiz-text-editor form-control"
+                                    data-buttons='[["font", ["bold"]],["insert", ["link"]]]'>{{ get_setting('shop_registration_message_content') }}</textarea>
+                            </div>
+                        </div>
+
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
                         </div>

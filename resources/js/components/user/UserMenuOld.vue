@@ -45,8 +45,14 @@ export default {
                     to: "PurchaseHistory",
                 },
                 {
-                    label: this.$i18n.t("wishlist"),
+                    label: this.$i18n.t("downloads"),
                     order: 30,
+                    icon: "las la-cloud-download-alt",
+                    to: "Downloads",
+                },
+                {
+                    label: this.$i18n.t("wishlist"),
+                    order: 40,
                     icon: "la la-heart-o",
                     to: "Wishlist",
                 }, 
@@ -105,6 +111,19 @@ export default {
             if (this.generalSettings.conversation_system == 1 && this.is_addon_activated('multi_vendor') ) {
                 items.push(conversation);
             }
+
+            
+            // club points
+            let clubPoint = {
+                label: this.$i18n.t("earning_points"),
+                order: 38,
+                icon: "las la-coins",
+                to: "Earning",
+            }
+
+             if (this.generalSettings.club_point == 1) {
+                items.push(clubPoint);
+            } 
 
             return items;
         }

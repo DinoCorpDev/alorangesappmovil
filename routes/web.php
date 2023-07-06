@@ -49,6 +49,7 @@ Route::group(['prefix' => 'payment'], function () {
 
     //paystack
     Route::any('/paystack/callback', [PaystackPaymentController::class, 'return'])->name('paystack.return');
+    Route::any('/paystack/new-callback', [PaystackPaymentController::class, 'paystackNewCallback']);
 
     //paytm
     Route::any('/paytm/callback', [PaytmPaymentController::class, 'callback'])->name('paytm.callback');
@@ -74,6 +75,8 @@ Route::group(['prefix' => 'payment'], function () {
     });
     //Mercadopago <ends>
 
+    //Iyzico
+    Route::any('/iyzico/payment/callback/{payment_type}/{amount?}/{payment_method?}/{combined_order_id?}/{customer_package_id?}/{seller_package_id?}', [IyzicoController::class, 'callback'])->name('iyzico.callback');
 });
 
 Route::any('/social-login/redirect/{provider}', [LoginController::class, 'redirectToProvider'])->name('social.login');
@@ -98,6 +101,3 @@ Route::controller(AddressController::class)->group(function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('{slug}', [HomeController::class, 'index'])->where('slug', '.*');
-
-// Route::get('/demo/cron_1', 'DemoController@cron_1');
-// Route::get('/demo/cron_2', 'DemoController@cron_2');

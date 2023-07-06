@@ -250,7 +250,7 @@
                 </ul>
             </div>
             <v-row class="py-5">
-                <v-col md="6" cols="12">
+                <v-col md="6" cols="12" :version="data.current_version">
                     <div  v-html="$optional('data.copyright_text')" class="lh-1 fs-13" ></div>
                 </v-col>
                 <v-col md="6" cols="12">

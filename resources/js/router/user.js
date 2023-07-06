@@ -4,6 +4,7 @@ let InvoicesDetails = () => import("../pages/user/InvoicesDetails");
 let Favorites = () => import("../pages/user/Favorites");
 let DashBoard = () => import("../pages/user/Dashboard");
 let PurchaseHistory = () => import("../pages/user/PurchaseHistory");
+let Downloads = () => import("../pages/user/Downloads");
 let OrderDetails = () => import("../pages/user/OrderDetails");
 let RefundRequests = () => import("../pages/user/refund_request/RefundRequestList");
 let RefundRequestCreate = () => import("../pages/user/refund_request/RefundRequestCreate");
@@ -12,6 +13,7 @@ let Conversations = () => import("../pages/user/Conversations");
 let ConversationDetails = () => import("../pages/user/ConversationDetails");
 let FollowedShops = () => import("../pages/user/FollowedShops");
 let Wallet = () => import("../pages/user/Wallet");
+let EarningPoints = () => import("../pages/user/EarningPoints");
 let Coupon = () => import("../pages/user/Coupon");
 let Profile = () => import("../pages/user/Profile");
 let Profile2 = () => import("../pages/user/ProfileOld");
@@ -60,6 +62,12 @@ export default [
                 path: "purchase-history",
                 component: PurchaseHistory,
                 name: "PurchaseHistory",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "downloads",
+                component: Downloads,
+                name: "Downloads",
                 meta: { requiresAuth: true }
             },
             {
@@ -112,6 +120,14 @@ export default [
                 name: "Wallet",
                 meta: { requiresAuth: true }
             },
+
+            {
+                path: "earning-points",
+                component: window.shopSetting.general_settings.club_point == 1 ? EarningPoints : Error404,
+                name: "Earning",
+                meta: { requiresAuth: true }
+            },
+
             {
                 path: "coupon",
                 component: Coupon,

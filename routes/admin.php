@@ -36,8 +36,12 @@ use App\Http\Controllers\ZoneController;
 use App\Addons\MultiVendor\Http\Controllers\MultiVendorController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ClubPointController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\DigitalProductController;
+use App\Http\Controllers\Payment\AuthorizenetPaymentController;
+use App\Http\Controllers\ProductBulkUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,6 +135,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::get('/destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
         Route::post('/get_products_by_subcategory', [ProductController::class, 'get_products_by_subcategory'])->name('product.get_products_by_subcategory');
+        Route::post('/products/approved', [ProductController::class, 'updateProductApproval'])->name('products.approved');
     });
 
     // Service
@@ -152,6 +157,28 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::get('/destroy/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
 
         Route::post('/get_services_by_subcategory', [ServiceController::class, 'get_services_by_subcategory'])->name('service.get_services_by_subcategory');
+    });
+
+    Route::controller(ProductBulkUploadController::class)->group(function () {
+        // Product Export
+        Route::get('/product-bulk-export', 'export')->name('product_bulk_export.index');
+
+        // Product Bulk Upload
+        Route::get('/product-bulk-upload/index', 'index')->name('product_bulk_upload.index');
+        Route::post('/bulk-product-upload', 'bulk_upload')->name('bulk_product_upload');
+        Route::get('/product-csv-download/{type}', 'import_product')->name('product_csv.download');
+        Route::get('/vendor-product-csv-download/{id}', 'import_vendor_product')->name('import_vendor_product.download');
+        Route::group(['prefix' => 'bulk-upload/download'], function () {
+            Route::get('/category', 'pdf_download_category')->name('pdf.download_category');
+            Route::get('/brand', 'pdf_download_brand')->name('pdf.download_brand');
+            Route::get('/seller', 'pdf_download_seller')->name('pdf.download_seller');
+        });
+    });
+
+    Route::resource('digitalproducts', DigitalProductController::class);
+    Route::controller(DigitalProductController::class)->group(function () {
+        Route::get('/digitalproducts/destroy/{id}', 'destroy')->name('digitalproducts.destroy');
+        Route::get('/digitalproducts/download/{id}', 'download')->name('digitalproducts.download');
     });
 
     Route::resource('customers', CustomerController::class);
@@ -281,6 +308,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('addons', AddonController::class);
     Route::post('/addons/activation', [AddonController::class, 'activation'])->name('addons.activation');
 
+    // Club Points
+    Route::controller(ClubPointController::class)->group(function () {
+        Route::get('club-points/configuration', 'configure_index')->name('club_points.configs');
+        Route::get('club-points/index', 'index')->name('club_points.index');
+        Route::post('set-club-points/store', 'set_products_point')->name('set_products_point.store');
+        Route::post('set-club-points-for-all_products/store', 'set_all_products_point')->name('set_all_products_point.store');
+        Route::get('set-club-points/{id}', 'set_point_edit')->name('product_club_point.edit');
+        Route::get('club-point-details/{id}', 'club_point_detail')->name('club_point.details');
+        Route::post('set-club-points/update/{id}', 'update_product_point')->name('product_point.update');
+        Route::post('club-point-convert-rate/store', 'convert_rate_store')->name('point_convert_rate_store');
+    });
+
     //Shipping Configuration
     Route::get('/shipping_configuration', [SettingController::class, 'shipping_configuration'])->name('shipping_configuration.index');
     Route::post('/shipping_configuration/update', [SettingController::class, 'shipping_configuration_update'])->name('shipping_configuration.update');
@@ -314,7 +353,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::post('/chat-reply', [ChatController::class, 'reply'])->name('chats.reply');
 
     Route::get('/update/step1', [UpdateController::class, 'step1']);
-    Route::get('dashboard_data', [AdminController::class, 'dashboard_data'])->name('dashboard.data');
 });
+
+//Authorize-Net-Payment
+Route::get('/authorizenet/cardtype', [AuthorizenetPaymentController::class, 'cardType'])->name('authorizenet.cardtype');
 
 Route::get('/addons/multivendor', [MultiVendorController::class, 'helloFromMultiVendor']);

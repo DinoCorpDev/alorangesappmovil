@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Order;
 use App\Models\User;
+use App\Notifications\UserBannedNotification;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -23,11 +23,13 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $sort_search = null;
-        $customers = User::where('user_type','customer')->withCount('orders')->orderBy('created_at', 'desc');
-        if ($request->has('search')){
+        $customers = User::where('user_type', 'customer')->withCount('orders')->orderBy('created_at', 'desc');
+
+        if ($request->has('search')) {
             $sort_search = $request->search;
-            $customers = $customers->where('name', 'like', '%'.$sort_search.'%')->orWhere('email', 'like', '%'.$sort_search.'%');
+            $customers = $customers->where('name', 'like', '%' . $sort_search . '%')->orWhere('email', 'like', '%' . $sort_search . '%');
         }
+
         $customers = $customers->paginate(15);
         return view('backend.customers.index', compact('customers', 'sort_search'));
     }
@@ -105,7 +107,7 @@ class CustomerController extends Controller
         $user->addresses()->delete();
         $user->reviews()->delete();
 
-        // delete chats, conversation and related data 
+        // delete chats, conversation and related data
         try {
             $user->chat_thread->chats()->delete();
             $user->chat_thread()->delete();
@@ -123,10 +125,11 @@ class CustomerController extends Controller
         return back();
     }
 
-    public function ban($id) {
-        $user = User::find($id);
+    public function ban($id)
+    {
+        $user = User::find(decrypt($id));
 
-        if($user->banned == 1) {
+        if ($user->banned == 1) {
             $user->banned = 0;
             flash(translate('Customer Unbanned Successfully'))->success();
         } else {
@@ -135,6 +138,12 @@ class CustomerController extends Controller
         }
 
         $user->save();
+
+        try {
+            $user->notify(new UserBannedNotification($user));
+        } catch (\Exception $e) {
+            // dd($e);
+        }
 
         return back();
     }

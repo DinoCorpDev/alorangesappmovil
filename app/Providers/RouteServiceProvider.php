@@ -36,9 +36,9 @@ class RouteServiceProvider extends ServiceProvider
 	public function map()
 	{
 
-		//$this->mapInstallRoutes();
+		// $this->mapInstallRoutes();
 
-    	//$this->mapUpdateRoutes();
+		// $this->mapUpdateRoutes();
 
 		$this->mapApiRoutes();
 
@@ -48,12 +48,12 @@ class RouteServiceProvider extends ServiceProvider
 
 		$this->mapRefundRoutes();
 
-        $this->mapPosRoutes();
-        
-        $this->mapOfflinePaymentRoutes();
+		$this->mapPosRoutes();
+
+		$this->mapOfflinePaymentRoutes();
 
 		$this->mapWebRoutes();
-	} 
+	}
 
 	/**
 	 * Define the "installation" routes for the application.
@@ -70,8 +70,8 @@ class RouteServiceProvider extends ServiceProvider
 
 	protected function mapUpdateRoutes()
 	{
-	    Route::middleware('web')
-	       ->group(base_path('routes/update.php'));
+		Route::middleware('web')
+			->group(base_path('routes/update.php'));
 	}
 
 	/**
@@ -101,13 +101,13 @@ class RouteServiceProvider extends ServiceProvider
 	}
 
 
-     /**
-     * Define the "seller" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */ 
+	/**
+	 * Define the "seller" routes for the application.
+	 *
+	 * These routes all receive session state, CSRF protection, etc.
+	 *
+	 * @return void
+	 */
 
 	protected function mapSellerRoutes()
 	{
@@ -115,48 +115,48 @@ class RouteServiceProvider extends ServiceProvider
 			->group(base_path('routes/seller.php'));
 	}
 
-     /**
-     * Define the "refund System" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */ 
+	/**
+	 * Define the "refund System" routes for the application.
+	 *
+	 * These routes all receive session state, CSRF protection, etc.
+	 *
+	 * @return void
+	 */
 	protected function mapRefundRoutes()
 	{
 		Route::middleware('web')
 			->group(base_path('routes/refund.php'));
 	}
-    
-    
-    /**
-     * Define the "POS System" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapPosRoutes()
-    {
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/pos.php'));
-    }
- 
-    
-    /**
-     * Define the "offline payment" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapOfflinePaymentRoutes()
-    {
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/offline_payment.php'));
-    }
+
+
+	/**
+	 * Define the "POS System" routes for the application.
+	 *
+	 * These routes all receive session state, CSRF protection, etc.
+	 *
+	 * @return void
+	 */
+	protected function mapPosRoutes()
+	{
+		Route::middleware('web')
+			->namespace($this->namespace)
+			->group(base_path('routes/pos.php'));
+	}
+
+
+	/**
+	 * Define the "offline payment" routes for the application.
+	 *
+	 * These routes all receive session state, CSRF protection, etc.
+	 *
+	 * @return void
+	 */
+	protected function mapOfflinePaymentRoutes()
+	{
+		Route::middleware('web')
+			->namespace($this->namespace)
+			->group(base_path('routes/offline_payment.php'));
+	}
 
 	/**
 	 * Define the "api" routes for the application.

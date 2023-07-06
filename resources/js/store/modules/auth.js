@@ -1,6 +1,8 @@
 import { i18n } from "./../../plugins/i18n";
 import Mixin from "./../../utils/mixin";
+
 const shopSetting = window.shopSetting;
+
 const loadState = () => ({
     chatWindowOpen: false,
     cartDrawerOpen: false,
@@ -14,6 +16,7 @@ const loadState = () => ({
     sociaLoginStatus: null,
     authSettings: shopSetting.authSettings
 });
+
 export default {
     namespaced: true,
     state: loadState(),

@@ -26,12 +26,14 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $sort_search =null;
+        $sort_search = null;
         $categories = Category::orderBy('created_at', 'desc');
-        if ($request->has('search')){
+
+        if ($request->has('search')) {
             $sort_search = $request->search;
-            $categories = $categories->where('name', 'like', '%'.$sort_search.'%');
+            $categories = $categories->where('name', 'like', '%' . $sort_search . '%');
         }
+
         $categories = $categories->paginate(12);
         return view('backend.product.categories.index', compact('categories', 'sort_search'));
     }
@@ -43,11 +45,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-      $categories = Category::where('parent_id', 0)
-          ->with('childrenCategories')
-          ->get();
+        $categories = Category::where('parent_id', 0)
+            ->with('childrenCategories')
+            ->get();
 
-      return view('backend.product.categories.create', compact('categories'));
+        return view('backend.product.categories.create', compact('categories'));
     }
 
     /**
@@ -61,7 +63,8 @@ class CategoryController extends Controller
         $category         = new Category;
         $category->name   = $request->name;
         $category->order_level = 0;
-        if($request->order_level != null) {
+
+        if ($request->order_level != null) {
             $category->order_level = $request->order_level;
         }
 
@@ -75,14 +78,17 @@ class CategoryController extends Controller
             $category->parent_id = $request->parent_id;
 
             $parent = Category::find($request->parent_id);
-            $category->level = $parent->level + 1 ;
+            $category->level = $parent->level + 1;
         }
 
         if ($request->slug != null) {
             $category->slug = Str::slug($request->slug, '-');
+        } else {
+            $category->slug = Str::slug($request->name, '-') . '-' . strtolower(Str::random(5));
         }
-        else {
-            $category->slug = Str::slug($request->name, '-').'-'.strtolower(Str::random(5));
+
+        if ($request->digital == "1") {
+            $category->digital = 1;
         }
 
         $category->save();
@@ -120,10 +126,11 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $categories = Category::where('parent_id', 0)
             ->with('childrenCategories')
-            ->whereNotIn('id', CategoryUtility::children_ids($category->id, true))->where('id', '!=' , $category->id)
-            ->orderBy('name','asc')
+            ->whereNotIn('id', CategoryUtility::children_ids($category->id, true))->where('id', '!=', $category->id)
+            ->orderBy('name', 'asc')
             ->get();
-        return view('backend.product.categories.edit', compact('category', 'categories','lang'));
+
+        return view('backend.product.categories.edit', compact('category', 'categories', 'lang'));
     }
 
     /**
@@ -136,10 +143,12 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
-        if($request->lang == env("DEFAULT_LANGUAGE")){
+
+        if ($request->lang == env("DEFAULT_LANGUAGE")) {
             $category->name = $request->name;
         }
-        if($request->order_level != null) {
+
+        if ($request->order_level != null) {
             $category->order_level = $request->order_level;
         }
 
@@ -155,21 +164,23 @@ class CategoryController extends Controller
             $category->parent_id = $request->parent_id;
 
             $parent = Category::find($request->parent_id);
-            $category->level = $parent->level + 1 ;
-        }
-        else{
+            $category->level = $parent->level + 1;
+        } else {
             $category->parent_id = 0;
             $category->level = 0;
         }
 
-        if($category->level > $previous_level){
+        if ($category->level > $previous_level) {
             CategoryUtility::move_level_down($category->id);
-        }
-        elseif ($category->level < $previous_level) {
+        } elseif ($category->level < $previous_level) {
             CategoryUtility::move_level_up($category->id);
         }
 
-        $category->slug = (!is_null($request->slug)) ? Str::slug($request->slug, '-') : Str::slug($request->name, '-').'-'.strtolower(Str::random(5));
+        if ($request->digital == "1") {
+            $category->digital = 1;
+        }
+
+        $category->slug = (!is_null($request->slug)) ? Str::slug($request->slug, '-') : Str::slug($request->name, '-') . '-' . strtolower(Str::random(5));
 
         $category->save();
 
@@ -195,7 +206,7 @@ class CategoryController extends Controller
 
         // Category Translations Delete
         $category->category_translations()->delete();
-        
+
         $category->product_categories()->delete();
 
         CategoryUtility::delete_category($id);
@@ -208,9 +219,11 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($request->id);
         $category->featured = $request->status;
-        if($category->save()){
+
+        if ($category->save()) {
             return 1;
         }
+
         return 0;
     }
 }

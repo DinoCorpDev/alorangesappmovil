@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\DownloadedProductResource;
 use App\Http\Resources\OrderCollection;
 use App\Http\Resources\OrderSingleCollection;
 use App\Models\Address;
@@ -17,9 +18,12 @@ use App\Models\ManualPaymentMethod;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\OrderUpdate;
+use App\Models\Product;
 use App\Models\Shop;
+use App\Models\Upload;
 use App\Models\Wallet;
 use App\Notifications\OrderPlacedNotification;
+use App\Notifications\SellerInvoiceNotification;
 use DB;
 use Illuminate\Http\Request;
 use Notification;
@@ -200,7 +204,7 @@ class OrderController extends Controller
             $cart_collection_ids = $request->cart_collection_ids;
         }
 
-        $cartItems = Cart::whereIn('id', $cart_item_ids)->get();
+        $cartItems = Cart::whereIn('id', $cart_item_ids)->with(['variation.product'])->get();
         $cartCollections = CollectionCart::with(['collection'])->whereIn('id', $cart_collection_ids)->get();
 
         $shippingAddress = Address::find($request->shipping_address_id);
@@ -232,35 +236,46 @@ class OrderController extends Controller
                 'message' => translate('Please select a delivery option.')
             ]);
 
-        if (!empty($shippingCity->zone)) {
-            if (!$shippingCity->zone)
+        if (!$shippingCity->zone)
+            return response()->json([
+                'success' => false,
+                'message' => translate('Sorry, delivery is not available in this shipping address.')
+            ]);
+
+        foreach ($cartItems as $cartItem) {
+            if (!$cartItem->variation->stock) {
                 return response()->json([
                     'success' => false,
-                    'message' => translate('Sorry, delivery is not available in this shipping address.')
+                    'message' => $cartItem->variation->product->getTranslation('name') . ' ' . translate('is out of stock.')
                 ]);
+            }
         }
 
-        try {
-            if ($request->delivery_type == 'standard') {
-                $shipping_cost = $shippingCity->zone->standard_delivery_cost;
-            } elseif ($request->delivery_type == 'express') {
-                $shipping_cost = $shippingCity->zone->express_delivery_cost;
-            }
-        } catch (\Throwable $th) {
-            $shipping_cost = 0;
+        if ($request->delivery_type == 'standard') {
+            $shipping_cost = $shippingCity->zone->standard_delivery_cost;
+        } elseif ($request->delivery_type == 'express') {
+            $shipping_cost = $shippingCity->zone->express_delivery_cost;
         }
 
         // generate array of shops cart items
         $shops_cart_items = array();
+        $club_points = 0;
+
         foreach ($cartItems as $cartItem) {
             $cart_ids = array();
-            $product = $cartItem->product;
+            $product = $cartItem->variation->product;
             if (isset($shops_cart_items[$product->shop_id])) {
                 $cart_ids = $shops_cart_items[$product->shop_id];
             }
             array_push($cart_ids, $cartItem->id);
 
             $shops_cart_items[$product->shop_id] = $cart_ids;
+
+            if (get_setting('club_point') == 1) {
+                if ($product->earn_point != null) {
+                    $club_points += $cartItem->product->earn_point * $cartItem->quantity;
+                }
+            }
         }
 
         foreach ($cartCollections as $cartCollection) {
@@ -307,12 +322,13 @@ class OrderController extends Controller
 
             //shop total amount calculation
             foreach ($shop_cart_items as $cartItem) {
-                $itemPriceWithoutTax = variation_discounted_price($cartItem->product, $cartItem, false) * $cartItem->quantity;
-                $itemTax = product_variation_tax($cartItem->product, $cartItem) * $cartItem->quantity;
+                $itemPriceWithoutTax = variation_discounted_price($cartItem->variation->product, $cartItem->variation, false) * $cartItem->quantity;
+                $itemTax = product_variation_tax($cartItem->variation->product, $cartItem->variation) * $cartItem->quantity;
 
                 $shop_subTotal += $itemPriceWithoutTax;
                 $shop_tax += $itemTax;
             }
+
             $shop_total = $shop_subTotal + $shipping_cost + $shop_tax;
 
             //shop total amount calculation
@@ -323,6 +339,7 @@ class OrderController extends Controller
                 $shop_subTotal += $itemPriceWithoutTax;
                 $shop_tax += $itemTax;
             }
+
             $shop_total = $shop_subTotal + $shipping_cost + $shop_tax;
 
             // shop coupon check & disount calculation
@@ -375,16 +392,16 @@ class OrderController extends Controller
             }
 
             foreach ($shop_cart_items as $cartItem) {
-                $itemPriceWithoutTax = variation_discounted_price($cartItem->product, $cartItem, false);
-                $itemTax = product_variation_tax($cartItem->product, $cartItem);
+                $itemPriceWithoutTax = variation_discounted_price($cartItem->variation->product, $cartItem->variation, false);
+                $itemTax = product_variation_tax($cartItem->variation->product, $cartItem->variation);
 
                 $orderDetail = OrderDetail::create([
                     'order_id' => $order->id,
                     'product_id' => $cartItem->product_id,
                     'product_variation_id' => $cartItem->product_variation_id,
-                    'price' => $cartItem->product->lowest_price,
+                    'price' => $itemPriceWithoutTax,
                     'tax' => $itemTax,
-                    'total' => $cartItem->product->lowest_price * $cartItem->quantity,
+                    'total' => ($itemPriceWithoutTax + $itemTax) * $cartItem->quantity,
                     'quantity' => $cartItem->quantity,
                 ]);
 
@@ -408,14 +425,10 @@ class OrderController extends Controller
                 return $t->tax * $t->quantity;
             });
 
-            try {
-                $shop_commission = Shop::find($shop_id)->commission;
-            } catch (\Throwable $th) {
-                $shop_commission = 0.00;
-            }
-
+            $shop_commission = Shop::find($shop_id)->commission;
             $admin_commission = 0.00;
             $seller_earning = $shop_total;
+
             if ($shop_commission > 0) {
                 $admin_commission = ($shop_commission * $order_price) / 100;
                 $seller_earning = $shop_total - $admin_commission;
@@ -436,6 +449,21 @@ class OrderController extends Controller
         $combined_order->grand_total = $grand_total;
         $combined_order->save();
 
+        //Invioce mail send to the customer and seller
+        try {
+            Notification::send($user, new OrderPlacedNotification($combined_order));
+            foreach ($combined_order->orders as $order) {
+                Notification::send($order->orderDetails->first()->product->shop->user, new SellerInvoiceNotification($order));
+            }
+        } catch (\Exception $e) {
+            // dd($e);
+        }
+
+        // add club points
+        if (get_setting('club_point') == 1) {
+            (new ClubPointController)->processClubPoints($combined_order, $club_points);
+        }
+
         // clear user's cart
         Cart::destroy($request->cart_item_ids);
         CollectionCart::destroy($request->cart_collection_ids);
@@ -454,16 +482,10 @@ class OrderController extends Controller
             $this->paymentDone($combined_order, $request->payment_type);
         }
 
-        try {
-            Notification::send($user, new OrderPlacedNotification($combined_order));
-        } catch (\Exception $e) {
-            //
-        }
-
         if ($request->payment_type == 'cash_on_delivery' || $request->payment_type == 'wallet' || strpos($request->payment_type, 'offline_payment')  !== false) {
             $go_to_payment = false;
+
             // check if offline payment type & set manual payment data from here.
-            // dd(strpos($request->payment_type, 'offline_payment'));
             if (strpos($request->payment_type, 'offline_payment')  !== false) {
                 // set manual payment data
                 $splittedPaymentMethod = explode('-', $request->payment_type);
@@ -475,7 +497,7 @@ class OrderController extends Controller
                 $manual_payment_data->payment_method = $manualPaymentMethod->heading;
 
 
-                // store receipt here 
+                // store receipt here
                 if ($request->hasFile('receipt')) {
                     $manual_payment_data->reciept = $request->receipt->store(
                         'uploads/offline_payments'
@@ -488,7 +510,7 @@ class OrderController extends Controller
                 $order->manual_payment_data = json_encode($manual_payment_data);
                 $order->save();
 
-                $this->paymentDone($combined_order, 'offline_payment');
+                // $this->paymentDone($combined_order, 'offline_payment');
             }
         } else {
             $go_to_payment = true;
@@ -525,5 +547,38 @@ class OrderController extends Controller
             'success' => true,
             'id' => $imagenId
         ]);
+    }
+
+    public function productDownloads()
+    {
+        $products = DB::table('orders')
+            ->orderBy('id', 'desc')
+            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            ->join('products', 'order_details.product_id', '=', 'products.id')
+            ->where('orders.user_id', auth()->id())
+            ->where('products.digital', '1')
+            ->where('orders.payment_status', 'paid')
+            ->select('products.*')
+            ->paginate(15);
+
+        return DownloadedProductResource::collection($products)->additional([
+            'success' => true,
+            'status' => 200
+        ]);
+    }
+    public function download($product)
+    {
+        $product = Product::findOrFail(($product));
+
+        $upload = Upload::findOrFail($product->file_name);
+
+        if (env('FILESYSTEM_DRIVER') == "s3") {
+            return \Storage::disk('s3')->download($upload->file_name, $upload->file_original_name . "." . $upload->extension);
+        } else {
+
+            if (file_exists(base_path('public/' . $upload->file_name))) {
+                return response()->download($_SERVER['HTTP_HOST'] . 'public/' . $upload->file_name);
+            }
+        }
     }
 }

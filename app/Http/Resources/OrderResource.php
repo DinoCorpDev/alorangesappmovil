@@ -45,6 +45,7 @@ class OrderResource extends JsonResource
     protected function calculateTotalTax($orderDetails)
     {
         $tax = 0;
+
         foreach ($orderDetails as $item) {
             $tax += $item->tax * $item->quantity;
         }

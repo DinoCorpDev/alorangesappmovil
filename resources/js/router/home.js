@@ -87,21 +87,27 @@ export default [
         ]
     },
     {
-        path: "/home2",
-        component: Home2,
-        name: "Home2",
-        meta: { requiresAuth: false }
-    },
-    {
         path: "/home",
         component: Home,
         name: "Home",
         meta: { requiresAuth: false }
     },
     {
+        path: "/home2",
+        component: Home2,
+        name: "Home2",
+        meta: { requiresAuth: false }
+    },
+    {
         path: "/all-categories",
         component: AllCategories,
         name: "AllCategories",
+        meta: { requiresAuth: false }
+    },
+    {
+        path: "/all-brands",
+        component: AllBrands,
+        name: "AllBrands",
         meta: { requiresAuth: false }
     },
     {
@@ -126,6 +132,12 @@ export default [
         path: "/category/:categorySlug?",
         component: ProductListing,
         name: "Category",
+        meta: { requiresAuth: false }
+    },
+    {
+        path: "/brand/:brandId?",
+        component: ProductListing,
+        name: "Brand",
         meta: { requiresAuth: false }
     },
     {

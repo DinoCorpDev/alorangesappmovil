@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="grey pa-4 lighten-3">
-                <v-form class="white rounded-pill" @submit.prevent="sendMessage()">
+                <v-form class="white rounded-pill" @submit.prevent>
                     <v-row no-gutters align="center">
                         <v-col>
                             <v-text-field

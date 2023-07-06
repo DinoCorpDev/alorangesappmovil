@@ -18,15 +18,15 @@
                         <label>{{ $t("phone_number") }}</label>
                         <vue-tel-input v-model="form.phone" v-bind="mobileInputProps" :onlyCountries="availableCountries" class="mb-3 opacity-80" @validate="phoneValidate" disabled></vue-tel-input>
 
-                        <label>{{ $t("old_password") }}</label>
-                        <v-text-field placeholder="******" type="password" v-model="form.oldPassword" :error-messages="oldPasswordErrors" outlined hide-details="auto" class="mb-3"></v-text-field>
+                        <!-- <label>{{ $t("old_password") }}</label>
+                        <v-text-field placeholder="******" type="password" v-model="form.oldPassword" :error-messages="oldPasswordErrors" outlined hide-details="auto" class="mb-3"></v-text-field> -->
 
                         <label>{{ $t("new_password") }}</label>
                         <v-text-field placeholder="******" type="password" v-model="form.password" :error-messages="passwordErrors" @blur="$v.form.password.$touch()" outlined hide-details="auto" class="mb-3"></v-text-field>
-                        
+
                         <label>{{ $t("confirm_password") }}</label>
                         <v-text-field placeholder="******" type="password" v-model="form.confirmPassword" :error-messages="confirmPasswordErrors" @blur="$v.form.confirmPassword.$touch()" outlined hide-details="auto" class="mb-3"></v-text-field>
-                        
+
                         <label>{{ $t("profile_image") }}</label>
                         <div class="d-flex flex-column align-center justify-center border rounded pa-6 mb-3">
                             <div class="avatar-upload">
@@ -172,7 +172,7 @@ export default {
             //     email,
             //     required
             // },
-            oldPassword: { required},
+            // oldPassword: { required},
             password: { minLength: minLength(6) },
             confirmPassword: { sameAsPassword: sameAs('password') }
         }
@@ -207,11 +207,11 @@ export default {
             return errors;
         },
         oldPasswordErrors() {
-            const errors = [];
-            if (!this.$v.form.oldPassword.$dirty) return errors;
-            !this.$v.form.oldPassword.required &&
-                errors.push(this.$i18n.t("this_field_is_required"))
-            return errors;
+            // const errors = [];
+            // if (!this.$v.form.oldPassword.$dirty) return errors;
+            // !this.$v.form.oldPassword.required &&
+            //     errors.push(this.$i18n.t("this_field_is_required"))
+            // return errors;
         },
         passwordErrors() {
             const errors = [];

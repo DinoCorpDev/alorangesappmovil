@@ -83,6 +83,10 @@ class HomeController extends Controller
             'allCurrencies' => Currency::where('status', 1)->get(['name', 'code']),
             'allLanguages' => Language::where('status', 1)->get(['name', 'code', 'flag', 'rtl']),
             'availableCountries' => Country::where('status', 1)->pluck('code')->toArray(),
+            'shop_registration_message' => [
+                'shop_registration_message_title' => str_replace('&amp;', '&', str_replace('&nbsp;', ' ', strip_tags(get_setting('shop_registration_message_title')))),
+                'shop_registration_message_content' => str_replace('&amp;', '&', str_replace('&nbsp;', ' ', strip_tags(get_setting('shop_registration_message_content')))),
+            ],
             'paymentMethods' => [
                 [
                     'status' => get_setting('paypal_payment'),

@@ -340,7 +340,7 @@
                 url += params.sortBy ? `&sort_by=${params.sortBy}` : ''
                 url += params.minPrice ? `&min_price=${params.minPrice}` : ''
                 url += params.maxPrice ? `&max_price=${params.maxPrice}` : ''
-                
+                // console.log(url);
                 const res = await this.call_api("get", url);
 
 

@@ -6403,7 +6403,7 @@ button:hover .aiz-mobile-toggler span:after {
     border-radius: 6px;
 }
 .layout-2 .aiz-side-nav-list .aiz-side-nav-link svg *{
-    fill: #BDBDBD
+    fill: #BDBDBD 
 }
 .aiz-side-nav-list .aiz-side-nav-link > svg {
     margin-right: 20px;

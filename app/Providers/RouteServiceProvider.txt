@@ -49,11 +49,11 @@ class RouteServiceProvider extends ServiceProvider
 		$this->mapRefundRoutes();
 
         $this->mapPosRoutes();
-        
+
         $this->mapOfflinePaymentRoutes();
 
 		$this->mapWebRoutes();
-	} 
+	}
 
 	/**
 	 * Define the "installation" routes for the application.
@@ -107,7 +107,7 @@ class RouteServiceProvider extends ServiceProvider
      * These routes all receive session state, CSRF protection, etc.
      *
      * @return void
-     */ 
+     */
 
 	protected function mapSellerRoutes()
 	{
@@ -121,14 +121,14 @@ class RouteServiceProvider extends ServiceProvider
      * These routes all receive session state, CSRF protection, etc.
      *
      * @return void
-     */ 
+     */
 	protected function mapRefundRoutes()
 	{
 		Route::middleware('web')
 			->group(base_path('routes/refund.php'));
 	}
-    
-    
+
+
     /**
      * Define the "POS System" routes for the application.
      *
@@ -142,8 +142,8 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/pos.php'));
     }
- 
-    
+
+
     /**
      * Define the "offline payment" routes for the application.
      *

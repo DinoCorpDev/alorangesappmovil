@@ -21,6 +21,7 @@ use App\Models\User;
 use App\Utility\CategoryUtility;
 use CoreComponentRepository;
 use Artisan;
+use Carbon\Carbon;
 use App\Models\Upload;
 use Auth;
 
@@ -150,6 +151,11 @@ class ProductController extends Controller
             $product->discount_end_date   = strtotime($date_var[1]);
         }
 
+        // Club Point
+        if (get_setting('club_point')) {
+            $product->earn_point = $request->earn_point;
+        }
+
         // shipping info
         $product->standard_delivery_time    = $request->standard_delivery_time;
         $product->express_delivery_time     = $request->express_delivery_time;
@@ -176,9 +182,8 @@ class ProductController extends Controller
             $shop_category_ids[] = CategoryUtility::get_grand_parent_id($id);
         }
 
-        // this get error
-        /* $shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->categories->pluck('category_id')->toArray());
-        $product->shop->categories()->sync($shop_category_ids);*/
+        $shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->shop_categories->pluck('category_id')->toArray());
+        $product->shop->categories()->sync($shop_category_ids);
 
         // shop brand
         if ($request->brand_id) {
@@ -650,7 +655,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         if ($request->has('is_variant') && !$request->has('variations')) {
             flash(translate('Invalid product variations'))->error();
             return redirect()->back();
@@ -726,6 +730,11 @@ class ProductController extends Controller
             $product->discount_end_date   = strtotime($date_var[1]);
         }
 
+        // Club Point
+        if (get_setting('club_point')) {
+            $product->earn_point = $request->earn_point;
+        }
+
         // shipping info
         $product->standard_delivery_time    = $request->standard_delivery_time;
         $product->express_delivery_time     = $request->express_delivery_time;
@@ -743,12 +752,11 @@ class ProductController extends Controller
             $shop_category_ids[] = CategoryUtility::get_grand_parent_id($id);
         }
 
-        // this get error
-        //$shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->shop_categories->pluck('category_id')->toArray());
-        //$product->shop->categories()->sync($shop_category_ids);
+        $shop_category_ids =  array_merge(array_filter($shop_category_ids), $product->shop->shop_categories->pluck('category_id')->toArray());
+        $product->shop->categories()->sync($shop_category_ids);
 
         // shop brand
-        if ($request->brand_id && $product->shop_id) {
+        if ($request->brand_id) {
             ShopBrand::updateOrCreate([
                 'shop_id' => $product->shop_id,
                 'brand_id' => $request->brand_id,
@@ -839,15 +847,12 @@ class ProductController extends Controller
             }
 
             $variation              = $product->variations->first();
-
-            if ($variation) {
-                $variation->product_id  = $product->id;
-                $variation->code        = null;
-                $variation->sku         = $request->sku;
-                $variation->price       = $request->price;
-                $variation->stock       = $request->stock;
-                $variation->save();
-            }
+            $variation->product_id  = $product->id;
+            $variation->code        = null;
+            $variation->sku         = $request->sku;
+            $variation->price       = $request->price;
+            $variation->stock       = $request->stock;
+            $variation->save();
         }
 
 
@@ -1132,7 +1137,6 @@ class ProductController extends Controller
                     $tmp[] = $combination_item + array($property => $property_value);
                 }
             }
-
             $combinations = $tmp;
         }
 
@@ -1210,5 +1214,26 @@ class ProductController extends Controller
         $attribute_values = AttributeValue::where('attribute_id', $attribute_id)->get();
 
         return view('backend.product.products.new_option_choices', compact('attribute_values', 'attribute_id'));
+    }
+
+    public function updateProductApproval(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $product->approved = $request->approved;
+        $shop = $product->shop;
+
+        if ($shop->user->user_type == 'seller') {
+            if (
+                $shop->package_invalid_at == null
+                || Carbon::now()->diffInDays(Carbon::parse($shop->package_invalid_at), false) < 0
+                || $shop->product_upload_limit <= $shop->products()->where('published', 1)->count()
+            ) {
+                return 0;
+            }
+        }
+
+        $product->save();
+        cache_clear();
+        return 1;
     }
 }
