@@ -3,7 +3,7 @@
         <div class="div_total">
             <div>
                 <span class="text-uppercase bold title">Total </span>
-                <span class="text-uppercase price"> {{ format_price(total) }} COP</span>
+                <span class="text-uppercase price"> {{ format_price(getCartPrice) }} COP</span>
             </div>
             <span class="iva">* Iva incluido</span>
         </div>
@@ -11,22 +11,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
     name: "Total",
-    props: {
-        total: {
-            type: String | Number,
-            default: "000.000.000"
-        },
-        text1: {
-            type: String
-        },
-        text2: {
-            type: String
-        },
-        btn2: {
-            type: String
-        }
+    computed: {
+        ...mapGetters("cart", ["getCartPrice"])
     }
 };
 </script>

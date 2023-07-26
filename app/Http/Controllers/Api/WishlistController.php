@@ -21,22 +21,24 @@ class WishlistController extends Controller
             'user_id' => auth('api')->user()->id,
             'product_id' => $request->product_id
         ]);
+
         $product = Product::with('variations')->find($request->product_id);
+
         return response()->json([
             'success' => true,
             'message' => translate('Product is successfully added to your wishlist'),
             'product' => [
-                'id' => (integer) $product->id,
+                'id' => (int) $product->id,
                 'name' => $product->name,
                 'slug' => $product->slug,
                 'thumbnail_image' => api_asset($product->thumbnail_img),
-                'base_price' => (double) product_base_price($product),
-                'base_discounted_price' => (double) product_discounted_base_price($product),
+                'base_price' => (float) product_base_price($product),
+                'base_discounted_price' => (float) product_discounted_base_price($product),
                 'stock' => $product->stock,
                 'unit' => $product->unit,
                 'min_qty' => $product->min_qty,
                 'max_qty' => $product->max_qty,
-                'rating' => (double) $product->rating,
+                'rating' => (float) $product->rating,
                 'is_variant' => (int) $product->is_variant,
                 'variations' => $product->variations,
             ]
@@ -45,7 +47,8 @@ class WishlistController extends Controller
 
     public function destroy($product_id)
     {
-        Wishlist::where('user_id',auth('api')->user()->id)->where('product_id',$product_id)->delete();
+        Wishlist::where('user_id', auth('api')->user()->id)->where('product_id', $product_id)->delete();
+
         return response()->json([
             'success' => true,
             'message' => translate('Product is successfully removed from your wishlist')

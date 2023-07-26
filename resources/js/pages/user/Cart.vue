@@ -1,6 +1,6 @@
 <template>
     <v-stepper elevation="0" v-model="step">
-        <v-stepper-header>
+        <v-stepper-header class="mb-3">
             <v-stepper-step step="1">
                 <StepOrder text="Lista de Pedido" short-text="Pedido" active first />
             </v-stepper-step>
@@ -17,20 +17,22 @@
                 <StepOrder text="Resumen" :active="step >= 4" last />
             </v-stepper-step>
         </v-stepper-header>
-        <v-divider />
+        <v-divider class="mb-3" />
         <v-stepper-items>
             <v-stepper-content step="1">
-                <v-container fluid>
-                    <v-row>
-                        <v-col cols="5">Productos</v-col>
-                        <v-col cols="2">Precio</v-col>
-                        <v-col cols="2">Cantidad</v-col>
-                        <v-col cols="3">Opciones</v-col>
-                    </v-row>
-                    <v-row class="car-items" v-if="cartItems != 0">
-                        <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
-                            <ProductCart :productDetails="product" @changeQty="changeQty" @changeQtyMinus="changeQty" />
+                <template v-if="cartProducts.length > 0">
+                    <div class="cart-table-header mb-2">
+                        <div>Productos</div>
+                        <div>Precio</div>
+                        <div>Cantidad</div>
+                        <div>Opciones</div>
+                    </div>
+                    <v-row no-gutters class="car-items">
+                        <v-col cols="12" v-for="(product, i) in cartProducts" :key="i">
+                            <ProductCart :productDetails="product" productCartType="checkout" />
                         </v-col>
+                    </v-row>
+                    <v-row>
                         <v-col cols="12" class="d-flex justify-space-between">
                             <div class="mb-2"></div>
                             <total :total="priceTotal" />
@@ -39,14 +41,18 @@
                             </div>
                         </v-col>
                     </v-row>
-                    <div class="emptycart" v-else>
-                        <div class="cuadro-emptycart">
-                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoCarrito.png" />
-                            <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
-                            <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                </template>
+                <v-row v-else>
+                    <v-col>
+                        <div class="emptycart">
+                            <div class="cuadro-emptycart">
+                                <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoCarrito.png" />
+                                <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
+                                <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                            </div>
                         </div>
-                    </div>
-                </v-container>
+                    </v-col>
+                </v-row>
             </v-stepper-content>
             <v-stepper-content step="2">
                 <v-row>
@@ -932,7 +938,7 @@
                         <div class="mb-2">
                             <CustomButton text="Volver" color="nero" @click="step = 3" />
                         </div>
-                        <total :total="priceTotal" />
+                        <total :total="cartPrice" />
                     </v-col>
                 </v-row>
             </v-stepper-content>
@@ -941,7 +947,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 import AddressDialog from "../../components/address/AddressDialog.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
@@ -990,7 +996,8 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("auth", ["currentUser"])
+        ...mapGetters("auth", ["currentUser"]),
+        ...mapState("cart", ["cartProducts", "cartPrice"])
     },
     mounted() {
         this.$vuetify.theme.dark = false;
@@ -1149,8 +1156,14 @@ export default {
         flex: 1;
     }
 
+    .v-stepper__header {
+        height: 40px;
+        box-shadow: none;
+    }
+
     .v-stepper__content {
-        padding: 12px 8px 16px;
+        // padding: 12px 8px 16px;
+        padding: 0;
     }
 
     .v-stepper__step__step {
@@ -1185,6 +1198,25 @@ export default {
     .v-timeline-item__divider {
         display: flex;
         justify-content: flex-start;
+    }
+}
+
+.cart {
+    &-table {
+        &-header {
+            display: grid;
+            align-items: stretch;
+            grid-template-columns: 5fr 2fr 2fr 3fr;
+
+            div {
+                font-size: var(--font-size-body1);
+                font-weight: 700;
+
+                &:not(:first-child) {
+                    padding-left: 1.5rem;
+                }
+            }
+        }
     }
 }
 

@@ -49,7 +49,7 @@ export default {
             userNavLinks: {
                 purchase: [
                     { label: "Carrito", link: "Cart" },
-                    { label: "Favoritos", link: "Favorites" },
+                    { label: "Favoritos", link: "Wishlist" },
                     { label: "Facturas", link: "PurchaseHistory" }
                 ],
                 user: [

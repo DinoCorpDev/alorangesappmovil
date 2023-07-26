@@ -28,12 +28,6 @@ export default {
     computed: {
         ...mapGetters("cart", ["getCartCount"]),
         ...mapGetters("auth", ["userShortName"])
-    },
-    created() {
-        this.fetchCartProducts();
-    },
-    methods: {
-        ...mapActions("cart", ["fetchCartProducts"])
     }
 };
 </script>

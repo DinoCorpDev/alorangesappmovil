@@ -79,6 +79,7 @@ class ProductController extends Controller
     {
         return new ProductCollection(filter_products(Product::where('id', '!=', $product_id))->inRandomOrder()->limit($limit)->get());
     }
+
     public function latest_products($limit)
     {
         return new ProductCollection(filter_products(Product::query())->latest()->limit($limit)->get());
@@ -91,7 +92,6 @@ class ProductController extends Controller
         $sort_by                    = $request->sort_by;
         $category_id                = optional($category)->id;
         $brand_ids                  = $request->brand_ids ? explode(',', $request->brand_ids) : null;
-        $category_ids               = $request->category_ids ? explode(',', $request->category_ids) : null;
         $min_price                  = $request->min_price;
         $max_price                  = $request->max_price;
         $attributes                 = Attribute::with('attribute_values')->get();
@@ -147,6 +147,7 @@ class ProductController extends Controller
         if ($min_price != null) {
             $products->where('lowest_price', '>=', $min_price);
         }
+
         if ($max_price != null) {
             $products->where('highest_price', '<=', $max_price);
         }
@@ -157,7 +158,6 @@ class ProductController extends Controller
                 return $query->whereIn('attribute_value_id', $selected_attribute_values);
             });
         }
-
 
         //sorting
         switch ($sort_by) {
@@ -270,17 +270,18 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $products_array['name'][] = $product->name;
             $products_array['image'][] = api_asset($product->thumbnail_img);
+
             if ($product->lowest_price != $product->highest_price) {
                 $products_array['price'][] = format_price($product->lowest_price) . "-" . format_price($product->highest_price);
             } else {
                 $products_array['price'][] = format_price($product->lowest_price);
             }
+
             $products_array['brand'][] = $product->brand->name ?? "none";
             $products_array['Shop'][] = $product->shop->name ?? "none";
             $products_array['slug'][] = $product->slug;
             $products_array['id'][] = $product->id;
         }
-
         return response()->json([
             'success' => true,
             'specifications' => $products_array,

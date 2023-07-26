@@ -57,8 +57,7 @@
                 </div>
                 <div class="add-to-cart-actions">
                     <Custom-Button
-                        :disabled="actionLoading"
-                        :loading="actionLoading"
+                        v-if="Number.isInteger(cartQuantity)"
                         @click="addCart()"
                         color="nero"
                         text="Agregar a Compras"
@@ -98,13 +97,13 @@
                 </li>
             </ul>
 
-            <div v-if="products.length > 0">
+            <!-- <div v-if="products.length > 0">
                 <h5 class="subt2 fw-600 text-uppercase mb-2">Se incluye con la compra</h5>
                 <v-divider class="mb-3" />
                 <div class="add-to-cart-related-products overflow-y-auto overflow-uw">
                     <ProductBoxShort v-for="product in products" :key="product.id" :productDetails="product" />
                 </div>
-            </div>
+            </div> -->
 
             <v-divider class="d-sm-none mt-3" />
         </v-col>
@@ -122,8 +121,7 @@ import FavoriteIcon from "../../components/icons/Favorite.vue";
 export default {
     props: {
         isLoading: { type: Boolean, required: true, default: true },
-        productDetails: { type: Object, required: true, default: {} },
-        products: { type: Array, required: false, default: [] }
+        productDetails: { type: Object, required: true, default: {} }
     },
     data: () => ({
         cartQuantity: 1,
@@ -156,14 +154,16 @@ export default {
     },
     computed: {
         ...mapGetters("wishlist", ["isThisWishlisted"]),
-        ...mapGetters("cart", ["isThisInCart", "findCartItemByVariationId"])
+        ...mapGetters("cart", ["isThisInCart", "findCartItemByVariationId"]),
+        discount() {
+            return this.discount_percent(this.productDetails.base_price, this.productDetails.base_discounted_price);
+        }
     },
     methods: {
         ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
         ...mapActions("cart", ["addToCart", "updateQuantity", "addToCartCollection"]),
         ...mapActions("auth", ["showConversationDialog"]),
         ...mapMutations("auth", ["updateChatWindow"]),
-
         addCart() {
             if (this.productDetails.is_variant == 1) {
                 // for variant product
@@ -190,7 +190,8 @@ export default {
                 return;
             }
 
-            let minMaxCheck = this.checkMinMaxLimit(this.selectedVariation?.id);
+            let minMaxCheck = this.checkMinMaxLimit(this.selectedVariation.id);
+
             if (!minMaxCheck.success) {
                 // selected variation min max limit check
 
@@ -206,19 +207,10 @@ export default {
                 return;
             }
 
-            if (this.productDetails?.isCollection) {
-                this.addToCartCollection({
-                    // variation_id: this.selectedVariation?.id,
-                    variation_id: this.productDetails?.id,
-                    qty: this.cartQuantity
-                });
-            } else {
-                this.addToCart({
-                    // variation_id: this.selectedVariation?.id,
-                    variation_id: this.productDetails?.id,
-                    qty: this.cartQuantity
-                });
-            }
+            this.addToCart({
+                variation_id: this.selectedVariation.id,
+                qty: this.cartQuantity
+            });
 
             this.snack({
                 message: this.$i18n.t("product_added_to_cart"),

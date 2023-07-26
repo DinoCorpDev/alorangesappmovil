@@ -1,7 +1,6 @@
 let Cart = () => import("../pages/user/Cart");
 let Invoices = () => import("../pages/user/Invoices");
 let InvoicesDetails = () => import("../pages/user/InvoicesDetails");
-let Favorites = () => import("../pages/user/Favorites");
 let DashBoard = () => import("../pages/user/Dashboard");
 let PurchaseHistory = () => import("../pages/user/PurchaseHistory");
 let Downloads = () => import("../pages/user/Downloads");
@@ -44,12 +43,6 @@ export default [
                 path: "invoicesDetails",
                 component: InvoicesDetails,
                 name: "InvoicesDetails",
-                meta: { requiresAuth: true }
-            },
-            {
-                path: "favorites",
-                component: Favorites,
-                name: "Favorites",
                 meta: { requiresAuth: true }
             },
             {

@@ -16,7 +16,7 @@
         class="text-uppercase"
         depressed
     >
-        <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
+        <i v-if="icon" :class="`las ${icon} ${text ? 'mr-3' : ''}`"></i>
         <template v-if="text">{{ text }}</template>
         <slot v-else />
     </v-btn>
