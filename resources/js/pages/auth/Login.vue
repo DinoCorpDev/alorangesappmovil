@@ -60,7 +60,7 @@
                                         color="grey"
                                         class="mt-3"
                                         text="Registrarse"
-                                        :to="{ name: 'Registration' }"
+                                        @click="showModalRegister"
                                     />
                                 </div>
                                 <AuthFooter />
@@ -69,6 +69,8 @@
                     </v-row>
                 </v-col>
             </v-row>
+
+            <ModalRegister v-model="showRegister"/>
         </v-container>
     </div>
 </template>
@@ -81,20 +83,24 @@ import AuthFooter from "./AuthFooter.vue";
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
+import ModalRegister from "../../components/user/ModalRegister.vue";
+
 
 export default {
     components: {
         AuthFooter,
         CarouselDescription,
         CustomButton,
-        CustomInput
+        CustomInput,
+        ModalRegister
     },
     data: () => ({
         form: {
             email: "",
             password: ""
         },
-        loading: false
+        loading: false,
+        showRegister: false
     }),
     validations: {
         form: {
@@ -176,6 +182,9 @@ export default {
                 });
             }
             this.loading = false;
+        } ,
+        async showModalRegister() {
+            return this.showRegister = true;
         }
     }
 };
