@@ -52,25 +52,49 @@
                                                 <span class="black--text body-2 text-uppercase">
                                                     {{ $t("password") }}
                                                 </span>
-                                                <CustomInput
+
+                                                <v-text-field
                                                     v-model="form.password"
+                                                    placeholder="* * * * * * * *"
                                                     :error-messages="passwordErrors"
                                                     @blur="$v.form.password.$touch()"
-                                                    type="password"
+                                                    :type="passwordShow ? 'text' : 'password'"
+                                                    :append-icon="
+                                                        passwordShow
+                                                            ? 'las la-eye'
+                                                            : 'las la-eye-slash'
+                                                    "
+                                                    class="input-group--focused"
+                                                    hide-details="auto"
                                                     required
-                                                />
+                                                    outlined
+                                                    @click:append="passwordShow = !passwordShow"
+                                                ></v-text-field>
                                             </v-col>
                                             <v-col cols="12" md="12">
                                                 <span class="black--text body-2 text-uppercase">
                                                     {{ $t("confirm_password") }}
                                                 </span>
-                                                <CustomInput
+
+                                                <v-text-field
                                                     v-model="form.confirmPassword"
+                                                    placeholder="* * * * * * * *"
                                                     :error-messages="confirmPasswordErrors"
                                                     @blur="$v.form.confirmPassword.$touch()"
-                                                    type="password"
+                                                    :type="passwordShowConfirm ? 'text' : 'password'"
+                                                    :append-icon="
+                                                        passwordShowConfirm
+                                                            ? 'las la-eye'
+                                                            : 'las la-eye-slash'
+                                                    "
+                                                    class="input-group--focused"
+                                                    hide-details="auto"
                                                     required
-                                                />
+                                                    outlined
+                                                    @click:append="passwordShowConfirm = !passwordShowConfirm"
+                                                ></v-text-field>
+
+                                               
                                             </v-col>
 
                                             <v-col cols="12" sm="12">
@@ -225,10 +249,28 @@
                                                 <CustomButton block class="mt-3" color="nero" text="Añadir Mi Empresa" />
                                             </v-col>
                                         </v-row>
+                                    </div>
+
+                                    <div v-if="numberPag == 3">
+
+                                        <v-row>
+                                            <v-col cols="12" md="12">
+                                                <span class="black--text body-2 text-uppercase">Pais</span>
+                                                <SelectCustom
+                                                    :error-messages="countryErrors"
+                                                    :items="countries"
+                                                    @blur="$v.mainAddress.country.$touch()"
+                                                    @input="countryChanged"
+                                                    item-text="name"
+                                                    item-value="id"
+                                                    required
+                                                    v-model="mainAddress.country"
+                                                />
+                                            </v-col>
+                                        </v-row>
+
                                         <v-row>
                                             <v-col cols="12" md="6">
-                                                <v-row>
-                                                    <v-col cols="12" sm="6">
                                                         <span class="black--text body-2 text-uppercase">
                                                             Nombre De Dirección (Casa / Oficina)
                                                         </span>
@@ -238,21 +280,21 @@
                                                             @blur="$v.mainAddress.name.$touch()"
                                                             required
                                                         />
-                                                    </v-col>
-                                                    <v-col cols="12" sm="6">
-                                                        <span class="black--text body-2 text-uppercase">
-                                                            Dirección (Calle / Carrera)
-                                                        </span>
-                                                        <CustomInput
-                                                            v-model="mainAddress.address"
-                                                            :error-messages="addressErrors"
-                                                            @blur="$v.mainAddress.address.$touch()"
-                                                            required
-                                                        />
-                                                    </v-col>
-                                                </v-row>
                                             </v-col>
                                             <v-col cols="12" md="6">
+                                                <span class="black--text body-2 text-uppercase">
+                                                    Dirección (Calle / Carrera)
+                                                </span>
+                                                <CustomInput
+                                                    v-model="mainAddress.address"
+                                                    :error-messages="addressErrors"
+                                                    @blur="$v.mainAddress.address.$touch()"
+                                                    required
+                                                />
+                                            </v-col>
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="12" md="12">
                                                 <span class="black--text body-2 text-uppercase">
                                                     Dirección Adicional (Piso / Apartamento / Oficina)
                                                 </span>
@@ -264,11 +306,6 @@
                                                 />
                                             </v-col>
                                         </v-row>
-
-                                    </div>
-
-                                    <div v-if="numberPag == 3">
-
                                         
                                         <v-row>
                                             <v-col cols="12" md="12">
@@ -280,6 +317,24 @@
                                                     required
                                                 />
                                             </v-col>
+                                        </v-row>
+
+                                        <v-row>
+                                            <v-col cols="12" md="12">
+                                                <span class="black--text body-2 text-uppercase">Municipio</span>
+                                                <SelectCustom
+                                                    :error-messages="cityErrors"
+                                                    :items="filteredCities"
+                                                    @blur="$v.mainAddress.city.$touch()"
+                                                    item-text="name"
+                                                    item-value="id"
+                                                    required
+                                                    v-model="mainAddress.city"
+                                                />
+                                            </v-col>
+                                        </v-row>
+
+                                        <v-row>
                                             <v-col cols="12" md="12">
                                                 <span class="black--text body-2 text-uppercase">Departamento</span>
                                                 <SelectCustom
@@ -294,40 +349,16 @@
                                                 />
                                             </v-col>
                                         </v-row>
+                                        
                                         <v-row>
-                                            <v-col cols="12" md="6">
-                                                <span class="black--text body-2 text-uppercase">Municipio</span>
-                                                <SelectCustom
-                                                    :error-messages="cityErrors"
-                                                    :items="filteredCities"
-                                                    @blur="$v.mainAddress.city.$touch()"
-                                                    item-text="name"
-                                                    item-value="id"
-                                                    required
-                                                    v-model="mainAddress.city"
-                                                />
-                                            </v-col>
-                                            <v-col cols="12" md="6">
+                                            <v-col cols="12" md="12">
                                                 <span class="black--text body-2 text-uppercase">Barrio ( Opcional )</span>
                                                 <CustomInput v-model="mainAddress.neighborhood" />
                                             </v-col>
                                         </v-row>
                                         <v-row>
-                                            <v-col cols="12" md="6">
-                                                <span class="black--text body-2 text-uppercase">Pais</span>
-                                                <SelectCustom
-                                                    :error-messages="countryErrors"
-                                                    :items="countries"
-                                                    @blur="$v.mainAddress.country.$touch()"
-                                                    @input="countryChanged"
-                                                    item-text="name"
-                                                    item-value="id"
-                                                    required
-                                                    v-model="mainAddress.country"
-                                                />
-                                            </v-col>
-                                            <v-col cols="12" md="6">
-                                                <span class="black--text body-2 text-uppercase">Teléfono / Mobil</span>
+                                            <v-col cols="12" md="12">
+                                                <span class="black--text body-2 text-uppercase">Teléfono / Celular</span>
                                                 <v-row>
                                                     <v-col cols="12">
                                                         <vue-tel-input
@@ -387,11 +418,15 @@
 
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" v-if="numberPag > 1" @click="before">< VOLVER</v-btn> 
-          <v-btn color="white" v-if="numberPag == 3" @click="showRegister = false">Omitir</v-btn> 
-          <v-btn color="primary" align="right" v-if="numberPag < 3" @click="after">CONTINUAR ></v-btn> 
-          <v-btn type="submit" color="primary" v-if="numberPag == 3" @click="register" :disabled="loadingregister"
-                :loadingregister="loadingregister">REGISTRARME ></v-btn> 
+          <v-btn left color="primary" v-if="numberPag > 1" @click="before">< VOLVER</v-btn> 
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-btn center color="white" v-if="numberPag == 3" @click="showRegister = false">Omitir</v-btn> 
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-btn right color="primary" align="right" v-if="numberPag < 3" @click="after">CONTINUAR ></v-btn> 
+          <v-btn right type="submit" color="primary" v-if="numberPag == 3" @click="register" :disabled="loadingregister"
+                :loadingregister="loadingregister">REGISTRARME></v-btn> 
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -489,7 +524,9 @@ export default {
                 type: "shipping"
             },
             loadingregister: false,
-            numberPag: 1
+            numberPag: 1,
+            passwordShow: false,
+            passwordShowConfirm: false,
         };
     },
     validations: {
@@ -654,13 +691,13 @@ export default {
             return errors;
         },
         showRegister: {
-        get () {
-            return this.value
-        },
-        set (value) {
-            this.$emit('input', value)
+            get () {
+                return this.value
+            },
+            set (value) {
+                this.$emit('input', value)
+            }
         }
-    }
     },
     created() {
         this.fetchCountries();
@@ -853,7 +890,7 @@ export default {
     background-color: black;
     z-index: -1;
     display: flex;
-    margin-left: 40vw;
+    margin-left: 34vw;
     margin-top: 57px;
     margin-bottom: 50px;
 }
@@ -877,7 +914,7 @@ export default {
 }
 
 .numberr:nth-child(2){
-    margin-left: 38%;  
+    margin-left: 35%;  
     margin-right: 38%;  
     
 }
@@ -885,5 +922,32 @@ export default {
 .number-active{
     background-color: black;
     color: white;
+}
+
+.theme--light {
+    .v-input {
+        &::v-deep {
+            .v-input__slot {
+                background: #f5f5f5;
+
+                &:hover {
+                    background: #dfdfdf;
+                }
+            }
+        }
+
+        &.v-text-field--outlined {
+            &::v-deep {
+                &:not(.v-input--has-state) {
+                    .v-input__slot {
+                        &:hover,
+                        fieldset {
+                            border-color: #f5f5f5;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 </style>
