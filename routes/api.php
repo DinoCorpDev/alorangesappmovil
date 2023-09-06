@@ -119,6 +119,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
 
     Route::group(['prefix' => 'user'], function () {
         Route::post('address/create', [AddressController::class, 'createShippingAddress']);
+        Route::post('address/createRegister', [AddressController::class, 'createShippingAddressRegister']);
     });
 
     Route::post('payment/image', [OrderController::class, 'paymentImage']);

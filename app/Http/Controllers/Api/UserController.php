@@ -48,52 +48,61 @@ class UserController extends Controller
     {
         $user = User::find(auth('api')->user()->id);
 
-        if ($request->hasFile('avatar')) {
-            $upload = new Upload;
-            $upload->file_original_name = null;
-            $arr = explode('.', $request->file('avatar')->getClientOriginalName());
-
-            for ($i = 0; $i < count($arr) - 1; $i++) {
-                if ($i == 0) {
-                    $upload->file_original_name .= $arr[$i];
-                } else {
-                    $upload->file_original_name .= "." . $arr[$i];
+        if (Hash::check($request->oldPassword, $user->password)) {
+            if ($request->hasFile('avatar')) {
+                $upload = new Upload;
+                $upload->file_original_name = null;
+                $arr = explode('.', $request->file('avatar')->getClientOriginalName());
+    
+                for ($i = 0; $i < count($arr) - 1; $i++) {
+                    if ($i == 0) {
+                        $upload->file_original_name .= $arr[$i];
+                    } else {
+                        $upload->file_original_name .= "." . $arr[$i];
+                    }
                 }
+    
+                $upload->file_name = $request->file('avatar')->store('uploads/all');
+                $upload->user_id = $user->id;
+                $upload->extension = $request->file('avatar')->getClientOriginalExtension();
+                $upload->type = 'image';
+                $upload->file_size = $request->file('avatar')->getSize();
+                $upload->save();
+    
+                $user->update([
+                    'avatar' => $upload->id,
+                ]);
             }
-
-            $upload->file_name = $request->file('avatar')->store('uploads/all');
-            $upload->user_id = $user->id;
-            $upload->extension = $request->file('avatar')->getClientOriginalExtension();
-            $upload->type = 'image';
-            $upload->file_size = $request->file('avatar')->getSize();
-            $upload->save();
-
+    
             $user->update([
-                'avatar' => $upload->id,
+                'first_name' => $request->firstName,
+                'second_name' => $request->secondName,
+                'first_lastname' => $request->firstLastname,
+                'second_lastname' => $request->secondLastname,
+                'document_type' => $request->documentType,
+                'document_number' => $request->documentNumber,
+                'phone' => $request->phone,
             ]);
-        }
-
-        $user->update([
-            'first_name' => $request->firstName,
-            'second_name' => $request->secondName,
-            'first_lastname' => $request->firstLastname,
-            'second_lastname' => $request->secondLastname,
-            'document_type' => $request->documentType,
-            'document_number' => $request->documentNumber,
-            'phone' => $request->phone,
-        ]);
-
-        if ($request->password) {
-            $user->update([
-                'password' => Hash::make($request->password),
+    
+            if ($request->password) {
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+            }
+            $user->save();
+    
+            return response()->json([
+                'success' => true,
+                'message' => translate('Profile information has been updated successfully'),
+                'user' => new UserCollection($user)
             ]);
-        }
-        $user->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => translate('Profile information has been updated successfully'),
-            'user' => new UserCollection($user)
-        ]);
+        }else{
+            return response()->json([
+                'success' => true,
+                'message' => translate('Error Password!'),
+                'user' => new UserCollection($user)
+            ]);
+        }        
     }
 }

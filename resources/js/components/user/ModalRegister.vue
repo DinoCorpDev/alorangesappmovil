@@ -737,18 +737,13 @@ export default {
                     color: "green"
                 });
 
-                this.resetData();
-                this.showRegister = false;
-
-
-               /* await this.saveAddress().then(() => {
-                    this.login(res.data);
+                await this.saveAddress().then(() => {
                     this.showLoginDialog(false);
                     this.updateChatWindow(false);
-                    this.$router.push(this.$route.query.redirect || { name: "RegistrationSuccess" });
-                });*/ 
+                });
 
-                
+                this.resetData();
+                this.showRegister = false;                
             } else {
                 this.snack({
                     message: res.data.message,
@@ -797,7 +792,7 @@ export default {
             this.mainAddress.phone = this.form.phone;
 
             try {
-                const res = await this.call_api("post", "user/address/create", this.mainAddress);
+                const res = await this.call_api("post", "user/address/createRegister", this.mainAddress);
 
                 if (res.data.success) {
                     return res.data;

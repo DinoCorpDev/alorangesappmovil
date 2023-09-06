@@ -366,9 +366,9 @@ export default {
                 return;
             }
 
-            if (this.$v.form.$anyError) {
+            /*if (this.$v.form.$anyError) {
                 return;
-            }
+            }*/
 
             this.form.phone = this.form.phone.replace(/\s/g, "");
 
@@ -399,6 +399,9 @@ export default {
         closeDialog() {
             this.isVisible = false;
             this.$emit("close");
+        },
+        resetData() {
+            this.$v.form.$reset();
         }
     }
 };
