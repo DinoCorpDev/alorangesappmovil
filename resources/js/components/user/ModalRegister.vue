@@ -737,7 +737,9 @@ export default {
                     color: "green"
                 });
 
+                this.resetData();
                 this.showRegister = false;
+
 
                /* await this.saveAddress().then(() => {
                     this.login(res.data);
@@ -817,6 +819,45 @@ export default {
         },
         async before(){
             return this.numberPag-=1;
+        },
+        resetData() {
+            this.form.email = '';
+            this.form.password = '';
+            this.form.confirmPassword = '';
+            this.form.personType = "Natural";
+            this.form.firstName = '';
+            this.form.secondName = '';
+            this.form.firstLastname = '';
+            this.form.secondLastname = '';
+            this.form.documentType = '';
+            this.form.documentNumber = '';
+            this.form.companyName = '';
+            this.form.companyType = '';
+            this.form.companyDocumentType = '';
+            this.form.companyDocumentNumber = '';
+            this.form.phone = '';
+            this.form.policiesAndCookiesConsent = false;
+            this.form.offersConsent = false;
+            this.form.invalidPhone = true;
+            this.form.showInvalidPhone = false;
+
+
+            this.mainAddress.customer_id = null;
+            this.mainAddress.address = "";
+            this.mainAddress.name = "";
+            this.mainAddress.details = "";
+            this.mainAddress.country = "";
+            this.mainAddress.state = "";
+            this.mainAddress.city = "";
+            this.mainAddress.neighborhood = "";
+            this.mainAddress.postal_code = "";
+            this.mainAddress.phone = "";
+            this.mainAddress.type = "shipping";
+
+            this.numberPag = 1;
+                
+            this.$v.form.$reset();
+            this.$v.mainAddress.$reset();
         },
     }
 };
