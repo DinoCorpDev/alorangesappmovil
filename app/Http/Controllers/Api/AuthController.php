@@ -88,7 +88,7 @@ class AuthController extends Controller
                     'user' => $user,
                     'verified' => false,
                     'message' => translate('A verification code has been sent to your phone.')
-                ], 200);
+                ], 200); 
             }
         }
 

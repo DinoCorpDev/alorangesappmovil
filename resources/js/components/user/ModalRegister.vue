@@ -744,7 +744,7 @@ export default {
                     this.showLoginDialog(false);
                     this.updateChatWindow(false);
                     this.$router.push(this.$route.query.redirect || { name: "RegistrationSuccess" });
-                });*/
+                });*/ 
 
                 
             } else {
