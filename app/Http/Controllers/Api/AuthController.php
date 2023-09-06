@@ -77,6 +77,7 @@ class AuthController extends Controller
                 $user->notify(new EmailVerificationNotification());
                 return response()->json([
                     'success' => true,
+                    'user' => $user,
                     'verified' => false,
                     'message' => translate('A verification code has been sent to your email.')
                 ], 200);
@@ -84,6 +85,7 @@ class AuthController extends Controller
                 (new SmsServices)->phoneVerificationSms($user->phone, $user->verification_code);
                 return response()->json([
                     'success' => true,
+                    'user' => $user,
                     'verified' => false,
                     'message' => translate('A verification code has been sent to your phone.')
                 ], 200);
