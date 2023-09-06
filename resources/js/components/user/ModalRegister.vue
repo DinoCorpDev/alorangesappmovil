@@ -321,21 +321,6 @@
 
                                         <v-row>
                                             <v-col cols="12" md="12">
-                                                <span class="black--text body-2 text-uppercase">Municipio</span>
-                                                <SelectCustom
-                                                    :error-messages="cityErrors"
-                                                    :items="filteredCities"
-                                                    @blur="$v.mainAddress.city.$touch()"
-                                                    item-text="name"
-                                                    item-value="id"
-                                                    required
-                                                    v-model="mainAddress.city"
-                                                />
-                                            </v-col>
-                                        </v-row>
-
-                                        <v-row>
-                                            <v-col cols="12" md="12">
                                                 <span class="black--text body-2 text-uppercase">Departamento</span>
                                                 <SelectCustom
                                                     :error-messages="stateErrors"
@@ -346,6 +331,21 @@
                                                     item-value="id"
                                                     required
                                                     v-model="mainAddress.state"
+                                                />
+                                            </v-col>
+                                        </v-row>
+
+                                        <v-row>
+                                            <v-col cols="12" md="12">
+                                                <span class="black--text body-2 text-uppercase">Municipio</span>
+                                                <SelectCustom
+                                                    :error-messages="cityErrors"
+                                                    :items="filteredCities"
+                                                    @blur="$v.mainAddress.city.$touch()"
+                                                    item-text="name"
+                                                    item-value="id"
+                                                    required
+                                                    v-model="mainAddress.city"
                                                 />
                                             </v-col>
                                         </v-row>
