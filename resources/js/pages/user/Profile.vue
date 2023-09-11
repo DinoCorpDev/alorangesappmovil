@@ -143,7 +143,7 @@
                         </v-row>
                         <v-row class="mb-3">
                             <v-col class="text-start">
-                                <label class="profile-label">Teléfono / Mobil </label>
+                                <label class="profile-label">Teléfono / Movil </label>
                             </v-col>
                             <v-col class="text-end">
                                 {{ defaultAddress.phone || "--" }}
@@ -179,7 +179,7 @@
                         </div>
                         <div class="d-flex justify-space-between mb-2">
                             <span class="subtitle1 text-uppercase fw-600">Barrio</span>
-                            <span class="body1"> -- </span>
+                            <span class="body1"> {{ (otherAdd?.neighborhood) ? otherAdd?.neighborhood : '--' }} </span>
                         </div>
                         <div class="d-flex justify-space-between mb-2">
                             <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>

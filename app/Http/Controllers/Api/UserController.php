@@ -105,4 +105,31 @@ class UserController extends Controller
             ]);
         }        
     }
+
+    public function updatePassword(Request $request)
+    {
+        $user = User::find(auth('api')->user()->id);
+
+        if (Hash::check($request->oldPassword, $user->password)) {
+    
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+    
+            $user->save();
+    
+            return response()->json([
+                'success' => true,
+                'message' => translate('Password has been updated successfully'),
+                'user' => new UserCollection($user)
+            ]);
+
+        }else{
+            return response()->json([
+                'success' => true,
+                'message' => translate('Error Password!'),
+                'user' => new UserCollection($user)
+            ]);
+        }        
+    }
 }
