@@ -536,7 +536,6 @@ export default {
             confirmPassword: { required, sameAsPassword: sameAs("password") },
             personType: { required },
             firstName: { required },
-            secondName: { required },
             firstLastname: { required },
             secondLastname: { required },
             documentType: { required },
@@ -546,7 +545,6 @@ export default {
             companyDocumentType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             phone: { required },
-            policiesAndCookiesConsent: { required, isTrue }
         },
         mainAddress: {
             address: { required },
@@ -718,9 +716,9 @@ export default {
                 return;
             }
 
-            /*if (this.$v.form.$anyError || this.$v.mainAddress.$anyError) {
+            if (this.$v.form.$anyError || this.$v.mainAddress.$anyError) {
                 return;
-            }*/
+            }
 
             this.form.phone = this.form.phone.replace(/\s/g, "");
             this.mainAddress.phone = this.form.phone;

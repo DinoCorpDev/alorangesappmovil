@@ -51,9 +51,9 @@
                                             @click="login"
                                         />
                                     </v-form>
-                                    <router-link :to="{ name: 'Registration' }" class="black--text link-custom">
+                                    <a @click="showModalRegister" class="black--text link-custom">
                                         ¿No tienes ninguna cuenta?
-                                    </router-link>
+                                    </a>
                                     <CustomButton
                                         block
                                         light
