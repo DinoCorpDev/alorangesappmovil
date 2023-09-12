@@ -16,9 +16,10 @@
         class="text-uppercase"
         depressed
     >
-        <i v-if="icon" :class="`las ${icon} ${text ? 'mr-3' : ''}`"></i>
+        <i v-if="icon && iconPosition == 'left'" :class="`las ${icon} ${text ? 'mr-3' : ''}`"></i>
         <template v-if="text">{{ text }}</template>
         <slot v-else />
+        <i v-if="icon && iconPosition == 'right'" :class="`las ${icon} ${text ? 'ml-3' : ''}`"></i>
     </v-btn>
 </template>
 
@@ -30,6 +31,10 @@ export default {
         width: String,
         icon: {
             type: String
+        },
+        iconPosition: {
+            type: String,
+            default: "left"
         },
         dark: {
             type: Boolean,
