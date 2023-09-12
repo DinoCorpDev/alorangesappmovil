@@ -214,22 +214,6 @@
                                         />
                                     </v-col>
                                 </v-row>
-                                <v-row>
-                                    <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase">
-                                            Documento (Representante)
-                                        </span>
-                                        <CustomButton block class="mt-3" color="nero" text="Añadir Mi Empresa" />
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase">
-                                            Documento (Representante)
-                                        </span>
-                                        <CustomButton block class="mt-3" color="nero" text="Añadir Mi Empresa" />
-                                    </v-col>
-                                </v-row>
                             </template>
                         </v-stepper-content>
 
