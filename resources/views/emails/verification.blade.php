@@ -146,6 +146,9 @@
 															    {{ $array['content'] }} <span>{{ $array['verification_code'] ?? '' }}</span>
 															</td>
 														</tr>
+														<td>
+															<span><a class="h2 center pb10" href="{{ url('user/verify-account') }}">Link verify account</a></span>
+														</td>
                                                         @if(!empty( $array['link']))
                                                             <tr>
                                                                 <td class="h5 center blue pb30" style="font-family:'Ubuntu', Arial,sans-serif; font-size:20px; line-height:26px; text-align:center; color:#2e57ae; padding-bottom:30px;">
