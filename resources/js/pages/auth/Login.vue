@@ -37,9 +37,9 @@
                                                 required
                                             />
                                         </div>
-                                        <router-link :to="{ name: 'ForgotPassword' }" class="black--text link-custom">
+                                        <a @click="showModalRecuperarPass" class="black--text link-custom">
                                             {{ $t("forgot_password") }}?
-                                        </router-link>
+                                        </a>
                                         <CustomButton
                                             :disabled="loading"
                                             :loading="loading"
@@ -71,6 +71,7 @@
             </v-row>
 
             <ModalRegister v-model="showRegister"/>
+            <RecuperarPass v-model="showRecuperarPass"/>
         </v-container>
     </div>
 </template>
@@ -84,6 +85,7 @@ import CarouselDescription from "../../components/global/CarouselDescription.vue
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import ModalRegister from "../../components/user/ModalRegister.vue";
+import RecuperarPass from "../../components/auth/RecuperarPass.vue";
 
 
 export default {
@@ -92,7 +94,8 @@ export default {
         CarouselDescription,
         CustomButton,
         CustomInput,
-        ModalRegister
+        ModalRegister,
+        RecuperarPass,
     },
     data: () => ({
         form: {
@@ -100,7 +103,8 @@ export default {
             password: ""
         },
         loading: false,
-        showRegister: false
+        showRegister: false,
+        showRecuperarPass: false,
     }),
     validations: {
         form: {
@@ -185,6 +189,9 @@ export default {
         } ,
         async showModalRegister() {
             return this.showRegister = true;
+        },
+        async showModalRecuperarPass() {
+            return this.showRecuperarPass = true;
         }
     }
 };
