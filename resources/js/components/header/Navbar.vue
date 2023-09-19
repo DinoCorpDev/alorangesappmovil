@@ -15,7 +15,12 @@
             </router-link>
             <div class="layout-navbar-nav">
                 <CustomButton color="grey" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
-                <CustomButton v-if="!userIsLoggedIn" color="grey" text="Iniciar Sesión" :to="{ name: 'Login' }" />
+                <CustomButton
+                    v-if="!userIsLoggedIn"
+                    color="grey"
+                    text="Iniciar Sesión"
+                    @click="showLoginDialog(true)"
+                />
                 <DoubleButton v-else />
                 <ToggleMenu />
             </div>
@@ -24,7 +29,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
@@ -54,6 +59,7 @@ export default {
         window.addEventListener("scroll", this.handleScroll, { passive: true });
     },
     methods: {
+        ...mapMutations("auth", ["showLoginDialog"]),
         handleScroll() {
             const currentScroll = this.$refs.layoutNavbar.currentScroll;
             const windowWidth = window.innerWidth;

@@ -1,77 +1,73 @@
 <template>
     <div class="login d-flex flex-column h-100">
-        <v-container class="flex-grow-1 mb-5" fluid>
-            <v-row justify="center">
-                <v-col cols="12" sm="11" md="10" lg="8">
-                    <v-row class="wrap pa-5" no-gutters>
-                        <v-col cols="12" lg="6">
-                            <div class="d-lg-none">
+        <v-container class="flex-grow-1 pa-0" fluid>
+            <v-row class="wrap pa-5" no-gutters>
+                <v-col cols="12" lg="6">
+                    <div class="d-lg-none">
+                        <h1 class="login-title">Inicio de sesión</h1>
+                        <v-divider class="my-4" />
+                    </div>
+                    <CarouselDescription />
+                </v-col>
+                <v-col cols="12" lg="6" class="pt-5 pt-lg-0 pl-lg-5">
+                    <div class="login-content h-100 pa-lg-5 pt-lg-8">
+                        <div class="inputs mb-8">
+                            <div class="d-none d-lg-block">
                                 <h1 class="login-title">Inicio de sesión</h1>
                                 <v-divider class="my-4" />
                             </div>
-                            <CarouselDescription />
-                        </v-col>
-                        <v-col cols="12" lg="6" class="pt-5 pt-lg-0 pl-lg-5">
-                            <div class="login-content h-100 pa-lg-5 pt-lg-8">
-                                <div class="inputs mb-8">
-                                    <div class="d-none d-lg-block">
-                                        <h1 class="login-title">Inicio de sesión</h1>
-                                        <v-divider class="my-4" />
-                                    </div>
-                                    <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
-                                        <div class="form-group">
-                                            <label class="black--text">{{ $t("email_address") }}</label>
-                                            <CustomInput
-                                                v-model="form.email"
-                                                type="text"
-                                                :error-messages="emailErrors"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="form-group mb-4">
-                                            <label class="black--text">{{ $t("password") }}</label>
-                                            <CustomInput
-                                                v-model="form.password"
-                                                type="password"
-                                                :error-messages="passwordErrors"
-                                                required
-                                            />
-                                        </div>
-                                        <a @click="showModalRecuperarPass" class="black--text link-custom">
-                                            {{ $t("forgot_password") }}?
-                                        </a>
-                                        <CustomButton
-                                            :disabled="loading"
-                                            :loading="loading"
-                                            :text="$t('login')"
-                                            block
-                                            class="mt-3 mb-3"
-                                            color="nero"
-                                            type="submit"
-                                            @click="login"
-                                        />
-                                    </v-form>
-                                    <a @click="showModalRegister" class="black--text link-custom">
-                                        ¿No tienes ninguna cuenta?
-                                    </a>
-                                    <CustomButton
-                                        block
-                                        light
-                                        color="grey"
-                                        class="mt-3"
-                                        text="Registrarse"
-                                        @click="showModalRegister"
+                            <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
+                                <div class="form-group">
+                                    <label class="black--text">{{ $t("email_address") }}</label>
+                                    <CustomInput
+                                        v-model="form.email"
+                                        type="text"
+                                        :error-messages="emailErrors"
+                                        required
                                     />
                                 </div>
-                                <AuthFooter />
-                            </div>
-                        </v-col>
-                    </v-row>
+                                <div class="form-group mb-4">
+                                    <label class="black--text">{{ $t("password") }}</label>
+                                    <CustomInput
+                                        v-model="form.password"
+                                        type="password"
+                                        :error-messages="passwordErrors"
+                                        required
+                                    />
+                                </div>
+                                <a @click="showModalRecuperarPass" class="black--text link-custom">
+                                    {{ $t("forgot_password") }}?
+                                </a>
+                                <CustomButton
+                                    :disabled="loading"
+                                    :loading="loading"
+                                    :text="$t('login')"
+                                    block
+                                    class="mt-3 mb-3"
+                                    color="nero"
+                                    type="submit"
+                                    @click="login"
+                                />
+                            </v-form>
+                            <a @click="showModalRegister" class="black--text link-custom">
+                                ¿No tienes ninguna cuenta?
+                            </a>
+                            <CustomButton
+                                block
+                                light
+                                color="grey"
+                                class="mt-3"
+                                text="Registrarse"
+                                @click="showModalRegister"
+                            />
+                        </div>
+                        <AuthFooter />
+                    </div>
                 </v-col>
             </v-row>
 
-            <ModalRegister v-model="showRegister"/>
-            <RecuperarPass v-model="showRecuperarPass"/>
+            <ModalRegister v-model="showRegister" />
+            <RecuperarPass v-model="showRecuperarPass" />
         </v-container>
     </div>
 </template>
@@ -87,7 +83,6 @@ import CustomInput from "../../components/global/CustomInput.vue";
 import ModalRegister from "../../components/user/ModalRegister.vue";
 import RecuperarPass from "../../components/auth/RecuperarPass.vue";
 
-
 export default {
     components: {
         AuthFooter,
@@ -95,7 +90,7 @@ export default {
         CustomButton,
         CustomInput,
         ModalRegister,
-        RecuperarPass,
+        RecuperarPass
     },
     data: () => ({
         form: {
@@ -104,7 +99,7 @@ export default {
         },
         loading: false,
         showRegister: false,
-        showRecuperarPass: false,
+        showRecuperarPass: false
     }),
     validations: {
         form: {
@@ -134,9 +129,6 @@ export default {
             !this.$v.form.password.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         }
-    },
-    mounted() {
-        this.$vuetify.theme.dark = false;
     },
     methods: {
         ...mapActions("auth", { actionLogin: "login" }),
@@ -186,12 +178,13 @@ export default {
                 });
             }
             this.loading = false;
-        } ,
+        },
         async showModalRegister() {
-            return this.showRegister = true;
+            this.showLoginDialog(false);
+            return (this.showRegister = true);
         },
         async showModalRecuperarPass() {
-            return this.showRecuperarPass = true;
+            return (this.showRecuperarPass = true);
         }
     }
 };
