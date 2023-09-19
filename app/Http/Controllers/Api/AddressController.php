@@ -153,6 +153,7 @@ class AddressController extends Controller
         $address->city = City::find($request->city)->name;
         $address->city_id = $request->city;
         $address->postal_code = $request->postal_code;
+        $address->neighborhood = $request->neighborhood;
         $address->phone = $request->phone;
         $address->save();
 

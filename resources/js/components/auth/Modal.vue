@@ -34,6 +34,10 @@ export default {
         
     },
     data: () => ({
+        form: {
+            email: "",
+            password: ""
+        },
         loading: false,
         showLogin: false,
        

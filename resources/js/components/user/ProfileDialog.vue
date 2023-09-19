@@ -245,17 +245,11 @@ export default {
     }),
     validations: {
         form: {
-            personType: { required },
             firstName: { required },
-            secondName: { required },
             firstLastname: { required },
             secondLastname: { required },
             documentType: { required },
             documentNumber: { required },
-            companyName: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            companyType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            companyDocumentType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             phone: { required },
             oldPassword: { required }
         }
@@ -366,9 +360,9 @@ export default {
                 return;
             }
 
-            /*if (this.$v.form.$anyError) {
+            if (this.$v.form.$anyError) {
                 return;
-            }*/
+            }
 
             this.form.phone = this.form.phone.replace(/\s/g, "");
 
