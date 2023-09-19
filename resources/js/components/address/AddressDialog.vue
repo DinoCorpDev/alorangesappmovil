@@ -294,7 +294,34 @@ export default {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;
         },
+        async addNewAddress() {
+            this.$v.form.$touch();
         
+            if (this.$v.form.$anyError) {
+                return;
+            }
+
+            this.form.phone = this.form.phone.replace(/\s/g, "");
+
+            this.adding = true;
+            let data = {
+                type: this.typeAddress,
+                ...this.form
+            };
+            const res = await this.call_api("post", "user/address/create", data);
+            if (res.data.success) {
+                this.addAddress(res.data.data);
+                this.snack({ message: res.data.message });
+                this.resetData();
+                this.closeDialog();
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+            this.adding = false;
+        },
         async fetchCountries() {
             if (!this.countriesLoaded) {
                 const res = await this.call_api("get", "all-countries");
@@ -333,6 +360,8 @@ export default {
         resetData() {
             this.form.id = null;
             this.form.address = "";
+            this.form.name = "";
+            this.form.neighborhood = "";
             this.form.postal_code = "";
             this.form.country = "";
             this.form.state = "";
