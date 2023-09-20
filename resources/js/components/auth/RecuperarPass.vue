@@ -150,7 +150,9 @@ export default {
             const res = await this.call_api("post", "auth/password/create", this.form);
 
             if (res.data.success) {
-                this.$router.push({ path: '/home2?modal=Password', query: { email: this.form.email }}); 
+                this.showRecuperarPass = false;
+                window.location.href="/home2?modal=Password&email="+this.form.email;
+                // this.$router.replace({ name: 'Home2', query: { modal: "Password", email: this.form.email }}); 
 
                 this.snack({
                     message: res.data.message

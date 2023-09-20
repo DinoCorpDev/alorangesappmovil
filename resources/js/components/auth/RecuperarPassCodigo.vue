@@ -223,6 +223,7 @@ export default {
                 this.snack({
                     message: res.data.message
                 });
+                this.showRecuperarPass = false;
             } else {
                 this.snack({
                     message: res.data.message,
