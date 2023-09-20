@@ -30,26 +30,16 @@
                             <v-container class="d-flex flex-grow-1">
                                 <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-12">
                                     <div class="inputs mb-8">
-                                        <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
-                                        <CustomInput
-                                            type="email"
-                                            v-model="form.email"
-                                            :error-messages="emailErrors"
-                                            hide-details="auto"
-                                            required
-                                        />
-                                    </div>
-
-
-                                    <div class="inputs mb-8">
                                         <label class="black--text text-uppercase">{{ $t("code") }}</label>
-                                        <CustomInput
-                                            type="email"
+                                       <v-otp-input
                                             v-model="form.code"
+                                            length="6"
+                                            type="number"
                                             :error-messages="codeErrors"
                                             hide-details="auto"
+                                            :disabled="loading"
                                             required
-                                        />
+                                        ></v-otp-input>
                                     </div>
                                     
                                 </div>
