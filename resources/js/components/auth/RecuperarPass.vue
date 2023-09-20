@@ -1,12 +1,18 @@
 <template>
     <v-dialog content-class="modal-register" v-model="showRecuperarPass">
         <v-card class="modal-register-card">
-            <v-card-title class="text-xs-center justify-center primary title white--text darken-2 font-weight-bold">
+            <v-card-title v-if="numberPag == 1" class="text-xs-left justify-left title mb-2">
                 ¿Olvidó su contraseña?
+            </v-card-title>
+            <v-card-title v-if="numberPag == 3" class="text-xs-left justify-left title mb-2">
+                ¿A dónde debemos enviar el código de confirmación?
+            </v-card-title>
+            <v-card-title v-if="numberPag == 2" class="text-xs-left justify-left title mb-2">
+                Confirma tu nombre de usuario
             </v-card-title>
             <div class="forgot-password d-flex flex-column h-100">
                 <v-stepper v-model="numberPag">
-                    <v-stepper-header>
+                    <v-stepper-header class="d-none">
                         <v-stepper-step
                             :class="numberPag > 1 ? 'v-stepper__step--complete' : ''"
                             class="modal-register-step"
@@ -30,14 +36,14 @@
 
                     <v-stepper-items>
                         <v-stepper-content step="1">
-                            <v-container class="d-flex flex-grow-1">
-                                <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-8">
-                                    <v-divider class="my-4" />
+                            <v-container class="d-flex flex-grow-1 pa-0">
+                                <div class="">
                                     <p>
-                                        Introduce el correo electrónico o el número de teléfono asocuadios a tu cuenta para cambiar de contraseña
+                                        Introduce el correo electrónico o el número de teléfono asocuadios a tu cuenta
+                                        para cambiar de contraseña
                                     </p>
                                     <div class="inputs mb-5">
-                                        <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
+                                        <label class="black--text text-uppercase">CORREO ELECTRÓNICO</label>
                                         <CustomInput
                                             type="email"
                                             v-model="form.email"
@@ -46,7 +52,74 @@
                                             required
                                         />
                                     </div>
-                                    
+                                </div>
+                            </v-container>
+                        </v-stepper-content>
+                    </v-stepper-items>
+                    <v-stepper-items>
+                        <v-stepper-content step="2">
+                            <v-container class="d-flex flex-grow-1 pa-0">
+                                <div class="">
+                                    <p>
+                                        Confirma tu identida introduciendo el nombre de usuario asociado a tu cuenta de
+                                        Idovela.
+                                    </p>
+                                    <v-row>
+                                        <v-col cols="12" md="6" class="inputs mb-5">
+                                            <label class="black--text text-uppercase">PRIMER NOMBRE</label>
+                                            <CustomInput
+                                                type="email"
+                                                v-model="form.email"
+                                                :error-messages="emailErrors"
+                                                hide-details="auto"
+                                                required
+                                            />
+                                        </v-col>
+                                        <v-col cols="12" md="6" class="inputs mb-5">
+                                            <label class="black--text text-uppercase">PRIMER APELLIDO</label>
+                                            <CustomInput
+                                                type="email"
+                                                v-model="form.email"
+                                                :error-messages="emailErrors"
+                                                hide-details="auto"
+                                                required
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                </div>
+                            </v-container>
+                        </v-stepper-content>
+                    </v-stepper-items>
+                    <v-stepper-items>
+                        <v-stepper-content step="3">
+                            <v-container class="d-flex flex-grow-1 pa-0">
+                                <div class="">
+                                    <p>
+                                        Antes de permitirte cambiar tu contraseña, tenemos que asegurarnos de que
+                                        realmente eres tú.
+                                    </p>
+                                    <p>
+                                        Empieza por seleccionar adónde enviaremos un código de confirmación.
+                                    </p>
+                                    <v-row class="mb-2">
+                                        <v-col cols="12" sm="12">
+                                            <CustomCheckbox
+                                                inputValue="Natural"
+                                                label="Enviar un correo electrónico a ******@***.***"
+                                                name="personType"
+                                                type="radio"
+                                            />
+                                        </v-col>
+                                        <v-col cols="12" sm="12">
+                                            <CustomCheckbox
+                                                inputValue="Juridical"
+                                                label="Enviar un mensaje de texto al *******"
+                                                name="personType"
+                                                type="radio"
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                    <p>Comunícate con el <b>Soporte de Idovela</b> si no tienes acceso.</p>
                                 </div>
                             </v-container>
                         </v-stepper-content>
@@ -54,30 +127,35 @@
                 </v-stepper>
             </div>
 
-            <v-card-actions class="pa-5">
-
+            <v-card-actions class="pa-5 d-block">
                 <CustomButton
                     v-if="numberPag < 3"
-                    icon="la-angle-right"
-                    iconPosition="right"
-                    text="Continuar"
+                    text="Siguiente"
                     color="nero"
                     type="button"
+                    class="mb-2"
+                    block
                     @click="after"
                 />
-
                 <CustomButton
                     v-if="numberPag == 3"
-                    icon="la-angle-right"
-                    iconPosition="right"
-                    text="Cambiar Contraseña"
+                    text="Enviar código"
                     color="nero"
                     type="submit"
+                    class="mb-2"
+                    block
                     @click="resetPassword"
                     :disabled="loadingregister"
                     :loadingregister="loadingregister"
                 />
-               
+                <CustomButton
+                    text="Cancelar"
+                    color="white2"
+                    type="button"
+                    class="ml-0"
+                    block
+                    @click="showRecuperarPass = false"
+                />
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -85,7 +163,7 @@
 
 <script>
 import { required, email } from "vuelidate/lib/validators";
-
+import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 
@@ -101,11 +179,12 @@ export default {
         form: { email: "" },
         loading: false,
         loadingregister: false,
-        numberPag: 1,
+        numberPag: 1
     }),
     components: {
         CustomButton,
-        CustomInput
+        CustomInput,
+        CustomCheckbox
     },
     validations: {
         form: {
