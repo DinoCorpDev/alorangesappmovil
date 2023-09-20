@@ -52,7 +52,7 @@
 
                                     <v-text-field
                                         v-model="form.password"
-                                        placeholder="* * * * * * * *"
+                                        placeholder="Ingresar su contraseña"
                                         :error-messages="passwordErrors"
                                         @blur="$v.form.password.$touch()"
                                         :type="passwordShow ? 'text' : 'password'"

@@ -186,7 +186,7 @@ export default {
 
     &.black {
         color: #ffffff;
-        background-color: rgba(#000000, 0.5) !important;
+        background-color: #000000 !important;
 
         &:hover {
             background-color: rgba(#858585, 0.8) !important;
@@ -269,6 +269,21 @@ export default {
         &.v-btn--active {
             background-color: #161616 !important;
             color: #ffffff;
+        }
+    }
+    &.white2 {
+        color: #000;
+        background-color: #ffffff !important;
+
+        &:hover {
+            background-color: rgba(#161616, 0.8) !important;
+            color: #f5f5f5;
+        }
+
+        &:focus,
+        &.v-btn--active {
+            background-color: #161616 !important;
+            color: #f5f5f5;
         }
     }
 }
