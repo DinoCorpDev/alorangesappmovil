@@ -307,6 +307,7 @@
                 </v-banner>
             </v-col>
         </v-row>
+        <RecuperarPassCodigo v-model="showRecuperarPass" :email="this.$route.query.email"/>
     </v-container>
 </template>
 
@@ -323,6 +324,7 @@ import PolygonElement from "../components/global/PolygonElement.vue";
 import PortfolioCard from "../components/global/PortfolioCard.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
+import RecuperarPassCodigo from "../components/auth/RecuperarPassCodigo.vue"; 
 
 export default {
     components: {
@@ -334,10 +336,12 @@ export default {
         PolygonElement,
         PortfolioCard,
         PresentationBanner,
-        SelectCustom
+        SelectCustom,
+        RecuperarPassCodigo
     },
     data() {
         return {
+            showRecuperarPass: false,
             selectedCode: null,
             sliderSeeder,
             sliderItems: [
@@ -377,6 +381,10 @@ export default {
         this.selectedCode = this.userLanguageObj.code;
 
         this.scrollToCenter();
+        
+        if(this.$route.query.modal == 'Password'){
+            this.showRecuperarPass = true;
+        }
     },
     methods: {
         ...mapActions("app", ["setLanguage"]),

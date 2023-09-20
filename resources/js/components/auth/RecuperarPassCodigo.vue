@@ -21,9 +21,6 @@
                             step="2"
                         />
 
-                        <v-divider :class="numberPag > 2 ? 'step-active' : ''" />
-
-                        <v-stepper-step class="modal-register-step" step="3" />
                     </v-stepper-header>
 
                     <v-divider class="modal-register-subheader" />
@@ -31,17 +28,54 @@
                     <v-stepper-items>
                         <v-stepper-content step="1">
                             <v-container class="d-flex flex-grow-1">
-                                <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-8">
-                                    <v-divider class="my-4" />
-                                    <p>
-                                        Introduce el correo electrónico o el número de teléfono asocuadios a tu cuenta para cambiar de contraseña
-                                    </p>
-                                    <div class="inputs mb-5">
+                                <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-12">
+                                    <div class="inputs mb-8">
                                         <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
                                         <CustomInput
                                             type="email"
                                             v-model="form.email"
                                             :error-messages="emailErrors"
+                                            hide-details="auto"
+                                            required
+                                        />
+                                    </div>
+
+
+                                    <div class="inputs mb-8">
+                                        <label class="black--text text-uppercase">{{ $t("code") }}</label>
+                                        <CustomInput
+                                            type="email"
+                                            v-model="form.code"
+                                            :error-messages="codeErrors"
+                                            hide-details="auto"
+                                            required
+                                        />
+                                    </div>
+                                    
+                                </div>
+                            </v-container>
+                        </v-stepper-content>
+
+                        <v-stepper-content step="2">
+                            <v-container class="d-flex flex-grow-1">
+                                <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-8">
+                                    <div class="inputs mb-8">
+                                        <label class="black--text text-uppercase">{{ $t("password") }}</label>
+                                        <CustomInput
+                                            type="password"
+                                            v-model="form.password"
+                                            :error-messages="passwordErrors"
+                                            hide-details="auto"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="inputs mb-8">
+                                        <label class="black--text text-uppercase">{{ $t("confirm_password") }}</label>
+                                        <CustomInput
+                                            type="password"
+                                            v-model="form.confirmPassword"
+                                            :error-messages="confirmPasswordErrors"
                                             hide-details="auto"
                                             required
                                         />
@@ -57,7 +91,16 @@
             <v-card-actions class="pa-5">
 
                 <CustomButton
-                    v-if="numberPag < 3"
+                    v-if="numberPag > 1"
+                    icon="la-angle-left"
+                    text="Volver"
+                    color="nero"
+                    type="button"
+                    @click="before"
+                />
+
+                <CustomButton
+                    v-if="numberPag < 2"
                     icon="la-angle-right"
                     iconPosition="right"
                     text="Continuar"
@@ -67,7 +110,7 @@
                 />
 
                 <CustomButton
-                    v-if="numberPag == 3"
+                    v-if="numberPag == 2"
                     icon="la-angle-right"
                     iconPosition="right"
                     text="Cambiar Contraseña"
@@ -84,7 +127,7 @@
 </template>
 
 <script>
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
 
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
@@ -94,11 +137,17 @@ const isTrue = value => value === true;
 
 export default {
     props: {
-        value: Boolean
+        value: Boolean,
+        email: String,
     },
 
     data: () => ({
-        form: { email: "" },
+        form: {
+            email: "",
+            code: "",
+            password: "",
+            confirmPassword: "",
+        },
         loading: false,
         loadingregister: false,
         numberPag: 1,
@@ -110,17 +159,45 @@ export default {
     validations: {
         form: {
             email: {
-                required,
+                requiredIf: requiredIf(function () {
+                    return this.resetWith == "email";
+                }),
                 email
-            }
+            },
+            code: {
+                required
+            },
+            password: { required, minLength: minLength(6) },
+            confirmPassword: { required, sameAsPassword: sameAs("password") }
         }
     },
     computed: {
         emailErrors() {
             const errors = [];
             if (!this.$v.form.email.$dirty) return errors;
-            !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.email.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
             !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            return errors;
+        },
+        codeErrors() {
+            const errors = [];
+            if (!this.$v.form.code.$dirty) return errors;
+            !this.$v.form.code.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        passwordErrors() {
+            const errors = [];
+            if (!this.$v.form.password.$dirty) return errors;
+            !this.$v.form.password.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.password.minLength && errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
+            return errors;
+        },
+        confirmPasswordErrors() {
+            const errors = [];
+            if (!this.$v.form.confirmPassword.$dirty) return errors;
+            !this.$v.form.confirmPassword.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.confirmPassword.sameAsPassword &&
+                errors.push(this.$i18n.t("password_and_confirm_password_should_match"));
             return errors;
         },
         showRecuperarPass: {
@@ -131,6 +208,9 @@ export default {
                 this.$emit("input", value);
             }
         }
+    },
+    mounted() {
+        this.form.email = this.email;
     },
     methods: {
         async after() {
@@ -145,13 +225,11 @@ export default {
                 return;
             }
 
+            this.form.code = this.form.code.replace(/\s/g, "");
             this.loading = true;
-
-            const res = await this.call_api("post", "auth/password/create", this.form);
-
+            const res = await this.call_api("post", "auth/password/reset", this.form);
             if (res.data.success) {
-                this.$router.push({ path: '/home2?modal=Password', query: { email: this.form.email }}); 
-
+                this.$router.push({ name: "Home2" });
                 this.snack({
                     message: res.data.message
                 });
