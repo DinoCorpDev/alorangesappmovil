@@ -68,9 +68,9 @@
                                         <v-col cols="12" md="6" class="inputs mb-5">
                                             <label class="black--text text-uppercase">PRIMER NOMBRE</label>
                                             <CustomInput
-                                                type="email"
-                                                v-model="form.email"
-                                                :error-messages="emailErrors"
+                                                type="text"
+                                                v-model="form.first_name"
+                                                :error-messages="firstNameErrors"
                                                 hide-details="auto"
                                                 required
                                             />
@@ -78,9 +78,9 @@
                                         <v-col cols="12" md="6" class="inputs mb-5">
                                             <label class="black--text text-uppercase">PRIMER APELLIDO</label>
                                             <CustomInput
-                                                type="email"
-                                                v-model="form.email"
-                                                :error-messages="emailErrors"
+                                                type="text"
+                                                v-model="form.first_lastname"
+                                                :error-messages="firstLastNameErrors"
                                                 hide-details="auto"
                                                 required
                                             />
@@ -154,7 +154,7 @@
                     type="button"
                     class="ml-0"
                     block
-                    @click="showRecuperarPass = false"
+                    @click="cerrarModal"
                 />
             </v-card-actions>
         </v-card>
@@ -191,8 +191,20 @@ export default {
             email: {
                 required,
                 email
+            },
+            first_name: {
+                required
+            },
+            first_lastname: {
+                required
             }
         }
+    },
+    created() {
+        this.numberPag = 1;
+    },
+    mounted() {
+        this.numberPag = 1;
     },
     computed: {
         emailErrors() {
@@ -200,6 +212,18 @@ export default {
             if (!this.$v.form.email.$dirty) return errors;
             !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
             !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            return errors;
+        },
+        firstNameErrors() {
+            const errors = [];
+            if (!this.$v.form.first_name.$dirty) return errors;
+            !this.$v.form.first_name.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        firstLastNameErrors() {
+            const errors = [];
+            if (!this.$v.form.first_lastname.$dirty) return errors;
+            !this.$v.form.first_lastname.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         showRecuperarPass: {
@@ -213,6 +237,34 @@ export default {
     },
     methods: {
         async after() {
+
+            if(this.numberPag == 1 && this.form.email == ''){
+                this.snack({
+                    message: 'Por favor ingresa el correo',
+                    color: "red"
+                });
+                return;
+            }
+            
+            if(this.numberPag == 2){
+                let formData = new FormData();
+
+                formData.append('email', this.form.email);
+                formData.append('first_name', this.form.first_name);
+                formData.append('first_lastname', this.form.first_lastname);
+
+                const res = await this.call_api("post", "auth/verify-data", formData);
+
+                if (res.data.result) {
+                    return (this.numberPag += 1);
+                } else {
+                    this.snack({
+                        message: res.data.message,
+                        color: "red"
+                    });
+                    return;
+                }
+            }
             return (this.numberPag += 1);
         },
         async before() {
@@ -243,6 +295,16 @@ export default {
                 });
             }
             this.loading = false;
+        },
+        resetData() {
+            this.form.email = "";
+            this.form.first_name = "";
+            this.form.first_lastname = "";
+        },
+        cerrarModal() {
+            this.showRecuperarPass = false;
+            this.numberPag = 1;
+            this.resetData();
         }
     }
 };

@@ -346,4 +346,21 @@ class AuthController extends Controller
             'message' => translate('Cart updated'),
         ]);
     }
+
+    public function verifyData(Request $request)
+    {
+        $user = User::where('first_name', $request->first_name)->where('first_lastname', $request->first_lastname)->where('email', $request->email)->get();
+
+        if($user->count() == 0){
+            return response()->json([
+                'result' => false,
+                'message' => 'Error!'
+            ]);
+        }else{
+            return response()->json([
+                'result' => true,
+                'message' => 'Success!'
+            ]);
+        }
+    }
 }

@@ -43,6 +43,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::post('verify', [AuthController::class, 'verify']);
             Route::post('resend-code', [AuthController::class, 'resend_code']);
 
+            Route::post('verify-data', [AuthController::class, 'verifyData']);
+
             Route::post('password/create', [PasswordResetController::class, 'create']);
             Route::post('password/reset', [PasswordResetController::class, 'reset']);
         });
