@@ -4,7 +4,7 @@
             <v-card-title class="text-xs-center justify-center primary title white--text darken-2 font-weight-bold">
                 REGISTRO
             </v-card-title>
-            <v-form class="modal-register-form" ref="loginForm" lazy-validation @submit.prevent="register()">
+            <v-form class="modal-register-form" ref="loginForm" lazy-validation @submit.prevent="register()" enctype="multipart/form-data">
                 <v-stepper v-model="numberPag">
                     <v-stepper-header>
                         <v-stepper-step
@@ -212,6 +212,33 @@
                                             @blur="$v.form.companyDocumentNumber.$touch()"
                                             required
                                         />
+                                    </v-col>
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase">
+                                            DOCUMENTO (ARCHIVO)
+                                        </span><br>
+                                        <v-file-input class="form-control" v-model="form.filedocumento" accept="application/pdf"/>
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase">
+                                            Numero de
+                                            CAMARA DE COMERCIO (ARCHIVO)
+                                        </span>
+                                        <v-file-input class="form-control" v-model="form.filecamara" accept="application/pdf" />
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase">
+                                            RUT (ARCHIVO)
+                                        </span>
+                                        <v-file-input class="form-control" v-model="form.filerut" accept="application/pdf" />
                                     </v-col>
                                 </v-row>
                             </template>
@@ -484,7 +511,10 @@ export default {
                 policiesAndCookiesConsent: false,
                 offersConsent: false,
                 invalidPhone: true,
-                showInvalidPhone: false
+                showInvalidPhone: false,
+                filedocumento: [],
+                filecamara: [],
+                filerut: [],
             },
             mainAddress: {
                 customer_id: null,
@@ -664,6 +694,25 @@ export default {
             !this.$v.mainAddress.postal_code.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
+        fileDocumentoErrors() {
+            const errors = [];
+            console.log(this.$v.form.filedocumento);
+            if (!this.$v.form.filedocumento.$dirty) return errors;
+            !this.$v.form.filedocumento.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        fileCamaraErrors() {
+            const errors = [];
+            if (!this.$v.form.filecamara.$dirty) return errors;
+            !this.$v.form.filecamara.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        fileRutErrors() {
+            const errors = [];
+            if (!this.$v.form.filerut.$dirty) return errors;
+            !this.$v.form.filerut.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
         showRegister: {
             get() {
                 return this.value;
@@ -683,6 +732,21 @@ export default {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;
         },
+        onFileChange(e){
+                console.log(e.target.files[0]);
+                this.form.filedocumento = e.target.files[0];
+
+        },
+        onFileChangeCamara(e){
+                console.log(e.target.files[0]);
+                this.form.filecamara = e.target.files[0];
+
+        },
+        onFileChangeRut(e){
+                console.log(e.target.files[0]);
+                this.form.filerut = e.target.files[0];
+
+        },
         async register() {
             this.$v.form.$touch();
             this.$v.mainAddress.$touch();
@@ -695,13 +759,30 @@ export default {
             if (this.$v.form.$anyError || this.$v.mainAddress.$anyError) {
                 return;
             }
-
+            
+            if(this.form.personType == "Juridical"){
+                
+                if(this.form.filecamara.length == 0 || this.form.filedocumento.length == 0|| this.form.filerut.length == 0){
+                    this.snack({
+                        message: "Por favor cargue los archivos!",
+                        color: "red"
+                    });
+                    return;
+                }
+            }
+            
             this.form.phone = this.form.phone.replace(/\s/g, "");
             this.mainAddress.phone = this.form.phone;
 
             this.loadingregister = true;
+            let formData = new FormData();
 
-            const res = await this.call_api("post", "auth/signup", this.form);
+            formData.append('filecamara', this.form.filecamara);
+            formData.append('filedocumento', this.form.filedocumento);
+            formData.append('filerut', this.form.filerut);
+            formData.append('form', JSON.stringify(this.form));
+
+            const res = await this.call_api("post", "auth/signup", formData, true);
 
             if (res.data.success) {
                 this.mainAddress.customer_id = res.data.user.id;
@@ -804,6 +885,9 @@ export default {
             this.form.companyType = "";
             this.form.companyDocumentType = "";
             this.form.companyDocumentNumber = "";
+            this.form.filecamara = "";
+            this.form.filedocumento = "";
+            this.form.filerut = "";
             this.form.phone = "";
             this.form.policiesAndCookiesConsent = false;
             this.form.offersConsent = false;

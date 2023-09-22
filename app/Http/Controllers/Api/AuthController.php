@@ -17,12 +17,14 @@ class AuthController extends Controller
 {
     public function signup(Request $request)
     {
+        $input = json_decode($request->form);        
+
         if (get_setting('customer_login_with') == 'email') {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $input->email)->first();
         } elseif (get_setting('customer_login_with') == 'phone') {
-            $user = User::where('phone', $request->phone)->first();
+            $user = User::where('phone', $input->phone)->first();
         } else {
-            $user = User::where('phone', $request->phone)->orWhere('email', $request->email)->first();
+            $user = User::where('phone', $input->phone)->orWhere('email', $input->email)->first();
         }
 
         if ($user != null) {
@@ -33,7 +35,7 @@ class AuthController extends Controller
             ]);
         }
 
-        if (!$request->has('phone') || !$request->has('email')) {
+        if (!isset($input->phone) || !isset($input->email)) {
             return response()->json([
                 'success' => false,
                 'message' => translate('Email & phone is required.'),
@@ -41,30 +43,71 @@ class AuthController extends Controller
             ], 200);
         }
 
+        $path_docs = public_path().'/docs/';
+        $path_camara = public_path().'/camara/';
+        $path_ruts = public_path().'/ruts/';
+
+        $docfile = '';
+        $camarafile = '';
+        $rutfile = '';
+
+        if($request->hasFile('filecamara')){
+            $fileCamara = $request->file('filecamara');
+            $filenameWithExt = $fileCamara->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $fileCamara->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileCamara->move($path_camara, $fileNameToStore);
+            $camarafile = $fileNameToStore;
+        }
+
+        if($request->hasFile('filedocumento')){
+            $fileDocument = $request->file('filedocumento');
+            $filenameWithExt = $fileDocument->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $fileDocument->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileDocument->move($path_docs, $fileNameToStore);
+            $docfile = $fileNameToStore;
+        }
+
+        if($request->hasFile('filerut')){
+            $fileRut = $request->file('filerut');
+            $filenameWithExt = $fileRut->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $fileRut->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileRut->move($path_ruts, $fileNameToStore);
+            $rutfile = $fileNameToStore;
+        }
+
         $user = new User([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'person_type' => $request->personType,
-            'first_name' => $request->firstName,
-            'second_name' => $request->secondName,
-            'first_lastname' => $request->firstLastname,
-            'second_lastname' => $request->secondLastname,
-            'document_type' => $request->documentType,
-            'document_number' => $request->documentNumber,
-            'company_name' => $request->companyName,
-            'company_type' => $request->companyType,
-            'company_document_type' => $request->companyDocumentType,
-            'company_document_number' => $request->companyDocumentNumber,
-            'phone' => $request->phone,
-            'policies_and_cookies_consent' => $request->policiesAndCookiesConsent,
-            'offers_consent' => $request->offersConsent,
+            'email' => $input->email,
+            'password' => Hash::make($input->password),
+            'person_type' => $input->personType,
+            'first_name' => $input->firstName,
+            'second_name' => $input->secondName,
+            'first_lastname' => $input->firstLastname,
+            'second_lastname' => $input->secondLastname,
+            'document_type' => $input->documentType,
+            'document_number' => $input->documentNumber,
+            'company_name' => $input->companyName,
+            'company_type' => $input->companyType,
+            'company_document_type' => $input->companyDocumentType,
+            'company_document_number' => $input->companyDocumentNumber,
+            'documento_file' => $docfile,
+            'camara_file' => $camarafile,
+            'rut_file' => $rutfile,
+            'phone' => $input->phone,
+            'policies_and_cookies_consent' => $input->policiesAndCookiesConsent,
+            'offers_consent' => $input->offersConsent,
             'verification_code' => rand(100000, 999999)
         ]);
 
         $user->save();
 
-        if ($request->has('temp_user_id') && $request->temp_user_id != null) {
-            Cart::where('temp_user_id', $request->temp_user_id)->update(
+        if (isset($input->temp_user_id) && $input->temp_user_id != null) {
+            Cart::where('temp_user_id', $input->temp_user_id)->update(
                 [
                     'user_id' => $user->id,
                     'temp_user_id' => null
