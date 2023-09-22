@@ -355,7 +355,6 @@
                                                 v-model="form.phone"
                                                 v-bind="mobileInputProps"
                                                 :onlyCountries="availableCountries"
-                                                @validate="phoneValidate"
                                                 @blur="$v.form.phone.$touch()"
                                                 :class="{
                                                     'error--text': $v.form.phone.$error || form.showInvalidPhone
@@ -751,10 +750,10 @@ export default {
             this.$v.form.$touch();
             this.$v.mainAddress.$touch();
 
-            if (this.form.invalidPhone) {
+            /*if (this.form.invalidPhone) {
                 this.form.showInvalidPhone = true;
                 return;
-            }
+            }*/
 
             if (this.$v.form.$anyError || this.$v.mainAddress.$anyError) {
                 return;

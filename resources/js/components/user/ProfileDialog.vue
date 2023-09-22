@@ -355,10 +355,10 @@ export default {
         async register() {
             this.$v.form.$touch();
 
-            if (this.form.invalidPhone) {
+            /* if (this.form.invalidPhone) {
                 this.form.showInvalidPhone = true;
                 return;
-            }
+            } */
 
             if (this.$v.form.$anyError) {
                 return;
