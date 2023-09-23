@@ -1,0 +1,386 @@
+<template>
+    <v-dialog content-class="modal-register" v-model="showVerifyAccount">
+        <v-card class="modal-register-card">
+            <v-card-title class="text-xs-center justify-center primary title white--text darken-2 font-weight-bold">
+                {{ $t('verify') }} {{ $t('account') }}
+            </v-card-title>
+            
+            <div class="my-5 my-lg-16 rounded-lg pa-5 border overflow-hidden shadow-light">
+                <div v-if="authSettings.customer_login_with == 'email' || ( authSettings.customer_login_with == 'email_phone' &&authSettings.customer_otp_with == 'email')" class="info--text mb-3">
+                    {{ $t('a_verification_code_has_been_sent_to_your_email') }}
+                </div>
+                <div v-else-if="authSettings.customer_login_with == 'phone' || ( authSettings.customer_login_with == 'email_phone' && authSettings.customer_otp_with == 'phone')" class="info--text mb-3">
+                    {{ $t('a_verification_code_has_been_sent_to_your_phone_number') }}
+                </div>
+
+                <div v-if="authSettings.customer_login_with == 'email' || ( authSettings.customer_login_with == 'email_phone' &&authSettings.customer_otp_with == 'email')" class="fs-16 fw-500 mb-6">{{ $t('enter_your_email_address_verification_code') }}</div>
+                <div v-else-if="authSettings.customer_login_with == 'phone' || ( authSettings.customer_login_with == 'email_phone' && authSettings.customer_otp_with == 'phone')" class="fs-16 fw-500 mb-6">{{ $t('enter_your_phone_number_verification_code') }}</div>
+                <v-form ref="loginForm" lazy-validation @submit.prevent="verifyAccount()">
+                    <div v-if="authSettings.customer_login_with == 'email' || ( authSettings.customer_login_with == 'email_phone' &&authSettings.customer_otp_with == 'email')" class="mb-4">
+                        <div class="mb-1 fs-13 fw-500">{{ $t('email') }}</div>
+                        <v-text-field
+                            v-model="form.email"
+                            :placeholder="$t('email_address')"
+                            type="email"
+                            :error-messages="emailErrors"
+                            hide-details="auto"
+                            required
+                            outlined
+                        ></v-text-field>
+                    </div>
+                    <div v-if="authSettings.customer_login_with == 'phone' || ( authSettings.customer_login_with == 'email_phone' && authSettings.customer_otp_with == 'phone')" class="mb-4">
+                        <div class="mb-1 fs-13 fw-500">
+                            {{ $t("phone_number") }}
+                        </div>
+                        <vue-tel-input
+                            v-model="form.phone"
+                            v-bind="mobileInputProps"
+                            :only-countries=" availableCountries"
+                            @validate="phoneValidate"
+                        >
+                            <template #arrow-icon ><span class=" vti__dropdown-arrow " >&nbsp;▼</span ></template >
+                        </vue-tel-input>
+                        <div v-if="$v.form.phone.$error" class=" v-text-field__details mt-2 pl-3 " >
+                            <div class=" v-messages theme--light error--text " role="alert">
+                                <div class=" v-messages__wrapper " >
+                                    <div class=" v-messages__message " >{{ $t("this_field_is_required") }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="!$v.form.phone.$error && form.showInvalidPhone" class=" v-text-field__details mt-2 pl-3">
+                            <div class=" v-messages theme--light error--text " role="alert" >
+                                <div class=" v-messages__wrapper " >
+                                    <div class=" v-messages__message " >
+                                        {{ $t("phone_number_must_be_valid") }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="mb-1 fs-13 fw-500">{{ $t('code') }}</div>
+                        <v-otp-input
+                            v-model="form.code"
+                            length="6"
+                            type="number"
+                            :error-messages="codeErrors"
+                            hide-details="auto"
+                            :disabled="loading"
+                            required
+                        ></v-otp-input>
+                    </div>
+                </v-form>
+            </div>       
+
+            <v-card-actions class="pa-5">
+
+               <v-btn
+                    x-large
+                    class="px-12 mb-4"
+                    elevation="0"
+                    type="submit"
+                    color="primary"
+                    :loading="loading"
+                    :disabled="loading"
+                    @click="verifyAccount"
+                >{{ $t('verify') }}</v-btn>
+                <v-btn
+                    x-large
+                    class="px-12 mb-4 ms-3"
+                    elevation="0"
+                    type="button"
+                    color=""
+                    :loading="resendLoading"
+                    :disabled="resendLoading"
+                    @click="resendCode"
+                >{{ $t('resend_code') }}</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+</template>
+
+<script>
+import { required, requiredIf, email } from "vuelidate/lib/validators";
+import { VueTelInput } from "vue-tel-input";
+import { mapGetters, mapActions,mapMutations } from "vuex";
+export default {
+    props: {
+        value: Boolean,
+        email: String,
+    },
+
+    data: () => ({
+        mobileInputProps: {
+            inputOptions: {
+                type: "tel",
+                placeholder: "phone number",
+            },
+            dropdownOptions: {
+                showDialCodeInSelection: false,
+                showFlags: true,
+                showDialCodeInList: true,
+            },
+            autoDefaultCountry: false,
+            validCharactersOnly: true,
+            mode: "international",
+        },
+        form: {
+            email: "",
+            phone: "",
+            code: "",
+            invalidPhone: true,
+            showInvalidPhone: false,
+        },
+        loading: false,
+        resendLoading: false,
+    }),
+    components: {
+        VueTelInput,
+    },
+    validations: {
+        form: {
+            email: {
+                requiredIf: requiredIf(function (){
+                    return this.authSettings.customer_login_with == 'email' || (this.authSettings.customer_login_with == 'email_phone' && this.authSettings.customer_otp_with == 'email')
+                }),
+                email
+            },
+            phone: {
+                requiredIf: requiredIf(function (){
+                    return this.authSettings.customer_login_with == 'phone' || (this.authSettings.customer_login_with == 'email_phone' && this.authSettings.customer_otp_with == 'phone')
+                }),
+            },
+            code: {
+                required,
+            },
+        }
+    },
+    computed: {
+        ...mapGetters("auth", ["authSettings"]),
+        ...mapGetters("app", ["availableCountries"]),
+        emailErrors() {
+            const errors = [];
+            if (!this.$v.form.email.$dirty) return errors;
+            !this.$v.form.email.requiredIf &&
+                errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.email.email &&
+                errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            return errors;
+        },
+        codeErrors() {
+            const errors = [];
+            if (!this.$v.form.code.$dirty) return errors;
+            !this.$v.form.code.required &&
+                errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        showVerifyAccount: {
+            get() {
+                return this.value;
+            },
+            set(value) {
+                this.$emit("input", value);
+            }
+        }
+    },
+    mounted() {
+        this.form.email = this.email;
+    },
+    methods:{
+        ...mapActions("auth",{
+            actionLogin:"login",
+        }),
+        ...mapMutations('auth',[
+            'updateChatWindow',
+            'showLoginDialog'
+        ]),
+        ...mapActions("app", ["fetchProductQuerries"]),
+        ...mapActions("wishlist",[
+            'fetchWislistProducts'
+        ]),
+        ...mapActions("cart",[
+            "fetchCartProducts",
+        ]),
+        phoneValidate(phone) {
+            this.form.invalidPhone = phone.valid ? false : true;
+            if (phone.valid) this.form.showInvalidPhone = false;
+        },
+        async verifyAccount(){
+            this.$v.form.$touch();
+            if (this.$v.form.$anyError) {
+                return;
+            }
+            if ((this.authSettings.customer_login_with == 'phone' || (this.authSettings.customer_login_with == 'email_phone' && this.authSettings.customer_otp_with == 'phone')) && this.form.invalidPhone) {
+                this.form.showInvalidPhone = true;
+                return;
+            }
+            this.form.phone = this.form.phone.replace(/\s/g, "");
+
+            this.loading = true;
+            const res = await this.call_api("post", "auth/verify", this.form);
+            if (res.data.success) {
+                this.actionLogin(res.data);
+                this.showLoginDialog(false);
+                this.updateChatWindow(false);
+
+                this.fetchWislistProducts();
+                this.fetchProductQuerries();
+                this.fetchCartProducts();
+
+                this.$router.push(this.$route.query.redirect || { name: "Cart" });
+            }else{
+                this.snack({
+                    message: res.data.message,
+                    color: "red"
+                });
+            }
+            this.loading = false;
+        },
+        async resendCode(){
+            this.$v.form.email.$touch()
+            if (this.$v.form.email.$anyError) {
+                return;
+            }
+            if ((this.authSettings.customer_login_with == 'phone' || (this.authSettings.customer_login_with == 'email_phone' && this.authSettings.customer_otp_with == 'phone')) && this.form.invalidPhone) {
+                this.form.showInvalidPhone = true;
+                return;
+            }
+            this.form.phone = this.form.phone.replace(/\s/g, "");
+
+            this.resendLoading = true;
+            const res = await this.call_api("post", "auth/resend-code", this.form);
+
+            if (res.data.success) {
+                this.snack({
+                    message: res.data.message,
+                });
+            }else{
+                this.snack({
+                    message: res.data.message,
+                    color: "red"
+                });
+            }
+            this.resendLoading = false;
+        }
+    },
+};
+</script>
+
+<style lang="scss">
+.modal-register {
+    max-width: 550px;
+}
+</style>
+
+<style lang="scss" scoped>
+.modal-register {
+    &-card {
+        border-radius: 10px;
+    }
+
+    .v-stepper__header {
+        box-shadow: none;
+
+        .v-divider {
+            border-color: rgba(#707070, 0.5) !important;
+            border-width: 2px 0 0;
+
+            &.step-active {
+                border-color: #707070 !important;
+            }
+        }
+    }
+
+    &-subheader {
+        width: 92%;
+        margin: auto;
+        border-width: 2px 0 0;
+    }
+
+    .v-stepper {
+        box-shadow: none;
+
+        &.theme--light {
+            &::v-deep {
+                .v-stepper__step {
+                    &:not(.v-stepper__step--active) {
+                        .v-stepper__step__step {
+                            background: rgba(#000000, 0.25);
+                        }
+                    }
+
+                    &.v-stepper__step--complete {
+                        .v-stepper__step__step {
+                            background: rgba(0, 0, 0, 0.87);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-step {
+        &::v-deep {
+            .v-stepper__step__step {
+                font-size: 15px;
+                line-height: 1;
+                width: 27px;
+                height: 27px;
+                padding-top: 5px;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.v-divider {
+    border-color: #e4e4e4 !important;
+}
+
+.vue-tel-input {
+    background: #f5f5f5;
+    border-color: #f5f5f5;
+    height: 38px;
+    border-radius: 5px;
+
+    &:focus-within {
+        box-shadow: none;
+    }
+
+    &.error--text {
+        border-color: currentColor;
+        border-width: 2px;
+    }
+
+    &:hover {
+        background: #dfdfdf;
+    }
+}
+
+.theme--light {
+    .v-input {
+        &::v-deep {
+            .v-input__slot {
+                background: #f5f5f5;
+
+                &:hover {
+                    background: #dfdfdf;
+                }
+            }
+        }
+
+        &.v-text-field--outlined {
+            &::v-deep {
+                &:not(.v-input--has-state) {
+                    .v-input__slot {
+                        &:hover,
+                        fieldset {
+                            border-color: #f5f5f5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+</style>

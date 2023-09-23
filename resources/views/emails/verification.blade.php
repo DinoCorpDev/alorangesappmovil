@@ -148,7 +148,7 @@
 														</tr>
 														@if($array['subject'] == 'Email Verification')
 															<td class="center pb10" style="text-align:center; padding-bottom:10px;">
-																<a class="h2 center pb10" style="color:#000000; font-family:'Ubuntu', Arial,sans-serif; font-size:30px; line-height:60px; " href="{{ url('user/verify-account') }}">Link verify account</a>
+																<a class="h2 center pb10" style="color:#000000; font-family:'Ubuntu', Arial,sans-serif; font-size:30px; line-height:60px; " href="{{ url('/home2?modal=VerifyAccount') }}">Link verify account</a>
 															</td>
 														@endif
                                                         @if(!empty( $array['link']))
