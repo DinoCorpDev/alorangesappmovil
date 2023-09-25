@@ -116,6 +116,7 @@
                                                 label="Enviar un mensaje de texto al *******"
                                                 name="personType"
                                                 type="radio"
+                                                disabled
                                             />
                                         </v-col>
                                     </v-row>
@@ -148,14 +149,7 @@
                     :disabled="loadingregister"
                     :loadingregister="loadingregister"
                 />
-                <CustomButton
-                    text="Cancelar"
-                    color="white2"
-                    type="button"
-                    class="ml-0"
-                    block
-                    @click="cerrarModal"
-                />
+                <CustomButton text="Cancelar" color="white2" type="button" class="ml-0" block @click="cerrarModal" />
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -237,21 +231,20 @@ export default {
     },
     methods: {
         async after() {
-
-            if(this.numberPag == 1 && this.form.email == ''){
+            if (this.numberPag == 1 && this.form.email == "") {
                 this.snack({
-                    message: 'Por favor ingresa el correo',
+                    message: "Por favor ingresa el correo",
                     color: "red"
                 });
                 return;
             }
-            
-            if(this.numberPag == 2){
+
+            if (this.numberPag == 2) {
                 let formData = new FormData();
 
-                formData.append('email', this.form.email);
-                formData.append('first_name', this.form.first_name);
-                formData.append('first_lastname', this.form.first_lastname);
+                formData.append("email", this.form.email);
+                formData.append("first_name", this.form.first_name);
+                formData.append("first_lastname", this.form.first_lastname);
 
                 const res = await this.call_api("post", "auth/verify-data", formData);
 
@@ -282,8 +275,8 @@ export default {
 
             if (res.data.success) {
                 this.showRecuperarPass = false;
-                window.location.href="/home2?modal=Password&email="+this.form.email;
-                // this.$router.replace({ name: 'Home2', query: { modal: "Password", email: this.form.email }}); 
+                window.location.href = "/home2?modal=Password&email=" + this.form.email;
+                // this.$router.replace({ name: 'Home2', query: { modal: "Password", email: this.form.email }});
 
                 this.snack({
                     message: res.data.message
@@ -377,6 +370,11 @@ export default {
     }
 }
 
+.custom-checkbox {
+    padding-left: 40px;
+    border: 1px solid;
+    border-radius: 5px;
+}
 .v-divider {
     border-color: #e4e4e4 !important;
 }

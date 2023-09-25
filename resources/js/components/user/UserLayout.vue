@@ -14,7 +14,7 @@
             <v-col cols="12" lg="9" class="user-layout-content">
                 <v-container>
                     <v-row>
-                        <v-col cols="12" lg="10">
+                        <v-col cols="12" lg="12">
                             <router-view />
                         </v-col>
                     </v-row>

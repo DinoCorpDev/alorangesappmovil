@@ -1,12 +1,15 @@
 <template>
     <v-dialog content-class="modal-register" v-model="showRecuperarPass">
         <v-card class="modal-register-card">
-            <v-card-title class="text-xs-center justify-center primary title white--text darken-2 font-weight-bold">
-                ¿Olvidó su contraseña?
+            <v-card-title v-if="numberPag == 1" class="text-xs-left justify-left title mb-2">
+                Código de verificacion
+            </v-card-title>
+            <v-card-title v-if="numberPag == 2" class="text-xs-left justify-left title mb-2">
+                Elige una contraseña nueva
             </v-card-title>
             <div class="forgot-password d-flex flex-column h-100">
                 <v-stepper v-model="numberPag">
-                    <v-stepper-header>
+                    <v-stepper-header class="d-none">
                         <v-stepper-step
                             :class="numberPag > 1 ? 'v-stepper__step--complete' : ''"
                             class="modal-register-step"
@@ -20,7 +23,6 @@
                             class="modal-register-step"
                             step="2"
                         />
-
                     </v-stepper-header>
 
                     <v-divider class="modal-register-subheader" />
@@ -28,10 +30,10 @@
                     <v-stepper-items>
                         <v-stepper-content step="1">
                             <v-container class="d-flex flex-grow-1">
-                                <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-12">
-                                    <div class="inputs mb-8">
-                                        <label class="black--text text-uppercase">{{ $t("code") }}</label>
-                                       <v-otp-input
+                                <div class="forgot-password-content">
+                                    <div class="inputs mb-4">
+                                        <label class="black--text text-uppercase">CÓDIGO</label>
+                                        <CustomInput
                                             v-model="form.code"
                                             length="6"
                                             type="number"
@@ -39,18 +41,25 @@
                                             hide-details="auto"
                                             :disabled="loading"
                                             required
-                                        ></v-otp-input>
+                                        ></CustomInput>
                                     </div>
-                                    
                                 </div>
                             </v-container>
                         </v-stepper-content>
 
                         <v-stepper-content step="2">
                             <v-container class="d-flex flex-grow-1">
-                                <div class="forgot-password-content pa-3 pa-sm-5 pt-5 pt-sm-8">
-                                    <div class="inputs mb-8">
-                                        <label class="black--text text-uppercase">{{ $t("password") }}</label>
+                                <div class="forgot-password-content">
+                                    <p>
+                                        Asegurate de que tu contraseña tenga 8 caracteres o mas. Intenta que incluya
+                                        números, letras y signos de putuacion para que sea una <b>contraseña segura.</b>
+                                    </p>
+                                    <p>
+                                        Una vez que cambies tu contraseña, se cerrarán todas tus sesiones activas de
+                                        idovela.
+                                    </p>
+                                    <div class="inputs mb-4">
+                                        <label class="black--text text-uppercase">Introduce una contraseña nueva</label>
                                         <CustomInput
                                             type="password"
                                             v-model="form.password"
@@ -60,8 +69,8 @@
                                         />
                                     </div>
 
-                                    <div class="inputs mb-8">
-                                        <label class="black--text text-uppercase">{{ $t("confirm_password") }}</label>
+                                    <div class="inputs mb-2">
+                                        <label class="black--text text-uppercase">Confirma tu contraseña</label>
                                         <CustomInput
                                             type="password"
                                             v-model="form.confirmPassword"
@@ -70,7 +79,6 @@
                                             required
                                         />
                                     </div>
-                                    
                                 </div>
                             </v-container>
                         </v-stepper-content>
@@ -78,39 +86,19 @@
                 </v-stepper>
             </div>
 
-            <v-card-actions class="pa-5">
-
-                <CustomButton
-                    v-if="numberPag > 1"
-                    icon="la-angle-left"
-                    text="Volver"
-                    color="nero"
-                    type="button"
-                    @click="before"
-                />
-
-                <CustomButton
-                    v-if="numberPag < 2"
-                    icon="la-angle-right"
-                    iconPosition="right"
-                    text="Continuar"
-                    color="nero"
-                    type="button"
-                    @click="after"
-                />
+            <v-card-actions class="pa-5 d-block">
+                <CustomButton v-if="numberPag < 2" text="Continuar" color="nero" block type="button" @click="after" />
 
                 <CustomButton
                     v-if="numberPag == 2"
-                    icon="la-angle-right"
-                    iconPosition="right"
                     text="Cambiar Contraseña"
                     color="nero"
+                    block
                     type="submit"
                     @click="resetPassword"
                     :disabled="loadingregister"
                     :loadingregister="loadingregister"
                 />
-               
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -128,7 +116,7 @@ const isTrue = value => value === true;
 export default {
     props: {
         value: Boolean,
-        email: String,
+        email: String
     },
 
     data: () => ({
@@ -136,11 +124,11 @@ export default {
             email: "",
             code: "",
             password: "",
-            confirmPassword: "",
+            confirmPassword: ""
         },
         loading: false,
         loadingregister: false,
-        numberPag: 1,
+        numberPag: 1
     }),
     components: {
         CustomButton,
