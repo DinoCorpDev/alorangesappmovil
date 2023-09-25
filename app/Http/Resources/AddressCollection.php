@@ -17,8 +17,11 @@ class AddressCollection extends ResourceCollection
                     'name' => $data->name,
                     'details' => $data->details,
                     'country' => $data->country,
+                    'country_id' => $data->country_id,
                     'state' => $data->state,
+                    'state_id' => $data->state_id,
                     'city' => $data->city,
+                    'city_id' => $data->city_id,
                     'neighborhood' => $data->neighborhood,
                     'postal_code' => $data->postal_code,
                     'phone' => $data->phone,
@@ -27,7 +30,7 @@ class AddressCollection extends ResourceCollection
                     'default_service' => $data->default_service
                 ];
             })
-        ];
+        ]; 
     }
 
     public function with($request)

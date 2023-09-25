@@ -321,7 +321,7 @@ export default {
                 });
             }
             this.adding = false;
-        },
+        }, 
         async fetchCountries() {
             if (!this.countriesLoaded) {
                 const res = await this.call_api("get", "all-countries");
@@ -372,15 +372,19 @@ export default {
         },
         async processOldAddress(oldVal) {
             let oldAddress = { ...oldVal };
-
+            console.log(oldAddress);
             this.form.id = oldAddress.id;
             this.form.address = oldAddress.address;
             this.form.name = oldAddress.name;
             this.form.neighborhood = oldAddress.neighborhood;
             this.form.postal_code = oldAddress.postal_code;
             this.form.phone = oldAddress.phone;
-            this.form.country = oldAddress.country;
+            this.form.country = oldAddress.country_id;
+
+            let country = await this.countryChanged(oldAddress.country_id);
             this.form.state = oldAddress.state_id;
+
+            let state = await this.stateChanged(oldAddress.state_id);
             this.form.city = oldAddress.city_id;
         },
         closeDialog() {
