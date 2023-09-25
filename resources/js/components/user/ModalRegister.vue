@@ -4,7 +4,13 @@
             <v-card-title class="text-xs-center justify-center primary title white--text darken-2 font-weight-bold">
                 REGISTRO
             </v-card-title>
-            <v-form class="modal-register-form" ref="loginForm" lazy-validation @submit.prevent="register()" enctype="multipart/form-data">
+            <v-form
+                class="modal-register-form"
+                ref="loginForm"
+                lazy-validation
+                @submit.prevent="register()"
+                enctype="multipart/form-data"
+            >
                 <v-stepper v-model="numberPag">
                     <v-stepper-header>
                         <v-stepper-step
@@ -216,20 +222,26 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase">
-                                            DOCUMENTO (ARCHIVO)
-                                        </span><br>
-                                        <v-file-input class="form-control" v-model="form.filedocumento" accept="application/pdf"/>
+                                        <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span
+                                        ><br />
+                                        <v-file-input
+                                            class="form-control"
+                                            v-model="form.filedocumento"
+                                            accept="application/pdf"
+                                        />
                                     </v-col>
                                 </v-row>
 
                                 <v-row>
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">
-                                            Numero de
-                                            CAMARA DE COMERCIO (ARCHIVO)
+                                            Numero de CAMARA DE COMERCIO (ARCHIVO)
                                         </span>
-                                        <v-file-input class="form-control" v-model="form.filecamara" accept="application/pdf" />
+                                        <v-file-input
+                                            class="form-control"
+                                            v-model="form.filecamara"
+                                            accept="application/pdf"
+                                        />
                                     </v-col>
                                 </v-row>
 
@@ -238,7 +250,11 @@
                                         <span class="black--text body-2 text-uppercase">
                                             RUT (ARCHIVO)
                                         </span>
-                                        <v-file-input class="form-control" v-model="form.filerut" accept="application/pdf" />
+                                        <v-file-input
+                                            class="form-control"
+                                            v-model="form.filerut"
+                                            accept="application/pdf"
+                                        />
                                     </v-col>
                                 </v-row>
                             </template>
@@ -513,7 +529,7 @@ export default {
                 showInvalidPhone: false,
                 filedocumento: [],
                 filecamara: [],
-                filerut: [],
+                filerut: []
             },
             mainAddress: {
                 customer_id: null,
@@ -731,20 +747,17 @@ export default {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;
         },
-        onFileChange(e){
-                console.log(e.target.files[0]);
-                this.form.filedocumento = e.target.files[0];
-
+        onFileChange(e) {
+            console.log(e.target.files[0]);
+            this.form.filedocumento = e.target.files[0];
         },
-        onFileChangeCamara(e){
-                console.log(e.target.files[0]);
-                this.form.filecamara = e.target.files[0];
-
+        onFileChangeCamara(e) {
+            console.log(e.target.files[0]);
+            this.form.filecamara = e.target.files[0];
         },
-        onFileChangeRut(e){
-                console.log(e.target.files[0]);
-                this.form.filerut = e.target.files[0];
-
+        onFileChangeRut(e) {
+            console.log(e.target.files[0]);
+            this.form.filerut = e.target.files[0];
         },
         async register() {
             this.$v.form.$touch();
@@ -758,10 +771,13 @@ export default {
             if (this.$v.form.$anyError || this.$v.mainAddress.$anyError) {
                 return;
             }
-            
-            if(this.form.personType == "Juridical"){
-                
-                if(this.form.filecamara.length == 0 || this.form.filedocumento.length == 0|| this.form.filerut.length == 0){
+
+            if (this.form.personType == "Juridical") {
+                if (
+                    this.form.filecamara.length == 0 ||
+                    this.form.filedocumento.length == 0 ||
+                    this.form.filerut.length == 0
+                ) {
                     this.snack({
                         message: "Por favor cargue los archivos!",
                         color: "red"
@@ -769,17 +785,17 @@ export default {
                     return;
                 }
             }
-            
+
             this.form.phone = this.form.phone.replace(/\s/g, "");
             this.mainAddress.phone = this.form.phone;
 
             this.loadingregister = true;
             let formData = new FormData();
 
-            formData.append('filecamara', this.form.filecamara);
-            formData.append('filedocumento', this.form.filedocumento);
-            formData.append('filerut', this.form.filerut);
-            formData.append('form', JSON.stringify(this.form));
+            formData.append("filecamara", this.form.filecamara);
+            formData.append("filedocumento", this.form.filedocumento);
+            formData.append("filerut", this.form.filerut);
+            formData.append("form", JSON.stringify(this.form));
 
             const res = await this.call_api("post", "auth/signup", formData, true);
 
@@ -918,6 +934,11 @@ export default {
 .modal-register {
     max-width: 550px;
 }
+.custom-checkbox {
+    &-checkmark {
+        margin-left: 5px;
+    }
+}
 </style>
 
 <style lang="scss" scoped>
@@ -981,6 +1002,15 @@ export default {
     }
 }
 
+.custom-checkbox {
+    padding-left: 40px;
+    border: 1px solid;
+    border-radius: 5px;
+
+    &-checkmark {
+        margin-left: 5px;
+    }
+}
 .v-divider {
     border-color: #e4e4e4 !important;
 }

@@ -29,13 +29,14 @@
 
                     <v-stepper-items>
                         <v-stepper-content step="1">
-                            <v-container class="d-flex flex-grow-1">
+                            <v-container class="">
                                 <div class="forgot-password-content">
                                     <div class="inputs mb-4">
                                         <label class="black--text text-uppercase">CÓDIGO</label>
                                         <CustomInput
                                             v-model="form.code"
                                             length="6"
+                                            block
                                             type="number"
                                             :error-messages="codeErrors"
                                             hide-details="auto"

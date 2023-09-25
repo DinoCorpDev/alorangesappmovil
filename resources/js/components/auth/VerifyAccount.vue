@@ -62,6 +62,7 @@
                             v-model="form.email"
                             :placeholder="'Correo electrónico'"
                             type="email"
+                            block
                             :error-messages="emailErrors"
                             hide-details="auto"
                             required
@@ -116,6 +117,7 @@
                             :error-messages="codeErrors"
                             hide-details="auto"
                             :disabled="loading"
+                            block
                             required
                         ></CustomInput>
                     </div>

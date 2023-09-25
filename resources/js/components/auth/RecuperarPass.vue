@@ -307,6 +307,11 @@ export default {
 .modal-register {
     max-width: 550px;
 }
+.custom-checkbox {
+    &-checkmark {
+        margin-left: 5px;
+    }
+}
 </style>
 
 <style lang="scss" scoped>
