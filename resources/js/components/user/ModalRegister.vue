@@ -97,7 +97,7 @@
                                         name="personType"
                                         type="radio"
                                         v-model="form.personType" style="width: 90%; display: inline-flex;"
-                                    /> <i class="las la-exclamation-circle" style="font-size: 35px; transform: rotate(180deg);" title="Se aplicarán los impuestos a la factura como persona natural"></i>
+                                    /> <i class="las la-exclamation-circle icon-tooltip" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona natural"></i>
                                 </v-col>
                                 <v-col cols="12" sm="12">
                                     <CustomCheckbox
@@ -106,7 +106,7 @@
                                         name="personType"
                                         type="radio"
                                         v-model="form.personType" style="width: 90%; display: inline-flex;"
-                                    /> <i class="las la-exclamation-circle" style="font-size: 35px; transform: rotate(180deg);" title="Se aplicarán los impuestos a la factura como persona natural"></i>
+                                    /> <i class="las la-exclamation-circle icon-tooltip" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
                                 </v-col>
                             </v-row>
                         </v-stepper-content>
@@ -939,6 +939,24 @@ export default {
         margin-left: 5px;
     }
 }
+
+
+.icon-tooltip[data-title]:hover::after {
+        content: attr(data-title);
+        position: absolute;
+        top: -70%;
+        left: 0;
+        z-index: 1000;
+        color: white;
+        background-color: black;
+        font-size: 15px;
+        padding: 20px;
+        width: 300px;
+        border-radius: 10px;
+        font-style: normal;
+        transform: rotate(180deg);
+        
+      }
 </style>
 
 <style lang="scss" scoped>
