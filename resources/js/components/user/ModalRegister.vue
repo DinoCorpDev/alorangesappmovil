@@ -880,6 +880,37 @@ export default {
             }
         },
         async after() {
+            if(this.numberPag == 1){
+                if(this.form.email == '' || this.form.password == '' || this.form.confirmPassword == '' || (this.form.password != this.form.confirmPassword)){
+                    this.$v.form.$touch();
+                    return;
+                }
+            }
+
+            if(this.numberPag == 2){
+                if(this.form.firstName == '' || this.form.firstLastname == '' || this.form.secondLastname == '' || this.form.documentType == '' || this.form.documentNumber == ''){
+                    this.$v.form.$touch();
+                    return;
+                }
+
+                if(this.form.personType == 'Juridical' && (this.form.companyName == '' || this.form.companyType == '' || this.form.companyDocumentType == '' || this.form.companyDocumentNumber == '' )){
+                    this.$v.form.$touch();
+                    return;
+                }
+
+                 if ( this.form.personType == 'Juridical' && (
+                    this.form.filecamara.length == 0 ||
+                    this.form.filedocumento.length == 0 ||
+                    this.form.filerut.length == 0
+                )) {
+                    this.snack({
+                        message: "Por favor cargue los archivos!",
+                        color: "red"
+                    });
+                    return;
+                }
+            }
+
             return (this.numberPag += 1);
         },
         async before() {
