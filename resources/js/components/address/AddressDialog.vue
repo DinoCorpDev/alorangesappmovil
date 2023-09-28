@@ -357,6 +357,29 @@ export default {
                 });
             }
         },
+        async updateAddress() {
+            this.$v.form.$touch();
+            
+            if (this.$v.form.$anyError) {
+                return; 
+            } 
+
+            this.adding = true;
+
+            const res = await this.call_api("post", `user/address/update`, this.form);
+            if (res.data.success) {
+                this.setAddresses(res.data.data);
+                this.snack({ message: res.data.message });
+                this.closeDialog();
+                this.resetData();
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+            this.adding = false;
+        },
         resetData() {
             this.form.id = null;
             this.form.address = "";
@@ -372,7 +395,7 @@ export default {
         },
         async processOldAddress(oldVal) {
             let oldAddress = { ...oldVal };
-            console.log(oldAddress);
+
             this.form.id = oldAddress.id;
             this.form.address = oldAddress.address;
             this.form.name = oldAddress.name;
