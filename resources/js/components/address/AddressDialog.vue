@@ -321,7 +321,7 @@ export default {
                 });
             }
             this.adding = false;
-        }, 
+        },
         async fetchCountries() {
             if (!this.countriesLoaded) {
                 const res = await this.call_api("get", "all-countries");
