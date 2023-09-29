@@ -19,6 +19,7 @@
                                 <div class="form-group mb-6">
                                     <label class="black--text">USUARIO REGISTRADO</label>
                                     <CustomInput
+                                        placeholder="Correo electrónico o número de teléfono"
                                         v-model="form.email"
                                         type="text"
                                         :error-messages="emailErrors"
@@ -28,6 +29,7 @@
                                 <div class="form-group mb-6">
                                     <label class="black--text">ESCRIBIR CONTRASEÑA</label>
                                     <CustomInput
+                                        placeholder="Contraseña"
                                         v-model="form.password"
                                         type="password"
                                         :error-messages="passwordErrors"
@@ -229,6 +231,32 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+}
+
+.v-input {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+
+    &::v-deep {
+            .v-input__control,
+            .v-input__slot {
+                min-height: 38px;
+            }
+
+            ::placeholder {
+            visibility: hidden;
+            }
+
+            :hover::placeholder {
+                visibility: visible;
+            }
+            &:not(.v-input--has-state) {
+            .v-input__slot fieldset {
+                color: #dfdfdf;
+            }
+        }
     }
 }
 

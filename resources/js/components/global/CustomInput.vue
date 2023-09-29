@@ -10,7 +10,6 @@
         @input="$emit('input', $event)"
         flat
         outlined
-        rounded
         solo
     />
 </template>
@@ -29,7 +28,7 @@ export default {
         },
         placeholder: {
             type: String,
-            default: "--"
+            default: "Esto es un placeholder!!!!!"
         },
         required: {
             type: Boolean,
@@ -48,28 +47,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .v-input {
-    font-family: "Roboto", sans-serif;
-    font-size: 15px;
-    letter-spacing: 0.5px;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
 
     &::v-deep {
-        .v-input__control,
-        .v-input__slot {
-            min-height: 38px;
-        }
+            .v-input__control,
+            .v-input__slot {
+                min-height: 38px;
+            }
 
-        &:not(.v-input--has-state) {
+            &:not(.v-input--has-state) {
             .v-input__slot fieldset {
                 color: #dfdfdf;
             }
         }
     }
-
-    &.v-text-field--rounded {
-        border-radius: 5px;
-    }
 }
+
+
 
 .theme--light {
     .v-input {

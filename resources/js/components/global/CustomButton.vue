@@ -13,13 +13,14 @@
         :to="to"
         :width="width"
         @click.stop="$emit('click')"
-        class="text-uppercase"
+        class="text-uppercase justify-content-center align-items-center flex-direction-column"
         depressed
     >
         <i v-if="icon && iconPosition == 'left'" :class="`las ${icon} ${text ? 'mr-3' : ''}`"></i>
         <template v-if="text">{{ text }}</template>
         <slot v-else />
         <i v-if="icon && iconPosition == 'right'" :class="`las ${icon} ${text ? 'ml-3' : ''}`"></i>
+
     </v-btn>
 </template>
 
@@ -79,6 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .v-btn {
     font-size: var(--font-size-btn);
     font-weight: 600;
@@ -113,10 +115,20 @@ export default {
     }
 
     &::v-deep {
+        
+        
         .v-btn__content {
             margin-top: 2px;
         }
     }
+
+
+    &.text{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(-50%, -50%);
+        }
 
     &.v-btn--plain {
         min-width: unset;

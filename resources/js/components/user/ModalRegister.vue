@@ -39,55 +39,70 @@
                             <v-row>
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">
-                                        {{ $t("email_address") }}
+                                        {{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }}
                                     </span>
-                                    <CustomInput
-                                        type="email"
-                                        v-model="form.email"
-                                        :error-messages="emailErrors"
-                                        @blur="$v.form.email.$touch()"
-                                        required
-                                    />
+
+                                    <div class="input-group">
+                                        <CustomInput
+                                            class="place-holder"
+                                            placeholder="Ingresar correo electrónico o teléfono"
+                                            type="email"
+                                            v-model="form.email"
+                                            :error-messages="emailErrors"
+                                            @blur="$v.form.email.$touch()"
+                                            required 
+                                        />
+                                    </div>
+
                                 </v-col>
                             </v-row>
                             <v-row>
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">
-                                        {{ $t("password") }}
+                                        {{ $t("CONTRASEÑA") }}
                                     </span>
 
+                                    
                                     <v-text-field
+                                        
                                         v-model="form.password"
-                                        placeholder="Ingresar su contraseña"
+                                        placeholder="Ingresar contraseña"
                                         :error-messages="passwordErrors"
                                         @blur="$v.form.password.$touch()"
                                         :type="passwordShow ? 'text' : 'password'"
                                         :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
-                                        class="input-group--focused"
+                                        class="input-group--focused place-holder"
                                         hide-details="auto"
                                         required
+                                        dense
                                         outlined
                                         @click:append="passwordShow = !passwordShow"
+                                        
                                     ></v-text-field>
+                                    
                                 </v-col>
+
+                                
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">
-                                        {{ $t("confirm_password") }}
+                                        {{ $t("REPETIR CONTRASEÑA") }}
                                     </span>
-
+                                    
                                     <v-text-field
                                         v-model="form.confirmPassword"
-                                        placeholder="* * * * * * * *"
+                                        placeholder="Ingresar contraseña"
                                         :error-messages="confirmPasswordErrors"
                                         @blur="$v.form.confirmPassword.$touch()"
                                         :type="passwordShowConfirm ? 'text' : 'password'"
                                         :append-icon="passwordShowConfirm ? 'las la-eye' : 'las la-eye-slash'"
-                                        class="input-group--focused"
+                                        class="input-group--focused place-holder"
                                         hide-details="auto"
                                         required
+                                        dense 
                                         outlined
                                         @click:append="passwordShowConfirm = !passwordShowConfirm"
                                     ></v-text-field>
+                                    
                                 </v-col>
 
                                 <v-col cols="12" sm="12">
@@ -97,7 +112,8 @@
                                         name="personType"
                                         type="radio"
                                         v-model="form.personType" style="width: 90%; display: inline-flex;"
-                                    /> <i class="las la-exclamation-circle icon-tooltip" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona natural"></i>
+                                    /> <i class="las la-exclamation-circle icon-tooltip-uno" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona natural"></i>
+
                                 </v-col>
                                 <v-col cols="12" sm="12" style="margin-bottom: 50px;">
                                     <CustomCheckbox
@@ -106,7 +122,7 @@
                                         name="personType"
                                         type="radio"
                                         v-model="form.personType" style="width: 90%; display: inline-flex;"
-                                    /> <i class="las la-exclamation-circle icon-tooltip" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
+                                    /> <i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
                                 </v-col>
                             </v-row>
                         </v-stepper-content>
@@ -116,6 +132,8 @@
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase">Primer Nombre</span>
                                     <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar nombre"
                                         v-model="form.firstName"
                                         :error-messages="firstNameErrors"
                                         @blur="$v.form.firstName.$touch()"
@@ -124,13 +142,19 @@
                                 </v-col>
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
-                                    <CustomInput v-model="form.secondName" />
+                                    <CustomInput 
+                                    class="place-holder"
+                                    v-model="form.secondName"
+                                    placeholder="Ingresar segundo nombre"
+                                    />
                                 </v-col>
                             </v-row>
                             <v-row>
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Primer Apellido </span>
                                     <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar primer apellido"
                                         v-model="form.firstLastname"
                                         :error-messages="firstLastnameErrors"
                                         @blur="$v.form.firstLastname.$touch()"
@@ -140,6 +164,8 @@
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Segundo Apellido </span>
                                     <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar segundo apellido"
                                         v-model="form.secondLastname"
                                         :error-messages="secondLastnameErrors"
                                         @blur="$v.form.secondLastname.$touch()"
@@ -151,6 +177,7 @@
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase"> Documento (Representante) </span>
                                     <SelectCustom
+                                        placeholder="Seleccionar tipo de documento"
                                         :items="documentTypes"
                                         v-model="form.documentType"
                                         :error-messages="documentTypeErrors"
@@ -158,11 +185,15 @@
                                         required
                                     />
                                 </v-col>
+
+
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase">Numero de Documento</span>
                                     <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar número de documento"
                                         v-model="form.documentNumber"
                                         :error-messages="documentNumberErrors"
                                         @blur="$v.form.documentNumber.$touch()"
@@ -175,6 +206,8 @@
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">Nombre de la Empresa</span>
                                         <CustomInput
+                                            placeholder="Ingrese nombre de la empresa"
+                                            class="place-holder"
                                             v-model="form.companyName"
                                             :error-messages="companyNameErrors"
                                             @blur="$v.form.companyName.$touch()"
@@ -186,6 +219,7 @@
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">Entidad Comercial</span>
                                         <SelectCustom
+                                            placeholder="Seleccione entidad comercial"
                                             :items="companyTypes"
                                             v-model="form.companyType"
                                             :error-messages="companyTypeErrors"
@@ -198,6 +232,7 @@
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">Documento</span>
                                         <SelectCustom
+                                            placeholder="Seleccione tipo de documento"
                                             :items="documentTypes"
                                             v-model="form.companyDocumentType"
                                             :error-messages="companyDocumentTypeErrors"
@@ -213,6 +248,8 @@
                                             {{ form.companyDocumentType ? form.companyDocumentType : "Documento" }}
                                         </span>
                                         <CustomInput
+                                            class="place-holder"
+                                            placeholder="Indicar número de documento"
                                             v-model="form.companyDocumentNumber"
                                             :error-messages="companyDocumentNumberErrors"
                                             @blur="$v.form.companyDocumentNumber.$touch()"
@@ -222,13 +259,18 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span
-                                        ><br />
+                                        <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span>
+                                    </v-col>
+                                    <v-col cols="10">
                                         <v-file-input
-                                            class="form-control"
+                                            placeholder="SUBIR DOCUMENTO"
+                                            class="form-control upload"
                                             v-model="form.filedocumento"
                                             accept="application/pdf"
                                         />
+                                    </v-col>
+                                    <v-col cols="2" class="icono-documento">
+                                        <i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
                                     </v-col>
                                 </v-row>
 
@@ -237,11 +279,17 @@
                                         <span class="black--text body-2 text-uppercase">
                                             Numero de CAMARA DE COMERCIO (ARCHIVO)
                                         </span>
+                                    </v-col>
+                                    <v-col cols="10">
                                         <v-file-input
-                                            class="form-control"
+                                            placeholder="SUBIR DOCUMENTO"
+                                            class="form-control upload"
                                             v-model="form.filecamara"
                                             accept="application/pdf"
                                         />
+                                    </v-col>
+                                    <v-col cols="2" class="icono-documento">
+                                        <i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
                                     </v-col>
                                 </v-row>
 
@@ -250,11 +298,17 @@
                                         <span class="black--text body-2 text-uppercase">
                                             RUT (ARCHIVO)
                                         </span>
+                                    </v-col>
+                                    <v-col cols="10">
                                         <v-file-input
-                                            class="form-control"
+                                            placeholder="SUBIR DOCUMENTO"
+                                            class="form-control upload"
                                             v-model="form.filerut"
                                             accept="application/pdf"
                                         />
+                                    </v-col>
+                                    <v-col cols="2" class="icono-documento">
+                                        <i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
                                     </v-col>
                                 </v-row>
                             </template>
@@ -265,6 +319,7 @@
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">Pais</span>
                                     <SelectCustom
+                                        placeholder="Seleccionar país"
                                         :error-messages="countryErrors"
                                         :items="countries"
                                         @blur="$v.mainAddress.country.$touch()"
@@ -283,6 +338,8 @@
                                         Nombre De Dirección (Casa / Oficina)
                                     </span>
                                     <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar nombre de dirección"
                                         v-model="mainAddress.name"
                                         :error-messages="addressNameErrors"
                                         @blur="$v.mainAddress.name.$touch()"
@@ -292,6 +349,8 @@
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase"> Dirección (Calle / Carrera) </span>
                                     <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar calle / carrera"
                                         v-model="mainAddress.address"
                                         :error-messages="addressErrors"
                                         @blur="$v.mainAddress.address.$touch()"
@@ -305,6 +364,8 @@
                                         Dirección Adicional (Piso / Apartamento / Oficina)
                                     </span>
                                     <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar Piso / Apartamento / Oficina"
                                         v-model="mainAddress.details"
                                         :error-messages="addressDetailsErrors"
                                         @blur="$v.mainAddress.details.$touch()"
@@ -317,6 +378,8 @@
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">Codigo Postal</span>
                                     <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar código postal"
                                         v-model="mainAddress.postal_code"
                                         :error-messages="postalCodeErros"
                                         @blur="$v.mainAddress.postal_code.$touch()"
@@ -329,6 +392,7 @@
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">Departamento</span>
                                     <SelectCustom
+                                        placeholder="Seleccionar departamento"
                                         :error-messages="stateErrors"
                                         :items="filteredStates"
                                         @blur="$v.mainAddress.state.$touch()"
@@ -345,6 +409,7 @@
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">Municipio</span>
                                     <SelectCustom
+                                        placeholder="Seleccionar municipio"
                                         :error-messages="cityErrors"
                                         :items="filteredCities"
                                         @blur="$v.mainAddress.city.$touch()"
@@ -359,7 +424,10 @@
                             <v-row>
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">Barrio ( Opcional )</span>
-                                    <CustomInput v-model="mainAddress.neighborhood" />
+                                    <CustomInput 
+                                        class="place-holder"  
+                                        placeholder="Ingresar barrio" 
+                                        v-model="mainAddress.neighborhood" />
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -368,6 +436,7 @@
                                     <v-row>
                                         <v-col cols="12">
                                             <vue-tel-input
+                                                placeholder="Ingresar teléfono / celular"
                                                 v-model="form.phone"
                                                 v-bind="mobileInputProps"
                                                 :onlyCountries="availableCountries"
@@ -375,7 +444,8 @@
                                                 :class="{
                                                     'error--text': $v.form.phone.$error || form.showInvalidPhone
                                                 }"
-                                            >
+                                                class="place-holder"
+                                                >
                                                 <template slot="arrow-icon">
                                                     <span class="vti__dropdown-arrow">&nbsp;▼</span>
                                                 </template>
@@ -424,9 +494,10 @@
                 <CustomButton
                     v-if="numberPag == 3"
                     text="Omitir"
-                    color="white"
+                    color="white2"
                     type="button"
                     @click="showRegister = false"
+                    class="boton-redondo"
                 />
                 <v-spacer></v-spacer>
                 <v-spacer></v-spacer>
@@ -437,7 +508,9 @@
                     text="Continuar"
                     color="nero"
                     type="button"
+                    class="boton-continuar" 
                     @click="after"
+
                 />
                 <CustomButton
                     v-if="numberPag == 3"
@@ -959,6 +1032,7 @@ export default {
         }
     }
 };
+
 </script>
 
 <style lang="scss">
@@ -971,15 +1045,15 @@ export default {
     }
 }
 
-
-.icon-tooltip[data-title]:hover::after {
+.icon-tooltip-uno[data-title]:hover::after {
         content: attr(data-title);
         position: absolute;
-        top: -70%;
+        /*top: 70%;*/
+        bottom: 80%;
         left: 0;
-        z-index: 1000;
+        z-index: 999;
         color: white;
-        background-color: black;
+        background-color: grey;
         font-size: 15px;
         padding: 20px;
         width: 300px;
@@ -988,6 +1062,27 @@ export default {
         transform: rotate(180deg);
         
       }
+
+.icon-tooltip-dos[data-title]:hover::after {
+        content: attr(data-title);
+        position: absolute;
+        /*top: 70%;*/
+        bottom: 80%;
+        left: 0;
+        z-index: 500;
+        color: white;
+        background-color: grey;
+        font-size: 15px;
+        padding: 20px;
+        width: 300px;
+        border-radius: 10px;
+        font-style: normal;
+        transform: rotate(180deg);
+        opacity: 1;
+        
+      }
+
+
 </style>
 
 <style lang="scss" scoped>
@@ -1110,4 +1205,94 @@ export default {
         }
     }
 }
+
+.place-holder {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+
+    &::v-deep {
+            .v-input__control,
+            .v-input__slot {
+                min-height: 38px;
+            }
+
+            ::placeholder {
+            visibility: hidden;
+            }
+
+            :hover::placeholder {
+                visibility: visible;
+            }
+            &:not(.v-input--has-state) {
+            .v-input__slot fieldset {
+                color: #dfdfdf;
+            }
+        }
+    }
+}
+
+
+.v-btn {
+    &::v-deep {
+        .v-btn__content {
+            margin-top: 2px;
+            
+        }
+    }
+}
+
+
+.boton-redondo{
+    height: 100px;
+    width: 150px;
+    border: 1px solid #e2e2e2;
+    border-radius: 100px;
+}
+
+.boton-redondo:hover{
+    background: #dfdfdf;
+    border: 1px solid #e2e2e2;
+}
+
+.upload {
+
+    border-radius: 100px;
+    width: 100%;
+
+    &::v-deep {
+
+            ::placeholder {
+            justify-content: center;
+            align-items: center;
+            place-items: center;
+            }
+
+            :hover::placeholder {
+                color:#000000;
+            }
+
+    }
+}
+
+
+.upload::-webkit-input-placeholder {
+    text-align: center;
+  }
+.upload::-moz-placeholder {
+    text-align: center;
+  }
+.upload:-ms-input-placeholder {
+    text-align: center;
+  }
+.upload::placeholder {
+    text-align: center;
+  }
+
+
+.icono-documento{
+    display: flex;
+    align-items: center;
+}
+
 </style>
