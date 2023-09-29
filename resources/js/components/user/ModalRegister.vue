@@ -99,7 +99,7 @@
                                         v-model="form.personType" style="width: 90%; display: inline-flex;"
                                     /> <i class="las la-exclamation-circle icon-tooltip" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona natural"></i>
                                 </v-col>
-                                <v-col cols="12" sm="12">
+                                <v-col cols="12" sm="12" style="margin-bottom: 50px;">
                                     <CustomCheckbox
                                         inputValue="Juridical"
                                         label="Registrar como persona jurídica"
