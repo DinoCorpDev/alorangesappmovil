@@ -106,6 +106,26 @@ class UserController extends Controller
         }        
     }
 
+    public function updateInfoEmpresa(Request $request)
+    {
+        $user = User::find(auth('api')->user()->id);
+
+        $user->update([
+            'company_name' => $request->companyName,
+            'company_type' => $request->companyType,
+            'company_document_type' => $request->companyDocumentType,
+            'company_document_number' => $request->companyDocumentNumber,
+        ]);
+    
+        $user->save();
+    
+        return response()->json([
+            'success' => true,
+            'message' => translate('Profile information has been updated successfully'),
+            'user' => new UserCollection($user)
+        ]);     
+    }
+
     public function updatePassword(Request $request)
     {
         $user = User::find(auth('api')->user()->id);

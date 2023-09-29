@@ -29,6 +29,10 @@ class UserCollection extends JsonResource
             'personType' => $this->person_type,
             'documentType' => $this->document_type,
             'documentNumber' => $this->document_number,
+            'company_name' => $this->company_name,
+            'company_type' => $this->company_type,
+            'company_document_type' => $this->company_document_type,
+            'company_document_number' => $this->company_document_number,
             'policiesAndCookiesConsent' => $this->policies_and_cookies_consent,
             'offersConsent' => $this->offers_consent,
         ];

@@ -214,7 +214,37 @@
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <h5 class="fw-600">Empresa</h5>
                     <v-divider class="my-4" />
-                    <CustomButton class="mb-4" block color="grey" text="Añadir mi Empresa" @click="editFactory()" />
+                    
+                    <v-row>
+                        <v-col class="text-start">
+                            <label class="profile-label">Nombre Compañia</label>
+                        </v-col>
+                        <v-col class="text-end">{{ currentUser.company_name || "--" }} </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col class="text-start">
+                            <label class="profile-label">Tipo</label>
+                        </v-col>
+                        <v-col class="text-end"> {{ currentUser.company_type || "--" }} </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col class="text-start">
+                            <label class="profile-label">Tipo de Documento Compañia</label>
+                        </v-col>
+                        <v-col class="text-end">{{ currentUser.company_document_type || "--" }}</v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col class="text-start">
+                            <label class="profile-label">Documento</label>
+                        </v-col>
+                        <v-col class="text-end">
+                            {{ currentUser.company_document_number || "--" }}
+                        </v-col>
+                    </v-row>
+
+                    <CustomButton class="mb-4" block color="grey" v-if="currentUser.company_name" text="Editar mi Empresa" @click="editFactory()" />
+                    <CustomButton class="mb-4" block color="grey" v-else text="Añadir mi Empresa" @click="editFactory()" />
+
                     <p class="mb-0">
                         Realiza las compras como persona juridica agregando los datos de facturación como empresa.
                     </p>
