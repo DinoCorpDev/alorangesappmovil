@@ -28,18 +28,34 @@
                                 </div>
                                 <div class="form-group mb-6">
                                     <label class="black--text">ESCRIBIR CONTRASEÑA</label>
-                                    <CustomInput
+                                    <!-- <CustomInput
                                         placeholder="Contraseña"
                                         v-model="form.password"
                                         type="password"
                                         :error-messages="passwordErrors"
+                                        :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
+                                        @click:append="passwordShow = !passwordShow"
                                         required
-                                    />
+                                    /> -->
+                                    <v-text-field
+                                        v-model="form.password"
+                                        placeholder="Contraseña"
+                                        :error-messages="passwordErrors"
+                                        :type="passwordShow ? 'text' : 'password'"
+                                        :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
+                                        class="input-group--focused place-holder"
+                                        hide-details="auto"
+                                        required
+                                        dense
+                                        outlined
+                                        @click:append="passwordShow = !passwordShow"
+                                    ></v-text-field>
                                 </div>
                                 <p class="black--text link-forgot">
                                     ¿HAS OLVIDADO TU CONTRASEÑA?
                                     <a @click="showModalRecuperarPass" class="black--text">
                                         <b>Ir a recuperar contraseña</b>
+                                        <ArrowForget />
                                     </a>
                                 </p>
 
@@ -86,6 +102,7 @@ import { required, email } from "vuelidate/lib/validators";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 
 import AuthFooter from "./AuthFooter.vue";
+import ArrowForget from "../../components/icons/ArrowForget.vue";
 import CarouselLogin from "../../components/global/CarouselLogin.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
@@ -99,7 +116,8 @@ export default {
         CustomButton,
         CustomInput,
         ModalRegister,
-        RecuperarPass
+        RecuperarPass,
+        ArrowForget
     },
     data: () => ({
         form: {
@@ -108,10 +126,11 @@ export default {
         },
         loading: false,
         showRegister: false,
+        passwordShow: false,
         showRecuperarPass: false,
         sliderItems: [
             {
-                src: "/public/assets/img/Loginfondo1.png",
+                src: "/public/assets/img/Loginfondo1.jpg",
                 type: "image"
             },
             {
@@ -235,24 +254,25 @@ export default {
 }
 
 .v-input {
-  font-family: "Roboto", sans-serif;
-  font-size: 15px;
-  letter-spacing: 0.5px;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
 
     &::v-deep {
-            .v-input__control,
-            .v-input__slot {
-                min-height: 38px;
-            }
+        .v-input__control,
+        .v-input__slot {
+            min-height: 38px;
+        }
 
-            ::placeholder {
+        ::placeholder {
             visibility: hidden;
-            }
+        }
 
-            :hover::placeholder {
-                visibility: visible;
-            }
-            &:not(.v-input--has-state) {
+        :hover::placeholder {
+            visibility: visible;
+            font-style: italic;
+        }
+        &:not(.v-input--has-state) {
             .v-input__slot fieldset {
                 color: #dfdfdf;
             }
@@ -291,5 +311,32 @@ export default {
 .link-forgot {
     font-size: var(--font-size-caption);
     letter-spacing: 0.4px;
+}
+
+.theme--light {
+    .v-input {
+        &::v-deep {
+            .v-input__slot {
+                background: #f5f5f5;
+
+                &:hover {
+                    background: #dfdfdf;
+                }
+            }
+        }
+
+        &.v-text-field--outlined {
+            &::v-deep {
+                &:not(.v-input--has-state) {
+                    .v-input__slot {
+                        &:hover,
+                        fieldset {
+                            border-color: #f5f5f5;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 </style>
