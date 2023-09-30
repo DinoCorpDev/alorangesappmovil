@@ -17,7 +17,7 @@
         depressed
     >
         <i v-if="icon && iconPosition == 'left'" :class="`las ${icon} ${text ? 'mr-3' : ''}`"></i>
-        <template v-if="text"> <span :class="textClass">{{ text }}</span></template>
+        <template v-if="text"><span :class="textClass">{{ text }}</span></template>
         <slot v-else />
         <i v-if="icon && iconPosition == 'right'" :class="`las ${icon} ${text ? 'ml-3' : ''}`"></i>
 
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-    name: "CustomButton",
+    name: "CustomButtonRegister",
     props: {
         text: String,
         width: String,
@@ -36,6 +36,10 @@ export default {
         iconPosition: {
             type: String,
             default: "left"
+        },
+        accept: {
+          type: String,
+
         },
         textClass:{
             type: String
@@ -130,6 +134,7 @@ export default {
             position: absolute;
             top: 50%;
             left: 0;
+            right:50%;
             transform: translate(-50%, -50%);
         }
 

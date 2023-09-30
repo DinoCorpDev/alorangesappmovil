@@ -112,8 +112,16 @@
                                         name="personType"
                                         type="radio"
                                         v-model="form.personType" style="width: 90%; display: inline-flex;"
-                                    /> <i class="las la-exclamation-circle icon-tooltip-uno" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona natural"></i>
-
+                                    /> 
+                                    <v-tooltip bottom color="black">
+                                            <template v-slot:activator="{ on, attrs }" >
+                                                
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
+                                            </template>
+                                            <span>Se aplicaran los impuestos al</span>
+                                            <br>
+                                            <span>facturar como persona juridica</span>
+                                        </v-tooltip>
                                 </v-col>
                                 <v-col cols="12" sm="12" style="margin-bottom: 50px;">
                                     <CustomCheckbox
@@ -122,7 +130,18 @@
                                         name="personType"
                                         type="radio"
                                         v-model="form.personType" style="width: 90%; display: inline-flex;"
-                                    /> <i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
+                                    /> 
+
+                                    <v-tooltip bottom color="black">
+
+                                        <template v-slot:activator="{ on, attrs }" >     
+                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
+                                        </template>
+                                        <span>Se aplicaran los impuestos al</span>
+                                        <br>
+                                        <span>facturar como persona juridica</span>
+                                    </v-tooltip>
+                                
                                 </v-col>
                             </v-row>
                         </v-stepper-content>
@@ -267,10 +286,26 @@
                                             class="form-control upload"
                                             v-model="form.filedocumento"
                                             accept="application/pdf"
-                                        />
+                                        >
+                                        <template v-slot:label>
+                                                <ArrowUpload />
+                                                <span>SUBIR DOCUMENTO</span>
+                                            </template>
+
+                                        </v-file-input>
                                     </v-col>
                                     <v-col cols="2" class="icono-documento">
-                                        <i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
+                                        <v-tooltip bottom color="black">
+                                            <template v-slot:activator="{ on, attrs }" >
+                                                
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
+                                            </template>
+                                            <span>&bullet; Documentos en formato PDF</span>
+                                            <br>
+                                            <span>&bullet; Ambas caras de ID ampliadas al 150</span>
+                                            <br>
+                                            <span>&bullet; Documento legible y en color</span>
+                                        </v-tooltip>
                                     </v-col>
                                 </v-row>
 
@@ -281,15 +316,38 @@
                                         </span>
                                     </v-col>
                                     <v-col cols="10">
+
+                                        <!-- REVISAR--------------------------------- -->
                                         <v-file-input
-                                            placeholder="SUBIR DOCUMENTO"
+                                            
                                             class="form-control upload"
                                             v-model="form.filecamara"
                                             accept="application/pdf"
-                                        />
+                                            single-line
+                                        >
+                                        
+                                            <template v-slot:label>
+                                                <ArrowUpload />
+                                                <span>SUBIR DOCUMENTO</span>
+                                            </template>
+
+                                        </v-file-input>
+
+                                        <!-- REVISAR--------------------------------- -->
+
                                     </v-col>
                                     <v-col cols="2" class="icono-documento">
-                                        <i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
+                                        <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
+                                        <v-tooltip bottom color="black">
+                                            <template v-slot:activator="{ on, attrs }" >
+                                                
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
+                                            </template>
+                                            <span>&bullet; Documentos en formato PDF</span>
+                                            <br>
+                                            <span>&bullet; Cámara de comercio no mayor a 90 días</span>
+                                        </v-tooltip>
+
                                     </v-col>
                                 </v-row>
 
@@ -305,10 +363,25 @@
                                             class="form-control upload"
                                             v-model="form.filerut"
                                             accept="application/pdf"
-                                        />
+                                        >
+                                        <template v-slot:label>
+                                                <ArrowUpload />
+                                                <span>SUBIR DOCUMENTO</span>
+                                            </template>
+
+                                        </v-file-input>
                                     </v-col>
                                     <v-col cols="2" class="icono-documento">
-                                        <i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title="Se aplicarán los impuestos a la factura como persona jurídica"></i>
+
+                                        <v-tooltip bottom color="black">
+                                            <template v-slot:activator="{ on, attrs }" >
+                                                
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
+                                            </template>
+                                            <span>&bullet; Documentos en formato PDF</span>
+                                            <br>
+                                            <span>&bullet; RUT actualizado</span>
+                                        </v-tooltip>
                                     </v-col>
                                 </v-row>
                             </template>
@@ -481,17 +554,18 @@
             </v-form>
 
             <v-card-actions class="pa-5">
-                <CustomButton
+                <CustomButtonR
                     v-if="numberPag > 1"
                     icon="la-angle-left"
                     text="Volver"
                     color="nero"
                     type="button"
                     @click="before"
+                    text-class="mr-6"
                 />
                 <v-spacer></v-spacer>
                 <v-spacer></v-spacer>
-                <CustomButton
+                <CustomButtonR
                     v-if="numberPag == 3"
                     text="Omitir"
                     color="white2"
@@ -501,7 +575,7 @@
                 />
                 <v-spacer></v-spacer>
                 <v-spacer></v-spacer>
-                <CustomButton
+                <CustomButtonR
                     v-if="numberPag < 3"
                     icon="la-angle-right"
                     iconPosition="right"
@@ -509,16 +583,18 @@
                     color="nero"
                     type="button"
                     class="boton-continuar" 
+                    text-class="ml-6"
                     @click="after"
 
                 />
-                <CustomButton
+                <CustomButtonR
                     v-if="numberPag == 3"
                     icon="la-angle-right"
                     iconPosition="right"
                     text="Registrame"
                     color="nero"
                     type="submit"
+                    text-class="ml-6"
                     @click="register"
                     :disabled="loadingregister"
                     :loadingregister="loadingregister"
@@ -533,11 +609,12 @@ import { VueTelInput } from "vue-tel-input";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import { required, requiredIf, email, minLength, sameAs } from "vuelidate/lib/validators";
 
-import CustomButton from "../../components/global/CustomButton.vue";
+import CustomButtonR from "../../components/global/CustomButtonRegister.vue";
 import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
 import snackbar from "../../components/inc/SnackBar";
+import ArrowUpload from "../../components/icons/ArrowUpload.vue";
 
 // Custom validators
 const isTrue = value => value === true;
@@ -547,7 +624,8 @@ export default {
         value: Boolean
     },
     components: {
-        CustomButton,
+        ArrowUpload,
+        CustomButtonR,
         CustomCheckbox,
         CustomInput,
         SelectCustom,
@@ -559,7 +637,7 @@ export default {
             mobileInputProps: {
                 inputOptions: {
                     type: "tel",
-                    placeholder: "--"
+                    placeholder: "Ingresar teléfono / celular"
                 },
                 dropdownOptions: {
                     showDialCodeInSelection: false,
@@ -1146,6 +1224,7 @@ export default {
     }
 }
 
+
 .custom-checkbox {
     padding-left: 40px;
     border: 1px solid;
@@ -1223,6 +1302,7 @@ export default {
 
             :hover::placeholder {
                 visibility: visible;
+                font-style: italic;
             }
             &:not(.v-input--has-state) {
             .v-input__slot fieldset {
@@ -1257,42 +1337,31 @@ export default {
 
 .upload {
 
+    
     border-radius: 100px;
     width: 100%;
 
     &::v-deep {
 
-            ::placeholder {
-            justify-content: center;
-            align-items: center;
-            place-items: center;
-            }
+        .v-label{
 
-            :hover::placeholder {
-                color:#000000;
+            right: 0% !important;
+            text-align: center;
+
             }
 
     }
 }
 
 
-.upload::-webkit-input-placeholder {
-    text-align: center;
-  }
-.upload::-moz-placeholder {
-    text-align: center;
-  }
-.upload:-ms-input-placeholder {
-    text-align: center;
-  }
-.upload::placeholder {
-    text-align: center;
-  }
+
 
 
 .icono-documento{
     display: flex;
     align-items: center;
 }
+
+
 
 </style>
