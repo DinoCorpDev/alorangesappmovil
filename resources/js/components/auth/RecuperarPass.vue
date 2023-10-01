@@ -39,12 +39,16 @@
                             <v-container class="d-flex flex-grow-1 pa-0">
                                 <div class="">
                                     <p>
-                                        Introduce el correo electrónico o el número de teléfono asocuadios a tu cuenta
-                                        para cambiar de contraseña
+                                        Introduce el correo electrónico o número de teléfono asociados a tu cuenta para
+                                        poder cambiar tu contraseña.
                                     </p>
                                     <div class="inputs mb-5">
-                                        <label class="black--text text-uppercase">CORREO ELECTRÓNICO</label>
+                                        <label class="black--text text-uppercase"
+                                            >Correo electrónico o número de teléfono</label
+                                        >
                                         <CustomInput
+                                            placeholder="Correo electrónico o número de teléfono"
+                                            class="place-holder"
                                             type="email"
                                             v-model="form.email"
                                             :error-messages="emailErrors"
@@ -68,6 +72,8 @@
                                         <v-col cols="12" md="6" class="inputs mb-5">
                                             <label class="black--text text-uppercase">PRIMER NOMBRE</label>
                                             <CustomInput
+                                                placeholder="Ingresar primer nombre"
+                                                class="place-holder"
                                                 type="text"
                                                 v-model="form.first_name"
                                                 :error-messages="firstNameErrors"
@@ -78,6 +84,8 @@
                                         <v-col cols="12" md="6" class="inputs mb-5">
                                             <label class="black--text text-uppercase">PRIMER APELLIDO</label>
                                             <CustomInput
+                                                placeholder="Ingresar primer apellido"
+                                                class="place-holder"
                                                 type="text"
                                                 v-model="form.first_lastname"
                                                 :error-messages="firstLastNameErrors"
@@ -105,7 +113,7 @@
                                         <v-col cols="12" sm="12">
                                             <CustomCheckbox
                                                 inputValue="Natural"
-                                                label="Enviar un correo electrónico a ******@***.***"
+                                                label="Enviar un correo electrónico a ******@*****.*om"
                                                 name="personType"
                                                 type="radio"
                                             />
@@ -113,7 +121,7 @@
                                         <v-col cols="12" sm="12">
                                             <CustomCheckbox
                                                 inputValue="Juridical"
-                                                label="Enviar un mensaje de texto al *******"
+                                                label="Enviar un mensaje de texto al ***********"
                                                 name="personType"
                                                 type="radio"
                                                 disabled
@@ -426,6 +434,33 @@ export default {
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+.place-holder {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+
+    &::v-deep {
+        .v-input__control,
+        .v-input__slot {
+            min-height: 38px;
+        }
+
+        ::placeholder {
+            visibility: hidden;
+        }
+
+        :hover::placeholder {
+            visibility: visible;
+            font-style: italic;
+        }
+        &:not(.v-input--has-state) {
+            .v-input__slot fieldset {
+                color: #dfdfdf;
             }
         }
     }

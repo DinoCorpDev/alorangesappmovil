@@ -31,6 +31,9 @@
                         <v-stepper-content step="1">
                             <v-container class="">
                                 <div class="forgot-password-content">
+                                    <p>
+                                        Digita el código que enviamos a tu cuenta asociada par cambiar la contraseña.
+                                    </p>
                                     <div class="inputs mb-4">
                                         <label class="black--text text-uppercase">CÓDIGO</label>
                                         <CustomInput
@@ -39,6 +42,8 @@
                                             block
                                             type="number"
                                             :error-messages="codeErrors"
+                                            placeholder="Ingresar código de seguridad"
+                                            class="place-holder"
                                             hide-details="auto"
                                             :disabled="loading"
                                             required
@@ -61,23 +66,35 @@
                                     </p>
                                     <div class="inputs mb-4">
                                         <label class="black--text text-uppercase">Introduce una contraseña nueva</label>
-                                        <CustomInput
-                                            type="password"
+                                        <v-text-field
+                                            :type="passwordShow ? 'text' : 'password'"
+                                            placeholder="Contraseña"
                                             v-model="form.password"
                                             :error-messages="passwordErrors"
+                                            :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
+                                            class="input-group--focused place-holder"
+                                            @click:append="passwordShow = !passwordShow"
                                             hide-details="auto"
                                             required
+                                            dense
+                                            outlined
                                         />
                                     </div>
 
                                     <div class="inputs mb-2">
                                         <label class="black--text text-uppercase">Confirma tu contraseña</label>
-                                        <CustomInput
-                                            type="password"
+                                        <v-text-field
+                                            :type="passwordShow ? 'text' : 'password'"
+                                            placeholder="Contraseña"
+                                            :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
+                                            class="input-group--focused place-holder"
+                                            @click:append="passwordShow = !passwordShow"
                                             v-model="form.confirmPassword"
                                             :error-messages="confirmPasswordErrors"
                                             hide-details="auto"
                                             required
+                                            dense
+                                            outlined
                                         />
                                     </div>
                                 </div>
@@ -129,7 +146,8 @@ export default {
         },
         loading: false,
         loadingregister: false,
-        numberPag: 1
+        numberPag: 1,
+        passwordShow: false
     }),
     components: {
         CustomButton,
@@ -292,6 +310,32 @@ export default {
     }
 }
 
+.v-input {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+
+    &::v-deep {
+        .v-input__control,
+        .v-input__slot {
+            min-height: 38px;
+        }
+
+        ::placeholder {
+            visibility: hidden;
+        }
+
+        :hover::placeholder {
+            visibility: visible;
+            font-style: italic;
+        }
+        &:not(.v-input--has-state) {
+            .v-input__slot fieldset {
+                color: #dfdfdf;
+            }
+        }
+    }
+}
 .v-divider {
     border-color: #e4e4e4 !important;
 }
@@ -316,6 +360,32 @@ export default {
     }
 }
 
+.place-holder {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+
+    &::v-deep {
+        .v-input__control,
+        .v-input__slot {
+            min-height: 38px;
+        }
+
+        ::placeholder {
+            visibility: hidden;
+        }
+
+        :hover::placeholder {
+            visibility: visible;
+            font-style: italic;
+        }
+        &:not(.v-input--has-state) {
+            .v-input__slot fieldset {
+                color: #dfdfdf;
+            }
+        }
+    }
+}
 .theme--light {
     .v-input {
         &::v-deep {

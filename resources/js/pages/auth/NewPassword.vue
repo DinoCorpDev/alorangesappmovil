@@ -25,8 +25,12 @@
                             </p>
 
                             <div class="inputs mb-5">
-                                <label class="black--text text-uppercase">{{ $t("email_address") }}</label>
+                                <label class="black--text text-uppercase"
+                                    >Correo electrónico o número de teléfono</label
+                                >
                                 <CustomInput
+                                    placeholder="Correo electrónico o número de teléfono"
+                                    class="place-holder"
                                     type="email"
                                     v-model="form.email"
                                     :error-messages="emailErrors"
@@ -256,6 +260,60 @@ export default {
 
             @media (min-width: 600px) {
                 font-size: 15px;
+            }
+        }
+    }
+}
+
+.theme--light {
+    .v-input {
+        &::v-deep {
+            .v-input__slot {
+                background: #f5f5f5;
+
+                &:hover {
+                    background: #dfdfdf;
+                }
+            }
+        }
+
+        &.v-text-field--outlined {
+            &::v-deep {
+                &:not(.v-input--has-state) {
+                    .v-input__slot {
+                        &:hover,
+                        fieldset {
+                            border-color: #f5f5f5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.place-holder {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+
+    &::v-deep {
+        .v-input__control,
+        .v-input__slot {
+            min-height: 38px;
+        }
+
+        ::placeholder {
+            visibility: hidden;
+        }
+
+        :hover::placeholder {
+            visibility: visible;
+            font-style: italic;
+        }
+        &:not(.v-input--has-state) {
+            .v-input__slot fieldset {
+                color: #dfdfdf;
             }
         }
     }

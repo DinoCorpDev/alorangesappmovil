@@ -28,7 +28,7 @@ export default {
         },
         placeholder: {
             type: String,
-            default: "Esto es un placeholder!!!!!"
+            default: "Placeholder"
         },
         required: {
             type: Boolean,
@@ -47,27 +47,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .v-input {
-  font-family: "Roboto", sans-serif;
-  font-size: 15px;
-  letter-spacing: 0.5px;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
 
     &::v-deep {
-            .v-input__control,
-            .v-input__slot {
-                min-height: 38px;
-            }
+        .v-input__control,
+        .v-input__slot {
+            min-height: 38px;
+        }
 
-            &:not(.v-input--has-state) {
+        &:not(.v-input--has-state) {
             .v-input__slot fieldset {
                 color: #dfdfdf;
             }
         }
     }
 }
-
-
 
 .theme--light {
     .v-input {
