@@ -367,10 +367,10 @@
 
 
                                 <v-row>
-                                    <v-col cols="12">
+                                    <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span>
                                     </v-col>
-                                    <v-col cols="10">
+                                    <v-col cols="10" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
                                             class="form-control upload"
@@ -378,9 +378,9 @@
                                             accept="application/pdf"
                                         >
                                         <template v-slot:label>
-                                                <ArrowUpload />
-                                                <span>SUBIR DOCUMENTO</span>
-                                            </template>
+                                            <ArrowUpload />
+                                            <span>SUBIR DOCUMENTO</span>
+                                        </template>
 
                                         </v-file-input>
                                     </v-col>
@@ -400,12 +400,12 @@
                                 </v-row>
 
                                 <v-row>
-                                    <v-col cols="12">
+                                    <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase">
                                             Numero de CAMARA DE COMERCIO (ARCHIVO)
                                         </span>
                                     </v-col>
-                                    <v-col cols="10">
+                                    <v-col cols="10" class="area-upload">
 
                                         <!-- REVISAR--------------------------------- -->
                                         <v-file-input
@@ -442,12 +442,12 @@
                                 </v-row>
 
                                 <v-row>
-                                    <v-col cols="12">
+                                    <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase">
                                             RUT (ARCHIVO)
                                         </span>
                                     </v-col>
-                                    <v-col cols="10">
+                                    <v-col cols="10" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
                                             class="form-control upload"
@@ -1406,6 +1406,7 @@ export default {
             &::v-deep {
                 &:not(.v-input--has-state) {
                     .v-input__slot {
+
                         &:hover,
                         fieldset {
                             border-color: #f5f5f5;
@@ -1482,18 +1483,99 @@ export default {
 
             }
 
+        .v-input__slot{
+            cursor: pointer;
+        }
+
+        .v-text-field__slot{
+            .v-label--active{
+                display: none;
+            }
+        }
+    }
+}
+
+.theme--light{
+    .v-text-field:not(.v-input--has-state){
+        &::v-deep{
+            &:hover{
+                .v-input__control{
+                    .v-input__slot{
+                        &::before{
+                            border-color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .v-text-field{
+
+        &::v-deep{
+            .v-input__control{
+                .v-input__slot{
+                    
+                    // position: relative;
+
+                    &::before{
+                        border-color: white;
+                    }
+                    // .v-text-field__slot{
+                    //     position: absolute;
+                    //     top:20%;
+                    //     left: 50%;
+                    // }            
+                }    
+            }
+        }    
     }
 }
 
 
+.upload{
 
+    &::v-deep{
+        .v-input__control{
+
+            .v-input__slot{
+
+                // .v-text-field__slot{
+                //     position: absolute;
+                //     top: 20%;
+                //     left: 50%;
+                // }
+            }
+        }
+    }
+}
 
 
 .icono-documento{
     display: flex;
     align-items: center;
+    margin-bottom: 7.5px;
 }
 
+.texto-upload{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
 
+.area-upload{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.upload{
+
+    &::v-deep{
+        .v-input__prepend-outer{
+            
+            display: none !important;
+            
+        }
+    }
+}
 
 </style>
