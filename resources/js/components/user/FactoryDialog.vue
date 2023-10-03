@@ -4,10 +4,10 @@
             <v-form class="modal-empresa-form" ref="empresaForm"  lazy-validation>
                 <v-row>
                     <v-col cols="12" md="6">
-                        <span class="black--text body-2 text-uppercase">Nombre de la Empresa</span>
+                        <span class="black--text body-2 text-uppercase">Razón social de la empresa</span>
                         <custom-input
-                            v-model="form.companyName"
-                            @blur="$v.form.companyName.$touch()"
+                            v-model="form.companyRazon"
+                            @blur="$v.form.companyRazon.$touch()"
                             required
                         />
                     </v-col>
@@ -118,7 +118,7 @@ export default {
             secondLastname: "",
             documentType: "",
             documentNumber: "",
-            companyName: "",
+            companyRazon: "",
             companyType: "",
             companyDocumentType: "",
             companyDocumentNumber: "",
@@ -131,14 +131,14 @@ export default {
     }),
     validations: {
         form: {
-            companyName: { required },
+            companyRazon: { required },
             companyType: { required },
             companyDocumentType: { required },
             companyDocumentNumber: { required },
         }
     },
     async created() {
-        this.form.companyName = this.currentUser.company_name;
+        this.form.companyRazon = this.currentUser.company_razon;
         this.form.companyType = this.currentUser.company_type;
         this.form.companyDocumentType = this.currentUser.company_document_type;
         this.form.companyDocumentNumber = this.currentUser.company_document_number;
@@ -203,10 +203,10 @@ export default {
             !this.$v.form.documentNumber.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
-        companyNameErrors() {
+        companyRazonErrors() {
             const errors = [];
-            if (!this.$v.form.companyName.$dirty) return errors;
-            !this.$v.form.companyName.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            if (!this.$v.form.companyRazon.$dirty) return errors;
+            !this.$v.form.companyRazon.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         companyTypeErrors() {
@@ -263,10 +263,7 @@ export default {
             this.closeDialog();
         },
         async processOldProfile(oldVal) {
-            let oldProfile = { ...oldVal };
-
-            console.log(oldProfile);
-            
+            let oldProfile = { ...oldVal };            
         },
         closeDialog() {
             this.isVisible = false;

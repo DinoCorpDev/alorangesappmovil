@@ -111,7 +111,7 @@ class UserController extends Controller
         $user = User::find(auth('api')->user()->id);
 
         $user->update([
-            'company_name' => $request->companyName,
+            'company_razon' => $request->companyRazon,
             'company_type' => $request->companyType,
             'company_document_type' => $request->companyDocumentType,
             'company_document_number' => $request->companyDocumentNumber,

@@ -217,9 +217,9 @@
                     
                     <v-row>
                         <v-col class="text-start">
-                            <label class="profile-label">Nombre Compañia</label>
+                            <label class="profile-label">Razon Social Empresa</label>
                         </v-col>
-                        <v-col class="text-end">{{ currentUser.company_name || "--" }} </v-col>
+                        <v-col class="text-end">{{ currentUser.company_razon || "--" }} </v-col>
                     </v-row>
                     <v-row>
                         <v-col class="text-start">
@@ -242,7 +242,7 @@
                         </v-col>
                     </v-row>
 
-                    <CustomButton class="mb-4" block color="grey" v-if="currentUser.company_name" text="Editar mi Empresa" @click="editFactory()" />
+                    <CustomButton class="mb-4" block color="grey" v-if="currentUser.company_razon" text="Editar mi Empresa" @click="editFactory()" />
                     <CustomButton class="mb-4" block color="grey" v-else text="Añadir mi Empresa" @click="editFactory()" />
 
                     <p class="mb-0">
