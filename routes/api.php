@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\BrandController;
@@ -168,6 +169,12 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::get('address/delete/{id}', [AddressController::class, 'deleteShippingAddress']);
             Route::get('address/default-shipping/{id}', [AddressController::class, 'defaultShippingAddress']);
             Route::get('address/default-billing/{id}', [AddressController::class, 'defaultBillingAddress']);
+
+
+            Route::get('companies', [CompanyController::class, 'companies']);
+            Route::post('companies/create', [CompanyController::class, 'createCompany']);
+            Route::post('companies/update', [CompanyController::class, 'updateCompany']);
+            Route::get('companies/delete/{id}', [CompanyController::class, 'deleteCompany']);
 
             # conversation
             Route::get('querries', [ConversationController::class, 'index']);
