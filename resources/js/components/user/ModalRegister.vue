@@ -11,7 +11,7 @@
                 @submit.prevent="register()"
                 enctype="multipart/form-data"
             >
-                <v-stepper v-model="numberPag">
+                <v-stepper v-model="numberPag" v-if="registerNotification == false">
                     <v-stepper-header>
                         <v-stepper-step
                             :class="numberPag > 1 ? 'v-stepper__step--complete' : ''"
@@ -234,13 +234,13 @@
                             <template v-if="form.personType == 'Juridical'">
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase">Nombre de la Empresa</span>
+                                        <span class="black--text body-2 text-uppercase">Razón Social de la Empresa</span>
                                         <CustomInput
-                                            placeholder="Ingrese nombre de la empresa"
+                                            placeholder="Ingrese razón social de la empresa"
                                             class="place-holder"
-                                            v-model="form.companyName"
-                                            :error-messages="companyNameErrors"
-                                            @blur="$v.form.companyName.$touch()"
+                                            v-model="form.companyRazon"
+                                            :error-messages="companyRazonErrors"
+                                            @blur="$v.form.companyRazon.$touch()"
                                             required
                                         />
                                     </v-col>
@@ -287,6 +287,96 @@
                                         />
                                     </v-col>
                                 </v-row>
+
+                                <v-row>
+                                    <v-col cols="12" md="12">
+                                        <span class="black--text body-2 text-uppercase">
+                                            {{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }}
+                                        </span>
+
+                                        <div class="input-group">
+                                            <CustomInput
+                                                class="place-holder"
+                                                placeholder="Ingresar correo electrónico o teléfono"
+                                                type="email"
+                                                v-model="form.companyEmail"
+                                                :error-messages="companyEmailErrors"
+                                                @blur="$v.form.companyEmail.$touch()"
+                                                required 
+                                            />
+                                        </div>
+
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12" md="12">
+                                        <span class="black--text body-2 text-uppercase">Teléfono / Celular (Área Contable)</span>
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <vue-tel-input
+                                                    placeholder="Ingresar teléfono / celular"
+                                                    v-model="form.companyPhone"
+                                                    v-bind="mobileInputProps"
+                                                    :onlyCountries="availableCountries"
+                                                    @blur="$v.form.companyPhone.$touch()"
+                                                    :class="{
+                                                        'error--text': $v.form.companyPhone.$error || form.showInvalidPhone
+                                                    }"
+                                                    class="place-holder"
+                                                    >
+                                                    <template slot="arrow-icon">
+                                                        <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                                    </template>
+                                                </vue-tel-input>
+                                                <div class="v-text-field__details mt-2 pl-3" v-if="$v.form.companyPhone.$error">
+                                                    <div class="v-messages theme--light error--text" role="alert">
+                                                        <div class="v-messages__wrapper">
+                                                            <div class="v-messages__message">
+                                                                {{ $t("this_field_is_required") }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="v-text-field__details mt-2 pl-3"
+                                                    v-if="!$v.form.companyPhone.$error && form.showInvalidPhone"
+                                                >
+                                                    <div class="v-messages theme--light error--text" role="alert">
+                                                        <div class="v-messages__wrapper">
+                                                            <div class="v-messages__message">
+                                                                {{ $t("phone_number_must_be_valid") }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+
+                                 <v-row>
+                                    <v-col cols="12" md="12">
+                                        <span class="black--text body-2 text-uppercase">
+                                            {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }}
+                                        </span>
+
+                                        <div class="input-group">
+                                            <CustomInput
+                                                class="place-holder"
+                                                placeholder="Ingresar actividad economica"
+                                                type="text"
+                                                v-model="form.companyActividad"
+                                                :error-messages="firstLastnameErrors"
+                                                @blur="$v.form.companyActividad.$touch()"
+                                                required 
+                                            />
+                                        </div>
+
+                                    </v-col>
+                                </v-row>
+
+
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span>
@@ -562,9 +652,18 @@
                         </v-stepper-content>
                     </v-stepper-items>
                 </v-stepper>
+
+                <div align="center" style="height: 300px; margin-top: 50px; margin-right: 20px; margin-left: 20px;" v-if="registerNotification">
+                    <i class="las la-check" style="color: green;font-size: 80px;"></i>
+                    <br><br>
+
+                    <h5 align="center">¡Gracias por registrarse!</h5>
+                    <br><br>
+                    <p> Hemos enviado una notificación de confirmación a su dirección de correo electrónico registrado. </p>
+                </div> 
             </v-form>
 
-            <v-card-actions class="pa-5">
+            <v-card-actions class="pa-5" v-if="registerNotification == false">
                 <CustomButtonR
                     v-if="numberPag > 1"
                     icon="la-angle-left"
@@ -645,6 +744,7 @@ export default {
     },
     data() {
         return {
+            registerNotification: false,
             mobileInputProps: {
                 inputOptions: {
                     type: "tel",
@@ -666,7 +766,11 @@ export default {
             filteredCities: [],
             documentTypes: [
                 { text: "(C.C) Cedula de ciudadanía", value: "C.C" },
-                { text: "(N.I.T) Numero de identificación tributario", value: "N.I.T" }
+                { text: "(R.C) Registro Civil", value: "R.C" },
+                { text: "(C.E) Cédula de Extranjería", value: "C.E" },
+                { text: "(NIP) Numero de Identificación Personal", value: "N.I.P" },
+                { text: "(NUIP) Numero Ùnico de Identificación Personal", value: "N.U.I.P" },
+                { text: "(NES) Numero de Secretaría", value: "N.E.S" }
             ],
             companyTypes: [{ text: "(S.A.S) Sociedad por acciones simplificadas", value: "S.A.S" }],
             form: {
@@ -680,10 +784,13 @@ export default {
                 secondLastname: "",
                 documentType: "",
                 documentNumber: "",
-                companyName: "",
+                companyRazon: "",
                 companyType: "",
                 companyDocumentType: "",
                 companyDocumentNumber: "",
+                companyActividad: "",
+                companyPhone: "",
+                companyEmail: "",
                 phone: "",
                 policiesAndCookiesConsent: false,
                 offersConsent: false,
@@ -723,10 +830,13 @@ export default {
             secondLastname: { required },
             documentType: { required },
             documentNumber: { required },
-            companyName: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            companyRazon: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyDocumentType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            companyActividad: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            companyPhone: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            companyEmail: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             phone: { required }
         },
         mainAddress: {
@@ -746,6 +856,13 @@ export default {
             if (!this.$v.form.email.$dirty) return errors;
             !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
             !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            return errors;
+        },
+        companyEmailErrors() {
+            const errors = [];
+            if (!this.$v.form.companyEmail.$dirty) return errors;
+            !this.$v.form.companyEmail.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.companyEmail.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
             return errors;
         },
         passwordErrors() {
@@ -805,10 +922,10 @@ export default {
             !this.$v.form.documentNumber.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
-        companyNameErrors() {
+        companyRazonErrors() {
             const errors = [];
-            if (!this.$v.form.companyName.$dirty) return errors;
-            !this.$v.form.companyName.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            if (!this.$v.form.companyRazon.$dirty) return errors;
+            !this.$v.form.companyRazon.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         companyTypeErrors() {
@@ -827,6 +944,12 @@ export default {
             const errors = [];
             if (!this.$v.form.companyDocumentNumber.$dirty) return errors;
             !this.$v.form.companyDocumentNumber.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        actividadErrors() {
+            const errors = [];
+            if (!this.$v.form.companyActividad.$dirty) return errors;
+            !this.$v.form.companyActividad.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         addressErrors() {
@@ -899,7 +1022,12 @@ export default {
             }
         }
     },
+    mounted(){
+    },
     created() {
+        this.resetData();
+        this.registerNotification = false;
+        this.numberPag = 1;
         this.fetchCountries();
     },
     methods: {
@@ -975,7 +1103,8 @@ export default {
                 });
 
                 this.resetData();
-                this.showRegister = false;
+                this.registerNotification = true;
+                //this.showRegister = false;
             } else {
                 this.snack({
                     message: res.data.message,
@@ -1055,7 +1184,7 @@ export default {
                     return;
                 }
 
-                if(this.form.personType == 'Juridical' && (this.form.companyName == '' || this.form.companyType == '' || this.form.companyDocumentType == '' || this.form.companyDocumentNumber == '' )){
+                if(this.form.personType == 'Juridical' && (this.form.companyRazon == '' || this.form.companyType == '' || this.form.companyDocumentType == '' || this.form.companyDocumentNumber == '' || this.form.companyEmail == '' || this.form.companyActividad == '' || this.form.companyPhone == '')){
                     this.$v.form.$touch();
                     return;
                 }
@@ -1089,10 +1218,13 @@ export default {
             this.form.secondLastname = "";
             this.form.documentType = "";
             this.form.documentNumber = "";
-            this.form.companyName = "";
+            this.form.companyRazon = "";
             this.form.companyType = "";
             this.form.companyDocumentType = "";
             this.form.companyDocumentNumber = "";
+            this.form.companyActividad = "";
+            this.form.companyPhone = "";
+            this.form.companyEmail = "";
             this.form.filecamara = "";
             this.form.filedocumento = "";
             this.form.filerut = "";
@@ -1115,7 +1247,7 @@ export default {
             this.mainAddress.type = "shipping";
 
             this.numberPag = 1;
-
+            
             this.$v.form.$reset();
             this.$v.mainAddress.$reset();
         }
