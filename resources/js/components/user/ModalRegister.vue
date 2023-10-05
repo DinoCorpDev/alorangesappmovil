@@ -106,42 +106,53 @@
                                 </v-col>
 
                                 <v-col cols="12" sm="12">
-                                    <CustomCheckbox
-                                        inputValue="Natural"
-                                        label="Registrar como persona natural"
-                                        name="personType"
-                                        type="radio"
-                                        v-model="form.personType" style="width: 90%; display: inline-flex;"
-                                    /> 
-                                    <v-tooltip bottom color="black">
-                                            <template v-slot:activator="{ on, attrs }" >
-                                                
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
-                                            </template>
-                                            <span>Se aplicaran los impuestos al</span>
-                                            <br>
-                                            <span>facturar como persona juridica</span>
-                                        </v-tooltip>
+                                    <v-row>
+                                        <v-col cols="10">
+                                            <CustomCheckbox
+                                                inputValue="Natural"
+                                                label="Registrar como persona natural"
+                                                name="personType"
+                                                type="radio"
+                                                v-model="form.personType" style="width: 110%; display: inline-flex;"
+                                            /> 
+                                        </v-col>
+                                        <v-col cols="2" class="icono-persona">
+                                            <v-tooltip bottom color="black">
+                                                <template v-slot:activator="{ on, attrs }" >
+                                                            
+                                                    <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                                </template>
+                                                    <span>Se aplicaran los impuestos al</span>
+                                                    <br>
+                                                    <span>facturar como persona juridica</span>
+                                            </v-tooltip>
+                                        </v-col>
+                                    </v-row>
                                 </v-col>
-                                <v-col cols="12" sm="12" style="margin-bottom: 50px;">
-                                    <CustomCheckbox
-                                        inputValue="Juridical"
-                                        label="Registrar como persona jurídica"
-                                        name="personType"
-                                        type="radio"
-                                        v-model="form.personType" style="width: 90%; display: inline-flex;"
-                                    /> 
-
-                                    <v-tooltip bottom color="black">
-
-                                        <template v-slot:activator="{ on, attrs }" >     
-                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
-                                        </template>
-                                        <span>Se aplicaran los impuestos al</span>
-                                        <br>
-                                        <span>facturar como persona juridica</span>
-                                    </v-tooltip>
                                 
+                                <v-col cols="12" sm="12" style="margin-bottom: 50px;">
+                                    <v-row>
+                                        <v-col cols="10">
+                                            <CustomCheckbox
+                                                inputValue="Juridical"
+                                                label="Registrar como persona jurídica"
+                                                name="personType"
+                                                type="radio"
+                                                v-model="form.personType" style="width: 110%; display: inline-flex;"
+                                            /> 
+                                        </v-col>
+                                        <v-col cols="2" class="icono-persona">
+                                            <v-tooltip bottom color="black">
+
+                                                <template v-slot:activator="{ on, attrs }" >     
+                                                    <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                                </template>
+                                                <span>Se aplicaran los impuestos al</span>
+                                                <br>
+                                                <span>facturar como persona juridica</span>
+                                            </v-tooltip>
+                                        </v-col>
+                                    </v-row>
                                 </v-col>
                             </v-row>
                         </v-stepper-content>
@@ -280,7 +291,7 @@
                                     <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span>
                                     </v-col>
-                                    <v-col cols="10" class="area-upload">
+                                    <v-col cols="11" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
                                             class="form-control upload"
@@ -294,11 +305,11 @@
 
                                         </v-file-input>
                                     </v-col>
-                                    <v-col cols="2" class="icono-documento">
+                                    <v-col cols="1" class="icono-documento">
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }" >
                                                 
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
                                             </template>
                                             <span>&bullet; Documentos en formato PDF</span>
                                             <br>
@@ -315,7 +326,7 @@
                                             Numero de CAMARA DE COMERCIO (ARCHIVO)
                                         </span>
                                     </v-col>
-                                    <v-col cols="10" class="area-upload">
+                                    <v-col cols="11" class="area-upload">
 
                                         <!-- REVISAR--------------------------------- -->
                                         <v-file-input
@@ -336,12 +347,12 @@
                                         <!-- REVISAR--------------------------------- -->
 
                                     </v-col>
-                                    <v-col cols="2" class="icono-documento">
+                                    <v-col cols="1" class="icono-documento">
                                         <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }" >
                                                 
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
                                             </template>
                                             <span>&bullet; Documentos en formato PDF</span>
                                             <br>
@@ -357,7 +368,7 @@
                                             RUT (ARCHIVO)
                                         </span>
                                     </v-col>
-                                    <v-col cols="10" class="area-upload">
+                                    <v-col cols="11" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
                                             class="form-control upload"
@@ -371,12 +382,12 @@
 
                                         </v-file-input>
                                     </v-col>
-                                    <v-col cols="2" class="icono-documento">
+                                    <v-col cols="1" class="icono-documento">
 
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }" >
                                                 
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 35px; transform: rotate(180deg);"></i> 
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
                                             </template>
                                             <span>&bullet; Documentos en formato PDF</span>
                                             <br>
@@ -1142,23 +1153,22 @@ export default {
       }
 
 .icon-tooltip-dos[data-title]:hover::after {
-        content: attr(data-title);
-        position: absolute;
-        /*top: 70%;*/
-        bottom: 80%;
-        left: 0;
-        z-index: 500;
-        color: white;
-        background-color: grey;
-        font-size: 15px;
-        padding: 20px;
-        width: 300px;
-        border-radius: 10px;
-        font-style: normal;
-        transform: rotate(180deg);
-        opacity: 1;
-        
-      }
+    content: attr(data-title);
+    position: absolute;
+    /*top: 70%;*/
+    bottom: 80%;
+    left: 0;
+    z-index: 500;
+    color: white;
+    background-color: grey;
+    font-size: 15px;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    font-style: normal;
+    transform: rotate(180deg);
+    opacity: 1;
+}
 
 
 </style>
@@ -1317,8 +1327,7 @@ export default {
 .v-btn {
     &::v-deep {
         .v-btn__content {
-            margin-top: 2px;
-            
+            margin-top: 2px;  
         }
     }
 }
@@ -1338,24 +1347,26 @@ export default {
 
 .upload {
 
-    
+
     border-radius: 100px;
     width: 100%;
 
     &::v-deep {
 
         .v-label{
-
+            top: 24% !important;
+            left: 6.5% !important;
             right: 0% !important;
             text-align: center;
 
-            }
+        }
 
         .v-input__slot{
             cursor: pointer;
         }
 
         .v-text-field__slot{
+
             .v-label--active{
                 display: none;
             }
@@ -1365,6 +1376,7 @@ export default {
 
 .theme--light{
     .v-text-field:not(.v-input--has-state){
+        
         &::v-deep{
             &:hover{
                 .v-input__control{
@@ -1383,46 +1395,21 @@ export default {
         &::v-deep{
             .v-input__control{
                 .v-input__slot{
-                    
-                    // position: relative;
 
                     &::before{
                         border-color: white;
-                    }
-                    // .v-text-field__slot{
-                    //     position: absolute;
-                    //     top:20%;
-                    //     left: 50%;
-                    // }            
+                    }   
                 }    
             }
         }    
     }
 }
 
-
-.upload{
-
-    &::v-deep{
-        .v-input__control{
-
-            .v-input__slot{
-
-                // .v-text-field__slot{
-                //     position: absolute;
-                //     top: 20%;
-                //     left: 50%;
-                // }
-            }
-        }
-    }
-}
-
-
 .icono-documento{
     display: flex;
     align-items: center;
     margin-bottom: 7.5px;
+    justify-content: right;
 }
 
 .texto-upload{
@@ -1446,4 +1433,31 @@ export default {
     }
 }
 
+// ACTUALIZACIÓN 04/10/2023 J.M
+
+.icono-persona{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    text-align: right;
+}
+.custom-checkbox{
+    border-color:#cfcfcf;
+    color: #cfcfcf;
+}
+.custom-checkbox:hover{
+    border-color: grey;
+    color: grey;
+}
+
+.custom-checkbox-checkmark:active{
+    .custom-checkbox{
+        border-color: black;
+        color: black;
+    }
+}
+
+.theme--light.v-text-field>.v-input__control>.v-input__slot:before {
+    border-color: white;
+}
 </style>

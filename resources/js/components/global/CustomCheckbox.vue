@@ -106,6 +106,7 @@ export default {
 
         input {
             &:is(:checked) {
+                
                 ~ .custom-checkbox-checkmark {
                     background-color: #ffffff;
 
@@ -162,12 +163,13 @@ export default {
         height: 0;
         width: 0;
 
-        &:is(:checked) {
+        &:is(:checked) {   
             ~ .custom-checkbox-checkmark {
                 background-color: #000000;
             }
         }
 
+        
         &:not(:checked) {
             ~ .custom-checkbox-checkmark {
                 svg {

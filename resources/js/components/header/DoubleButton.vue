@@ -1,18 +1,29 @@
 <template>
-    <CustomButton :color="$vuetify.theme.dark ? 'grey' : 'black2'" class="double-button" :to="{ name: 'Cart' }">
+    
+    <div class="layout-navbar-nav">
+        <CustomButton
+                v-if="!userIsLoggedIn"
+                :color="$vuetify.theme.dark ? 'grey' : 'black2'"
+                class="double-button"
+                text="Iniciar Sesión"
+                @click="showLoginDialog(true)"
+            />
+        <CustomButton v-else :color="$vuetify.theme.dark ? 'grey' : 'black2'" class="double-button" :to="{ name: 'Cart' }">
         <span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
-            {{ userShortName ? userShortName : "Iniciar Sesión" }}
+            {{ userShortName ? userShortName : "--" }}
         </span>
         <div class="double-button-cart">
             <ShopCartIcon class="mr-2 mr-sm-3" />
             <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
             <span class="status-indicator" :class="{ active: userShortName }"></span>
         </div>
-    </CustomButton>
+        </CustomButton>
+            
+    </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
 
@@ -25,9 +36,31 @@ export default {
         // Icons
         ShopCartIcon
     },
+    data() {
+        return {
+            headerFixed: false,
+            logoLarge: false,
+            scrollThreshold: 10
+        };
+    },
     computed: {
         ...mapGetters("cart", ["getCartCount"]),
-        ...mapGetters("auth", ["userShortName"])
+        ...mapGetters("auth", ["userShortName"]),
+        ...mapGetters("auth", ["userIsLoggedIn"])
+    },
+    mounted() {
+        window.addEventListener("resize", this.handleScroll);
+        window.addEventListener("scroll", this.handleScroll, { passive: true });
+    },
+    methods: {
+        ...mapMutations("auth", ["showLoginDialog"]),
+        handleScroll() {
+            const currentScroll = this.$refs.layoutNavbar.currentScroll;
+            const windowWidth = window.innerWidth;
+
+            this.headerFixed = currentScroll >= this.scrollThreshold;
+            this.logoLarge = windowWidth < 960 ? false : this.headerFixed;
+        }
     }
 };
 </script>
