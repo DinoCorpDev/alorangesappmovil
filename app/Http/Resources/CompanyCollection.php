@@ -16,7 +16,7 @@ class CompanyCollection extends ResourceCollection
                     'first_name' => $data->first_name,
                     'second_name' => $data->second_name,
                     'first_lastname' => $data->first_lastname,
-                    'secondLastname' => $data->second_lastname,
+                    'second_lastname' => $data->second_lastname,
                     'registerSince' => $data->created_at,
                     'person_type' => $data->person_type,
                     'document_type' => $data->document_type,

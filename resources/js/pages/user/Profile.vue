@@ -255,8 +255,147 @@
                             <custom-button class="mr-3" color="red" text="Eliminar" @click="deleteAddress(otherAdd?.id)" />
                         </div>
 
+                        <div v-if="otherAdd?.editar == true">
+                            <h5 class="fw-600">Editar Dirección</h5>
+                            <v-form :validator="$v.otherAdd" autocomplete="chrome-off">
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">Dirección (Calle / Carrera)</div>
+                                    <CustomInput
+                                        v-model="otherAdd.name"
+                                        required
+                                    />
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("address") }}</div>
+                                <CustomInput
+                                        v-model="otherAdd.address"
+                                        required
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("postal_code") }}</div>
+                                    <v-text-field
+                                        :placeholder="$t('postal_code')"
+                                        type="text"
+                                        v-model="otherAdd.postal_code"
+                                        hide-details="auto"
+                                        required
+                                        outlined
+                                    ></v-text-field>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
+                                    <SelectCustom
+                                        :items="countries"    
+                                        @input="countryChanged"
+                                        item-text="name"
+                                        item-value="id"
+                                        required
+                                        v-model="otherAdd.country"
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("state") }}</div>
+                                    <SelectCustom
+                                        :items="filteredStates"
+                                        @input="stateChanged"
+                                        item-text="name"
+                                        item-value="id"
+                                        required
+                                        v-model="otherAdd.state"
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">City</div>
+                                    <SelectCustom
+                                        :items="filteredCities"
+                                        item-text="name"
+                                        item-value="id"
+                                        required
+                                        v-model="otherAdd.city"
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
+                                    <CustomInput v-model="otherAdd.neighborhood" />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <vue-tel-input
+                                                v-model="otherAdd.phone"
+                                                v-bind="mobileInputProps"
+                                                :onlyCountries="availableCountries"
+                                                @validate="phoneValidate"
+                                                @blur="$v.formDirection.phone.$touch()"
+                                                :class="{
+                                                    'error--text': $v.formDirection.phone.$error || formDirection.showInvalidPhone
+                                                }"
+                                            >
+                                                <template slot="arrow-icon">
+                                                    <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                                </template>
+                                            </vue-tel-input>
+                                            <div
+                                                class="v-text-field__details mt-2 pl-3"
+                                                v-if="$v.formDirection.phone.$error"
+                                            >
+                                                <div class="v-messages theme--light error--text" role="alert">
+                                                    <div class="v-messages__wrapper">
+                                                        <div class="v-messages__message">
+                                                            {{ $t("this_field_is_required") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="v-text-field__details mt-2 pl-3"
+                                                v-if="!$v.formDirection.phone.$error && formDirection.showInvalidPhone"
+                                            >
+                                                <div class="v-messages theme--light error--text" role="alert">
+                                                    <div class="v-messages__wrapper">
+                                                        <div class="v-messages__message">
+                                                            {{ $t("phone_number_must_be_valid") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="4" md="4">
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="< Cancelar"
+                                                type="button"
+                                                color="black"
+                                                @click="cancelEditAddress(otherAdd)"
+                                            />
+                                        </v-col>
+                                        <v-col  cols="4" md="4" style="margin-left: 33%">
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="Guardar >"
+                                                type="submit"
+                                                color="black"
+                                                @click="saveEditAddress(otherAdd)"
+                                                :disabled="infoUpdateLoading"
+                                                :loading="infoUpdateLoading"
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                </div>
+                            </v-form>
+                        </div>
+
                         <v-divider class="my-4" />
                     </div>
+
 
                     <div v-if="addDirection">
                         <h5 class="fw-600">Añadir Dirección</h5>
@@ -380,7 +519,7 @@
                                 </v-row>
 
                                 <v-row>
-                                    <v-col cols="12" md="6">
+                                    <v-col  cols="4" md="4">
                                         <custom-button
                                             block
                                             class="mt-5"
@@ -389,6 +528,9 @@
                                             color="black"
                                             @click="cancelAddAddress"
                                         />
+                                    </v-col>
+
+                                    <v-col  cols="4" md="4" style="margin-left: 33%">
                                         <custom-button
                                             block
                                             class="mt-5"
@@ -1143,4 +1285,4 @@ export default {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-</style>
+</style> 
