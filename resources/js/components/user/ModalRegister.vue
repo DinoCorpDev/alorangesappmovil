@@ -367,9 +367,8 @@
                                                 placeholder="Ingresar actividad economica"
                                                 type="text"
                                                 v-model="form.companyActividad"
-                                                :error-messages="firstLastnameErrors"
+                                                :error-messages="actividadErrors"
                                                 @blur="$v.form.companyActividad.$touch()"
-                                                required 
                                             />
                                         </div>
 
@@ -676,12 +675,14 @@
                 <v-spacer></v-spacer>
                 <v-spacer></v-spacer>
                 <CustomButtonR
-                    v-if="numberPag == 3"
+                    v-if="numberPag == 2"
                     text="Omitir"
                     color="white2"
                     type="button"
-                    @click="showRegister = false"
+                    @click="omitir"
                     class="boton-redondo"
+                    :disabled="loadingregister"
+                    :loadingregister="loadingregister"
                 />
                 <v-spacer></v-spacer>
                 <v-spacer></v-spacer>
@@ -861,8 +862,7 @@ export default {
         companyEmailErrors() {
             const errors = [];
             if (!this.$v.form.companyEmail.$dirty) return errors;
-            !this.$v.form.companyEmail.required && errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.companyEmail.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            !this.$v.form.companyEmail.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         passwordErrors() {
@@ -949,7 +949,7 @@ export default {
         actividadErrors() {
             const errors = [];
             if (!this.$v.form.companyActividad.$dirty) return errors;
-            !this.$v.form.companyActividad.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.companyActividad.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         addressErrors() {
@@ -996,7 +996,6 @@ export default {
         },
         fileDocumentoErrors() {
             const errors = [];
-            console.log(this.$v.form.filedocumento);
             if (!this.$v.form.filedocumento.$dirty) return errors;
             !this.$v.form.filedocumento.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
@@ -1048,6 +1047,71 @@ export default {
         onFileChangeRut(e) {
             console.log(e.target.files[0]);
             this.form.filerut = e.target.files[0];
+        },
+        async omitir(){
+            if(this.form.firstName == '' || this.form.firstLastname == '' || this.form.secondLastname == '' || this.form.documentType == '' || this.form.documentNumber == ''){
+                this.$v.form.$touch();
+                return;
+            }
+
+            if (this.form.personType == "Juridical") {
+                if(this.form.companyRazon == '' || this.form.companyType == '' || this.form.companyDocumentType == '' || this.form.companyDocumentNumber == '' || this.form.companyActividad == '' || this.form.companyPhone == '' || this.form.companyEmail == ''){
+                    this.$v.form.$touch();
+                    return;
+                }
+
+                if (
+                    this.form.filecamara.length == 0 ||
+                    this.form.filedocumento.length == 0 ||
+                    this.form.filerut.length == 0
+                ) {
+                    this.snack({
+                        message: "Por favor cargue los archivos!",
+                        color: "red"
+                    });
+                    return;
+                }
+
+                
+            }
+
+            this.form.phone = this.form.phone.replace(/\s/g, "");
+            this.mainAddress.phone = this.form.phone;
+
+            this.loadingregister = true;
+            let formData = new FormData();
+
+            formData.append("filecamara", this.form.filecamara);
+            formData.append("filedocumento", this.form.filedocumento);
+            formData.append("filerut", this.form.filerut);
+            formData.append("form", JSON.stringify(this.form));
+
+            const res = await this.call_api("post", "auth/signup", formData, true);
+
+            if (res.data.success) {
+                this.mainAddress.customer_id = res.data.user.id;
+
+                this.snack({
+                    message: res.data.message,
+                    color: "green"
+                });
+
+                await this.saveAddress().then(() => {
+                    this.showLoginDialog(false);
+                    this.updateChatWindow(false);
+                });
+
+                this.resetData();
+                this.registerNotification = true;
+                //this.showRegister = false;
+            } else {
+                this.snack({
+                    message: res.data.message,
+                    color: "red"
+                });
+            }
+
+            this.loadingregister = false;
         },
         async register() {
             this.$v.form.$touch();
