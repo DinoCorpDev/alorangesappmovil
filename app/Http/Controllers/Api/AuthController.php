@@ -10,6 +10,7 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Company;
 use App\Notifications\EmailVerificationNotification;
 use Str;
 
@@ -108,6 +109,32 @@ class AuthController extends Controller
         ]);
 
         $user->save();
+
+        if($input->personType == 'Juridical'){
+            $company = new Company([
+                'user_id' => $user->id,
+                'person_type' => $user->person_type,
+                'first_name' => $user->first_name,
+                'second_name' => $user->second_name,
+                'first_lastname' => $user->first_lastname,
+                'second_lastname' => $user->second_lastname,
+                'document_type' => $user->document_type,
+                'document_number' => $user->document_number,
+                'company_razon' => $user->company_razon,
+                'company_email' => $user->company_email,
+                'company_phone' => $user->company_phone,
+                'company_actividad' => $user->company_actividad,
+                'company_type' => $user->company_type,
+                'company_document_type' => $user->company_document_type,
+                'company_document_number' => $user->company_document_number,
+                'documento_file' => $docfile,
+                'camara_file' => $camarafile,
+                'rut_file' => $rutfile,
+            ]);
+            $company->save();
+        }
+
+        
 
         if (isset($input->temp_user_id) && $input->temp_user_id != null) {
             Cart::where('temp_user_id', $input->temp_user_id)->update(

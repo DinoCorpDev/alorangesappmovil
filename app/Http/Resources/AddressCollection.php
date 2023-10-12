@@ -27,7 +27,8 @@ class AddressCollection extends ResourceCollection
                     'phone' => $data->phone,
                     'default_shipping' => $data->default_shipping,
                     'default_billing' => $data->default_billing,
-                    'default_service' => $data->default_service
+                    'default_service' => $data->default_service,
+                    'editar' => false
                 ];
             })
         ]; 

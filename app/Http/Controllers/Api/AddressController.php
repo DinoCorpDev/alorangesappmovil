@@ -146,6 +146,7 @@ class AddressController extends Controller
         }
 
         $address->address = $request->address;
+        $address->name = $request->name;
         $address->country = Country::find($request->country)->name;
         $address->country_id = $request->country;
         $address->state = State::find($request->state)->name;
