@@ -15,10 +15,10 @@
             </template>
         </div>
 
-        <v-divider class="d-sm-none d-lg-block my-3" />
+        
         <v-divider class="d-none d-sm-inline-flex d-lg-none mx-5" vertical />
 
-        <h6 class="user-nav-label mb-3">Usuario</h6>
+        <h6 class="user-nav-label mb-3 mt-10" >Cuenta</h6>
         <div class="user-nav-buttons bottom mb-3 mb-sm-0">
             <template v-for="item in userNavLinks.user">
                 <CustomButton
@@ -50,7 +50,10 @@ export default {
                 purchase: [
                     { label: "Carrito", link: "Cart" },
                     { label: "Favoritos", link: "Wishlist" },
-                    { label: "Facturas", link: "PurchaseHistory" }
+                    { label: "Facturas", link: "PurchaseHistory" },
+                    { label: "Suscripciones", link: "PurchaseHistory" },
+                    { label: "Proyectos", link: "PurchaseHistory" }
+
                 ],
                 user: [
                     { label: "Perfil", link: "Profile" },

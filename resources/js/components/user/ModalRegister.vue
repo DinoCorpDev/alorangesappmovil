@@ -220,7 +220,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2 text-uppercase">Numero de Documento</span>
+                                    <span class="black--text body-2 text-uppercase">Numero de Documento (Representante)</span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Ingresar número de documento"
@@ -275,11 +275,11 @@
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">
                                             Numero de
-                                            {{ form.companyDocumentType ? form.companyDocumentType : "Documento" }}
+                                            {{ form.companyDocumentType ? form.companyDocumentType : "NIT" }}
                                         </span>
                                         <CustomInput
                                             class="place-holder"
-                                            placeholder="Indicar número de documento"
+                                            placeholder="Indicar número de NIT"
                                             v-model="form.companyDocumentNumber"
                                             :error-messages="companyDocumentNumberErrors"
                                             @blur="$v.form.companyDocumentNumber.$touch()"
@@ -291,13 +291,13 @@
                                 <v-row>
                                     <v-col cols="12" md="12">
                                         <span class="black--text body-2 text-uppercase">
-                                            {{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }}
+                                            {{ $t("CORREO ELECTRÓNICO (ÁREA CONTABLE)") }}
                                         </span>
 
                                         <div class="input-group">
                                             <CustomInput
                                                 class="place-holder"
-                                                placeholder="Ingresar correo electrónico o teléfono"
+                                                placeholder="Ingresar correo electrónico)"
                                                 type="email"
                                                 v-model="form.companyEmail"
                                                 :error-messages="companyEmailErrors"
@@ -418,7 +418,6 @@
                                     </v-col>
                                     <v-col cols="11" class="area-upload">
 
-                                        <!-- REVISAR--------------------------------- -->
                                         <v-file-input
                                             
                                             class="form-control upload"
@@ -433,8 +432,6 @@
                                             </template>
 
                                         </v-file-input>
-
-                                        <!-- REVISAR--------------------------------- -->
 
                                     </v-col>
                                     <v-col cols="1" class="icono-documento">
@@ -507,7 +504,7 @@
                             </v-row>
 
                             <v-row>
-                                <v-col cols="12" md="6">
+                                <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">
                                         Nombre De Dirección (Casa / Oficina)
                                     </span>
@@ -520,7 +517,7 @@
                                         required
                                     />
                                 </v-col>
-                                <v-col cols="12" md="6">
+                                <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase"> Dirección (Calle / Carrera) </span>
                                     <CustomInput
                                         class="place-holder"
@@ -677,7 +674,7 @@
                 <v-spacer></v-spacer>
                 <CustomButtonR
                     v-if="numberPag == 3"
-                    text="Omitir"
+                    text="Omitir paso"
                     color="white2"
                     type="button"
                     @click="showRegister = false"
@@ -1583,6 +1580,12 @@ export default {
 }
 
 .custom-checkbox-checkmark:active{
+        border-color: black;
+        color: black;
+    
+}
+
+.border-checked{
     .custom-checkbox{
         border-color: black;
         color: black;

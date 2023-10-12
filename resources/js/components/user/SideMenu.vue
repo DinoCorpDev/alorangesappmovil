@@ -14,14 +14,14 @@
                 </h3>
             </div>
             <CustomButton class="d-none d-sm-flex d-lg-none" color="white" @click="logout">
-                {{ $t("logout") }}
+                {{ $t("Cerrar sesión") }}
             </CustomButton>
         </div>
 
         <UserMenu />
 
         <CustomButton class="d-sm-none d-lg-flex" block color="white" @click="logout">
-            {{ $t("logout") }}
+            {{ $t("Cerrar sesión") }}
         </CustomButton>
 
         <v-divider class="d-none d-lg-block my-5" />
@@ -96,4 +96,6 @@ export default {
         }
     }
 }
+
+
 </style>

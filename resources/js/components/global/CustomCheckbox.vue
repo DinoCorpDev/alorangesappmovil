@@ -1,6 +1,6 @@
 <template>
     <div class="custom-checkbox" :class="{ 'error--text': error }" @click="toggleCheckbox">
-        <div class="custom-checkbox-input">
+        <div class="custom-checkbox-input" :class="isChecked ? 'border-checked' : ''">
             <input
                 :id="id"
                 :name="name"
@@ -163,7 +163,11 @@ export default {
         height: 0;
         width: 0;
 
-        &:is(:checked) {   
+        &:is(:checked) {
+            .custom-checkbox{
+                color: black;
+                background-color: black;
+            }
             ~ .custom-checkbox-checkmark {
                 background-color: #000000;
             }
@@ -196,5 +200,11 @@ export default {
             border-width: 2px;
         }
     }
+}
+
+.border-checked{
+    custom-checkbox-input{
+    color: black;
+    border-color: black;}
 }
 </style>

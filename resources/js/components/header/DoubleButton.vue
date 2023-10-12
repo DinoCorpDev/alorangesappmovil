@@ -1,24 +1,34 @@
 <template>
-    
     <div class="layout-navbar-nav">
         <CustomButton
-                v-if="!userIsLoggedIn"
-                :color="$vuetify.theme.dark ? 'grey' : 'black2'"
-                class="double-button"
-                text="Iniciar Sesión"
-                @click="showLoginDialog(true)"
-            />
-        <CustomButton v-else :color="$vuetify.theme.dark ? 'grey' : 'black2'" class="double-button" :to="{ name: 'Cart' }">
-        <span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
-            {{ userShortName ? userShortName : "--" }}
-        </span>
-        <div class="double-button-cart">
-            <ShopCartIcon class="mr-2 mr-sm-3" />
-            <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
-            <span class="status-indicator" :class="{ active: userShortName }"></span>
-        </div>
+            v-if="!userIsLoggedIn"
+            :color="$vuetify.theme.dark ? 'grey' : 'black2'"
+            class="double-button"
+            @click="showLoginDialog(true)"
+            ><span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
+                {{ "Iniciar sesión" }}
+            </span>
+            <div class="double-button-cart">
+                <ShopCartIcon class="mr-2 mr-sm-3" />
+                <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
+                <span class="status-indicator" :class="{ active: userShortName }"></span>
+            </div>
         </CustomButton>
-            
+        <CustomButton
+            v-else
+            :color="$vuetify.theme.dark ? 'grey' : 'black2'"
+            class="double-button"
+            :to="{ name: 'Cart' }"
+        >
+            <span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
+                {{ userShortName ? userShortName : "--" }}
+            </span>
+            <div class="double-button-cart">
+                <ShopCartIcon class="mr-2 mr-sm-3" />
+                <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
+                <span class="status-indicator" :class="{ active: userShortName }"></span>
+            </div>
+        </CustomButton>
     </div>
 </template>
 
