@@ -31,104 +31,107 @@
         />
         <factory-dialog :show="factoryDialogShow" @close="factoryDialogClosed" :old-factory="factorySelectedForEdit" />
         <v-row>
+            <!-- USUARIO PRINCIPAL---------------------------------------------------------------------->
+
             <v-col cols="12" md="6">
                 <h5 class="fw-600">Información</h5>
                 <v-divider class="my-4" />
-                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-if="!editarUser">
-                    <h5 class="fw-600" style="display: inline;">Usuario principal</h5>
+                <v-card
+                    elevation="0"
+                    class="mb-6 form-border rounded-lg pa-5"
+                    style="background: #f5f5f5"
+                    v-if="!editarUser"
+                >
+                    <h5 class="fw-600" style="display: inline">Usuario principal</h5>
                     <i class="las la-star"></i>
                     <i class="las la-eye-slash" v-if="mostrarDatos" @click="ocultarDatosUsuario"></i>
                     <i class="las la-eye" @click="mostrarDatosUsuario" v-else></i>
                     <v-divider class="my-4" />
 
-                        <div v-if="mostrarDatos">
-                            <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                            <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">CORREO ELECTRONICO</label>
-                                </v-col>
-                                <v-col class="text-end">{{ currentUser.email || "--" }} </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">TIPO DE PERSONA</label>
-                                </v-col>
-                                <v-col class="text-end"> {{ currentUser.personType || "--" }} </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">NOMBRE COMPLETO</label>
-                                </v-col>
-                                <v-col class="text-end">{{ currentUser.name || "--" }}</v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">TIPO DE DOCUMENTO</label>
-                                </v-col>
-                                <v-col class="text-end">
-                                    {{ currentUser.documentType || "--" }}
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">DOCUMENTO</label>
-                                </v-col>
-                                <v-col class="text-end">
-                                    {{ currentUser.documentNumber || "--" }}
-                                </v-col>
-                            </v-row>
-                        </div>
-                        <div v-else>
-                            <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                            <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">CORREO ELECTRONICO</label>
-                                </v-col>
-                                <v-col class="text-end">******@******.*** </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">TIPO DE PERSONA</label>
-                                </v-col>
-                                <v-col class="text-end"> {{ currentUser.personType || "--" }} </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">NOMBRE COMPLETO</label>
-                                </v-col>
-                                <v-col class="text-end">******* ******** *********</v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">TIPO DE DOCUMENTO</label>
-                                </v-col>
-                                <v-col class="text-end">
-                                    {{ currentUser.documentType || "--" }}
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col class="text-start">
-                                    <label class="profile-label">DOCUMENTO</label>
-                                </v-col>
-                                <v-col class="text-end">
-                                    *****************
-                                </v-col>
-                            </v-row>
-                        </div>
+                    <div v-if="mostrarDatos">
+                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
-                            <v-col>
-                                <custom-button color="grey" text="Editar" @click="editProfile()" />
+                            <v-col class="text-start">
+                                <label class="profile-label">CORREO ELECTRONICO</label>
+                            </v-col>
+                            <v-col class="text-end">{{ currentUser.email || "--" }} </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">TIPO DE PERSONA</label>
+                            </v-col>
+                            <v-col class="text-end"> {{ currentUser.personType || "--" }} </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">NOMBRE COMPLETO</label>
+                            </v-col>
+                            <v-col class="text-end">{{ currentUser.name || "--" }}</v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">TIPO DE DOCUMENTO</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                {{ currentUser.documentType || "--" }}
                             </v-col>
                         </v-row>
-
-                        <v-divider class="my-4" />
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">NÚMERO DE DOCUMENTO</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                {{ currentUser.documentNumber || "--" }}
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <div v-else>
+                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">CORREO ELECTRONICO</label>
+                            </v-col>
+                            <v-col class="text-end">******@******.*** </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">TIPO DE PERSONA</label>
+                            </v-col>
+                            <v-col class="text-end"> {{ currentUser.personType || "--" }} </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">NOMBRE COMPLETO</label>
+                            </v-col>
+                            <v-col class="text-end">******* ******** *********</v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">TIPO DE DOCUMENTO</label>
+                            </v-col>
+                            <v-col class="text-end">
+                                {{ currentUser.documentType || "--" }}
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col class="text-start">
+                                <label class="profile-label">NÚMERO DE DOCUMENTO</label>
+                            </v-col>
+                            <v-col class="text-end"> ***************** </v-col>
+                        </v-row>
+                    </div>
+                    <v-row>
+                        <v-col>
+                            <custom-button color="grey" style="width: 33%" text="Editar" @click="editProfile()" />
+                        </v-col>
+                    </v-row>
                 </v-card>
 
-                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-else>
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-else>
                     <h5 class="fw-600">Editar usuario principal</h5>
-                    
+
                     <v-form class="inputs" ref="loginForm" lazy-validation>
                         <v-row>
                             <v-col cols="12" md="6">
@@ -212,376 +215,25 @@
                         </v-row>
                     </v-form>
                 </v-card>
+            </v-col>
 
-                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <h5 class="fw-600">Direcciones</h5>
-                    <v-divider class="my-4" />
-
-                    <div class="form" v-for="(otherAdd, i) in otherAdress" :key="i">
-                        <div v-if="otherAdd?.editar == false">
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Dirección</span>
-                                <span class="body1 text-right">{{ otherAdd?.address }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Descripción de Dirección</span>
-                                <span class="body1 text-right">{{ otherAdd?.address }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Codigo Postal</span>
-                                <span class="body1">{{ otherAdd?.postal_code }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Departamento</span>
-                                <span class="body1">{{ otherAdd?.state }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Municipio</span>
-                                <span class="body1">{{ otherAdd?.city }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Barrio</span>
-                                <span class="body1"> {{ (otherAdd?.neighborhood) ? otherAdd?.neighborhood : '--' }} </span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>
-                                <span class="body1">{{ otherAdd?.phone }}</span>
-                            </div>
-                            <custom-button
-                                class="mr-3"
-                                color="grey"
-                                text="Editar"
-                                @click="editDirection(otherAdd)"
-                            />
-
-                            <custom-button class="mr-3" color="red" text="Eliminar" @click="deleteAddress(otherAdd?.id)" />
-                        </div>
-
-                        <div v-if="otherAdd?.editar == true">
-                            <h5 class="fw-600">Editar Dirección</h5>
-                            <v-form :validator="$v.otherAdd" autocomplete="chrome-off">
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Dirección (Calle / Carrera)</div>
-                                    <CustomInput
-                                        v-model="otherAdd.name"
-                                        required
-                                    />
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("address") }}</div>
-                                <CustomInput
-                                        v-model="otherAdd.address"
-                                        required
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("postal_code") }}</div>
-                                    <v-text-field
-                                        :placeholder="$t('postal_code')"
-                                        type="text"
-                                        v-model="otherAdd.postal_code"
-                                        hide-details="auto"
-                                        required
-                                        outlined
-                                    ></v-text-field>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
-                                    <SelectCustom
-                                        :items="countries"    
-                                        @input="countryChanged"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.country"
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("state") }}</div>
-                                    <SelectCustom
-                                        :items="filteredStates"
-                                        @input="stateChanged"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.state"
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">City</div>
-                                    <SelectCustom
-                                        :items="filteredCities"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.city"
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
-                                    <CustomInput v-model="otherAdd.neighborhood" />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
-                                    <v-row>
-                                        <v-col cols="12">
-                                            <vue-tel-input
-                                                v-model="otherAdd.phone"
-                                                v-bind="mobileInputProps"
-                                                :onlyCountries="availableCountries"
-                                                @validate="phoneValidate"
-                                                @blur="$v.formDirection.phone.$touch()"
-                                                :class="{
-                                                    'error--text': $v.formDirection.phone.$error || formDirection.showInvalidPhone
-                                                }"
-                                            >
-                                                <template slot="arrow-icon">
-                                                    <span class="vti__dropdown-arrow">&nbsp;▼</span>
-                                                </template>
-                                            </vue-tel-input>
-                                            <div
-                                                class="v-text-field__details mt-2 pl-3"
-                                                v-if="$v.formDirection.phone.$error"
-                                            >
-                                                <div class="v-messages theme--light error--text" role="alert">
-                                                    <div class="v-messages__wrapper">
-                                                        <div class="v-messages__message">
-                                                            {{ $t("this_field_is_required") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="v-text-field__details mt-2 pl-3"
-                                                v-if="!$v.formDirection.phone.$error && formDirection.showInvalidPhone"
-                                            >
-                                                <div class="v-messages theme--light error--text" role="alert">
-                                                    <div class="v-messages__wrapper">
-                                                        <div class="v-messages__message">
-                                                            {{ $t("phone_number_must_be_valid") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </v-col>
-                                    </v-row>
-
-                                    <v-row>
-                                        <v-col cols="4" md="4">
-                                            <custom-button
-                                                block
-                                                class="mt-4"
-                                                text="< Cancelar"
-                                                type="button"
-                                                color="black"
-                                                @click="cancelEditAddress(otherAdd)"
-                                            />
-                                        </v-col>
-                                        <v-col  cols="4" md="4" style="margin-left: 33%">
-                                            <custom-button
-                                                block
-                                                class="mt-4"
-                                                text="Guardar >"
-                                                type="submit"
-                                                color="black"
-                                                @click="saveEditAddress(otherAdd)"
-                                                :disabled="infoUpdateLoading"
-                                                :loading="infoUpdateLoading"
-                                            />
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                            </v-form>
-                        </div>
-
-                        <v-divider class="my-4" />
-                    </div>
-
-
-                    <div v-if="addDirection">
-                        <h5 class="fw-600">Añadir Dirección</h5>
-                        <v-form :validator="$v.formDirection" autocomplete="chrome-off">
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">Dirección (Calle / Carrera)</div>
-                                <CustomInput
-                                    v-model="formDirection.name"
-                                    :error-messages="addressNameErrors"
-                                    @blur="$v.formDirection.name.$touch()"
-                                    required
-                                />
-                            </div>
-                            
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("address") }}</div>
-                            <CustomInput
-                                    v-model="formDirection.address"
-                                    :error-messages="addressErrors"
-                                    @blur="$v.formDirection.address.$touch()"
-                                    required
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("postal_code") }}</div>
-                                <v-text-field
-                                    :placeholder="$t('postal_code')"
-                                    type="text"
-                                    v-model="formDirection.postal_code"
-                                    :error-messages="postalCodeErrors"
-                                    hide-details="auto"
-                                    required
-                                    outlined
-                                ></v-text-field>
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
-                                <SelectCustom
-                                    :error-messages="countryErrors"
-                                    :items="countries"
-                                    @blur="$v.formDirection.country.$touch()"
-                                    @input="countryChanged"
-                                    item-text="name"
-                                    item-value="id"
-                                    required
-                                    v-model="formDirection.country"
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("state") }}</div>
-                                <SelectCustom
-                                    :error-messages="stateErrors"
-                                    :items="filteredStates"
-                                    @blur="$v.formDirection.state.$touch()"
-                                    @input="stateChanged"
-                                    item-text="name"
-                                    item-value="id"
-                                    required
-                                    v-model="formDirection.state"
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">City</div>
-                                <SelectCustom
-                                    :error-messages="cityErrors"
-                                    :items="filteredCities"
-                                    @blur="$v.formDirection.city.$touch()"
-                                    item-text="name"
-                                    item-value="id"
-                                    required
-                                    v-model="formDirection.city"
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
-                                <CustomInput v-model="formDirection.neighborhood" />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
-                                <v-row>
-                                    <v-col cols="12">
-                                        <vue-tel-input
-                                            v-model="formDirection.phone"
-                                            v-bind="mobileInputProps"
-                                            :onlyCountries="availableCountries"
-                                            @validate="phoneValidate"
-                                            @blur="$v.formDirection.phone.$touch()"
-                                            :class="{
-                                                'error--text': $v.formDirection.phone.$error || formDirection.showInvalidPhone
-                                            }"
-                                        >
-                                            <template slot="arrow-icon">
-                                                <span class="vti__dropdown-arrow">&nbsp;▼</span>
-                                            </template>
-                                        </vue-tel-input>
-                                        <div
-                                            class="v-text-field__details mt-2 pl-3"
-                                            v-if="$v.formDirection.phone.$error"
-                                        >
-                                            <div class="v-messages theme--light error--text" role="alert">
-                                                <div class="v-messages__wrapper">
-                                                    <div class="v-messages__message">
-                                                        {{ $t("this_field_is_required") }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="v-text-field__details mt-2 pl-3"
-                                            v-if="!$v.formDirection.phone.$error && formDirection.showInvalidPhone"
-                                        >
-                                            <div class="v-messages theme--light error--text" role="alert">
-                                                <div class="v-messages__wrapper">
-                                                    <div class="v-messages__message">
-                                                        {{ $t("phone_number_must_be_valid") }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </v-col>
-                                </v-row>
-
-                                <v-row>
-                                    <v-col  cols="4" md="4">
-                                        <custom-button
-                                            block
-                                            class="mt-5"
-                                            text="Cancelar"
-                                            type="button"
-                                            color="black"
-                                            @click="cancelAddAddress"
-                                        />
-                                    </v-col>
-
-                                    <v-col  cols="4" md="4" style="margin-left: 33%">
-                                        <custom-button
-                                            block
-                                            class="mt-5"
-                                            text="Guardar"
-                                            type="submit"
-                                            color="black"
-                                            @click="saveAddress"
-                                            :disabled="infoUpdateLoading"
-                                            :loading="infoUpdateLoading"
-                                        />
-                                    </v-col>
-                                </v-row>
-                            </div>
-                        </v-form>
-                    </div>
-
-                    <CustomButton
-                        class="mb-4"
-                        block
-                        color="grey"
-                        text="Añadir Dirección"
-                        @click="addAddress"
-                    />
-                    <p class="mb-0">
-                        Puedes registrar otras direcciones para los envios de facturacion, entregas de productos y
-                        solicitudes de servicio.
-                    </p>
-                </v-card>
-
-                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <h5 class="fw-600">Contraseña</h5>
-                    <v-divider class="my-4" />
-                    <CustomButton block color="grey" text="Cambiar Contraseña" @click="editPassword()" />
-                </v-card>
-            </v-col>        
             <v-col cols="12" md="6">
                 <h5 class="fw-600">Empresas</h5>
                 <v-divider class="my-4" />
-                <div  v-for="(emp, i) in empresas" :key="i">
-                    
+                <div v-for="(emp, i) in empresas" :key="i">
                     <div v-if="emp.editar == false">
                         <div v-if="emp.mostrarDatos">
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                                <h5 class="fw-600" style="display: inline;">{{ emp.company_razon }}</h5>
+                                <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
                                 <i class="las la-star"></i>
-                                <i class="las la-eye-slash" v-if="emp.mostrarDatos" @click="ocultarDatosEmpresa(emp)"></i>
+                                <i
+                                    class="las la-eye-slash"
+                                    v-if="emp.mostrarDatos"
+                                    @click="ocultarDatosEmpresa(emp)"
+                                ></i>
                                 <i class="las la-eye" @click="mostrarDatosEmpresa(emp)" v-else></i>
                                 <v-divider class="my-4" />
-                                
+
                                 <v-row>
                                     <v-col class="text-start">
                                         <label class="profile-label">CORREO ELECTRONICO</label>
@@ -598,7 +250,9 @@
                                     <v-col class="text-start">
                                         <label class="profile-label">NOMBRE REPRESENTANTE</label>
                                     </v-col>
-                                    <v-col class="text-end">{{ emp.first_name + " " + emp.first_lastname  || "--" }}</v-col>
+                                    <v-col class="text-end">{{
+                                        emp.first_name + " " + emp.first_lastname || "--"
+                                    }}</v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start">
@@ -656,22 +310,26 @@
                                         {{ emp.company_phone || "--" }}
                                     </v-col>
                                 </v-row>
+                                <custom-button class="mr-3" color="grey" text="Editar" @click="editEmpresa(emp)" />
+
                                 <custom-button
                                     class="mr-3"
-                                    color="grey"
-                                    text="Editar"
-                                    @click="editEmpresa(emp)"
+                                    color="red"
+                                    text="Eliminar"
+                                    @click="deleteEmpresa(emp?.id)"
                                 />
-
-                                <custom-button class="mr-3" color="red" text="Eliminar" @click="deleteEmpresa(emp?.id)" />
                             </v-card>
                         </div>
 
                         <div v-else>
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                                <h5 class="fw-600" style="display: inline;">{{ emp.company_razon }}</h5>
+                                <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
                                 <i class="las la-star"></i>
-                                <i class="las la-eye-slash" v-if="emp.mostrarDatos" @click="ocultarDatosEmpresa(emp)"></i>
+                                <i
+                                    class="las la-eye-slash"
+                                    v-if="emp.mostrarDatos"
+                                    @click="ocultarDatosEmpresa(emp)"
+                                ></i>
                                 <i class="las la-eye" @click="mostrarDatosEmpresa(emp)" v-else></i>
                                 <v-divider class="my-4" />
                                 <v-row>
@@ -704,17 +362,13 @@
                                     <v-col class="text-start">
                                         <label class="profile-label">NÚMERO DE DOCUMENTO</label>
                                     </v-col>
-                                    <v-col class="text-end">
-                                        ************
-                                    </v-col>
+                                    <v-col class="text-end"> ************ </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start">
                                         <label class="profile-label">RAZÓN SOCIAL</label>
                                     </v-col>
-                                    <v-col class="text-end">
-                                        **************
-                                    </v-col>
+                                    <v-col class="text-end"> ************** </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start">
@@ -728,44 +382,36 @@
                                     <v-col class="text-start">
                                         <label class="profile-label">NÚMERO DE NIT</label>
                                     </v-col>
-                                    <v-col class="text-end">
-                                        *************
-                                    </v-col>
+                                    <v-col class="text-end"> ************* </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start">
                                         <label class="profile-label">CORREO ELECTRÓNICO (FACTURACIÓN)</label>
                                     </v-col>
-                                    <v-col class="text-end">
-                                        *******@*****.****
-                                    </v-col>
+                                    <v-col class="text-end"> *******@*****.**** </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start">
                                         <label class="profile-label">TELÉFONO / CELULAR ( ÁREA CONTABLE )</label>
                                     </v-col>
-                                    <v-col class="text-end">
-                                        **********
-                                    </v-col>
+                                    <v-col class="text-end"> ********** </v-col>
                                 </v-row>
+
+                                <custom-button class="mr-3" color="grey" text="Editar" @click="editEmpresa(emp)" />
 
                                 <custom-button
                                     class="mr-3"
-                                    color="grey"
-                                    text="Editar"
-                                    @click="editEmpresa(emp)"
+                                    color="red"
+                                    text="Eliminar"
+                                    @click="deleteEmpresa(emp?.id)"
                                 />
-
-                                <custom-button class="mr-3" color="red" text="Eliminar" @click="deleteEmpresa(emp?.id)" />
                             </v-card>
                         </div>
                     </div>
-
-                    
                 </div>
 
                 <div v-if="addEmpresa">
-                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" style="background-color: white">
                         <h5 class="fw-600">Añadir Empresa</h5>
                         <v-form :validator="$v.formEmpresa" autocomplete="chrome-off">
                             <v-row>
@@ -782,10 +428,10 @@
                                 </v-col>
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
-                                    <CustomInput 
-                                    class="place-holder"
-                                    v-model="formEmpresa.secondName"
-                                    placeholder="Ingresar segundo nombre"
+                                    <CustomInput
+                                        class="place-holder"
+                                        v-model="formEmpresa.secondName"
+                                        placeholder="Ingresar segundo nombre"
                                     />
                                 </v-col>
                             </v-row>
@@ -825,8 +471,6 @@
                                         required
                                     />
                                 </v-col>
-
-
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
@@ -884,7 +528,11 @@
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase">
                                         Numero de
-                                        {{ formEmpresa.companyDocumentType ? formEmpresa.companyDocumentType : "Documento" }}
+                                        {{
+                                            formEmpresa.companyDocumentType
+                                                ? formEmpresa.companyDocumentType
+                                                : "Documento"
+                                        }}
                                     </span>
                                     <CustomInput
                                         class="place-holder"
@@ -911,16 +559,17 @@
                                             v-model="formEmpresa.companyEmail"
                                             :error-messages="companyEmailErrors"
                                             @blur="$v.formEmpresa.companyEmail.$touch()"
-                                            required 
+                                            required
                                         />
                                     </div>
-
                                 </v-col>
                             </v-row>
 
                             <v-row>
                                 <v-col cols="12" md="12">
-                                    <span class="black--text body-2 text-uppercase">Teléfono / Celular (Área Contable)</span>
+                                    <span class="black--text body-2 text-uppercase"
+                                        >Teléfono / Celular (Área Contable)</span
+                                    >
                                     <v-row>
                                         <v-col cols="12">
                                             <vue-tel-input
@@ -930,15 +579,20 @@
                                                 :onlyCountries="availableCountries"
                                                 @blur="$v.formEmpresa.companyPhone.$touch()"
                                                 :class="{
-                                                    'error--text': $v.formEmpresa.companyPhone.$error || formEmpresa.showInvalidPhone
+                                                    'error--text':
+                                                        $v.formEmpresa.companyPhone.$error ||
+                                                        formEmpresa.showInvalidPhone
                                                 }"
                                                 class="place-holder"
-                                                >
+                                            >
                                                 <template slot="arrow-icon">
                                                     <span class="vti__dropdown-arrow">&nbsp;▼</span>
                                                 </template>
                                             </vue-tel-input>
-                                            <div class="v-text-field__details mt-2 pl-3" v-if="$v.formEmpresa.companyPhone.$error">
+                                            <div
+                                                class="v-text-field__details mt-2 pl-3"
+                                                v-if="$v.formEmpresa.companyPhone.$error"
+                                            >
                                                 <div class="v-messages theme--light error--text" role="alert">
                                                     <div class="v-messages__wrapper">
                                                         <div class="v-messages__message">
@@ -949,7 +603,9 @@
                                             </div>
                                             <div
                                                 class="v-text-field__details mt-2 pl-3"
-                                                v-if="!$v.formEmpresa.companyPhone.$error && formEmpresa.showInvalidPhone"
+                                                v-if="
+                                                    !$v.formEmpresa.companyPhone.$error && formEmpresa.showInvalidPhone
+                                                "
                                             >
                                                 <div class="v-messages theme--light error--text" role="alert">
                                                     <div class="v-messages__wrapper">
@@ -964,7 +620,7 @@
                                 </v-col>
                             </v-row>
 
-                                <v-row>
+                            <v-row>
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">
                                         {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }}
@@ -978,13 +634,11 @@
                                             v-model="formEmpresa.companyActividad"
                                             :error-messages="companyActividadErrors"
                                             @blur="$v.formEmpresa.companyActividad.$touch()"
-                                            required 
+                                            required
                                         />
                                     </div>
-
                                 </v-col>
                             </v-row>
-
 
                             <v-row>
                                 <v-col cols="12" class="texto-upload">
@@ -997,23 +651,26 @@
                                         v-model="formEmpresa.filedocumento"
                                         accept="application/pdf"
                                     >
-                                    <template v-slot:label>
-                                        <ArrowUpload />
-                                        <span>SUBIR DOCUMENTO</span>
-                                    </template>
-
+                                        <template v-slot:label>
+                                            <ArrowUpload />
+                                            <span>SUBIR DOCUMENTO</span>
+                                        </template>
                                     </v-file-input>
                                 </v-col>
                                 <v-col cols="1" class="icono-documento">
                                     <v-tooltip bottom color="black">
-                                        <template v-slot:activator="{ on, attrs }" >
-                                            
-                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <i
+                                                class="las la-exclamation-circle icon-tooltip-dos"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="font-size: 30px; transform: rotate(180deg)"
+                                            ></i>
                                         </template>
                                         <span>&bullet; Documentos en formato PDF</span>
-                                        <br>
+                                        <br />
                                         <span>&bullet; Ambas caras de ID ampliadas al 150</span>
-                                        <br>
+                                        <br />
                                         <span>&bullet; Documento legible y en color</span>
                                     </v-tooltip>
                                 </v-col>
@@ -1026,46 +683,42 @@
                                     </span>
                                 </v-col>
                                 <v-col cols="11" class="area-upload">
-
                                     <!-- REVISAR--------------------------------- -->
                                     <v-file-input
-                                        
                                         class="form-control upload"
                                         v-model="formEmpresa.filecamara"
                                         accept="application/pdf"
                                         single-line
                                     >
-                                    
                                         <template v-slot:label>
                                             <ArrowUpload />
                                             <span>SUBIR DOCUMENTO</span>
                                         </template>
-
                                     </v-file-input>
 
                                     <!-- REVISAR--------------------------------- -->
-
                                 </v-col>
                                 <v-col cols="1" class="icono-documento">
                                     <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
                                     <v-tooltip bottom color="black">
-                                        <template v-slot:activator="{ on, attrs }" >
-                                            
-                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <i
+                                                class="las la-exclamation-circle icon-tooltip-dos"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="font-size: 30px; transform: rotate(180deg)"
+                                            ></i>
                                         </template>
                                         <span>&bullet; Documentos en formato PDF</span>
-                                        <br>
+                                        <br />
                                         <span>&bullet; Cámara de comercio no mayor a 90 días</span>
                                     </v-tooltip>
-
                                 </v-col>
                             </v-row>
 
                             <v-row>
                                 <v-col cols="12" class="texto-upload">
-                                    <span class="black--text body-2 text-uppercase">
-                                        RUT (ARCHIVO)
-                                    </span>
+                                    <span class="black--text body-2 text-uppercase"> RUT (ARCHIVO) </span>
                                 </v-col>
                                 <v-col cols="11" class="area-upload">
                                     <v-file-input
@@ -1074,22 +727,24 @@
                                         v-model="formEmpresa.filerut"
                                         accept="application/pdf"
                                     >
-                                    <template v-slot:label>
+                                        <template v-slot:label>
                                             <ArrowUpload />
                                             <span>SUBIR DOCUMENTO</span>
                                         </template>
-
                                     </v-file-input>
                                 </v-col>
                                 <v-col cols="1" class="icono-documento">
-
                                     <v-tooltip bottom color="black">
-                                        <template v-slot:activator="{ on, attrs }" >
-                                            
-                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <i
+                                                class="las la-exclamation-circle icon-tooltip-dos"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="font-size: 30px; transform: rotate(180deg)"
+                                            ></i>
                                         </template>
                                         <span>&bullet; Documentos en formato PDF</span>
-                                        <br>
+                                        <br />
                                         <span>&bullet; RUT actualizado</span>
                                     </v-tooltip>
                                 </v-col>
@@ -1106,7 +761,7 @@
                                         @click="cancelAddEmpresa()"
                                     />
                                 </v-col>
-                                <v-col  cols="4" md="4" style="margin-left: 33%">
+                                <v-col cols="4" md="4" style="margin-left: 33%">
                                     <custom-button
                                         block
                                         class="mt-4"
@@ -1122,13 +777,416 @@
                         </v-form>
                     </v-card>
                 </div>
-                
+
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-if="addEmpresa == false">
                     <p class="mb-0">
                         Realiza las compras como persona juridica agregando los datos de facturación como empresa.
                     </p>
-                    <CustomButton class="mb-4" block color="grey" @click="addEmpresa = true" text="Añadir mi Empresa"/>
+                    <CustomButton class="mb-4" block color="grey" @click="addEmpresa = true" text="Añadir mi Empresa" />
                 </v-card>
+            </v-col>
+        </v-row>
+
+        <!-- DIRECCIONES ----------------------------------------------------------------------------->
+
+        <v-row>
+            <v-col cols="12">
+                <h5 class="fw-600">Direcciones</h5>
+                <v-divider class="my-4" />
+            </v-col>
+        </v-row>
+
+        <v-row>
+            <v-col cols="12" md="6">
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                    <h5 class="fw-600">Descripcion direccion</h5>
+                    <v-divider class="my-4" />
+
+                    <div class="form" v-for="(otherAdd, i) in otherAdress" :key="i">
+                        <div v-if="otherAdd?.editar == false">
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase fw-600">Dirección</span>
+                                <span class="body1 text-right">{{ otherAdd?.address }}</span>
+                            </div>
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase fw-600">Descripción de Dirección</span>
+                                <span class="body1 text-right">{{ otherAdd?.address }}</span>
+                            </div>
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase fw-600">Codigo Postal</span>
+                                <span class="body1">{{ otherAdd?.postal_code }}</span>
+                            </div>
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase fw-600">Departamento</span>
+                                <span class="body1">{{ otherAdd?.state }}</span>
+                            </div>
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase fw-600">Municipio</span>
+                                <span class="body1">{{ otherAdd?.city }}</span>
+                            </div>
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase fw-600">Barrio</span>
+                                <span class="body1">
+                                    {{ otherAdd?.neighborhood ? otherAdd?.neighborhood : "--" }}
+                                </span>
+                            </div>
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>
+                                <span class="body1">{{ otherAdd?.phone }}</span>
+                            </div>
+                            <custom-button class="mr-3" color="grey" text="Editar" @click="editDirection(otherAdd)" />
+
+                            <custom-button
+                                class="mr-3"
+                                color="red"
+                                text="Eliminar"
+                                @click="deleteAddress(otherAdd?.id)"
+                            />
+                        </div>
+
+                        <div v-if="otherAdd?.editar == true">
+                            <h5 class="fw-600">Editar Dirección</h5>
+                            <v-form :validator="$v.otherAdd" autocomplete="chrome-off">
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">Dirección (Calle / Carrera)</div>
+                                    <CustomInput v-model="otherAdd.name" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("address") }}</div>
+                                    <CustomInput v-model="otherAdd.address" required />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("postal_code") }}</div>
+                                    <v-text-field
+                                        :placeholder="$t('postal_code')"
+                                        type="text"
+                                        v-model="otherAdd.postal_code"
+                                        hide-details="auto"
+                                        required
+                                        outlined
+                                    ></v-text-field>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
+                                    <SelectCustom
+                                        :items="countries"
+                                        @input="countryChanged"
+                                        item-text="name"
+                                        item-value="id"
+                                        required
+                                        v-model="otherAdd.country"
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("state") }}</div>
+                                    <SelectCustom
+                                        :items="filteredStates"
+                                        @input="stateChanged"
+                                        item-text="name"
+                                        item-value="id"
+                                        required
+                                        v-model="otherAdd.state"
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">City</div>
+                                    <SelectCustom
+                                        :items="filteredCities"
+                                        item-text="name"
+                                        item-value="id"
+                                        required
+                                        v-model="otherAdd.city"
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
+                                    <CustomInput v-model="otherAdd.neighborhood" />
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <vue-tel-input
+                                                v-model="otherAdd.phone"
+                                                v-bind="mobileInputProps"
+                                                :onlyCountries="availableCountries"
+                                                @validate="phoneValidate"
+                                                @blur="$v.formDirection.phone.$touch()"
+                                                :class="{
+                                                    'error--text':
+                                                        $v.formDirection.phone.$error || formDirection.showInvalidPhone
+                                                }"
+                                            >
+                                                <template slot="arrow-icon">
+                                                    <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                                </template>
+                                            </vue-tel-input>
+                                            <div
+                                                class="v-text-field__details mt-2 pl-3"
+                                                v-if="$v.formDirection.phone.$error"
+                                            >
+                                                <div class="v-messages theme--light error--text" role="alert">
+                                                    <div class="v-messages__wrapper">
+                                                        <div class="v-messages__message">
+                                                            {{ $t("this_field_is_required") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="v-text-field__details mt-2 pl-3"
+                                                v-if="!$v.formDirection.phone.$error && formDirection.showInvalidPhone"
+                                            >
+                                                <div class="v-messages theme--light error--text" role="alert">
+                                                    <div class="v-messages__wrapper">
+                                                        <div class="v-messages__message">
+                                                            {{ $t("phone_number_must_be_valid") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="4" md="4">
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="< Cancelar"
+                                                type="button"
+                                                color="black"
+                                                @click="cancelEditAddress(otherAdd)"
+                                            />
+                                        </v-col>
+                                        <v-col cols="4" md="4" style="margin-left: 33%">
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="Guardar >"
+                                                type="submit"
+                                                color="black"
+                                                @click="saveEditAddress(otherAdd)"
+                                                :disabled="infoUpdateLoading"
+                                                :loading="infoUpdateLoading"
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                </div>
+                            </v-form>
+                        </div>
+
+                        <v-divider class="my-4" />
+                    </div>
+                </v-card>
+            </v-col>
+            <!-- ----------------------------------------------------------- -->
+
+            <v-col cols="12" md="6">
+                <div v-if="addDirection">
+                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" style="background-color: white">
+                        <h5 class="fw-600">Añadir Dirección</h5>
+                        <v-form :validator="$v.formDirection" autocomplete="chrome-off">
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">Dirección (Calle / Carrera)</div>
+
+                                <CustomInput
+                                    placeholder="Ingresar calle / carrera"
+                                    class="place-holder"
+                                    v-model="formDirection.name"
+                                    :error-messages="addressNameErrors"
+                                    @blur="$v.formDirection.name.$touch()"
+                                    required
+                                />
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">{{ $t("Dirección") }}</div>
+                                <CustomInput
+                                    placeholder="Ingresar dirección"
+                                    class="place-holder"
+                                    v-model="formDirection.address"
+                                    :error-messages="addressErrors"
+                                    @blur="$v.formDirection.address.$touch()"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">{{ $t("Código postal") }}</div>
+                                <v-text-field
+                                    placeholder="Ingresar código postal"
+                                    class="place-holder"
+                                    type="text"
+                                    v-model="formDirection.postal_code"
+                                    :error-messages="postalCodeErrors"
+                                    hide-details="auto"
+                                    required
+                                    outlined
+                                ></v-text-field>
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">{{ $t("País") }}</div>
+                                <SelectCustom
+                                    placeholder="Seleccionar país"
+                                    :error-messages="countryErrors"
+                                    :items="countries"
+                                    @blur="$v.formDirection.country.$touch()"
+                                    @input="countryChanged"
+                                    item-text="name"
+                                    item-value="id"
+                                    required
+                                    v-model="formDirection.country"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">{{ $t("Departamento") }}</div>
+                                <SelectCustom
+                                    placeholder="Seleccionar departamento"
+                                    :error-messages="stateErrors"
+                                    :items="filteredStates"
+                                    @blur="$v.formDirection.state.$touch()"
+                                    @input="stateChanged"
+                                    item-text="name"
+                                    item-value="id"
+                                    required
+                                    v-model="formDirection.state"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">Ciudad</div>
+                                <SelectCustom
+                                    placeholder="Seleccionar ciudad"
+                                    :error-messages="cityErrors"
+                                    :items="filteredCities"
+                                    @blur="$v.formDirection.city.$touch()"
+                                    item-text="name"
+                                    item-value="id"
+                                    required
+                                    v-model="formDirection.city"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
+                                <CustomInput
+                                    v-model="formDirection.neighborhood"
+                                    placeholder="Ingresar barrio"
+                                    class="place-holder"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
+                                <v-row>
+                                    <v-col cols="12">
+                                        <vue-tel-input
+                                            v-model="formDirection.phone"
+                                            v-bind="mobileInputProps"
+                                            :onlyCountries="availableCountries"
+                                            @validate="phoneValidate"
+                                            @blur="$v.formDirection.phone.$touch()"
+                                            :class="{
+                                                'error--text':
+                                                    $v.formDirection.phone.$error || formDirection.showInvalidPhone
+                                            }"
+                                        >
+                                            <template slot="arrow-icon">
+                                                <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                            </template>
+                                        </vue-tel-input>
+                                        <div
+                                            class="v-text-field__details mt-2 pl-3"
+                                            v-if="$v.formDirection.phone.$error"
+                                        >
+                                            <div class="v-messages theme--light error--text" role="alert">
+                                                <div class="v-messages__wrapper">
+                                                    <div class="v-messages__message">
+                                                        {{ $t("this_field_is_required") }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="v-text-field__details mt-2 pl-3"
+                                            v-if="!$v.formDirection.phone.$error && formDirection.showInvalidPhone"
+                                        >
+                                            <div class="v-messages theme--light error--text" role="alert">
+                                                <div class="v-messages__wrapper">
+                                                    <div class="v-messages__message">
+                                                        {{ $t("phone_number_must_be_valid") }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="4" md="4">
+                                        <custom-button
+                                            block
+                                            class="mt-5"
+                                            text="Cancelar"
+                                            type="button"
+                                            color="black"
+                                            @click="cancelAddAddress"
+                                        />
+                                    </v-col>
+
+                                    <v-col cols="4" md="4" style="margin-left: 33%">
+                                        <custom-button
+                                            block
+                                            class="mt-5"
+                                            text="Guardar"
+                                            type="submit"
+                                            color="black"
+                                            @click="saveAddress"
+                                            :disabled="infoUpdateLoading"
+                                            :loading="infoUpdateLoading"
+                                        />
+                                    </v-col>
+                                </v-row>
+                            </div>
+                        </v-form>
+                    </v-card>
+                </div>
+            </v-col>
+        </v-row>
+
+        <!-- ------------------------------------- -->
+        <v-row>
+            <v-col cols="12" md="6">
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                    <v-row>
+                        <v-col cols="3" style="display: flex; place-items: center">
+                            <ProfileAddress />
+                        </v-col>
+
+                        <v-col cols="9" style="display: flex; place-items: center">
+                            <p class="mb-0">
+                                Puedes registrar otras direcciones para los envios de facturacion, entregas de productos
+                                y solicitudes de servicio.
+                            </p>
+                        </v-col>
+                        <CustomButton class="mb-4" block color="grey" text="Añadir Dirección" @click="addAddress" />
+                    </v-row>
+                </v-card>
+            </v-col>
+        </v-row>
+
+        <!-- CAMBIAR CONTRASEÑA ---------------------------------------------------------------------->
+
+        <v-row>
+            <v-col cols="12" md="6">
+                <h5 class="fw-600">Contraseña</h5>
+                <v-divider class="my-4" />
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                    <CustomButton block color="grey" text="Cambiar Contraseña" @click="editPassword()" />
+                </v-card>
+            </v-col>
+
+            <v-col cols="12" md="6">
+                <h5 class="fw-600">Términos y condiciones</h5>
+                <v-divider class="my-4" />
 
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <h5 class="fw-600">Terminos y condiciones</h5>
@@ -1168,6 +1226,7 @@ import CustomInput from "../../components/global/CustomInput.vue";
 import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
 import ArrowUpload from "../../components/icons/ArrowUpload.vue";
+import ProfileAddress from "../../components/icons/ProfileAddress.vue";
 
 export default {
     data: () => ({
@@ -1286,7 +1345,8 @@ export default {
         CustomInput,
         CustomCheckbox,
         SelectCustom,
-        ArrowUpload
+        ArrowUpload,
+        ProfileAddress
     },
     validations: {
         form: {
@@ -1310,7 +1370,7 @@ export default {
             country: { required },
             state: { required },
             city: { required },
-            phone: { required },
+            phone: { required }
         },
         formEmpresa: {
             firstName: { required },
@@ -1324,8 +1384,8 @@ export default {
             companyDocumentNumber: { required },
             companyActividad: { required },
             companyPhone: { required },
-            companyEmail: { required },
-        },
+            companyEmail: { required }
+        }
     },
     computed: {
         ...mapGetters("auth", ["currentUser"]),
@@ -1406,49 +1466,65 @@ export default {
         },
         addressErrors() {
             const errors = [];
-            if (!this.$v.formDirection.address.$dirty){ return errors; }
+            if (!this.$v.formDirection.address.$dirty) {
+                return errors;
+            }
             !this.$v.formDirection.address.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         addressNameErrors() {
             const errors = [];
-            if (!this.$v.formDirection.name.$dirty){ return errors; }
+            if (!this.$v.formDirection.name.$dirty) {
+                return errors;
+            }
             !this.$v.formDirection.name.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         addressDetailsErrors() {
             const errors = [];
-            if (!this.$v.formDirection.details.$dirty){ return errors; }
+            if (!this.$v.formDirection.details.$dirty) {
+                return errors;
+            }
             !this.$v.formDirection.details.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         postalCodeErrors() {
             const errors = [];
-            if (!this.$v.formDirection.postal_code.$dirty){ return errors; }
+            if (!this.$v.formDirection.postal_code.$dirty) {
+                return errors;
+            }
             !this.$v.formDirection.postal_code.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         countryErrors() {
             const errors = [];
-            if (!this.$v.formDirection.country.$dirty){ return errors; }
+            if (!this.$v.formDirection.country.$dirty) {
+                return errors;
+            }
             !this.$v.formDirection.country.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         stateErrors() {
             const errors = [];
-            if (!this.$v.formDirection.state.$dirty){ return errors; }
+            if (!this.$v.formDirection.state.$dirty) {
+                return errors;
+            }
             !this.$v.formDirection.state.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         cityErrors() {
             const errors = [];
-            if (!this.$v.formDirection.city.$dirty){ return errors; }
+            if (!this.$v.formDirection.city.$dirty) {
+                return errors;
+            }
             !this.$v.formDirection.city.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         phoneErrors() {
             const errors = [];
-            if (!this.$v.formDirection.phone.$dirty){ return errors; }
+            if (!this.$v.formDirection.phone.$dirty) {
+                return errors;
+            }
             !this.$v.formDirection.phone.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
@@ -1523,7 +1599,7 @@ export default {
             if (!this.$v.formEmpresa.companyEmail.$dirty) return errors;
             !this.$v.formEmpresa.companyEmail.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
-        },
+        }
     },
     async created() {
         this.fetchCountries();
@@ -1563,16 +1639,16 @@ export default {
                 this.otherAdress = res.data?.data?.filter(address => address.default_shipping == 0);
             }
         },
-        async getEmpresasUser(){
+        async getEmpresasUser() {
             const res = await this.call_api("get", `user/companies`);
             if (res.data.success) {
                 this.empresas = res.data.data;
             }
         },
-        mostrarDatosUsuario(){
+        mostrarDatosUsuario() {
             this.mostrarDatos = true;
         },
-        ocultarDatosUsuario(){
+        ocultarDatosUsuario() {
             this.mostrarDatos = false;
         },
         async updateInfoUser() {
@@ -1601,7 +1677,7 @@ export default {
         },
         async saveAddress() {
             this.$v.formDirection.$touch();
-        
+
             if (this.$v.formDirection.$anyError) {
                 return;
             }
@@ -1610,7 +1686,7 @@ export default {
 
             this.adding = true;
             let data = {
-                type: 'billing',
+                type: "billing",
                 ...this.formDirection
             };
             const res = await this.call_api("post", "user/address/create", data);
@@ -1691,7 +1767,7 @@ export default {
             this.formUser.firstLastname = this.currentUser.firstLastname;
             this.formUser.secondLastname = this.currentUser.secondLastname;
             this.formUser.documentType = this.currentUser.documentType;
-            this.formUser.documentNumber = this.currentUser.documentNumber;                
+            this.formUser.documentNumber = this.currentUser.documentNumber;
         },
         editPassword() {
             this.passwordSelectedForEdit = this.currentUser;
@@ -1725,13 +1801,13 @@ export default {
             this.typeAddress = type;
             this.addDialogShow = true;
         },
-        addAddress(){
+        addAddress() {
             this.addDirection = true;
         },
-        cancelAddAddress(){
+        cancelAddAddress() {
             this.addDirection = false;
         },
-        async editDirection(direction){
+        async editDirection(direction) {
             direction.country = direction.country_id;
             let country = await this.countryChanged(direction.country_id);
             direction.state = direction.state_id;
@@ -1741,13 +1817,21 @@ export default {
 
             direction.editar = true;
         },
-        cancelEditAddress(direction){
+        cancelEditAddress(direction) {
             direction.editar = false;
         },
-        async saveEditAddress(direction){
+        async saveEditAddress(direction) {
             this.adding = true;
 
-            if(direction.name == '' || direction.address == '' || direction.postal_code == '' || direction.country == '' || direction.state == '' || direction.city == '' || direction.phone == ''){
+            if (
+                direction.name == "" ||
+                direction.address == "" ||
+                direction.postal_code == "" ||
+                direction.country == "" ||
+                direction.state == "" ||
+                direction.city == "" ||
+                direction.phone == ""
+            ) {
                 this.snack({
                     message: this.$i18n.t("something_went_wrong"),
                     color: "red"
@@ -1824,19 +1908,19 @@ export default {
 
             this.$v.formDirection.$reset();
         },
-        mostrarDatosEmpresa(emp){
+        mostrarDatosEmpresa(emp) {
             emp.mostrarDatos = true;
         },
-        ocultarDatosEmpresa(emp){
+        ocultarDatosEmpresa(emp) {
             emp.mostrarDatos = false;
         },
-        
-        async saveAddEmpresa(){
+
+        async saveAddEmpresa() {
             this.$v.formEmpresa.$touch();
-        
+
             if (this.$v.formEmpresa.$anyError) {
                 return;
-            } 
+            }
 
             this.infoUpdateLoading = true;
 
@@ -1856,7 +1940,7 @@ export default {
 
             emp.editar = true;
         },
-        cancelAddEmpresa(){
+        cancelAddEmpresa() {
             this.addEmpresa = false;
         },
         async deleteEmpresa(id) {
@@ -1865,7 +1949,7 @@ export default {
                 this.getEmpresasUser();
                 this.snack({ message: res.data.message });
             }
-        },
+        }
     }
 };
 </script>
@@ -1893,6 +1977,7 @@ export default {
 
 .form-border {
     border: 1px solid #e4e4e4;
+    background-color: #f5f5f5;
 }
 
 .profile {
@@ -1965,5 +2050,21 @@ export default {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.place-holder {
+    &::v-deep {
+        .v-input__control,
+        .v-input__slot {
+        }
+        ::placeholder {
+            visibility: hidden;
+        }
+
+        :hover::placeholder {
+            visibility: visible;
+            font-style: italic;
+        }
+    }
 }
 </style>
