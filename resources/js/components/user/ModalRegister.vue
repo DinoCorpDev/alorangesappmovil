@@ -1120,10 +1120,10 @@ export default {
                     color: "green"
                 });
 
-                await this.saveAddress().then(() => {
-                    this.showLoginDialog(false);
-                    this.updateChatWindow(false);
-                });
+                // await this.saveAddress().then(() => {
+                //     this.showLoginDialog(false);
+                //     this.updateChatWindow(false);
+                // });
 
                 this.resetData();
                 this.registerNotification = true;
@@ -1185,10 +1185,10 @@ export default {
                     color: "green"
                 });
 
-                await this.saveAddress().then(() => {
-                    this.showLoginDialog(false);
-                    this.updateChatWindow(false);
-                });
+                // await this.saveAddress().then(() => {
+                //     this.showLoginDialog(false);
+                //     this.updateChatWindow(false);
+                // });
 
                 this.resetData();
                 this.registerNotification = true;

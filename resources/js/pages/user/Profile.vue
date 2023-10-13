@@ -799,17 +799,14 @@
         <v-row>
             <v-col cols="12" md="6">
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <h5 class="fw-600">Descripcion direccion</h5>
-                    <v-divider class="my-4" />
+                    
 
                     <div class="form" v-for="(otherAdd, i) in otherAdress" :key="i">
                         <div v-if="otherAdd?.editar == false">
+                            <h5 class="fw-600 text-capitalize">{{ otherAdd?.name }}</h5>
+                            <v-divider class="my-4" />
                             <div class="d-flex justify-space-between mb-2">
                                 <span class="subtitle1 text-uppercase fw-600">Dirección</span>
-                                <span class="body1 text-right">{{ otherAdd?.address }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Descripción de Dirección</span>
                                 <span class="body1 text-right">{{ otherAdd?.address }}</span>
                             </div>
                             <div class="d-flex justify-space-between mb-2">

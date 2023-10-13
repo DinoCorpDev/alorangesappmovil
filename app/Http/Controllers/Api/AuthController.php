@@ -23,9 +23,9 @@ class AuthController extends Controller
         if (get_setting('customer_login_with') == 'email') {
             $user = User::where('email', $input->email)->first();
         } elseif (get_setting('customer_login_with') == 'phone') {
-            $user = User::where('phone', $input->phone)->first();
+            // $user = User::where('phone', $input->phone)->first();
         } else {
-            $user = User::where('phone', $input->phone)->orWhere('email', $input->email)->first();
+            $user = User::where('email', $input->email)->first();
         }
 
         if ($user != null) {

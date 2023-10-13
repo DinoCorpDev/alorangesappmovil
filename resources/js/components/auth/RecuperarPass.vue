@@ -160,17 +160,20 @@
         </v-card>
         <v-dialog v-model="userNotFound" width="500">
             <v-card>
+                <i class="las la-times" style="color: grey; font-size: 20px; right: 0;" @click="userNotFound = false"></i>
                 <div align="center" style="height: 300px; margin-top: 50px; margin-right: 20px; margin-left: 20px">
-                    <i class="las la-check" style="color: green; font-size: 80px"></i>
+                    
                     <br /><br />
 
-                    <h5 align="center">¡Gracias por registrarse!</h5>
-                    <br /><br />
+                    <h4 align="center">¡ERROR!</h4>
+                    <br />
+                    <i class="las la-times" style="color: red; font-size: 80px"></i>
+                    <br />
                     <p>
-                        Hemos enviado una notificación de confirmación a su dirección de correo electrónico registrado.
+                        Los campos no coinciden.
                     </p>
                 </div>
-                <i class="las la-times" style="color: green; font-size: 20px" @click="userNotFound = false"></i>
+                
             </v-card>
         </v-dialog>
     </v-dialog>
