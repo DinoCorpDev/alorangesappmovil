@@ -17,10 +17,11 @@
         depressed
     >
         <i v-if="icon && iconPosition == 'left'" :class="`las ${icon} ${text ? 'mr-3' : ''}`"></i>
-        <template v-if="text"> <span :class="textClass">{{ text }}</span></template>
+        <template v-if="text">
+            <span :class="textClass">{{ text }}</span></template
+        >
         <slot v-else />
         <i v-if="icon && iconPosition == 'right'" :class="`las ${icon} ${text ? 'ml-3' : ''}`"></i>
-
     </v-btn>
 </template>
 
@@ -37,7 +38,7 @@ export default {
             type: String,
             default: "left"
         },
-        textClass:{
+        textClass: {
             type: String
         },
         dark: {
@@ -83,7 +84,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .v-btn {
     font-size: var(--font-size-btn);
     font-weight: 600;
@@ -118,20 +118,17 @@ export default {
     }
 
     &::v-deep {
-        
-        
         .v-btn__content {
             margin-top: 2px;
         }
     }
 
-
-    &.text{
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translate(-50%, -50%);
-        }
+    &.text {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-50%, -50%);
+    }
 
     &.v-btn--plain {
         min-width: unset;

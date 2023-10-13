@@ -106,9 +106,7 @@
                                         Antes de permitirte cambiar tu contraseña, tenemos que asegurarnos de que
                                         realmente eres tú.
                                     </p>
-                                    <p>
-                                        Empieza por seleccionar adónde enviaremos un código de confirmación.
-                                    </p>
+                                    <p>Empieza por seleccionar adónde enviaremos un código de confirmación.</p>
                                     <v-row class="mb-2">
                                         <v-col cols="12" sm="12">
                                             <CustomCheckbox
@@ -160,6 +158,21 @@
                 <CustomButton text="Cancelar" color="white2" type="button" class="ml-0" block @click="cerrarModal" />
             </v-card-actions>
         </v-card>
+        <v-dialog v-model="userNotFound" width="500">
+            <v-card>
+                <div align="center" style="height: 300px; margin-top: 50px; margin-right: 20px; margin-left: 20px">
+                    <i class="las la-check" style="color: green; font-size: 80px"></i>
+                    <br /><br />
+
+                    <h5 align="center">¡Gracias por registrarse!</h5>
+                    <br /><br />
+                    <p>
+                        Hemos enviado una notificación de confirmación a su dirección de correo electrónico registrado.
+                    </p>
+                </div>
+                <i class="las la-times" style="color: green; font-size: 20px" @click="userNotFound = false"></i>
+            </v-card>
+        </v-dialog>
     </v-dialog>
 </template>
 
@@ -181,7 +194,8 @@ export default {
         form: { email: "" },
         loading: false,
         loadingregister: false,
-        numberPag: 1
+        numberPag: 1,
+        userNotFound: false
     }),
     components: {
         CustomButton,
@@ -259,10 +273,11 @@ export default {
                 if (res.data.result) {
                     return (this.numberPag += 1);
                 } else {
-                    this.snack({
-                        message: res.data.message,
-                        color: "red"
-                    });
+                    this.userNotFound = true;
+                    // this.snack({
+                    //     message: res.data.message,
+                    //     color: "red"
+                    // });
                     return;
                 }
             }

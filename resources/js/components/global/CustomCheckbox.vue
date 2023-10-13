@@ -1,6 +1,10 @@
 <template>
-    <div class="custom-checkbox" :class="{ 'error--text': error }" @click="toggleCheckbox">
-        <div class="custom-checkbox-input" :class="isChecked ? 'border-checked' : ''">
+    <div
+        class="custom-checkbox"
+        :class="{ 'error--text': error, bordered: bordered, 'bordered-active': isRadioChecked && bordered }"
+        @click="toggleCheckbox"
+    >
+        <div class="custom-checkbox-input">
             <input
                 :id="id"
                 :name="name"
@@ -54,6 +58,10 @@ export default {
             type: String,
             default: "checkbox"
         },
+        bordered: {
+            type: Boolean,
+            default: false
+        },
         name: {
             type: String,
             default: undefined
@@ -71,6 +79,9 @@ export default {
             set(value) {
                 this.$emit("input", value);
             }
+        },
+        isRadioChecked() {
+            return this.isChecked === this.inputValue;
         }
     },
     methods: {
@@ -106,7 +117,6 @@ export default {
 
         input {
             &:is(:checked) {
-                
                 ~ .custom-checkbox-checkmark {
                     background-color: #ffffff;
 
@@ -138,6 +148,21 @@ export default {
         left: 0;
     }
 
+    &.bordered {
+        padding-left: 40px;
+        border: 1px solid;
+        border-radius: 5px;
+
+        &-checkmark {
+            margin-left: 5px;
+        }
+
+        &-active {
+            color: black;
+            border-color: black;
+        }
+    }
+
     &-checkmark {
         display: inline-flex;
         align-items: center;
@@ -164,16 +189,11 @@ export default {
         width: 0;
 
         &:is(:checked) {
-            .custom-checkbox{
-                color: black;
-                background-color: black;
-            }
             ~ .custom-checkbox-checkmark {
                 background-color: #000000;
             }
         }
 
-        
         &:not(:checked) {
             ~ .custom-checkbox-checkmark {
                 svg {
@@ -200,11 +220,5 @@ export default {
             border-width: 2px;
         }
     }
-}
-
-.border-checked{
-    custom-checkbox-input{
-    color: black;
-    border-color: black;}
 }
 </style>

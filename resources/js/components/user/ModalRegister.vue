@@ -50,10 +50,9 @@
                                             v-model="form.email"
                                             :error-messages="emailErrors"
                                             @blur="$v.form.email.$touch()"
-                                            required 
+                                            required
                                         />
                                     </div>
-
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -62,9 +61,7 @@
                                         {{ $t("CONTRASEÑA") }}
                                     </span>
 
-                                    
                                     <v-text-field
-                                        
                                         v-model="form.password"
                                         placeholder="Ingresar contraseña"
                                         :error-messages="passwordErrors"
@@ -77,17 +74,14 @@
                                         dense
                                         outlined
                                         @click:append="passwordShow = !passwordShow"
-                                        
                                     ></v-text-field>
-                                    
                                 </v-col>
 
-                                
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">
                                         {{ $t("REPETIR CONTRASEÑA") }}
                                     </span>
-                                    
+
                                     <v-text-field
                                         v-model="form.confirmPassword"
                                         placeholder="Ingresar contraseña"
@@ -98,11 +92,10 @@
                                         class="input-group--focused place-holder"
                                         hide-details="auto"
                                         required
-                                        dense 
+                                        dense
                                         outlined
                                         @click:append="passwordShowConfirm = !passwordShowConfirm"
                                     ></v-text-field>
-                                    
                                 </v-col>
 
                                 <v-col cols="12" sm="12">
@@ -113,24 +106,30 @@
                                                 label="Registrar como persona natural"
                                                 name="personType"
                                                 type="radio"
-                                                v-model="form.personType" style="width: 110%; display: inline-flex;"
-                                            /> 
+                                                v-model="form.personType"
+                                                style="width: 110%; display: inline-flex"
+                                                bordered
+                                            />
                                         </v-col>
                                         <v-col cols="2" class="icono-persona">
                                             <v-tooltip bottom color="black">
-                                                <template v-slot:activator="{ on, attrs }" >
-                                                            
-                                                    <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <i
+                                                        class="las la-exclamation-circle icon-tooltip-dos"
+                                                        v-bind="attrs"
+                                                        v-on="on"
+                                                        style="font-size: 30px; transform: rotate(180deg)"
+                                                    ></i>
                                                 </template>
-                                                    <span>Se aplicaran los impuestos al</span>
-                                                    <br>
-                                                    <span>facturar como persona juridica</span>
+                                                <span>Se aplicaran los impuestos al</span>
+                                                <br />
+                                                <span>facturar como persona juridica</span>
                                             </v-tooltip>
                                         </v-col>
                                     </v-row>
                                 </v-col>
-                                
-                                <v-col cols="12" sm="12" style="margin-bottom: 50px;">
+
+                                <v-col cols="12" sm="12" style="margin-bottom: 50px">
                                     <v-row>
                                         <v-col cols="10">
                                             <CustomCheckbox
@@ -138,17 +137,23 @@
                                                 label="Registrar como persona jurídica"
                                                 name="personType"
                                                 type="radio"
-                                                v-model="form.personType" style="width: 110%; display: inline-flex;"
-                                            /> 
+                                                v-model="form.personType"
+                                                style="width: 110%; display: inline-flex"
+                                                bordered
+                                            />
                                         </v-col>
                                         <v-col cols="2" class="icono-persona">
                                             <v-tooltip bottom color="black">
-
-                                                <template v-slot:activator="{ on, attrs }" >     
-                                                    <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <i
+                                                        class="las la-exclamation-circle icon-tooltip-dos"
+                                                        v-bind="attrs"
+                                                        v-on="on"
+                                                        style="font-size: 30px; transform: rotate(180deg)"
+                                                    ></i>
                                                 </template>
                                                 <span>Se aplicaran los impuestos al</span>
-                                                <br>
+                                                <br />
                                                 <span>facturar como persona juridica</span>
                                             </v-tooltip>
                                         </v-col>
@@ -172,10 +177,10 @@
                                 </v-col>
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
-                                    <CustomInput 
-                                    class="place-holder"
-                                    v-model="form.secondName"
-                                    placeholder="Ingresar segundo nombre"
+                                    <CustomInput
+                                        class="place-holder"
+                                        v-model="form.secondName"
+                                        placeholder="Ingresar segundo nombre"
                                     />
                                 </v-col>
                             </v-row>
@@ -215,12 +220,12 @@
                                         required
                                     />
                                 </v-col>
-
-
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2 text-uppercase">Numero de Documento (Representante)</span>
+                                    <span class="black--text body-2 text-uppercase">
+                                        Numero de Documento (Representante)
+                                    </span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Ingresar número de documento"
@@ -234,7 +239,9 @@
                             <template v-if="form.personType == 'Juridical'">
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase">Razón Social de la Empresa</span>
+                                        <span class="black--text body-2 text-uppercase">
+                                            Razón Social de la Empresa
+                                        </span>
                                         <CustomInput
                                             placeholder="Ingrese razón social de la empresa"
                                             class="place-holder"
@@ -302,16 +309,17 @@
                                                 v-model="form.companyEmail"
                                                 :error-messages="companyEmailErrors"
                                                 @blur="$v.form.companyEmail.$touch()"
-                                                required 
+                                                required
                                             />
                                         </div>
-
                                     </v-col>
                                 </v-row>
 
                                 <v-row>
                                     <v-col cols="12" md="12">
-                                        <span class="black--text body-2 text-uppercase">Teléfono / Celular (Área Contable)</span>
+                                        <span class="black--text body-2 text-uppercase">
+                                            Teléfono / Celular (Área Contable)
+                                        </span>
                                         <v-row>
                                             <v-col cols="12">
                                                 <vue-tel-input
@@ -321,15 +329,19 @@
                                                     :onlyCountries="availableCountries"
                                                     @blur="$v.form.companyPhone.$touch()"
                                                     :class="{
-                                                        'error--text': $v.form.companyPhone.$error || form.showInvalidPhone
+                                                        'error--text':
+                                                            $v.form.companyPhone.$error || form.showInvalidPhone
                                                     }"
                                                     class="place-holder"
-                                                    >
+                                                >
                                                     <template slot="arrow-icon">
                                                         <span class="vti__dropdown-arrow">&nbsp;▼</span>
                                                     </template>
                                                 </vue-tel-input>
-                                                <div class="v-text-field__details mt-2 pl-3" v-if="$v.form.companyPhone.$error">
+                                                <div
+                                                    class="v-text-field__details mt-2 pl-3"
+                                                    v-if="$v.form.companyPhone.$error"
+                                                >
                                                     <div class="v-messages theme--light error--text" role="alert">
                                                         <div class="v-messages__wrapper">
                                                             <div class="v-messages__message">
@@ -355,7 +367,7 @@
                                     </v-col>
                                 </v-row>
 
-                                 <v-row>
+                                <v-row>
                                     <v-col cols="12" md="12">
                                         <span class="black--text body-2 text-uppercase">
                                             {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }}
@@ -371,10 +383,8 @@
                                                 @blur="$v.form.companyActividad.$touch()"
                                             />
                                         </div>
-
                                     </v-col>
                                 </v-row>
-
 
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
@@ -387,23 +397,26 @@
                                             v-model="form.filedocumento"
                                             accept="application/pdf"
                                         >
-                                        <template v-slot:label>
-                                            <ArrowUpload />
-                                            <span>SUBIR DOCUMENTO</span>
-                                        </template>
-
+                                            <template v-slot:label>
+                                                <ArrowUpload />
+                                                <span>SUBIR DOCUMENTO</span>
+                                            </template>
                                         </v-file-input>
                                     </v-col>
                                     <v-col cols="1" class="icono-documento">
                                         <v-tooltip bottom color="black">
-                                            <template v-slot:activator="{ on, attrs }" >
-                                                
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <i
+                                                    class="las la-exclamation-circle icon-tooltip-dos"
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                    style="font-size: 30px; transform: rotate(180deg)"
+                                                ></i>
                                             </template>
                                             <span>&bullet; Documentos en formato PDF</span>
-                                            <br>
+                                            <br />
                                             <span>&bullet; Ambas caras de ID ampliadas al 150</span>
-                                            <br>
+                                            <br />
                                             <span>&bullet; Documento legible y en color</span>
                                         </v-tooltip>
                                     </v-col>
@@ -416,43 +429,39 @@
                                         </span>
                                     </v-col>
                                     <v-col cols="11" class="area-upload">
-
                                         <v-file-input
-                                            
                                             class="form-control upload"
                                             v-model="form.filecamara"
                                             accept="application/pdf"
                                             single-line
                                         >
-                                        
                                             <template v-slot:label>
                                                 <ArrowUpload />
                                                 <span>SUBIR DOCUMENTO</span>
                                             </template>
-
                                         </v-file-input>
-
                                     </v-col>
                                     <v-col cols="1" class="icono-documento">
                                         <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
                                         <v-tooltip bottom color="black">
-                                            <template v-slot:activator="{ on, attrs }" >
-                                                
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <i
+                                                    class="las la-exclamation-circle icon-tooltip-dos"
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                    style="font-size: 30px; transform: rotate(180deg)"
+                                                ></i>
                                             </template>
                                             <span>&bullet; Documentos en formato PDF</span>
-                                            <br>
+                                            <br />
                                             <span>&bullet; Cámara de comercio no mayor a 90 días</span>
                                         </v-tooltip>
-
                                     </v-col>
                                 </v-row>
 
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
-                                        <span class="black--text body-2 text-uppercase">
-                                            RUT (ARCHIVO)
-                                        </span>
+                                        <span class="black--text body-2 text-uppercase"> RUT (ARCHIVO) </span>
                                     </v-col>
                                     <v-col cols="11" class="area-upload">
                                         <v-file-input
@@ -461,22 +470,24 @@
                                             v-model="form.filerut"
                                             accept="application/pdf"
                                         >
-                                        <template v-slot:label>
+                                            <template v-slot:label>
                                                 <ArrowUpload />
                                                 <span>SUBIR DOCUMENTO</span>
                                             </template>
-
                                         </v-file-input>
                                     </v-col>
                                     <v-col cols="1" class="icono-documento">
-
                                         <v-tooltip bottom color="black">
-                                            <template v-slot:activator="{ on, attrs }" >
-                                                
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <i
+                                                    class="las la-exclamation-circle icon-tooltip-dos"
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                    style="font-size: 30px; transform: rotate(180deg)"
+                                                ></i>
                                             </template>
                                             <span>&bullet; Documentos en formato PDF</span>
-                                            <br>
+                                            <br />
                                             <span>&bullet; RUT actualizado</span>
                                         </v-tooltip>
                                     </v-col>
@@ -594,10 +605,11 @@
                             <v-row>
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">Barrio ( Opcional )</span>
-                                    <CustomInput 
-                                        class="place-holder"  
-                                        placeholder="Ingresar barrio" 
-                                        v-model="mainAddress.neighborhood" />
+                                    <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar barrio"
+                                        v-model="mainAddress.neighborhood"
+                                    />
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -615,7 +627,7 @@
                                                     'error--text': $v.form.phone.$error || form.showInvalidPhone
                                                 }"
                                                 class="place-holder"
-                                                >
+                                            >
                                                 <template slot="arrow-icon">
                                                     <span class="vti__dropdown-arrow">&nbsp;▼</span>
                                                 </template>
@@ -649,14 +661,20 @@
                     </v-stepper-items>
                 </v-stepper>
 
-                <div align="center" style="height: 300px; margin-top: 50px; margin-right: 20px; margin-left: 20px;" v-if="registerNotification">
-                    <i class="las la-check" style="color: green;font-size: 80px;"></i>
-                    <br><br>
+                <div
+                    align="center"
+                    style="height: 300px; margin-top: 50px; margin-right: 20px; margin-left: 20px"
+                    v-if="registerNotification"
+                >
+                    <i class="las la-check" style="color: green; font-size: 80px"></i>
+                    <br /><br />
 
                     <h5 align="center">¡Gracias por registrarse!</h5>
-                    <br><br>
-                    <p> Hemos enviado una notificación de confirmación a su dirección de correo electrónico registrado. </p>
-                </div> 
+                    <br /><br />
+                    <p>
+                        Hemos enviado una notificación de confirmación a su dirección de correo electrónico registrado.
+                    </p>
+                </div>
             </v-form>
 
             <v-card-actions class="pa-5" v-if="registerNotification == false">
@@ -690,10 +708,9 @@
                     text="Continuar"
                     color="nero"
                     type="button"
-                    class="boton-continuar" 
+                    class="boton-continuar"
                     text-class="ml-6"
                     @click="after"
-
                 />
                 <CustomButtonR
                     v-if="numberPag == 3"
@@ -1018,8 +1035,6 @@ export default {
             }
         }
     },
-    mounted(){
-    },
     created() {
         this.resetData();
         this.registerNotification = false;
@@ -1045,14 +1060,28 @@ export default {
             console.log(e.target.files[0]);
             this.form.filerut = e.target.files[0];
         },
-        async omitir(){
-            if(this.form.firstName == '' || this.form.firstLastname == '' || this.form.secondLastname == '' || this.form.documentType == '' || this.form.documentNumber == ''){
+        async omitir() {
+            if (
+                this.form.firstName == "" ||
+                this.form.firstLastname == "" ||
+                this.form.secondLastname == "" ||
+                this.form.documentType == "" ||
+                this.form.documentNumber == ""
+            ) {
                 this.$v.form.$touch();
                 return;
             }
 
             if (this.form.personType == "Juridical") {
-                if(this.form.companyRazon == '' || this.form.companyType == '' || this.form.companyDocumentType == '' || this.form.companyDocumentNumber == '' || this.form.companyActividad == '' || this.form.companyPhone == '' || this.form.companyEmail == ''){
+                if (
+                    this.form.companyRazon == "" ||
+                    this.form.companyType == "" ||
+                    this.form.companyDocumentType == "" ||
+                    this.form.companyDocumentNumber == "" ||
+                    this.form.companyActividad == "" ||
+                    this.form.companyPhone == "" ||
+                    this.form.companyEmail == ""
+                ) {
                     this.$v.form.$touch();
                     return;
                 }
@@ -1068,8 +1097,6 @@ export default {
                     });
                     return;
                 }
-
-                
             }
 
             this.form.phone = this.form.phone.replace(/\s/g, "");
@@ -1232,29 +1259,50 @@ export default {
             }
         },
         async after() {
-            if(this.numberPag == 1){
-                if(this.form.email == '' || this.form.password == '' || this.form.confirmPassword == '' || (this.form.password != this.form.confirmPassword)){
+            if (this.numberPag == 1) {
+                if (
+                    this.form.email == "" ||
+                    this.form.password == "" ||
+                    this.form.confirmPassword == "" ||
+                    this.form.password != this.form.confirmPassword
+                ) {
                     this.$v.form.$touch();
                     return;
                 }
             }
 
-            if(this.numberPag == 2){
-                if(this.form.firstName == '' || this.form.firstLastname == '' || this.form.secondLastname == '' || this.form.documentType == '' || this.form.documentNumber == ''){
+            if (this.numberPag == 2) {
+                if (
+                    this.form.firstName == "" ||
+                    this.form.firstLastname == "" ||
+                    this.form.secondLastname == "" ||
+                    this.form.documentType == "" ||
+                    this.form.documentNumber == ""
+                ) {
                     this.$v.form.$touch();
                     return;
                 }
 
-                if(this.form.personType == 'Juridical' && (this.form.companyRazon == '' || this.form.companyType == '' || this.form.companyDocumentType == '' || this.form.companyDocumentNumber == '' || this.form.companyEmail == '' || this.form.companyActividad == '' || this.form.companyPhone == '')){
+                if (
+                    this.form.personType == "Juridical" &&
+                    (this.form.companyRazon == "" ||
+                        this.form.companyType == "" ||
+                        this.form.companyDocumentType == "" ||
+                        this.form.companyDocumentNumber == "" ||
+                        this.form.companyEmail == "" ||
+                        this.form.companyActividad == "" ||
+                        this.form.companyPhone == "")
+                ) {
                     this.$v.form.$touch();
                     return;
                 }
 
-                 if ( this.form.personType == 'Juridical' && (
-                    this.form.filecamara.length == 0 ||
-                    this.form.filedocumento.length == 0 ||
-                    this.form.filerut.length == 0
-                )) {
+                if (
+                    this.form.personType == "Juridical" &&
+                    (this.form.filecamara.length == 0 ||
+                        this.form.filedocumento.length == 0 ||
+                        this.form.filerut.length == 0)
+                ) {
                     this.snack({
                         message: "Por favor cargue los archivos!",
                         color: "red"
@@ -1308,18 +1356,39 @@ export default {
             this.mainAddress.type = "shipping";
 
             this.numberPag = 1;
-            
+
             this.$v.form.$reset();
             this.$v.mainAddress.$reset();
         }
     }
 };
-
 </script>
 
 <style lang="scss">
 .modal-register {
     max-width: 550px;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #b5b5b5;
+        border-radius: 1px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgba(#5a5a5a, 0.8);
+        border-radius: 1px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #5a5a5a;
+    }
 }
 .custom-checkbox {
     &-checkmark {
@@ -1328,22 +1397,21 @@ export default {
 }
 
 .icon-tooltip-uno[data-title]:hover::after {
-        content: attr(data-title);
-        position: absolute;
-        /*top: 70%;*/
-        bottom: 80%;
-        left: 0;
-        z-index: 999;
-        color: white;
-        background-color: grey;
-        font-size: 15px;
-        padding: 20px;
-        width: 300px;
-        border-radius: 10px;
-        font-style: normal;
-        transform: rotate(180deg);
-        
-      }
+    content: attr(data-title);
+    position: absolute;
+    /*top: 70%;*/
+    bottom: 80%;
+    left: 0;
+    z-index: 999;
+    color: white;
+    background-color: grey;
+    font-size: 15px;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    font-style: normal;
+    transform: rotate(180deg);
+}
 
 .icon-tooltip-dos[data-title]:hover::after {
     content: attr(data-title);
@@ -1362,8 +1430,6 @@ export default {
     transform: rotate(180deg);
     opacity: 1;
 }
-
-
 </style>
 
 <style lang="scss" scoped>
@@ -1427,16 +1493,6 @@ export default {
     }
 }
 
-
-.custom-checkbox {
-    padding-left: 40px;
-    border: 1px solid;
-    border-radius: 5px;
-
-    &-checkmark {
-        margin-left: 5px;
-    }
-}
 .v-divider {
     border-color: #e4e4e4 !important;
 }
@@ -1477,7 +1533,6 @@ export default {
             &::v-deep {
                 &:not(.v-input--has-state) {
                     .v-input__slot {
-
                         &:hover,
                         fieldset {
                             border-color: #f5f5f5;
@@ -1490,25 +1545,25 @@ export default {
 }
 
 .place-holder {
-  font-family: "Roboto", sans-serif;
-  font-size: 15px;
-  letter-spacing: 0.5px;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
 
     &::v-deep {
-            .v-input__control,
-            .v-input__slot {
-                min-height: 38px;
-            }
+        .v-input__control,
+        .v-input__slot {
+            min-height: 38px;
+        }
 
-            ::placeholder {
+        ::placeholder {
             visibility: hidden;
-            }
+        }
 
-            :hover::placeholder {
-                visibility: visible;
-                font-style: italic;
-            }
-            &:not(.v-input--has-state) {
+        :hover::placeholder {
+            visibility: visible;
+            font-style: italic;
+        }
+        &:not(.v-input--has-state) {
             .v-input__slot fieldset {
                 color: #dfdfdf;
             }
@@ -1516,65 +1571,57 @@ export default {
     }
 }
 
-
 .v-btn {
     &::v-deep {
         .v-btn__content {
-            margin-top: 2px;  
+            margin-top: 2px;
         }
     }
 }
 
-
-.boton-redondo{
+.boton-redondo {
     height: 100px;
     width: 150px;
     border: 1px solid #e2e2e2;
     border-radius: 100px;
 }
 
-.boton-redondo:hover{
+.boton-redondo:hover {
     background: #dfdfdf;
     border: 1px solid #e2e2e2;
 }
 
 .upload {
-
-
     border-radius: 100px;
     width: 100%;
 
     &::v-deep {
-
-        .v-label{
+        .v-label {
             top: 24% !important;
             left: 6.5% !important;
             right: 0% !important;
             text-align: center;
-
         }
 
-        .v-input__slot{
+        .v-input__slot {
             cursor: pointer;
         }
 
-        .v-text-field__slot{
-
-            .v-label--active{
+        .v-text-field__slot {
+            .v-label--active {
                 display: none;
             }
         }
     }
 }
 
-.theme--light{
-    .v-text-field:not(.v-input--has-state){
-        
-        &::v-deep{
-            &:hover{
-                .v-input__control{
-                    .v-input__slot{
-                        &::before{
+.theme--light {
+    .v-text-field:not(.v-input--has-state) {
+        &::v-deep {
+            &:hover {
+                .v-input__control {
+                    .v-input__slot {
+                        &::before {
                             border-color: white;
                         }
                     }
@@ -1583,80 +1630,74 @@ export default {
         }
     }
 
-    .v-text-field{
-
-        &::v-deep{
-            .v-input__control{
-                .v-input__slot{
-
-                    &::before{
+    .v-text-field {
+        &::v-deep {
+            .v-input__control {
+                .v-input__slot {
+                    &::before {
                         border-color: white;
-                    }   
-                }    
+                    }
+                }
             }
-        }    
+        }
     }
 }
 
-.icono-documento{
+.icono-documento {
     display: flex;
     align-items: center;
     margin-bottom: 7.5px;
     justify-content: right;
 }
 
-.texto-upload{
+.texto-upload {
     padding-top: 0px;
     padding-bottom: 0px;
 }
 
-.area-upload{
+.area-upload {
     padding-top: 0px;
     padding-bottom: 0px;
 }
 
-.upload{
-
-    &::v-deep{
-        .v-input__prepend-outer{
-            
+.upload {
+    &::v-deep {
+        .v-input__prepend-outer {
             display: none !important;
-            
         }
     }
 }
 
 // ACTUALIZACIÓN 04/10/2023 J.M
 
-.icono-persona{
+.icono-persona {
     display: flex;
     justify-content: right;
     align-items: center;
     text-align: right;
 }
-.custom-checkbox{
-    border-color:#cfcfcf;
+.custom-checkbox {
+    border-color: #cfcfcf;
     color: #cfcfcf;
 }
-.custom-checkbox:hover{
+.custom-checkbox:hover {
     border-color: grey;
     color: grey;
 }
 
-.custom-checkbox-checkmark:active{
-        border-color: black;
-        color: black;
-    
+.custom-checkbox-checkmark:active {
+    border-color: black;
+    color: black;
 }
 
-.border-checked{
-    .custom-checkbox{
+.border-checked {
+    .custom-checkbox {
         border-color: black;
         color: black;
     }
 }
 
-.theme--light.v-text-field>.v-input__control>.v-input__slot:before {
+.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
     border-color: white;
 }
 </style>
