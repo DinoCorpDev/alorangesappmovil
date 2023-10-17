@@ -111,6 +111,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
     Route::get('search.ajax/{keyword}', [ProductController::class, 'ajax_search']);
 
     Route::get('all-countries', [AddressController::class, 'get_all_countries']);
+    Route::get('all-codigo-ciiu', [AuthController::class, 'get_all_ciiu']);
+    Route::get('all-codigo-postal', [AuthController::class, 'get_all_codigo_postal']);
     Route::get('states/{country_id}', [AddressController::class, 'get_states_by_country_id']);
     Route::get('cities/{state_id}', [AddressController::class, 'get_cities_by_state_id']);
 

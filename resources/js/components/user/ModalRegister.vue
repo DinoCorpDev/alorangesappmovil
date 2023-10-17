@@ -368,21 +368,50 @@
                                 </v-row>
 
                                 <v-row>
-                                    <v-col cols="12" md="12">
+                                    <v-col cols="12" md="6">
                                         <span class="black--text body-2 text-uppercase">
                                             {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }}
                                         </span>
 
                                         <div class="input-group">
-                                            <CustomInput
-                                                class="place-holder"
-                                                placeholder="Ingresar actividad economica"
-                                                type="text"
+                                            <SelectCustom
+                                                placeholder="Seleccione actividad economica"
+                                                :items="codigoCiiuTypes"
                                                 v-model="form.companyActividad"
                                                 :error-messages="actividadErrors"
                                                 @blur="$v.form.companyActividad.$touch()"
+                                                required
                                             />
                                         </div>
+                                    </v-col>
+
+                                    <v-col cols="12" md="6">
+                                        <span class="black--text body-2 text-uppercase">REGIMEN FISCAL</span>
+
+                                        <div class="input-group">
+                                            <SelectCustom
+                                            placeholder="Seleccione regimen fiscal"
+                                            :items="regimenTypes"
+                                            v-model="form.regimenFiscal"
+                                            :error-messages="regimenFiscalErrors"
+                                            @blur="$v.form.regimenFiscal.$touch()"
+                                            required
+                                        />
+                                        </div>
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase">RESPONSABILIDAD TRIBUTARIA </span>
+                                        <SelectCustom
+                                            placeholder="Seleccione responsabilidad tributaria"
+                                            :items="responsabilidadTypes"
+                                            v-model="form.responsabilidadTribut"
+                                            :error-messages="responsabilidadTributErrors"
+                                            @blur="$v.form.responsabilidadTribut.$touch()"
+                                            required
+                                        />
                                     </v-col>
                                 </v-row>
 
@@ -558,9 +587,9 @@
                             <v-row>
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">Codigo Postal</span>
-                                    <CustomInput
-                                        class="place-holder"
-                                        placeholder="Ingresar código postal"
+                                    <SelectCustom
+                                        placeholder="Seleccione codigo postal"
+                                        :items="codigoPostalTypes"
                                         v-model="mainAddress.postal_code"
                                         :error-messages="postalCodeErros"
                                         @blur="$v.mainAddress.postal_code.$touch()"
@@ -732,7 +761,7 @@
 <script>
 import { VueTelInput } from "vue-tel-input";
 import { mapActions, mapGetters, mapMutations } from "vuex";
-import { required, requiredIf, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { required, requiredIf, email, minLength, sameAs, helpers } from "vuelidate/lib/validators";
 
 import CustomButtonR from "../../components/global/CustomButtonRegister.vue";
 import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
@@ -743,6 +772,7 @@ import ArrowUpload from "../../components/icons/ArrowUpload.vue";
 
 // Custom validators
 const isTrue = value => value === true;
+const passwordStrong = helpers.regex('passwordStrong', /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/);
 
 export default {
     props: {
@@ -787,6 +817,35 @@ export default {
                 { text: "(NUIP) Numero Ùnico de Identificación Personal", value: "N.U.I.P" },
                 { text: "(NES) Numero de Secretaría", value: "N.E.S" }
             ],
+            responsabilidadTypes:[
+                { value: "01", text: "IVA" },
+                { value: "02", text: "IC" },
+                { value: "03", text: "ICA" },
+                { value: "04", text: "INC" },
+                { value: "05", text: "ReteIVA" },
+                { value: "06", text: "ReteFuente" },
+                { value: "07", text: "ReteICA" },
+                { value: "20", text: "FtoHorticultura" },
+                { value: "21", text: "Timbre" },
+                { value: "22", text: "Bolsas" },
+                { value: "23", text: "INCarbono" },
+                { value: "24", text: "INCombustibles" },
+                { value: "25", text: "Sobretasa Combustibles" },
+                { value: "26", text: "Sordicom" },
+                { value: "ZY", text: "No causa (cuando se selecciona esta opción no puede ir otras de las demás)" },
+                { value: "ZZ", text: "Nombre de la figura tributaria" },
+                { value: "48", text: "Responsable del Impuesto sobre las ventas - IVA" },
+                { value: "49", text: "No responsable de IVA" },
+            ],
+            regimenTypes:[
+                { value:"O-13", text: "Gran contribuyente" },
+                { value:"O-15", text: "Autorretenedor" },
+                { value:"O-23", text: "Agente de retención IVA" },
+                { value:"O-47", text: "Régimen simple de tributación" },
+                { value:"R-99", text: "PN No responsable (cuando se selecciona esta opción no puede ir otras de las demás, esta opción aplica también para Persona Jurídica)" },
+            ],
+            codigoCiiuTypes: [],
+            codigoPostalTypes: [],
             companyTypes: [{ text: "(S.A.S) Sociedad por acciones simplificadas", value: "S.A.S" }],
             form: {
                 email: "",
@@ -806,6 +865,8 @@ export default {
                 companyActividad: "",
                 companyPhone: "",
                 companyEmail: "",
+                regimenFiscal: "",
+                responsabilidadTribut: "",
                 phone: "",
                 policiesAndCookiesConsent: false,
                 offersConsent: false,
@@ -837,7 +898,7 @@ export default {
     validations: {
         form: {
             email: { required, email },
-            password: { required, minLength: minLength(6) },
+            password: { required, minLength: minLength(6), passwordStrong},
             confirmPassword: { required, sameAsPassword: sameAs("password") },
             personType: { required },
             firstName: { required },
@@ -851,6 +912,8 @@ export default {
             companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyActividad: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyPhone: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            regimenFiscal: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            responsabilidadTribut: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyEmail: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             phone: { required }
         },
@@ -884,6 +947,8 @@ export default {
             if (!this.$v.form.password.$dirty) return errors;
             !this.$v.form.password.required && errors.push(this.$i18n.t("this_field_is_required"));
             !this.$v.form.password.minLength && errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
+            !this.$v.form.password.passwordStrong && errors.push("La contraseña necesita al menos 1 caracter especial, 1 mayúscula y 1 minúscula");
+            
             return errors;
         },
         confirmPasswordErrors() {
@@ -946,6 +1011,18 @@ export default {
             const errors = [];
             if (!this.$v.form.companyType.$dirty) return errors;
             !this.$v.form.companyType.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        regimenFiscalErrors() {
+            const errors = [];
+            if (!this.$v.form.regimenFiscal.$dirty) return errors;
+            !this.$v.form.regimenFiscal.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        responsabilidadTributErrors() {
+            const errors = [];
+            if (!this.$v.form.responsabilidadTribut.$dirty) return errors;
+            !this.$v.form.responsabilidadTribut.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
         companyDocumentTypeErrors() {
@@ -1040,6 +1117,8 @@ export default {
         this.registerNotification = false;
         this.numberPag = 1;
         this.fetchCountries();
+        this.fetchCodigoCiiu();
+        this.fetchCodigoPostal();
     },
     methods: {
         ...mapActions("auth", ["login"]),
@@ -1080,7 +1159,9 @@ export default {
                     this.form.companyDocumentNumber == "" ||
                     this.form.companyActividad == "" ||
                     this.form.companyPhone == "" ||
-                    this.form.companyEmail == ""
+                    this.form.companyEmail == "" || 
+                    this.form.regimenFiscal == "" ||
+                    this.form.responsabilidadTribut == "" 
                 ) {
                     this.$v.form.$touch();
                     return;
@@ -1185,10 +1266,10 @@ export default {
                     color: "green"
                 });
 
-                // await this.saveAddress().then(() => {
-                //     this.showLoginDialog(false);
-                //     this.updateChatWindow(false);
-                // });
+                await this.saveAddress().then(() => {
+                     this.showLoginDialog(false);
+                     this.updateChatWindow(false);
+                });
 
                 this.resetData();
                 this.registerNotification = true;
@@ -1235,6 +1316,19 @@ export default {
                     message: this.$i18n.t("something_went_wrong"),
                     color: "red"
                 });
+            }
+        },
+        async fetchCodigoCiiu() {
+            const res = await this.call_api("get", "all-codigo-ciiu");
+
+            if (res.data.success) {   
+                this.codigoCiiuTypes = res.data.data;
+            }
+        },
+        async fetchCodigoPostal() {
+            const res = await this.call_api("get", "all-codigo-postal");
+            if (res.data.success) {
+                this.codigoPostalTypes = res.data.data;
             }
         },
         async saveAddress() {
@@ -1291,7 +1385,9 @@ export default {
                         this.form.companyDocumentNumber == "" ||
                         this.form.companyEmail == "" ||
                         this.form.companyActividad == "" ||
-                        this.form.companyPhone == "")
+                        this.form.companyPhone == "" ||
+                        this.form.regimenFiscal == "" ||
+                        this.form.responsabilidadTribut == "")
                 ) {
                     this.$v.form.$touch();
                     return;
@@ -1326,6 +1422,8 @@ export default {
             this.form.firstLastname = "";
             this.form.secondLastname = "";
             this.form.documentType = "";
+            this.form.regimenFiscal = "";
+            this.form.responsabilidadTribut = "";
             this.form.documentNumber = "";
             this.form.companyRazon = "";
             this.form.companyType = "";

@@ -798,10 +798,8 @@
 
         <v-row>
             <v-col cols="12" md="6">
-                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    
-
-                    <div class="form" v-for="(otherAdd, i) in otherAdress" :key="i">
+                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-for="(otherAdd, i) in otherAdress" :key="i">
+                    <div class="form">
                         <div v-if="otherAdd?.editar == false">
                             <h5 class="fw-600 text-capitalize">{{ otherAdd?.name }}</h5>
                             <v-divider class="my-4" />
@@ -855,14 +853,12 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("postal_code") }}</div>
-                                    <v-text-field
-                                        :placeholder="$t('postal_code')"
-                                        type="text"
+                                    <SelectCustom
+                                        placeholder="Seleccione codigo postal"
+                                        :items="codigoPostalTypes"
                                         v-model="otherAdd.postal_code"
-                                        hide-details="auto"
                                         required
-                                        outlined
-                                    ></v-text-field>
+                                    />
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
@@ -917,7 +913,7 @@
                                             >
                                                 <template slot="arrow-icon">
                                                     <span class="vti__dropdown-arrow">&nbsp;▼</span>
-                                                </template>
+                                                </template> 
                                             </vue-tel-input>
                                             <div
                                                 class="v-text-field__details mt-2 pl-3"
@@ -973,8 +969,6 @@
                                 </div>
                             </v-form>
                         </div>
-
-                        <v-divider class="my-4" />
                     </div>
                 </v-card>
             </v-col>
@@ -1011,16 +1005,14 @@
                             </div>
                             <div class="mb-3">
                                 <div class="mb-1 fs-13 fw-500">{{ $t("Código postal") }}</div>
-                                <v-text-field
-                                    placeholder="Ingresar código postal"
-                                    class="place-holder"
-                                    type="text"
-                                    v-model="formDirection.postal_code"
-                                    :error-messages="postalCodeErrors"
-                                    hide-details="auto"
-                                    required
-                                    outlined
-                                ></v-text-field>
+                                <SelectCustom
+                                        placeholder="Seleccione codigo postal"
+                                        :items="codigoPostalTypes"
+                                        v-model="formDirection.postal_code"
+                                        :error-messages="postalCodeErrors"
+                                        @blur="$v.formDirection.postal_code.$touch()"
+                                        required
+                                    />
                             </div>
                             <div class="mb-3">
                                 <div class="mb-1 fs-13 fw-500">{{ $t("País") }}</div>
@@ -1262,6 +1254,7 @@ export default {
             { text: "(C.C) Cedula de ciudadanía", value: "C.C" },
             { text: "(N.I.T) Numero de identificación tributario", value: "N.I.T" }
         ],
+        codigoPostalTypes: [],
         companyTypes: [{ text: "(S.A.S) Sociedad por acciones simplificadas", value: "S.A.S" }],
         formUser: {
             personType: "Natural",
@@ -1600,6 +1593,7 @@ export default {
     },
     async created() {
         this.fetchCountries();
+        this.fetchCodigoPostal();
         await this.getUser();
         this.getAddressUser();
         this.getEmpresasUser();
@@ -1811,7 +1805,8 @@ export default {
 
             let state = await this.stateChanged(direction.state_id);
             direction.city = direction.city_id;
-
+            
+            direction.postal_code = parseInt(direction.postal_code);
             direction.editar = true;
         },
         cancelEditAddress(direction) {
@@ -1864,6 +1859,12 @@ export default {
                     this.countriesLoaded = true;
                     this.countries = res.data.data;
                 }
+            }
+        },
+        async fetchCodigoPostal() {
+            const res = await this.call_api("get", "all-codigo-postal");
+            if (res.data.success) {
+                this.codigoPostalTypes = res.data.data;
             }
         },
         async countryChanged(countryid) {

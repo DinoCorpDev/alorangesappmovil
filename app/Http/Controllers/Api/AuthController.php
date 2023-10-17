@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\CodigoCiiu;
+use App\Models\CodigoPostal;
 use App\Notifications\EmailVerificationNotification;
 use Str;
 
@@ -124,6 +126,8 @@ class AuthController extends Controller
                 'company_email' => $user->company_email,
                 'company_phone' => $user->company_phone,
                 'company_actividad' => $user->company_actividad,
+                'regimen_fiscal' => $input->regimenFiscal,
+                'responsabilidad_tribut' => $input->responsabilidadTribut,
                 'company_type' => $user->company_type,
                 'company_document_type' => $user->company_document_type,
                 'company_document_number' => $user->company_document_number,
@@ -392,5 +396,37 @@ class AuthController extends Controller
                 'message' => 'Success!'
             ]);
         }
+    }
+
+    public function get_all_ciiu()
+    {
+        $array = array();
+        $codigo = CodigoCiiu::all();
+
+        foreach($codigo as $cod){
+            $arr = [ "text" => $cod->actividad, "value" => $cod->codigo ];
+            array_push($array, $arr);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $array
+        ]);
+    }
+
+    public function get_all_codigo_postal()
+    {
+        $array = array();
+        $codigo = CodigoCiiu::all();
+
+        foreach($codigo as $cod){
+            $arr = [ "text" => $cod->codigo, "value" => $cod->codigo ];
+            array_push($array, $arr);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $array
+        ]);
     }
 }
