@@ -232,6 +232,30 @@ export default {
 };
 </script>
 
+<style lang="scss">
+
+*{
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #b5b5b5;
+        border-radius: 1px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(#5a5a5a, 0.8);
+        border-radius: 1px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #5a5a5a;
+    }
+}
+
+</style>
+
 <style lang="scss" scoped>
 .login {
     /* width */
@@ -252,29 +276,6 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-    }
-}
-
-.login{
-    &::-webkit-scrollbar {
-        width: 3px;
-    }
-
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: #b5b5b5;
-        border-radius: 1px;
-    }
-
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: rgba(#5a5a5a, 0.8);
-        border-radius: 1px;
-    }
-
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: #5a5a5a;
     }
 }
 

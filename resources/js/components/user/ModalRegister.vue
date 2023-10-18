@@ -213,6 +213,7 @@
                                     <span class="black--text body-2 text-uppercase"> Documento (Representante) </span>
                                     <SelectCustom
                                         placeholder="Seleccionar tipo de documento"
+                                        class="select-placeholder"
                                         :items="documentTypes"
                                         v-model="form.documentType"
                                         :error-messages="documentTypeErrors"
@@ -257,6 +258,7 @@
                                         <span class="black--text body-2 text-uppercase">Entidad Comercial</span>
                                         <SelectCustom
                                             placeholder="Seleccione entidad comercial"
+                                            class="select-placeholder"
                                             :items="companyTypes"
                                             v-model="form.companyType"
                                             :error-messages="companyTypeErrors"
@@ -362,6 +364,7 @@
                                         <div class="input-group">
                                             <SelectCustom
                                                 placeholder="Seleccione actividad economica"
+                                                class="select-placeholder"
                                                 :items="codigoCiiuTypes"
                                                 v-model="form.companyActividad"
                                                 :error-messages="actividadErrors"
@@ -377,6 +380,7 @@
                                         <div class="input-group">
                                             <SelectCustom
                                             placeholder="Seleccione regimen fiscal"
+                                            class="select-placeholder"
                                             :items="regimenTypes"
                                             v-model="form.regimenFiscal"
                                             :error-messages="regimenFiscalErrors"
@@ -392,6 +396,7 @@
                                         <span class="black--text body-2 text-uppercase">RESPONSABILIDAD TRIBUTARIA </span>
                                         <SelectCustom
                                             placeholder="Seleccione responsabilidad tributaria"
+                                            class="select-placeholder"
                                             :items="responsabilidadTypes"
                                             v-model="form.responsabilidadTribut"
                                             :error-messages="responsabilidadTributErrors"
@@ -516,6 +521,7 @@
                                     <span class="black--text body-2 text-uppercase">Pais</span>
                                     <SelectCustom
                                         placeholder="Seleccionar país"
+                                        class="select-placeholder"
                                         :error-messages="countryErrors"
                                         :items="countries"
                                         @blur="$v.mainAddress.country.$touch()"
@@ -575,6 +581,7 @@
                                     <span class="black--text body-2 text-uppercase">Codigo Postal</span>
                                     <SelectCustom
                                         placeholder="Seleccione codigo postal"
+                                        class="select-placeholder"
                                         :items="codigoPostalTypes"
                                         v-model="mainAddress.postal_code"
                                         :error-messages="postalCodeErros"
@@ -589,6 +596,7 @@
                                     <span class="black--text body-2 text-uppercase">Departamento</span>
                                     <SelectCustom
                                         placeholder="Seleccionar departamento"
+                                        class="select-placeholder"
                                         :error-messages="stateErrors"
                                         :items="filteredStates"
                                         @blur="$v.mainAddress.state.$touch()"
@@ -606,6 +614,7 @@
                                     <span class="black--text body-2 text-uppercase">Municipio</span>
                                     <SelectCustom
                                         placeholder="Seleccionar municipio"
+                                        class="select-placeholder"
                                         :error-messages="cityErrors"
                                         :items="filteredCities"
                                         @blur="$v.mainAddress.city.$touch()"
@@ -923,175 +932,175 @@ export default {
         emailErrors() {
             const errors = [];
             if (!this.$v.form.email.$dirty) return errors;
-            !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            !this.$v.form.email.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            !this.$v.form.email.email && errors.push(this.$i18n.t("*Inserte un email válido"));
             return errors;
         },
         companyEmailErrors() {
             const errors = [];
             if (!this.$v.form.companyEmail.$dirty) return errors;
-            !this.$v.form.companyEmail.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.companyEmail.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         passwordErrors() {
             const errors = [];
             if (!this.$v.form.password.$dirty) return errors;
-            !this.$v.form.password.required && errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.password.minLength && errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
-            !this.$v.form.password.passwordStrong && errors.push("La contraseña necesita al menos 1 caracter especial, 1 mayúscula y 1 minúscula");
+            !this.$v.form.password.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            !this.$v.form.password.minLength && errors.push(this.$i18n.t("*La contraseña debe tener mínimo 6 carácteres"));
+            !this.$v.form.password.passwordStrong && errors.push("*La contraseña necesita al menos 1 caracter especial, 1 mayúscula y 1 minúscula");
             
             return errors;
         },
         confirmPasswordErrors() {
             const errors = [];
             if (!this.$v.form.confirmPassword.$dirty) return errors;
-            !this.$v.form.confirmPassword.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.confirmPassword.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             !this.$v.form.confirmPassword.sameAsPassword &&
-                errors.push(this.$i18n.t("password_and_confirm_password_should_match"));
+                errors.push(this.$i18n.t("*Las contraseñas no coinciden"));
             return errors;
         },
         personTypeErrors() {
             const errors = [];
             if (!this.$v.form.personType.$dirty) return errors;
-            !this.$v.form.personType.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.personType.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         firstNameErrors() {
             const errors = [];
             if (!this.$v.form.firstName.$dirty) return errors;
-            !this.$v.form.firstName.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.firstName.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         secondNameErrors() {
             const errors = [];
             if (!this.$v.form.secondName.$dirty) return errors;
-            !this.$v.form.secondName.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.secondName.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         firstLastnameErrors() {
             const errors = [];
             if (!this.$v.form.firstLastname.$dirty) return errors;
-            !this.$v.form.firstLastname.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.firstLastname.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         secondLastnameErrors() {
             const errors = [];
             if (!this.$v.form.secondLastname.$dirty) return errors;
-            !this.$v.form.secondLastname.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.secondLastname.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         documentTypeErrors() {
             const errors = [];
             if (!this.$v.form.documentType.$dirty) return errors;
-            !this.$v.form.documentType.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.documentType.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         documentNumberErrors() {
             const errors = [];
             if (!this.$v.form.documentNumber.$dirty) return errors;
-            !this.$v.form.documentNumber.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.documentNumber.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyRazonErrors() {
             const errors = [];
             if (!this.$v.form.companyRazon.$dirty) return errors;
-            !this.$v.form.companyRazon.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.companyRazon.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyTypeErrors() {
             const errors = [];
             if (!this.$v.form.companyType.$dirty) return errors;
-            !this.$v.form.companyType.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.companyType.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         regimenFiscalErrors() {
             const errors = [];
             if (!this.$v.form.regimenFiscal.$dirty) return errors;
-            !this.$v.form.regimenFiscal.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.regimenFiscal.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         responsabilidadTributErrors() {
             const errors = [];
             if (!this.$v.form.responsabilidadTribut.$dirty) return errors;
-            !this.$v.form.responsabilidadTribut.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.responsabilidadTribut.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyDocumentTypeErrors() {
             const errors = [];
             if (!this.$v.form.companyDocumentType.$dirty) return errors;
-            !this.$v.form.companyDocumentType.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.companyDocumentType.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyDocumentNumberErrors() {
             const errors = [];
             if (!this.$v.form.companyDocumentNumber.$dirty) return errors;
-            !this.$v.form.companyDocumentNumber.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.companyDocumentNumber.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         actividadErrors() {
             const errors = [];
             if (!this.$v.form.companyActividad.$dirty) return errors;
-            !this.$v.form.companyActividad.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.companyActividad.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         addressErrors() {
             const errors = [];
             if (!this.$v.mainAddress.address.$dirty) return errors;
-            !this.$v.mainAddress.address.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.mainAddress.address.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         addressNameErrors() {
             const errors = [];
             if (!this.$v.mainAddress.name.$dirty) return errors;
-            !this.$v.mainAddress.name.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.mainAddress.name.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         addressDetailsErrors() {
             const errors = [];
             if (!this.$v.mainAddress.details.$dirty) return errors;
-            !this.$v.mainAddress.details.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.mainAddress.details.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         countryErrors() {
             const errors = [];
             if (!this.$v.mainAddress.country.$dirty) return errors;
-            !this.$v.mainAddress.country.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.mainAddress.country.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         stateErrors() {
             const errors = [];
             if (!this.$v.mainAddress.state.$dirty) return errors;
-            !this.$v.mainAddress.state.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.mainAddress.state.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         cityErrors() {
             const errors = [];
             if (!this.$v.mainAddress.city.$dirty) return errors;
-            !this.$v.mainAddress.city.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.mainAddress.city.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         postalCodeErros() {
             const errors = [];
             if (!this.$v.mainAddress.postal_code.$dirty) return errors;
-            !this.$v.mainAddress.postal_code.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.mainAddress.postal_code.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         fileDocumentoErrors() {
             const errors = [];
             if (!this.$v.form.filedocumento.$dirty) return errors;
-            !this.$v.form.filedocumento.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.filedocumento.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         fileCamaraErrors() {
             const errors = [];
             if (!this.$v.form.filecamara.$dirty) return errors;
-            !this.$v.form.filecamara.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.filecamara.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         fileRutErrors() {
             const errors = [];
             if (!this.$v.form.filerut.$dirty) return errors;
-            !this.$v.form.filerut.requiredIf && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.filerut.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         showRegister: {
@@ -1452,6 +1461,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .modal-register {
     max-width: 550px;
 
@@ -1635,6 +1645,7 @@ export default {
     font-family: "Roboto", sans-serif;
     font-size: 15px;
     letter-spacing: 0.5px;
+    border-radius: 10px;
 
     &::v-deep {
         .v-input__control,
@@ -1654,6 +1665,17 @@ export default {
             .v-input__slot fieldset {
                 color: #dfdfdf;
             }
+        }
+    }
+}
+
+.select-placeholder{
+
+    &::v-deep{
+
+        ::placeholder{
+
+            font-style: italic;
         }
     }
 }

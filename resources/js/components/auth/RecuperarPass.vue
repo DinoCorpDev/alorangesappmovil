@@ -39,15 +39,22 @@
                             <v-container class="d-flex flex-grow-1 pa-0">
                                 <div class="">
                                     <p>
-                                        Introduce el correo electrónico o número de teléfono asociados a tu cuenta para
+                                        Introduce el correo electrónico asociado a tu cuenta para
                                         poder cambiar tu contraseña.
                                     </p>
+                                    <!-- <p>
+                                        Introduce el correo electrónico o número de teléfono asociados a tu cuenta para
+                                        poder cambiar tu contraseña.
+                                    </p> -->
                                     <div class="inputs mb-5">
                                         <label class="black--text text-uppercase"
-                                            >Correo electrónico o número de teléfono</label
+                                            >Correo electrónico</label
                                         >
+                                        <!-- <label class="black--text text-uppercase"
+                                            >Correo electrónico o número de teléfono</label
+                                        > -->
                                         <CustomInput
-                                            placeholder="Correo electrónico o número de teléfono"
+                                            placeholder="Correo electrónico"
                                             class="place-holder"
                                             type="email"
                                             v-model="form.email"
@@ -55,6 +62,15 @@
                                             hide-details="auto"
                                             required
                                         />
+                                        <!-- <CustomInput
+                                            placeholder="Correo electrónico o número de teléfono"
+                                            class="place-holder"
+                                            type="email"
+                                            v-model="form.email"
+                                            :error-messages="emailErrors"
+                                            hide-details="auto"
+                                            required
+                                        /> -->
                                     </div>
                                 </div>
                             </v-container>
@@ -116,7 +132,7 @@
                                                 type="radio"
                                             />
                                         </v-col>
-                                        <v-col cols="12" sm="12">
+                                        <!-- <v-col cols="12" sm="12">
                                             <CustomCheckbox
                                                 inputValue="Juridical"
                                                 label="Enviar un mensaje de texto al ***********"
@@ -124,7 +140,7 @@
                                                 type="radio"
                                                 disabled
                                             />
-                                        </v-col>
+                                        </v-col> -->
                                     </v-row>
                                     <p>Comunícate con el <b>Soporte de Idovela</b> si no tienes acceso.</p>
                                 </div>
