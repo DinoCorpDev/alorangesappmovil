@@ -404,7 +404,7 @@ class AuthController extends Controller
         $codigo = CodigoCiiu::all();
 
         foreach($codigo as $cod){
-            $arr = [ "text" => $cod->actividad, "value" => $cod->codigo ];
+            $arr = [ "text" => $cod->codigo, "value" => $cod->codigo ];
             array_push($array, $arr);
         }
 

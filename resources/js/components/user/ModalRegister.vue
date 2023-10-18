@@ -267,22 +267,8 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase">Documento</span>
-                                        <SelectCustom
-                                            placeholder="Seleccione tipo de documento"
-                                            :items="documentTypes"
-                                            v-model="form.companyDocumentType"
-                                            :error-messages="companyDocumentTypeErrors"
-                                            @blur="$v.form.companyDocumentType.$touch()"
-                                            required
-                                        />
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">
-                                            Numero de
-                                            {{ form.companyDocumentType ? form.companyDocumentType : "NIT" }}
+                                            Numero de NIT
                                         </span>
                                         <CustomInput
                                             class="place-holder"
@@ -818,35 +804,41 @@ export default {
                 { text: "(NES) Numero de Secretaría", value: "N.E.S" }
             ],
             responsabilidadTypes:[
-                { value: "01", text: "IVA" },
-                { value: "02", text: "IC" },
-                { value: "03", text: "ICA" },
-                { value: "04", text: "INC" },
-                { value: "05", text: "ReteIVA" },
-                { value: "06", text: "ReteFuente" },
-                { value: "07", text: "ReteICA" },
-                { value: "20", text: "FtoHorticultura" },
-                { value: "21", text: "Timbre" },
-                { value: "22", text: "Bolsas" },
-                { value: "23", text: "INCarbono" },
-                { value: "24", text: "INCombustibles" },
-                { value: "25", text: "Sobretasa Combustibles" },
-                { value: "26", text: "Sordicom" },
-                { value: "ZY", text: "No causa (cuando se selecciona esta opción no puede ir otras de las demás)" },
-                { value: "ZZ", text: "Nombre de la figura tributaria" },
-                { value: "48", text: "Responsable del Impuesto sobre las ventas - IVA" },
-                { value: "49", text: "No responsable de IVA" },
+                { value: "01", text: "01-IVA" },
+                { value: "02", text: "02-IC" },
+                { value: "03", text: "03-ICA" },
+                { value: "04", text: "04-INC" },
+                { value: "05", text: "05-ReteIVA" },
+                { value: "06", text: "06-ReteFuente" },
+                { value: "07", text: "07-ReteICA" },
+                { value: "20", text: "20-FtoHorticultura" },
+                { value: "21", text: "21-Timbre" },
+                { value: "22", text: "22-Bolsas" },
+                { value: "23", text: "23-INCarbono" },
+                { value: "24", text: "24-INCombustibles" },
+                { value: "25", text: "25-Sobretasa Combustibles" },
+                { value: "26", text: "26-Sordicom" },
+                { value: "ZY", text: "ZY-No causa (cuando se selecciona esta opción no puede ir otras de las demás)" },
+                { value: "ZZ", text: "ZZ-Nombre de la figura tributaria" },
+                { value: "48", text: "48-Responsable del Impuesto sobre las ventas - IVA" },
+                { value: "49", text: "49-No responsable de IVA" },
             ],
             regimenTypes:[
-                { value:"O-13", text: "Gran contribuyente" },
-                { value:"O-15", text: "Autorretenedor" },
-                { value:"O-23", text: "Agente de retención IVA" },
-                { value:"O-47", text: "Régimen simple de tributación" },
-                { value:"R-99", text: "PN No responsable (cuando se selecciona esta opción no puede ir otras de las demás, esta opción aplica también para Persona Jurídica)" },
+                { value:"O-13", text: "O-13" },
+                { value:"O-15", text: "O-15" },
+                { value:"O-23", text: "O-23" },
+                { value:"O-47", text: "O-47" },
+                { value:"R-99", text: "R-99" },
             ],
             codigoCiiuTypes: [],
             codigoPostalTypes: [],
-            companyTypes: [{ text: "(S.A.S) Sociedad por acciones simplificadas", value: "S.A.S" }],
+            companyTypes: [
+                { text: "(S.A.S) Sociedad por acciones simplificadas", value: "S.A.S" },
+                { text: "(S.A) Sociedad Anónima", value: "S.A" },
+                { text: "LTDA Sociedad Limitada", value: "LTDA" },
+                { text: "S.C Sociedad Colectiva", value: "S.C"},
+                { text: "S.C.A Sociedad comanditaria & Cia", value: "S.C.A"}
+            ],
             form: {
                 email: "",
                 password: "",
@@ -908,7 +900,6 @@ export default {
             documentNumber: { required },
             companyRazon: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            companyDocumentType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyActividad: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyPhone: { requiredIf: requiredIf(item => item.personType === "Juridical") },
@@ -1155,7 +1146,6 @@ export default {
                 if (
                     this.form.companyRazon == "" ||
                     this.form.companyType == "" ||
-                    this.form.companyDocumentType == "" ||
                     this.form.companyDocumentNumber == "" ||
                     this.form.companyActividad == "" ||
                     this.form.companyPhone == "" ||
@@ -1381,7 +1371,6 @@ export default {
                     this.form.personType == "Juridical" &&
                     (this.form.companyRazon == "" ||
                         this.form.companyType == "" ||
-                        this.form.companyDocumentType == "" ||
                         this.form.companyDocumentNumber == "" ||
                         this.form.companyEmail == "" ||
                         this.form.companyActividad == "" ||
