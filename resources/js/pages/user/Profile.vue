@@ -2356,7 +2356,7 @@ export default {
         async saveEditEmpresa(emp){
             this.infoUpdateLoading = true;
 
-            if(emp.first_name == '' || emp.first_lastname == '' || emp.second_lastname == '' || emp.document_number == '' || emp.company_razon == '' || emp.company_type == '' || emp.company_document_number == ''  || emp.company_email == ''  || emp.company_phone == ''  || emp.company_actividad == ''){
+            if(emp.first_name == '' || emp.first_lastname == '' || emp.second_lastname == '' || emp.document_number == '' || emp.company_razon == '' || emp.company_type == '' || emp.company_document_number == ''  || emp.company_email == ''  || emp.company_phone == ''  || emp.companyActividads == '' || emp.regimenFiscals == '' ||  emp.responsabilidadTributs == ''){
                 this.snack({
                     message: this.$i18n.t("something_went_wrong"),
                     color: "red"
