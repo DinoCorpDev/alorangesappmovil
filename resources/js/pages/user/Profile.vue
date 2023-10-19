@@ -779,10 +779,17 @@
                 </div>
 
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-if="addEmpresa == false">
-                    <p class="mb-0">
-                        Realiza las compras como persona juridica agregando los datos de facturación como empresa.
-                    </p>
-                    <CustomButton class="mb-4" block color="grey" @click="addEmpresa = true" text="Añadir mi Empresa" />
+                    <v-row>
+                        <v-col cols="3" style="display: flex; place-items: center">
+                            <EmpresasIcon />
+                        </v-col>
+                        <v-col cols="9" style="display: flex; place-items: center">
+                            <p class="mb-0">
+                                Realiza las compras como persona juridica agregando los datos de facturación como empresa.
+                            </p>
+                        </v-col>
+                        <CustomButton class="mb-4" block color="grey" @click="addEmpresa = true" text="Añadir mi Empresa" />
+                    </v-row>
                 </v-card>
             </v-col>
         </v-row>
@@ -1216,6 +1223,7 @@ import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
 import ArrowUpload from "../../components/icons/ArrowUpload.vue";
 import ProfileAddress from "../../components/icons/ProfileAddress.vue";
+import EmpresasIcon from "../../components/icons/EmpresasIcon.vue";
 
 export default {
     data: () => ({
@@ -1336,7 +1344,8 @@ export default {
         CustomCheckbox,
         SelectCustom,
         ArrowUpload,
-        ProfileAddress
+        ProfileAddress,
+        EmpresasIcon
     },
     validations: {
         form: {

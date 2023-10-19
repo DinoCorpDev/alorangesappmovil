@@ -356,7 +356,7 @@
                                 </v-row>
 
                                 <v-row>
-                                    <v-col cols="12" md="6">
+                                    <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">
                                             {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }}
                                         </span>
@@ -374,7 +374,7 @@
                                         </div>
                                     </v-col>
 
-                                    <v-col cols="12" md="6">
+                                    <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">REGIMEN FISCAL</span>
 
                                         <div class="input-group">
