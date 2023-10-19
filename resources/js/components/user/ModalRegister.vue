@@ -410,6 +410,7 @@
                                     <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span>
                                     </v-col>
+
                                     <v-col cols="11" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
@@ -423,6 +424,7 @@
                                             </template>
                                         </v-file-input>
                                     </v-col>
+
                                     <v-col cols="1" class="icono-documento">
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }">
@@ -1804,9 +1806,5 @@ export default {
         border-color: black;
         color: black;
     }
-}
-
-.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-    border-color: white;
 }
 </style>
