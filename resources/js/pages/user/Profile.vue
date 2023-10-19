@@ -408,6 +408,329 @@
                             </v-card>
                         </div>
                     </div>
+
+                    <div v-if="emp?.editar == true">
+                        <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                            <h5 class="fw-600">Editar Empresa</h5>
+                            <v-form :validator="$v.emp" autocomplete="chrome-off">
+                                <v-row>
+                                    <v-col cols="12" sm="6">
+                                        <span class="black--text body-2 text-uppercase">Primer Nombre *</span>
+                                        <CustomInput
+                                            class="place-holder"
+                                            placeholder="Ingresar nombre"
+                                            v-model="emp.first_name"
+                                            required
+                                        />
+                                    </v-col>
+                                    <v-col cols="12" sm="6">
+                                        <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
+                                        <CustomInput 
+                                        class="place-holder"
+                                        v-model="emp.second_name"
+                                        placeholder="Ingresar segundo nombre"
+                                        />
+                                    </v-col>
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="12" sm="6">
+                                        <span class="black--text body-2 text-uppercase"> Primer Apellido *</span>
+                                        <CustomInput
+                                            class="place-holder"
+                                            placeholder="Ingresar primer apellido"
+                                            v-model="emp.first_lastname"
+                                            required
+                                        />
+                                    </v-col>
+                                    <v-col cols="12" sm="6">
+                                        <span class="black--text body-2 text-uppercase"> Segundo Apellido *</span>
+                                        <CustomInput
+                                            class="place-holder"
+                                            placeholder="Ingresar segundo apellido"
+                                            v-model="emp.second_lastname"
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase"> Documento (Representante)  *</span>
+                                        <SelectCustom
+                                            placeholder="Seleccionar tipo de documento"
+                                            :items="documentTypes"
+                                            v-model="emp.document_type"
+                                            required
+                                        />
+                                    </v-col>
+
+
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase">Numero de Documento *</span>
+                                        <CustomInput
+                                            class="place-holder"
+                                            placeholder="Ingresar número de documento"
+                                            v-model="emp.document_number"
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+                                
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase">Razón Social de la Empresa *</span>
+                                        <CustomInput
+                                            placeholder="Ingrese razón social de la empresa"
+                                            class="place-holder"
+                                            v-model="emp.company_razon"
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase">Entidad Comercial *</span>
+                                        <SelectCustom
+                                            placeholder="Seleccione entidad comercial"
+                                            :items="companyTypes"
+                                            v-model="emp.company_type"
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase">Numero de NIT *</span>
+                                        <CustomInput
+                                            class="place-holder"
+                                            placeholder="Indicar número de documento"
+                                            v-model="emp.company_document_number"
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12" md="12">
+                                        <span class="black--text body-2 text-uppercase">{{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }} *</span>
+
+                                        <div class="input-group">
+                                            <CustomInput
+                                                class="place-holder"
+                                                placeholder="Ingresar correo electrónico o teléfono"
+                                                type="email"
+                                                v-model="emp.company_email"
+                                                required 
+                                            />
+                                        </div>
+
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12" md="12">
+                                        <span class="black--text body-2 text-uppercase">Teléfono / Celular (Área Contable) *</span>
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <vue-tel-input
+                                                    placeholder="Ingresar teléfono / celular"
+                                                    v-model="emp.company_phone"
+                                                    v-bind="mobileInputProps"
+                                                    :onlyCountries="availableCountries"
+                                                    class="place-holder"
+                                                    >
+                                                    <template slot="arrow-icon">
+                                                        <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                                    </template>
+                                                </vue-tel-input>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12" md="6">
+                                        <span class="black--text body-2 text-uppercase">
+                                            {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }} *
+                                        </span>
+
+                                        <div class="input-group">
+                                            <SelectCustom
+                                                    placeholder="Seleccione actividad economica"
+                                                    :items="codigoCiiuTypes"
+                                                    v-model="emp.companyActividads"
+                                                    :multiple="true"
+                                                    required
+                                                />
+                                        </div>
+                                    </v-col>
+
+                                    <v-col cols="12" md="6">
+                                            <span class="black--text body-2 text-uppercase">REGIMEN FISCAL *</span>
+
+                                            <div class="input-group">
+                                                <SelectCustom
+                                                placeholder="Seleccione regimen fiscal"
+                                                :items="regimenTypes"
+                                                v-model="emp.regimenFiscals"
+                                                :multiple="true"
+                                                required
+                                            />
+                                            </div>
+                                        </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12">
+                                        <span class="black--text body-2 text-uppercase">RESPONSABILIDAD TRIBUTARIA *</span>
+                                        <SelectCustom
+                                            placeholder="Seleccione responsabilidad tributaria"
+                                            :items="responsabilidadTypes"
+                                            v-model="emp.responsabilidadTributs"
+                                            :multiple="true"
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+
+
+                                <v-row>
+                                    <v-col cols="12" class="texto-upload">
+                                        <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span>
+                                    </v-col>
+                                    <v-col cols="11" class="area-upload">
+                                        <v-file-input
+                                            placeholder="SUBIR DOCUMENTO"
+                                            class="form-control upload"
+                                            v-model="emp.filedocumento"
+                                            accept="application/pdf"
+                                        >
+                                        <template v-slot:label>
+                                            <ArrowUpload />
+                                            <span>SUBIR DOCUMENTO</span>
+                                        </template>
+
+                                        </v-file-input>
+                                    </v-col>
+                                    <v-col cols="1" class="icono-documento">
+                                        <v-tooltip bottom color="black">
+                                            <template v-slot:activator="{ on, attrs }" >
+                                                
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                            </template>
+                                            <span>&bullet; Documentos en formato PDF</span>
+                                            <br>
+                                            <span>&bullet; Ambas caras de ID ampliadas al 150</span>
+                                            <br>
+                                            <span>&bullet; Documento legible y en color</span>
+                                        </v-tooltip>
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12" class="texto-upload">
+                                        <span class="black--text body-2 text-uppercase">
+                                            Numero de CAMARA DE COMERCIO (ARCHIVO)
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="11" class="area-upload">
+
+                                        <!-- REVISAR--------------------------------- -->
+                                        <v-file-input
+                                            
+                                            class="form-control upload"
+                                            v-model="emp.filecamara"
+                                            accept="application/pdf"
+                                            single-line
+                                        >
+                                        
+                                            <template v-slot:label>
+                                                <ArrowUpload />
+                                                <span>SUBIR DOCUMENTO</span>
+                                            </template>
+
+                                        </v-file-input>
+
+                                        <!-- REVISAR--------------------------------- -->
+
+                                    </v-col>
+                                    <v-col cols="1" class="icono-documento">
+                                        <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
+                                        <v-tooltip bottom color="black">
+                                            <template v-slot:activator="{ on, attrs }" >
+                                                
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                            </template>
+                                            <span>&bullet; Documentos en formato PDF</span>
+                                            <br>
+                                            <span>&bullet; Cámara de comercio no mayor a 90 días</span>
+                                        </v-tooltip>
+
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                    <v-col cols="12" class="texto-upload">
+                                        <span class="black--text body-2 text-uppercase">
+                                            RUT (ARCHIVO)
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="11" class="area-upload">
+                                        <v-file-input
+                                            placeholder="SUBIR DOCUMENTO"
+                                            class="form-control upload"
+                                            v-model="emp.filerut"
+                                            accept="application/pdf"
+                                        >
+                                        <template v-slot:label>
+                                                <ArrowUpload />
+                                                <span>SUBIR DOCUMENTO</span>
+                                            </template>
+
+                                        </v-file-input>
+                                    </v-col>
+                                    <v-col cols="1" class="icono-documento">
+
+                                        <v-tooltip bottom color="black">
+                                            <template v-slot:activator="{ on, attrs }" >
+                                                
+                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                            </template>
+                                            <span>&bullet; Documentos en formato PDF</span>
+                                            <br>
+                                            <span>&bullet; RUT actualizado</span>
+                                        </v-tooltip>
+                                    </v-col>
+                                </v-row>
+
+                                <v-row>
+                                        <v-col cols="4" md="4">
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="< Cancelar"
+                                                type="button"
+                                                color="black"
+                                                @click="cancelEditEmpresa(emp)"
+                                            />
+                                        </v-col>
+                                        <v-col  cols="4" md="4" style="margin-left: 33%">
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="Guardar >"
+                                                type="submit"
+                                                color="black"
+                                                @click="saveEditEmpresa(emp)"
+                                                :disabled="infoUpdateLoading"
+                                                :loading="infoUpdateLoading"
+                                            />
+                                        </v-col>
+                                    </v-row>
+                            </v-form>
+                        </v-card>
+                    </div>
                 </div>
 
                 <div v-if="addEmpresa">
@@ -513,26 +836,8 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2 text-uppercase">Documento</span>
-                                    <SelectCustom
-                                        placeholder="Seleccione tipo de documento"
-                                        :items="documentTypes"
-                                        v-model="formEmpresa.companyDocumentType"
-                                        :error-messages="companyDocumentTypeErrors"
-                                        @blur="$v.formEmpresa.companyDocumentType.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase">
-                                        Numero de
-                                        {{
-                                            formEmpresa.companyDocumentType
-                                                ? formEmpresa.companyDocumentType
-                                                : "Documento"
-                                        }}
+                                        Numero de NIT
                                     </span>
                                     <CustomInput
                                         class="place-holder"
@@ -621,22 +926,53 @@
                             </v-row>
 
                             <v-row>
-                                <v-col cols="12" md="12">
+                                <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">
                                         {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }}
                                     </span>
 
                                     <div class="input-group">
-                                        <CustomInput
-                                            class="place-holder"
-                                            placeholder="Ingresar actividad economica"
-                                            type="text"
-                                            v-model="formEmpresa.companyActividad"
-                                            :error-messages="companyActividadErrors"
-                                            @blur="$v.formEmpresa.companyActividad.$touch()"
+                                        <SelectCustom
+                                                placeholder="Seleccione actividad economica"
+                                                :items="codigoCiiuTypes"
+                                                v-model="formEmpresa.companyActividad"
+                                                :error-messages="companyActividadErrors"
+                                                :multiple="true"
+                                                @blur="$v.formEmpresa.companyActividad.$touch()"
+                                                required
+                                            />
+                                    </div>
+                                </v-col>
+
+                                <v-col cols="12" md="6">
+                                        <span class="black--text body-2 text-uppercase">REGIMEN FISCAL</span>
+
+                                        <div class="input-group">
+                                            <SelectCustom
+                                            placeholder="Seleccione regimen fiscal"
+                                            :items="regimenTypes"
+                                            v-model="formEmpresa.regimenFiscal"
+                                            :multiple="true"
+                                            :error-messages="regimenFiscalErrors"
+                                            @blur="$v.formEmpresa.regimenFiscal.$touch()"
                                             required
                                         />
-                                    </div>
+                                        </div>
+                                    </v-col>
+                            </v-row>
+
+                            <v-row>
+                                <v-col cols="12">
+                                    <span class="black--text body-2 text-uppercase">RESPONSABILIDAD TRIBUTARIA </span>
+                                    <SelectCustom
+                                        placeholder="Seleccione responsabilidad tributaria"
+                                        :items="responsabilidadTypes"
+                                        v-model="formEmpresa.responsabilidadTribut"
+                                        :multiple="true"
+                                        :error-messages="responsabilidadTributErrors"
+                                        @blur="$v.form.responsabilidadTribut.$touch()"
+                                        required
+                                    />
                                 </v-col>
                             </v-row>
 
@@ -1254,8 +1590,42 @@ export default {
             { text: "(C.C) Cedula de ciudadanía", value: "C.C" },
             { text: "(N.I.T) Numero de identificación tributario", value: "N.I.T" }
         ],
+        responsabilidadTypes:[
+            { value: "01", text: "01-IVA" },
+            { value: "02", text: "02-IC" },
+            { value: "03", text: "03-ICA" },
+            { value: "04", text: "04-INC" },
+            { value: "05", text: "05-ReteIVA" },
+            { value: "06", text: "06-ReteFuente" },
+            { value: "07", text: "07-ReteICA" },
+            { value: "20", text: "20-FtoHorticultura" },
+            { value: "21", text: "21-Timbre" },
+            { value: "22", text: "22-Bolsas" },
+            { value: "23", text: "23-INCarbono" },
+            { value: "24", text: "24-INCombustibles" },
+            { value: "25", text: "25-Sobretasa Combustibles" },
+            { value: "26", text: "26-Sordicom" },
+            { value: "ZY", text: "ZY-No causa (cuando se selecciona esta opción no puede ir otras de las demás)" },
+            { value: "ZZ", text: "ZZ-Nombre de la figura tributaria" },
+            { value: "48", text: "48-Responsable del Impuesto sobre las ventas - IVA" },
+            { value: "49", text: "49-No responsable de IVA" },
+        ],
+        regimenTypes:[
+            { value:"O-13", text: "O-13" },
+            { value:"O-15", text: "O-15" },
+            { value:"O-23", text: "O-23" },
+            { value:"O-47", text: "O-47" },
+            { value:"R-99", text: "R-99" },
+        ],
+        codigoCiiuTypes: [],
         codigoPostalTypes: [],
-        companyTypes: [{ text: "(S.A.S) Sociedad por acciones simplificadas", value: "S.A.S" }],
+        companyTypes: [
+            { text: "(S.A.S) Sociedad por acciones simplificadas", value: "S.A.S" },
+            { text: "(S.A) Sociedad Anónima", value: "S.A" },
+            { text: "LTDA Sociedad Limitada", value: "LTDA" },
+            { text: "S.C Sociedad Colectiva", value: "S.C"},
+            { text: "S.C.A Sociedad comanditaria & Cia", value: "S.C.A"}
+        ],
         formUser: {
             personType: "Natural",
             firstName: "",
@@ -1300,6 +1670,8 @@ export default {
             companyDocumentType: "",
             companyDocumentNumber: "",
             companyActividad: "",
+            regimenFiscal: "",
+            responsabilidadTribut: "",
             companyPhone: "",
             companyEmail: "",
             filedocumento: [],
@@ -1370,9 +1742,10 @@ export default {
             documentNumber: { required },
             companyRazon: { required },
             companyType: { required },
-            companyDocumentType: { required },
             companyDocumentNumber: { required },
             companyActividad: { required },
+            regimenFiscal: { required },
+            responsabilidadTribut: { required },
             companyPhone: { required },
             companyEmail: { required }
         }
@@ -1584,6 +1957,18 @@ export default {
             !this.$v.formEmpresa.companyActividad.required && errors.push(this.$i18n.t("this_field_is_required"));
             return errors;
         },
+        regimenFiscalErrors() {
+            const errors = [];
+            if (!this.$v.formEmpresa.regimenFiscal.$dirty) return errors;
+            !this.$v.formEmpresa.regimenFiscal.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
+        responsabilidadTributErrors() {
+            const errors = [];
+            if (!this.$v.formEmpresa.responsabilidadTribut.$dirty) return errors;
+            !this.$v.formEmpresa.responsabilidadTribut.required && errors.push(this.$i18n.t("this_field_is_required"));
+            return errors;
+        },
         companyEmailErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.companyEmail.$dirty) return errors;
@@ -1593,6 +1978,7 @@ export default {
     },
     async created() {
         this.fetchCountries();
+        this.fetchCodigoCiiu();
         this.fetchCodigoPostal();
         await this.getUser();
         this.getAddressUser();
@@ -1805,8 +2191,7 @@ export default {
 
             let state = await this.stateChanged(direction.state_id);
             direction.city = direction.city_id;
-            
-            direction.postal_code = parseInt(direction.postal_code);
+            direction.postal_code = direction.postal_code;
             direction.editar = true;
         },
         cancelEditAddress(direction) {
@@ -1865,6 +2250,13 @@ export default {
             const res = await this.call_api("get", "all-codigo-postal");
             if (res.data.success) {
                 this.codigoPostalTypes = res.data.data;
+            }
+        },
+        async fetchCodigoCiiu() {
+            const res = await this.call_api("get", "all-codigo-ciiu");
+
+            if (res.data.success) {   
+                this.codigoCiiuTypes = res.data.data;
             }
         },
         async countryChanged(countryid) {
@@ -1940,6 +2332,48 @@ export default {
         },
         cancelAddEmpresa() {
             this.addEmpresa = false;
+        },
+        editEmpresa(emp){
+            emp.companyActividads = emp.company_actividad;
+            emp.regimenFiscals = emp.regimen_fiscal;
+            emp.responsabilidadTributs = emp.responsabilidad_tribut;
+
+            emp.editar = true;
+        },
+        cancelEditEmpresa(emp){
+            emp.editar = false;
+        },
+
+        async saveEditEmpresa(emp){
+            this.infoUpdateLoading = true;
+
+            if(emp.first_name == '' || emp.first_lastname == '' || emp.second_lastname == '' || emp.document_number == '' || emp.company_razon == '' || emp.company_type == '' || emp.company_document_number == ''  || emp.company_email == ''  || emp.company_phone == ''  || emp.company_actividad == ''){
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+                this.infoUpdateLoading = false;
+
+                return;
+            } 
+
+            emp.company_actividad = emp.companyActividads;
+            emp.regimen_fiscal = emp.regimenFiscals;
+            emp.responsabilidad_tribut = emp.responsabilidadTributs; 
+
+            const res = await this.call_api("post", `user/companies/update`, emp);
+
+            if (res.data.success) {
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+            this.infoUpdateLoading = false;
+            this.getEmpresasUser();
+            emp.editar = false;
         },
         async deleteEmpresa(id) {
             const res = await this.call_api("get", `user/companies/delete/${id}`);

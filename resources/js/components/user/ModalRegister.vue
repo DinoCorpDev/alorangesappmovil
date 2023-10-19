@@ -365,6 +365,7 @@
                                                 :items="codigoCiiuTypes"
                                                 v-model="form.companyActividad"
                                                 :error-messages="actividadErrors"
+                                                :multiple="true"
                                                 @blur="$v.form.companyActividad.$touch()"
                                                 required
                                             />
@@ -379,6 +380,7 @@
                                             placeholder="Seleccione regimen fiscal"
                                             :items="regimenTypes"
                                             v-model="form.regimenFiscal"
+                                            :multiple="true"
                                             :error-messages="regimenFiscalErrors"
                                             @blur="$v.form.regimenFiscal.$touch()"
                                             required
@@ -394,6 +396,7 @@
                                             placeholder="Seleccione responsabilidad tributaria"
                                             :items="responsabilidadTypes"
                                             v-model="form.responsabilidadTribut"
+                                            :multiple="true"
                                             :error-messages="responsabilidadTributErrors"
                                             @blur="$v.form.responsabilidadTribut.$touch()"
                                             required
@@ -578,6 +581,7 @@
                                         :items="codigoPostalTypes"
                                         v-model="mainAddress.postal_code"
                                         :error-messages="postalCodeErros"
+                                        
                                         @blur="$v.mainAddress.postal_code.$touch()"
                                         required
                                     />
