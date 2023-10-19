@@ -97,5 +97,12 @@ export default {
     }
 }
 
+@media (min-width: 1265px) {
+    .side-menu {
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 10px;
+    }
+}
 
 </style>

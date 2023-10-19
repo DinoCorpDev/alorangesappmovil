@@ -1,7 +1,7 @@
 <template>
     <v-container class="user-layout" fluid>
         <v-row>
-            <v-col lg="3" class="user-layout-sidebar d-lg-block">
+            <v-col lg="3" class="user-layout-sidebar d-lg-block" style="background-color: white;">
                 <SideMenu class="d-none d-sm-block" />
                 <div class="user-layout-button d-sm-none">
                     <h6>Perfil</h6>
@@ -11,7 +11,7 @@
                     </CustomButton>
                 </div>
             </v-col>
-            <v-col cols="12" lg="9" class="user-layout-content">
+            <v-col cols="12" lg="9" class="user-layout-content" style="background-color: white;">
                 <v-container>
                     <v-row>
                         <v-col cols="12" lg="12">
