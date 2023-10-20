@@ -35,7 +35,9 @@ class CompanyController extends Controller
             'company_razon' => $request->companyRazon,
             'company_email' => $request->companyEmail,
             'company_phone' => $request->companyPhone,
-            'company_actividad' => $request->companyActividad,
+            'company_actividad' => json_encode($request->companyActividad),
+            'regimen_fiscal' => json_encode($request->regimenFiscal),
+            'responsabilidad_tribut' => json_encode($request->responsabilidadTribut),
             'company_type' => $request->companyType,
             'company_document_type' => $request->companyDocumentType,
             'company_document_number' => $request->companyDocumentNumber,
@@ -78,6 +80,9 @@ class CompanyController extends Controller
         $company->company_razon = $request->company_razon;
         $company->company_email = $request->company_email;
         $company->company_phone = $request->company_phone;
+        $company->company_actividad = json_encode($request->company_actividad);
+        $company->regimen_fiscal = json_encode($request->regimen_fiscal);
+        $company->responsabilidad_tribut = json_encode($request->responsabilidad_tribut);
         $company->company_actividad = $request->company_actividad;
         $company->company_type = $request->company_type;
         $company->company_document_type = $request->company_document_type;

@@ -11,6 +11,7 @@
         :placeholder="placeholder"
         :required="required"
         :value="value"
+        :multiple="multiple"
         @blur="$emit('blur', $event)"
         @input="$emit('input', $event)"
         append-icon="las la-angle-down"
@@ -69,6 +70,10 @@ export default {
         value: {
             type: [String, Number, Boolean, Object, Array],
             default: null
+        },
+        multiple: {
+            type: Boolean,
+            default: false
         }
     }
 };
