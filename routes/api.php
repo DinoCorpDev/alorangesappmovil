@@ -149,6 +149,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::post('info/update', [UserController::class, 'updateInfo']);
             Route::post('info/updateEmpresa', [UserController::class, 'updateInfoEmpresa']);
             Route::post('info/updatePassword', [UserController::class, 'updatePassword']);
+            Route::post('info/updateAvatar', [UserController::class, 'updateAvatar']);
 
             Route::get('coupons', [CouponController::class, 'index']);
 

@@ -42,76 +42,109 @@
                     style="background: #f5f5f5"
                     v-if="!editarUser"
                 >
-                    <h5 class="fw-600" style="display: inline">Usuario principal</h5>
-                    <i class="las la-star"></i>
-                    <i class="las la-eye-slash" v-if="mostrarDatos" @click="ocultarDatosUsuario"></i>
-                    <i class="las la-eye" @click="mostrarDatosUsuario" v-else></i>
+                    <v-row>
+                        <v-col style="display: flex; place-items: center;">
+                            <h5 class="fw-600" style="display: inline">Usuario principal</h5>
+                        </v-col>
+
+                        <v-col class="text-end" style="display: flex; align-items: center; justify-content: right;">
+                            <div style="margin-right: 15px; margin-top: 3px;">
+                                <i class="las la-star" style="font-size: 25px;"></i>
+                            </div>
+                            <i class="las la-eye-slash" style="font-size: 25px;" v-if="mostrarDatos" @click="ocultarDatosUsuario"></i>
+                            <i class="las la-eye" style="font-size: 25px;" @click="mostrarDatosUsuario" v-else></i>
+                        </v-col>
+                    </v-row>
                     <v-divider class="my-4" />
+
 
                     <div v-if="mostrarDatos">
                         <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                        <v-row>
-                            <v-col class="text-start">
+                        <v-row >
+
+                            
+                            <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">CORREO ELECTRONICO</label>
                             </v-col>
-                            <v-col class="text-end">{{ currentUser.email || "--" }} </v-col>
+                            
+
+                            <v-col class="text-end usuario-lineado">
+                                {{ currentUser.email || "--" }}
+                            </v-col>
+
                         </v-row>
                         <v-row>
-                            <v-col class="text-start">
+
+                            <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">TIPO DE PERSONA</label>
                             </v-col>
-                            <v-col class="text-end"> {{ currentUser.personType || "--" }} </v-col>
+
+                            <v-col class="text-end usuario-lineado"> 
+                                {{ currentUser.personType || "--" }} 
+                            </v-col>
+
                         </v-row>
                         <v-row>
-                            <v-col class="text-start">
+
+                            <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">NOMBRE COMPLETO</label>
                             </v-col>
-                            <v-col class="text-end">{{ currentUser.name || "--" }}</v-col>
+
+                            <v-col class="text-end usuario-lineado">
+                                {{ currentUser.name || "--" }}
+                            </v-col>
+
                         </v-row>
                         <v-row>
-                            <v-col class="text-start">
+
+                            <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">TIPO DE DOCUMENTO</label>
                             </v-col>
-                            <v-col class="text-end">
+
+                            <v-col class="text-end usuario-lineado">
                                 {{ currentUser.documentType || "--" }}
                             </v-col>
+
                         </v-row>
                         <v-row>
+
                             <v-col class="text-start">
                                 <label class="profile-label">NÚMERO DE DOCUMENTO</label>
                             </v-col>
+
                             <v-col class="text-end">
                                 {{ currentUser.documentNumber || "--" }}
                             </v-col>
+
                         </v-row>
                     </div>
                     <div v-else>
                         <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
-                            <v-col class="text-start">
+                            <v-col cols="6" class="text-start usuario-lineado" >
                                 <label class="profile-label">CORREO ELECTRONICO</label>
                             </v-col>
-                            <v-col class="text-end">******@******.*** </v-col>
+                            <v-col cols="6" class="text-end usuario-lineado">******@******.*** </v-col>
                         </v-row>
                         <v-row>
-                            <v-col class="text-start">
+                            <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">TIPO DE PERSONA</label>
                             </v-col>
-                            <v-col class="text-end"> {{ currentUser.personType || "--" }} </v-col>
+                            <v-col class="text-end usuario-lineado"> {{ currentUser.personType || "--" }} </v-col>
                         </v-row>
                         <v-row>
-                            <v-col class="text-start">
+                            <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">NOMBRE COMPLETO</label>
                             </v-col>
-                            <v-col class="text-end">******* ******** *********</v-col>
+                            <v-col class="text-end usuario-lineado">***** ***** ******</v-col>
                         </v-row>
                         <v-row>
-                            <v-col class="text-start">
+                            <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">TIPO DE DOCUMENTO</label>
                             </v-col>
-                            <v-col class="text-end">
+                            <v-col class="text-end usuario-lineado">
                                 {{ currentUser.documentType || "--" }}
                             </v-col>
                         </v-row>
@@ -119,7 +152,7 @@
                             <v-col class="text-start">
                                 <label class="profile-label">NÚMERO DE DOCUMENTO</label>
                             </v-col>
-                            <v-col class="text-end"> ***************** </v-col>
+                            <v-col class="text-end"> *********** </v-col>
                         </v-row>
                     </div>
                     <v-row>
@@ -225,13 +258,15 @@
                         <div v-if="emp.mostrarDatos">
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
-                                <i class="las la-star"></i>
-                                <i
-                                    class="las la-eye-slash"
-                                    v-if="emp.mostrarDatos"
-                                    @click="ocultarDatosEmpresa(emp)"
-                                ></i>
-                                <i class="las la-eye" @click="mostrarDatosEmpresa(emp)" v-else></i>
+                                <div style="width: auto; display: inline; float: right;">
+                                    <i class="las la-star" style="font-size: 25px;"></i>
+                                    <i
+                                        class="las la-eye-slash" style="font-size: 25px;"
+                                        v-if="emp.mostrarDatos"
+                                        @click="ocultarDatosEmpresa(emp)"
+                                    ></i>
+                                    <i class="las la-eye" style="font-size: 25px;" @click="mostrarDatosEmpresa(emp)" v-else></i>
+                                </div>
                                 <v-divider class="my-4" />
 
                                 <v-row>
@@ -324,13 +359,15 @@
                         <div v-else>
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
-                                <i class="las la-star"></i>
-                                <i
-                                    class="las la-eye-slash"
-                                    v-if="emp.mostrarDatos"
-                                    @click="ocultarDatosEmpresa(emp)"
-                                ></i>
-                                <i class="las la-eye" @click="mostrarDatosEmpresa(emp)" v-else></i>
+                                <div style="width: auto; display: inline; float: right;">
+                                    <i class="las la-star" style="font-size: 25px;"></i>
+                                    <i
+                                        class="las la-eye-slash"
+                                        v-if="emp.mostrarDatos"
+                                        @click="ocultarDatosEmpresa(emp)" style="font-size: 25px;"
+                                    ></i>
+                                    <i class="las la-eye" @click="mostrarDatosEmpresa(emp)" style="font-size: 25px;" v-else></i>
+                                </div>
                                 <v-divider class="my-4" />
                                 <v-row>
                                     <v-col class="text-start">
@@ -734,20 +771,25 @@
                 </div>
 
                 <div v-if="addEmpresa">
-                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" style="background-color: white">
+                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" style="background-color: white; border-color: #fafcfc;" >
                         <h5 class="fw-600">Añadir Empresa</h5>
+                        <v-divider class="my-4" />
                         <v-form :validator="$v.formEmpresa" autocomplete="chrome-off">
                             <v-row>
-                                <v-col cols="12" sm="6">
-                                    <span class="black--text body-2 text-uppercase">Primer Nombre</span>
-                                    <CustomInput
-                                        class="place-holder"
-                                        placeholder="Ingresar nombre"
-                                        v-model="formEmpresa.firstName"
-                                        :error-messages="companyFirstNameErrors"
-                                        @blur="$v.formEmpresa.firstName.$touch()"
-                                        required
-                                    />
+                                <v-col cols="12" sm="6" style="display: grid; align-items: end;" >
+                                    
+                                        <span class="black--text body-2 text-uppercase">Primer Nombre</span>
+                                    
+                                        <CustomInput
+                                            class="place-holder"
+                                            placeholder="Ingresar nombre"
+                                            v-model="formEmpresa.firstName"
+                                            :error-messages="companyFirstNameErrors"
+                                            @blur="$v.formEmpresa.firstName.$touch()"
+                                            required
+                                        />
+                                    
+
                                 </v-col>
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
@@ -980,12 +1022,14 @@
                                 <v-col cols="12" class="texto-upload">
                                     <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span>
                                 </v-col>
+
                                 <v-col cols="11" class="area-upload">
                                     <v-file-input
                                         placeholder="SUBIR DOCUMENTO"
                                         class="form-control upload"
                                         v-model="formEmpresa.filedocumento"
                                         accept="application/pdf"
+
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
@@ -993,6 +1037,7 @@
                                         </template>
                                     </v-file-input>
                                 </v-col>
+
                                 <v-col cols="1" class="icono-documento">
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
@@ -1144,34 +1189,85 @@
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-for="(otherAdd, i) in otherAdress" :key="i">
                     <div class="form">
                         <div v-if="otherAdd?.editar == false">
-                            <h5 class="fw-600 text-capitalize">{{ otherAdd?.name }}</h5>
-                            <v-divider class="my-4" />
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Dirección</span>
-                                <span class="body1 text-right">{{ otherAdd?.address }}</span>
+                            <div v-if="otherAdd.mostrarDatos">
+                                <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
+                                <div style="width: auto; display: inline; float: right;">
+                                    <i class="las la-star" style="font-size: 25px;"></i>
+                                    <i
+                                        class="las la-eye-slash"
+                                        v-if="otherAdd.mostrarDatos"
+                                        @click="ocultarDatosDirection(otherAdd)" style="font-size: 25px;"
+                                    ></i>
+                                    <i class="las la-eye" @click="mostrarDatosDirection(otherAdd)" style="font-size: 25px;" v-else></i>
+                                </div>
+                                <v-divider class="my-4" />
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Dirección</span>
+                                    <span class="body1 text-right">{{ otherAdd?.address }}</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Codigo Postal</span>
+                                    <span class="body1">{{ otherAdd?.postal_code }}</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Departamento</span>
+                                    <span class="body1">{{ otherAdd?.state }}</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Municipio</span>
+                                    <span class="body1">{{ otherAdd?.city }}</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Barrio</span>
+                                    <span class="body1">
+                                        {{ otherAdd?.neighborhood ? otherAdd?.neighborhood : "--" }}
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>
+                                    <span class="body1">{{ otherAdd?.phone }}</span>
+                                </div>
                             </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Codigo Postal</span>
-                                <span class="body1">{{ otherAdd?.postal_code }}</span>
+                            <div v-else>
+                                <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
+                                <div style="width: auto; display: inline; float: right;">
+                                    <i class="las la-star" style="font-size: 25px;"></i>
+                                    <i
+                                        class="las la-eye-slash"
+                                        v-if="otherAdd.mostrarDatos"
+                                        @click="ocultarDatosDirection(otherAdd)" style="font-size: 25px;"
+                                    ></i>
+                                    <i class="las la-eye" @click="mostrarDatosDirection(otherAdd)" style="font-size: 25px;" v-else></i> 
+                                </div>
+                                <v-divider class="my-4" />
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Dirección</span>
+                                    <span class="body1 text-right">******** ***** *****</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Codigo Postal</span>
+                                    <span class="body1">*******</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Departamento</span>
+                                    <span class="body1">*******</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Municipio</span>
+                                    <span class="body1">*******</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Barrio</span>
+                                    <span class="body1">
+                                       ***********
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>
+                                    <span class="body1">**********</span>
+                                </div>
                             </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Departamento</span>
-                                <span class="body1">{{ otherAdd?.state }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Municipio</span>
-                                <span class="body1">{{ otherAdd?.city }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Barrio</span>
-                                <span class="body1">
-                                    {{ otherAdd?.neighborhood ? otherAdd?.neighborhood : "--" }}
-                                </span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>
-                                <span class="body1">{{ otherAdd?.phone }}</span>
-                            </div>
+                            
                             <custom-button class="mr-3" color="grey" text="Editar" @click="editDirection(otherAdd)" />
 
                             <custom-button
@@ -1553,6 +1649,7 @@ import AddressDialog from "../../components/address/AddressDialog.vue";
 import ProfileDialog from "../../components/user/ProfileDialog.vue";
 import PasswordDialog from "../../components/user/PasswordDialog.vue";
 import FactoryDialog from "../../components/user/FactoryDialog.vue";
+import store from "../../store/store";
 
 import CustomInput from "../../components/global/CustomInput.vue";
 import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
@@ -2004,9 +2101,28 @@ export default {
         changeAvatar() {
             this.$refs["avatar-input"].click();
         },
-        previewThumbnail(event) {
+        async previewThumbnail(event) {
             this.form.avatar = event.target.files[0];
             if (event.target.files && event.target.files[0]) {
+
+                var form_data = new FormData();
+                form_data.append('avatar', event.target.files[0]);
+
+                let config = {
+                    method: "post",
+                    url: store.state.app.apiPath + "user/info/updateAvatar",
+                    data: form_data,
+                    headers: { "content-type": "multipart/form-data" }
+                };
+                
+                try {
+                    let res = axios(config);
+
+                    console.log(res);
+                } catch (e) {
+                    // return e.response
+                }
+
                 const reader = new FileReader();
                 reader.onload = e => {
                     this.form.previewAvatar = e.target.result;
@@ -2307,6 +2423,12 @@ export default {
 
             this.$v.formDirection.$reset();
         },
+        mostrarDatosDirection(direction) {
+            direction.mostrarDatos = true;
+        },
+        ocultarDatosDirection(direction) {
+            direction.mostrarDatos = false;
+        },
         mostrarDatosEmpresa(emp) {
             emp.mostrarDatos = true;
         },
@@ -2392,7 +2514,7 @@ export default {
             }
         }
     }
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -2495,9 +2617,6 @@ export default {
 
 .place-holder {
     &::v-deep {
-        .v-input__control,
-        .v-input__slot {
-        }
         ::placeholder {
             visibility: hidden;
         }
@@ -2508,4 +2627,72 @@ export default {
         }
     }
 }
+
+.usuario-lineado{
+    padding-bottom: 0px;
+    padding-top: 8px;
+}
+
+.upload {
+    border: 1px solid grey;
+    border-radius: 100px;
+    width: 100%;
+    padding: 0;
+
+    &::v-deep {
+        .v-text-field__details{
+            display: none !important;
+        }
+        .v-input__prepend-outer {
+            display: none !important;
+        }
+        .v-label {
+            top: 38% !important;
+            left: 6.5% !important;
+            right: 0% !important;
+            text-align: center;
+        }
+
+        .v-input__slot {
+            cursor: pointer;
+        }
+
+        .v-text-field__slot {
+            .v-label--active {
+                display: none;
+            }
+        }
+    }
+}
+
+.theme--light {
+    .v-text-field:not(.v-input--has-state) {
+        &::v-deep {
+            &:hover {
+                .v-input__control {
+                    .v-input__slot {
+                        &::before {
+                            border-color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .v-text-field {
+        &::v-deep {
+            .v-input__control {
+                .v-input__slot {
+                    &::before {
+                        border-color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
 </style>
