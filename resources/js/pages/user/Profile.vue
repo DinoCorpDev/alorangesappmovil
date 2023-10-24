@@ -1331,9 +1331,25 @@
                                         v-model="otherAdd.city"
                                     />
                                 </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
+                                <v-row>
+                                    <v-col cols="12" sm="6">
+                                        <span class="black--text body-2 text-uppercase">Localidad</span>
+                                        <SelectCustom
+                                        :items="filteredCities"
+                                        item-text="name"
+                                        item-value="id"
+                                        required
+                                        v-model="otherAdd.localidad"
+                                    />
+                                    </v-col>
+                                    <v-col cols="12" sm="6">
+                                        <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
                                     <CustomInput v-model="otherAdd.neighborhood" />
+                                    </v-col>
+                                </v-row>
+
+                                <div class="mb-3">
+                                    
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
@@ -1494,6 +1510,27 @@
                                     v-model="formDirection.city"
                                 />
                             </div>
+                            <v-row>
+                                <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase">Localidad</span>
+                                    <SelectCustom
+                                    :items="filteredCities"
+                                    item-text="name"
+                                    item-value="id"
+                                    required
+                                    v-model="formDirection.localidad"
+                                />
+                                </v-col>
+                                <v-col cols="12" sm="6">
+                                    <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
+                                    <CustomInput
+                                        v-model="formDirection.neighborhood"
+                                        placeholder="Ingresar barrio"
+                                        class="place-holder"
+                                    />
+                                </v-col>
+                            </v-row>
+
                             <div class="mb-3">
                                 <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
                                 <CustomInput
@@ -1678,6 +1715,7 @@ export default {
         countries: [],
         filteredStates: [],
         filteredCities: [],
+        filteredLocalidad: [],
         form: {
             name: "",
             email: "",
@@ -1756,6 +1794,7 @@ export default {
             postal_code: "",
             country: "",
             neighborhood: "",
+            localidad: "",
             state: "",
             city: "",
             phone: "",
