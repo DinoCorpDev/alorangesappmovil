@@ -133,7 +133,7 @@ class UserController extends Controller
         if (Hash::check($request->oldPassword, $user->password)) {
     
                 $user->update([
-                    'password' => Hash::make($request->password),
+                    'password' => Hash::make($request->newPassword),
                 ]);
     
             $user->save();
@@ -146,7 +146,7 @@ class UserController extends Controller
 
         }else{
             return response()->json([
-                'success' => true,
+                'success' => false,
                 'message' => translate('Error Password!'),
                 'user' => new UserCollection($user)
             ]);

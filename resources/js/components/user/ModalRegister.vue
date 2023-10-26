@@ -633,7 +633,18 @@
                             </v-row>
 
                             <v-row>
-                                <v-col cols="12" md="12">
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2 text-uppercase">Localidad</span>
+                                    <SelectCustom
+                                    :items="filteredCities"
+                                    item-text="name"
+                                    item-value="id"
+                                    required
+                                    v-model="mainAddress.localidad"
+                                />
+                                </v-col>
+
+                                <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Barrio ( Opcional )</span>
                                     <CustomInput
                                         class="place-holder"
@@ -810,6 +821,7 @@ export default {
             countries: [],
             filteredStates: [],
             filteredCities: [],
+            filteredLocalidad: [],
             documentTypes: [
                 { text: "(C.C) Cedula de ciudadanía", value: "C.C" },
                 { text: "(R.C) Registro Civil", value: "R.C" },
@@ -892,6 +904,7 @@ export default {
                 state: "",
                 city: "",
                 neighborhood: "",
+                localidad: "",
                 postal_code: "",
                 phone: "",
                 type: "shipping"
