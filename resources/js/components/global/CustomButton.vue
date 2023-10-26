@@ -298,6 +298,22 @@ export default {
             color: #f5f5f5;
         }
     }
+
+    &.white3 {
+        color: #000;
+        background-color: #ffffff !important;
+
+        &:hover {
+            background-color: white !important;
+            color: #f5f5f5;
+        }
+
+        &:focus,
+        &.v-btn--active {
+            background-color: #161616 !important;
+            color: #f5f5f5;
+        }
+    }
 }
 
 // .theme--light {

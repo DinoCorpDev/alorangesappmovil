@@ -1,9 +1,15 @@
 <template>
     <div class="px-5 py-3">
+
+        <!-- CAMBIAR FOTO Y FECHA --------------------------------------------->
+
+
         <v-row align="center">
             <v-col cols="6" class="text-start">
                 <div class="avatar-upload">
-                    <custom-button color="grey" text="Cambiar Foto" @click="changeAvatar" />
+                    <custom-button @click="changeAvatar" color="white3" style="width: 10px">
+                    <ArrowUpload />
+                    </custom-button>
                     <input
                         hidden
                         type="file"
@@ -14,9 +20,10 @@
                     />
                 </div>
             </v-col>
-            <v-col cols="6" class="text-end"> Se unio en {{ formatDate(currentUser.registerSince) }} </v-col>
         </v-row>
-        <v-divider class="my-6" />
+
+        <!-- --------------------------------------------------------------------------------- -->
+
         <address-dialog
             :typeAddress="typeAddress"
             :show="addDialogShow"
@@ -493,6 +500,7 @@
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase"> Documento (Representante)  *</span>
                                         <SelectCustom
+                                            class="select-style"
                                             placeholder="Seleccionar tipo de documento"
                                             :items="documentTypes"
                                             v-model="emp.document_type"
@@ -529,6 +537,7 @@
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">Entidad Comercial *</span>
                                         <SelectCustom
+                                        class="select-style"
                                             placeholder="Seleccione entidad comercial"
                                             :items="companyTypes"
                                             v-model="emp.company_type"
@@ -594,6 +603,7 @@
 
                                         <div class="input-group">
                                             <SelectCustom
+                                            class="select-style"
                                                     placeholder="Seleccione actividad economica"
                                                     :items="codigoCiiuTypes"
                                                     v-model="emp.companyActividads"
@@ -608,6 +618,7 @@
 
                                             <div class="input-group">
                                                 <SelectCustom
+                                                class="select-style"
                                                 placeholder="Seleccione regimen fiscal"
                                                 :items="regimenTypes"
                                                 v-model="emp.regimenFiscals"
@@ -622,6 +633,7 @@
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">RESPONSABILIDAD TRIBUTARIA *</span>
                                         <SelectCustom
+                                        class="select-style"
                                             placeholder="Seleccione responsabilidad tributaria"
                                             :items="responsabilidadTypes"
                                             v-model="emp.responsabilidadTributs"
@@ -636,7 +648,7 @@
                                     <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span>
                                     </v-col>
-                                    <v-col cols="11" class="area-upload">
+                                    <v-col cols="10" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
                                             class="form-control upload"
@@ -645,12 +657,12 @@
                                         >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span>SUBIR DOCUMENTO</span>
+                                            <p class="subir-documento">SUBIR DOCUMENTO</p>
                                         </template>
 
                                         </v-file-input>
                                     </v-col>
-                                    <v-col cols="1" class="icono-documento">
+                                    <v-col cols="2" class="icono-documento">
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }" >
                                                 
@@ -671,7 +683,7 @@
                                             Numero de CAMARA DE COMERCIO (ARCHIVO)
                                         </span>
                                     </v-col>
-                                    <v-col cols="11" class="area-upload">
+                                    <v-col cols="10" class="area-upload">
 
                                         <!-- REVISAR--------------------------------- -->
                                         <v-file-input
@@ -684,7 +696,7 @@
                                         
                                             <template v-slot:label>
                                                 <ArrowUpload />
-                                                <span>SUBIR DOCUMENTO</span>
+                                                <span class="subir-documento">SUBIR DOCUMENTO</span>
                                             </template>
 
                                         </v-file-input>
@@ -692,7 +704,7 @@
                                         <!-- REVISAR--------------------------------- -->
 
                                     </v-col>
-                                    <v-col cols="1" class="icono-documento">
+                                    <v-col cols="2" class="icono-documento">
                                         <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }" >
@@ -710,10 +722,10 @@
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase">
-                                            RUT (ARCHIVO)
+                                            RUT (ARCHIVO) kjjkbhjbbjhb
                                         </span>
                                     </v-col>
-                                    <v-col cols="11" class="area-upload">
+                                    <v-col cols="10" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
                                             class="form-control upload"
@@ -722,12 +734,12 @@
                                         >
                                         <template v-slot:label>
                                                 <ArrowUpload />
-                                                <span>SUBIR DOCUMENTO</span>
+                                                <span class="subir-documento">SUBIR DOCUMENTO</span>
                                             </template>
 
                                         </v-file-input>
                                     </v-col>
-                                    <v-col cols="1" class="icono-documento">
+                                    <v-col cols="2" class="icono-documento">
 
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }" >
@@ -742,29 +754,29 @@
                                 </v-row>
 
                                 <v-row>
-                                    <v-col cols="4" md="4">
-                                        <custom-button
-                                            block
-                                            class="mt-4"
-                                            text="< Cancelar"
-                                            type="button"
-                                            color="black"
-                                            @click="cancelEditEmpresa(emp)"
-                                        />
-                                    </v-col>
-                                    <v-col  cols="4" md="4" style="margin-left: 33%">
-                                        <custom-button
-                                            block
-                                            class="mt-4"
-                                            text="Guardar >"
-                                            type="submit"
-                                            color="black"
-                                            @click="saveEditEmpresa(emp)"
-                                            :disabled="infoUpdateLoading"
-                                            :loading="infoUpdateLoading"
-                                        />
-                                    </v-col>
-                                </v-row>
+                                        <v-col cols="4" md="4">
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="< Cancelar"
+                                                type="button"
+                                                color="grey2"
+                                                @click="cancelEditEmpresa(emp)"
+                                            />
+                                        </v-col>
+                                        <v-col  cols="4" md="4" style="margin-left: 33%">
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="Guardar >"
+                                                type="submit"
+                                                color="grey2"
+                                                @click="saveEditEmpresa(emp)"
+                                                :disabled="infoUpdateLoading"
+                                                :loading="infoUpdateLoading"
+                                            />
+                                        </v-col>
+                                    </v-row>
                             </v-form>
                         </v-card>
                     </div>
@@ -828,6 +840,7 @@
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase"> Documento (Representante) </span>
                                     <SelectCustom
+                                    class="select-style"
                                         placeholder="Seleccionar tipo de documento"
                                         :items="documentTypes"
                                         v-model="formEmpresa.documentType"
@@ -867,6 +880,7 @@
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase">Entidad Comercial</span>
                                     <SelectCustom
+                                    class="select-style"
                                         placeholder="Seleccione entidad comercial"
                                         :items="companyTypes"
                                         v-model="formEmpresa.companyType"
@@ -943,7 +957,7 @@
                                                 <div class="v-messages theme--light error--text" role="alert">
                                                     <div class="v-messages__wrapper">
                                                         <div class="v-messages__message">
-                                                            {{ $t("this_field_is_required") }}
+                                                            {{ $t("*Este campo es obligatorio") }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -975,6 +989,7 @@
 
                                     <div class="input-group">
                                         <SelectCustom
+                                        class="select-style"
                                                 placeholder="Seleccione actividad economica"
                                                 :items="codigoCiiuTypes"
                                                 v-model="formEmpresa.companyActividad"
@@ -986,20 +1001,22 @@
                                     </div>
                                 </v-col>
 
-                                <v-col cols="12" md="6">
-                                        <span class="black--text body-2 text-uppercase">REGIMEN FISCAL</span>
+                                    
+                                    <v-col cols="12" md="6" style="display: grid; align-items: end;">
+                                            <span class="black--text body-2 text-uppercase">REGIMEN FISCAL</span>
 
-                                        <div class="input-group">
-                                            <SelectCustom
-                                            placeholder="Seleccione regimen fiscal"
-                                            :items="regimenTypes"
-                                            v-model="formEmpresa.regimenFiscal"
-                                            :multiple="true"
-                                            :error-messages="regimenFiscalErrors"
-                                            @blur="$v.formEmpresa.regimenFiscal.$touch()"
-                                            required
-                                        />
-                                        </div>
+                                            <div class="input-group">
+                                                <SelectCustom
+                                                class="select-style"
+                                                placeholder="Seleccione regimen fiscal"
+                                                :items="regimenTypes"
+                                                v-model="formEmpresa.regimenFiscal"
+                                                :multiple="true"
+                                                :error-messages="regimenFiscalErrors"
+                                                @blur="$v.formEmpresa.regimenFiscal.$touch()"
+                                                required
+                                            />
+                                            </div>
                                     </v-col>
                             </v-row>
 
@@ -1007,6 +1024,7 @@
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase">RESPONSABILIDAD TRIBUTARIA </span>
                                     <SelectCustom
+                                    class="select-style"
                                         placeholder="Seleccione responsabilidad tributaria"
                                         :items="responsabilidadTypes"
                                         v-model="formEmpresa.responsabilidadTribut"
@@ -1033,7 +1051,7 @@
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span>SUBIR DOCUMENTO</span>
+                                            <span class="subir-documento">SUBIR DOCUMENTO</span>
                                         </template>
                                     </v-file-input>
                                 </v-col>
@@ -1073,7 +1091,7 @@
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span>SUBIR DOCUMENTO</span>
+                                            <span class="subir-documento">SUBIR DOCUMENTO</span>
                                         </template>
                                     </v-file-input>
 
@@ -1110,7 +1128,7 @@
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span>SUBIR DOCUMENTO</span>
+                                            <span class="subir-documento">SUBIR DOCUMENTO</span>
                                         </template>
                                     </v-file-input>
                                 </v-col>
@@ -1138,7 +1156,7 @@
                                         class="mt-4"
                                         text="< Cancelar"
                                         type="button"
-                                        color="black"
+                                        color="grey"
                                         @click="cancelAddEmpresa()"
                                     />
                                 </v-col>
@@ -1148,7 +1166,7 @@
                                         class="mt-4"
                                         text="Guardar >"
                                         type="submit"
-                                        color="black"
+                                        color="grey"
                                         @click="saveAddEmpresa()"
                                         :disabled="infoUpdateLoading"
                                         :loading="infoUpdateLoading"
@@ -1293,6 +1311,7 @@
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("postal_code") }}</div>
                                     <SelectCustom
+                                    class="select-style"
                                         placeholder="Seleccione codigo postal"
                                         :items="codigoPostalTypes"
                                         v-model="otherAdd.postal_code"
@@ -1302,6 +1321,7 @@
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
                                     <SelectCustom
+                                    class="select-style"
                                         :items="countries"
                                         @input="countryChanged"
                                         item-text="name"
@@ -1313,6 +1333,7 @@
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("state") }}</div>
                                     <SelectCustom
+                                    class="select-style"
                                         :items="filteredStates"
                                         @input="stateChanged"
                                         item-text="name"
@@ -1324,6 +1345,7 @@
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">City</div>
                                     <SelectCustom
+                                    class="select-style"
                                         :items="filteredCities"
                                         item-text="name"
                                         item-value="id"
@@ -1377,7 +1399,7 @@
                                                 <div class="v-messages theme--light error--text" role="alert">
                                                     <div class="v-messages__wrapper">
                                                         <div class="v-messages__message">
-                                                            {{ $t("this_field_is_required") }}
+                                                            {{ $t("*Este campo es obligatorio") }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1404,7 +1426,7 @@
                                                 class="mt-4"
                                                 text="< Cancelar"
                                                 type="button"
-                                                color="black"
+                                                color="grey"
                                                 @click="cancelEditAddress(otherAdd)"
                                             />
                                         </v-col>
@@ -1414,7 +1436,7 @@
                                                 class="mt-4"
                                                 text="Guardar >"
                                                 type="submit"
-                                                color="black"
+                                                color="grey"
                                                 @click="saveEditAddress(otherAdd)"
                                                 :disabled="infoUpdateLoading"
                                                 :loading="infoUpdateLoading"
@@ -1431,47 +1453,14 @@
 
             <v-col cols="12" md="6">
                 <div v-if="addDirection">
-                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" style="background-color: white">
+                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" style="background-color: white; border-color: white">
                         <h5 class="fw-600">Añadir Dirección</h5>
+                        <v-divider class="my-4" />
                         <v-form :validator="$v.formDirection" autocomplete="chrome-off">
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">Dirección (Calle / Carrera)</div>
-
-                                <CustomInput
-                                    placeholder="Ingresar calle / carrera"
-                                    class="place-holder"
-                                    v-model="formDirection.name"
-                                    :error-messages="addressNameErrors"
-                                    @blur="$v.formDirection.name.$touch()"
-                                    required
-                                />
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("Dirección") }}</div>
-                                <CustomInput
-                                    placeholder="Ingresar dirección"
-                                    class="place-holder"
-                                    v-model="formDirection.address"
-                                    :error-messages="addressErrors"
-                                    @blur="$v.formDirection.address.$touch()"
-                                    required
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("Código postal") }}</div>
+                                <div class="mb-1 fs-13 fw-500">{{ $t("PAÍS") }}</div>
                                 <SelectCustom
-                                        placeholder="Seleccione codigo postal"
-                                        :items="codigoPostalTypes"
-                                        v-model="formDirection.postal_code"
-                                        :error-messages="postalCodeErrors"
-                                        @blur="$v.formDirection.postal_code.$touch()"
-                                        required
-                                    />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("País") }}</div>
-                                <SelectCustom
+                                class="select-style"
                                     placeholder="Seleccionar país"
                                     :error-messages="countryErrors"
                                     :items="countries"
@@ -1483,9 +1472,58 @@
                                     v-model="formDirection.country"
                                 />
                             </div>
+
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("Departamento") }}</div>
+                                <div class="mb-1 fs-13 fw-500">NOMBRE DE DIRECCION (CASA/OFICINA)</div>
+                                <CustomInput
+                                    placeholder="Ingresar nombre de dirección"
+                                    class="place-holder"
+                                    v-model="formDirection.name"
+                                    :error-messages="addressNameErrors"
+                                    @blur="$v.formDirection.name.$touch()"
+                                    required
+                                />
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">{{ $t("DIRECCIÓN (CALLE/CARRERA)") }}</div>
+                                <CustomInput
+                                    placeholder="Ingresar dirección"
+                                    class="place-holder"
+                                    v-model="formDirection.address"
+                                    :error-messages="addressErrors"
+                                    @blur="$v.formDirection.address.$touch()"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">{{ $t("DIRECCIÓN ADICIONAL (PISO/APTO/OFICINA)") }}</div>
+                                <CustomInput
+                                    placeholder="Ingresar piso / apartamento / oficina"
+                                    class="place-holder"
+                                    v-model="formDirection.address"
+                                    :error-messages="addressErrors"
+                                    @blur="$v.formDirection.address.$touch()"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">{{ $t("CÓDIGO POSTAL") }}</div>
                                 <SelectCustom
+                                class="select-style"
+                                        placeholder="Seleccione codigo postal"
+                                        :items="codigoPostalTypes"
+                                        v-model="formDirection.postal_code"
+                                        :error-messages="postalCodeErrors"
+                                        @blur="$v.formDirection.postal_code.$touch()"
+                                        required
+                                    />
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">{{ $t("DEPARTAMENTO") }}</div>
+                                <SelectCustom
+                                class="select-style"
                                     placeholder="Seleccionar departamento"
                                     :error-messages="stateErrors"
                                     :items="filteredStates"
@@ -1498,8 +1536,9 @@
                                 />
                             </div>
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">Ciudad</div>
+                                <div class="mb-1 fs-13 fw-500">CIUDAD</div>
                                 <SelectCustom
+                                class="select-style"
                                     placeholder="Seleccionar ciudad"
                                     :error-messages="cityErrors"
                                     :items="filteredCities"
@@ -1532,15 +1571,34 @@
                             </v-row>
 
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
-                                <CustomInput
-                                    v-model="formDirection.neighborhood"
-                                    placeholder="Ingresar barrio"
-                                    class="place-holder"
-                                />
+                                <v-row>
+                                    <v-col cols="6">
+                                        <div class="mb-1 fs-13 fw-500">LOCALIDAD</div>
+                                        <SelectCustom
+                                        class="select-style"
+                                            placeholder="Seleccionar localidad"
+                                            :error-messages="cityErrors"
+                                            :items="filteredCities"
+                                            @blur="$v.formDirection.city.$touch()"
+                                            item-text="name"
+                                            item-value="id"
+                                            required
+                                            v-model="formDirection.city"
+                                        />
+                                    </v-col>
+
+                                    <v-col cols="6">
+                                        <div class="mb-1 fs-13 fw-500">BARRIO (OPCIONAL)</div>
+                                        <CustomInput
+                                            v-model="formDirection.neighborhood"
+                                            placeholder="Ingresar barrio"
+                                            class="place-holder"
+                                        />
+                                    </v-col>
+                                </v-row>
                             </div>
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
+                                <div class="mb-1 fs-13 fw-500">{{ $t("NÚMERO DE TELÉFONO") }}</div>
                                 <v-row>
                                     <v-col cols="12">
                                         <vue-tel-input
@@ -1553,6 +1611,7 @@
                                                 'error--text':
                                                     $v.formDirection.phone.$error || formDirection.showInvalidPhone
                                             }"
+                                            class="place-holder"
                                         >
                                             <template slot="arrow-icon">
                                                 <span class="vti__dropdown-arrow">&nbsp;▼</span>
@@ -1565,7 +1624,7 @@
                                             <div class="v-messages theme--light error--text" role="alert">
                                                 <div class="v-messages__wrapper">
                                                     <div class="v-messages__message">
-                                                        {{ $t("this_field_is_required") }}
+                                                        {{ $t("*Este campo es obligatorio") }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -1590,9 +1649,9 @@
                                         <custom-button
                                             block
                                             class="mt-5"
-                                            text="Cancelar"
+                                            text="< Cancelar"
                                             type="button"
-                                            color="black"
+                                            color="grey"
                                             @click="cancelAddAddress"
                                         />
                                     </v-col>
@@ -1601,9 +1660,9 @@
                                         <custom-button
                                             block
                                             class="mt-5"
-                                            text="Guardar"
+                                            text="Guardar >"
                                             type="submit"
-                                            color="black"
+                                            color="grey"
                                             @click="saveAddress"
                                             :disabled="infoUpdateLoading"
                                             :loading="infoUpdateLoading"
@@ -1789,7 +1848,7 @@ export default {
         mobileInputProps: {
             inputOptions: {
                 type: "tel",
-                placeholder: "phone number"
+                placeholder: "Ingresar teléfono / celular"
             },
             dropdownOptions: {
                 showDialCodeInSelection: false,
@@ -2010,69 +2069,69 @@ export default {
         nameErrors() {
             const errors = [];
             if (!this.$v.form.name.$dirty) return errors;
-            !this.$v.form.name.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.name.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         emailErrors() {
             const errors = [];
             if (!this.$v.form.email.$dirty) return errors;
-            !this.$v.form.email.required && errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.form.email.email && errors.push(this.$i18n.t("this_field_is_required_a_valid_email"));
+            !this.$v.form.email.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            !this.$v.form.email.email && errors.push(this.$i18n.t("*Ingrese un email válido"));
             return errors;
         },
         oldPasswordErrors() {
             const errors = [];
             if (!this.$v.form.oldPassword.$dirty) return errors;
-            !this.$v.form.oldPassword.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.form.oldPassword.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         passwordErrors() {
             const errors = [];
             if (!this.$v.form.password.$dirty) return errors;
-            !this.$v.form.password.minLength && errors.push(this.$i18n.t("password_must_be_minimum_6_characters"));
+            !this.$v.form.password.minLength && errors.push(this.$i18n.t("*La constraseña debe tener mínimo 6 carácteres"));
             return errors;
         },
         confirmPasswordErrors() {
             const errors = [];
             if (!this.$v.form.confirmPassword.$dirty) return errors;
             !this.$v.form.confirmPassword.sameAsPassword &&
-                errors.push(this.$i18n.t("password_and_confirm_password_should_match"));
+                errors.push(this.$i18n.t("*Las constraseñas no coinciden"));
             return errors;
         },
         firstNameErrors() {
             const errors = [];
             if (!this.$v.formUser.firstName.$dirty) return errors;
-            !this.$v.formUser.firstName.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formUser.firstName.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         secondNameErrors() {
             const errors = [];
             if (!this.$v.formUser.secondName.$dirty) return errors;
-            !this.$v.formUser.secondName.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formUser.secondName.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         firstLastnameErrors() {
             const errors = [];
             if (!this.$v.formUser.firstLastname.$dirty) return errors;
-            !this.$v.formUser.firstLastname.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formUser.firstLastname.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         secondLastnameErrors() {
             const errors = [];
             if (!this.$v.formUser.secondLastname.$dirty) return errors;
-            !this.$v.formUser.secondLastname.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formUser.secondLastname.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         documentTypeErrors() {
             const errors = [];
             if (!this.$v.formUser.documentType.$dirty) return errors;
-            !this.$v.formUser.documentType.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formUser.documentType.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         documentNumberErrors() {
             const errors = [];
             if (!this.$v.formUser.documentNumber.$dirty) return errors;
-            !this.$v.formUser.documentNumber.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formUser.documentNumber.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         addressErrors() {
@@ -2080,7 +2139,7 @@ export default {
             if (!this.$v.formDirection.address.$dirty) {
                 return errors;
             }
-            !this.$v.formDirection.address.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formDirection.address.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         addressNameErrors() {
@@ -2088,7 +2147,7 @@ export default {
             if (!this.$v.formDirection.name.$dirty) {
                 return errors;
             }
-            !this.$v.formDirection.name.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formDirection.name.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         addressDetailsErrors() {
@@ -2096,7 +2155,7 @@ export default {
             if (!this.$v.formDirection.details.$dirty) {
                 return errors;
             }
-            !this.$v.formDirection.details.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formDirection.details.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         postalCodeErrors() {
@@ -2104,7 +2163,7 @@ export default {
             if (!this.$v.formDirection.postal_code.$dirty) {
                 return errors;
             }
-            !this.$v.formDirection.postal_code.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formDirection.postal_code.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         countryErrors() {
@@ -2112,7 +2171,7 @@ export default {
             if (!this.$v.formDirection.country.$dirty) {
                 return errors;
             }
-            !this.$v.formDirection.country.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formDirection.country.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         stateErrors() {
@@ -2120,7 +2179,7 @@ export default {
             if (!this.$v.formDirection.state.$dirty) {
                 return errors;
             }
-            !this.$v.formDirection.state.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formDirection.state.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         cityErrors() {
@@ -2128,7 +2187,7 @@ export default {
             if (!this.$v.formDirection.city.$dirty) {
                 return errors;
             }
-            !this.$v.formDirection.city.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formDirection.city.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         phoneErrors() {
@@ -2136,91 +2195,91 @@ export default {
             if (!this.$v.formDirection.phone.$dirty) {
                 return errors;
             }
-            !this.$v.formDirection.phone.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formDirection.phone.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyFirstNameErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.firstName.$dirty) return errors;
-            !this.$v.formEmpresa.firstName.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.firstName.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companySecondNameErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.secondName.$dirty) return errors;
-            !this.$v.formEmpresa.secondName.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.secondName.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyFirstLastnameErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.firstLastname.$dirty) return errors;
-            !this.$v.formEmpresa.firstLastname.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.firstLastname.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companySecondLastnameErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.secondLastname.$dirty) return errors;
-            !this.$v.formEmpresa.secondLastname.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.secondLastname.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyPersonDocumentTypeErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.documentType.$dirty) return errors;
-            !this.$v.formEmpresa.documentType.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.documentType.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyPersonDocumentNumberErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.documentNumber.$dirty) return errors;
-            !this.$v.formEmpresa.documentNumber.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.documentNumber.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyRazonErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.companyRazon.$dirty) return errors;
-            !this.$v.formEmpresa.companyRazon.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.companyRazon.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyTypeErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.companyType.$dirty) return errors;
-            !this.$v.formEmpresa.companyType.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.companyType.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyDocumentTypeErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.companyDocumentType.$dirty) return errors;
-            !this.$v.formEmpresa.companyDocumentType.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.companyDocumentType.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyDocumentNumberErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.companyDocumentNumber.$dirty) return errors;
-            !this.$v.formEmpresa.companyDocumentNumber.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.companyDocumentNumber.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyActividadErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.companyActividad.$dirty) return errors;
-            !this.$v.formEmpresa.companyActividad.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.companyActividad.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         regimenFiscalErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.regimenFiscal.$dirty) return errors;
-            !this.$v.formEmpresa.regimenFiscal.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.regimenFiscal.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         responsabilidadTributErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.responsabilidadTribut.$dirty) return errors;
-            !this.$v.formEmpresa.responsabilidadTribut.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.responsabilidadTribut.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyEmailErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.companyEmail.$dirty) return errors;
-            !this.$v.formEmpresa.companyEmail.required && errors.push(this.$i18n.t("this_field_is_required"));
+            !this.$v.formEmpresa.companyEmail.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         olddPasswordErrors() {
@@ -2823,7 +2882,7 @@ export default {
 }
 
 .upload {
-    border: 1px solid grey;
+    border: 1px solid #dfdfdf;
     border-radius: 100px;
     width: 100%;
     padding: 0;
@@ -2854,14 +2913,44 @@ export default {
     }
 }
 
+.upload:hover{
+    animation: upload-animation 0.3s forwards;
+    .subir-documento{
+        color:white;
+    }
+}
+
+@keyframes upload-animation {
+  0% {
+    background: #dfdfdf;
+  }
+
+  50% {
+    background: black;
+  }
+
+  100% {
+    background: #858585;
+  }
+}
+
+
 .theme--light {
     .v-text-field:not(.v-input--has-state) {
         &::v-deep {
+            .v-input__control {
+                    .v-input__slot {
+                        &::before {
+                            display: none;
+
+                        }
+                    }
+            }
             &:hover {
                 .v-input__control {
                     .v-input__slot {
                         &::before {
-                            border-color: white;
+                            display: none;
                         }
                     }
                 }
@@ -2882,6 +2971,11 @@ export default {
     }
 }
 
-
-
+.icono-documento{
+    display:flex;
+    place-items: center;
+}
+.select-style{
+    font-style: italic;
+}
 </style>
