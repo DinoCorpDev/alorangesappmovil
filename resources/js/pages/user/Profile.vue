@@ -1,26 +1,6 @@
 <template>
     <div class="px-5 py-3">
-
         <!-- CAMBIAR FOTO Y FECHA --------------------------------------------->
-
-
-        <v-row align="center">
-            <v-col cols="6" class="text-start">
-                <div class="avatar-upload">
-                    <custom-button @click="changeAvatar" color="white3" style="width: 10px">
-                    <ArrowUpload />
-                    </custom-button>
-                    <input
-                        hidden
-                        type="file"
-                        ref="avatar-input"
-                        id="avatar-input"
-                        accept="image/png, image/jpg, image/jpeg"
-                        @change="previewThumbnail"
-                    />
-                </div>
-            </v-col>
-        </v-row>
 
         <!-- --------------------------------------------------------------------------------- -->
 
@@ -50,50 +30,47 @@
                     v-if="!editarUser"
                 >
                     <v-row>
-                        <v-col style="display: flex; place-items: center;">
+                        <v-col style="display: flex; place-items: center">
                             <h5 class="fw-600" style="display: inline">Usuario principal</h5>
                         </v-col>
 
-                        <v-col class="text-end" style="display: flex; align-items: center; justify-content: right;">
-                            <div style="margin-right: 15px; margin-top: 3px;">
-                                <i class="las la-star" style="font-size: 25px;"></i>
+                        <v-col class="text-end" style="display: flex; align-items: center; justify-content: right">
+                            <div style="margin-right: 15px; margin-top: 3px">
+                                <i class="las la-star" style="font-size: 25px"></i>
                             </div>
-                            <i class="las la-eye-slash" style="font-size: 25px;" v-if="mostrarDatos" @click="ocultarDatosUsuario"></i>
-                            <i class="las la-eye" style="font-size: 25px;" @click="mostrarDatosUsuario" v-else></i>
+                            <i
+                                class="las la-eye-slash"
+                                style="font-size: 25px"
+                                v-if="mostrarDatos"
+                                @click="ocultarDatosUsuario"
+                            ></i>
+                            <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
                         </v-col>
                     </v-row>
                     <v-divider class="my-4" />
 
-
                     <div v-if="mostrarDatos">
                         <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                        <v-row >
-
-                            
+                        <v-row>
                             <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">CORREO ELECTRONICO</label>
                             </v-col>
-                            
 
                             <v-col class="text-end usuario-lineado">
                                 {{ currentUser.email || "--" }}
                             </v-col>
-
                         </v-row>
                         <v-row>
-
                             <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">TIPO DE PERSONA</label>
                             </v-col>
 
-                            <v-col class="text-end usuario-lineado"> 
-                                {{ currentUser.personType || "--" }} 
+                            <v-col class="text-end usuario-lineado">
+                                {{ currentUser.personType || "--" }}
                             </v-col>
-
                         </v-row>
                         <v-row>
-
                             <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">NOMBRE COMPLETO</label>
                             </v-col>
@@ -101,10 +78,8 @@
                             <v-col class="text-end usuario-lineado">
                                 {{ currentUser.name || "--" }}
                             </v-col>
-
                         </v-row>
                         <v-row>
-
                             <v-col class="text-start usuario-lineado">
                                 <label class="profile-label">TIPO DE DOCUMENTO</label>
                             </v-col>
@@ -112,10 +87,8 @@
                             <v-col class="text-end usuario-lineado">
                                 {{ currentUser.documentType || "--" }}
                             </v-col>
-
                         </v-row>
                         <v-row>
-
                             <v-col class="text-start">
                                 <label class="profile-label">NÚMERO DE DOCUMENTO</label>
                             </v-col>
@@ -123,14 +96,13 @@
                             <v-col class="text-end">
                                 {{ currentUser.documentNumber || "--" }}
                             </v-col>
-
                         </v-row>
                     </div>
                     <div v-else>
                         <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
-                            <v-col cols="6" class="text-start usuario-lineado" >
+                            <v-col cols="6" class="text-start usuario-lineado">
                                 <label class="profile-label">CORREO ELECTRONICO</label>
                             </v-col>
                             <v-col cols="6" class="text-end usuario-lineado">******@******.*** </v-col>
@@ -265,14 +237,20 @@
                         <div v-if="emp.mostrarDatos">
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
-                                <div style="width: auto; display: inline; float: right;">
-                                    <i class="las la-star" style="font-size: 25px;"></i>
+                                <div style="width: auto; display: inline; float: right">
+                                    <i class="las la-star" style="font-size: 25px"></i>
                                     <i
-                                        class="las la-eye-slash" style="font-size: 25px;"
+                                        class="las la-eye-slash"
+                                        style="font-size: 25px"
                                         v-if="emp.mostrarDatos"
                                         @click="ocultarDatosEmpresa(emp)"
                                     ></i>
-                                    <i class="las la-eye" style="font-size: 25px;" @click="mostrarDatosEmpresa(emp)" v-else></i>
+                                    <i
+                                        class="las la-eye"
+                                        style="font-size: 25px"
+                                        @click="mostrarDatosEmpresa(emp)"
+                                        v-else
+                                    ></i>
                                 </div>
                                 <v-divider class="my-4" />
 
@@ -366,14 +344,20 @@
                         <div v-else>
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
-                                <div style="width: auto; display: inline; float: right;">
-                                    <i class="las la-star" style="font-size: 25px;"></i>
+                                <div style="width: auto; display: inline; float: right">
+                                    <i class="las la-star" style="font-size: 25px"></i>
                                     <i
                                         class="las la-eye-slash"
                                         v-if="emp.mostrarDatos"
-                                        @click="ocultarDatosEmpresa(emp)" style="font-size: 25px;"
+                                        @click="ocultarDatosEmpresa(emp)"
+                                        style="font-size: 25px"
                                     ></i>
-                                    <i class="las la-eye" @click="mostrarDatosEmpresa(emp)" style="font-size: 25px;" v-else></i>
+                                    <i
+                                        class="las la-eye"
+                                        @click="mostrarDatosEmpresa(emp)"
+                                        style="font-size: 25px"
+                                        v-else
+                                    ></i>
                                 </div>
                                 <v-divider class="my-4" />
                                 <v-row>
@@ -468,11 +452,13 @@
                                         />
                                     </v-col>
                                     <v-col cols="12" sm="6">
-                                        <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
-                                        <CustomInput 
-                                        class="place-holder"
-                                        v-model="emp.second_name"
-                                        placeholder="Ingresar segundo nombre"
+                                        <span class="black--text body-2 text-uppercase">
+                                            Segundo Nombre (Opcional)
+                                        </span>
+                                        <CustomInput
+                                            class="place-holder"
+                                            v-model="emp.second_name"
+                                            placeholder="Ingresar segundo nombre"
                                         />
                                     </v-col>
                                 </v-row>
@@ -498,7 +484,9 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase"> Documento (Representante)  *</span>
+                                        <span class="black--text body-2 text-uppercase">
+                                            Documento (Representante) *</span
+                                        >
                                         <SelectCustom
                                             class="select-style"
                                             placeholder="Seleccionar tipo de documento"
@@ -507,8 +495,6 @@
                                             required
                                         />
                                     </v-col>
-
-
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
@@ -521,10 +507,12 @@
                                         />
                                     </v-col>
                                 </v-row>
-                                
+
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase">Razón Social de la Empresa *</span>
+                                        <span class="black--text body-2 text-uppercase"
+                                            >Razón Social de la Empresa *</span
+                                        >
                                         <CustomInput
                                             placeholder="Ingrese razón social de la empresa"
                                             class="place-holder"
@@ -537,7 +525,7 @@
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">Entidad Comercial *</span>
                                         <SelectCustom
-                                        class="select-style"
+                                            class="select-style"
                                             placeholder="Seleccione entidad comercial"
                                             :items="companyTypes"
                                             v-model="emp.company_type"
@@ -559,7 +547,9 @@
 
                                 <v-row>
                                     <v-col cols="12" md="12">
-                                        <span class="black--text body-2 text-uppercase">{{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }} *</span>
+                                        <span class="black--text body-2 text-uppercase"
+                                            >{{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }} *</span
+                                        >
 
                                         <div class="input-group">
                                             <CustomInput
@@ -567,16 +557,17 @@
                                                 placeholder="Ingresar correo electrónico o teléfono"
                                                 type="email"
                                                 v-model="emp.company_email"
-                                                required 
+                                                required
                                             />
                                         </div>
-
                                     </v-col>
                                 </v-row>
 
                                 <v-row>
                                     <v-col cols="12" md="12">
-                                        <span class="black--text body-2 text-uppercase">Teléfono / Celular (Área Contable) *</span>
+                                        <span class="black--text body-2 text-uppercase"
+                                            >Teléfono / Celular (Área Contable) *</span
+                                        >
                                         <v-row>
                                             <v-col cols="12">
                                                 <vue-tel-input
@@ -585,7 +576,7 @@
                                                     v-bind="mobileInputProps"
                                                     :onlyCountries="availableCountries"
                                                     class="place-holder"
-                                                    >
+                                                >
                                                     <template slot="arrow-icon">
                                                         <span class="vti__dropdown-arrow">&nbsp;▼</span>
                                                     </template>
@@ -603,21 +594,21 @@
 
                                         <div class="input-group">
                                             <SelectCustom
-                                            class="select-style"
-                                                    placeholder="Seleccione actividad economica"
-                                                    :items="codigoCiiuTypes"
-                                                    v-model="emp.companyActividads"
-                                                    :multiple="true"
-                                                    required
-                                                />
+                                                class="select-style"
+                                                placeholder="Seleccione actividad economica"
+                                                :items="codigoCiiuTypes"
+                                                v-model="emp.companyActividads"
+                                                :multiple="true"
+                                                required
+                                            />
                                         </div>
                                     </v-col>
 
                                     <v-col cols="12" md="6">
-                                            <span class="black--text body-2 text-uppercase">REGIMEN FISCAL *</span>
+                                        <span class="black--text body-2 text-uppercase">REGIMEN FISCAL *</span>
 
-                                            <div class="input-group">
-                                                <SelectCustom
+                                        <div class="input-group">
+                                            <SelectCustom
                                                 class="select-style"
                                                 placeholder="Seleccione regimen fiscal"
                                                 :items="regimenTypes"
@@ -625,15 +616,17 @@
                                                 :multiple="true"
                                                 required
                                             />
-                                            </div>
-                                        </v-col>
+                                        </div>
+                                    </v-col>
                                 </v-row>
 
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2 text-uppercase">RESPONSABILIDAD TRIBUTARIA *</span>
+                                        <span class="black--text body-2 text-uppercase"
+                                            >RESPONSABILIDAD TRIBUTARIA *</span
+                                        >
                                         <SelectCustom
-                                        class="select-style"
+                                            class="select-style"
                                             placeholder="Seleccione responsabilidad tributaria"
                                             :items="responsabilidadTypes"
                                             v-model="emp.responsabilidadTributs"
@@ -642,7 +635,6 @@
                                         />
                                     </v-col>
                                 </v-row>
-
 
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
@@ -655,23 +647,26 @@
                                             v-model="emp.filedocumento"
                                             accept="application/pdf"
                                         >
-                                        <template v-slot:label>
-                                            <ArrowUpload />
-                                            <p class="subir-documento">SUBIR DOCUMENTO</p>
-                                        </template>
-
+                                            <template v-slot:label>
+                                                <ArrowUpload />
+                                                <p class="subir-documento">SUBIR DOCUMENTO</p>
+                                            </template>
                                         </v-file-input>
                                     </v-col>
                                     <v-col cols="2" class="icono-documento">
                                         <v-tooltip bottom color="black">
-                                            <template v-slot:activator="{ on, attrs }" >
-                                                
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <i
+                                                    class="las la-exclamation-circle icon-tooltip-dos"
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                    style="font-size: 30px; transform: rotate(180deg)"
+                                                ></i>
                                             </template>
                                             <span>&bullet; Documentos en formato PDF</span>
-                                            <br>
+                                            <br />
                                             <span>&bullet; Ambas caras de ID ampliadas al 150</span>
-                                            <br>
+                                            <br />
                                             <span>&bullet; Documento legible y en color</span>
                                         </v-tooltip>
                                     </v-col>
@@ -684,38 +679,36 @@
                                         </span>
                                     </v-col>
                                     <v-col cols="10" class="area-upload">
-
                                         <!-- REVISAR--------------------------------- -->
                                         <v-file-input
-                                            
                                             class="form-control upload"
                                             v-model="emp.filecamara"
                                             accept="application/pdf"
                                             single-line
                                         >
-                                        
                                             <template v-slot:label>
                                                 <ArrowUpload />
                                                 <span class="subir-documento">SUBIR DOCUMENTO</span>
                                             </template>
-
                                         </v-file-input>
 
                                         <!-- REVISAR--------------------------------- -->
-
                                     </v-col>
                                     <v-col cols="2" class="icono-documento">
                                         <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
                                         <v-tooltip bottom color="black">
-                                            <template v-slot:activator="{ on, attrs }" >
-                                                
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <i
+                                                    class="las la-exclamation-circle icon-tooltip-dos"
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                    style="font-size: 30px; transform: rotate(180deg)"
+                                                ></i>
                                             </template>
                                             <span>&bullet; Documentos en formato PDF</span>
-                                            <br>
+                                            <br />
                                             <span>&bullet; Cámara de comercio no mayor a 90 días</span>
                                         </v-tooltip>
-
                                     </v-col>
                                 </v-row>
 
@@ -732,76 +725,79 @@
                                             v-model="emp.filerut"
                                             accept="application/pdf"
                                         >
-                                        <template v-slot:label>
+                                            <template v-slot:label>
                                                 <ArrowUpload />
                                                 <span class="subir-documento">SUBIR DOCUMENTO</span>
                                             </template>
-
                                         </v-file-input>
                                     </v-col>
                                     <v-col cols="2" class="icono-documento">
-
                                         <v-tooltip bottom color="black">
-                                            <template v-slot:activator="{ on, attrs }" >
-                                                
-                                                <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <i
+                                                    class="las la-exclamation-circle icon-tooltip-dos"
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                    style="font-size: 30px; transform: rotate(180deg)"
+                                                ></i>
                                             </template>
                                             <span>&bullet; Documentos en formato PDF</span>
-                                            <br>
+                                            <br />
                                             <span>&bullet; RUT actualizado</span>
                                         </v-tooltip>
                                     </v-col>
                                 </v-row>
 
                                 <v-row>
-                                        <v-col cols="4" md="4">
-                                            <custom-button
-                                                block
-                                                class="mt-4"
-                                                text="< Cancelar"
-                                                type="button"
-                                                color="grey2"
-                                                @click="cancelEditEmpresa(emp)"
-                                            />
-                                        </v-col>
-                                        <v-col  cols="4" md="4" style="margin-left: 33%">
-                                            <custom-button
-                                                block
-                                                class="mt-4"
-                                                text="Guardar >"
-                                                type="submit"
-                                                color="grey2"
-                                                @click="saveEditEmpresa(emp)"
-                                                :disabled="infoUpdateLoading"
-                                                :loading="infoUpdateLoading"
-                                            />
-                                        </v-col>
-                                    </v-row>
+                                    <v-col cols="4" md="4">
+                                        <custom-button
+                                            block
+                                            class="mt-4"
+                                            text="< Cancelar"
+                                            type="button"
+                                            color="grey2"
+                                            @click="cancelEditEmpresa(emp)"
+                                        />
+                                    </v-col>
+                                    <v-col cols="4" md="4" style="margin-left: 33%">
+                                        <custom-button
+                                            block
+                                            class="mt-4"
+                                            text="Guardar >"
+                                            type="submit"
+                                            color="grey2"
+                                            @click="saveEditEmpresa(emp)"
+                                            :disabled="infoUpdateLoading"
+                                            :loading="infoUpdateLoading"
+                                        />
+                                    </v-col>
+                                </v-row>
                             </v-form>
                         </v-card>
                     </div>
                 </div>
 
                 <div v-if="addEmpresa">
-                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" style="background-color: white; border-color: #fafcfc;" >
+                    <v-card
+                        elevation="0"
+                        class="mb-6 form-border rounded-lg pa-5"
+                        style="background-color: white; border-color: #fafcfc"
+                    >
                         <h5 class="fw-600">Añadir Empresa</h5>
                         <v-divider class="my-4" />
                         <v-form :validator="$v.formEmpresa" autocomplete="chrome-off">
                             <v-row>
-                                <v-col cols="12" sm="6" style="display: grid; align-items: end;" >
-                                    
-                                        <span class="black--text body-2 text-uppercase">Primer Nombre</span>
-                                    
-                                        <CustomInput
-                                            class="place-holder"
-                                            placeholder="Ingresar nombre"
-                                            v-model="formEmpresa.firstName"
-                                            :error-messages="companyFirstNameErrors"
-                                            @blur="$v.formEmpresa.firstName.$touch()"
-                                            required
-                                        />
-                                    
+                                <v-col cols="12" sm="6" style="display: grid; align-items: end">
+                                    <span class="black--text body-2 text-uppercase">Primer Nombre</span>
 
+                                    <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar nombre"
+                                        v-model="formEmpresa.firstName"
+                                        :error-messages="companyFirstNameErrors"
+                                        @blur="$v.formEmpresa.firstName.$touch()"
+                                        required
+                                    />
                                 </v-col>
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
@@ -840,7 +836,7 @@
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase"> Documento (Representante) </span>
                                     <SelectCustom
-                                    class="select-style"
+                                        class="select-style"
                                         placeholder="Seleccionar tipo de documento"
                                         :items="documentTypes"
                                         v-model="formEmpresa.documentType"
@@ -880,7 +876,7 @@
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase">Entidad Comercial</span>
                                     <SelectCustom
-                                    class="select-style"
+                                        class="select-style"
                                         placeholder="Seleccione entidad comercial"
                                         :items="companyTypes"
                                         v-model="formEmpresa.companyType"
@@ -892,9 +888,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2 text-uppercase">
-                                        Numero de NIT
-                                    </span>
+                                    <span class="black--text body-2 text-uppercase"> Numero de NIT </span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Indicar número de documento"
@@ -989,42 +983,41 @@
 
                                     <div class="input-group">
                                         <SelectCustom
-                                        class="select-style"
-                                                placeholder="Seleccione actividad economica"
-                                                :items="codigoCiiuTypes"
-                                                v-model="formEmpresa.companyActividad"
-                                                :error-messages="companyActividadErrors"
-                                                :multiple="true"
-                                                @blur="$v.formEmpresa.companyActividad.$touch()"
-                                                required
-                                            />
+                                            class="select-style"
+                                            placeholder="Seleccione actividad economica"
+                                            :items="codigoCiiuTypes"
+                                            v-model="formEmpresa.companyActividad"
+                                            :error-messages="companyActividadErrors"
+                                            :multiple="true"
+                                            @blur="$v.formEmpresa.companyActividad.$touch()"
+                                            required
+                                        />
                                     </div>
                                 </v-col>
 
-                                    
-                                    <v-col cols="12" md="6" style="display: grid; align-items: end;">
-                                            <span class="black--text body-2 text-uppercase">REGIMEN FISCAL</span>
+                                <v-col cols="12" md="6" style="display: grid; align-items: end">
+                                    <span class="black--text body-2 text-uppercase">REGIMEN FISCAL</span>
 
-                                            <div class="input-group">
-                                                <SelectCustom
-                                                class="select-style"
-                                                placeholder="Seleccione regimen fiscal"
-                                                :items="regimenTypes"
-                                                v-model="formEmpresa.regimenFiscal"
-                                                :multiple="true"
-                                                :error-messages="regimenFiscalErrors"
-                                                @blur="$v.formEmpresa.regimenFiscal.$touch()"
-                                                required
-                                            />
-                                            </div>
-                                    </v-col>
+                                    <div class="input-group">
+                                        <SelectCustom
+                                            class="select-style"
+                                            placeholder="Seleccione regimen fiscal"
+                                            :items="regimenTypes"
+                                            v-model="formEmpresa.regimenFiscal"
+                                            :multiple="true"
+                                            :error-messages="regimenFiscalErrors"
+                                            @blur="$v.formEmpresa.regimenFiscal.$touch()"
+                                            required
+                                        />
+                                    </div>
+                                </v-col>
                             </v-row>
 
                             <v-row>
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase">RESPONSABILIDAD TRIBUTARIA </span>
                                     <SelectCustom
-                                    class="select-style"
+                                        class="select-style"
                                         placeholder="Seleccione responsabilidad tributaria"
                                         :items="responsabilidadTypes"
                                         v-model="formEmpresa.responsabilidadTribut"
@@ -1047,7 +1040,6 @@
                                         class="form-control upload"
                                         v-model="formEmpresa.filedocumento"
                                         accept="application/pdf"
-
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
@@ -1184,10 +1176,17 @@
                         </v-col>
                         <v-col cols="9" style="display: flex; place-items: center">
                             <p class="mb-0">
-                                Realiza las compras como persona juridica agregando los datos de facturación como empresa.
+                                Realiza las compras como persona juridica agregando los datos de facturación como
+                                empresa.
                             </p>
                         </v-col>
-                        <CustomButton class="mb-4" block color="grey" @click="addEmpresa = true" text="Añadir mi Empresa" />
+                        <CustomButton
+                            class="mb-4"
+                            block
+                            color="grey"
+                            @click="addEmpresa = true"
+                            text="Añadir mi Empresa"
+                        />
                     </v-row>
                 </v-card>
             </v-col>
@@ -1204,19 +1203,30 @@
 
         <v-row>
             <v-col cols="12" md="6">
-                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-for="(otherAdd, i) in otherAdress" :key="i">
+                <v-card
+                    elevation="0"
+                    class="mb-6 form-border rounded-lg pa-5"
+                    v-for="(otherAdd, i) in otherAdress"
+                    :key="i"
+                >
                     <div class="form">
                         <div v-if="otherAdd?.editar == false">
                             <div v-if="otherAdd.mostrarDatos">
                                 <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
-                                <div style="width: auto; display: inline; float: right;">
-                                    <i class="las la-star" style="font-size: 25px;"></i>
+                                <div style="width: auto; display: inline; float: right">
+                                    <i class="las la-star" style="font-size: 25px"></i>
                                     <i
                                         class="las la-eye-slash"
                                         v-if="otherAdd.mostrarDatos"
-                                        @click="ocultarDatosDirection(otherAdd)" style="font-size: 25px;"
+                                        @click="ocultarDatosDirection(otherAdd)"
+                                        style="font-size: 25px"
                                     ></i>
-                                    <i class="las la-eye" @click="mostrarDatosDirection(otherAdd)" style="font-size: 25px;" v-else></i>
+                                    <i
+                                        class="las la-eye"
+                                        @click="mostrarDatosDirection(otherAdd)"
+                                        style="font-size: 25px"
+                                        v-else
+                                    ></i>
                                 </div>
                                 <v-divider class="my-4" />
                                 <div class="d-flex justify-space-between mb-2">
@@ -1248,14 +1258,20 @@
                             </div>
                             <div v-else>
                                 <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
-                                <div style="width: auto; display: inline; float: right;">
-                                    <i class="las la-star" style="font-size: 25px;"></i>
+                                <div style="width: auto; display: inline; float: right">
+                                    <i class="las la-star" style="font-size: 25px"></i>
                                     <i
                                         class="las la-eye-slash"
                                         v-if="otherAdd.mostrarDatos"
-                                        @click="ocultarDatosDirection(otherAdd)" style="font-size: 25px;"
+                                        @click="ocultarDatosDirection(otherAdd)"
+                                        style="font-size: 25px"
                                     ></i>
-                                    <i class="las la-eye" @click="mostrarDatosDirection(otherAdd)" style="font-size: 25px;" v-else></i> 
+                                    <i
+                                        class="las la-eye"
+                                        @click="mostrarDatosDirection(otherAdd)"
+                                        style="font-size: 25px"
+                                        v-else
+                                    ></i>
                                 </div>
                                 <v-divider class="my-4" />
                                 <div class="d-flex justify-space-between mb-2">
@@ -1276,16 +1292,14 @@
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Barrio</span>
-                                    <span class="body1">
-                                       ***********
-                                    </span>
+                                    <span class="body1"> *********** </span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>
                                     <span class="body1">**********</span>
                                 </div>
                             </div>
-                            
+
                             <custom-button class="mr-3" color="grey" text="Editar" @click="editDirection(otherAdd)" />
 
                             <custom-button
@@ -1311,7 +1325,7 @@
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("postal_code") }}</div>
                                     <SelectCustom
-                                    class="select-style"
+                                        class="select-style"
                                         placeholder="Seleccione codigo postal"
                                         :items="codigoPostalTypes"
                                         v-model="otherAdd.postal_code"
@@ -1321,7 +1335,7 @@
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
                                     <SelectCustom
-                                    class="select-style"
+                                        class="select-style"
                                         :items="countries"
                                         @input="countryChanged"
                                         item-text="name"
@@ -1333,7 +1347,7 @@
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("state") }}</div>
                                     <SelectCustom
-                                    class="select-style"
+                                        class="select-style"
                                         :items="filteredStates"
                                         @input="stateChanged"
                                         item-text="name"
@@ -1345,7 +1359,7 @@
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">City</div>
                                     <SelectCustom
-                                    class="select-style"
+                                        class="select-style"
                                         :items="filteredCities"
                                         item-text="name"
                                         item-value="id"
@@ -1357,22 +1371,20 @@
                                     <v-col cols="12" sm="6">
                                         <span class="black--text body-2 text-uppercase">Localidad</span>
                                         <SelectCustom
-                                        :items="filteredCities"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.localidad"
-                                    />
+                                            :items="filteredCities"
+                                            item-text="name"
+                                            item-value="id"
+                                            required
+                                            v-model="otherAdd.localidad"
+                                        />
                                     </v-col>
                                     <v-col cols="12" sm="6">
                                         <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
-                                    <CustomInput v-model="otherAdd.neighborhood" />
+                                        <CustomInput v-model="otherAdd.neighborhood" />
                                     </v-col>
                                 </v-row>
 
-                                <div class="mb-3">
-                                    
-                                </div>
+                                <div class="mb-3"></div>
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
                                     <v-row>
@@ -1390,7 +1402,7 @@
                                             >
                                                 <template slot="arrow-icon">
                                                     <span class="vti__dropdown-arrow">&nbsp;▼</span>
-                                                </template> 
+                                                </template>
                                             </vue-tel-input>
                                             <div
                                                 class="v-text-field__details mt-2 pl-3"
@@ -1453,14 +1465,18 @@
 
             <v-col cols="12" md="6">
                 <div v-if="addDirection">
-                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" style="background-color: white; border-color: white">
+                    <v-card
+                        elevation="0"
+                        class="mb-6 form-border rounded-lg pa-5"
+                        style="background-color: white; border-color: white"
+                    >
                         <h5 class="fw-600">Añadir Dirección</h5>
                         <v-divider class="my-4" />
                         <v-form :validator="$v.formDirection" autocomplete="chrome-off">
                             <div class="mb-3">
                                 <div class="mb-1 fs-13 fw-500">{{ $t("PAÍS") }}</div>
                                 <SelectCustom
-                                class="select-style"
+                                    class="select-style"
                                     placeholder="Seleccionar país"
                                     :error-messages="countryErrors"
                                     :items="countries"
@@ -1510,20 +1526,20 @@
                             <div class="mb-3">
                                 <div class="mb-1 fs-13 fw-500">{{ $t("CÓDIGO POSTAL") }}</div>
                                 <SelectCustom
-                                class="select-style"
-                                        placeholder="Seleccione codigo postal"
-                                        :items="codigoPostalTypes"
-                                        v-model="formDirection.postal_code"
-                                        :error-messages="postalCodeErrors"
-                                        @blur="$v.formDirection.postal_code.$touch()"
-                                        required
-                                    />
+                                    class="select-style"
+                                    placeholder="Seleccione codigo postal"
+                                    :items="codigoPostalTypes"
+                                    v-model="formDirection.postal_code"
+                                    :error-messages="postalCodeErrors"
+                                    @blur="$v.formDirection.postal_code.$touch()"
+                                    required
+                                />
                             </div>
-                            
+
                             <div class="mb-3">
                                 <div class="mb-1 fs-13 fw-500">{{ $t("DEPARTAMENTO") }}</div>
                                 <SelectCustom
-                                class="select-style"
+                                    class="select-style"
                                     placeholder="Seleccionar departamento"
                                     :error-messages="stateErrors"
                                     :items="filteredStates"
@@ -1538,7 +1554,7 @@
                             <div class="mb-3">
                                 <div class="mb-1 fs-13 fw-500">CIUDAD</div>
                                 <SelectCustom
-                                class="select-style"
+                                    class="select-style"
                                     placeholder="Seleccionar ciudad"
                                     :error-messages="cityErrors"
                                     :items="filteredCities"
@@ -1553,12 +1569,12 @@
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase">Localidad</span>
                                     <SelectCustom
-                                    :items="filteredCities"
-                                    item-text="name"
-                                    item-value="id"
-                                    required
-                                    v-model="formDirection.localidad"
-                                />
+                                        :items="filteredCities"
+                                        item-text="name"
+                                        item-value="id"
+                                        required
+                                        v-model="formDirection.localidad"
+                                    />
                                 </v-col>
                                 <v-col cols="12" sm="6">
                                     <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
@@ -1575,7 +1591,7 @@
                                     <v-col cols="6">
                                         <div class="mb-1 fs-13 fw-500">LOCALIDAD</div>
                                         <SelectCustom
-                                        class="select-style"
+                                            class="select-style"
                                             placeholder="Seleccionar localidad"
                                             :error-messages="cityErrors"
                                             :items="filteredCities"
@@ -1702,12 +1718,10 @@
         <v-row>
             <v-col cols="12" md="6">
                 <h5 class="fw-600">Contraseña</h5>
-                <v-divider class="my-4" /> 
+                <v-divider class="my-4" />
                 <v-row v-if="changePassword">
                     <v-col cols="12" md="12">
-                        <span class="black--text body-2 text-uppercase">
-                            CONTRASEÑA ACTUAL
-                        </span>
+                        <span class="black--text body-2 text-uppercase"> CONTRASEÑA ACTUAL </span>
                         <v-text-field
                             v-model="formContrasena.oldPassword"
                             placeholder="Ingresar contraseña"
@@ -1724,9 +1738,7 @@
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
-                        <span class="black--text body-2 text-uppercase">
-                            NUEVA CONTRASEÑA
-                        </span>
+                        <span class="black--text body-2 text-uppercase"> NUEVA CONTRASEÑA </span>
                         <v-text-field
                             v-model="formContrasena.newPassword"
                             placeholder="Ingresar contraseña"
@@ -1744,9 +1756,7 @@
                     </v-col>
 
                     <v-col cols="12" md="12">
-                        <span class="black--text body-2 text-uppercase">
-                            REPETIR NUEVA CONTRASEÑA
-                        </span>
+                        <span class="black--text body-2 text-uppercase"> REPETIR NUEVA CONTRASEÑA </span>
                         <v-text-field
                             v-model="formContrasena.reptyPassword"
                             placeholder="Ingresar contraseña"
@@ -1774,7 +1784,7 @@
                                 @click="cancelChangePassword()"
                             />
                         </v-col>
-                        <v-col  cols="4" md="4" style="margin-left: 33%">
+                        <v-col cols="4" md="4" style="margin-left: 33%">
                             <custom-button
                                 block
                                 class="mt-4"
@@ -1788,11 +1798,10 @@
                         </v-col>
                     </v-row>
                 </v-row>
-               
+
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-if="!changePassword">
                     <CustomButton block color="grey" text="Cambiar Contraseña" @click="cambiarContrasena()" />
                 </v-card>
-
             </v-col>
 
             <v-col cols="12" md="6">
@@ -1841,7 +1850,10 @@ import ArrowUpload from "../../components/icons/ArrowUpload.vue";
 import ProfileAddress from "../../components/icons/ProfileAddress.vue";
 import EmpresasIcon from "../../components/icons/EmpresasIcon.vue";
 
-const passwordStrong = helpers.regex('passwordStrong', /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/);
+const passwordStrong = helpers.regex(
+    "passwordStrong",
+    /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/
+);
 
 export default {
     data: () => ({
@@ -1885,7 +1897,7 @@ export default {
             { text: "(C.C) Cedula de ciudadanía", value: "C.C" },
             { text: "(N.I.T) Numero de identificación tributario", value: "N.I.T" }
         ],
-        responsabilidadTypes:[
+        responsabilidadTypes: [
             { value: "01", text: "01-IVA" },
             { value: "02", text: "02-IC" },
             { value: "03", text: "03-ICA" },
@@ -1903,14 +1915,14 @@ export default {
             { value: "ZY", text: "ZY-No causa (cuando se selecciona esta opción no puede ir otras de las demás)" },
             { value: "ZZ", text: "ZZ-Nombre de la figura tributaria" },
             { value: "48", text: "48-Responsable del Impuesto sobre las ventas - IVA" },
-            { value: "49", text: "49-No responsable de IVA" },
+            { value: "49", text: "49-No responsable de IVA" }
         ],
-        regimenTypes:[
-            { value:"O-13", text: "O-13" },
-            { value:"O-15", text: "O-15" },
-            { value:"O-23", text: "O-23" },
-            { value:"O-47", text: "O-47" },
-            { value:"R-99", text: "R-99" },
+        regimenTypes: [
+            { value: "O-13", text: "O-13" },
+            { value: "O-15", text: "O-15" },
+            { value: "O-23", text: "O-23" },
+            { value: "O-47", text: "O-47" },
+            { value: "R-99", text: "R-99" }
         ],
         codigoCiiuTypes: [],
         codigoPostalTypes: [],
@@ -1918,8 +1930,8 @@ export default {
             { text: "(S.A.S) Sociedad por acciones simplificadas", value: "S.A.S" },
             { text: "(S.A) Sociedad Anónima", value: "S.A" },
             { text: "LTDA Sociedad Limitada", value: "LTDA" },
-            { text: "S.C Sociedad Colectiva", value: "S.C"},
-            { text: "S.C.A Sociedad comanditaria & Cia", value: "S.C.A"}
+            { text: "S.C Sociedad Colectiva", value: "S.C" },
+            { text: "S.C.A Sociedad comanditaria & Cia", value: "S.C.A" }
         ],
         formUser: {
             personType: "Natural",
@@ -1977,7 +1989,7 @@ export default {
         formContrasena: {
             oldPassword: "",
             newPassword: "",
-            reptyPassword: "",
+            reptyPassword: ""
         },
         passwordShow: false,
         addDialogShow: false,
@@ -2052,9 +2064,9 @@ export default {
             companyEmail: { required }
         },
         formContrasena: {
-            oldPassword: { required, minLength: minLength(6), passwordStrong},
-            newPassword: { required, minLength: minLength(6), passwordStrong},
-            reptyPassword: { required, sameAsPassword: sameAs("newPassword") },
+            oldPassword: { required, minLength: minLength(6), passwordStrong },
+            newPassword: { required, minLength: minLength(6), passwordStrong },
+            reptyPassword: { required, sameAsPassword: sameAs("newPassword") }
         }
     },
     computed: {
@@ -2088,14 +2100,14 @@ export default {
         passwordErrors() {
             const errors = [];
             if (!this.$v.form.password.$dirty) return errors;
-            !this.$v.form.password.minLength && errors.push(this.$i18n.t("*La constraseña debe tener mínimo 6 carácteres"));
+            !this.$v.form.password.minLength &&
+                errors.push(this.$i18n.t("*La constraseña debe tener mínimo 6 carácteres"));
             return errors;
         },
         confirmPasswordErrors() {
             const errors = [];
             if (!this.$v.form.confirmPassword.$dirty) return errors;
-            !this.$v.form.confirmPassword.sameAsPassword &&
-                errors.push(this.$i18n.t("*Las constraseñas no coinciden"));
+            !this.$v.form.confirmPassword.sameAsPassword && errors.push(this.$i18n.t("*Las constraseñas no coinciden"));
             return errors;
         },
         firstNameErrors() {
@@ -2249,13 +2261,15 @@ export default {
         companyDocumentTypeErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.companyDocumentType.$dirty) return errors;
-            !this.$v.formEmpresa.companyDocumentType.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            !this.$v.formEmpresa.companyDocumentType.required &&
+                errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyDocumentNumberErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.companyDocumentNumber.$dirty) return errors;
-            !this.$v.formEmpresa.companyDocumentNumber.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            !this.$v.formEmpresa.companyDocumentNumber.required &&
+                errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyActividadErrors() {
@@ -2273,7 +2287,8 @@ export default {
         responsabilidadTributErrors() {
             const errors = [];
             if (!this.$v.formEmpresa.responsabilidadTribut.$dirty) return errors;
-            !this.$v.formEmpresa.responsabilidadTribut.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            !this.$v.formEmpresa.responsabilidadTribut.required &&
+                errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         companyEmailErrors() {
@@ -2292,8 +2307,10 @@ export default {
             const errors = [];
             if (!this.$v.formContrasena.newPassword.$dirty) return errors;
             !this.$v.formContrasena.newPassword.required && errors.push(this.$i18n.t("this_field_is_required"));
-            !this.$v.formContrasena.newPassword.minLength && errors.push(this.$i18n.t("*La contraseña debe tener mínimo 6 carácteres"));
-            !this.$v.formContrasena.newPassword.passwordStrong && errors.push("*La contraseña necesita al menos 1 caracter especial, 1 mayúscula y 1 minúscula");
+            !this.$v.formContrasena.newPassword.minLength &&
+                errors.push(this.$i18n.t("*La contraseña debe tener mínimo 6 carácteres"));
+            !this.$v.formContrasena.newPassword.passwordStrong &&
+                errors.push("*La contraseña necesita al menos 1 caracter especial, 1 mayúscula y 1 minúscula");
             return errors;
         },
         reptyPasswordErrors() {
@@ -2327,10 +2344,10 @@ export default {
         cambiarContrasena() {
             this.changePassword = true;
         },
-        cancelChangePassword(){
+        cancelChangePassword() {
             this.changePassword = false;
         },
-        async saveChangePassword(){
+        async saveChangePassword() {
             this.$v.formContrasena.$touch();
 
             this.infoUpdateLoading = true;
@@ -2352,9 +2369,8 @@ export default {
         async previewThumbnail(event) {
             this.form.avatar = event.target.files[0];
             if (event.target.files && event.target.files[0]) {
-
                 var form_data = new FormData();
-                form_data.append('avatar', event.target.files[0]);
+                form_data.append("avatar", event.target.files[0]);
 
                 let config = {
                     method: "post",
@@ -2362,7 +2378,7 @@ export default {
                     data: form_data,
                     headers: { "content-type": "multipart/form-data" }
                 };
-                
+
                 try {
                     let res = axios(config);
 
@@ -2628,7 +2644,7 @@ export default {
         async fetchCodigoCiiu() {
             const res = await this.call_api("get", "all-codigo-ciiu");
 
-            if (res.data.success) {   
+            if (res.data.success) {
                 this.codigoCiiuTypes = res.data.data;
             }
         },
@@ -2712,21 +2728,34 @@ export default {
         cancelAddEmpresa() {
             this.addEmpresa = false;
         },
-        editEmpresa(emp){
+        editEmpresa(emp) {
             emp.companyActividads = emp.company_actividad;
             emp.regimenFiscals = emp.regimen_fiscal;
             emp.responsabilidadTributs = emp.responsabilidad_tribut;
 
             emp.editar = true;
         },
-        cancelEditEmpresa(emp){
+        cancelEditEmpresa(emp) {
             emp.editar = false;
         },
 
-        async saveEditEmpresa(emp){
+        async saveEditEmpresa(emp) {
             this.infoUpdateLoading = true;
 
-            if(emp.first_name == '' || emp.first_lastname == '' || emp.second_lastname == '' || emp.document_number == '' || emp.company_razon == '' || emp.company_type == '' || emp.company_document_number == ''  || emp.company_email == ''  || emp.company_phone == ''  || emp.companyActividads == '' || emp.regimenFiscals == '' ||  emp.responsabilidadTributs == ''){
+            if (
+                emp.first_name == "" ||
+                emp.first_lastname == "" ||
+                emp.second_lastname == "" ||
+                emp.document_number == "" ||
+                emp.company_razon == "" ||
+                emp.company_type == "" ||
+                emp.company_document_number == "" ||
+                emp.company_email == "" ||
+                emp.company_phone == "" ||
+                emp.companyActividads == "" ||
+                emp.regimenFiscals == "" ||
+                emp.responsabilidadTributs == ""
+            ) {
                 this.snack({
                     message: this.$i18n.t("something_went_wrong"),
                     color: "red"
@@ -2734,11 +2763,11 @@ export default {
                 this.infoUpdateLoading = false;
 
                 return;
-            } 
+            }
 
             emp.company_actividad = emp.companyActividads;
             emp.regimen_fiscal = emp.regimenFiscals;
-            emp.responsabilidad_tribut = emp.responsabilidadTributs; 
+            emp.responsabilidad_tribut = emp.responsabilidadTributs;
 
             const res = await this.call_api("post", `user/companies/update`, emp);
 
@@ -2762,7 +2791,7 @@ export default {
             }
         }
     }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -2876,7 +2905,7 @@ export default {
     }
 }
 
-.usuario-lineado{
+.usuario-lineado {
     padding-bottom: 0px;
     padding-top: 8px;
 }
@@ -2888,7 +2917,7 @@ export default {
     padding: 0;
 
     &::v-deep {
-        .v-text-field__details{
+        .v-text-field__details {
             display: none !important;
         }
         .v-input__prepend-outer {
@@ -2913,38 +2942,36 @@ export default {
     }
 }
 
-.upload:hover{
+.upload:hover {
     animation: upload-animation 0.3s forwards;
-    .subir-documento{
-        color:white;
+    .subir-documento {
+        color: white;
     }
 }
 
 @keyframes upload-animation {
-  0% {
-    background: #dfdfdf;
-  }
+    0% {
+        background: #dfdfdf;
+    }
 
-  50% {
-    background: black;
-  }
+    50% {
+        background: black;
+    }
 
-  100% {
-    background: #858585;
-  }
+    100% {
+        background: #858585;
+    }
 }
-
 
 .theme--light {
     .v-text-field:not(.v-input--has-state) {
         &::v-deep {
             .v-input__control {
-                    .v-input__slot {
-                        &::before {
-                            display: none;
-
-                        }
+                .v-input__slot {
+                    &::before {
+                        display: none;
                     }
+                }
             }
             &:hover {
                 .v-input__control {
@@ -2971,11 +2998,11 @@ export default {
     }
 }
 
-.icono-documento{
-    display:flex;
+.icono-documento {
+    display: flex;
     place-items: center;
 }
-.select-style{
+.select-style {
     font-style: italic;
 }
 </style>

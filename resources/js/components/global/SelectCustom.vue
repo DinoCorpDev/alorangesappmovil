@@ -14,16 +14,22 @@
         :multiple="multiple"
         @blur="$emit('blur', $event)"
         @input="$emit('input', $event)"
-        append-icon="las la-angle-down"
+        append-icon="las la-caret-down icono-grande"
         clear-icon="las la-times"
         flat
         outlined
         rounded
         solo
     ></v-select>
+    
+
 </template>
 
 <script>
+
+import ArrowUpload from "../../components/icons/ArrowUpload.vue";
+
+
 export default {
     name: "SelectCustom",
     props: {
@@ -74,8 +80,13 @@ export default {
         multiple: {
             type: Boolean,
             default: false
+        },
+
+        components: {
+            ArrowUpload
         }
-    }
+    },
+    
 };
 </script>
 
@@ -165,5 +176,9 @@ export default {
             }
         }
     }
+}
+
+.icono-grande{
+    font-size: 100px;
 }
 </style>
