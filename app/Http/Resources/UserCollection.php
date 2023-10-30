@@ -24,7 +24,7 @@ class UserCollection extends JsonResource
             'secondLastname' => $this->second_lastname,
             'email' => $this->email,
             'phone' => $this->phone,
-            'avatar' => $this->avatar ? api_asset($this->avatar) : '',
+            'avatar' => $this->avatar ? asset('public/avatars/'.$this->avatar) : '',
             'registerSince' => $this->created_at,
             'personType' => $this->person_type,
             'documentType' => $this->document_type,

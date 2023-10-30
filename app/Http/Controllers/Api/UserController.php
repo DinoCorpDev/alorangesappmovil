@@ -156,9 +156,8 @@ class UserController extends Controller
     public function updateAvatar(Request $request)
     {        
         $path_avatar = public_path().'/avatars/';
-
         $avatarfile = '';
-
+    
         if($request->hasFile('avatar')){
             $file = $request->file('avatar');
             $filenameWithExt = $file->getClientOriginalName();
@@ -169,7 +168,7 @@ class UserController extends Controller
             $avatarfile = $fileNameToStore;
         }
 
-        $user = User::find(auth('api')->user()->id);
+        $user = User::find($request->id);
 
         $user->update([
             'avatar' => $avatarfile,
@@ -178,7 +177,7 @@ class UserController extends Controller
         return response()->json([
             'success' => true,
             'message' => translate('Avatar has been updated successfully'),
-            'user' => $user
+            'user' =>$user
         ]);
 
     }

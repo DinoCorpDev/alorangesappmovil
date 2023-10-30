@@ -125,6 +125,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::post('address/create', [AddressController::class, 'createShippingAddress']);
         Route::post('address/createRegister', [AddressController::class, 'createShippingAddressRegister']);
+        Route::post('info/updateAvatar', [UserController::class, 'updateAvatar']);
     });
 
     Route::post('payment/image', [OrderController::class, 'paymentImage']);
@@ -149,7 +150,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::post('info/update', [UserController::class, 'updateInfo']);
             Route::post('info/updateEmpresa', [UserController::class, 'updateInfoEmpresa']);
             Route::post('info/updatePassword', [UserController::class, 'updatePassword']);
-            Route::post('info/updateAvatar', [UserController::class, 'updateAvatar']);
+            
 
             Route::get('coupons', [CouponController::class, 'index']);
 

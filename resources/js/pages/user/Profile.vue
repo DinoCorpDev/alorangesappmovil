@@ -2253,6 +2253,7 @@ export default {
         await this.getUser();
         this.getAddressUser();
         this.getEmpresasUser();
+        this.changeAvatarLoading();
 
         this.form.policiesAndCookiesConsent = Boolean(this.currentUser.policiesAndCookiesConsent);
         this.form.offersConsent = Boolean(this.currentUser.offersConsent);
@@ -2264,6 +2265,10 @@ export default {
         ...mapMutations("address", ["setAddresses"]),
         changeAvatar() {
             this.$refs["avatar-input"].click();
+        },
+        changeAvatarLoading(){
+            this.form.previewAvatar = this.currentUser.avatar;
+            this.setPreviewAvatar(this.currentUser.avatar);
         },
         cambiarContrasena() {
             this.changePassword = true;
@@ -2295,22 +2300,10 @@ export default {
             if (event.target.files && event.target.files[0]) {
 
                 var form_data = new FormData();
+                form_data.append('id', this.currentUser.id);
                 form_data.append('avatar', event.target.files[0]);
 
-                let config = {
-                    method: "post",
-                    url: store.state.app.apiPath + "user/info/updateAvatar",
-                    data: form_data,
-                    headers: { "content-type": "multipart/form-data" }
-                };
-                
-                try {
-                    let res = axios(config);
-
-                    console.log(res);
-                } catch (e) {
-                    // return e.response
-                }
+                const res = await this.call_api("post", "user/info/updateAvatar", form_data, true);
 
                 const reader = new FileReader();
                 reader.onload = e => {
