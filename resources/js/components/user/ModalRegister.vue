@@ -220,6 +220,7 @@
                                         @blur="$v.form.documentType.$touch()"
                                         required
                                     />
+                                    
                                 </v-col>
                             </v-row>
                             <v-row>
