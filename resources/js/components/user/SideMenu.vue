@@ -78,58 +78,50 @@
                 <v-container>
                     <v-row>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto(1)"
-                                    :src="currentUser.avatar"
-                                    @error="imageFallback($event)"
+                            <img  @click="seleccionarFoto('Idovela_Diseñador.svg')"
+                                    src="/public/avatars/Idovela_Diseñador.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto(1)"
-                                    :src="currentUser.avatar"
-                                    @error="imageFallback($event)"
+                            <img  @click="seleccionarFoto('Idovela_Diseñadora.svg')"
+                                    src="/public/avatars/Idovela_Diseñadora.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto(1)"
-                                    :src="currentUser.avatar"
-                                    @error="imageFallback($event)"
+                            <img  @click="seleccionarFoto('Idovela_Ingeniero.svg')"
+                                    src="/public/avatars/Idovela_Ingeniero.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto(1)"
-                                    :src="currentUser.avatar"
-                                    @error="imageFallback($event)"
+                            <img  @click="seleccionarFoto('Idovela_Ingeniera.svg')"
+                                    src="/public/avatars/Idovela_Ingeniera.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto(1)"
-                                    :src="currentUser.avatar"
-                                    @error="imageFallback($event)"
+                            <img  @click="seleccionarFoto('Idovela_Mascota.svg')"
+                                    src="/public/avatars/Idovela_Mascota.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto(1)"
-                                    :src="currentUser.avatar"
-                                    @error="imageFallback($event)"
+                            <img  @click="seleccionarFoto('Idovela_Flor.svg')"
+                                    src="/public/avatars/Idovela_Flor.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto(1)"
-                                    :src="currentUser.avatar"
-                                    @error="imageFallback($event)"
+                            <img  @click="seleccionarFoto('Idovela_Arquitectura.svg')"
+                                    src="/public/avatars/Idovela_Arquitectura.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto(1)"
-                                    :src="currentUser.avatar"
-                                    @error="imageFallback($event)"
+                            <img  @click="seleccionarFoto('Idovela_Robot.svg')"
+                                    src="/public/avatars/Idovela_Robot.svg"  
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
@@ -144,7 +136,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import UserMenu from "./UserMenu.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 
@@ -159,17 +151,19 @@ export default {
     }),
     computed: {
         ...mapGetters("auth", ["currentUser"]),
-        ...mapState("app", ["previewAvatar"])
+        ...mapState("app", ["previewAvatar"]),
     },
     methods: {
         ...mapActions(["auth/logout"]),
         ...mapActions("cart", ["resetCart"]),
+        ...mapMutations("app", ["setPreviewAvatar"]),
         changeAvatar() {
             this.dialogAvatar = true;
             //this.$refs["avatar-input"].click();
         },
         ...mapActions("wishlist", ["resetWishlist"]),
-        seleccionarFoto(id){
+        seleccionarFoto(name){
+            this.setPreviewAvatar("/public/avatars/"+name);
             this.dialogAvatar = false;
         },
         async logout() {
