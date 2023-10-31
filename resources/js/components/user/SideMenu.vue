@@ -63,6 +63,83 @@
         </CustomButton>
 
         <v-divider class="d-none d-lg-block my-5" />
+        <v-dialog
+            v-model="dialogAvatar"
+            activator="parent"
+            persistent
+            width="auto"
+        >
+            <v-card>
+                <v-card-title>
+                    <span class="text-h5">Cambiar Foto</span>
+                </v-card-title>
+                <v-divider class="d-none d-lg-block my-5" />
+
+                <v-container>
+                    <v-row>
+                        <v-col cols="12" md="3">
+                            <img  @click="seleccionarFoto(1)"
+                                    :src="currentUser.avatar"
+                                    @error="imageFallback($event)"
+                                    class="border border-4 img-avatar"
+                                />
+                        </v-col>
+                        <v-col cols="12" md="3">
+                            <img  @click="seleccionarFoto(1)"
+                                    :src="currentUser.avatar"
+                                    @error="imageFallback($event)"
+                                    class="border border-4 img-avatar"
+                                />
+                        </v-col>
+                        <v-col cols="12" md="3">
+                            <img  @click="seleccionarFoto(1)"
+                                    :src="currentUser.avatar"
+                                    @error="imageFallback($event)"
+                                    class="border border-4 img-avatar"
+                                />
+                        </v-col>
+                        <v-col cols="12" md="3">
+                            <img  @click="seleccionarFoto(1)"
+                                    :src="currentUser.avatar"
+                                    @error="imageFallback($event)"
+                                    class="border border-4 img-avatar"
+                                />
+                        </v-col>
+                        <v-col cols="12" md="3">
+                            <img  @click="seleccionarFoto(1)"
+                                    :src="currentUser.avatar"
+                                    @error="imageFallback($event)"
+                                    class="border border-4 img-avatar"
+                                />
+                        </v-col>
+                        <v-col cols="12" md="3">
+                            <img  @click="seleccionarFoto(1)"
+                                    :src="currentUser.avatar"
+                                    @error="imageFallback($event)"
+                                    class="border border-4 img-avatar"
+                                />
+                        </v-col>
+                        <v-col cols="12" md="3">
+                            <img  @click="seleccionarFoto(1)"
+                                    :src="currentUser.avatar"
+                                    @error="imageFallback($event)"
+                                    class="border border-4 img-avatar"
+                                />
+                        </v-col>
+                        <v-col cols="12" md="3">
+                            <img  @click="seleccionarFoto(1)"
+                                    :src="currentUser.avatar"
+                                    @error="imageFallback($event)"
+                                    class="border border-4 img-avatar"
+                                />
+                        </v-col>
+                    </v-row>
+                </v-container>
+                <v-card-actions>
+                
+                </v-card-actions>
+            </v-card>
+      </v-dialog>
     </div>
 </template>
 
@@ -76,6 +153,10 @@ export default {
         CustomButton,
         UserMenu
     },
+    data: () => ({
+        dialogAvatar: false,
+        infoUpdateLoading: false
+    }),
     computed: {
         ...mapGetters("auth", ["currentUser"]),
         ...mapState("app", ["previewAvatar"])
@@ -84,9 +165,13 @@ export default {
         ...mapActions(["auth/logout"]),
         ...mapActions("cart", ["resetCart"]),
         changeAvatar() {
-            this.$refs["avatar-input"].click();
+            this.dialogAvatar = true;
+            //this.$refs["avatar-input"].click();
         },
         ...mapActions("wishlist", ["resetWishlist"]),
+        seleccionarFoto(id){
+            this.dialogAvatar = false;
+        },
         async logout() {
             const res = await this.call_api("get", "auth/logout");
             this["auth/logout"]();
@@ -195,5 +280,18 @@ export default {
 
 .avatar-upload {
     background: transparent;
+}
+
+.img-avatar{
+    margin: 35px;
+    width: 350px;
+    border: 20px solid #f7f2f2;
+    border-radius: 50%;
+}
+
+.img-avatar:hover{
+    cursor: pointer;
+    border: 20px solid darkgray;
+    border-radius: 50%;
 }
 </style>
