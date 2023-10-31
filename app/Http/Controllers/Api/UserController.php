@@ -155,23 +155,23 @@ class UserController extends Controller
 
     public function updateAvatar(Request $request)
     {        
-        $path_avatar = public_path().'/avatars/';
-        $avatarfile = '';
-    
-        if($request->hasFile('avatar')){
-            $file = $request->file('avatar');
-            $filenameWithExt = $file->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            $file->move($path_avatar, $fileNameToStore);
-            $avatarfile = $fileNameToStore;
-        }
+        // $path_avatar = public_path().'/avatars/';
+        // $avatarfile = '';
+
+        // if($request->hasFile('avatar')){
+        //     $file = $request->file('avatar');
+        //     $filenameWithExt = $file->getClientOriginalName();
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     $extension = $file->getClientOriginalExtension();
+        //     $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+        //     $file->move($path_avatar, $fileNameToStore);
+        //     $avatarfile = $fileNameToStore;
+        // }
 
         $user = User::find($request->id);
 
         $user->update([
-            'avatar' => $avatarfile,
+            'avatar' => $request->avatar,
         ]);
 
         return response()->json([

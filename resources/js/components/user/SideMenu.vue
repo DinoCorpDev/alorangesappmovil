@@ -67,7 +67,7 @@
             v-model="dialogAvatar"
             activator="parent"
             persistent
-            width="auto"
+            width="1000px"
         >
             <v-card>
                 <v-card-title>
@@ -76,51 +76,51 @@
                 <v-divider class="d-none d-lg-block my-5" />
 
                 <v-container>
-                    <v-row>
+                    <v-row style="margin-left: 10px;">
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto('Idovela_Diseñador.svg')"
+                            <img  @click="selectAvatar('Idovela_Diseñador.svg')"
                                     src="/public/avatars/Idovela_Diseñador.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto('Idovela_Diseñadora.svg')"
+                            <img  @click="selectAvatar('Idovela_Diseñadora.svg')"
                                     src="/public/avatars/Idovela_Diseñadora.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto('Idovela_Ingeniero.svg')"
+                            <img  @click="selectAvatar('Idovela_Ingeniero.svg')"
                                     src="/public/avatars/Idovela_Ingeniero.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto('Idovela_Ingeniera.svg')"
+                            <img  @click="selectAvatar('Idovela_Ingeniera.svg')"
                                     src="/public/avatars/Idovela_Ingeniera.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto('Idovela_Mascota.svg')"
+                            <img  @click="selectAvatar('Idovela_Mascota.svg')"
                                     src="/public/avatars/Idovela_Mascota.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto('Idovela_Flor.svg')"
+                            <img  @click="selectAvatar('Idovela_Flor.svg')"
                                     src="/public/avatars/Idovela_Flor.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto('Idovela_Arquitectura.svg')"
+                            <img  @click="selectAvatar('Idovela_Arquitectura.svg')"
                                     src="/public/avatars/Idovela_Arquitectura.svg"
                                     class="border border-4 img-avatar"
                                 />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="seleccionarFoto('Idovela_Robot.svg')"
+                            <img  @click="selectAvatar('Idovela_Robot.svg')"
                                     src="/public/avatars/Idovela_Robot.svg"  
                                     class="border border-4 img-avatar"
                                 />
@@ -162,7 +162,13 @@ export default {
             //this.$refs["avatar-input"].click();
         },
         ...mapActions("wishlist", ["resetWishlist"]),
-        seleccionarFoto(name){
+        async selectAvatar(name){
+            var form_data = new FormData();
+            form_data.append('id', this.currentUser.id);
+            form_data.append('avatar', name);
+
+            const res = await this.call_api("post", "user/info/updateAvatar", form_data);
+
             this.setPreviewAvatar("/public/avatars/"+name);
             this.dialogAvatar = false;
         },
@@ -175,7 +181,6 @@ export default {
                 console.log("Error while redirecting to home");
             });
         },
-
         async previewThumbnail(event) {
             this.form.avatar = event.target.files[0];
             if (event.target.files && event.target.files[0]) {
@@ -277,8 +282,7 @@ export default {
 }
 
 .img-avatar{
-    margin: 35px;
-    width: 350px;
+    width: 200px;
     border: 20px solid #f7f2f2;
     border-radius: 50%;
 }
