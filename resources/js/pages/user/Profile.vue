@@ -1,9 +1,5 @@
 <template>
     <div class="px-5 py-3">
-        <!-- CAMBIAR FOTO Y FECHA --------------------------------------------->
-
-        <!-- --------------------------------------------------------------------------------- -->
-
         <address-dialog
             :typeAddress="typeAddress"
             :show="addDialogShow"
@@ -36,7 +32,16 @@
 
                         <v-col class="text-end" style="display: flex; align-items: center; justify-content: right">
                             <div style="margin-right: 15px; margin-top: 3px">
-                                <i class="las la-star" style="font-size: 25px"></i>
+                                <v-tooltip bottom color="black">
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <i class="las la-star" 
+                                        v-bind="attrs"
+                                        v-on="on" 
+                                        style="font-size: 25px">
+                                        </i>
+                                    </template>
+                                    <span>Favorito</span>
+                                </v-tooltip>
                             </div>
                             <i
                                 class="las la-eye-slash"
@@ -238,7 +243,16 @@
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
                                 <div style="width: auto; display: inline; float: right">
-                                    <i class="las la-star" style="font-size: 25px"></i>
+                                    <v-tooltip bottom color="black">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <i class="las la-star"
+                                            v-bind="attrs"
+                                            v-on="on" 
+                                            style="font-size: 25px; margin-right: 15px;">
+                                            </i>
+                                        </template>
+                                        <span>Favorito</span>
+                                    </v-tooltip>
                                     <i
                                         class="las la-eye-slash"
                                         style="font-size: 25px"
@@ -345,7 +359,16 @@
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
                                 <div style="width: auto; display: inline; float: right">
-                                    <i class="las la-star" style="font-size: 25px"></i>
+                                    <v-tooltip bottom color="black">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <i class="las la-star"
+                                            v-bind="attrs"
+                                            v-on="on" 
+                                            style="font-size: 25px; margin-right: 15px;">
+                                            </i>
+                                        </template>
+                                        <span>Favorito</span>
+                                    </v-tooltip>
                                     <i
                                         class="las la-eye-slash"
                                         v-if="emp.mostrarDatos"
@@ -1214,7 +1237,16 @@
                             <div v-if="otherAdd.mostrarDatos">
                                 <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
                                 <div style="width: auto; display: inline; float: right">
-                                    <i class="las la-star" style="font-size: 25px"></i>
+                                    <v-tooltip bottom color="black">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <i class="las la-star"
+                                            v-bind="attrs"
+                                            v-on="on" 
+                                            style="font-size: 25px; margin-right: 15px;">
+                                            </i>
+                                        </template>
+                                        <span>Favorito</span>
+                                    </v-tooltip>
                                     <i
                                         class="las la-eye-slash"
                                         v-if="otherAdd.mostrarDatos"
@@ -1259,7 +1291,16 @@
                             <div v-else>
                                 <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
                                 <div style="width: auto; display: inline; float: right">
-                                    <i class="las la-star" style="font-size: 25px"></i>
+                                    <v-tooltip bottom color="black">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <i class="las la-star"
+                                            v-bind="attrs"
+                                            v-on="on" 
+                                            style="font-size: 25px; margin-right: 15px;">
+                                            </i>
+                                        </template>
+                                        <span>Favorito</span>
+                                    </v-tooltip>
                                     <i
                                         class="las la-eye-slash"
                                         v-if="otherAdd.mostrarDatos"
@@ -1301,13 +1342,6 @@
                             </div>
 
                             <custom-button class="mr-3" color="grey" text="Editar" @click="editDirection(otherAdd)" />
-
-                            <custom-button
-                                class="mr-3"
-                                color="red"
-                                text="Eliminar"
-                                @click="deleteAddress(otherAdd?.id)"
-                            />
                         </div>
 
                         <div v-if="otherAdd?.editar == true">
@@ -1442,7 +1476,15 @@
                                                 @click="cancelEditAddress(otherAdd)"
                                             />
                                         </v-col>
-                                        <v-col cols="4" md="4" style="margin-left: 33%">
+                                        <v-col cols="4" md="4" style="display: flex; align-items: end; justify-content: center;">
+                                            <custom-button
+                                                class="mr-3"
+                                                color="red"
+                                                text="Eliminar"
+                                                @click="deleteAddress(otherAdd?.id)"
+                                            />
+                                        </v-col>
+                                        <v-col cols="4" md="4">
                                             <custom-button
                                                 block
                                                 class="mt-4"

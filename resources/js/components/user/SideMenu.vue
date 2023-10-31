@@ -30,7 +30,7 @@
                                         @change="previewThumbnail"
                                     />
                                 </template>
-                                <span>Cambiar avatar</span>
+                                <span>Editar avatar</span>
                             </v-tooltip>
                         </div>
                     </v-col>

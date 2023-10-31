@@ -210,7 +210,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2 text-uppercase"> Documento (Representante) </span>
+                                    <span class="black--text body-2 text-uppercase"> Documento</span>
                                     <SelectCustom
                                         placeholder="Seleccionar tipo de documento"
                                         class="select-placeholder"
@@ -226,7 +226,7 @@
                             <v-row>
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase">
-                                        Numero de Documento (Representante)
+                                        Numero de Documento
                                     </span>
                                     <CustomInput
                                         class="place-holder"
@@ -524,7 +524,7 @@
                         <v-stepper-content step="3">
                             <v-row>
                                 <v-col cols="12" md="12">
-                                    <span class="black--text body-2 text-uppercase">Pais</span>
+                                    <span class="black--text body-2 text-uppercase">País</span>
                                     <SelectCustom
                                         placeholder="Seleccionar país"
                                         class="select-placeholder"
