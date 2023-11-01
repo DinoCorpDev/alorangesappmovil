@@ -34,11 +34,7 @@
                             <div style="margin-right: 15px; margin-top: 3px">
                                 <v-tooltip bottom color="black">
                                     <template v-slot:activator="{ on, attrs }">
-                                        <i class="las la-star" 
-                                        v-bind="attrs"
-                                        v-on="on" 
-                                        style="font-size: 25px">
-                                        </i>
+                                        <i class="las la-star" v-bind="attrs" v-on="on" style="font-size: 25px"> </i>
                                     </template>
                                     <span>Favorito</span>
                                 </v-tooltip>
@@ -245,10 +241,12 @@
                                 <div style="width: auto; display: inline; float: right">
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
-                                            <i class="las la-star"
-                                            v-bind="attrs"
-                                            v-on="on" 
-                                            style="font-size: 25px; margin-right: 15px;">
+                                            <i
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="font-size: 25px; margin-right: 15px"
+                                            >
                                             </i>
                                         </template>
                                         <span>Favorito</span>
@@ -361,10 +359,12 @@
                                 <div style="width: auto; display: inline; float: right">
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
-                                            <i class="las la-star"
-                                            v-bind="attrs"
-                                            v-on="on" 
-                                            style="font-size: 25px; margin-right: 15px;">
+                                            <i
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="font-size: 25px; margin-right: 15px"
+                                            >
                                             </i>
                                         </template>
                                         <span>Favorito</span>
@@ -1239,10 +1239,12 @@
                                 <div style="width: auto; display: inline; float: right">
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
-                                            <i class="las la-star"
-                                            v-bind="attrs"
-                                            v-on="on" 
-                                            style="font-size: 25px; margin-right: 15px;">
+                                            <i
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="font-size: 25px; margin-right: 15px"
+                                            >
                                             </i>
                                         </template>
                                         <span>Favorito</span>
@@ -1293,10 +1295,12 @@
                                 <div style="width: auto; display: inline; float: right">
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
-                                            <i class="las la-star"
-                                            v-bind="attrs"
-                                            v-on="on" 
-                                            style="font-size: 25px; margin-right: 15px;">
+                                            <i
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="font-size: 25px; margin-right: 15px"
+                                            >
                                             </i>
                                         </template>
                                         <span>Favorito</span>
@@ -1348,16 +1352,26 @@
                             <h5 class="fw-600">Editar Dirección</h5>
                             <v-form :validator="$v.otherAdd" autocomplete="chrome-off">
                                 <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Dirección (Calle / Carrera)</div>
-                                    <CustomInput v-model="otherAdd.name" required />
+                                    <div class="mb-1 fs-13 fw-500">Nombre de dirección (Casa / oficina)</div>
+                                    <CustomInput
+                                        v-model="otherAdd.name"
+                                        required
+                                        class="place-holder"
+                                        placeholder="Ingresar casa / oficina"
+                                    />
                                 </div>
 
                                 <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("address") }}</div>
-                                    <CustomInput v-model="otherAdd.address" required />
+                                    <div class="mb-1 fs-13 fw-500">Dirección (calle / carrera)</div>
+                                    <CustomInput
+                                        v-model="otherAdd.address"
+                                        required
+                                        class="place-holder"
+                                        placeholder="Ingresar calle / carrera"
+                                    />
                                 </div>
                                 <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("postal_code") }}</div>
+                                    <div class="mb-1 fs-13 fw-500">Código postal</div>
                                     <SelectCustom
                                         class="select-style"
                                         placeholder="Seleccione codigo postal"
@@ -1367,8 +1381,9 @@
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
+                                    <div class="mb-1 fs-13 fw-500">País</div>
                                     <SelectCustom
+                                        placeholder="Seleccione país"
                                         class="select-style"
                                         :items="countries"
                                         @input="countryChanged"
@@ -1379,8 +1394,9 @@
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("state") }}</div>
+                                    <div class="mb-1 fs-13 fw-500">Departamento</div>
                                     <SelectCustom
+                                        placeholder="Seleccione departamento"
                                         class="select-style"
                                         :items="filteredStates"
                                         @input="stateChanged"
@@ -1391,8 +1407,9 @@
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">City</div>
+                                    <div class="mb-1 fs-13 fw-500">Ciudad</div>
                                     <SelectCustom
+                                        placeholder="Seleccione ciudad"
                                         class="select-style"
                                         :items="filteredCities"
                                         item-text="name"
@@ -1405,6 +1422,8 @@
                                     <v-col cols="12" sm="6">
                                         <span class="black--text body-2 text-uppercase">Localidad</span>
                                         <SelectCustom
+                                            placeholder="Seleccione localidad"
+                                            class="select-style"
                                             :items="filteredCities"
                                             item-text="name"
                                             item-value="id"
@@ -1414,13 +1433,17 @@
                                     </v-col>
                                     <v-col cols="12" sm="6">
                                         <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
-                                        <CustomInput v-model="otherAdd.neighborhood" />
+                                        <CustomInput
+                                            v-model="otherAdd.neighborhood"
+                                            class="place-holder"
+                                            placeholder="Ingresar barrio"
+                                        />
                                     </v-col>
                                 </v-row>
 
                                 <div class="mb-3"></div>
                                 <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
+                                    <div class="mb-1 fs-13 fw-500">Número de teléfono</div>
                                     <v-row>
                                         <v-col cols="12">
                                             <vue-tel-input
@@ -1476,25 +1499,60 @@
                                                 @click="cancelEditAddress(otherAdd)"
                                             />
                                         </v-col>
-                                        <v-col cols="4" md="4" style="display: flex; align-items: end; justify-content: center;">
-                                            <custom-button
-                                                class="mr-3"
-                                                color="red"
+                                        <v-col
+                                            cols="4"
+                                            md="4"
+                                            style="display: flex; align-items: end; justify-content: center"
+                                        >
+                                            <CustomButtonR
+                                                class="mr-3 boton-redondo"
                                                 text="Eliminar"
                                                 @click="deleteAddress(otherAdd?.id)"
                                             />
                                         </v-col>
                                         <v-col cols="4" md="4">
-                                            <custom-button
-                                                block
-                                                class="mt-4"
-                                                text="Guardar >"
-                                                type="submit"
-                                                color="grey"
-                                                @click="saveEditAddress(otherAdd)"
-                                                :disabled="infoUpdateLoading"
-                                                :loading="infoUpdateLoading"
-                                            />
+                                            <div class="text-center">
+                                                <v-dialog v-model="dialog" width="500">
+                                                    <template v-slot:activator="{ on, attrs }">
+                                                        <v-btn
+                                                            block
+                                                            class="mt-4 boton-guardar"
+                                                            text="Guardar >"
+                                                            type="submit"
+                                                            v-bind="attrs"
+                                                            v-on="on"
+                                                        >
+                                                            Guardar >
+                                                        </v-btn>
+                                                    </template>
+
+                                                    <v-card>
+                                                        <v-card-title class="text-h5 grey lighten-2">
+                                                            Seguro quieres editar?
+                                                        </v-card-title>
+
+                                                        <v-card-text> Quieres editar todo?? </v-card-text>
+
+                                                        <v-divider></v-divider>
+
+                                                        <v-card-actions>
+                                                            <v-spacer></v-spacer>
+                                                            <v-btn color="primary" text @click="dialog = false">
+                                                                NO
+                                                            </v-btn>
+                                                            <v-btn
+                                                                color="primary"
+                                                                text
+                                                                @click="saveEditAddress(otherAdd)"
+                                                                :disabled="infoUpdateLoading"
+                                                                :loading="infoUpdateLoading"
+                                                            >
+                                                                SI, GUARDAR
+                                                            </v-btn>
+                                                        </v-card-actions>
+                                                    </v-card>
+                                                </v-dialog>
+                                            </div>
                                         </v-col>
                                     </v-row>
                                 </div>
@@ -1884,7 +1942,7 @@ import ProfileDialog from "../../components/user/ProfileDialog.vue";
 import PasswordDialog from "../../components/user/PasswordDialog.vue";
 import FactoryDialog from "../../components/user/FactoryDialog.vue";
 import store from "../../store/store";
-
+import CustomButtonR from "../../components/global/CustomButtonRegister.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
@@ -1898,7 +1956,13 @@ const passwordStrong = helpers.regex(
 );
 
 export default {
+    data() {
+        return {
+            dialog: false
+        };
+    },
     data: () => ({
+        dialog: false,
         mobileInputProps: {
             inputOptions: {
                 type: "tel",
@@ -2064,7 +2128,8 @@ export default {
         SelectCustom,
         ArrowUpload,
         ProfileAddress,
-        EmpresasIcon
+        EmpresasIcon,
+        CustomButtonR
     },
     validations: {
         form: {
@@ -2384,7 +2449,7 @@ export default {
         changeAvatar() {
             this.$refs["avatar-input"].click();
         },
-        changeAvatarLoading(){
+        changeAvatarLoading() {
             this.form.previewAvatar = this.currentUser.avatar;
             this.setPreviewAvatar(this.currentUser.avatar);
         },
@@ -2417,8 +2482,8 @@ export default {
             this.form.avatar = event.target.files[0];
             if (event.target.files && event.target.files[0]) {
                 var form_data = new FormData();
-                form_data.append('id', this.currentUser.id);
-                form_data.append('avatar', event.target.files[0]);
+                form_data.append("id", this.currentUser.id);
+                form_data.append("avatar", event.target.files[0]);
 
                 const res = await this.call_api("post", "user/info/updateAvatar", form_data, true);
 
@@ -3039,5 +3104,37 @@ export default {
 }
 .select-style {
     font-style: italic;
+}
+
+.boton-guardar {
+    font-size: var(--font-size-btn);
+    font-weight: 600;
+    letter-spacing: 2;
+    transition: all 0.2s ease-in-out;
+    color: black;
+    background-color: #dfdfdf;
+
+    &:hover {
+        color: #fff;
+        background-color: rgba(#000000, 0.8);
+    }
+
+    &:focus,
+    &.v-btn--active {
+        color: #fff;
+        background-color: #000000;
+    }
+}
+
+.boton-redondo {
+    height: 100px;
+    width: 150px;
+    border: 1px solid #e2e2e2;
+    border-radius: 100px;
+}
+
+.boton-redondo:hover {
+    background: #dfdfdf;
+    border: 1px solid #e2e2e2;
 }
 </style>
