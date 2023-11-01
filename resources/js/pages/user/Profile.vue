@@ -242,10 +242,22 @@
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
+                                                v-if="emp.favorite == 1"
                                                 class="las la-star"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 style="font-size: 25px; margin-right: 15px"
+                                                v-on:click="offFavoriteEmp(emp)"
+                                            >
+                                            </i>
+
+                                            <i
+                                                v-else
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="color: #cbc2c2f2; font-size: 25px; margin-right: 15px"
+                                                v-on:click="activeFavoriteEmp(emp)"
                                             >
                                             </i>
                                         </template>
@@ -360,10 +372,22 @@
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
+                                                v-if="emp.favorite == 1"
                                                 class="las la-star"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 style="font-size: 25px; margin-right: 15px"
+                                                v-on:click="offFavoriteEmp(emp)"
+                                            >
+                                            </i>
+
+                                            <i
+                                                v-else
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="color: #cbc2c2f2; font-size: 25px; margin-right: 15px"
+                                                v-on:click="activeFavoriteEmp(emp)"
                                             >
                                             </i>
                                         </template>
@@ -2889,6 +2913,36 @@ export default {
                 this.getEmpresasUser();
                 this.snack({ message: res.data.message });
             }
+        },
+        async activeFavoriteEmp(emp){
+            emp.favorite = 1;
+
+            const res = await this.call_api("post", `user/companies/setFavorite`, emp);
+
+            if (res.data.success) {
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+            this.getEmpresasUser();
+        },
+        async offFavoriteEmp(emp){
+            emp.favorite = 0;
+
+            const res = await this.call_api("post", `user/companies/setFavorite`, emp);
+
+            if (res.data.success) {
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+            this.getEmpresasUser();
         }
     }
 };

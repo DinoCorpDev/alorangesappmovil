@@ -10,7 +10,7 @@ class CompanyController extends Controller
 {
     public function companies()
     {
-         return new CompanyCollection(Company::where('user_id', auth('api')->user()->id)->latest()->get());
+         return new CompanyCollection(Company::where('user_id', auth('api')->user()->id)->orderBy("favorite", "desc")->get());
     }
 
     public function createCompany(Request $request)
@@ -111,6 +111,28 @@ class CompanyController extends Controller
             'success' => true,
             'message' => translate('Company has been deleted successfully.'),
         ]);
+
+    }
+
+    public function setFavorite(Request $request){
+        $company = Company::findOrFail($request->id);
+        if (auth('api')->user()->id != $company->user_id) {
+            return response()->json(null, 401);
+        }
+
+        $company->favorite = $request->favorite;
+        $company->update();
+
+        if($request->favorite == 1)
+            return response()->json([
+                'success' => true,
+                'message' => translate('Company has been successfully placed as a favorite.'),
+            ]);
+        else
+            return response()->json([
+                'success' => true,
+                'message' => translate('Company has been successfully removed as a favorite.'),
+            ]);
 
     }
 }

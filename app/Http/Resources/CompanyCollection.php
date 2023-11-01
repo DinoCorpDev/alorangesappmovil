@@ -31,7 +31,8 @@ class CompanyCollection extends ResourceCollection
                     'company_document_type' => $data->company_document_type,
                     'company_document_number' => $data->company_document_number,
                     'editar' => false,
-                    'mostrarDatos' => false
+                    'mostrarDatos' => false,
+                    'favorite' =>  $data->favorite
                 ];
             })
         ]; 

@@ -171,6 +171,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::post('address/create', [AddressController::class, 'createShippingAddress']);
             Route::post('address/update', [AddressController::class, 'updateShippingAddress']);
             Route::get('address/delete/{id}', [AddressController::class, 'deleteShippingAddress']);
+            Route::post('address/setFavorite', [AddressController::class, 'setFavorite']);
             Route::get('address/default-shipping/{id}', [AddressController::class, 'defaultShippingAddress']);
             Route::get('address/default-billing/{id}', [AddressController::class, 'defaultBillingAddress']);
 
@@ -178,6 +179,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::get('companies', [CompanyController::class, 'companies']);
             Route::post('companies/create', [CompanyController::class, 'createCompany']);
             Route::post('companies/update', [CompanyController::class, 'updateCompany']);
+            Route::post('companies/setFavorite', [CompanyController::class, 'setFavorite']);
             Route::get('companies/delete/{id}', [CompanyController::class, 'deleteCompany']);
 
             # conversation
