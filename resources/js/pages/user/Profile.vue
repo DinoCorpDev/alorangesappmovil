@@ -1585,13 +1585,18 @@
 
                                                         <v-card-actions>
                                                             <v-spacer></v-spacer>
-                                                            <v-btn color="primary" text @click="dialog = false">
+                                                            <v-btn 
+                                                            color="primary" 
+                                                            text 
+                                                            @click="dialog = false"
+                                                            >
                                                                 NO
                                                             </v-btn>
                                                             <v-btn
                                                                 color="primary"
                                                                 text
                                                                 @click="saveEditAddress(otherAdd)"
+                                                                @click.stop="dialog = false"
                                                                 :disabled="infoUpdateLoading"
                                                                 :loading="infoUpdateLoading"
                                                             >
