@@ -13,7 +13,7 @@ class AddressController extends Controller
 {
     public function addresses()
     {
-        return new AddressCollection(Address::where('user_id', auth('api')->user()->id)->latest()->get());
+        return new AddressCollection(Address::where('user_id', auth('api')->user()->id)->orderBy("favorite", "desc")->get());
     }
 
     public function createShippingAddress(Request $request)
@@ -233,5 +233,27 @@ class AddressController extends Controller
             'success' => true,
             'data' => City::where('state_id', $state_id)->where('status', 1)->get()
         ]);
+    }
+
+    public function setFavorite(Request $request){
+        $address = Address::findOrFail($request->id);
+        if (auth('api')->user()->id != $address->user_id) {
+            return response()->json(null, 401);
+        }
+
+        $address->favorite = $request->favorite;
+        $address->update();
+
+        if($request->favorite == 1)
+            return response()->json([
+                'success' => true,
+                'message' => translate('Address has been successfully placed as a favorite.'),
+            ]);
+        else
+            return response()->json([
+                'success' => true,
+                'message' => translate('Address has been successfully removed as a favorite.'),
+            ]);
+
     }
 }

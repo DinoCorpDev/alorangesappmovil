@@ -1264,10 +1264,22 @@
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
+                                                v-if="otherAdd.favorite == 1"
                                                 class="las la-star"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 style="font-size: 25px; margin-right: 15px"
+                                                v-on:click="offFavoriteAddress(otherAdd)"
+                                            >
+                                            </i>
+
+                                            <i
+                                                v-else
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="color: #cbc2c2f2; font-size: 25px; margin-right: 15px"
+                                                v-on:click="activeFavoriteAddress(otherAdd)"
                                             >
                                             </i>
                                         </template>
@@ -1320,10 +1332,22 @@
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
+                                                v-if="otherAdd.favorite == 1"
                                                 class="las la-star"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 style="font-size: 25px; margin-right: 15px"
+                                                v-on:click="offFavoriteAddress(otherAdd)"
+                                            >
+                                            </i>
+
+                                            <i
+                                                v-else
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="color: #cbc2c2f2; font-size: 25px; margin-right: 15px"
+                                                v-on:click="activeFavoriteAddress(otherAdd)"
                                             >
                                             </i>
                                         </template>
@@ -2920,6 +2944,8 @@ export default {
             const res = await this.call_api("post", `user/companies/setFavorite`, emp);
 
             if (res.data.success) {
+                this.getEmpresasUser();
+                
                 this.snack({ message: res.data.message });
             } else {
                 this.snack({
@@ -2927,7 +2953,7 @@ export default {
                     color: "red"
                 });
             }
-            this.getEmpresasUser();
+            
         },
         async offFavoriteEmp(emp){
             emp.favorite = 0;
@@ -2935,6 +2961,8 @@ export default {
             const res = await this.call_api("post", `user/companies/setFavorite`, emp);
 
             if (res.data.success) {
+                this.getEmpresasUser();
+
                 this.snack({ message: res.data.message });
             } else {
                 this.snack({
@@ -2942,7 +2970,41 @@ export default {
                     color: "red"
                 });
             }
-            this.getEmpresasUser();
+            
+        },
+        async activeFavoriteAddress(address){
+            address.favorite = 1;
+
+            const res = await this.call_api("post", `user/address/setFavorite`, address);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+            
+        },
+        async offFavoriteAddress(address){
+            address.favorite = 0;
+
+            const res = await this.call_api("post", `user/address/setFavorite`, address);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+            
         }
     }
 };

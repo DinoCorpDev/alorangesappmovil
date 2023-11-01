@@ -29,7 +29,8 @@ class AddressCollection extends ResourceCollection
                     'default_billing' => $data->default_billing,
                     'default_service' => $data->default_service,
                     'editar' => false,
-                    'mostrarDatos' => false
+                    'mostrarDatos' => false,
+                    'favorite' => $data->favorite
                 ];
             })
         ]; 
