@@ -142,14 +142,18 @@
                     </v-row>
                 </v-card>
 
-                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-else>
-                    <h5 class="fw-600">Editar usuario principal</h5>
+                <v-card elevation="0" class="mb-6 rounded-lg pa-5" style="background-color: white" v-else>
+                    <h5 class="fw-600 mb-4">Editar usuario principal</h5>
+
+                    <v-divider class="mb-4" />
 
                     <v-form class="inputs" ref="loginForm" lazy-validation>
                         <v-row>
-                            <v-col cols="12" md="6">
+                            <v-col cols="12" md="6" style="display: grid; align-items: end">
                                 <span class="black--text body-2 text-uppercase">Primer Nombre</span>
                                 <custom-input
+                                    class="place-holder"
+                                    placeholder="Ingresar nombre"
                                     v-model="formUser.firstName"
                                     :error-messages="firstNameErrors"
                                     @blur="$v.formUser.firstName.$touch()"
@@ -158,13 +162,19 @@
                             </v-col>
                             <v-col cols="12" md="6">
                                 <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
-                                <custom-input v-model="formUser.secondName" />
+                                <custom-input
+                                    class="place-holder"
+                                    placeholder="Ingresar segundo nombre"
+                                    v-model="formUser.secondName"
+                                />
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="12" md="6">
                                 <span class="black--text body-2 text-uppercase">Primer Apellido</span>
                                 <custom-input
+                                    class="place-holder"
+                                    placeholder="Ingresar primer apellido"
                                     v-model="formUser.firstLastname"
                                     :error-messages="firstLastnameErrors"
                                     @blur="$v.formUser.firstLastname.$touch()"
@@ -174,6 +184,8 @@
                             <v-col cols="12" md="6">
                                 <span class="black--text body-2 text-uppercase">Segundo Apellido</span>
                                 <custom-input
+                                    class="place-holder"
+                                    placeholder="Ingresar segundo apellido"
                                     v-model="formUser.secondLastname"
                                     :error-messages="secondLastnameErrors"
                                     @blur="$v.formUser.secondLastname.$touch()"
@@ -182,9 +194,11 @@
                             </v-col>
                         </v-row>
                         <v-row>
-                            <v-col cols="12" md="6">
-                                <span class="black--text body-2 text-uppercase">Documento (Representante)</span>
+                            <v-col cols="12" md="12">
+                                <span class="black--text body-2 text-uppercase">Documento</span>
                                 <select-custom
+                                    placeholder="Seleccionar tipo de documento"
+                                    class="select-placeholder"
                                     :items="documentTypes"
                                     v-model="formUser.documentType"
                                     :error-messages="documentTypeErrors"
@@ -192,9 +206,11 @@
                                     required
                                 />
                             </v-col>
-                            <v-col cols="12" md="6">
+                            <v-col cols="12" md="12">
                                 <span class="black--text body-2 text-uppercase">Numero de Documento</span>
                                 <custom-input
+                                    class="place-holder"
+                                    placeholder="Ingresar número de documento"
                                     v-model="formUser.documentNumber"
                                     :error-messages="documentNumberErrors"
                                     @blur="$v.formUser.documentNumber.$touch()"
@@ -203,27 +219,79 @@
                             </v-col>
                         </v-row>
                         <v-row>
-                            <v-col cols="12" md="6">
+                            <v-col cols="12" md="12">
                                 <span class="black--text body-2 text-uppercase">
-                                    {{ $t("password") }}
+                                    {{ $t("Contraseña") }}
                                 </span>
                                 <custom-input
+                                    class="place-holder"
+                                    placeholder="Ingresar contraseña"
                                     v-model="formUser.oldPassword"
                                     :error-messages="oldPasswordErrors"
                                     @blur="$v.formUser.oldPassword.$touch()"
                                     type="password"
                                     required
                                 />
-                                <custom-button
-                                    block
-                                    class="mt-5"
-                                    text="Guardar"
-                                    type="submit"
-                                    color="black"
-                                    @click="updateInfoUser"
-                                    :disabled="infoUpdateLoading"
-                                    :loading="infoUpdateLoading"
-                                />
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="4">
+                                <custom-button block class="mt-5" text="< Cancelar" type="submit" color="grey" />
+                            </v-col>
+                            <v-col></v-col>
+                            <v-col cols="4" style="display: grid; align-items: end">
+                                <div class="">
+                                    <v-dialog v-model="dialog" width="500" class="grey lighten-4 rounded-lg">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-btn
+                                                block
+                                                class="mt-4 boton-guardar"
+                                                text="Guardar >"
+                                                type="submit"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                            >
+                                                Guardar >
+                                            </v-btn>
+                                        </template>
+
+                                        <v-card>
+                                            <v-card-title class="text-h5 grey lighten-4">
+                                                ¿Deseas editar esta información?
+                                            </v-card-title>
+                                            <div class="grey lighten-4" style="width: 100%">
+                                                <v-divider class="mx-5 pb-4" />
+                                            </div>
+                                            <v-card-text class="grey lighten-4" style="color: black">
+                                                Si decides editar esta información podrías perder la garantía a los
+                                                productos vinculados a procesos de garantía, servicios y facturaciones.
+                                            </v-card-text>
+
+                                            <v-card-actions class="pb-5 grey lighten-4" style="display: block">
+                                                <v-spacer></v-spacer>
+                                                <v-btn
+                                                    class="boton-editar-usuario"
+                                                    width="150"
+                                                    text
+                                                    @click="dialog = false"
+                                                >
+                                                    NO
+                                                </v-btn>
+                                                <v-btn
+                                                    class="boton-editar-usuario"
+                                                    width="150"
+                                                    text
+                                                    @click="updateInfoUser"
+                                                    @click.stop="dialog = false"
+                                                    :disabled="infoUpdateLoading"
+                                                    :loading="infoUpdateLoading"
+                                                >
+                                                    SI
+                                                </v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-dialog>
+                                </div>
                             </v-col>
                         </v-row>
                     </v-form>
@@ -279,89 +347,82 @@
                                 <v-divider class="my-4" />
 
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">CORREO ELECTRONICO</label>
                                     </v-col>
-                                    <v-col class="text-end">{{ emp.company_razon || "--" }} </v-col>
+                                    <v-col class="text-end usuario-lineado">{{ emp.company_razon || "--" }} </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">TIPO DE PERSONA</label>
                                     </v-col>
-                                    <v-col class="text-end"> {{ emp.person_type || "--" }} </v-col>
+                                    <v-col class="text-end usuario-lineado"> {{ emp.person_type || "--" }} </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">NOMBRE REPRESENTANTE</label>
                                     </v-col>
-                                    <v-col class="text-end">{{
+                                    <v-col class="text-end usuario-lineado">{{
                                         emp.first_name + " " + emp.first_lastname || "--"
                                     }}</v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">TIPO DE DOCUMENTO</label>
                                     </v-col>
-                                    <v-col class="text-end">
+                                    <v-col class="text-end usuario-lineado">
                                         {{ emp.document_type || "--" }}
                                     </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">NÚMERO DE DOCUMENTO</label>
                                     </v-col>
-                                    <v-col class="text-end">
+                                    <v-col class="text-end usuario-lineado">
                                         {{ emp.document_number || "--" }}
                                     </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">RAZÓN SOCIAL</label>
                                     </v-col>
-                                    <v-col class="text-end">
+                                    <v-col class="text-end usuario-lineado">
                                         {{ emp.company_razon || "--" }}
                                     </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">ENTIDAD COMERCIAL</label>
                                     </v-col>
-                                    <v-col class="text-end">
+                                    <v-col class="text-end usuario-lineado">
                                         {{ emp.company_type || "--" }}
                                     </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">NÚMERO DE NIT</label>
                                     </v-col>
-                                    <v-col class="text-end">
+                                    <v-col class="text-end usuario-lineado">
                                         {{ emp.document_number || "--" }}
                                     </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">CORREO ELECTRÓNICO (FACTURACIÓN)</label>
                                     </v-col>
-                                    <v-col class="text-end">
+                                    <v-col class="text-end usuario-lineado">
                                         {{ emp.company_email || "--" }}
                                     </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start pb-5">
                                         <label class="profile-label">TELÉFONO / CELULAR ( ÁREA CONTABLE )</label>
                                     </v-col>
-                                    <v-col class="text-end">
+                                    <v-col class="text-end pb-5">
                                         {{ emp.company_phone || "--" }}
                                     </v-col>
                                 </v-row>
                                 <custom-button class="mr-3" color="grey" text="Editar" @click="editEmpresa(emp)" />
-
-                                <custom-button
-                                    class="mr-3"
-                                    color="red"
-                                    text="Eliminar"
-                                    @click="deleteEmpresa(emp?.id)"
-                                />
                             </v-card>
                         </div>
 
@@ -408,88 +469,82 @@
                                 </div>
                                 <v-divider class="my-4" />
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">CORREO ELECTRONICO</label>
                                     </v-col>
-                                    <v-col class="text-end">******@*******.*****</v-col>
+                                    <v-col class="text-end usuario-lineado">******@*******.*****</v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">TIPO DE PERSONA</label>
                                     </v-col>
-                                    <v-col class="text-end"> {{ emp.person_type || "--" }} </v-col>
+                                    <v-col class="text-end usuario-lineado"> {{ emp.person_type || "--" }} </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">NOMBRE REPRESENTANTE</label>
                                     </v-col>
-                                    <v-col class="text-end">********* **********</v-col>
+                                    <v-col class="text-end usuario-lineado">********* **********</v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">TIPO DE DOCUMENTO</label>
                                     </v-col>
-                                    <v-col class="text-end">
+                                    <v-col class="text-end usuario-lineado">
                                         {{ emp.document_type || "--" }}
                                     </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">NÚMERO DE DOCUMENTO</label>
                                     </v-col>
-                                    <v-col class="text-end"> ************ </v-col>
+                                    <v-col class="text-end usuario-lineado"> ************ </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">RAZÓN SOCIAL</label>
                                     </v-col>
-                                    <v-col class="text-end"> ************** </v-col>
+                                    <v-col class="text-end usuario-lineado"> ************** </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">ENTIDAD COMERCIAL</label>
                                     </v-col>
-                                    <v-col class="text-end">
+                                    <v-col class="text-end usuario-lineado">
                                         {{ emp.company_type || "--" }}
                                     </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">NÚMERO DE NIT</label>
                                     </v-col>
-                                    <v-col class="text-end"> ************* </v-col>
+                                    <v-col class="text-end usuario-lineado"> ************* </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start usuario-lineado">
                                         <label class="profile-label">CORREO ELECTRÓNICO (FACTURACIÓN)</label>
                                     </v-col>
-                                    <v-col class="text-end"> *******@*****.**** </v-col>
+                                    <v-col class="text-end usuario-lineado"> *******@*****.**** </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col class="text-start">
+                                    <v-col class="text-start pb-5">
                                         <label class="profile-label">TELÉFONO / CELULAR ( ÁREA CONTABLE )</label>
                                     </v-col>
-                                    <v-col class="text-end"> ********** </v-col>
+                                    <v-col class="text-end pb-5"> ********** </v-col>
                                 </v-row>
 
                                 <custom-button class="mr-3" color="grey" text="Editar" @click="editEmpresa(emp)" />
-
-                                <custom-button
-                                    class="mr-3"
-                                    color="red"
-                                    text="Eliminar"
-                                    @click="deleteEmpresa(emp?.id)"
-                                />
                             </v-card>
                         </div>
                     </div>
 
                     <div v-if="emp?.editar == true">
-                        <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                        <v-card elevation="0" class="mb-6 rounded-lg pa-5" style="background-color: white">
                             <h5 class="fw-600">Editar Empresa</h5>
+                            <v-divider class="ma-4" />
                             <v-form :validator="$v.emp" autocomplete="chrome-off">
                                 <v-row>
-                                    <v-col cols="12" sm="6">
+                                    <v-col cols="12" sm="6" style="display: grid; align-items: end">
                                         <span class="black--text body-2 text-uppercase">Primer Nombre *</span>
                                         <CustomInput
                                             class="place-holder"
@@ -651,7 +706,7 @@
                                         </div>
                                     </v-col>
 
-                                    <v-col cols="12" md="6">
+                                    <v-col cols="12" md="6" style="display: grid; align-items: end">
                                         <span class="black--text body-2 text-uppercase">REGIMEN FISCAL *</span>
 
                                         <div class="input-group">
@@ -806,7 +861,23 @@
                                             @click="cancelEditEmpresa(emp)"
                                         />
                                     </v-col>
-                                    <v-col cols="4" md="4" style="margin-left: 33%">
+                                    <v-col
+                                        cols="4"
+                                        md="4"
+                                        style="
+                                            display: flex;
+                                            align-items: end;
+                                            justify-content: center;
+                                            padding-left: 23px;
+                                        "
+                                    >
+                                        <CustomButtonR
+                                            class="mr-3 boton-redondo"
+                                            text="Eliminar"
+                                            @click="deleteEmpresa(emp?.id)"
+                                        />
+                                    </v-col>
+                                    <v-col cols="4" md="4">
                                         <custom-button
                                             block
                                             class="mt-4"
@@ -1300,13 +1371,22 @@
                                 </div>
                                 <v-divider class="my-4" />
                                 <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">País</span>
+                                    <span class="body1 text-right">{{ otherAdd?.country }}</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Dirección</span>
                                     <span class="body1 text-right">{{ otherAdd?.address }}</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Dirección adicional</span>
+                                    <span class="body1 text-right">{{ otherAdd?.details }}</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Codigo Postal</span>
                                     <span class="body1">{{ otherAdd?.postal_code }}</span>
                                 </div>
+                                <!-- localidad -->
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Departamento</span>
                                     <span class="body1">{{ otherAdd?.state }}</span>
@@ -1315,6 +1395,11 @@
                                     <span class="subtitle1 text-uppercase fw-600">Municipio</span>
                                     <span class="body1">{{ otherAdd?.city }}</span>
                                 </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Localidad</span>
+                                    <span class="body1">{{ otherAdd?.localidad }}</span>
+                                </div>
+
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Barrio</span>
                                     <span class="body1">
@@ -1368,12 +1453,20 @@
                                 </div>
                                 <v-divider class="my-4" />
                                 <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">País</span>
+                                    <span class="body1 text-right">********</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Dirección</span>
                                     <span class="body1 text-right">******** ***** *****</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Dirección adicional</span>
+                                    <span class="body1 text-right">******** *****</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Codigo Postal</span>
-                                    <span class="body1">*******</span>
+                                    <span class="body1">******</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Departamento</span>
@@ -1381,7 +1474,11 @@
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Municipio</span>
-                                    <span class="body1">*******</span>
+                                    <span class="body1">*********</span>
+                                </div>
+                                <div class="d-flex justify-space-between mb-2">
+                                    <span class="subtitle1 text-uppercase fw-600">Localidad</span>
+                                    <span class="body1">**********</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 text-uppercase fw-600">Barrio</span>
@@ -1398,6 +1495,7 @@
 
                         <div v-if="otherAdd?.editar == true">
                             <h5 class="fw-600">Editar Dirección</h5>
+                            <v-divider class="ma-4" />
                             <v-form :validator="$v.otherAdd" autocomplete="chrome-off">
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">Nombre de dirección (Casa / oficina)</div>
@@ -1559,53 +1657,16 @@
                                             />
                                         </v-col>
                                         <v-col cols="4" md="4">
-                                            <div class="text-center">
-                                                <v-dialog v-model="dialog" width="500">
-                                                    <template v-slot:activator="{ on, attrs }">
-                                                        <v-btn
-                                                            block
-                                                            class="mt-4 boton-guardar"
-                                                            text="Guardar >"
-                                                            type="submit"
-                                                            v-bind="attrs"
-                                                            v-on="on"
-                                                        >
-                                                            Guardar >
-                                                        </v-btn>
-                                                    </template>
-
-                                                    <v-card>
-                                                        <v-card-title class="text-h5 grey lighten-2">
-                                                            Seguro quieres editar?
-                                                        </v-card-title>
-
-                                                        <v-card-text> Quieres editar todo?? </v-card-text>
-
-                                                        <v-divider></v-divider>
-
-                                                        <v-card-actions>
-                                                            <v-spacer></v-spacer>
-                                                            <v-btn 
-                                                            color="primary" 
-                                                            text 
-                                                            @click="dialog = false"
-                                                            >
-                                                                NO
-                                                            </v-btn>
-                                                            <v-btn
-                                                                color="primary"
-                                                                text
-                                                                @click="saveEditAddress(otherAdd)"
-                                                                @click.stop="dialog = false"
-                                                                :disabled="infoUpdateLoading"
-                                                                :loading="infoUpdateLoading"
-                                                            >
-                                                                SI, GUARDAR
-                                                            </v-btn>
-                                                        </v-card-actions>
-                                                    </v-card>
-                                                </v-dialog>
-                                            </div>
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="Guardar >"
+                                                type="button"
+                                                color="grey"
+                                                @click="saveEditAddress(otherAdd)"
+                                                :disabled="infoUpdateLoading"
+                                                :loading="infoUpdateLoading"
+                                            />
                                         </v-col>
                                     </v-row>
                                 </div>
@@ -1740,7 +1801,7 @@
                             </v-row>
 
                             <div class="mb-3">
-                                <v-row>
+                                <!-- <v-row>
                                     <v-col cols="6">
                                         <div class="mb-1 fs-13 fw-500">LOCALIDAD</div>
                                         <SelectCustom
@@ -1756,15 +1817,7 @@
                                         />
                                     </v-col>
 
-                                    <v-col cols="6">
-                                        <div class="mb-1 fs-13 fw-500">BARRIO (OPCIONAL)</div>
-                                        <CustomInput
-                                            v-model="formDirection.neighborhood"
-                                            placeholder="Ingresar barrio"
-                                            class="place-holder"
-                                        />
-                                    </v-col>
-                                </v-row>
+                                </v-row> -->
                             </div>
                             <div class="mb-3">
                                 <div class="mb-1 fs-13 fw-500">{{ $t("NÚMERO DE TELÉFONO") }}</div>
@@ -2943,14 +2996,14 @@ export default {
                 this.snack({ message: res.data.message });
             }
         },
-        async activeFavoriteEmp(emp){
+        async activeFavoriteEmp(emp) {
             emp.favorite = 1;
 
             const res = await this.call_api("post", `user/companies/setFavorite`, emp);
 
             if (res.data.success) {
                 this.getEmpresasUser();
-                
+
                 this.snack({ message: res.data.message });
             } else {
                 this.snack({
@@ -2958,9 +3011,8 @@ export default {
                     color: "red"
                 });
             }
-            
         },
-        async offFavoriteEmp(emp){
+        async offFavoriteEmp(emp) {
             emp.favorite = 0;
 
             const res = await this.call_api("post", `user/companies/setFavorite`, emp);
@@ -2975,9 +3027,8 @@ export default {
                     color: "red"
                 });
             }
-            
         },
-        async activeFavoriteAddress(address){
+        async activeFavoriteAddress(address) {
             address.favorite = 1;
 
             const res = await this.call_api("post", `user/address/setFavorite`, address);
@@ -2992,9 +3043,8 @@ export default {
                     color: "red"
                 });
             }
-            
         },
-        async offFavoriteAddress(address){
+        async offFavoriteAddress(address) {
             address.favorite = 0;
 
             const res = await this.call_api("post", `user/address/setFavorite`, address);
@@ -3009,7 +3059,6 @@ export default {
                     color: "red"
                 });
             }
-            
         }
     }
 };
@@ -3257,5 +3306,15 @@ export default {
 .boton-redondo:hover {
     background: #dfdfdf;
     border: 1px solid #e2e2e2;
+}
+.boton-editar-usuario {
+    background: #dfdfdf;
+    color: black;
+    border-radius: 5px;
+
+    &:hover {
+        background: black;
+        color: white;
+    }
 }
 </style>
