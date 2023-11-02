@@ -181,4 +181,22 @@ class UserController extends Controller
         ]);
 
     }
+
+    public function updateTerms(Request $request){
+        $user = User::find($request->id);
+        $user->policies_and_cookies_consent = $request->policiesAndCookiesConsent;
+        $user->offers_consent = $request->offersConsent;
+        $user->terms_cond_trade = $request->termsCondTrade;
+        $user->guarantee_policies = $request->guaranteePolicies;
+        $user->terms_logistics = $request->termsLogistics;
+        $user->update();
+
+        return response()->json([
+            'success' => true,
+            'message' => translate('Terms and conditions has been updated successfully'),
+            'user' =>$user
+        ]);
+    }
+
+
 }

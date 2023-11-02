@@ -38,6 +38,10 @@ class UserCollection extends JsonResource
             'company_document_number' => $this->company_document_number,
             'policiesAndCookiesConsent' => $this->policies_and_cookies_consent,
             'offersConsent' => $this->offers_consent,
+            'termsCondTrade' => $this->terms_cond_trade,
+            'guaranteePolicies' => $this->guarantee_policies,
+            'termsLogistics' => $this->terms_logistics,
+
         ];
     }
 }

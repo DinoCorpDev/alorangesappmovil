@@ -1962,21 +1962,61 @@
                 <v-divider class="my-4" />
 
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <h5 class="fw-600">Terminos y condiciones</h5>
-                    <v-divider class="my-4" />
                     <div class="tyc mb-3">
-                        <CustomCheckbox v-model="form.offersConsent">
+                        <div class="custom-checkbox" style="margin-left: 4px;">
+                            <input type="checkbox" v-model="currentUser.offersConsent" v-on:click="offersConsent" class="checkbox-profile">
+
+                            <label>
+                                Acepto recibir comunicaciones comerciales personalizadas de idovela a través de email y otros medios.
+                            <a href="#">Conocer newsletter.</a>
+                            </label> 
+                        </div>
+
+                        <div class="custom-checkbox">
+                            <input type="checkbox" v-model="currentUser.policiesAndCookiesConsent" v-on:click="policiesAndCookiesConsent" class="checkbox-profile">
+
+                            <label>
+                                He podido leer y entiendo la <a href="#">Política de privacidad y cookies.</a>
+                            </label> 
+                        </div>
+
+                        <div class="custom-checkbox">
+                            <input type="checkbox" v-model="currentUser.termsCondTrade" v-on:click="termsCondTrade" class="checkbox-profile">
+
+                            <label>
+                                Acepto los <a href="#">Términos y condiciones para la compra con Idovela.</a>
+                            </label> 
+                        </div>
+
+                        <div class="custom-checkbox">
+                            <input type="checkbox" v-model="currentUser.guaranteePolicies" v-on:click="guaranteePolicies" class="checkbox-profile">
+
+                            <label>
+                                Acepto las <a href="#">Pólizas de garantía.</a>
+                            </label> 
+                        </div>
+
+                        <div class="custom-checkbox">
+                            <input type="checkbox" v-model="currentUser.termsLogistics" v-on:click="termsLogistics" class="checkbox-profile">
+
+                            <label>
+                                 Acepto los términos de <a href="#">La logística de envió.</a> 
+                            </label> 
+                        </div>
+
+                        <!--<CustomCheckbox v-model="form.offersConsent">
                             Quiero recibir comunicaciones comerciales personalizadas de Idovela a través de email.
                             <a href="#">Conocer newsletter.</a>
-                        </CustomCheckbox>
-                        <CustomCheckbox v-model="form.policiesAndCookiesConsent">
+                        </CustomCheckbox> -->
+
+                        <!--<CustomCheckbox v-model="form.policiesAndCookiesConsent">
                             He podido leer y entiendo la <a href="#">Política de privacidad y cookies.</a>
-                        </CustomCheckbox>
-                        <CustomCheckbox>
+                        </CustomCheckbox> -->
+                        <!--<CustomCheckbox>
                             Acepto los <a href="#">Términos y condiciones para la compra con Idovela.</a>
                         </CustomCheckbox>
                         <CustomCheckbox> Acepto las <a href="#">Pólizas de garantía.</a> </CustomCheckbox>
-                        <CustomCheckbox> Acepto los términos de <a href="#">La logística de envió.</a> </CustomCheckbox>
+                        <CustomCheckbox> Acepto los términos de <a href="#">La logística de envió.</a> </CustomCheckbox> -->
                     </div>
                     <CustomButton color="grey" text="Saber Más" />
                 </v-card>
@@ -3010,6 +3050,102 @@ export default {
                 });
             }
             
+        },
+        async offersConsent(){
+            if(this.currentUser.offersConsent)
+                this.currentUser.offersConsent = 0;
+            else
+                this.currentUser.offersConsent = 1;
+
+            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+        }, 
+        async policiesAndCookiesConsent(){
+            if(this.currentUser.policiesAndCookiesConsent)
+                this.currentUser.policiesAndCookiesConsent = 0;
+            else
+                this.currentUser.policiesAndCookiesConsent = 1;
+
+            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+        }, 
+        async termsCondTrade(){
+            if(this.currentUser.termsCondTrade)
+                this.currentUser.termsCondTrade = 0;
+            else
+                this.currentUser.termsCondTrade = 1;
+
+            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+            
+        }, 
+        async guaranteePolicies(){
+            if(this.currentUser.guaranteePolicies)
+                this.currentUser.guaranteePolicies = 0;
+            else
+                this.currentUser.guaranteePolicies = 1;
+
+            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            } 
+        },
+        async termsLogistics(){
+            if(this.currentUser.termsLogistics)
+                this.currentUser.termsLogistics = 0;
+            else
+                this.currentUser.termsLogistics = 1;
+
+            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
         }
     }
 };
@@ -3257,5 +3393,42 @@ export default {
 .boton-redondo:hover {
     background: #dfdfdf;
     border: 1px solid #e2e2e2;
+}
+.checkbox-profile{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 30px;
+    margin-left: 5px;
+    margin-right: 30px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    background-color: #f5f5f5;
+}
+.checkbox-profile:checked {
+  accent-color: black;
+}
+
+.custom-checkbox{
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    min-height: 38px;
+}
+
+.custom-checkbox label{
+    font-family: "Roboto", sans-serif;
+    font-size: var(--font-size-body1);
+    cursor: pointer;
+}
+
+.custom-checkbox label a{
+    text-decoration: underline;
+    font-weight: 700;
 }
 </style>
