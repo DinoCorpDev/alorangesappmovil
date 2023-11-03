@@ -223,15 +223,20 @@
                                 <span class="black--text body-2 text-uppercase">
                                     {{ $t("Contraseña") }}
                                 </span>
-                                <custom-input
-                                    class="place-holder"
-                                    placeholder="Ingresar contraseña"
+                                <v-text-field
                                     v-model="formUser.oldPassword"
+                                    placeholder="Ingresar contraseña"
                                     :error-messages="oldPasswordErrors"
                                     @blur="$v.formUser.oldPassword.$touch()"
-                                    type="password"
+                                    :type="oldpasswordShow ? 'text' : 'password'"
+                                    :append-icon="oldpasswordShow ? 'las la-eye' : 'las la-eye-slash'"
+                                    class="input-group--focused place-holder"
+                                    hide-details="auto"
                                     required
-                                />
+                                    dense
+                                    outlined
+                                    @click:append="oldpasswordShow = !oldpasswordShow"
+                                ></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -247,7 +252,6 @@
                                                 block
                                                 class="mt-4 boton-guardar"
                                                 text="Guardar >"
-                                                type="submit"
                                                 v-bind="attrs"
                                                 v-on="on"
                                             >
@@ -2129,6 +2133,7 @@ export default {
         filteredCities: [],
         filteredLocalidad: [],
         changePassword: false,
+        oldpasswordShow: false,
         passwordOldShow: false,
         passwordNewShow: false,
         passwordReptyShow: false,
