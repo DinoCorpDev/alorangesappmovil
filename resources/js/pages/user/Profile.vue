@@ -1927,12 +1927,23 @@
 
         <v-row>
             <v-col cols="12" md="6">
-                <h5 class="fw-600">Contraseña</h5>
+                <h5 class="fw-600" style="width: 100%;">Contraseña</h5>
                 <v-divider class="my-4" />
+                <v-card
+                        elevation="0"
+                        class="mb-6 form-border rounded-lg pa-5"
+                        style="background-color: white; border-color: white"
+                    >
                 <v-row v-if="changePassword">
-                    <v-col cols="12" md="12">
+                    <v-col cols="12" class="pb-0">
+                        <h5 class="fw-600">Cambiar contraseña</h5>
+
+                        <v-divider class="ma-4" />
+                    </v-col>
+                    <v-col cols="12" md="12" class="pt-0">
+                    
                         <span class="black--text body-2 text-uppercase"> CONTRASEÑA ACTUAL </span>
-                        <v-text-field
+                        <!-- <v-text-field
                             v-model="formContrasena.oldPassword"
                             placeholder="Ingresar contraseña"
                             :error-messages="olddPasswordErrors"
@@ -1945,11 +1956,28 @@
                             dense
                             outlined
                             @click:append="passwordOldShow = !passwordOldShow"
-                        ></v-text-field>
+                            style="background: #f5f5f5;"
+                        ></v-text-field> -->
+                        <CustomInput
+                                        
+                            v-model="formContrasena.oldPassword"
+                            placeholder="Ingresar contraseña"
+                            :error-messages="olddPasswordErrors"
+                            @blur="$v.formContrasena.oldPassword.$touch()"
+                            :type="passwordOldShow ? 'text' : 'password'"
+                            :append-icon="passwordOldShow ? 'las la-eye' : 'las la-eye-slash'"
+                            class="input-group--focused place-holder"
+                            hide-details="auto"
+                            required
+                            dense
+                            outlined
+                            @click:append="passwordOldShow = !passwordOldShow"
+                            style="background: #f5f5f5;"
+                                    />
                     </v-col>
                     <v-col cols="12" md="12">
                         <span class="black--text body-2 text-uppercase"> NUEVA CONTRASEÑA </span>
-                        <v-text-field
+                        <CustomInput
                             v-model="formContrasena.newPassword"
                             placeholder="Ingresar contraseña"
                             :error-messages="newPasswordErrors"
@@ -1962,7 +1990,8 @@
                             dense
                             outlined
                             @click:append="passwordNewShow = !passwordNewShow"
-                        ></v-text-field>
+                            style="background: #f5f5f5;"
+                        />
                     </v-col>
 
                     <v-col cols="12" md="12">
@@ -1980,9 +2009,10 @@
                             dense
                             outlined
                             @click:append="passwordReptyShow = !passwordReptyShow"
+                            style="background: #f5f5f5;"
                         ></v-text-field>
                     </v-col>
-
+                    
                     <v-row>
                         <v-col cols="4" md="4">
                             <custom-button
@@ -1990,7 +2020,7 @@
                                 class="mt-4"
                                 text="< Cancelar"
                                 type="button"
-                                color="black"
+                                color="grey2"
                                 @click="cancelChangePassword()"
                             />
                         </v-col>
@@ -2000,7 +2030,7 @@
                                 class="mt-4"
                                 text="Guardar >"
                                 type="submit"
-                                color="black"
+                                color="grey2"
                                 @click="saveChangePassword()"
                                 :disabled="infoUpdateLoading"
                                 :loading="infoUpdateLoading"
@@ -2008,6 +2038,7 @@
                         </v-col>
                     </v-row>
                 </v-row>
+                </v-card>
 
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-if="!changePassword">
                     <CustomButton block color="grey" text="Cambiar Contraseña" @click="cambiarContrasena()" />
