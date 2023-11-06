@@ -59,18 +59,18 @@ export default {
         ...mapGetters("auth", ["userIsLoggedIn"])
     },
     mounted() {
-        window.addEventListener("resize", this.handleScroll);
-        window.addEventListener("scroll", this.handleScroll, { passive: true });
+       // window.addEventListener("resize", this.handleScroll);
+        //window.addEventListener("scroll", this.handleScroll, { passive: true });
     },
     methods: {
         ...mapMutations("auth", ["showLoginDialog"]),
-        handleScroll() {
+        /*handleScroll() {
             const currentScroll = this.$refs.layoutNavbar.currentScroll;
             const windowWidth = window.innerWidth;
 
             this.headerFixed = currentScroll >= this.scrollThreshold;
             this.logoLarge = windowWidth < 960 ? false : this.headerFixed;
-        }
+        }*/
     }
 };
 </script>

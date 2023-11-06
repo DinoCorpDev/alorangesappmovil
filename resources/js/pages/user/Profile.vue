@@ -241,7 +241,7 @@
                         </v-row>
                         <v-row>
                             <v-col cols="4">
-                                <custom-button block class="mt-5" text="< Cancelar" type="submit" color="grey" />
+                                <custom-button block class="mt-5" text="< Cancelar" @click="editarUser = false;" color="grey" />
                             </v-col>
                             <v-col></v-col>
                             <v-col cols="4" style="display: grid; align-items: end">
