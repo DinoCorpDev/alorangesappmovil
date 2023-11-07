@@ -115,6 +115,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
     Route::get('all-codigo-postal', [AuthController::class, 'get_all_codigo_postal']);
     Route::get('states/{country_id}', [AddressController::class, 'get_states_by_country_id']);
     Route::get('cities/{state_id}', [AddressController::class, 'get_cities_by_state_id']);
+    Route::get('localidades/{state_id}', [AddressController::class, 'get_localidad_by_state_id']);
 
     Route::post('carts', [CartController::class, 'index']);
     Route::post('carts/add', [CartController::class, 'add']);

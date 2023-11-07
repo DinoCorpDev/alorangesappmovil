@@ -637,14 +637,12 @@
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Localidad</span>
                                     <SelectCustom
-                                    :items="filteredLocalidad"
-                                    item-text="name"
-                                    item-value="id"
-                                    required
-                                    v-model="mainAddress.localidad"
-                                    @blur="$v.mainAddress.localidad.$touch()"
-                                    :error-messages="localidadErrors"
-                                />
+                                        :items="filteredLocalidad"
+                                        required
+                                        v-model="mainAddress.localidad"
+                                        @blur="$v.mainAddress.localidad.$touch()"
+                                        :error-messages="localidadErrors"
+                                    />
                                 </v-col>
 
                                 <v-col cols="12" md="6">
