@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
+use App\Models\Localidad;
 
 class AddressController extends Controller
 {
@@ -31,6 +32,7 @@ class AddressController extends Controller
         $address->country_id = $request->country;
         $address->state = State::find($request->state)->name;
         $address->state_id = $request->state;
+        $address->localidad_id = $request->localidad;
         $address->city = City::find($request->city)->name;
         $address->city_id = $request->city;
         $address->neighborhood = $request->neighborhood;
@@ -51,6 +53,7 @@ class AddressController extends Controller
                 'details' => $address->details,
                 'country' => $address->country,
                 'state' => $address->state,
+                'localidad_id' => $address->localidad_id,
                 'city' => $address->city,
                 'neighborhood' => $address->neighborhood,
                 'postal_code' => $address->postal_code,
@@ -78,6 +81,7 @@ class AddressController extends Controller
         $address->country_id = $request->country;
         $address->state = State::find($request->state)->name;
         $address->state_id = $request->state;
+        $address->localidad_id = $request->localidad;
         $address->city = City::find($request->city)->name;
         $address->city_id = $request->city;
         $address->neighborhood = $request->neighborhood;
@@ -98,6 +102,7 @@ class AddressController extends Controller
                 'details' => $address->details,
                 'country' => $address->country,
                 'state' => $address->state,
+                'localidad_id' => $address->localidad_id,
                 'city' => $address->city,
                 'neighborhood' => $address->neighborhood,
                 'postal_code' => $address->postal_code,
@@ -151,6 +156,7 @@ class AddressController extends Controller
         $address->country_id = $request->country;
         $address->state = State::find($request->state)->name;
         $address->state_id = $request->state;
+        $address->localidad_id = $request->localidad;
         $address->city = City::find($request->city)->name;
         $address->city_id = $request->city;
         $address->postal_code = $request->postal_code;
@@ -224,6 +230,23 @@ class AddressController extends Controller
         return response()->json([
             'success' => true,
             'data' => State::where('country_id', $country_id)->where('status', 1)->get()
+        ]);
+    }
+
+    public function get_localidad_by_state_id($state_id)
+    {
+        $array = array();
+        $localidad = Localidad::where('state_id', $state_id)->get();
+
+        foreach($localidad as $l){
+            $arr = [ "text" => $l->localidad, "value" => $l->id ];
+            array_push($array, $arr);
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'data' => $array
         ]);
     }
 

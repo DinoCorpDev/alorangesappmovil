@@ -22,6 +22,8 @@ class AddressCollection extends ResourceCollection
                     'state_id' => $data->state_id,
                     'city' => $data->city,
                     'city_id' => $data->city_id,
+                    'localidad_id' => $data->localidad_id,
+                    'localidad' => $data->localidad->localidad,
                     'neighborhood' => $data->neighborhood,
                     'postal_code' => $data->postal_code,
                     'phone' => $data->phone,

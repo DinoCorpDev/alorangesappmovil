@@ -637,11 +637,13 @@
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2 text-uppercase">Localidad</span>
                                     <SelectCustom
-                                    :items="filteredCities"
+                                    :items="filteredLocalidad"
                                     item-text="name"
                                     item-value="id"
                                     required
                                     v-model="mainAddress.localidad"
+                                    @blur="$v.mainAddress.localidad.$touch()"
+                                    :error-messages="localidadErrors"
                                 />
                                 </v-col>
 
@@ -943,6 +945,7 @@ export default {
             details: { required },
             country: { required },
             state: { required },
+            localidad: { required },
             city: { required },
             postal_code: { required }
         }
@@ -1097,6 +1100,12 @@ export default {
             const errors = [];
             if (!this.$v.mainAddress.city.$dirty) return errors;
             !this.$v.mainAddress.city.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            return errors;
+        },
+        localidadErrors() {
+            const errors = [];
+            if (!this.$v.mainAddress.localidad.$dirty) return errors;
+            !this.$v.mainAddress.localidad.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         postalCodeErros() {
@@ -1327,9 +1336,18 @@ export default {
         },
         async stateChanged(stateid) {
             const res = await this.call_api("get", `cities/${stateid}`);
+
+            const res2 = await this.call_api("get", `localidades/${stateid}`);
+
             if (res.data.success) {
                 this.filteredCities = res.data.data;
                 this.form.city = "";
+
+                if (res2.data.success) {
+                    this.filteredLocalidad = res2.data.data;
+                    this.form.localidad = "";
+                }
+
             } else {
                 this.snack({
                     message: this.$i18n.t("something_went_wrong"),

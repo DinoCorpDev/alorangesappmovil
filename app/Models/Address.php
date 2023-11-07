@@ -26,4 +26,9 @@ class Address extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    public function localidad()
+    {
+        return $this->belongsTo(Localidad::class, 'localidad_id');
+    }
 }

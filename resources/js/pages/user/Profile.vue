@@ -1574,9 +1574,7 @@
                                         <SelectCustom
                                             placeholder="Seleccione localidad"
                                             class="select-style"
-                                            :items="filteredCities"
-                                            item-text="name"
-                                            item-value="id"
+                                            :items="filteredLocalidad"
                                             required
                                             v-model="otherAdd.localidad"
                                         />
@@ -1787,11 +1785,11 @@
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase">Localidad</span>
                                     <SelectCustom
-                                        :items="filteredCities"
-                                        item-text="name"
-                                        item-value="id"
+                                        :items="filteredLocalidad"
                                         required
                                         v-model="formDirection.localidad"
+                                        @blur="$v.formDirection.localidad.$touch()"
+                                        :error-messages="localidadErrors"
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6">
@@ -2335,6 +2333,7 @@ export default {
             country: { required },
             state: { required },
             city: { required },
+            localidad: { required },
             phone: { required }
         },
         formEmpresa: {
@@ -2489,6 +2488,12 @@ export default {
                 return errors;
             }
             !this.$v.formDirection.city.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            return errors;
+        },
+        localidadErrors() {
+            const errors = [];
+            if (!this.$v.formDirection.localidad.$dirty) return errors;
+            !this.$v.formDirection.localidad.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         phoneErrors() {
@@ -2856,12 +2861,14 @@ export default {
             this.addDirection = false;
         },
         async editDirection(direction) {
+            console.log(direction);
             direction.country = direction.country_id;
             let country = await this.countryChanged(direction.country_id);
             direction.state = direction.state_id;
 
             let state = await this.stateChanged(direction.state_id);
             direction.city = direction.city_id;
+            direction.localidad = direction.localidad_id;
             direction.postal_code = direction.postal_code;
             direction.editar = true;
         },
@@ -2946,9 +2953,16 @@ export default {
         },
         async stateChanged(stateid) {
             const res = await this.call_api("get", `cities/${stateid}`);
+            const res2 = await this.call_api("get", `localidades/${stateid}`);
+
             if (res.data.success) {
                 this.filteredCities = res.data.data;
                 this.form.city = "";
+
+                if (res2.data.success) {
+                    this.filteredLocalidad = res2.data.data;
+                    this.form.localidad = "";
+                }
             } else {
                 this.snack({
                     message: this.$i18n.t("something_went_wrong"),
