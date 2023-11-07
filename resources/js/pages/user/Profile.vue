@@ -2049,8 +2049,8 @@
 
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <div class="tyc mb-3">
-                        <div class="custom-checkbox" style="margin-left: 4px;">
-                            <input type="checkbox" v-model="currentUser.offersConsent" v-on:click="offersConsent" class="checkbox-profile">
+                        <div class="custom-checkbox" style="margin-left: -9px !important">
+                            <input type="checkbox" v-model="currentUser.offersConsent" v-on:click="offersConsent" class="checkbox-profile" style="width: 100px !important; margin-right: 20px !important;">
 
                             <label>
                                 Acepto recibir comunicaciones comerciales personalizadas de idovela a través de email y otros medios.
