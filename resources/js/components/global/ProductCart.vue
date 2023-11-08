@@ -41,22 +41,55 @@
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-none d-md-flex">
                 <template v-if="productCartType == 'checkout'">
-                    <button @click="removeFromCart(productDetails.cart_id)">
-                        <TrashIcon />
-                    </button>
-                    <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }">
-                        <EyeIcon />
-                    </router-link>
+
+                    <v-tooltip bottom color="black">
+                        <template v-slot:activator="{ on, attrs }">
+                            <button @click="removeFromCart(productDetails.cart_id)" v-bind="attrs"
+                            v-on="on">
+                                <TrashIcon />
+                            </button>
+                        </template>
+                    <span>Eliminar</span>
+                    </v-tooltip>
+
+                    <v-tooltip bottom color="black">
+                        <template v-slot:activator="{ on, attrs }">
+                            <button v-bind="attrs"
+                                v-on="on">
+                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }" >
+                                    <EyeIcon />
+                                </router-link>
+                            </button>
+                        </template>
+                        <span>Ver detalles</span>
+                    </v-tooltip>
+
                     <template v-if="isThisWishlisted(productDetails.product_id)">
-                        <button type="button" @click="removeFromWishlist(productDetails.product_id)">
-                            <FavoriteIcon class="active" />
-                        </button>
+                        <v-tooltip bottom color="black">
+                            <template v-slot:activator="{ on, attrs }">
+                                <button type="button" @click="removeFromWishlist(productDetails.product_id)" v-bind="attrs"
+                                v-on="on">
+                                    <FavoriteIcon class="active" />
+                                </button>
+                            </template>
+                            <span>Añadir a favoritos</span>
+                        </v-tooltip>
                     </template>
+
+
                     <template v-else>
-                        <button type="button" @click="addNewWishlist(productDetails.product_id)">
-                            <FavoriteIcon />
-                        </button>
+                        <v-tooltip bottom color="black">
+                            <template v-slot:activator="{ on, attrs }">
+                                <button type="button" @click="addNewWishlist(productDetails.product_id)" v-bind="attrs"
+                                v-on="on">
+                                    <FavoriteIcon />
+                                </button>
+                            </template>
+                            <span>Añadir a favoritos</span>
+                        </v-tooltip>
                     </template>
+
+
                 </template>
 
                 <template v-if="productCartType == 'wishlist'">
@@ -142,7 +175,6 @@ export default {
     name: "ProductCart",
     components: {
         CustomButton,
-
         AddCartIcon,
         EllipsisIcon,
         EyeIcon,

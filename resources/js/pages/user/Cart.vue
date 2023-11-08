@@ -38,7 +38,7 @@
             <!-- <v-divider class="cartSteper-subheader" /> -->
 
             <v-stepper-items>
-                <v-stepper-content step="1">
+                <v-stepper-content step="1" style="overflow-y: scroll; height: 450px;">
                     <template v-if="cartProducts.length > 0">
                         <div class="cart-table-header mb-2">
                             <div>Productos</div>
@@ -46,17 +46,28 @@
                             <div>Cantidad</div>
                             <div>Opciones</div>
                         </div>
-                        <v-row no-gutters class="car-items">
+                        <v-row no-gutters class="car-items" style="" >
                             <v-col cols="12" v-for="(product, i) in cartProducts" :key="i">
                                 <ProductCart :productDetails="product" productCartType="checkout" />
                             </v-col>
                         </v-row>
-                        <v-row>
-                            <v-col cols="12" class="d-flex justify-space-between">
+                        
+                        <v-row style="                                   
+                                    position: fixed;
+                                    bottom: 0;
+                                    width: 100%;                                     
+                                    background-color: transparent; 
+                                    backdrop-filter: blur(5px);                                    
+                                    margin-bottom: 0 !important;
+                                    "
+                        >
+                            <v-divider class="ma-3" />
+                            <v-col cols="12" class="d-flex justify-space-between" style="padding-right: 27%; 
+                                                                                        ">
                                 <div class="mb-2"></div>
                                 <total :total="priceTotal" />
                                 <div class="mb-2">
-                                    <CustomButton text="Continuar" color="nero" @click="numberPag = 2" />
+                                    <CustomButton text="Continuar >" color="grey2" @click="numberPag = 2" />
                                 </div>
                             </v-col>
                         </v-row>
@@ -1273,6 +1284,9 @@ export default {
         border-radius: 10px;
     }
 
+    .v-stepper__step--complete{
+        background: #606161;
+    }
     .v-stepper__header {
         height: 95px !important;
         border: 1px solid #e4e6e6 !important;
@@ -1490,5 +1504,21 @@ export default {
     color: #ffffff;
     border-radius: 50%;
     padding: 5px 5px 0px 5px;
+}
+
+.cartSteper-step{
+    .v-stepper__step--complete{
+    background-color: #9b9c9c;
+    }
+}
+
+.v-stepper__header{
+    ::v-deep{
+        .v-stepper__step--complete{
+            .v-stepper__step__step{
+                background-color: #9b9c9c;
+            }
+        }
+    }
 }
 </style>
