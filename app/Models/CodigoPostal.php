@@ -10,8 +10,7 @@ class CodigoPostal extends Model
     protected $table = "codigo_postal";
 
     protected $fillable = [
-        'departamento',
-        'provincia',
+        'state_id',
         'codigo',
     ];
 }
