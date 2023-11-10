@@ -13,6 +13,8 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\CodigoCiiu;
 use App\Models\CodigoPostal;
+use App\Models\Subscriber;
+use App\Models\Collection;
 use App\Notifications\EmailVerificationNotification;
 use Str;
 
@@ -414,19 +416,23 @@ class AuthController extends Controller
         ]);
     }
 
-    public function get_all_codigo_postal()
+    public function get_all_collections()
     {
-        $array = array();
-        $codigo = CodigoCiiu::all();
-
-        foreach($codigo as $cod){
-            $arr = [ "text" => $cod->codigo, "value" => $cod->codigo ];
-            array_push($array, $arr);
-        }
+        $collections = Collection::all();
 
         return response()->json([
             'success' => true,
-            'data' => $array
+            'data' => $collections
+        ]);
+    }
+
+    public function get_all_subscriber()
+    {
+        $subscriber = Subscriber::all();
+
+        return response()->json([
+            'success' => true,
+            'data' => $subscriber
         ]);
     }
 }
