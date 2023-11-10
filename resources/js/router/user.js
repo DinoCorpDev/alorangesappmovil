@@ -3,6 +3,8 @@ let Invoices = () => import("../pages/user/Invoices");
 let InvoicesDetails = () => import("../pages/user/InvoicesDetails");
 let DashBoard = () => import("../pages/user/Dashboard");
 let PurchaseHistory = () => import("../pages/user/PurchaseHistory");
+let Proyects = () => import("../pages/user/Proyects");
+let Suscriptions = () => import("../pages/user/Suscriptions");
 let Downloads = () => import("../pages/user/Downloads");
 let OrderDetails = () => import("../pages/user/OrderDetails");
 let RefundRequests = () => import("../pages/user/refund_request/RefundRequestList");
@@ -55,6 +57,18 @@ export default [
                 path: "purchase-history",
                 component: PurchaseHistory,
                 name: "PurchaseHistory",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "proyects",
+                component: Proyects,
+                name: "Proyects",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "suscriptions",
+                component: Suscriptions,
+                name: "Suscriptions",
                 meta: { requiresAuth: true }
             },
             {

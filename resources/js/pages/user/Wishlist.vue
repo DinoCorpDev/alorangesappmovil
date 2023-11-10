@@ -75,7 +75,7 @@ export default {
     margin-bottom: 0;
 }
 .img-cartempty {
-    width: 26%;
+    width: 35%;
     margin: auto;
 }
 // Fin estilos //

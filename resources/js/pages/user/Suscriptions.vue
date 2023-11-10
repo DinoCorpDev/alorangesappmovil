@@ -1,9 +1,9 @@
 <template>
-    <v-row class="compras">
+    <v-row class="suscriptions">
         <v-col cols="12">
-            <h5 class="compras-title">Compras</h5>
+            <h5 class="suscriptions-title">Suscripciones</h5>
             <v-divider class="my-3" />
-            <v-row v-if="orders.length > 0" no-gutters class="compras-items">
+            <v-row v-if="orders.length > 0" no-gutters class="suscriptions-items">
                 <v-col cols="12" v-for="(item, i) in orders" :key="i">
                     <OrderHistor
                         style="background-color: #f5f5f5;"
@@ -20,8 +20,8 @@
             <div v-else class="text-center">
                 <div class="emptycart">
                     <div class="cuadro-emptycart">
-                        <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/facturas.svg" />
-                        <p class="text-cartempty">AUN NO HAY FACTURAS REGISTRADAS</p>
+                        <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/suscripciones.svg" />
+                        <p class="text-cartempty">AUN NO HAY SUSCRIPCIONES ACTIVAS</p>
                         <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                     </div>
                 </div>
@@ -118,7 +118,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.compras {
+.suscriptions {
     &-title {
         font-weight: 600;
     }
