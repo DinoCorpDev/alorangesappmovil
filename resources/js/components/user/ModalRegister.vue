@@ -713,7 +713,7 @@
 
                     <h5 align="center">¡Gracias por registrarse!</h5>
                     <br /><br />
-                    <p>
+                    <p class="black--text">
                         Hemos enviado una notificación de confirmación a su dirección de correo electrónico registrado.
                     </p>
                 </div>

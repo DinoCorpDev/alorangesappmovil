@@ -38,7 +38,7 @@
             <!-- <v-divider class="cartSteper-subheader" /> -->
 
             <v-stepper-items>
-                <v-stepper-content step="1" style="overflow-y: scroll; height: 450px;">
+                <v-stepper-content step="1" style="overflow-y: scroll; height: 450px">
                     <template v-if="cartProducts.length > 0">
                         <div class="cart-table-header mb-2">
                             <div>Productos</div>
@@ -46,24 +46,24 @@
                             <div>Cantidad</div>
                             <div>Opciones</div>
                         </div>
-                        <v-row no-gutters class="car-items" style="" >
+                        <v-row no-gutters class="car-items" style="">
                             <v-col cols="12" v-for="(product, i) in cartProducts" :key="i">
                                 <ProductCart :productDetails="product" productCartType="checkout" />
                             </v-col>
                         </v-row>
-                        
-                        <v-row style="                                   
-                                    position: fixed;
-                                    bottom: 0;
-                                    width: 100%;                                     
-                                    background-color: transparent; 
-                                    backdrop-filter: blur(5px);                                    
-                                    margin-bottom: 0 !important;
-                                    "
+
+                        <v-row
+                            style="
+                                position: fixed;
+                                bottom: 0;
+                                width: 100%;
+                                background-color: transparent;
+                                backdrop-filter: blur(5px);
+                                margin-bottom: 0 !important;
+                            "
                         >
                             <v-divider class="ma-3" />
-                            <v-col cols="12" class="d-flex justify-space-between" style="padding-right: 27%; 
-                                                                                        ">
+                            <v-col cols="12" class="d-flex justify-space-between" style="padding-right: 27%">
                                 <div class="mb-2"></div>
                                 <total :total="priceTotal" />
                                 <div class="mb-2">
@@ -94,10 +94,71 @@
                         <v-col cols="12" md="6">
                             <v-row>
                                 <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Facturar a</h6>
+                                    <h5 class="fw-600">Dirección de envío</h5>
+                                    <v-divider class="my-4" />
+                                    <div class="form mb-5">
+                                        <h6 class="black--text bold">Dirección de envio</h6>
                                         <v-divider class="my-3" />
                                         <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                            <span class="body1">Dirección principal</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                            <span class="body1">{{ addressPrincipal?.address }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">
+                                                Descripción de Dirección
+                                            </span>
+                                            <span class="body1">{{ addressPrincipal?.address }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                            <span class="body1">{{ addressPrincipal?.postal_code }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                            <span class="body1">{{ addressPrincipal?.country }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                            <span class="body1">{{ addressPrincipal?.city }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                            <span class="body1"> -- </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">
+                                                Nombre de quien lo va a recibir
+                                            </span>
+                                            <span class="body1">{{ addressPrincipal?.name }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                            <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                        </div>
+                                        <CustomButton
+                                            v-if="Object.entries(addressPrincipal).length !== 0"
+                                            class="mr-3"
+                                            color="grey"
+                                            text="Editar"
+                                            @click="editAddress(addressPrincipal, 'shipping')"
+                                        />
+                                        <CustomButton
+                                            v-if="Object.entries(addressPrincipal).length === 0"
+                                            block
+                                            color="grey"
+                                            text="Añadir Dirección"
+                                            @click="openAdress('shipping')"
+                                        />
+                                    </div>
+                                    <div class="form">
+                                        <h6 class="black--text bold">Encargado</h6>
+                                        <v-divider class="my-3" />
+                                        <!-- <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Correo electronico</span>
                                             <span class="body1">{{ currentUser.email || "--" }}</span>
@@ -105,13 +166,13 @@
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Tipo de Persona</span>
                                             <span class="body1">{{ currentUser.personType || "--" }}</span>
-                                        </div>
+                                        </div> -->
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre</span>
+                                            <span class="subtitle1 text-uppercase bold">NOMBRE COMPLETO</span>
                                             <span class="body1">{{ currentUser.name || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-3">
-                                            <span class="subtitle1 text-uppercase bold">Documento</span>
+                                            <span class="subtitle1 text-uppercase bold">TELÉFONO / CELULAR</span>
                                             <span class="body1">
                                                 {{ currentUser.documentType || "--" }}
                                                 {{ currentUser.documentNumber || "--" }}
@@ -121,6 +182,8 @@
                                     </div>
                                 </v-col>
                                 <v-col cols="12">
+                                    <h5 class="fw-600">Dirección de servicio</h5>
+                                    <v-divider class="my-3" />
                                     <div class="form">
                                         <h6 class="black--text bold">Dirección de servicio</h6>
                                         <v-divider class="my-3" />
@@ -201,7 +264,9 @@
                                     </div>
                                 </v-col>
                                 <v-col cols="12">
-                                    <div class="form">
+                                    <!-- DIRECIÓN DE FACTURACIÓN -------------->
+
+                                    <!-- <div class="form">
                                         <h6 class="black--text bold">Dirección de facturacion</h6>
                                         <v-divider class="my-3" />
                                         <div
@@ -278,7 +343,7 @@
                                             text="Añadir Dirección"
                                             @click="openAdress('billing')"
                                         />
-                                    </div>
+                                    </div> -->
                                 </v-col>
                             </v-row>
                         </v-col>
@@ -296,83 +361,87 @@
                             />
                             <v-row>
                                 <v-col cols="12">
+                                    <h5 class="fw-600">Costo logístico</h5>
+                                    <v-divider class="my-4" />
                                     <div class="form">
-                                        <h6 class="black--text bold">Dirección de envio</h6>
+                                        <v-row>
+                                            <v-col cols="6">
+                                                <h6 class="black--text bold">Flete</h6>
+                                            </v-col>
+                                            <v-col cols="6">
+                                                <h6 class="black--text bold">Precio</h6>
+                                            </v-col>
+                                        </v-row>
+
                                         <v-divider class="my-3" />
-                                        <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                            <span class="body1">Dirección principal</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">{{ addressPrincipal?.address }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Descripción de Dirección
-                                            </span>
-                                            <span class="body1">{{ addressPrincipal?.address }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{ addressPrincipal?.postal_code }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{ addressPrincipal?.country }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{ addressPrincipal?.city }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                            <span class="body1"> -- </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Nombre de quien lo va a recibir
-                                            </span>
-                                            <span class="body1">{{ addressPrincipal?.name }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{ addressPrincipal?.phone }}</span>
-                                        </div>
-                                        <CustomButton
-                                            v-if="Object.entries(addressPrincipal).length !== 0"
-                                            class="mr-3"
-                                            color="grey"
-                                            text="Editar"
-                                            @click="editAddress(addressPrincipal, 'shipping')"
-                                        />
-                                        <CustomButton
-                                            v-if="Object.entries(addressPrincipal).length === 0"
-                                            block
-                                            color="grey"
-                                            text="Añadir Dirección"
-                                            @click="openAdress('shipping')"
-                                        />
-                                    </div>
-                                </v-col>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h6 class="black--text bold">Costo logístico</h6>
+
+                                        <v-row>
+                                            <v-col cols="6">
+                                                <h6 class="black--text bold">ENVÍO DE MERCANCÍA</h6>
+                                            </v-col>
+                                            <v-col cols="6">
+                                                <h6 class="black--text bold">000.000.000 COP</h6>
+                                            </v-col>
+                                            <v-col cols="6">
+                                                <h6 class="black--text bold">MOVILIDAD DE SERVICIO</h6>
+                                            </v-col>
+                                            <v-col cols="6">
+                                                <h6 class="black--text bold">000.000.000 COP</h6>
+                                            </v-col>
+                                        </v-row>
+
                                         <v-divider class="my-3" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Fleta adicional de envio a todo el país
-                                            </span>
-                                            <span class="body1">+000.000.000 COP</span>
-                                        </div>
-                                        <div class="d-flex justify-end mb-2">
-                                            <span class="body2 text-uppercase grey--text">
-                                                ( Envió sin costos desde 500.000 COP )
-                                            </span>
-                                        </div>
+
+                                        <v-row>
+                                            <v-col cols="5"></v-col>
+                                            <v-col cols="7">
+                                                <h6 class="black--text bold">COSTO 000.000.000 COP</h6>
+                                            </v-col>
+                                        </v-row>
+
+                                        <v-row>
+                                            <v-col cols="6">
+                                                <v-btn
+                                                    id="customButton"
+                                                    block
+                                                    class="mt-4 boton-guardar"
+                                                    text="Guardar >"
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                >
+                                                    <i
+                                                        class="las la-exclamation-circle"
+                                                        style="font-size: 30px; transform: rotate(180deg)"
+                                                    ></i
+                                                    >MÁS INFORMACIÓN
+                                                </v-btn>
+                                                <div class="tooltip" id="tooltip">
+                                                    El costo logístico se suma al valor subtotal de la compra
+                                                    <br />
+                                                    al pagar. El precio del envío de mercancía es gratuito en
+                                                    <br />
+                                                    la ciudad capital al superar el valor de 500.000 COP en el
+                                                    <br />
+                                                    pedido. (Valor sujeto a cambio) El costo de movilidad de
+                                                    <br />
+                                                    servicio varía dependiendo la ubicación de la dirección de
+                                                    <br />
+                                                    servicio. Para saber más
+                                                    <a
+                                                        class="text-decoration-underline"
+                                                        href="https://www.google.com/"
+                                                        target="_blank"
+                                                        style="color: white; font-size: 17px"
+                                                        >Conocer logística de envío</a
+                                                    >
+                                                </div>
+                                            </v-col>
+                                        </v-row>
                                     </div>
+
+                                    <br />
                                 </v-col>
+                                <v-col cols="12"> </v-col>
                             </v-row>
                         </v-col>
                         <v-col cols="12" class="d-flex justify-space-between">
@@ -389,7 +458,9 @@
                 <v-stepper-content step="3">
                     <v-row>
                         <v-col cols="12" md="6" order="1" order-md="1" order-sm="2">
-                            <div class="form">
+                            <h5 class="fw-600">Seleccionar medio de pago</h5>
+                            <v-divider class="my-4" />
+                            <div class="form" style="background: white !important">
                                 <h6 class="black--text bold">Medio de Pago</h6>
                                 <v-divider class="my-3" />
                                 <v-row>
@@ -477,7 +548,7 @@
                                         @click="$refs.fileInput.click()"
                                     />
                                     <input
-                                        style="display: none;"
+                                        style="display: none"
                                         ref="fileInput"
                                         type="file"
                                         @change="fileSelected"
@@ -488,11 +559,102 @@
                             </div>
                         </v-col>
                         <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
+
                             <div class="form">
-                                <h6 class="black--text bold">Codigo Promocional</h6>
-                                <v-divider class="my-3" />
-                                <label class="black--text text-uppercase">(Regalo / Referido)</label>
-                                <CustomInput />
+                                        <h6 class="black--text bold">Dirección de facturacion</h6>
+                                        <v-divider class="my-3" />
+                                        <div
+                                            v-if="
+                                                Object.entries(addressFacturacion).length !== 0 &&
+                                                useDefaultAddress2 == false
+                                            "
+                                        >
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                                <span class="body1">Dirección principal</span>
+                                            </div>
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                                <span class="body1 text-right">{{ addressFacturacion?.address }}</span>
+                                            </div>
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">
+                                                    Descripción de Dirección
+                                                </span>
+                                                <span class="body1">{{ addressFacturacion?.address }}</span>
+                                            </div>
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                                <span class="body1">{{ addressFacturacion?.postal_code }}</span>
+                                            </div>
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                                <span class="body1">{{ addressFacturacion?.country }}</span>
+                                            </div>
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                                <span class="body1">{{ addressFacturacion?.city }}</span>
+                                            </div>
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                                <span class="body1"> -- </span>
+                                            </div>
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                                <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                            </div>
+                                        </div>
+                                        <label class="label my-3">
+                                            <input
+                                                type="checkbox"
+                                                v-model="useDefaultAddress2"
+                                                id="useDefaultAddress2"
+                                            />
+                                            <span class="body-1 black--text text">
+                                                Usar la misma Dirección de envió para que Idovela entreguela factura
+                                                física.
+                                            </span>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <v-divider class="my-3" />
+                                        <CustomButton
+                                            v-if="
+                                                Object.entries(addressFacturacion).length !== 0 &&
+                                                useDefaultAddress2 == false
+                                            "
+                                            class="mr-3"
+                                            color="grey"
+                                            text="Editar"
+                                            @click="editAddress(addressFacturacion, 'billing')"
+                                        />
+                                        <CustomButton
+                                            v-if="
+                                                Object.entries(addressFacturacion).length === 0 &&
+                                                useDefaultAddress2 == false
+                                            "
+                                            block
+                                            color="grey"
+                                            text="Añadir Dirección"
+                                            @click="openAdress('billing')"
+                                        />
+                                    </div>
+
+                        </v-col>
+                        <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
+                            <div class="form">
+                                <v-row>
+                                    <v-col cols="3" style="display: flex; place-items: center">
+                                        <ProfileAddress />
+                                    </v-col>
+
+                                    <v-col cols="9" style="display: flex; place-items: center">
+                                        <p class="mb-0">
+                                            Si tienes un código promocional, cupón de descuento o un promocional
+                                            agrégalo
+                                        </p>
+                                    </v-col>
+                                    <CustomButton class="mb-4" block color="grey" text="Añadir código" />
+                                </v-row>
                             </div>
                         </v-col>
                         <v-col cols="12" order="3" order-md="3" order-sm="3" class="d-flex justify-space-between">
@@ -1022,6 +1184,11 @@ import SelectCustom from "../../components/global/SelectCustom.vue";
 import StepOrder from "../../components/icons/StepOrder.vue";
 import Total from "../../components/global/Total.vue";
 import TypePayment from "../../components/global/TypePayment.vue";
+import ProfileAddress from "../../components/icons/ProfileAddress.vue";
+
+const button = document.getElementById("customButton");
+const tooltip = document.getElementById("tooltip");
+const tooltipLink = document.getElementById("tooltipLink");
 
 export default {
     components: {
@@ -1034,6 +1201,7 @@ export default {
         SelectCustom,
         StepOrder,
         Total,
+        ProfileAddress,
         TypePayment
     },
     data() {
@@ -1284,7 +1452,7 @@ export default {
         border-radius: 10px;
     }
 
-    .v-stepper__step--complete{
+    .v-stepper__step--complete {
         background: #606161;
     }
     .v-stepper__header {
@@ -1397,9 +1565,10 @@ export default {
 }
 
 .form {
-    border: 1px solid #e4e4e4;
+    border: 1px solid #f5f5f5;
     border-radius: 10px;
     padding: 10px;
+    background: #f5f5f5;
 }
 
 .label {
@@ -1506,19 +1675,72 @@ export default {
     padding: 5px 5px 0px 5px;
 }
 
-.cartSteper-step{
-    .v-stepper__step--complete{
-    background-color: #9b9c9c;
+.cartSteper-step {
+    .v-stepper__step--complete {
+        background-color: #9b9c9c;
     }
 }
 
-.v-stepper__header{
-    ::v-deep{
-        .v-stepper__step--complete{
-            .v-stepper__step__step{
+.v-stepper__header {
+    ::v-deep {
+        .v-stepper__step--complete {
+            .v-stepper__step__step {
                 background-color: #9b9c9c;
             }
         }
+    }
+}
+
+// TOOLTIP CREADO A MANO
+
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+#customButton {
+    position: relative;
+}
+
+#customButton:hover + .tooltip {
+    display: block;
+}
+
+.tooltip:hover {
+    display: block;
+
+    .boton-guardar {
+        font-size: var(--font-size-btn);
+        font-weight: 600;
+        letter-spacing: 2;
+        transition: all 0.2s ease-in-out;
+        color: #fff !important;
+        background-color: rgba(#000000, 0.8) !important;
+    }
+}
+
+.boton-guardar {
+    font-size: var(--font-size-btn);
+    font-weight: 600;
+    letter-spacing: 2;
+    transition: all 0.2s ease-in-out;
+    color: black;
+    background-color: #dfdfdf;
+
+    &:hover {
+        color: #fff;
+        background-color: black;
+    }
+
+    &:focus,
+    &.v-btn--active {
+        color: #fff;
+        background-color: black;
     }
 }
 </style>
