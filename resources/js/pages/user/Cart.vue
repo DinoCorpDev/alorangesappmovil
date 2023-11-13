@@ -1342,7 +1342,7 @@ export default {
 
                     if (res.data.success) {
                         this.dataCheckout = res.data;
-                        this.step = 4;
+                        this.numberPag = 4;
                     } else {
                         this.snack({
                             message: res.data.message,

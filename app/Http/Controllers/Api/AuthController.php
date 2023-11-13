@@ -418,7 +418,7 @@ class AuthController extends Controller
 
     public function get_all_collections()
     {
-        $collections = Collection::all();
+        $collections = Collection::with('productos.product')->get();
 
         return response()->json([
             'success' => true,
