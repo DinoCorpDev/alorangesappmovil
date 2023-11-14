@@ -416,6 +416,22 @@ class AuthController extends Controller
         ]);
     }
 
+    public function get_all_codigo_postal()
+    {
+        $array = array();
+        $codigo = CodigoPostal::all();
+
+        foreach($codigo as $cod){
+            $arr = [ "text" => $cod->codigo, "value" => $cod->codigo ];
+            array_push($array, $arr);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $array
+        ]);
+    }
+
     public function get_all_collections()
     {
         $collections = Collection::with('productos.product')->get();
