@@ -114,8 +114,8 @@
                                     $sub = \App\Models\Category::find($collection->subcategoria);
                                     $brand = \App\Models\Brand::find($collection->marca);
                                 @endphp
-                                {{ $ca->name }} <br>
-                                {{ $sub->name }}
+                                {{ !is_null($ca) ? $ca->name : ''  }} <br>
+                                {{ !is_null($sub) ? $sub->name : '' }}
                             </td>
                             <td>
                                 {{ $brand->name }}
