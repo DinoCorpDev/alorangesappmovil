@@ -114,11 +114,11 @@
                                     $sub = \App\Models\Category::find($collection->subcategoria);
                                     $brand = \App\Models\Brand::find($collection->marca);
                                 @endphp
-                                {{ !is_null($ca) ? $ca->name : ''  }} <br>
-                                {{ !is_null($sub) ? $sub->name : '' }}
+                                {{ is_object($ca) ? $ca->name : ''  }} <br>
+                                {{ is_object($sub) ? $sub->name : '' }}
                             </td>
                             <td>
-                                {{ $brand->name }}
+                                {{ is_object($brand) ? $brand->name : '' }}
                             </td>
                             <td class="text-right">
                                 @can('view_products')
