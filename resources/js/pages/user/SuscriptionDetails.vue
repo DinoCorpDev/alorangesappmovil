@@ -2,7 +2,7 @@
     <v-container>
         <v-row>
             <v-col cols="12 invoice-div">
-                <OrderHistory
+                <SuscriptionHistory
                     style="background-color: #f5f5f5;"
                     :order="order?.code"
                     :date="order?.date"
@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import OrderHistory from "../../components/global/OrderHistory.vue";
-import Summary from "./../../components/order/Summary.vue";
+import SuscriptionHistory from "../../components/global/SuscriptionHistory.vue";
+import Summary from "../../components/order/Summary.vue";
 
 export default {
     data() {
@@ -31,7 +31,7 @@ export default {
         };
     },
     components: {
-        OrderHistory,
+        SuscriptionHistory,
         Summary
     },
     methods: {

@@ -38,7 +38,7 @@
             <!-- <v-divider class="cartSteper-subheader" /> -->
 
             <v-stepper-items>
-                <v-stepper-content step="1" style="overflow-y: scroll; height: 450px">
+                <v-stepper-content step="1" style="overflow-y: scroll; height: 450px;">
                     <template v-if="cartProducts.length > 0">
                         <div class="cart-table-header mb-2">
                             <div>Productos</div>
@@ -63,7 +63,7 @@
                             "
                         >
                             <v-divider class="ma-3" />
-                            <v-col cols="12" class="d-flex justify-space-between" style="padding-right: 27%">
+                            <v-col cols="12" class="d-flex justify-space-between" style="padding-right: 27%;">
                                 <div class="mb-2"></div>
                                 <total :total="priceTotal" />
                                 <div class="mb-2">
@@ -76,7 +76,7 @@
                         <v-col>
                             <div class="emptycart">
                                 <div class="cuadro-emptycart">
-                                    <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoCarrito.png" />
+                                    <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/facturas.svg" />
                                     <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
                                     <CustomButton
                                         text="IR A PRODUCTOS"
@@ -411,7 +411,7 @@
                                                 >
                                                     <i
                                                         class="las la-exclamation-circle"
-                                                        style="font-size: 30px; transform: rotate(180deg)"
+                                                        style="font-size: 30px; transform: rotate(180deg);"
                                                     ></i
                                                     >MÁS INFORMACIÓN
                                                 </v-btn>
@@ -431,7 +431,7 @@
                                                         class="text-decoration-underline"
                                                         href="https://www.google.com/"
                                                         target="_blank"
-                                                        style="color: white; font-size: 17px"
+                                                        style="color: white; font-size: 17px;"
                                                         >Conocer logística de envío</a
                                                     >
                                                 </div>
@@ -460,7 +460,7 @@
                         <v-col cols="12" md="6" order="1" order-md="1" order-sm="2">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
                             <v-divider class="my-4" />
-                            <div class="form" style="background: white !important">
+                            <div class="form" style="background: white !important;">
                                 <h6 class="black--text bold">Medio de Pago</h6>
                                 <v-divider class="my-3" />
                                 <v-row>
@@ -548,7 +548,7 @@
                                         @click="$refs.fileInput.click()"
                                     />
                                     <input
-                                        style="display: none"
+                                        style="display: none;"
                                         ref="fileInput"
                                         type="file"
                                         @change="fileSelected"
@@ -559,95 +559,85 @@
                             </div>
                         </v-col>
                         <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
-
                             <div class="form">
-                                        <h6 class="black--text bold">Dirección de facturacion</h6>
-                                        <v-divider class="my-3" />
-                                        <div
-                                            v-if="
-                                                Object.entries(addressFacturacion).length !== 0 &&
-                                                useDefaultAddress2 == false
-                                            "
-                                        >
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                                <span class="body1">Dirección principal</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{ addressFacturacion?.address }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">
-                                                    Descripción de Dirección
-                                                </span>
-                                                <span class="body1">{{ addressFacturacion?.address }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{ addressFacturacion?.postal_code }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{ addressFacturacion?.country }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{ addressFacturacion?.city }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                                <span class="body1"> -- </span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{ addressPrincipal?.phone }}</span>
-                                            </div>
-                                        </div>
-                                        <label class="label my-3">
-                                            <input
-                                                type="checkbox"
-                                                v-model="useDefaultAddress2"
-                                                id="useDefaultAddress2"
-                                            />
-                                            <span class="body-1 black--text text">
-                                                Usar la misma Dirección de envió para que Idovela entreguela factura
-                                                física.
-                                            </span>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <v-divider class="my-3" />
-                                        <CustomButton
-                                            v-if="
-                                                Object.entries(addressFacturacion).length !== 0 &&
-                                                useDefaultAddress2 == false
-                                            "
-                                            class="mr-3"
-                                            color="grey"
-                                            text="Editar"
-                                            @click="editAddress(addressFacturacion, 'billing')"
-                                        />
-                                        <CustomButton
-                                            v-if="
-                                                Object.entries(addressFacturacion).length === 0 &&
-                                                useDefaultAddress2 == false
-                                            "
-                                            block
-                                            color="grey"
-                                            text="Añadir Dirección"
-                                            @click="openAdress('billing')"
-                                        />
+                                <h6 class="black--text bold">Dirección de facturacion</h6>
+                                <v-divider class="my-3" />
+                                <div
+                                    v-if="
+                                        Object.entries(addressFacturacion).length !== 0 && useDefaultAddress2 == false
+                                    "
+                                >
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
+                                        <span class="body1">Dirección principal</span>
                                     </div>
-
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Dirección</span>
+                                        <span class="body1 text-right">{{ addressFacturacion?.address }}</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">
+                                            Descripción de Dirección
+                                        </span>
+                                        <span class="body1">{{ addressFacturacion?.address }}</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
+                                        <span class="body1">{{ addressFacturacion?.postal_code }}</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Departamento</span>
+                                        <span class="body1">{{ addressFacturacion?.country }}</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Municipio</span>
+                                        <span class="body1">{{ addressFacturacion?.city }}</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                        <span class="body1"> -- </span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
+                                        <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                    </div>
+                                </div>
+                                <label class="label my-3">
+                                    <input type="checkbox" v-model="useDefaultAddress2" id="useDefaultAddress2" />
+                                    <span class="body-1 black--text text">
+                                        Usar la misma Dirección de envió para que Idovela entreguela factura física.
+                                    </span>
+                                    <span class="checkmark"></span>
+                                </label>
+                                <v-divider class="my-3" />
+                                <CustomButton
+                                    v-if="
+                                        Object.entries(addressFacturacion).length !== 0 && useDefaultAddress2 == false
+                                    "
+                                    class="mr-3"
+                                    color="grey"
+                                    text="Editar"
+                                    @click="editAddress(addressFacturacion, 'billing')"
+                                />
+                                <CustomButton
+                                    v-if="
+                                        Object.entries(addressFacturacion).length === 0 && useDefaultAddress2 == false
+                                    "
+                                    block
+                                    color="grey"
+                                    text="Añadir Dirección"
+                                    @click="openAdress('billing')"
+                                />
+                            </div>
                         </v-col>
                         <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
                             <div class="form">
                                 <v-row>
-                                    <v-col cols="3" style="display: flex; place-items: center">
+                                    <v-col cols="3" style="display: flex; place-items: center;">
                                         <ProfileAddress />
                                     </v-col>
 
-                                    <v-col cols="9" style="display: flex; place-items: center">
+                                    <v-col cols="9" style="display: flex; place-items: center;">
                                         <p class="mb-0">
                                             Si tienes un código promocional, cupón de descuento o un promocional
                                             agrégalo
@@ -1545,7 +1535,8 @@ export default {
 .cuadro-emptycart {
     padding: 40px 50px;
     text-align: center;
-    border: 1px solid #dfdfdf;
+    border: 1px solid #f5f5f5;
+    background-color: #f5f5f5;
     margin-top: 7%;
     border-radius: 10px;
 }
@@ -1555,7 +1546,7 @@ export default {
     margin-bottom: 0;
 }
 .img-cartempty {
-    width: 26%;
+    width: 45%;
     margin: auto;
 }
 

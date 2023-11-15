@@ -2,17 +2,8 @@
     <div class="product-box-cart">
         <div class="product-box-cart-body">
             <div class="product-box-cart-info">
+                <p class="product-box-cart-brand-name mb-0">01 PLAN</p>
                 <h6 class="product-box-cart-name">Orden de pedido # {{ order }}</h6>
-                <p class="product-box-cart-brand-name mb-0">Fecha {{ date }}</p>
-            </div>
-        </div>
-        <div class="product-box-cart-body-price">
-            <div>
-                <div class="status">
-                    <p class="text-uppercase font-weight-bold">ESTADO</p>
-                    <div class="color-status" :class="colorStatus"></div>
-                </div>
-                <p>{{ descriptionStatus }}</p>
             </div>
         </div>
         <div class="product-box-cart-actions">
@@ -62,7 +53,7 @@ export default {
 .product-box-cart {
     display: grid;
     align-items: stretch;
-    grid-template-columns: 7fr 3fr 2fr;
+    grid-template-columns: 10fr 2fr;
 
     border-radius: 10px;
     background-color: #f5f5f5;
@@ -72,7 +63,7 @@ export default {
     padding: 0.5rem 0;
 
     @media (min-width: 768px) {
-        grid-template-columns: 7fr 3fr 2fr;
+        grid-template-columns: 10fr 2fr;
         padding: 0.75rem 0;
     }
 

@@ -7,6 +7,8 @@ let Proyects = () => import("../pages/user/Proyects");
 let Suscriptions = () => import("../pages/user/Suscriptions");
 let Downloads = () => import("../pages/user/Downloads");
 let OrderDetails = () => import("../pages/user/OrderDetails");
+let ProyectDetails = () => import("../pages/user/ProyectDetails");
+let SuscriptionDetails = () => import("../pages/user/SuscriptionDetails");
 let RefundRequests = () => import("../pages/user/refund_request/RefundRequestList");
 let RefundRequestCreate = () => import("../pages/user/refund_request/RefundRequestCreate");
 let Wishlist = () => import("../pages/user/Wishlist");
@@ -66,9 +68,21 @@ export default [
                 meta: { requiresAuth: true }
             },
             {
+                path: "proyects/:code",
+                component: ProyectDetails,
+                name: "ProyectDetails",
+                meta: { requiresAuth: true }
+            },
+            {
                 path: "suscriptions",
                 component: Suscriptions,
                 name: "Suscriptions",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "suscriptions/:code",
+                component: SuscriptionDetails,
+                name: "SuscriptionDetails",
                 meta: { requiresAuth: true }
             },
             {

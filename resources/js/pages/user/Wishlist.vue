@@ -65,7 +65,8 @@ export default {
 .cuadro-emptycart {
     padding: 40px 50px;
     text-align: center;
-    border: 1px solid #dfdfdf;
+    border: 1px solid #f5f5f5;
+    background-color: #f5f5f5;
     margin-top: 7%;
     border-radius: 10px;
 }

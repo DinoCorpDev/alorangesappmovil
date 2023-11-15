@@ -1,11 +1,11 @@
 <template>
     <v-row class="compras">
         <v-col cols="12">
-            <h5 class="compras-title">Compras</h5>
+            <h5 class="compras-title">ORDEN DE PEDIDOS</h5>
             <v-divider class="my-3" />
             <v-row v-if="orders.length > 0" no-gutters class="compras-items">
                 <v-col cols="12" v-for="(item, i) in orders" :key="i">
-                    <OrderHistor
+                    <OrderHistory
                         style="background-color: #f5f5f5;"
                         :order="item?.code"
                         :date="item?.date"
@@ -121,6 +121,13 @@ export default {
 .compras {
     &-title {
         font-weight: 600;
+        font-size: 13px;
+        background: #000;
+        width: 30%;
+        padding: 5px;
+        color: #fff;
+        text-align: center;
+        border-radius: 15px;
     }
 
     &-items {
@@ -144,7 +151,8 @@ export default {
 .cuadro-emptycart {
     padding: 40px 50px;
     text-align: center;
-    border: 1px solid #dfdfdf;
+    border: 1px solid #f5f5f5;
+    background-color: #f5f5f5;
     margin-top: 7%;
     border-radius: 10px;
 }
