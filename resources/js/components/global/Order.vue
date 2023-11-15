@@ -2,7 +2,7 @@
     <div class="div-order">
         <div class="order">
             <div>
-                <h6 class="font-weight-bold">Orden de pedido # {{ order }}</h6>
+                <h5 class="font-weight-bold">Orden de pedido # {{ order }}</h5>
                 <p class="body-1">Fecha {{ day }} de {{ month }} de {{ year }}</p>
             </div>
         </div>
