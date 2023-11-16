@@ -634,7 +634,9 @@
                             <div class="form">
                                 <v-row>
                                     <v-col cols="3" style="display: flex; place-items: center;">
-                                        <ProfileAddress />
+                                        <div style="border: 1px solid black; border-radius: 100px;">
+                                            <Regalo />
+                                        </div>
                                     </v-col>
 
                                     <v-col cols="9" style="display: flex; place-items: center;">
@@ -672,11 +674,19 @@
                                     <div>
                                         <span class="success"><i class="las la-check"></i></span>
                                     </div>
+                                    
                                     <div>
-                                        <h6 class="font-weight-bold">Gracias por registrarse</h6>
-                                        <p class="body-1">
-                                            Enviaremos al e-mail de facturación un correo de verificación por la compra
-                                        </p>
+                                        <v-row style="width: 130%">
+                                            <v-col cols="9">
+                                                <h6 class="font-weight-bold">Gracias por registrarse</h6>
+                                                <p class="body-1 mb-0" style="margin-top: 4px;">
+                                                    Enviaremos al e-mail de facturación un correo de verificación por la compra
+                                                </p>
+                                            </v-col>
+                                            <v-col cols="3" style="display: flex; justify-content: center; align-items: center; place-items: center;">
+                                                <CustomButton text="FINALIZAR" width="150" color="nero" @click="numberPag = 3" />
+                                            </v-col>
+                                        </v-row>
                                     </div>
                                 </div>
                             </div>
@@ -824,7 +834,7 @@
                         <v-divider class="my-4" style="margin-bottom: 34px !important;"/>
                         
                         <!-- AQUI -->
-                        <v-row style="overflow-y: scroll; height: 450px; width: 95%;">
+                        <v-row style="overflow-y: scroll; max-height: 450px; width: 95%;">
                             <div class="cart-table-header mb-2" style="width: 100%">
                                 <div style="padding-left: 4%">Productos</div>
                                 <div>Precio</div>
@@ -1217,7 +1227,7 @@
                                     <h5 class="fw-600">Código promocional</h5>
                                     <v-divider class="my-4" />
                                     <div class="form">
-                                        icono codigo promocional
+                                        <div class="d-flex">    <regalo /> </div>
                                         <v-divider class="my-4" />
                                         <v-row>
                                             <v-col cols="6" class="text-left">
@@ -1232,7 +1242,23 @@
                             </v-row>
                         </v-col>
                         
-                    </v-row>    
+                    </v-row>
+
+                    <v-divider class="my-4"/>
+
+                    <v-row>
+                        <p style="font-size: 0.7rem; color:#b4b5b5; padding-left: 1.5%; text-align: left;">Protección de datos personales: IDOVELA S.A.S garantiza el tratamiento de datos personales acorde a lo establecido en la ley 1581/2012 y decreto 1377/2013. por favor dirija sus inquietudes al correo: 
+                        soporte@idovela.com Riesgo de lavado de activos, financiación al terrorismo sarlaft y ley antisoborno: EL CLIENTE certifica a IDOVELA S.A.S que sus recursos no provienen ni se destinan al ejercicio de ninguna
+                        actividad ilícita o de actividades conexas al lavado de activos provenientes de estas o de actividades relacionadas con la financiación del terrorismo EL CLIENTE se obliga a realizar todas las actividades 
+                        encaminadas a asegurar que los recursos de estos, no se encuentran relacionados, provengan, de actividades ilícitas, particularmente de lavado de activos o financiación del terrorismo. Igualmente se 
+                        compromete a respetar el programa de ética empresarial que aplica en IDOVELA S.A.S. Garantía: 1). Garantiza el articulo a partir de la fecha prescrita. únicamente garantía de fábrica. 2). Garantizamos el articulo
+                        según nos ofrecen nuestro(s) proveedor(es). 3). Situaciones no cubiertas por la garantía legal: • Productos cuyo periodo de garantía haya expirado o finalizado. • Situaciones ocasionadas por fuerza mayor, caso
+                        fortuito, culpa exclusiva del usuario o terceros • Problemas causados como consecuencia de instalaciones físicas y eléctricas inadecuadas, uso o mantenimiento inadecuados o diferentes al indicado en el 
+                        manual del producto, por personal no autorizado por iDOVELA S.A.S. Cambios y devoluciones: después de 30 días fecha factura, para cambios por favor presentar la factura original en horario de lunes a sábado
+                        de 8:00 am a 5:00 pm. la mercancía se recibe en perfecto estado, caja sellada, el material en calidad de segunda (uso o deterioro) no tiene cambios. no devolvemos dinero Logística: la mercancía se deja hasta
+                        dónde llega el camión (primera planta). una vez recibida y firmada esta factura se entenderá que la mercancía fue recibida y entregada a satisfacción. El CLIENTE acepta los términos de compra generales 
+                        publicados en www.idovela.con/TyC</p>
+                    </v-row>
                     <v-row>
                         <v-col cols="12" class="d-flex justify-space-between">
                             <div class="mb-2">
@@ -1260,7 +1286,7 @@ import SelectCustom from "../../components/global/SelectCustom.vue";
 import StepOrder from "../../components/icons/StepOrder.vue";
 import Total from "../../components/global/Total.vue";
 import TypePayment from "../../components/global/TypePayment.vue";
-import ProfileAddress from "../../components/icons/ProfileAddress.vue";
+import Regalo from "../../components/icons/Regalo.vue";
 
 const button = document.getElementById("customButton");
 const tooltip = document.getElementById("tooltip");
@@ -1277,7 +1303,7 @@ export default {
         SelectCustom,
         StepOrder,
         Total,
-        ProfileAddress,
+        Regalo,
         TypePayment
     },
     data() {

@@ -14,20 +14,21 @@
         :multiple="multiple"
         @blur="$emit('blur', $event)"
         @input="$emit('input', $event)"
-        append-icon="las la-caret-down icono-grande"
         clear-icon="las la-times"
         flat
         outlined
         rounded
         solo
-    ></v-select>
+    >
+    <template v-slot:append> <Flecha /> </template>
+    </v-select>
     
 
 </template>
 
 <script>
 
-import ArrowUpload from "../../components/icons/ArrowUpload.vue";
+import Flecha from "../../components/icons/Flecha.vue";
 
 
 export default {
@@ -82,11 +83,11 @@ export default {
             default: false
         },
 
-        components: {
-            ArrowUpload
-        }
+        
     },
-    
+    components: {
+            Flecha
+    }
 };
 </script>
 
@@ -179,6 +180,6 @@ export default {
 }
 
 .icono-grande{
-    font-size: 100px;
+    font-size: 25px;
 }
 </style>

@@ -70,7 +70,7 @@ export default {
         },
         href: {
             type: String,
-            default: "#"
+            default: undefined
         },
         to: {
             type: [String, Object]

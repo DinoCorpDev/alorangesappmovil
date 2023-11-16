@@ -418,7 +418,7 @@
                                     <v-col cols="11" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
-                                            class="form-control upload"
+                                            class="upload"
                                             v-model="form.filedocumento"
                                             accept="application/pdf"
                                         >
@@ -1740,7 +1740,7 @@ export default {
     border-radius: 100px;
     width: 100%;
 
-    &::v-deep {
+     &::v-deep {
         .v-label {
             top: 24% !important;
             left: 6.5% !important;
@@ -1757,7 +1757,7 @@ export default {
                 display: none;
             }
         }
-    }
+     }
 }
 
 .theme--light {

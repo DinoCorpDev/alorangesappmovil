@@ -7,14 +7,14 @@
             </div>
         </div>
         <div class="div-status">
-            <v-divider vertical />
+            <!-- <v-divider vertical />
             <div>
                 <div class="status">
                     <p class="text-uppercase font-weight-bold">ESTADO</p>
                     <div class="color-status" :class="colorStatus"></div>
                 </div>
                 <p>{{ descriptionStatus }}</p>
-            </div>
+            </div> -->
             <v-divider vertical />
             <div class="d-none d-sm-flex">
                 <custom-button v-if="icon1" plain :icon="icon1" />
