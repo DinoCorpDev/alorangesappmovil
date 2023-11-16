@@ -160,6 +160,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::get('coupons', [CouponController::class, 'index']);
 
             Route::get('orders', [OrderController::class, 'index']);
+            Route::post('orders', [OrderController::class, 'getOrders']);
             Route::get('orders/downloads', [OrderController::class, 'productDownloads']);
             Route::get('orders/product/download/{id}', [OrderController::class, 'download']);
             Route::get('order/{order_code}', [OrderController::class, 'show']);

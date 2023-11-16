@@ -32,6 +32,8 @@
 
 <script>
 import ProyectHistory from "../../components/global/ProyectHistory.vue";
+import { mapActions, mapGetters, mapMutations } from "vuex";
+
 
 export default {
     data: () => ({
@@ -44,7 +46,14 @@ export default {
     components: {
         ProyectHistory
     },
+    async created() {
+        await this.getUser();
+        console.log(this.getUser());
+    },
     computed: {
+        ...mapActions("auth", ["getUser"]),
+        ...mapGetters("auth", ["currentUser"]),
+
         headers() {
             return [
                 {
@@ -94,7 +103,11 @@ export default {
         },
         async getList(number) {
             this.loading = true;
+            var form_data = new FormData();
+            form_data.append("user_id", this.currentUser.id);
+
             const res = await this.call_api("get", `user/orders?page=${number}`);
+
             if (res.data.success) {
                 this.orders = res.data.data;
                 this.totalPages = res.data.meta.last_page;

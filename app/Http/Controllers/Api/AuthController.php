@@ -15,6 +15,7 @@ use App\Models\CodigoCiiu;
 use App\Models\CodigoPostal;
 use App\Models\Subscriber;
 use App\Models\Collection;
+use App\Models\CollectionOrderDetail;
 use App\Notifications\EmailVerificationNotification;
 use Str;
 
@@ -434,7 +435,7 @@ class AuthController extends Controller
 
     public function get_all_collections()
     {
-        $collections = Collection::with('productos.product')->get();
+        $collections = CollectionOrderDetail::with('collection.productos.product')->get();
 
         return response()->json([
             'success' => true,

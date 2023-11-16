@@ -95,7 +95,7 @@
                         <tr>
                             <td>{{ $key + 1 + ($collections->currentPage() - 1) * $collections->perPage() }}</td>
                             <td>
-                                <a class="text-reset d-block" href="{{ route('collection', $collection->slug) }}"
+                                <a class="text-reset d-block"  href="{{ route('collection.show', $collection->id) }}"
                                     target="_blank">
                                     <div class="d-flex align-items-center">
                                         <img class="size-60px size-xxl-80px mr-2"
