@@ -2861,7 +2861,6 @@ export default {
             this.addDirection = false;
         },
         async editDirection(direction) {
-            console.log(direction);
             direction.country = direction.country_id;
             let country = await this.countryChanged(direction.country_id);
             direction.state = direction.state_id;
@@ -2869,7 +2868,7 @@ export default {
             let state = await this.stateChanged(direction.state_id);
             direction.city = direction.city_id;
             direction.localidad = direction.localidad_id;
-            direction.postal_code = direction.postal_code;
+            direction.postal_code = parseInt(direction.postal_code);
             direction.editar = true;
         },
         cancelEditAddress(direction) {
