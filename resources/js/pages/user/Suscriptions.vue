@@ -113,7 +113,7 @@ export default {
     },
     created() {
         let page = this.$route.query.page || this.currentPage;
-        this.getList(page);
+        //this.getList(page);
     }
 };
 </script>
