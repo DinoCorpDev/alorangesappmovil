@@ -39,6 +39,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ClubPointController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\DigitalProductController;
 use App\Http\Controllers\Payment\AuthorizenetPaymentController;
 use App\Http\Controllers\ProductBulkUploadController;
@@ -105,6 +106,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
     // Collection
     Route::resource('/collection', CollectionController::class);
+    Route::resource('/plans', PlanController::class);
+    Route::get('/plans/edit/{id}', [PlanController::class, 'edit']);
+    Route::post('/plans/{id}', [PlanController::class, 'update']);
+    Route::get('/plans/destroy/{id}', [PlanController::class, 'destroy']);
+
+
     Route::group(['prefix' => 'collection'], function () {
         Route::post('/import', [CollectionController::class, 'import'])->name('collection.import');
         Route::get('/{id}/edit', [CollectionController::class, 'edit'])->name('collection.edit');
