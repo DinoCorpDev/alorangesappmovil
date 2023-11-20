@@ -8,24 +8,50 @@
         </div>
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-md-flex">
-                <custom-button
-                    v-if="icon1"
-                    plain
-                    :icon="icon1"
-                    :to="{ name: 'OrderDetails', params: { code: order } }"
-                />
-                <custom-button
-                    v-if="icon2"
-                    plain
-                    :icon="icon2"
-                    :to="{ name: 'OrderDetails', params: { code: order } }"
-                />
-                <custom-button
-                    v-if="icon3"
-                    plain
-                    :icon="icon3"
-                    :to="{ name: 'OrderDetails', params: { code: order } }"
-                />
+                <v-tooltip bottom color="black">
+                    <template v-slot:activator="{ on, attrs }">
+                        <div v-bind="attrs" v-on="on">
+                            <custom-button
+                                v-if="icon1"
+                                plain
+                                :to="{ name: 'OrderDetails', params: { code: order } }"
+                            >
+                                <Compartir />
+                            </custom-button>
+                        </div>
+                    </template>
+                    <span>Compartir</span>
+                </v-tooltip>
+                
+                <v-tooltip bottom color="black">
+                    <template v-slot:activator="{ on, attrs }">
+                        <div v-bind="attrs" v-on="on">
+                            <custom-button
+                                v-if="icon2"
+                                plain
+                                :to="{ name: 'OrderDetails', params: { code: order } }"
+                            >
+                                <Ojo />
+                            </custom-button>
+                        </div>
+                    </template>
+                    <span>Ver detalles</span>
+                </v-tooltip>
+                <v-tooltip bottom color="black">
+                    <template v-slot:activator="{ on, attrs }">
+                        <div v-bind="attrs" v-on="on">
+                            <custom-button
+                                v-if="icon3"
+                                plain
+                                :icon="icon3"
+                                :to="{ name: 'OrderDetails', params: { code: order } }"
+                            >
+
+                            </custom-button>
+                        </div>
+                    </template>
+                    <span>Renovar plan</span>
+                </v-tooltip>
             </div>
         </div>
     </div>
@@ -33,9 +59,14 @@
 
 <script>
 import CustomButton from "./CustomButton.vue";
+import Compartir from "../../components/icons/Compartir.vue";
+import Ojo from "../../components/icons/Ojo.vue";
+
 export default {
     components: {
-        CustomButton
+        CustomButton,
+        Compartir,
+        Ojo
     },
     props: {
         order: String,

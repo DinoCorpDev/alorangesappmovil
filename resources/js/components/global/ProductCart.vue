@@ -252,8 +252,9 @@ export default {
     align-items: stretch;
     grid-template-columns: 6fr 4fr 1fr 1fr;
 
+
     border-radius: 10px;
-    background-color: #f5f5f5;
+    background-color: #fafcfc;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     box-sizing: border-box;

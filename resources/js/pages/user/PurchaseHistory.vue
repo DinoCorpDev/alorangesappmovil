@@ -3,7 +3,7 @@
         <v-col cols="12">
             <h5 class="compras-title">ORDEN DE PEDIDOS</h5>
             <v-divider class="my-3" />
-            <v-row v-if="orders.length > 0" no-gutters class="compras-items">
+            <v-row v-if="orders.length > 0" no-gutters class="compras-items" style="max-width: 95%; max-height: 450px; overflow-y: scroll;">
                 <v-col cols="12" v-for="(item, i) in orders" :key="i">
                     <OrderHistory
                         style="background-color: #f5f5f5;"

@@ -6,7 +6,7 @@
         :value="getCurrentStatus()"
         alt-labels
     >
-        <v-row>
+        <v-row style="background-color: #fafcfc;;">
             <v-col cols="12" sm="6">
                 <div class="form">
                     <h6 class="black--text bold">Seguimiento de envió</h6>

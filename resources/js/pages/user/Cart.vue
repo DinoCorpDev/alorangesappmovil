@@ -634,9 +634,10 @@
                             <div class="form">
                                 <v-row>
                                     <v-col cols="3" style="display: flex; place-items: center;">
-                                        <div style="border: 1px solid black; border-radius: 100px;">
-                                            <Regalo />
-                                        </div>
+                                        
+                                            
+                                            <Promocion />
+                                        
                                     </v-col>
 
                                     <v-col cols="9" style="display: flex; place-items: center;">
@@ -833,7 +834,7 @@
                         <h5 class="fw-600">Lista de Pedido</h5>
                         <v-divider class="my-4" style="margin-bottom: 34px !important;"/>
                         
-                        <!-- AQUI -->
+                        
                         <v-row style="overflow-y: scroll; max-height: 450px; width: 95%;">
                             <div class="cart-table-header mb-2" style="width: 100%">
                                 <div style="padding-left: 4%">Productos</div>
@@ -867,6 +868,14 @@
                             <div>
                                 <p class="subtitle-1 text-uppercase font-weight-bold">Total</p>
                                 <p class="body-1">{{ format_price(priceTotal) }} COP</p>
+                            </div>
+                            <div>
+                                <v-divider class="my-2" style="max-width: 25%;"/>
+                            </div>
+                            <div>
+                                <!-- AQUI -->
+                                <p class="subtitle-2 text-uppercase font-weight-bold">NUMERO DE ARTICULOS</p>
+                                <p class="body-2"><Cubo /> 99</p>
                             </div>
                         </div>
                     </div>
@@ -1287,6 +1296,8 @@ import StepOrder from "../../components/icons/StepOrder.vue";
 import Total from "../../components/global/Total.vue";
 import TypePayment from "../../components/global/TypePayment.vue";
 import Regalo from "../../components/icons/Regalo.vue";
+import Promocion from "../../components/icons/Promocion.vue";
+import Cubo from "../../components/icons/Cubo.vue";
 
 const button = document.getElementById("customButton");
 const tooltip = document.getElementById("tooltip");
@@ -1304,6 +1315,8 @@ export default {
         StepOrder,
         Total,
         Regalo,
+        Promocion,
+        Cubo,
         TypePayment
     },
     data() {
