@@ -41,6 +41,16 @@ class OrderController extends Controller
         ])->where('user_id', auth('api')->user()->id)->latest()->paginate(12));
     }
 
+    public function getOrders(Request $request)
+    {
+        return new OrderCollection(CombinedOrder::with([
+            'user',
+            'orders.orderDetails.variation.product',
+            'orders.orderDetails.variation.combinations',
+            'orders.shop'
+        ])->where('user_id', $request->user_id)->latest()->get());
+    }
+
     public function show($order_code)
     {
         $order = CombinedOrder::where('code', $order_code)->with([

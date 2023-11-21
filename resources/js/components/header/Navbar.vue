@@ -14,8 +14,13 @@
                 <LogoIdovela :large="logoLarge" />
             </router-link>
             <div class="layout-navbar-nav">
-                <CustomButton color="grey" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
-                <CustomButton v-if="!userIsLoggedIn" color="grey" text="Iniciar Sesión" :to="{ name: 'Login' }" />
+                <CustomButton color="black" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
+                <CustomButton
+                    v-if="!userIsLoggedIn"
+                    color="nero2"
+                    text="Iniciar Sesión"
+                    @click="showLoginDialog(true)"
+                />
                 <DoubleButton v-else />
                 <ToggleMenu />
             </div>
@@ -24,7 +29,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
@@ -50,17 +55,18 @@ export default {
         ...mapGetters("auth", ["userIsLoggedIn"])
     },
     mounted() {
-        window.addEventListener("resize", this.handleScroll);
-        window.addEventListener("scroll", this.handleScroll, { passive: true });
+        //window.addEventListener("resize", this.handleScroll);
+        //window.addEventListener("scroll", this.handleScroll, { passive: true });
     },
     methods: {
-        handleScroll() {
+        ...mapMutations("auth", ["showLoginDialog"]),
+        /*handleScroll() {
             const currentScroll = this.$refs.layoutNavbar.currentScroll;
             const windowWidth = window.innerWidth;
 
             this.headerFixed = currentScroll >= this.scrollThreshold;
             this.logoLarge = windowWidth < 960 ? false : this.headerFixed;
-        }
+        }*/
     }
 };
 </script>

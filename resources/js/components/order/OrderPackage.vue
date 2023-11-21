@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div style="background-color: #fafcfc;">
+        <Steps :order-details="order" />
         <div class="my-5">
             <h6>Lista de Pedido</h6>
             <v-divider class="my-3" />
@@ -16,6 +17,7 @@
                         :showOperation="false"
                         :isCollection="product?.isCollection ?? false"
                         :productsCollection="product?.products"
+                        
                     />
                 </v-col>
             </v-row>
@@ -26,7 +28,7 @@
                     v-if="order.delivery_status == 'order_placed' && order.payment_status == 'unpaid'"
                     @click="cancelOrder(order)"
                 >
-                    {{ $t("cancel_order") }}
+                    {{ $t("Cancelar orden") }}
                 </div>
                 <div
                     class="fs-12 red--text c-pointer"
@@ -43,28 +45,34 @@
                 </div>
             </div>
             <v-divider class="my-3" />
-            <div class="div-total">
-                <div>
-                    <p class="subtitle-2 text-uppercase font-weight-bold">Sub-total</p>
-                    <p class="body-2">000.000.000 COP</p>
-                </div>
-                <div>
-                    <p class="subtitle-2 text-uppercase font-weight-bold">Iva</p>
-                    <p class="body-2">000.000.000 COP</p>
-                </div>
-                <div>
-                    <p class="subtitle-2 text-uppercase font-weight-bold">Flete</p>
-                    <p class="body-2">000.000.000 COP</p>
-                </div>
-                <div>
-                    <p class="subtitle-1 text-uppercase font-weight-bold">Total</p>
-                    <p class="body-1">000.000.000 COP</p>
-                </div>
-            </div>
+                        <div class="div-total" style="width: 90%">
+                            <div>
+                                <p class="subtitle-2 text-uppercase font-weight-bold">Sub-total</p>
+                                <p class="body-2">{{ format_price(priceTotal) }} COP</p>
+                            </div>
+                            <div>
+                                <p class="subtitle-2 text-uppercase font-weight-bold">Iva</p>
+                                <p class="body-2">000.000.000 COP</p>
+                            </div>
+                            <div>
+                                <p class="subtitle-2 text-uppercase font-weight-bold">Flete</p>
+                                <p class="body-2">000.000.000 COP</p>
+                            </div>
+                            <div>
+                                <p class="subtitle-1 text-uppercase font-weight-bold">Total</p>
+                                <p class="body-1">{{ format_price(priceTotal) }} COP</p>
+                            </div>
+                            <div>
+                                <v-divider class="my-2" style="max-width: 25%;"/>
+                            </div>
+                            <div>
+                                <!-- AQUI -->
+                                <p class="subtitle-2 text-uppercase font-weight-bold">NUMERO DE ARTICULOS</p>
+                                <p class="body-2"><Cubo /> 99</p>
+                            </div>
+                        </div>
             <v-divider class="my-3" />
         </div>
-
-        <Steps :order-details="order" />
 
         <ReviewDialog ref="submitReview" />
         <ConfirmDialog ref="confirmCancel" />
@@ -77,12 +85,14 @@ import { mapGetters } from "vuex";
 import ConfirmDialog from "../../components/inc/ConfirmDialog";
 import ProductCart from "../../components/global/ProductCart.vue";
 import ReviewDialog from "./ReviewDialog";
+import Cubo from "../../components/icons/Cubo.vue";
 import Steps from "./Steps";
 
 export default {
     components: {
         ConfirmDialog,
         ProductCart,
+        Cubo,
         ReviewDialog,
         Steps
     },
@@ -202,5 +212,9 @@ export default {
 .div-total div {
     display: flex;
     justify-content: flex-end;
+}
+
+.div-total p {
+    padding-left: 5px;
 }
 </style>

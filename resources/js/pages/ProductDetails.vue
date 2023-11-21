@@ -10,7 +10,7 @@
                 <v-divider class="my-3" />
                 <v-tabs-items v-model="tab">
                     <v-tab-item>
-                        <div v-scroll.self="onScroll" class="product-details-specs overflow-y-auto overflow-uw">
+                        <div class="product-details-specs overflow-y-auto overflow-uw">
                             <div class="product-details-list-box pa-4 mb-3">
                                 <v-row>
                                     <v-col cols="6">
@@ -236,7 +236,7 @@
                     </v-tab-item>
 
                     <v-tab-item>
-                        <div v-scroll.self="onScroll" class="product-details-specs overflow-y-auto overflow-uw">
+                        <div class="product-details-specs overflow-y-auto overflow-uw">
                             <div class="product-details-list-box pa-4 mb-3">
                                 <h5 class="product-details-list-box-label mb-2">Calificación</h5>
                                 <v-row>
@@ -309,7 +309,7 @@
                     </v-tab-item>
 
                     <v-tab-item>
-                        <div v-scroll.self="onScroll" class="product-details-specs overflow-y-auto overflow-uw">
+                        <div class="product-details-specs overflow-y-auto overflow-uw">
                             <div class="product-details-list-box pa-4 mb-3">
                                 <h5 class="product-details-list-box-label">Vida Útil</h5>
                                 <v-row dense class="mt-2" justify="center">
@@ -494,7 +494,8 @@ export default {
         moreProducts: [],
         footerProducts: [],
         tab: null,
-        relatedProducts: [{}, {}, {}, {}, {}]
+        relatedProducts: [{}, {}, {}, {}, {}],
+        rating: 0
     }),
     components: {
         AddToCart,

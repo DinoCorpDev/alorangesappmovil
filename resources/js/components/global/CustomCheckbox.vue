@@ -1,5 +1,9 @@
 <template>
-    <div class="custom-checkbox" :class="{ 'error--text': error }" @click="toggleCheckbox">
+    <div
+        class="custom-checkbox"
+        :class="{ 'error--text': error, bordered: bordered, 'bordered-active': isRadioChecked && bordered }"
+        @click="toggleCheckbox"
+    >
         <div class="custom-checkbox-input">
             <input
                 :id="id"
@@ -54,6 +58,10 @@ export default {
             type: String,
             default: "checkbox"
         },
+        bordered: {
+            type: Boolean,
+            default: false
+        },
         name: {
             type: String,
             default: undefined
@@ -71,6 +79,9 @@ export default {
             set(value) {
                 this.$emit("input", value);
             }
+        },
+        isRadioChecked() {
+            return this.isChecked === this.inputValue;
         }
     },
     methods: {
@@ -135,6 +146,21 @@ export default {
     &-input {
         position: absolute;
         left: 0;
+    }
+
+    &.bordered {
+        padding-left: 40px;
+        border: 1px solid;
+        border-radius: 5px;
+
+        &-checkmark {
+            margin-left: 5px;
+        }
+
+        &-active {
+            color: black;
+            border-color: black;
+        }
     }
 
     &-checkmark {

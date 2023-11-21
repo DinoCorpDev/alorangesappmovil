@@ -245,17 +245,11 @@ export default {
     }),
     validations: {
         form: {
-            personType: { required },
             firstName: { required },
-            secondName: { required },
             firstLastname: { required },
             secondLastname: { required },
             documentType: { required },
             documentNumber: { required },
-            companyName: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            companyType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            companyDocumentType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             phone: { required },
             oldPassword: { required }
         }
@@ -361,10 +355,10 @@ export default {
         async register() {
             this.$v.form.$touch();
 
-            if (this.form.invalidPhone) {
+            /* if (this.form.invalidPhone) {
                 this.form.showInvalidPhone = true;
                 return;
-            }
+            } */
 
             if (this.$v.form.$anyError) {
                 return;
@@ -399,6 +393,9 @@ export default {
         closeDialog() {
             this.isVisible = false;
             this.$emit("close");
+        },
+        resetData() {
+            this.$v.form.$reset();
         }
     }
 };

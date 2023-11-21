@@ -3,7 +3,7 @@
         <v-row>
             <v-col cols="12 invoice-div">
                 <OrderHistory
-                    style="background-color: #f5f5f5"
+                    style="background-color: #f5f5f5;"
                     :order="order?.code"
                     :date="order?.date"
                     colorStatus="red"
@@ -56,7 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    background-color: #ffffff;
+    background-color: #fafcfc;
 }
 
 .invoice-div {

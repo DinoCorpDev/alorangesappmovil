@@ -10,7 +10,6 @@
         @input="$emit('input', $event)"
         flat
         outlined
-        rounded
         solo
     />
 </template>
@@ -29,7 +28,7 @@ export default {
         },
         placeholder: {
             type: String,
-            default: "--"
+            default: "Placeholder"
         },
         required: {
             type: Boolean,
@@ -64,10 +63,6 @@ export default {
                 color: #dfdfdf;
             }
         }
-    }
-
-    &.v-text-field--rounded {
-        border-radius: 5px;
     }
 }
 

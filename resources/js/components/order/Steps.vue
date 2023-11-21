@@ -6,7 +6,7 @@
         :value="getCurrentStatus()"
         alt-labels
     >
-        <v-row>
+        <v-row style="background-color: #fafcfc;;">
             <v-col cols="12" sm="6">
                 <div class="form">
                     <h6 class="black--text bold">Seguimiento de envió</h6>
@@ -120,12 +120,6 @@
                         Conocer la logistica de envió
                     </a>
                 </div>
-            </v-col>
-            <v-col cols="12" class="d-flex justify-space-between">
-                <div class="mb-2">
-                    <CustomButton text="Volver" color="nero" @click="step = 3" />
-                </div>
-                <total :total="priceTotal" />
             </v-col>
         </v-row>
         <v-stepper-header>

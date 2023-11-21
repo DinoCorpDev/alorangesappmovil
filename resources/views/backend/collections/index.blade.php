@@ -95,7 +95,7 @@
                         <tr>
                             <td>{{ $key + 1 + ($collections->currentPage() - 1) * $collections->perPage() }}</td>
                             <td>
-                                <a class="text-reset d-block" href="{{ route('collection', $collection->slug) }}"
+                                <a class="text-reset d-block"  href="{{ route('collection.show', $collection->id) }}"
                                     target="_blank">
                                     <div class="d-flex align-items-center">
                                         <img class="size-60px size-xxl-80px mr-2"
@@ -114,11 +114,11 @@
                                     $sub = \App\Models\Category::find($collection->subcategoria);
                                     $brand = \App\Models\Brand::find($collection->marca);
                                 @endphp
-                                {{ $ca->name }} <br>
-                                {{ $sub->name }}
+                                {{ is_object($ca) ? $ca->name : ''  }} <br>
+                                {{ is_object($sub) ? $sub->name : '' }}
                             </td>
                             <td>
-                                {{ $brand->name }}
+                                {{ is_object($brand) ? $brand->name : '' }}
                             </td>
                             <td class="text-right">
                                 @can('view_products')

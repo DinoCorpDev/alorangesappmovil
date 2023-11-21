@@ -10,6 +10,12 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Company;
+use App\Models\CodigoCiiu;
+use App\Models\CodigoPostal;
+use App\Models\Subscriber;
+use App\Models\Collection;
+use App\Models\CollectionOrderDetail;
 use App\Notifications\EmailVerificationNotification;
 use Str;
 
@@ -17,12 +23,14 @@ class AuthController extends Controller
 {
     public function signup(Request $request)
     {
+        $input = json_decode($request->form);        
+
         if (get_setting('customer_login_with') == 'email') {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $input->email)->first();
         } elseif (get_setting('customer_login_with') == 'phone') {
-            $user = User::where('phone', $request->phone)->first();
+            // $user = User::where('phone', $input->phone)->first();
         } else {
-            $user = User::where('phone', $request->phone)->orWhere('email', $request->email)->first();
+            $user = User::where('email', $input->email)->first();
         }
 
         if ($user != null) {
@@ -33,7 +41,7 @@ class AuthController extends Controller
             ]);
         }
 
-        if (!$request->has('phone') || !$request->has('email')) {
+        if (!isset($input->phone) || !isset($input->email)) {
             return response()->json([
                 'success' => false,
                 'message' => translate('Email & phone is required.'),
@@ -41,30 +49,102 @@ class AuthController extends Controller
             ], 200);
         }
 
+        $path_docs = public_path().'/docs/';
+        $path_camara = public_path().'/camara/';
+        $path_ruts = public_path().'/ruts/';
+
+        $docfile = '';
+        $camarafile = '';
+        $rutfile = '';
+
+        if($request->hasFile('filecamara')){
+            $fileCamara = $request->file('filecamara');
+            $filenameWithExt = $fileCamara->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $fileCamara->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileCamara->move($path_camara, $fileNameToStore);
+            $camarafile = $fileNameToStore;
+        }
+
+        if($request->hasFile('filedocumento')){
+            $fileDocument = $request->file('filedocumento');
+            $filenameWithExt = $fileDocument->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $fileDocument->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileDocument->move($path_docs, $fileNameToStore);
+            $docfile = $fileNameToStore;
+        }
+
+        if($request->hasFile('filerut')){
+            $fileRut = $request->file('filerut');
+            $filenameWithExt = $fileRut->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $fileRut->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileRut->move($path_ruts, $fileNameToStore);
+            $rutfile = $fileNameToStore;
+        }
+
         $user = new User([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'person_type' => $request->personType,
-            'first_name' => $request->firstName,
-            'second_name' => $request->secondName,
-            'first_lastname' => $request->firstLastname,
-            'second_lastname' => $request->secondLastname,
-            'document_type' => $request->documentType,
-            'document_number' => $request->documentNumber,
-            'company_name' => $request->companyName,
-            'company_type' => $request->companyType,
-            'company_document_type' => $request->companyDocumentType,
-            'company_document_number' => $request->companyDocumentNumber,
-            'phone' => $request->phone,
-            'policies_and_cookies_consent' => $request->policiesAndCookiesConsent,
-            'offers_consent' => $request->offersConsent,
+            'email' => $input->email,
+            'password' => Hash::make($input->password),
+            'person_type' => $input->personType,
+            'first_name' => $input->firstName,
+            'second_name' => $input->secondName,
+            'first_lastname' => $input->firstLastname,
+            'second_lastname' => $input->secondLastname,
+            'document_type' => $input->documentType,
+            'document_number' => $input->documentNumber,
+            'company_razon' => $input->companyRazon,
+            'company_email' => $input->companyEmail,
+            'company_phone' => $input->companyPhone,
+            'company_actividad' => json_encode($input->companyActividad),
+            'company_type' => $input->companyType,
+            'company_document_type' => $input->companyDocumentType,
+            'company_document_number' => $input->companyDocumentNumber,
+            'documento_file' => $docfile,
+            'camara_file' => $camarafile,
+            'rut_file' => $rutfile,
+            'phone' => $input->phone,
+            'policies_and_cookies_consent' => $input->policiesAndCookiesConsent,
+            'offers_consent' => $input->offersConsent,
             'verification_code' => rand(100000, 999999)
         ]);
 
         $user->save();
 
-        if ($request->has('temp_user_id') && $request->temp_user_id != null) {
-            Cart::where('temp_user_id', $request->temp_user_id)->update(
+        if($input->personType == 'Juridical'){
+            $company = new Company([
+                'user_id' => $user->id,
+                'person_type' => $user->person_type,
+                'first_name' => $user->first_name,
+                'second_name' => $user->second_name,
+                'first_lastname' => $user->first_lastname,
+                'second_lastname' => $user->second_lastname,
+                'document_type' => $user->document_type,
+                'document_number' => $user->document_number,
+                'company_razon' => $user->company_razon,
+                'company_email' => $user->company_email,
+                'company_phone' => $user->company_phone,
+                'company_actividad' => json_encode($input->companyActividad),
+                'regimen_fiscal' => json_encode($input->regimenFiscal),
+                'responsabilidad_tribut' => json_encode($input->responsabilidadTribut),
+                'company_type' => $user->company_type,
+                'company_document_type' => $user->company_document_type,
+                'company_document_number' => $user->company_document_number,
+                'documento_file' => $docfile,
+                'camara_file' => $camarafile,
+                'rut_file' => $rutfile,
+            ]);
+            $company->save();
+        }
+
+        
+
+        if (isset($input->temp_user_id) && $input->temp_user_id != null) {
+            Cart::where('temp_user_id', $input->temp_user_id)->update(
                 [
                     'user_id' => $user->id,
                     'temp_user_id' => null
@@ -77,6 +157,7 @@ class AuthController extends Controller
                 $user->notify(new EmailVerificationNotification());
                 return response()->json([
                     'success' => true,
+                    'user' => $user,
                     'verified' => false,
                     'message' => translate('A verification code has been sent to your email.')
                 ], 200);
@@ -84,9 +165,10 @@ class AuthController extends Controller
                 (new SmsServices)->phoneVerificationSms($user->phone, $user->verification_code);
                 return response()->json([
                     'success' => true,
+                    'user' => $user,
                     'verified' => false,
                     'message' => translate('A verification code has been sent to your phone.')
-                ], 200);
+                ], 200); 
             }
         }
 
@@ -299,6 +381,75 @@ class AuthController extends Controller
         return response()->json([
             'result' => true,
             'message' => translate('Cart updated'),
+        ]);
+    }
+
+    public function verifyData(Request $request)
+    {
+        $user = User::where('first_name', $request->first_name)->where('first_lastname', $request->first_lastname)->where('email', $request->email)->get();
+
+        if($user->count() == 0){
+            return response()->json([
+                'result' => false,
+                'message' => 'Error!'
+            ]);
+        }else{
+            return response()->json([
+                'result' => true,
+                'message' => 'Success!'
+            ]);
+        }
+    }
+
+    public function get_all_ciiu()
+    {
+        $array = array();
+        $codigo = CodigoCiiu::all();
+
+        foreach($codigo as $cod){
+            $arr = [ "text" => $cod->codigo, "value" => $cod->codigo ];
+            array_push($array, $arr);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $array
+        ]);
+    }
+
+    public function get_all_codigo_postal()
+    {
+        $array = array();
+        $codigo = CodigoPostal::all();
+
+        foreach($codigo as $cod){
+            $arr = [ "text" => $cod->codigo, "value" => $cod->codigo ];
+            array_push($array, $arr);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $array
+        ]);
+    }
+
+    public function get_all_collections()
+    {
+        $collections = CollectionOrderDetail::with('collection.productos.product')->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $collections
+        ]);
+    }
+
+    public function get_all_subscriber()
+    {
+        $subscriber = Subscriber::all();
+
+        return response()->json([
+            'success' => true,
+            'data' => $subscriber
         ]);
     }
 }

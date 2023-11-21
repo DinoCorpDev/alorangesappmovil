@@ -92,6 +92,13 @@
                                         </span>
                                     </a>
                                 </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="{{ route('plans.index') }}" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text">
+                                            Planes
+                                        </span>
+                                    </a>
+                                </li>
                             @endcan
                             @if (addon_is_activated('multi_vendor'))
                                 @can('show_seller_products')

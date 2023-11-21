@@ -11,18 +11,26 @@
         :placeholder="placeholder"
         :required="required"
         :value="value"
+        :multiple="multiple"
         @blur="$emit('blur', $event)"
         @input="$emit('input', $event)"
-        append-icon="las la-angle-down"
         clear-icon="las la-times"
         flat
         outlined
         rounded
         solo
-    ></v-select>
+    >
+    <template v-slot:append> <Flecha /> </template>
+    </v-select>
+    
+
 </template>
 
 <script>
+
+import Flecha from "../../components/icons/Flecha.vue";
+
+
 export default {
     name: "SelectCustom",
     props: {
@@ -69,7 +77,16 @@ export default {
         value: {
             type: [String, Number, Boolean, Object, Array],
             default: null
-        }
+        },
+        multiple: {
+            type: Boolean,
+            default: false
+        },
+
+        
+    },
+    components: {
+            Flecha
     }
 };
 </script>
@@ -160,5 +177,9 @@ export default {
             }
         }
     }
+}
+
+.icono-grande{
+    font-size: 25px;
 }
 </style>

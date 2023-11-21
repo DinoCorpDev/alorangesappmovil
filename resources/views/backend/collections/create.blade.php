@@ -313,7 +313,7 @@
                         <h5 class="mb-0 h6">{{ translate('Collection Brand') }}</h5>
                     </div>
                     <div class="card-body">
-                        <select class="form-control aiz-selectpicker" name="brand_id" data-live-search="true"
+                        <select class="form-control aiz-selectpicker" name="brand_id" required data-live-search="true"
                             title="{{ translate('Select Brand') }}">
                             @foreach (\App\Models\Brand::all() as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -331,7 +331,7 @@
                                 @foreach ($categories as $category)
                                     <li>
                                         <label class="aiz-checkbox">
-                                            <input name="category_ids[]" type="checkbox" value="{{ $category->id }}">
+                                            <input name="category_ids[]" type="checkbox" value="{{ $category->id }}" required>
                                             <span class="aiz-square-check"></span>
                                             <span>{{ $category->getTranslation('name') }}</span>
                                         </label>

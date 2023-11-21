@@ -1,7 +1,7 @@
 <template>
     <v-footer class="auth-footer">
         <div class="auth-footer-copyright-wrap">
-            <span class="auth-footer-copyright">© Idovela 2022</span>
+            <span class="auth-footer-copyright">© Idovela 2023</span>
             <span class="auth-footer-location">
                 <WorldGlobeIcon class="mr-2" />
                 <span>Bogota, Colombia</span>

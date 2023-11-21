@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\BrandController;
@@ -42,6 +43,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::post('signup', [AuthController::class, 'signup']);
             Route::post('verify', [AuthController::class, 'verify']);
             Route::post('resend-code', [AuthController::class, 'resend_code']);
+
+            Route::post('verify-data', [AuthController::class, 'verifyData']);
 
             Route::post('password/create', [PasswordResetController::class, 'create']);
             Route::post('password/reset', [PasswordResetController::class, 'reset']);
@@ -108,8 +111,13 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
     Route::get('search.ajax/{keyword}', [ProductController::class, 'ajax_search']);
 
     Route::get('all-countries', [AddressController::class, 'get_all_countries']);
+    Route::get('all-codigo-ciiu', [AuthController::class, 'get_all_ciiu']);
+    Route::get('all-codigo-postal', [AuthController::class, 'get_all_codigo_postal']);
+    Route::get('all-collections', [AuthController::class, 'get_all_collections']);
+    Route::get('all-subscriber', [AuthController::class, 'get_all_subscriber']);
     Route::get('states/{country_id}', [AddressController::class, 'get_states_by_country_id']);
     Route::get('cities/{state_id}', [AddressController::class, 'get_cities_by_state_id']);
+    Route::get('localidades/{state_id}', [AddressController::class, 'get_localidad_by_state_id']);
 
     Route::post('carts', [CartController::class, 'index']);
     Route::post('carts/add', [CartController::class, 'add']);
@@ -119,6 +127,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
 
     Route::group(['prefix' => 'user'], function () {
         Route::post('address/create', [AddressController::class, 'createShippingAddress']);
+        Route::post('address/createRegister', [AddressController::class, 'createShippingAddressRegister']);
+        Route::post('info/updateAvatar', [UserController::class, 'updateAvatar']);
     });
 
     Route::post('payment/image', [OrderController::class, 'paymentImage']);
@@ -141,10 +151,16 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
 
             Route::get('info', [UserController::class, 'info']);
             Route::post('info/update', [UserController::class, 'updateInfo']);
+            Route::post('info/updateEmpresa', [UserController::class, 'updateInfoEmpresa']);
+            Route::post('info/updatePassword', [UserController::class, 'updatePassword']);
+            Route::post('info/updateTerms', [UserController::class, 'updateTerms']);
+            
+            
 
             Route::get('coupons', [CouponController::class, 'index']);
 
             Route::get('orders', [OrderController::class, 'index']);
+            Route::post('orders', [OrderController::class, 'getOrders']);
             Route::get('orders/downloads', [OrderController::class, 'productDownloads']);
             Route::get('orders/product/download/{id}', [OrderController::class, 'download']);
             Route::get('order/{order_code}', [OrderController::class, 'show']);
@@ -161,8 +177,16 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::post('address/create', [AddressController::class, 'createShippingAddress']);
             Route::post('address/update', [AddressController::class, 'updateShippingAddress']);
             Route::get('address/delete/{id}', [AddressController::class, 'deleteShippingAddress']);
+            Route::post('address/setFavorite', [AddressController::class, 'setFavorite']);
             Route::get('address/default-shipping/{id}', [AddressController::class, 'defaultShippingAddress']);
             Route::get('address/default-billing/{id}', [AddressController::class, 'defaultBillingAddress']);
+
+
+            Route::get('companies', [CompanyController::class, 'companies']);
+            Route::post('companies/create', [CompanyController::class, 'createCompany']);
+            Route::post('companies/update', [CompanyController::class, 'updateCompany']);
+            Route::post('companies/setFavorite', [CompanyController::class, 'setFavorite']);
+            Route::get('companies/delete/{id}', [CompanyController::class, 'deleteCompany']);
 
             # conversation
             Route::get('querries', [ConversationController::class, 'index']);

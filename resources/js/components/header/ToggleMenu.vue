@@ -101,6 +101,7 @@
                 <v-list-item :to="{ name: 'PactoAmbiental' }"> {{ $t("Contact") }} </v-list-item>
                 <v-list-item class="v-list-item--caption text-uppercase"> © Idovela 2023 </v-list-item>
             </template>
+
             <template v-else>
                 <v-divider />
                 <v-list-item class="v-list-item--caption">

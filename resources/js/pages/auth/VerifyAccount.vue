@@ -210,7 +210,7 @@ export default {
                 this.fetchProductQuerries();
                 this.fetchCartProducts();
 
-                this.$router.push(this.$route.query.redirect || { name: "DashBoard" });
+                this.$router.push(this.$route.query.redirect || { name: "Cart" });
             }else{
                 this.snack({
                     message: res.data.message,

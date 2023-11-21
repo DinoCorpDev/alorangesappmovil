@@ -1,22 +1,33 @@
 <template>
-    <v-container>
-        <h6>Compras</h6>
-        <v-divider class="my-3" />
-        <v-row v-for="(item, i) in orders" :key="i">
-            <v-col cols="12 invoice-div">
-                <OrderHistor
-                    style="background-color: #f5f5f5"
-                    :order="item?.code"
-                    :date="item?.date"
-                    colorStatus="red"
-                    :descriptionStatus="item.orders[0]?.payment_status"
-                    icon1="la-download"
-                    icon2="la-eye"
-                    icon3="la-print"
-                />
-            </v-col>
-        </v-row>
-    </v-container>
+    <v-row class="compras">
+        <v-col cols="12">
+            <h5 class="compras-title">ORDEN DE PEDIDOS</h5>
+            <v-divider class="my-3" />
+            <v-row v-if="orders.length > 0" no-gutters class="compras-items" style="max-width: 95%; max-height: 450px; overflow-y: scroll;">
+                <v-col cols="12" v-for="(item, i) in orders" :key="i">
+                    <OrderHistory
+                        style="background-color: #f5f5f5;"
+                        :order="item?.code"
+                        :date="item?.date"
+                        colorStatus="red"
+                        :descriptionStatus="item.orders[0]?.payment_status"
+                        icon1="la-download"
+                        icon2="la-eye"
+                        icon3="la-print"
+                    />
+                </v-col>
+            </v-row>
+            <div v-else class="text-center">
+                <div class="emptycart">
+                    <div class="cuadro-emptycart">
+                        <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/facturas.svg" />
+                        <p class="text-cartempty">AUN NO HAY FACTURAS REGISTRADAS</p>
+                        <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                    </div>
+                </div>
+            </div>
+        </v-col>
+    </v-row>
 </template>
 
 <script>
@@ -107,10 +118,51 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.compras {
+    &-title {
+        font-weight: 600;
+        font-size: 13px;
+        background: #000;
+        width: 30%;
+        padding: 5px;
+        color: #fff;
+        text-align: center;
+        border-radius: 15px;
+    }
+
+    &-items {
+        gap: 0.5rem;
+    }
+}
+
 .container {
     background-color: #ffffff;
 }
+
 .invoice-div {
     padding: 8px 10px 0 10px;
+}
+
+// Estilos carrito vacio //
+.emptycart {
+    display: flex;
+    justify-content: center;
+}
+.cuadro-emptycart {
+    padding: 40px 50px;
+    text-align: center;
+    border: 1px solid #f5f5f5;
+    background-color: #f5f5f5;
+    margin-top: 7%;
+    border-radius: 10px;
+}
+.text-cartempty {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.img-cartempty {
+    width: 45%;
+    margin: auto;
 }
 </style>

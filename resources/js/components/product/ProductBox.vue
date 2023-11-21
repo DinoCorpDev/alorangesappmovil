@@ -1,9 +1,16 @@
 <template>
     <div class="product-box">
         <div class="product-box-header">
-            <button type="button" class="icon" @click="addNewWishlist(productDetails.id)">
-                <FavoriteIcon />
-            </button>
+            <template v-if="isThisWishlisted(productDetails.id)">
+                <button type="button" class="icon active" @click="removeFromWishlist(productDetails.id)">
+                    <FavoriteIcon />
+                </button>
+            </template>
+            <template v-else>
+                <button type="button" class="icon" @click="addNewWishlist(productDetails.id)">
+                    <FavoriteIcon />
+                </button>
+            </template>
         </div>
         <div class="product-box-image">
             <v-img
@@ -38,7 +45,7 @@
                 block
                 color="nero"
                 text="Agregar a Compras"
-                @click="addCart()"
+                @click="showAddToCartDialog({ status: true, slug: productDetails.slug })"
                 :loading="actionLoading"
                 :disabled="actionLoading"
             />
@@ -47,7 +54,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations, mapGetters } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
 import FavoriteIcon from "../icons/Favorite.vue";
@@ -68,22 +75,20 @@ export default {
             productPlaceholderUrl: "/public/assets/img/item-placeholder.png"
         };
     },
+    computed: {
+        ...mapGetters("wishlist", ["isThisWishlisted"])
+    },
     methods: {
         ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
         ...mapActions("cart", ["addToCart", "updateQuantity"]),
-        async addCart() {
-            this.actionLoading = true;
-            this.addToCart({
-                variation_id: this.productDetails.id,
-                qty: 1
-            });
-            this.snack({
-                message: this.$i18n.t("product_added_to_cart"),
-                color: "green"
-            });
-            setTimeout(() => {
-                this.actionLoading = false;
-            }, 2000);
+        ...mapMutations("auth", ["showAddToCartDialog"]),
+        addCart() {
+            if (!this.$props.productDetails.is_variant) {
+                this.addToCart({
+                    variation_id: this.$props.productDetails.variations[0].id,
+                    qty: this.$props.productDetails.min_qty
+                });
+            }
         }
     }
 };
@@ -145,7 +150,7 @@ export default {
                     }
                 }
 
-                &:active {
+                &.active {
                     path {
                         opacity: 1;
                     }

@@ -52,10 +52,12 @@ class ProductController extends Controller
         $query = null;
         $sort_search = null;
         $products = Product::orderBy('created_at', 'desc')->where('shop_id', auth()->user()->shop_id);
+
         if ($request->search != null) {
             $products = $products->where('name', 'like', '%' . $request->search . '%');
             $sort_search = $request->search;
         }
+
         if ($request->type != null) {
             $var = explode(",", $request->type);
             $col_name = $var[0];
@@ -79,6 +81,7 @@ class ProductController extends Controller
     {
         $categories = Category::where('level', 0)->get();
         $attributes = Attribute::get();
+
         return view('backend.product.products.create', compact('categories', 'attributes'));
     }
 
@@ -112,7 +115,7 @@ class ProductController extends Controller
         // SEO meta
         $product->meta_title        = (!is_null($request->meta_title)) ? $request->meta_title : $product->name;
         $product->meta_description  = (!is_null($request->meta_description)) ? $request->meta_description : strip_tags($product->description);
-        $product->meta_image          = (!is_null($request->meta_image)) ? $request->meta_image : $product->thumbnail_img;
+        $product->meta_image        = (!is_null($request->meta_image)) ? $request->meta_image : $product->thumbnail_img;
         $product->slug              = Str::slug($request->name, '-') . '-' . strtolower(Str::random(5));
 
         // warranty
@@ -178,6 +181,7 @@ class ProductController extends Controller
 
         // shop category ids
         $shop_category_ids = [];
+
         foreach ($request->category_ids ?? [] as $id) {
             $shop_category_ids[] = CategoryUtility::get_grand_parent_id($id);
         }

@@ -25,10 +25,6 @@ class ProductCollection extends ResourceCollection
                     'earn_point' => (float) $data->earn_point,
                     'is_variant' => (int) $data->is_variant,
                     'variations' => $data->variations,
-                    'description' => $data->description,
-                    'brandName' => optional($data->brand)->getTranslation('name'),
-                    'reference' => $data->reference,
-                    'currency' => $data->currency,
                     'is_digital' => $data->digital == 1 ? true : false,
                 ];
             })

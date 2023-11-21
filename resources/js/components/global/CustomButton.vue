@@ -13,12 +13,15 @@
         :to="to"
         :width="width"
         @click.stop="$emit('click')"
-        class="text-uppercase"
+        class="text-uppercase justify-content-center align-items-center flex-direction-column"
         depressed
     >
-        <i v-if="icon" :class="`las ${icon}`" class="mr-3"></i>
-        <template v-if="text">{{ text }}</template>
+        <i v-if="icon && iconPosition == 'left'" :class="`las ${icon} ${text ? 'mr-3' : ''}`"></i>
+        <template v-if="text">
+            <span :class="textClass">{{ text }}</span></template
+        >
         <slot v-else />
+        <i v-if="icon && iconPosition == 'right'" :class="`las ${icon} ${text ? 'ml-3' : ''}`"></i>
     </v-btn>
 </template>
 
@@ -29,6 +32,13 @@ export default {
         text: String,
         width: String,
         icon: {
+            type: String
+        },
+        iconPosition: {
+            type: String,
+            default: "left"
+        },
+        textClass: {
             type: String
         },
         dark: {
@@ -60,7 +70,7 @@ export default {
         },
         href: {
             type: String,
-            default: "#"
+            default: undefined
         },
         to: {
             type: [String, Object]
@@ -111,6 +121,13 @@ export default {
         .v-btn__content {
             margin-top: 2px;
         }
+    }
+
+    &.text {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-50%, -50%);
     }
 
     &.v-btn--plain {
@@ -181,7 +198,7 @@ export default {
 
     &.black {
         color: #ffffff;
-        background-color: rgba(#000000, 0.5) !important;
+        background-color: #000000 !important;
 
         &:hover {
             background-color: rgba(#858585, 0.8) !important;
@@ -264,6 +281,37 @@ export default {
         &.v-btn--active {
             background-color: #161616 !important;
             color: #ffffff;
+        }
+    }
+    &.white2 {
+        color: #000;
+        background-color: #ffffff !important;
+
+        &:hover {
+            background-color: rgba(#161616, 0.8) !important;
+            color: #f5f5f5;
+        }
+
+        &:focus,
+        &.v-btn--active {
+            background-color: #161616 !important;
+            color: #f5f5f5;
+        }
+    }
+
+    &.white3 {
+        color: #000;
+        background-color: #ffffff !important;
+
+        &:hover {
+            background-color: white !important;
+            color: #f5f5f5;
+        }
+
+        &:focus,
+        &.v-btn--active {
+            background-color: #161616 !important;
+            color: #f5f5f5;
         }
     }
 }

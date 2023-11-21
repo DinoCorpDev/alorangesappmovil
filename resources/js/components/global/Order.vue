@@ -2,19 +2,19 @@
     <div class="div-order">
         <div class="order">
             <div>
-                <h6 class="font-weight-bold">Orden de pedido # {{ order }}</h6>
+                <h5 class="font-weight-bold">Orden de pedido # {{ order }}</h5>
                 <p class="body-1">Fecha {{ day }} de {{ month }} de {{ year }}</p>
             </div>
         </div>
         <div class="div-status">
-            <v-divider vertical />
+            <!-- <v-divider vertical />
             <div>
                 <div class="status">
                     <p class="text-uppercase font-weight-bold">ESTADO</p>
                     <div class="color-status" :class="colorStatus"></div>
                 </div>
                 <p>{{ descriptionStatus }}</p>
-            </div>
+            </div> -->
             <v-divider vertical />
             <div class="d-none d-sm-flex">
                 <custom-button v-if="icon1" plain :icon="icon1" />

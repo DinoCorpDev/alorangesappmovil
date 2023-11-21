@@ -47,6 +47,7 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["getUser", "checkSocialLoginStatus"]),
+        ...mapActions("wishlist", ["fetchWislistProducts"]),
         ...mapActions("cart", ["fetchCartProducts"]),
         ...mapMutations("auth", ["setSociaLoginStatus"]),
         changeRTL() {
@@ -63,6 +64,12 @@ export default {
                 });
                 this.fetchCartProducts();
             }
+        },
+        async getCartData() {
+            if (this.isAuthenticated) {
+                this.fetchCartProducts();
+                this.fetchWislistProducts();
+            }
         }
     },
     async created() {
@@ -71,6 +78,7 @@ export default {
         setTimeout(() => {
             this.checkSocialLoginStatus();
             this.getTempCartData();
+            this.getCartData();
         }, 200);
     }
 };
