@@ -38,7 +38,7 @@
             <!-- <v-divider class="cartSteper-subheader" /> -->
 
             <v-stepper-items>
-                <v-stepper-content step="1" style="overflow-y: scroll; height: 450px;">
+                <v-stepper-content step="1" style="overflow-y: scroll; max-height: 450px;">
                     <template v-if="cartProducts.length > 0">
                         <div class="cart-table-header mb-2" style="width: 100%;">
                             <div style="padding-left: 4%;">Productos</div>
