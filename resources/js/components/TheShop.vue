@@ -47,7 +47,7 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["getUser", "checkSocialLoginStatus"]),
-        ...mapActions("wishlist", ["fetchWislistProducts"]),
+        ...mapActions("wishlist", ["fetchWislistProducts", "fetchWislistServices", "fetchWislistBrands"]),
         ...mapActions("cart", ["fetchCartProducts"]),
         ...mapMutations("auth", ["setSociaLoginStatus"]),
         changeRTL() {
@@ -69,6 +69,8 @@ export default {
             if (this.isAuthenticated) {
                 this.fetchCartProducts();
                 this.fetchWislistProducts();
+                this.fetchWislistServices();
+                this.fetchWislistBrands();
             }
         }
     },

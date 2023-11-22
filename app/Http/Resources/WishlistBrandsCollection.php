@@ -17,20 +17,20 @@ class WishlistBrandsCollection extends ResourceCollection
         return [
             'data' => $this->collection->map(function ($data) {
                 return [
-                    'id' => (int) $data->brand->id,
-                    'name' => $data->brand->name,
-                    'logo' => $data->brand->logo,
-                    'slug' => $data->brand->slug,
-                    'meta_title' => $data->brand->meta_title,
-                    'meta_description' => $data->brand->meta_description,
-                    'sales_amount' => $data->brand->sales_amount,
-                    'biografia' => $data->brand->biografia,
-                    'banner' => api_asset($data->brand->banner),
-                    'fundacion' => $data->brand->fundacion,
-                    'ensamblado' => $data->brand->ensamblado,
-                    'diseno' => $data->brand->diseno,
-                    'resumen' => $data->brand->resumen,
-                    'pais' => $data->brand->pais
+                    'id' => (int) $data->brands->id,
+                    'name' => $data->brands->name,
+                    'logo' => $data->brands->logo,
+                    'slug' => $data->brands->slug,
+                    'meta_title' => $data->brands->meta_title,
+                    'meta_description' => $data->brands->meta_description,
+                    'sales_amount' => $data->brands->sales_amount,
+                    'biografia' => $data->brands->biografia,
+                    'banner' => api_asset($data->brands->banner),
+                    'fundacion' => $data->brands->fundacion,
+                    'ensamblado' => $data->brands->ensamblado,
+                    'diseno' => $data->brands->diseno,
+                    'resumen' => $data->brands->resumen,
+                    'pais' => $data->brands->pais
                 ];
             })
         ];

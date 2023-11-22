@@ -38,10 +38,10 @@
             <!-- <v-divider class="cartSteper-subheader" /> -->
 
             <v-stepper-items>
-                <v-stepper-content step="1" style="overflow-y: scroll; height: 450px;">
+                <v-stepper-content step="1" style="overflow-y: scroll; height: 450px">
                     <template v-if="cartProducts.length > 0">
-                        <div class="cart-table-header mb-2" style="width: 100%;">
-                            <div style="padding-left: 4%;">Productos</div>
+                        <div class="cart-table-header mb-2" style="width: 100%">
+                            <div style="padding-left: 4%">Productos</div>
                             <div>Precio</div>
                             <div>Cantidad</div>
                             <div>Opciones</div>
@@ -63,7 +63,7 @@
                             "
                         >
                             <v-divider class="ma-3" />
-                            <v-col cols="12" class="d-flex justify-space-between" style="padding-right: 27%;">
+                            <v-col cols="12" class="d-flex justify-space-between" style="padding-right: 27%">
                                 <div class="mb-2"></div>
                                 <total :total="priceTotal" />
                                 <div class="mb-2">
@@ -411,7 +411,7 @@
                                                 >
                                                     <i
                                                         class="las la-exclamation-circle"
-                                                        style="font-size: 30px; transform: rotate(180deg);"
+                                                        style="font-size: 30px; transform: rotate(180deg)"
                                                     ></i
                                                     >MÁS INFORMACIÓN
                                                 </v-btn>
@@ -431,7 +431,7 @@
                                                         class="text-decoration-underline"
                                                         href="https://www.google.com/"
                                                         target="_blank"
-                                                        style="color: white; font-size: 17px;"
+                                                        style="color: white; font-size: 17px"
                                                         >Conocer logística de envío</a
                                                     >
                                                 </div>
@@ -460,25 +460,25 @@
                         <v-col cols="12" md="6" order="1" order-md="1" order-sm="2">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
                             <v-divider class="my-4" />
-                            <div class="form" style="background: white !important;">
+                            <div class="form" style="background: white !important">
                                 <h6 class="black--text bold">Medio de Pago</h6>
                                 <v-divider class="my-3" />
                                 <v-row>
                                     <v-col cols="3">
                                         <TypePayment img="/public/assets/img/pse.png" text="Pse" />
-                                        <input type="radio" v-model="pick" :value="1" />
+                                        <input type="radio" v-model="pick" checked="false" :value="1" />
                                     </v-col>
                                     <v-col cols="3">
                                         <TypePayment img="/public/assets/img/credito.png" text="Credito" />
-                                        <input type="radio" v-model="pick" :value="2" />
+                                        <input type="radio" v-model="pick" checked="false" :value="2" />
                                     </v-col>
                                     <v-col cols="3">
                                         <TypePayment img="/public/assets/img/debito.png" text="Debito" />
-                                        <input type="radio" v-model="pick" :value="3" />
+                                        <input type="radio" v-model="pick" checked="false" :value="3" />
                                     </v-col>
                                     <v-col cols="3">
                                         <TypePayment img="/public/assets/img/transferir.png" text="Transferir" />
-                                        <input type="radio" v-model="pick" :value="4" />
+                                        <input type="radio" v-model="pick" checked="false" :value="4" />
                                     </v-col>
                                 </v-row>
                                 <v-divider class="my-3" />
@@ -548,14 +548,14 @@
                                         @click="$refs.fileInput.click()"
                                     />
                                     <input
-                                        style="display: none;"
+                                        style="display: none"
                                         ref="fileInput"
                                         type="file"
                                         @change="fileSelected"
                                         enctype="multipart/form-data"
                                     />
                                 </div>
-                                <CustomButton class="mt-2" text="Aplicar" color="grey" />
+                                <CustomButton v-if="pick != 0" class="mt-2" text="Aplicar" color="grey" />
                             </div>
                         </v-col>
                         <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
@@ -576,9 +576,7 @@
                                         <span class="body1 text-right">{{ addressFacturacion?.address }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">
-                                            Descripción de Dirección
-                                        </span>
+                                        <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
                                         <span class="body1">{{ addressFacturacion?.address }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
@@ -633,14 +631,11 @@
                         <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
                             <div class="form">
                                 <v-row>
-                                    <v-col cols="3" style="display: flex; place-items: center;">
-                                        
-                                            
-                                            <Promocion />
-                                        
+                                    <v-col cols="3" style="display: flex; place-items: center">
+                                        <Promocion />
                                     </v-col>
 
-                                    <v-col cols="9" style="display: flex; place-items: center;">
+                                    <v-col cols="9" style="display: flex; place-items: center">
                                         <p class="mb-0">
                                             Si tienes un código promocional, cupón de descuento o un promocional
                                             agrégalo
@@ -675,17 +670,31 @@
                                     <div>
                                         <span class="success"><i class="las la-check"></i></span>
                                     </div>
-                                    
+
                                     <div>
                                         <v-row style="width: 130%">
                                             <v-col cols="9">
                                                 <h6 class="font-weight-bold">Gracias por registrarse</h6>
-                                                <p class="body-1 mb-0" style="margin-top: 4px;">
-                                                    Enviaremos al e-mail de facturación un correo de verificación por la compra
+                                                <p class="body-1 mb-0" style="margin-top: 4px">
+                                                    Enviaremos al e-mail de facturación un correo de verificación por la
+                                                    compra
                                                 </p>
                                             </v-col>
-                                            <v-col cols="3" style="display: flex; justify-content: center; align-items: center; place-items: center;">
-                                                <CustomButton text="FINALIZAR" width="150" color="nero" @click="numberPag = 3" />
+                                            <v-col
+                                                cols="3"
+                                                style="
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    place-items: center;
+                                                "
+                                            >
+                                                <CustomButton
+                                                    text="FINALIZAR"
+                                                    width="150"
+                                                    color="nero"
+                                                    @click="numberPag = 3"
+                                                />
                                             </v-col>
                                         </v-row>
                                     </div>
@@ -828,28 +837,25 @@
                                 </a>
                             </div>
                         </v-col>
-                        
                     </v-row>
                     <div class="my-5">
                         <h5 class="fw-600">Lista de Pedido</h5>
-                        <v-divider class="my-4" style="margin-bottom: 34px !important;"/>
-                        
-                        
-                        <v-row style="overflow-y: scroll; max-height: 450px; width: 95%;">
+                        <v-divider class="my-4" style="margin-bottom: 34px !important" />
+
+                        <v-row style="overflow-y: scroll; max-height: 450px; width: 95%">
                             <div class="cart-table-header mb-2" style="width: 100%">
                                 <div style="padding-left: 4%">Productos</div>
                                 <div>Precio</div>
                                 <div>Cantidad</div>
                                 <div>Opciones</div>
                             </div>
-                            <v-col cols="12" v-for="(product, i) in cartItems" :key="i" >
+                            <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
                                 <ProductCart
                                     :productDetails="product"
                                     @changeQty="changeQty"
                                     @changeQtyMinus="changeQty"
                                 />
                             </v-col>
-                            
                         </v-row>
                         <v-divider class="my-5" />
                         <div class="div-total" style="width: 90%">
@@ -870,7 +876,7 @@
                                 <p class="body-1">{{ format_price(priceTotal) }} COP</p>
                             </div>
                             <div>
-                                <v-divider class="my-2" style="max-width: 25%;"/>
+                                <v-divider class="my-2" style="max-width: 25%" />
                             </div>
                             <div>
                                 <!-- AQUI -->
@@ -1127,7 +1133,6 @@
                                         />
                                     </div>
                                 </v-col>
-                                
                             </v-row>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -1185,7 +1190,7 @@
                                 <v-col cols="12">
                                     <h5 class="fw-600">Medio de pago</h5>
                                     <v-divider class="my-4" />
-                                    <div class="form"> AQUÍ VA EL MEDIO DE PAGO CON LA RESPECTIVA INFORMACIÓN*</div>
+                                    <div class="form">AQUÍ VA EL MEDIO DE PAGO CON LA RESPECTIVA INFORMACIÓN*</div>
                                     <!-- <div class="form">
                                         <h6 class="black--text bold">Dirección de envio</h6>
                                         <v-divider class="my-3" />
@@ -1236,37 +1241,47 @@
                                     <h5 class="fw-600">Código promocional</h5>
                                     <v-divider class="my-4" />
                                     <div class="form">
-                                        <div class="d-flex">    <regalo /> </div>
+                                        <div class="d-flex"><regalo /></div>
                                         <v-divider class="my-4" />
                                         <v-row>
-                                            <v-col cols="6" class="text-left">
-                                                CODIGO (REGALO/REFERIDO)
-                                            </v-col>
-                                            <v-col cols="6" class="text-right">
-                                                XXXX XXXX XXXX XXXX
-                                            </v-col>
+                                            <v-col cols="6" class="text-left"> CODIGO (REGALO/REFERIDO) </v-col>
+                                            <v-col cols="6" class="text-right"> XXXX XXXX XXXX XXXX </v-col>
                                         </v-row>
                                     </div>
                                 </v-col>
                             </v-row>
                         </v-col>
-                        
                     </v-row>
 
-                    <v-divider class="my-4"/>
+                    <v-divider class="my-4" />
 
                     <v-row>
-                        <p style="font-size: 0.7rem; color:#b4b5b5; padding-left: 1.5%; text-align: left;">Protección de datos personales: IDOVELA S.A.S garantiza el tratamiento de datos personales acorde a lo establecido en la ley 1581/2012 y decreto 1377/2013. por favor dirija sus inquietudes al correo: 
-                        soporte@idovela.com Riesgo de lavado de activos, financiación al terrorismo sarlaft y ley antisoborno: EL CLIENTE certifica a IDOVELA S.A.S que sus recursos no provienen ni se destinan al ejercicio de ninguna
-                        actividad ilícita o de actividades conexas al lavado de activos provenientes de estas o de actividades relacionadas con la financiación del terrorismo EL CLIENTE se obliga a realizar todas las actividades 
-                        encaminadas a asegurar que los recursos de estos, no se encuentran relacionados, provengan, de actividades ilícitas, particularmente de lavado de activos o financiación del terrorismo. Igualmente se 
-                        compromete a respetar el programa de ética empresarial que aplica en IDOVELA S.A.S. Garantía: 1). Garantiza el articulo a partir de la fecha prescrita. únicamente garantía de fábrica. 2). Garantizamos el articulo
-                        según nos ofrecen nuestro(s) proveedor(es). 3). Situaciones no cubiertas por la garantía legal: • Productos cuyo periodo de garantía haya expirado o finalizado. • Situaciones ocasionadas por fuerza mayor, caso
-                        fortuito, culpa exclusiva del usuario o terceros • Problemas causados como consecuencia de instalaciones físicas y eléctricas inadecuadas, uso o mantenimiento inadecuados o diferentes al indicado en el 
-                        manual del producto, por personal no autorizado por iDOVELA S.A.S. Cambios y devoluciones: después de 30 días fecha factura, para cambios por favor presentar la factura original en horario de lunes a sábado
-                        de 8:00 am a 5:00 pm. la mercancía se recibe en perfecto estado, caja sellada, el material en calidad de segunda (uso o deterioro) no tiene cambios. no devolvemos dinero Logística: la mercancía se deja hasta
-                        dónde llega el camión (primera planta). una vez recibida y firmada esta factura se entenderá que la mercancía fue recibida y entregada a satisfacción. El CLIENTE acepta los términos de compra generales 
-                        publicados en www.idovela.con/TyC</p>
+                        <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.5%; text-align: left">
+                            Protección de datos personales: IDOVELA S.A.S garantiza el tratamiento de datos personales
+                            acorde a lo establecido en la ley 1581/2012 y decreto 1377/2013. por favor dirija sus
+                            inquietudes al correo: soporte@idovela.com Riesgo de lavado de activos, financiación al
+                            terrorismo sarlaft y ley antisoborno: EL CLIENTE certifica a IDOVELA S.A.S que sus recursos
+                            no provienen ni se destinan al ejercicio de ninguna actividad ilícita o de actividades
+                            conexas al lavado de activos provenientes de estas o de actividades relacionadas con la
+                            financiación del terrorismo EL CLIENTE se obliga a realizar todas las actividades
+                            encaminadas a asegurar que los recursos de estos, no se encuentran relacionados, provengan,
+                            de actividades ilícitas, particularmente de lavado de activos o financiación del terrorismo.
+                            Igualmente se compromete a respetar el programa de ética empresarial que aplica en IDOVELA
+                            S.A.S. Garantía: 1). Garantiza el articulo a partir de la fecha prescrita. únicamente
+                            garantía de fábrica. 2). Garantizamos el articulo según nos ofrecen nuestro(s)
+                            proveedor(es). 3). Situaciones no cubiertas por la garantía legal: • Productos cuyo periodo
+                            de garantía haya expirado o finalizado. • Situaciones ocasionadas por fuerza mayor, caso
+                            fortuito, culpa exclusiva del usuario o terceros • Problemas causados como consecuencia de
+                            instalaciones físicas y eléctricas inadecuadas, uso o mantenimiento inadecuados o diferentes
+                            al indicado en el manual del producto, por personal no autorizado por iDOVELA S.A.S. Cambios
+                            y devoluciones: después de 30 días fecha factura, para cambios por favor presentar la
+                            factura original en horario de lunes a sábado de 8:00 am a 5:00 pm. la mercancía se recibe
+                            en perfecto estado, caja sellada, el material en calidad de segunda (uso o deterioro) no
+                            tiene cambios. no devolvemos dinero Logística: la mercancía se deja hasta dónde llega el
+                            camión (primera planta). una vez recibida y firmada esta factura se entenderá que la
+                            mercancía fue recibida y entregada a satisfacción. El CLIENTE acepta los términos de compra
+                            generales publicados en www.idovela.con/TyC
+                        </p>
                     </v-row>
                     <v-row>
                         <v-col cols="12" class="d-flex justify-space-between">
@@ -1275,7 +1290,7 @@
                             </div>
                             <total :total="cartPrice" />
                         </v-col>
-                    </v-row>                
+                    </v-row>
                 </v-stepper-content>
             </v-stepper-items>
         </v-stepper>
@@ -1298,6 +1313,7 @@ import TypePayment from "../../components/global/TypePayment.vue";
 import Regalo from "../../components/icons/Regalo.vue";
 import Promocion from "../../components/icons/Promocion.vue";
 import Cubo from "../../components/icons/Cubo.vue";
+import VueCreditCard from "@fracto/vue-credit-card";
 
 const button = document.getElementById("customButton");
 const tooltip = document.getElementById("tooltip");
@@ -1317,7 +1333,8 @@ export default {
         Regalo,
         Promocion,
         Cubo,
-        TypePayment
+        TypePayment,
+        VueCreditCard
     },
     data() {
         return {
@@ -1339,7 +1356,7 @@ export default {
             checkoutLoading: false,
             dataCheckout: {},
             fecha: new Date(),
-            pick: 1
+            pick: 0
         };
     },
     computed: {

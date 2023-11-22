@@ -8,7 +8,7 @@ use App\Models\User;
 class Wishlist extends Model
 {
     protected $fillable = [
-        'user_id', 'product_id'
+        'user_id', 'product_id', 'services_id', 'brands_id'
     ];
     public function product()
     {

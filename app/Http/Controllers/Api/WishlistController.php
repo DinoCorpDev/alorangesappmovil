@@ -30,17 +30,12 @@ class WishlistController extends Controller
         return new WishlistBrandsCollection(Wishlist::has('brands')->where('user_id', auth('api')->user()->id)->latest()->get());
     }
 
-    private function createOrUpdateFavorite($elemId, $kindOfWishlist)
+    public function store(Request $request)
     {
         Wishlist::updateOrCreate([
             'user_id' => auth('api')->user()->id,
-            $kindOfWishlist => $elemId
+            'product_id' => $request->product_id
         ]);
-    }
-
-    public function store(Request $request)
-    {
-        $this->createOrUpdateFavorite($request->product_id, 'product');
 
         $product = Product::with('variations')->find($request->product_id);
 
@@ -67,7 +62,10 @@ class WishlistController extends Controller
 
     public function storeService(Request $request)
     {
-        $this->createOrUpdateFavorite($request->services_id, 'services_id');
+        Wishlist::updateOrCreate([
+            'user_id' => auth('api')->user()->id,
+            'services_id' => $request->services_id
+        ]);
 
         $service = Service::find($request->services_id);
 
@@ -108,7 +106,10 @@ class WishlistController extends Controller
 
     public function storeBrand(Request $request)
     {
-        $this->createOrUpdateFavorite($request->brands_id, 'brands_id');
+        Wishlist::updateOrCreate([
+            'user_id' => auth('api')->user()->id,
+            'brands_id' => $request->brands_id
+        ]);
 
         $brand = Brand::find($request->brands_id);
 

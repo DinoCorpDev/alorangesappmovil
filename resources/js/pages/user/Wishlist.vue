@@ -22,7 +22,7 @@
                     </template>
                     <template v-else>
                         <v-row>
-                            <v-col v-for="(product, i) in getWislistProducts" :key="i">
+                            <v-col cols="6" sm="6" md="4" lg="2" v-for="(product, i) in getWislistProducts" :key="i">
                                 <product-box :product-details="product" :is-loading="!wislistLoaded" />
                             </v-col>
                         </v-row>
@@ -34,13 +34,17 @@
                         <div class="emptycart">
                             <div class="cuadro-emptycart">
                                 <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                                <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
+                                <p class="text-cartempty">AUN NO HAY SERVICIOS EN LA LISTA DE DESEOS</p>
                                 <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                             </div>
                         </div>
                     </template>
                     <template v-else>
-                        <h1>Esta es la sección de servicios</h1>
+                        <v-row>
+                            <v-col cols="6" sm="6" md="4" lg="2" v-for="(service, i) in getWisListServices" :key="i">
+                                <product-box :product-details="service" :is-loading="!wislistLoaded" />
+                            </v-col>
+                        </v-row>
                     </template>
                 </v-tab-item>
 
@@ -49,13 +53,17 @@
                         <div class="emptycart">
                             <div class="cuadro-emptycart">
                                 <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                                <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
+                                <p class="text-cartempty">AUN NO HAY MARCAS EN LA LISTA DE DESEOS</p>
                                 <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                             </div>
                         </div>
                     </template>
                     <template v-else>
-                        <h1>Esta es la sección de marcas</h1>
+                        <v-row>
+                            <v-col cols="6" sm="6" md="4" lg="2" v-for="(brands, i) in getWisListBrands" :key="i">
+                                <product-box :product-details="brands" :is-loading="!wislistLoaded" />
+                            </v-col>
+                        </v-row>
                     </template>
                 </v-tab-item>
             </v-tabs-items>
@@ -95,14 +103,14 @@ export default {
         currentPage: 1,
         tab: null,
         productos: "j",
-        servicios: "",
-        marcas: "",
+        servicios: "j",
+        marcas: "j",
         totalPages: 1
     }),
     computed: {
-        ...mapGetters("wishlist", ["wislistLoaded", "getWislistProducts"])
+        ...mapGetters("wishlist", ["wislistLoaded", "getWislistProducts", "getWisListServices", "getWisListBrands"])
     },
-    created: function () {}
+    mounted() {}
 };
 </script>
 

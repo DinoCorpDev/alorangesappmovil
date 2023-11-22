@@ -4,7 +4,11 @@ import { i18n } from "./../../plugins/i18n";
 const loadState = () => ({
     wislistLoaded: false,
     wislistProductIds: [],
-    wislistProducts: []
+    wislistServicesIds: [],
+    wislistBrandsIds: [],
+    wislistProducts: [],
+    wisListServices: [],
+    wisListBrands: []
 });
 
 export default {
@@ -22,13 +26,26 @@ export default {
         },
         getWislistProducts(state) {
             return state.wislistProducts;
+        },
+        getWisListServices(state) {
+            return state.wisListServices;
+        },
+        getWisListBrands(state) {
+            return state.wisListBrands;
         }
     },
     mutations: {
         setWislistProducts(state, data) {
-            state.wislistLoaded = true;
             state.wislistProducts = data;
             state.wislistProductIds = data.map(item => item.id);
+        },
+        setWislistServices(state, data) {
+            state.wisListServices = data;
+            state.wislistServicesIds = data.map(item => item.id);
+        },
+        setWislistBrands(state, data) {
+            state.wisListBrands = data;
+            state.wislistBrandsIds = data.map(item => item.id);
         },
         addNewWishlistId(state, product_id) {
             if (!state.wislistProductIds.includes(product_id)) {
@@ -57,12 +74,35 @@ export default {
         }
     },
     actions: {
+        async fetchWislistServices({ commit, getters }) {
+            if (this.getters["auth/isAuthenticated"] && !getters.wislistLoaded) {
+                const res = await Mixin.methods.call_api("get", `user/wishlists/services`);
+                console.log(res.data);
+                if (res.data.success) {
+                    commit("setWislistServices", res.data.data);
+                }
+            } else {
+                console.log("WTF services");
+            }
+        },
         async fetchWislistProducts({ commit, getters }) {
             if (this.getters["auth/isAuthenticated"] && !getters.wislistLoaded) {
                 const res = await Mixin.methods.call_api("get", `user/wishlists`);
+                console.log(res.data);
                 if (res.data.success) {
                     commit("setWislistProducts", res.data.data);
                 }
+            }
+        },
+        async fetchWislistBrands({ commit, getters }) {
+            if (this.getters["auth/isAuthenticated"] && !getters.wislistLoaded) {
+                const res = await Mixin.methods.call_api("get", `user/wishlists/brands`);
+                console.log(res.data);
+                if (res.data.success) {
+                    commit("setWislistBrands", res.data.data);
+                }
+            } else {
+                console.log("WTF brands");
             }
         },
         async addNewWishlist({ commit }, product_id) {
