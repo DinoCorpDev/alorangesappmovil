@@ -2,63 +2,63 @@
     <v-row class="wishlist">
         <v-col cols="12">
             <v-tabs v-model="tab" grow height="38px" :hide-slider="true">
-                    <v-tab :ripple="false">Productos</v-tab>
-                    <v-tab :ripple="false">Servicios</v-tab>
-                    <v-tab :ripple="false">Marcas</v-tab>
+                <v-tab :ripple="true">Productos</v-tab>
+                <v-tab :ripple="true">Servicios</v-tab>
+                <v-tab :ripple="true">Marcas</v-tab>
             </v-tabs>
 
             <!-- AQUI EMPIEZA -->
 
-
             <v-tabs-items v-model="tab">
-            <v-tab-item>
-                <template v-if="!productos">
-                    <div class="emptycart">
-                        <div class="cuadro-emptycart">
-                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                            <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
-                            <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                <v-tab-item>
+                    <template v-if="!productos">
+                        <div class="emptycart">
+                            <div class="cuadro-emptycart">
+                                <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                                <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
+                                <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                            </div>
                         </div>
-                    </div>
-                </template>
-                <template v-else>
-                <h1>Esta es la sección de productos</h1>
-                </template>
-            </v-tab-item>
+                    </template>
+                    <template v-else>
+                        <v-row>
+                            <v-col v-for="(product, i) in getWislistProducts" :key="i">
+                                <product-box :product-details="product" :is-loading="!wislistLoaded" />
+                            </v-col>
+                        </v-row>
+                    </template>
+                </v-tab-item>
 
-            <v-tab-item>
-                <template v-if="!servicios">
-                    <div class="emptycart">
-                        <div class="cuadro-emptycart">
-                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                            <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
-                            <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                <v-tab-item>
+                    <template v-if="!servicios">
+                        <div class="emptycart">
+                            <div class="cuadro-emptycart">
+                                <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                                <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
+                                <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                            </div>
                         </div>
-                    </div>
-                </template>
-                <template v-else>
-                <h1>Esta es la sección de servicios</h1>
-                </template>
-            </v-tab-item>
+                    </template>
+                    <template v-else>
+                        <h1>Esta es la sección de servicios</h1>
+                    </template>
+                </v-tab-item>
 
-            <v-tab-item>
-                <template v-if="!marcas">
-                    <div class="emptycart">
-                        <div class="cuadro-emptycart">
-                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                            <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
-                            <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                <v-tab-item>
+                    <template v-if="!marcas">
+                        <div class="emptycart">
+                            <div class="cuadro-emptycart">
+                                <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                                <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
+                                <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
+                            </div>
                         </div>
-                    </div>
-                </template>
-                <template v-else>
-                <h1>Esta es la sección de marcas</h1>
-                </template>
-            </v-tab-item>
+                    </template>
+                    <template v-else>
+                        <h1>Esta es la sección de marcas</h1>
+                    </template>
+                </v-tab-item>
             </v-tabs-items>
-
-
-
 
             <!-- AQUÍ TERMINA -->
             <!-- <v-divider class="my-3" />
@@ -94,14 +94,15 @@ export default {
     data: () => ({
         currentPage: 1,
         tab: null,
-        productos: 'j', 
-        servicios: '', 
-        marcas: '', 
+        productos: "j",
+        servicios: "",
+        marcas: "",
         totalPages: 1
     }),
     computed: {
         ...mapGetters("wishlist", ["wislistLoaded", "getWislistProducts"])
-    }
+    },
+    created: function () {}
 };
 </script>
 
@@ -144,42 +145,42 @@ export default {
 }
 
 .v-tabs {
-        &::v-deep {
-            .v-slide-group__prev,
-            .v-slide-group__next {
-                display: none !important;
-            }
-
-            .v-tabs-bar__content {
-                gap: 0.75rem;
-
-                @media (min-width: 600px) {
-                    gap: 1.5rem;
-                }
-            }
+    &::v-deep {
+        .v-slide-group__prev,
+        .v-slide-group__next {
+            display: none !important;
         }
 
-        .v-tab {
-            background-color: #fafcfc;
-            border: 1px solid #dfdfdf;
-            border-radius: 100px;
-            color: #000000 !important;
-            font-size: var(--font-size-btn);
-            font-weight: 600;
-            letter-spacing: 1.25px;
-            line-height: 17px;
-            // flex: 1; // All tabs same width
+        .v-tabs-bar__content {
+            gap: 0.75rem;
 
-            &:not(.v-tab--active):hover {
-                background-color: #dfdfdf;
-                color: #000000 !important;
-            }
-
-            &--active {
-                background-color: #000000;
-                color: #ffffff !important;
+            @media (min-width: 600px) {
+                gap: 1.5rem;
             }
         }
     }
+
+    .v-tab {
+        background-color: #fafcfc;
+        border: 1px solid #dfdfdf;
+        border-radius: 100px;
+        color: #000000 !important;
+        font-size: var(--font-size-btn);
+        font-weight: 600;
+        letter-spacing: 1.25px;
+        line-height: 17px;
+        // flex: 1; // All tabs same width
+
+        &:not(.v-tab--active):hover {
+            background-color: #dfdfdf;
+            color: #000000 !important;
+        }
+
+        &--active {
+            background-color: #000000;
+            color: #ffffff !important;
+        }
+    }
+}
 // Fin estilos //
 </style>

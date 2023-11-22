@@ -93,6 +93,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
     });
 
     Route::group(['prefix' => 'service'], function () {
+        Route::get('/', [ServiceController::class, 'index']);
         Route::get('/details/{service_slug}', [ServiceController::class, 'show']);
         Route::post('get-by-ids', [ServiceController::class, 'get_by_ids']);
         Route::get('search', [ServiceController::class, 'search']);
@@ -154,8 +155,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::post('info/updateEmpresa', [UserController::class, 'updateInfoEmpresa']);
             Route::post('info/updatePassword', [UserController::class, 'updatePassword']);
             Route::post('info/updateTerms', [UserController::class, 'updateTerms']);
-            
-            
+
+
 
             Route::get('coupons', [CouponController::class, 'index']);
 
@@ -171,6 +172,12 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::post('review/submit', [ReviewController::class, 'submit_review']);
 
             Route::apiResource('wishlists', WishlistController::class)->except(['update', 'show']);
+            Route::get('wishlists/services', [WishlistController::class, 'favoriteServices']);
+            Route::get('wishlists/brands', [WishlistController::class, 'favoriteBrands']);
+            Route::post('wishlists/services', [WishlistController::class, 'storeService']);
+            Route::post('wishlists/brands', [WishlistController::class, 'storeBrand']);
+            Route::delete('wishlists/services', [WishlistController::class, 'destroyService']);
+            Route::delete('wishlists/brands', [WishlistController::class, 'destroyBrand']);
             Route::apiResource('follow', FollowController::class)->except(['update', 'show']);
 
             Route::get('addresses', [AddressController::class, 'addresses']);

@@ -78,7 +78,7 @@ Route::get('/insert_translation_keys', [DemoController::class, 'insert_trasnalat
 Route::get('/customer-products/admin', [SettingController::class, 'initSetting']);
 
 Auth::routes(['register' => false]);
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 
@@ -89,7 +89,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::post('/language', [LanguageController::class, 'changeLanguage'])->name('language.change');
 
     Route::resource('categories', CategoryController::class);
-    Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::get('/categories/edit/{id}', [CategoryController::class, 'edit']);
     Route::get('/categories/destroy/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
     Route::post('/categories/featured', [CategoryController::class, 'updateFeatured'])->name('categories.featured');
 

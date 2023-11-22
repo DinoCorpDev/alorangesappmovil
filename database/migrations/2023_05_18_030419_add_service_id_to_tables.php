@@ -18,7 +18,7 @@ class AddServiceIdToTables extends Migration
         });
 
         Schema::table('wishlists', function (Blueprint $table) {
-            $table->integer('service_id')->after('product_id')->nullable();
+            $table->integer('services_id')->after('product_id')->nullable();
         });
 
         Schema::table('carts', function (Blueprint $table) {

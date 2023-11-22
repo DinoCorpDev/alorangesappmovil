@@ -40,6 +40,9 @@ export default {
             type: Object,
             default: () => {}
         }
+    },
+    created: function () {
+        console.log(this.brandDetails);
     }
 };
 </script>

@@ -14,4 +14,14 @@ class Wishlist extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function brands()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function services()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }
