@@ -14,7 +14,5 @@ yarn-error.log
 /composer.phar
 package-lock.json
 
-public/*
-
 public/web-assets/js
 public/web-assets/css
