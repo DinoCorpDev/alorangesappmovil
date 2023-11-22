@@ -79,10 +79,7 @@ export default {
         month: String,
         year: [String, Number],
         descriptionStatus: String,
-        colorStatus: String,
-        icon1: String,
-        icon2: String,
-        icon3: String
+        
     }
 };
 </script>
@@ -121,7 +118,6 @@ export default {
     display: flex;
     gap: 44px;
     align-items: center;
-    justify-content: end;
-    
+    justify-content: flex-end;    
 }
 </style>

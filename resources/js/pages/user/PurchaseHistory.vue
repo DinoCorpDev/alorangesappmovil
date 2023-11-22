@@ -1,9 +1,9 @@
 <template>
     <v-row class="compras">
         <v-col cols="12">
-            <v-tabs v-model="tab" grow height="38px" :hide-slider="true" style="max-width: 60%;">
+            <v-tabs v-model="tab" grow height="38px" :hide-slider="true" style="max-width: 30%;">
                     <v-tab :ripple="false">ORDEN DE PEDIDO</v-tab>
-                    <v-tab :ripple="false">HISTORIAL DE PRODUCTOS</v-tab>
+                    <!-- <v-tab :ripple="false">HISTORIAL DE PRODUCTOS</v-tab> -->
             </v-tabs>
             <v-divider class="my-3" />
 
@@ -35,7 +35,7 @@
             </div>
             </v-tab-item>
 
-            <v-tab-item>
+            <!-- <v-tab-item>
                     <div class="emptycart">
                         <div class="cuadro-emptycart">
                             <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/factura.svg" />
@@ -43,7 +43,7 @@
                             <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                         </div>
                     </div>
-            </v-tab-item>
+            </v-tab-item> -->
 
             
             </v-tabs-items>
