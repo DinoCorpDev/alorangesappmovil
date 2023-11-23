@@ -1,7 +1,7 @@
 <template>
     <div class="payment">
         <div class="div-icon">
-            <v-img max-width="50px" :src="img"></v-img>
+            <v-img max-width="50px" min-height="50px" :src="img"></v-img>
         </div>
         <p class="text-caption text-uppercase">{{ text }}</p>
     </div>
@@ -21,7 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .payment {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
     border-radius: 10px;
     text-align: center;
     padding-top: 10px;

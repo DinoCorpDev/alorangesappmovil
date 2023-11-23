@@ -97,7 +97,20 @@
                                     <h5 class="fw-600">Dirección de envío</h5>
                                     <v-divider class="my-4" />
                                     <div class="form mb-5">
-                                        <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
+                                        <v-row>
+                                            <v-col cols="11">
+                                                <SelectCustom clear class="selector" label="Usuario Principal" :items="langSelectItems" />
+                                            </v-col>
+                                            <v-col cols="1" class="pl-0">
+                                                <i
+                                                    class="las la-eye-slash"
+                                                    style="font-size: 25px"
+                                                    v-if="mostrarDatos"
+                                                    @click="ocultarDatosUsuario"
+                                                ></i>
+                                                <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                            </v-col>
+                                        </v-row>
                                         <v-divider class="my-3" />
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">País</span>
@@ -180,7 +193,20 @@
                                                 useDefaultAddress1 == false
                                             "
                                         >
-                                            <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
+                                            <v-row>
+                                                <v-col cols="11">
+                                                    <SelectCustom clear class="selector" label="Usuario Principal" :items="langSelectItems" />
+                                                </v-col>
+                                                <v-col cols="1" class="pl-0">
+                                                    <i
+                                                        class="las la-eye-slash"
+                                                        style="font-size: 25px"
+                                                        v-if="mostrarDatos"
+                                                        @click="ocultarDatosUsuario"
+                                                    ></i>
+                                                    <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                                </v-col>
+                                            </v-row>
                                             <v-divider class="my-3" />
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">país</span>
@@ -457,9 +483,7 @@
                         <v-col cols="12" md="6" order="1" order-md="1" order-sm="2">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
                             <v-divider class="my-4" />
-                            <div class="form" style="background: white !important;">
-                                <h6 class="black--text bold">Medio de Pago</h6>
-                                <v-divider class="my-3" />
+                            <div class="form">
                                 <v-row>
                                     <v-col >
                                         <TypePayment img="/public/assets/img/pse.png" text="Pse" />
@@ -485,9 +509,9 @@
                                 <v-divider class="my-3" />
                                 <div v-if="pick === 1">
                                     <label class="text-uppercase">Tipo de Persona</label>
-                                    <SelectCustom dark label="Tipo de persona" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Tipo de persona" :items="langSelectItems" />
                                     <label class="text-uppercase">Banco</label>
-                                    <SelectCustom dark label="Seleccionar banco" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Seleccionar banco" :items="langSelectItems" />
                                 </div>
                                 <div v-if="pick === 2">
                                     <label class="text-uppercase">Numero de tarjeta</label>
@@ -495,13 +519,13 @@
                                     <label class="text-uppercase">Nombre titular de la tarjeta</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Fecha de expedicion</label>
-                                    <SelectCustom dark label="Tipo de persona" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Tipo de persona" :items="langSelectItems" />
                                     <label class="text-uppercase">Codigo de seguridad</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Numero de CVV2</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Documento</label>
-                                    <SelectCustom dark label="Seleccionar banco" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Seleccionar banco" :items="langSelectItems" />
                                     <label class="text-uppercase">Numero de documento</label>
                                     <CustomInput />
                                 </div>
@@ -511,13 +535,13 @@
                                     <label class="text-uppercase">Nombre titular de la tarjeta</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Fecha de expedicion</label>
-                                    <SelectCustom dark label="Tipo de persona" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Tipo de persona" :items="langSelectItems" />
                                     <label class="text-uppercase">Codigo de seguridad</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Numero de CVV2</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Documento</label>
-                                    <SelectCustom dark label="Seleccionar banco" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Seleccionar banco" :items="langSelectItems" />
                                     <label class="text-uppercase">Numero de documento</label>
                                     <CustomInput />
                                 </div>
@@ -563,7 +587,20 @@
                             <h5 class="fw-600">Facturar a nombre de</h5>
                             <v-divider class="my-4" />
                             <div class="form">
-                                <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
+                                <v-row>
+                                    <v-col cols="11">
+                                        <SelectCustom clear class="selector" label="Usuario Principal" :items="langSelectItems" />
+                                    </v-col>
+                                    <v-col cols="1" class="pl-0">
+                                        <i
+                                                        class="las la-eye-slash"
+                                                        style="font-size: 25px"
+                                                        v-if="mostrarDatos"
+                                                        @click="ocultarDatosUsuario"
+                                                    ></i>
+                                        <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                    </v-col>
+                                </v-row>
                                 <v-divider class="my-3" />
                                 <div
                                     v-if="
@@ -669,13 +706,13 @@
                                     
                                     <div>
                                         <v-row style="width: 130%">
-                                            <v-col cols="9">
+                                            <v-col cols="12" sm="9">
                                                 <h6 class="font-weight-bold">Gracias por registrarse</h6>
                                                 <p class="body-1 mb-0" style="margin-top: 4px;">
                                                     Enviaremos al e-mail de facturación un correo de verificación por la compra
                                                 </p>
                                             </v-col>
-                                            <v-col cols="3" style="display: flex; justify-content: center; align-items: center; place-items: center;">
+                                            <v-col cols="12" sm="3" style="display: flex; justify-content: center; align-items: center; place-items: center;">
                                                 <CustomButton text="FINALIZAR" width="150" color="nero" @click="numberPag = 3" />
                                             </v-col>
                                         </v-row>
@@ -878,7 +915,20 @@
                             <v-row>
                                 <v-col cols="12">
                                     <div class="form">
-                                        <h6 class="black--text bold">Dirección de facturacion</h6>
+                                        <v-row>
+                                            <v-col cols="11">
+                                                <h5 class="black--text">Variable nombre de dirección *</h5>
+                                            </v-col>
+                                            <v-col cols="1" class="pl-0">
+                                                <i
+                                                    class="las la-eye-slash"
+                                                    style="font-size: 25px"
+                                                    v-if="mostrarDatos"
+                                                    @click="ocultarDatosUsuario"
+                                                ></i>
+                                                <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                            </v-col>
+                                        </v-row>
                                         <v-divider class="my-3" />
                                         <div
                                             v-if="
@@ -985,7 +1035,7 @@
                                 </v-col>
                                 <v-col cols="12">
                                     <div class="form">
-                                        <h6 class="black--text bold">Facturar a</h6>
+                                        <h5 class="black--text">Encargado</h5>
                                         <v-divider class="my-3" />
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Correo electronico</span>
@@ -1012,7 +1062,20 @@
                                     <h5 class="fw-600">Dirección de servicio</h5>
                                     <v-divider class="my-4" />
                                     <div class="form">
-                                        <h6 class="black--text bold">Dirección de servicio</h6>
+                                        <v-row>
+                                            <v-col cols="11">
+                                                <h5 class="black--text">Nombre de dirección servicio *</h5>
+                                            </v-col>
+                                            <v-col cols="1" class="pl-0">
+                                                <i
+                                                    class="las la-eye-slash"
+                                                    style="font-size: 25px"
+                                                    v-if="mostrarDatos"
+                                                    @click="ocultarDatosUsuario"
+                                                ></i>
+                                                <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                            </v-col>
+                                        </v-row>
                                         <v-divider class="my-3" />
 
                                         <div
@@ -1127,9 +1190,23 @@
                             <v-row>
                                 <v-col cols="12">
                                     <div class="form">
-                                        <h6 class="black--text bold">Dirección de envio</h6>
+                                        <v-row>
+                                            <v-col cols="11">
+                                                <h5 class="black--text">Usuario principal</h5>
+                                            </v-col>
+                                            <v-col cols="1" class="pl-0">
+                                                <i
+                                                    class="las la-eye-slash"
+                                                    style="font-size: 25px"
+                                                    v-if="mostrarDatos"
+                                                    @click="ocultarDatosUsuario"
+                                                ></i>
+                                                <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                            </v-col>
+                                        </v-row>
+                                        
                                         <v-divider class="my-3" />
-                                        <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
+                                        <SelectCustom  class="selector" dark label="Usuario Principal" :items="langSelectItems" />
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
@@ -1330,7 +1407,8 @@ export default {
             checkoutLoading: false,
             dataCheckout: {},
             fecha: new Date(),
-            pick: 1
+            pick: 1,
+            mostrarDatos: false
         };
     },
     computed: {
@@ -1342,6 +1420,12 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["getUser"]),
+        mostrarDatosUsuario() {
+            this.mostrarDatos = true;
+        },
+        ocultarDatosUsuario() {
+            this.mostrarDatos = false;
+        },
         async getCart() {
             const res = await this.call_api("post", `carts`, {});
             let _cartItems = [];
@@ -1848,6 +1932,18 @@ export default {
     &.v-btn--active {
         color: #fff;
         background-color: black;
+    }
+}
+
+.selector{
+    &::v-deep {
+        .v-input__slot {
+            background: #dfdfdf !important;
+
+            &:hover {
+                background: #dfdfdf;
+            }
+        }
     }
 }
 </style>

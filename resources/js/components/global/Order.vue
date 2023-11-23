@@ -9,32 +9,60 @@
             </v-col>
             <v-divider vertical style="max-height: 20px;" />
             <v-col cols="4" class="pr-5 iconos">
-                <v-tooltip bottom color="black">
-                    <template v-slot:activator="{ on, attrs }">
-                        <div v-bind="attrs" v-on="on">
-                            <custom-button plain> <Descargar /> </custom-button>
-                        </div>
-                    </template>
-                    <span>Descargar</span>
-                </v-tooltip>
+                <div class="d-none d-md-flex pr-5 iconos">
+                    <v-tooltip bottom color="black">
+                        <template v-slot:activator="{ on, attrs }">
+                            <div v-bind="attrs" v-on="on">
+                                <custom-button plain> <Descargar /> </custom-button>
+                            </div>
+                        </template>
+                        <span>Descargar</span>
+                    </v-tooltip>
 
-                <v-tooltip bottom color="black">
-                    <template v-slot:activator="{ on, attrs }">
-                        <div v-bind="attrs" v-on="on">
-                            <custom-button plain :to="{ name: 'InvoicesDetails' }"> <Compartir /> </custom-button>
-                        </div>
-                    </template>
-                    <span>Compartir</span>
-                </v-tooltip>
+                    <v-tooltip bottom color="black">
+                        <template v-slot:activator="{ on, attrs }">
+                            <div v-bind="attrs" v-on="on">
+                                <custom-button plain :to="{ name: 'InvoicesDetails' }"> <Compartir /> </custom-button>
+                            </div>
+                        </template>
+                        <span>Compartir</span>
+                    </v-tooltip>
 
-                <v-tooltip bottom color="black">
-                    <template v-slot:activator="{ on, attrs }">
-                        <div v-bind="attrs" v-on="on">
-                            <custom-button plain> <Imprimir /> </custom-button>
-                        </div>
-                    </template>
-                    <span>Imprimir</span>
-                </v-tooltip>
+                    <v-tooltip bottom color="black">
+                        <template v-slot:activator="{ on, attrs }">
+                            <div v-bind="attrs" v-on="on">
+                                <custom-button plain> <Imprimir /> </custom-button>
+                            </div>
+                        </template>
+                        <span>Imprimir</span>
+                    </v-tooltip>
+                </div>
+                <div class="d-md-none">
+                    <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                            color="primary"
+                            dark
+                            v-bind="attrs"
+                            v-on="on"
+                            >
+                            <i class="las la-bars"></i>
+                            </v-btn>
+                        </template>
+                        <v-list>
+                            <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                            link
+                            >
+                            <v-list-item-title>
+                                <v-icon>{{ item.icono }}</v-icon>
+                                 {{ item.title }}
+                            </v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </div>
             </v-col>
         </v-row>
 
@@ -67,6 +95,13 @@ import Imprimir from "../../components/icons/Imprimir.vue";
 import Descargar from "../../components/icons/Descargar.vue";
 
 export default {
+    data: () => ({
+      items: [
+        { icono: 'la-download', title: 'Descargar' },
+        { icono: 'la-share-alt-square', title: 'Compartir' },
+        { icono: 'la-print', title: 'Imprimir' },
+      ],
+    }),
     components: {
         CustomButton,
         Compartir,

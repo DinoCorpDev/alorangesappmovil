@@ -8,6 +8,7 @@
         :item-value="itemValue"
         :items="items"
         :light="light"
+        :clear="clear"
         :placeholder="placeholder"
         :required="required"
         :value="value"
@@ -151,6 +152,7 @@ export default {
         }
     }
 }
+
 
 .theme--dark {
     .v-select {
