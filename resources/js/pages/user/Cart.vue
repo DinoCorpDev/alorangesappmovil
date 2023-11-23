@@ -100,10 +100,13 @@
                                         <v-row>
                                             <v-col cols="11">
                                                 <SelectCustom
-                                                    clear
-                                                    class="selector"
+                                                    dark="true"
                                                     label="Usuario Principal"
-                                                    :items="langSelectItems"
+                                                    :items="addressesParaEnvio"
+                                                    @input="changeAddress($event, 0)"
+                                                    item-text="address"
+                                                    item-value="id"
+                                                    placeholder="Seleccione una opcion"
                                                 />
                                             </v-col>
                                             <v-col cols="1" class="pl-0">
@@ -132,23 +135,31 @@
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">{{ addressPrincipal?.address }}</span>
+                                            <span class="body1">{{
+                                                selectedAddressEnvio?.address || "No registra"
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold"> Dirección adicional </span>
-                                            <span class="body1">{{ addressPrincipal?.address }}</span>
+                                            <span class="body1">{{
+                                                selectedAddressEnvio?.address || "No registra"
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{ addressPrincipal?.postal_code }}</span>
+                                            <span class="body1">{{
+                                                selectedAddressEnvio?.postal_code || "No registra"
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{ addressPrincipal?.country }}</span>
+                                            <span class="body1">{{
+                                                selectedAddressEnvio?.country || "No registra"
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{ addressPrincipal?.city }}</span>
+                                            <span class="body1">{{ selectedAddressEnvio?.city || "No registra" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Localidad</span>
@@ -156,7 +167,9 @@
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                            <span class="body1"> -- </span>
+                                            <span class="body1">
+                                                {{ selectedAddressEnvio?.neighborhood || "No registra" }}
+                                            </span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
@@ -204,10 +217,13 @@
                                             <v-row>
                                                 <v-col cols="11">
                                                     <SelectCustom
-                                                        clear
-                                                        class="selector"
-                                                        label="Usuario Principal"
-                                                        :items="langSelectItems"
+                                                        dark="true"
+                                                        label="Ingrese una direccion"
+                                                        :items="addressesParaServicio"
+                                                        @input="changeAddress($event, 1)"
+                                                        item-text="address"
+                                                        item-value="id"
+                                                        placeholder="Seleccione una opcion"
                                                     />
                                                 </v-col>
                                                 <v-col cols="1" class="pl-0">
@@ -232,7 +248,7 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                                <span class="body1">Dirección principal</span>
+                                                <span class="body1">{{ addressServicio?.name }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Dirección</span>
@@ -1491,6 +1507,12 @@ export default {
             addressPrincipal: {},
             addressServicio: {},
             addressFacturacion: {},
+            addressesParaFacturacion: [],
+            addressesParaServicio: [],
+            addressesParaEnvio: [],
+            selectedAddressFacturacion: {},
+            selectedAddressServicio: {},
+            selectedAddressEnvio: {},
             typeAddress: "shipping",
             useDefaultAddress1: false,
             useDefaultAddress2: false,
@@ -1517,6 +1539,22 @@ export default {
         },
         ocultarDatosUsuario() {
             this.mostrarDatos = false;
+        },
+        changeAddress(event, direccionCambiar) {
+            if (direccionCambiar === 0) {
+                // Direccion de envio
+                this.selectedAddressEnvio = this.addressesParaEnvio.find(x => x.id === event);
+            }
+
+            if (direccionCambiar === 1) {
+                // Direccion de servicio
+                this.selectedAddressServicio = this.addressesParaServicio.find(x => x.id === event);
+            }
+
+            if (direccionCambiar === 2) {
+                // Direccion de facturacion
+                this.selectedAddresFacturacion = this.addressesParaFacturacion.find(x => x.id === event);
+            }
         },
         async getCart() {
             const res = await this.call_api("post", `carts`, {});
@@ -1555,15 +1593,18 @@ export default {
             if (res.data.success) {
                 res?.data?.data?.map(address => {
                     if (address?.default_shipping == 1) {
-                        this.addressPrincipal = address;
+                        this.addressesParaEnvio.push(address);
                     }
                     if (address?.default_billing == 1) {
-                        this.addressFacturacion = address;
+                        this.addressesParaFacturacion.push(address);
                     }
                     if (address?.default_service == 1) {
-                        this.addressServicio = address;
+                        this.addressesParaServicio.push(address);
                     }
                 });
+                this.addressPrincipal = this.addressesParaEnvio[0];
+                this.addressFacturacion = this.addressesParaFacturacion[0];
+                this.addressServicio = this.addressesParaServicio[0];
             } else {
                 this.snack({
                     message: res.data.message,
