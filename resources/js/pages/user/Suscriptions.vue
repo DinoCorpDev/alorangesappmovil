@@ -21,7 +21,7 @@
                 <div class="emptycart">
                     <div class="cuadro-emptycart">
                         <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/suscripciones.svg" />
-                        <p class="text-cartempty">AUN NO HAY SUSCRIPCIONES ACTIVAS</p>
+                        <p class="text-cartempty">AUN NO HAY PLANES REGISTRADOS</p>
                         <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                     </div>
                 </div>
