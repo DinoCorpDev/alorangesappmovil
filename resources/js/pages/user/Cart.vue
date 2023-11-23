@@ -99,36 +99,48 @@
                                     <div class="form mb-5">
                                         <h6 class="black--text bold">Dirección de envio</h6>
                                         <v-divider class="my-3" />
-                                        <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
+                                        <SelectCustom
+                                            dark
+                                            label="Usuario Principal"
+                                            :items="addressesForShow"
+                                            @input="changeAddress"
+                                            item-text="address"
+                                            item-value="id"
+                                            placeholder="Seleccione una opcion"
+                                        />
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">{{ addressPrincipal?.address }}</span>
+                                            <span class="body1">{{ selectedAddress?.address || "No registra" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">
                                                 Descripción de Dirección
                                             </span>
-                                            <span class="body1">{{ addressPrincipal?.address }}</span>
+                                            <span class="body1">{{ selectedAddress?.address || "No registra" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{ addressPrincipal?.postal_code }}</span>
+                                            <span class="body1">{{
+                                                selectedAddress?.postal_code || "No registra"
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{ addressPrincipal?.country }}</span>
+                                            <span class="body1">{{ selectedAddress?.country || "No registra" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{ addressPrincipal?.city }}</span>
+                                            <span class="body1">{{ selectedAddress?.city || "No registra" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                            <span class="body1"> -- </span>
+                                            <span class="body1">
+                                                {{ selectedAddress?.neighborhood || "No registra" }}
+                                            </span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">
@@ -185,7 +197,6 @@
                                     <h5 class="fw-600">Dirección de servicio</h5>
                                     <v-divider class="my-3" />
                                     <div class="form">
-                                        <h6 class="black--text bold">Dirección de servicio</h6>
                                         <v-divider class="my-3" />
                                         <div
                                             v-if="
@@ -1313,7 +1324,7 @@ import TypePayment from "../../components/global/TypePayment.vue";
 import Regalo from "../../components/icons/Regalo.vue";
 import Promocion from "../../components/icons/Promocion.vue";
 import Cubo from "../../components/icons/Cubo.vue";
-import VueCreditCard from "@fracto/vue-credit-card";
+import address from "../../store/modules/address";
 
 const button = document.getElementById("customButton");
 const tooltip = document.getElementById("tooltip");
@@ -1333,8 +1344,7 @@ export default {
         Regalo,
         Promocion,
         Cubo,
-        TypePayment,
-        VueCreditCard
+        TypePayment
     },
     data() {
         return {
@@ -1348,6 +1358,31 @@ export default {
             addressPrincipal: {},
             addressServicio: {},
             addressFacturacion: {},
+            addressesForShow: [],
+            selectedAddress: {
+                id: null,
+                user_id: null,
+                address: null,
+                name: null,
+                details: null,
+                country: null,
+                country_id: null,
+                state: null,
+                state_id: null,
+                city: null,
+                city_id: null,
+                localidad_id: null,
+                localidad: null,
+                neighborhood: null,
+                postal_code: null,
+                phone: null,
+                default_shipping: null,
+                default_billing: null,
+                default_service: null,
+                editar: null,
+                mostrarDatos: null,
+                favorite: null
+            },
             typeAddress: "shipping",
             useDefaultAddress1: false,
             useDefaultAddress2: false,
@@ -1368,6 +1403,9 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["getUser"]),
+        changeAddress(event) {
+            this.selectedAddress = this.addressesForShow.find(x => x.id === event);
+        },
         async getCart() {
             const res = await this.call_api("post", `carts`, {});
             let _cartItems = [];
@@ -1403,6 +1441,8 @@ export default {
             const res = await this.call_api("get", `user/addresses`);
             // this.snack({ message: `Please select a cart product`, color: "red" });
             if (res.data.success) {
+                this.addressesForShow = res?.data?.data;
+                console.log(this.addressesForShow);
                 res?.data?.data?.map(address => {
                     if (address?.default_shipping == 1) {
                         this.addressPrincipal = address;
