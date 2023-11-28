@@ -38,7 +38,7 @@
             <!-- <v-divider class="cartSteper-subheader" /> -->
 
             <v-stepper-items>
-                <v-stepper-content step="1" style="overflow-y: scroll; height: 450px">
+                <v-stepper-content step="1" style="overflow-y: scroll; max-height: 450px;">
                     <template v-if="cartProducts.length > 0">
                         <div class="cart-table-header mb-2" style="width: 100%">
                             <div style="padding-left: 4%">Productos</div>
@@ -97,12 +97,28 @@
                                     <h5 class="fw-600">Dirección de envío</h5>
                                     <v-divider class="my-4" />
                                     <div class="form mb-5">
-                                        <h6 class="black--text bold">Dirección de envio</h6>
+                                        <v-row>
+                                            <v-col cols="11">
+                                                <SelectCustom clear class="selector" label="Usuario Principal" :items="langSelectItems" />
+                                            </v-col>
+                                            <v-col cols="1" class="pl-0">
+                                                <i
+                                                    class="las la-eye-slash"
+                                                    style="font-size: 25px"
+                                                    v-if="mostrarDatos"
+                                                    @click="ocultarDatosUsuario"
+                                                ></i>
+                                                <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                            </v-col>
+                                        </v-row>
                                         <v-divider class="my-3" />
-                                        <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">País</span>
+                                            <span class="body1">--</span>
+                                        </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                            <span class="body1">Dirección principal</span>
+                                            <span class="body1">--</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Dirección</span>
@@ -110,7 +126,7 @@
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">
-                                                Descripción de Dirección
+                                                Dirección adicional
                                             </span>
                                             <span class="body1">{{ addressPrincipal?.address }}</span>
                                         </div>
@@ -127,14 +143,12 @@
                                             <span class="body1">{{ addressPrincipal?.city }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                            <span class="subtitle1 text-uppercase bold">Localidad</span>
                                             <span class="body1"> -- </span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Nombre de quien lo va a recibir
-                                            </span>
-                                            <span class="body1">{{ addressPrincipal?.name }}</span>
+                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
+                                            <span class="body1"> -- </span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
@@ -144,55 +158,60 @@
                                             v-if="Object.entries(addressPrincipal).length !== 0"
                                             class="mr-3"
                                             color="grey"
-                                            text="Editar"
+                                            text="EDITAR"
                                             @click="editAddress(addressPrincipal, 'shipping')"
                                         />
                                         <CustomButton
                                             v-if="Object.entries(addressPrincipal).length === 0"
                                             block
                                             color="grey"
-                                            text="Añadir Dirección"
+                                            text="AÑADIR"
                                             @click="openAdress('shipping')"
                                         />
                                     </div>
                                     <div class="form">
                                         <h6 class="black--text bold">Encargado</h6>
                                         <v-divider class="my-3" />
-                                        <!-- <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Correo electronico</span>
-                                            <span class="body1">{{ currentUser.email || "--" }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Tipo de Persona</span>
-                                            <span class="body1">{{ currentUser.personType || "--" }}</span>
-                                        </div> -->
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">NOMBRE COMPLETO</span>
                                             <span class="body1">{{ currentUser.name || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-3">
                                             <span class="subtitle1 text-uppercase bold">TELÉFONO / CELULAR</span>
-                                            <span class="body1">
-                                                {{ currentUser.documentType || "--" }}
-                                                {{ currentUser.documentNumber || "--" }}
-                                            </span>
+                                            <span class="body1">--</span>
                                         </div>
-                                        <CustomButton color="grey" class="mr-3" text="Editar" @click="editProfile()" />
+                                        <CustomButton color="grey" class="mr-3" text="EDITAR" @click="editProfile()" />
                                     </div>
                                 </v-col>
                                 <v-col cols="12">
                                     <h5 class="fw-600">Dirección de servicio</h5>
                                     <v-divider class="my-3" />
                                     <div class="form">
-                                        <h6 class="black--text bold">Dirección de servicio</h6>
-                                        <v-divider class="my-3" />
                                         <div
                                             v-if="
                                                 Object.entries(addressServicio).length !== 0 &&
                                                 useDefaultAddress1 == false
                                             "
                                         >
+                                            <v-row>
+                                                <v-col cols="11">
+                                                    <SelectCustom clear class="selector" label="Usuario Principal" :items="langSelectItems" />
+                                                </v-col>
+                                                <v-col cols="1" class="pl-0">
+                                                    <i
+                                                        class="las la-eye-slash"
+                                                        style="font-size: 25px"
+                                                        v-if="mostrarDatos"
+                                                        @click="ocultarDatosUsuario"
+                                                    ></i>
+                                                    <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                                </v-col>
+                                            </v-row>
+                                            <v-divider class="my-3" />
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">país</span>
+                                                <span class="body1">--</span>
+                                            </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                                 <span class="body1">Dirección principal</span>
@@ -203,9 +222,9 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">
-                                                    Descripción de Dirección
+                                                    Dirección adicional
                                                 </span>
-                                                <span class="body1">{{ addressServicio?.address }}</span>
+                                                <span class="body1">--</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
@@ -218,6 +237,10 @@
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Municipio</span>
                                                 <span class="body1">{{ addressServicio?.city }}</span>
+                                            </div>
+                                            <div class="d-flex justify-space-between mb-2">
+                                                <span class="subtitle1 text-uppercase bold">localidad</span>
+                                                <span class="body1"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -248,7 +271,7 @@
                                             "
                                             class="mr-3"
                                             color="grey"
-                                            text="Editar"
+                                            text="EDITAR"
                                             @click="editAddress(addressServicio, 'service')"
                                         />
                                         <CustomButton
@@ -460,23 +483,25 @@
                         <v-col cols="12" md="6" order="1" order-md="1" order-sm="2">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
                             <v-divider class="my-4" />
-                            <div class="form" style="background: white !important">
-                                <h6 class="black--text bold">Medio de Pago</h6>
-                                <v-divider class="my-3" />
+                            <div class="form">
                                 <v-row>
-                                    <v-col cols="3">
+                                    <v-col >
                                         <TypePayment img="/public/assets/img/pse.png" text="Pse" />
                                         <input type="radio" v-model="pick" checked="false" :value="1" />
                                     </v-col>
-                                    <v-col cols="3">
+                                    <v-col >
                                         <TypePayment img="/public/assets/img/credito.png" text="Credito" />
                                         <input type="radio" v-model="pick" checked="false" :value="2" />
                                     </v-col>
-                                    <v-col cols="3">
+                                    <v-col >
                                         <TypePayment img="/public/assets/img/debito.png" text="Debito" />
                                         <input type="radio" v-model="pick" checked="false" :value="3" />
                                     </v-col>
-                                    <v-col cols="3">
+                                    <v-col >
+                                        <TypePayment img="/public/assets/img/efecty.png" text="Efecty" />
+                                        <input type="radio" v-model="pick" :value="5" />
+                                    </v-col>
+                                    <v-col >
                                         <TypePayment img="/public/assets/img/transferir.png" text="Transferir" />
                                         <input type="radio" v-model="pick" checked="false" :value="4" />
                                     </v-col>
@@ -484,9 +509,9 @@
                                 <v-divider class="my-3" />
                                 <div v-if="pick === 1">
                                     <label class="text-uppercase">Tipo de Persona</label>
-                                    <SelectCustom dark label="Tipo de persona" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Tipo de persona" :items="langSelectItems" />
                                     <label class="text-uppercase">Banco</label>
-                                    <SelectCustom dark label="Seleccionar banco" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Seleccionar banco" :items="langSelectItems" />
                                 </div>
                                 <div v-if="pick === 2">
                                     <label class="text-uppercase">Numero de tarjeta</label>
@@ -494,13 +519,13 @@
                                     <label class="text-uppercase">Nombre titular de la tarjeta</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Fecha de expedicion</label>
-                                    <SelectCustom dark label="Tipo de persona" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Tipo de persona" :items="langSelectItems" />
                                     <label class="text-uppercase">Codigo de seguridad</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Numero de CVV2</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Documento</label>
-                                    <SelectCustom dark label="Seleccionar banco" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Seleccionar banco" :items="langSelectItems" />
                                     <label class="text-uppercase">Numero de documento</label>
                                     <CustomInput />
                                 </div>
@@ -510,13 +535,13 @@
                                     <label class="text-uppercase">Nombre titular de la tarjeta</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Fecha de expedicion</label>
-                                    <SelectCustom dark label="Tipo de persona" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Tipo de persona" :items="langSelectItems" />
                                     <label class="text-uppercase">Codigo de seguridad</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Numero de CVV2</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Documento</label>
-                                    <SelectCustom dark label="Seleccionar banco" :items="langSelectItems" />
+                                    <SelectCustom  class="selector" dark label="Seleccionar banco" :items="langSelectItems" />
                                     <label class="text-uppercase">Numero de documento</label>
                                     <CustomInput />
                                 </div>
@@ -559,8 +584,23 @@
                             </div>
                         </v-col>
                         <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
+                            <h5 class="fw-600">Facturar a nombre de</h5>
+                            <v-divider class="my-4" />
                             <div class="form">
-                                <h6 class="black--text bold">Dirección de facturacion</h6>
+                                <v-row>
+                                    <v-col cols="11">
+                                        <SelectCustom clear class="selector" label="Usuario Principal" :items="langSelectItems" />
+                                    </v-col>
+                                    <v-col cols="1" class="pl-0">
+                                        <i
+                                                        class="las la-eye-slash"
+                                                        style="font-size: 25px"
+                                                        v-if="mostrarDatos"
+                                                        @click="ocultarDatosUsuario"
+                                                    ></i>
+                                        <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                    </v-col>
+                                </v-row>
                                 <v-divider class="my-3" />
                                 <div
                                     v-if="
@@ -568,36 +608,24 @@
                                     "
                                 >
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                        <span class="body1">Dirección principal</span>
+                                        <span class="subtitle1 text-uppercase bold">correo electrónico</span>
+                                        <span class="body1">--</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                        <span class="body1 text-right">{{ addressFacturacion?.address }}</span>
+                                        <span class="subtitle1 text-uppercase bold">Tipo de persona</span>
+                                        <span class="body1 text-right">--</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
                                         <span class="body1">{{ addressFacturacion?.address }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                        <span class="body1">{{ addressFacturacion?.postal_code }}</span>
+                                        <span class="subtitle1 text-uppercase bold">Tipo de documento</span>
+                                        <span class="body1">--</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                        <span class="body1">{{ addressFacturacion?.country }}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                        <span class="body1">{{ addressFacturacion?.city }}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                        <span class="body1"> -- </span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                        <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                        <span class="subtitle1 text-uppercase bold">Número de documento</span>
+                                        <span class="body1">--</span>
                                     </div>
                                 </div>
                                 <label class="label my-3">
@@ -673,28 +701,15 @@
 
                                     <div>
                                         <v-row style="width: 130%">
-                                            <v-col cols="9">
+                                            <v-col cols="12" sm="9">
                                                 <h6 class="font-weight-bold">Gracias por registrarse</h6>
                                                 <p class="body-1 mb-0" style="margin-top: 4px">
                                                     Enviaremos al e-mail de facturación un correo de verificación por la
                                                     compra
                                                 </p>
                                             </v-col>
-                                            <v-col
-                                                cols="3"
-                                                style="
-                                                    display: flex;
-                                                    justify-content: center;
-                                                    align-items: center;
-                                                    place-items: center;
-                                                "
-                                            >
-                                                <CustomButton
-                                                    text="FINALIZAR"
-                                                    width="150"
-                                                    color="nero"
-                                                    @click="numberPag = 3"
-                                                />
+                                            <v-col cols="12" sm="3" style="display: flex; justify-content: center; align-items: center; place-items: center;">
+                                                <CustomButton text="FINALIZAR" width="150" color="nero" @click="numberPag = 3" />
                                             </v-col>
                                         </v-row>
                                     </div>
@@ -893,7 +908,20 @@
                             <v-row>
                                 <v-col cols="12">
                                     <div class="form">
-                                        <h6 class="black--text bold">Dirección de facturacion</h6>
+                                        <v-row>
+                                            <v-col cols="11">
+                                                <h5 class="black--text">Variable nombre de dirección *</h5>
+                                            </v-col>
+                                            <v-col cols="1" class="pl-0">
+                                                <i
+                                                    class="las la-eye-slash"
+                                                    style="font-size: 25px"
+                                                    v-if="mostrarDatos"
+                                                    @click="ocultarDatosUsuario"
+                                                ></i>
+                                                <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                            </v-col>
+                                        </v-row>
                                         <v-divider class="my-3" />
                                         <div
                                             v-if="
@@ -1000,7 +1028,7 @@
                                 </v-col>
                                 <v-col cols="12">
                                     <div class="form">
-                                        <h6 class="black--text bold">Facturar a</h6>
+                                        <h5 class="black--text">Encargado</h5>
                                         <v-divider class="my-3" />
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Correo electronico</span>
@@ -1027,7 +1055,20 @@
                                     <h5 class="fw-600">Dirección de servicio</h5>
                                     <v-divider class="my-4" />
                                     <div class="form">
-                                        <h6 class="black--text bold">Dirección de servicio</h6>
+                                        <v-row>
+                                            <v-col cols="11">
+                                                <h5 class="black--text">Nombre de dirección servicio *</h5>
+                                            </v-col>
+                                            <v-col cols="1" class="pl-0">
+                                                <i
+                                                    class="las la-eye-slash"
+                                                    style="font-size: 25px"
+                                                    v-if="mostrarDatos"
+                                                    @click="ocultarDatosUsuario"
+                                                ></i>
+                                                <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                            </v-col>
+                                        </v-row>
                                         <v-divider class="my-3" />
 
                                         <div
@@ -1141,9 +1182,23 @@
                             <v-row>
                                 <v-col cols="12">
                                     <div class="form">
-                                        <h6 class="black--text bold">Dirección de envio</h6>
+                                        <v-row>
+                                            <v-col cols="11">
+                                                <h5 class="black--text">Usuario principal</h5>
+                                            </v-col>
+                                            <v-col cols="1" class="pl-0">
+                                                <i
+                                                    class="las la-eye-slash"
+                                                    style="font-size: 25px"
+                                                    v-if="mostrarDatos"
+                                                    @click="ocultarDatosUsuario"
+                                                ></i>
+                                                <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                                            </v-col>
+                                        </v-row>
+
                                         <v-divider class="my-3" />
-                                        <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
+                                        <SelectCustom  class="selector" dark label="Usuario Principal" :items="langSelectItems" />
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">Dirección principal</span>
@@ -1356,7 +1411,8 @@ export default {
             checkoutLoading: false,
             dataCheckout: {},
             fecha: new Date(),
-            pick: 0
+            pick: 1,
+            mostrarDatos: false
         };
     },
     computed: {
@@ -1368,6 +1424,12 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["getUser"]),
+        mostrarDatosUsuario() {
+            this.mostrarDatos = true;
+        },
+        ocultarDatosUsuario() {
+            this.mostrarDatos = false;
+        },
         async getCart() {
             const res = await this.call_api("post", `carts`, {});
             let _cartItems = [];
@@ -1874,6 +1936,18 @@ export default {
     &.v-btn--active {
         color: #fff;
         background-color: black;
+    }
+}
+
+.selector{
+    &::v-deep {
+        .v-input__slot {
+            background: #dfdfdf !important;
+
+            &:hover {
+                background: #dfdfdf;
+            }
+        }
     }
 }
 </style>
