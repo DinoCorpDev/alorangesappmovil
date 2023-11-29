@@ -11,7 +11,7 @@
 
             <v-tabs-items v-model="tab">
                 <v-tab-item>
-                    <template v-if="!productos">
+                    <template v-if="getWislistProducts.length === 0">
                         <div class="emptycart">
                             <div class="cuadro-emptycart">
                                 <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
@@ -30,7 +30,7 @@
                 </v-tab-item>
 
                 <v-tab-item>
-                    <template v-if="!servicios">
+                    <template v-if="getWisListServices.length === 0">
                         <div class="emptycart">
                             <div class="cuadro-emptycart">
                                 <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
@@ -49,7 +49,7 @@
                 </v-tab-item>
 
                 <v-tab-item>
-                    <template v-if="!marcas">
+                    <template v-if="getWisListBrands.length === 0">
                         <div class="emptycart">
                             <div class="cuadro-emptycart">
                                 <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
@@ -102,9 +102,6 @@ export default {
     data: () => ({
         currentPage: 1,
         tab: null,
-        productos: "j",
-        servicios: "j",
-        marcas: "j",
         totalPages: 1
     }),
     computed: {
