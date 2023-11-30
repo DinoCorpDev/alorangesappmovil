@@ -47,22 +47,58 @@ export default {
             state.wisListBrands = data;
             state.wislistBrandsIds = data.map(item => item.id);
         },
-        addNewWishlistId(state, product_id) {
-            if (!state.wislistProductIds.includes(product_id)) {
-                state.wislistProductIds.push(product_id);
+        addNewWishlistId(state, product_id, type) {
+            if (type === "product") {
+                if (!state.wislistProductIds.includes(product_id)) {
+                    state.wislistProductIds.push(product_id);
+                }
+            }
+            if (type === "service") {
+                if (!state.wislistServicesIds.includes(product_id)) {
+                    state.wislistServicesIds.push(product_id);
+                }
+            }
+            if (type === "brand") {
+                if (!state.wislistServicesIds.includes(product_id)) {
+                    state.wislistServicesIds.push(product_id);
+                }
             }
         },
-        addNewWishlist(state, product) {
-            if (!state.wislistProducts.find(item => item.id === product.id)) {
-                state.wislistProducts.push(product);
+        addNewWishlist(state, product, type) {
+            if (type === "product") {
+                if (!state.wislistProducts.find(item => item.id === product.id)) {
+                    state.wislistProducts.push(product);
+                }
+            }
+            if (type === "service") {
+                if (!state.wisListServices.find(item => item.id === product.id)) {
+                    state.wisListServices.push(product);
+                }
+            }
+            if (type === "brand") {
+                if (!state.wisListBrands.find(item => item.id === product.id)) {
+                    state.wisListBrands.push(product);
+                }
             }
         },
-        removeFromWishlistID(state, product_id) {
-            if (state.wislistProductIds.includes(product_id)) {
-                state.wislistProductIds = state.wislistProductIds.filter(val => val !== product_id);
+        removeFromWishlistID(state, product_id, type) {
+            if (type === "product") {
+                if (state.wislistProductIds.includes(product_id)) {
+                    state.wislistProductIds = state.wislistProductIds.filter(val => val !== product_id);
+                }
+            }
+            if (type === "service") {
+                if (!state.wisListServices.find(item => item.id === product.id)) {
+                    state.wisListServices.push(product);
+                }
+            }
+            if (type === "brand") {
+                if (!state.wisListBrands.find(item => item.id === product.id)) {
+                    state.wisListBrands.push(product);
+                }
             }
         },
-        removeFromWishlist(state, product_id) {
+        removeFromWishlist(state, product_id, type) {
             if (state.wislistProducts.find(item => item.id === product_id)) {
                 state.wislistProducts = state.wislistProducts.filter(val => val.id !== product_id);
             }
@@ -77,18 +113,14 @@ export default {
         async fetchWislistServices({ commit, getters }) {
             if (this.getters["auth/isAuthenticated"] && !getters.wislistLoaded) {
                 const res = await Mixin.methods.call_api("get", `user/wishlists/services`);
-                console.log(res.data);
                 if (res.data.success) {
                     commit("setWislistServices", res.data.data);
                 }
-            } else {
-                console.log("WTF services");
             }
         },
         async fetchWislistProducts({ commit, getters }) {
             if (this.getters["auth/isAuthenticated"] && !getters.wislistLoaded) {
                 const res = await Mixin.methods.call_api("get", `user/wishlists`);
-                console.log(res.data);
                 if (res.data.success) {
                     commit("setWislistProducts", res.data.data);
                 }
@@ -97,12 +129,9 @@ export default {
         async fetchWislistBrands({ commit, getters }) {
             if (this.getters["auth/isAuthenticated"] && !getters.wislistLoaded) {
                 const res = await Mixin.methods.call_api("get", `user/wishlists/brands`);
-                console.log(res.data);
                 if (res.data.success) {
                     commit("setWislistBrands", res.data.data);
                 }
-            } else {
-                console.log("WTF brands");
             }
         },
         async addNewWishlist({ commit }, product_id) {
@@ -149,6 +178,28 @@ export default {
         },
         resetWishlist({ commit }) {
             commit("resetWishlist");
-        }
+        },
+        async addNewServiceWishList({ commit }, service_id) {
+            if (this.getters["auth/isAuthenticated"]) {
+                commit("removeFromWishlistID", product_id);
+                const res = await Mixin.methods.call_api("delete", `user/wishlists/${product_id}`);
+                if (res.data.success) {
+                    commit("removeFromWishlist", product_id);
+                    Mixin.methods.snack({
+                        message: i18n.t(res.data.message),
+                        color: "green"
+                    });
+                } else {
+                    commit("addNewWishlistId", product_id);
+                    Mixin.methods.snack({
+                        message: i18n.t("something_went_wrong"),
+                        color: "red"
+                    });
+                }
+            } else {
+                commit("auth/showLoginDialog", true, { root: true });
+            }
+        },
+        async removeFromWishlistService({ commit }, service_id) {}
     }
 };

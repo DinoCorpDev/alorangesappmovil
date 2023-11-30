@@ -1,9 +1,16 @@
 <template>
     <div class="brand-item">
         <div class="brand-item-header">
-            <button type="button" class="icon">
-                <FavoriteIcon />
-            </button>
+            <template v-if="isThisWishlisted(brandDetails.id)">
+                <button type="button" class="icon active" @click="removeFromWishlist(brandDetails.id)">
+                    <FavoriteIcon />
+                </button>
+            </template>
+            <template v-else>
+                <button type="button" class="icon" @click="addNewWishlist(brandDetails.id)">
+                    <FavoriteIcon />
+                </button>
+            </template>
         </div>
         <div class="brand-item-body">
             <v-img :src="brandDetails.bgImg || '/public/assets/img/brand-item-bg-placeholder.png'" aspect-ratio="1" />
@@ -28,6 +35,7 @@
 <script>
 import CustomButton from "./CustomButton.vue";
 import FavoriteIcon from "../icons/Favorite.vue";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
     name: "CardBrand",
@@ -35,14 +43,27 @@ export default {
         CustomButton,
         FavoriteIcon
     },
+    computed: {
+        ...mapGetters("wishlist", ["isThisWishlisted"])
+    },
     props: {
         brandDetails: {
             type: Object,
             default: () => {}
         }
     },
-    created: function () {
-        console.log(this.brandDetails);
+    methods: {
+        ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
+        ...mapActions("cart", ["addToCart", "updateQuantity"]),
+        ...mapMutations("auth", ["showAddToCartDialog"]),
+        addCart() {
+            if (!this.$props.productDetails.is_variant) {
+                this.addToCart({
+                    variation_id: this.$props.productDetails.variations[0].id,
+                    qty: this.$props.productDetails.min_qty
+                });
+            }
+        }
     }
 };
 </script>
