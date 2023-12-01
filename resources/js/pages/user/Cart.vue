@@ -38,13 +38,15 @@
             <!-- <v-divider class="cartSteper-subheader" /> -->
 
             <v-stepper-items>
-                <v-stepper-content step="1" style="overflow-y: scroll; max-height: 450px">
+                <v-stepper-content class="tamaño-responsive" step="1" style="overflow-y: scroll; max-height: 450px">
                     <template v-if="cartProducts.length > 0">
                         <div class="cart-table-header mb-2" style="width: 100%">
                             <div style="padding-left: 4%">Productos</div>
                             <div>Precio</div>
-                            <div>Cantidad</div>
-                            <div>Opciones</div>
+                            <div class="d-none d-md-flex">Cantidad</div>
+                            <div class="d-flex d-md-none">Cant</div>
+                            <div class="d-none d-sm-flex">Opciones</div>
+                            <div class="d-flex d-sm-none">Opc</div>
                         </div>
                         <v-row no-gutters class="car-items" style="">
                             <v-col cols="12" v-for="(product, i) in cartProducts" :key="i">
@@ -89,7 +91,7 @@
                         </v-col>
                     </v-row>
                 </v-stepper-content>
-                <v-stepper-content step="2">
+                <v-stepper-content class="tamaño-responsive" step="2">
                     <v-row>
                         <v-col cols="12" md="6">
                             <v-row>
@@ -109,7 +111,7 @@
                                                     placeholder="Seleccione una opcion"
                                                 />
                                             </v-col>
-                                            <v-col cols="1" class="pl-0">
+                                            <v-col cols="1" class="pl-0 ojo">
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
@@ -204,6 +206,22 @@
                                         <CustomButton color="grey" class="mr-3" text="EDITAR" @click="editProfile()" />
                                     </div>
                                 </v-col>
+                                <v-col cols="12"> </v-col>
+                            </v-row>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <AddressDialog
+                                :typeAddress="typeAddress"
+                                :show="addDialogShow"
+                                @close="addressDialogClosed"
+                                :old-address="addressSelectedForEdit"
+                            />
+                            <ProfileDialog
+                                :show="profileDialogShow"
+                                @close="profileDialogClosed"
+                                :old-profile="profileSelectedForEdit"
+                            />
+                            <v-row>
                                 <v-col cols="12">
                                     <h5 class="fw-600">Dirección de servicio</h5>
                                     <v-divider class="my-3" />
@@ -226,7 +244,7 @@
                                                         placeholder="Seleccione una opcion"
                                                     />
                                                 </v-col>
-                                                <v-col cols="1" class="pl-0">
+                                                <v-col cols="1" class="pl-0 ojo">
                                                     <i
                                                         class="las la-eye-slash"
                                                         style="font-size: 25px"
@@ -317,106 +335,7 @@
                                             @click="openAdress('service')"
                                         />
                                     </div>
-                                </v-col>
-                                <v-col cols="12">
-                                    <!-- DIRECIÓN DE FACTURACIÓN -------------->
-
-                                    <!-- <div class="form">
-                                        <h6 class="black--text bold">Dirección de facturacion</h6>
-                                        <v-divider class="my-3" />
-                                        <div
-                                            v-if="
-                                                Object.entries(addressFacturacion).length !== 0 &&
-                                                useDefaultAddress2 == false
-                                            "
-                                        >
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                                <span class="body1">Dirección principal</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{ addressFacturacion?.address }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">
-                                                    Descripción de Dirección
-                                                </span>
-                                                <span class="body1">{{ addressFacturacion?.address }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{ addressFacturacion?.postal_code }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{ addressFacturacion?.country }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{ addressFacturacion?.city }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                                <span class="body1"> -- </span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{ addressPrincipal?.phone }}</span>
-                                            </div>
-                                        </div>
-                                        <label class="label my-3">
-                                            <input
-                                                type="checkbox"
-                                                v-model="useDefaultAddress2"
-                                                id="useDefaultAddress2"
-                                            />
-                                            <span class="body-1 black--text text">
-                                                Usar la misma Dirección de envió para que Idovela entreguela factura
-                                                física.
-                                            </span>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <v-divider class="my-3" />
-                                        <CustomButton
-                                            v-if="
-                                                Object.entries(addressFacturacion).length !== 0 &&
-                                                useDefaultAddress2 == false
-                                            "
-                                            class="mr-3"
-                                            color="grey"
-                                            text="Editar"
-                                            @click="editAddress(addressFacturacion, 'billing')"
-                                        />
-                                        <CustomButton
-                                            v-if="
-                                                Object.entries(addressFacturacion).length === 0 &&
-                                                useDefaultAddress2 == false
-                                            "
-                                            block
-                                            color="grey"
-                                            text="Añadir Dirección"
-                                            @click="openAdress('billing')"
-                                        />
-                                    </div> -->
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <AddressDialog
-                                :typeAddress="typeAddress"
-                                :show="addDialogShow"
-                                @close="addressDialogClosed"
-                                :old-address="addressSelectedForEdit"
-                            />
-                            <ProfileDialog
-                                :show="profileDialogShow"
-                                @close="profileDialogClosed"
-                                :old-profile="profileSelectedForEdit"
-                            />
-                            <v-row>
-                                <v-col cols="12">
-                                    <h5 class="fw-600">Costo logístico</h5>
+                                    <!-- <h5 class="fw-600">Costo logístico</h5>
                                     <v-divider class="my-4" />
                                     <div class="form">
                                         <v-row>
@@ -492,7 +411,7 @@
                                                 </div>
                                             </v-col>
                                         </v-row>
-                                    </div>
+                                    </div> -->
 
                                     <br />
                                 </v-col>
@@ -510,9 +429,9 @@
                         </v-col>
                     </v-row>
                 </v-stepper-content>
-                <v-stepper-content step="3">
+                <v-stepper-content class="tamaño-responsive" step="3">
                     <v-row>
-                        <v-col cols="12" md="6" order="1" order-md="1" order-sm="2">
+                        <v-col cols="12" md="6" order="2" order-md="1" order-sm="1">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
                             <v-divider class="my-4" />
                             <div class="form">
@@ -534,8 +453,13 @@
                                         <input type="radio" v-model="pick" :value="5" />
                                     </v-col>
                                     <v-col>
-                                        <TypePayment img="/public/assets/img/transferir.png" text="Transferir" />
-                                        <input type="radio" v-model="pick" checked="false" :value="4" />
+                                        <div class="d-none d-sm-flex">
+                                            <TypePayment img="/public/assets/img/transferir.png" text="Transferir" />
+                                        </div>
+                                        <div class="d-flex d-sm-none">
+                                            <TypePayment img="/public/assets/img/transferir.png" text="Transf" />
+                                        </div>
+                                        <input type="radio" v-model="pick" :value="4" />
                                     </v-col>
                                 </v-row>
                                 <v-divider class="my-3" />
@@ -645,7 +569,7 @@
                                 <CustomButton v-if="pick != 0" class="mt-2" text="Aplicar" color="grey" />
                             </div>
                         </v-col>
-                        <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
+                        <v-col cols="12" md="6" order="1" order-md="2" order-sm="2">
                             <h5 class="fw-600">Facturar a nombre de</h5>
                             <v-divider class="my-4" />
                             <div class="form">
@@ -658,7 +582,7 @@
                                             :items="langSelectItems"
                                         />
                                     </v-col>
-                                    <v-col cols="1" class="pl-0">
+                                    <v-col cols="1" class="pl-0 ojo">
                                         <i
                                             class="las la-eye-slash"
                                             style="font-size: 25px"
@@ -700,7 +624,7 @@
                                         <span class="body1">--</span>
                                     </div>
                                 </div>
-                                <label class="label my-3">
+                                <!-- <label class="label my-3">
                                     <input type="checkbox" v-model="useDefaultAddress2" id="useDefaultAddress2" />
                                     <span class="body-1 black--text text">
                                         Usar la misma Dirección de envió para que Idovela entreguela factura física.
@@ -725,10 +649,12 @@
                                     color="grey"
                                     text="Añadir Dirección"
                                     @click="openAdress('billing')"
-                                />
+                                /> -->
                             </div>
                         </v-col>
-                        <v-col cols="12" md="6" order="2" order-md="2" order-sm="1">
+                        <v-col cols="12" md="6" order="3" order-md="3" order-sm="3">
+                            <h5 class="fw-600">Codigo promocional</h5>
+                            <v-divider class="my-4" />
                             <div class="form">
                                 <v-row>
                                     <v-col cols="3" style="display: flex; place-items: center">
@@ -762,43 +688,48 @@
                         </v-col>
                     </v-row>
                 </v-stepper-content>
-                <v-stepper-content step="4">
+                <v-stepper-content class="tamaño-responsive" step="4">
                     <v-row>
                         <v-col cols="12">
                             <div class="div-alert">
                                 <div class="information">
-                                    <div>
-                                        <span class="success"><i class="las la-check"></i></span>
-                                    </div>
+                                    <v-row>
+                                        <v-col
+                                            cols="2"
+                                            sm="1"
+                                            style="
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                                place-items: center;
+                                            "
+                                        >
+                                            <div>
+                                                <span class="success"><i class="las la-check"></i></span>
+                                            </div>
+                                        </v-col>
 
-                                    <div>
-                                        <v-row style="width: 130%">
-                                            <v-col cols="12" sm="9">
-                                                <h6 class="font-weight-bold">Gracias por registrarse</h6>
-                                                <p class="body-1 mb-0" style="margin-top: 4px">
-                                                    Enviaremos al e-mail de facturación un correo de verificación por la
-                                                    compra
-                                                </p>
-                                            </v-col>
-                                            <v-col
-                                                cols="12"
-                                                sm="3"
-                                                style="
-                                                    display: flex;
-                                                    justify-content: center;
-                                                    align-items: center;
-                                                    place-items: center;
-                                                "
-                                            >
-                                                <CustomButton
-                                                    text="FINALIZAR"
-                                                    width="150"
-                                                    color="nero"
-                                                    @click="numberPag = 3"
-                                                />
-                                            </v-col>
-                                        </v-row>
-                                    </div>
+                                        <v-col cols="10" sm="8">
+                                            <h6 class="font-weight-bold">Gracias por registrarse</h6>
+                                            <p class="body-1 mb-0" style="margin-top: 4px">
+                                                Enviaremos al e-mail de facturación un correo de verificación por la
+                                                compra
+                                            </p>
+                                        </v-col>
+
+                                        <v-col class="finalizar" cols="12" sm="3">
+                                            <CustomButton
+                                                text="FINALIZAR"
+                                                width="150"
+                                                color="nero"
+                                                @click="numberPag = 3"
+                                            />
+                                        </v-col>
+
+                                        <div>
+                                            <v-row> </v-row>
+                                        </div>
+                                    </v-row>
                                 </div>
                             </div>
                         </v-col>
@@ -816,7 +747,7 @@
                         </v-col>
                     </v-row>
                     <v-row>
-                        <v-col cols="12" sm="6">
+                        <v-col cols="12" md="6">
                             <div class="form">
                                 <h6 class="black--text bold">Seguimiento de envió</h6>
                                 <v-divider class="my-3" />
@@ -828,7 +759,7 @@
                                                     En verificación
                                                 </span>
                                             </v-col>
-                                            <v-col>
+                                            <v-col class="seguimiento">
                                                 <span class="body2 font-weight-bold">jueves 07, abril</span>
                                             </v-col>
                                         </v-row>
@@ -838,7 +769,7 @@
                                             <v-col>
                                                 <span class="body2 text-uppercase font-weight-bold">Facturación</span>
                                             </v-col>
-                                            <v-col>
+                                            <v-col class="seguimiento">
                                                 <span class="body2 font-weight-bold">sabado 09, abril</span>
                                             </v-col>
                                         </v-row>
@@ -848,20 +779,20 @@
                                             <v-col>
                                                 <span class="body2 text-uppercase font-weight-bold">Alistamiento</span>
                                             </v-col>
-                                            <v-col>
+                                            <v-col class="seguimiento">
                                                 <span class="body2 font-weight-bold">lunes 05, julio</span>
                                             </v-col>
                                         </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
                                         <v-row>
-                                            <v-col>
+                                            <v-col cols="8">
                                                 <span class="body2 text-uppercase font-weight-bold">
                                                     Recogido por transportadora
                                                 </span>
                                             </v-col>
-                                            <v-col>
-                                                <span class="body2 font-weight-bold">miércoles 07, julio</span>
+                                            <v-col class="seguimiento">
+                                                <span class="body2 font-weight-bold">martes 07, julio</span>
                                             </v-col>
                                         </v-row>
                                     </v-timeline-item>
@@ -872,7 +803,7 @@
                                                     Entregado a cliente
                                                 </span>
                                             </v-col>
-                                            <v-col>
+                                            <v-col class="seguimiento">
                                                 <span class="body2 font-weight-bold">viernes 09, julio</span>
                                             </v-col>
                                         </v-row>
@@ -883,7 +814,7 @@
                                 </a>
                             </div>
                         </v-col>
-                        <v-col cols="12" sm="6">
+                        <v-col cols="12" md="6">
                             <div class="form">
                                 <h6 class="black--text bold">Seguimiento de servicio</h6>
                                 <v-divider class="my-3" />
@@ -893,7 +824,7 @@
                                             <v-col>
                                                 <span class="body2 text-uppercase font-weight-bold">Comprado</span>
                                             </v-col>
-                                            <v-col>
+                                            <v-col class="seguimiento">
                                                 <span class="body2 font-weight-bold">jueves 07, abril</span>
                                             </v-col>
                                         </v-row>
@@ -902,6 +833,9 @@
                                         <v-row>
                                             <v-col>
                                                 <span class="body2 text-uppercase font-weight-bold">Agendamiento</span>
+                                            </v-col>
+                                            <v-col class="seguimiento">
+                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
                                             </v-col>
                                         </v-row>
                                     </v-timeline-item>
@@ -912,14 +846,20 @@
                                                     En preparación
                                                 </span>
                                             </v-col>
+                                            <v-col class="seguimiento">
+                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                            </v-col>
                                         </v-row>
                                     </v-timeline-item>
                                     <v-timeline-item color="black" small fill-dot>
                                         <v-row>
-                                            <v-col>
+                                            <v-col cols="7">
                                                 <span class="body2 text-uppercase font-weight-bold">
                                                     Verificación de adecuación
                                                 </span>
+                                            </v-col>
+                                            <v-col class="seguimiento">
+                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
                                             </v-col>
                                         </v-row>
                                     </v-timeline-item>
@@ -929,6 +869,9 @@
                                                 <span class="body2 text-uppercase font-weight-bold">
                                                     Instalación concluida
                                                 </span>
+                                            </v-col>
+                                            <v-col class="seguimiento">
+                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
                                             </v-col>
                                         </v-row>
                                     </v-timeline-item>
@@ -943,12 +886,14 @@
                         <h5 class="fw-600">Lista de Pedido</h5>
                         <v-divider class="my-4" style="margin-bottom: 34px !important" />
 
-                        <v-row style="overflow-y: scroll; max-height: 450px; width: 95%">
+                        <v-row class="lista-pedido">
                             <div class="cart-table-header mb-2" style="width: 100%">
                                 <div style="padding-left: 4%">Productos</div>
                                 <div>Precio</div>
-                                <div>Cantidad</div>
-                                <div>Opciones</div>
+                                <div class="d-none d-md-flex">Cantidad</div>
+                                <div class="d-flex d-md-none">Cant</div>
+                                <div class="d-none d-sm-flex">Opciones</div>
+                                <div class="d-flex d-sm-none">Opc</div>
                             </div>
                             <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
                                 <ProductCart
@@ -998,7 +943,7 @@
                                             <v-col cols="11">
                                                 <h5 class="black--text">Variable nombre de dirección *</h5>
                                             </v-col>
-                                            <v-col cols="1" class="pl-0">
+                                            <v-col cols="1" class="pl-0 ojo">
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
@@ -1150,7 +1095,7 @@
                                             <v-col cols="11">
                                                 <h5 class="black--text">Nombre de dirección servicio *</h5>
                                             </v-col>
-                                            <v-col cols="1" class="pl-0">
+                                            <v-col cols="1" class="pl-0 ojo">
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
@@ -1282,7 +1227,7 @@
                                             <v-col cols="11">
                                                 <h5 class="black--text">Usuario principal</h5>
                                             </v-col>
-                                            <v-col cols="1" class="pl-0">
+                                            <v-col cols="1" class="pl-0 ojo">
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
@@ -1417,7 +1362,7 @@
                     <v-divider class="my-4" />
 
                     <v-row>
-                        <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.5%; text-align: left">
+                        <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.2rem; text-align: left">
                             Protección de datos personales: IDOVELA S.A.S garantiza el tratamiento de datos personales
                             acorde a lo establecido en la ley 1581/2012 y decreto 1377/2013. por favor dirija sus
                             inquietudes al correo: soporte@idovela.com Riesgo de lavado de activos, financiación al
@@ -1841,7 +1786,12 @@ export default {
         &-header {
             display: grid;
             align-items: stretch;
-            grid-template-columns: 5fr 2fr 2fr 3fr;
+            grid-template-columns: 6fr 4fr 1fr 1fr;
+
+            @media (min-width: 768px) {
+                grid-template-columns: 5fr 2fr 2fr 3fr;
+                padding: 0.75rem 0;
+            }
 
             div {
                 font-size: var(--font-size-body1);
@@ -1974,16 +1924,13 @@ export default {
     background-color: #dfdfdf;
     border-radius: 10px;
     padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
-.information {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+//.information {
+//   display: flex;
+// align-items: center;
+//gap: 10px;
+//}
 
 @media (max-width: 600px) {
     .div-alert {
@@ -2078,5 +2025,50 @@ export default {
             }
         }
     }
+}
+
+.finalizar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    place-items: center;
+
+    @media screen and (max-width: 602px) {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        place-items: center;
+    }
+}
+
+.seguimiento {
+    display: flex;
+    justify-content: flex-end;
+    place-items: center;
+    align-items: center;
+    @media screen and (max-width: 821px) {
+        padding-right: 5px;
+    }
+}
+
+@media screen and (max-width: 821px) {
+    .tamaño-responsive {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+}
+
+.lista-pedido {
+    overflow-y: scroll;
+    max-height: 450px;
+    width: 95%;
+    @media screen and (max-width: 821px) {
+        width: 100%;
+    }
+}
+
+.ojo {
+    display: flex;
+    align-items: center;
 }
 </style>
