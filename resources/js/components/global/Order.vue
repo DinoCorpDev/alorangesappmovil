@@ -1,14 +1,16 @@
 <template>
     <div class="div-order">
         <v-row class="order">
-            <v-col cols="8">
+            <v-col cols="7">
                 <div>
                     <h5 class="font-weight-bold">Orden de pedido # {{ order }}</h5>
-                    <p class="body-1">Fecha {{ day }} de {{ month }} de {{ year }}</p>
+                    <p class="body-1" style="margin: 0 !important">Fecha {{ day }} de {{ month }} de {{ year }}</p>
                 </div>
             </v-col>
-            <v-divider vertical style="max-height: 20px;" />
-            <v-col cols="4" class="pr-5 iconos">
+            <v-col cols="2" style="display: flex; justify-content: flex-end;">
+                <v-divider vertical />
+            </v-col>
+            <v-col cols="3" class="pr-5 iconos">
                 <div class="d-none d-md-flex pr-5 iconos">
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
@@ -37,16 +39,15 @@
                         <span>Imprimir</span>
                     </v-tooltip>
                 </div>
-                <div class="d-md-none">
+                <div class="d-md-none" style="display: flex; justify-content: flex-end;">
                     <v-menu offset-y>
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
-                            color="primary"
-                            dark
                             v-bind="attrs"
                             v-on="on"
+                            style="box-shadow: none; background-color: transparent;"
                             >
-                            <i class="las la-bars"></i>
+                            <Ellipsis />
                             </v-btn>
                         </template>
                         <v-list>
@@ -66,25 +67,6 @@
             </v-col>
         </v-row>
 
-        <!-- <div class="div-status">
-             <v-divider vertical />
-             <div class="d-none d-sm-flex">
-                <custom-button v-if="icon1" plain > <Descargar /> </custom-button>
-                <custom-button v-if="icon2" plain :to="{ name: 'InvoicesDetails' }" > <Compartir /> </custom-button>
-                <custom-button v-if="icon3" plain > <Imprimir /> </custom-button>
-            </div>
-            <div class="d-sm-none">
-                <custom-button plain icon="la-ellipsis-v" />
-            </div>
-             <div>
-                <div class="status">
-                    <p class="text-uppercase font-weight-bold">ESTADO</p>
-                    <div class="color-status" :class="colorStatus"></div>
-                </div>
-                <p>{{ descriptionStatus }}</p>
-            </div> 
-
-        </div> -->
     </div>
 </template>
 
@@ -93,6 +75,7 @@ import CustomButton from "./CustomButton.vue";
 import Compartir from "../../components/icons/Compartir.vue";
 import Imprimir from "../../components/icons/Imprimir.vue";
 import Descargar from "../../components/icons/Descargar.vue";
+import Ellipsis from "../../components/icons/EllipsisIcon.vue";
 
 export default {
     data: () => ({
@@ -106,7 +89,8 @@ export default {
         CustomButton,
         Compartir,
         Imprimir,
-        Descargar
+        Descargar,
+        Ellipsis
     },
     props: {
         order: String,
