@@ -254,7 +254,7 @@ export default {
 
 
     border-radius: 10px;
-    background-color: #fafcfc;
+    background-color: #f5f5f5;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     box-sizing: border-box;

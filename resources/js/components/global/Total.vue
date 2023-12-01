@@ -1,13 +1,13 @@
 <template>
-    <div class="d-flex justify-center">
+    <div class="inicio d-flex justify-center">
         <div class="div_total">
-            <div style="display: flex; align-items: end">
+            <div class="cuerpo" style="display: flex; align-items: end">
                 <span class="text-uppercase bold title" style="padding-right: 21px">SUBTOTAL </span>
                 <span class="text-uppercase price"> {{ format_price(getCartPrice) }} COP</span>
-                <v-divider vertical style="margin-left: 114px; margin-right: 38px"></v-divider>
-                <div style="background: white; display: flex; align-items: center; justify-content: center">
+                <!-- <v-divider vertical style="margin-left: 114px; margin-right: 38px"></v-divider>
+                <div class="icono-cantidad">
                     <CustomFavorite /> <span style="color: #919191; margin-left: 10px">{{ getCartCount }}</span>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -16,6 +16,7 @@
 <script>
 import { mapGetters } from "vuex";
 import CustomFavorite from "../../components/icons/CustomFavorite.vue";
+
 export default {
     name: "Total",
     components: {
@@ -58,5 +59,13 @@ export default {
     .iva {
         font: normal normal 600 10px/13px Overpass;
     }
+}
+
+.icono-cantidad{
+    background: white; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    
 }
 </style>
