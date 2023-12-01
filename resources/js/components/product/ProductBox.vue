@@ -2,12 +2,12 @@
     <div class="product-box">
         <div class="product-box-header">
             <template v-if="isThisWishlisted(productDetails.id)">
-                <button type="button" class="icon active" @click="removeFromWishlist(productDetails.id)">
+                <button type="button" class="icon active" @click="removeFromWishlist(productDetails)">
                     <FavoriteIcon />
                 </button>
             </template>
             <template v-else>
-                <button type="button" class="icon" @click="addNewWishlist(productDetails.id)">
+                <button type="button" class="icon" @click="addNewWishlist(productDetails)">
                     <FavoriteIcon />
                 </button>
             </template>
@@ -69,6 +69,9 @@ export default {
         boxStyle: { type: String, default: "one" },
         productDetails: { type: Object, required: true, default: {} },
         actionLoading: false
+    },
+    mounted() {
+        this.productDetails.type = "product";
     },
     data() {
         return {

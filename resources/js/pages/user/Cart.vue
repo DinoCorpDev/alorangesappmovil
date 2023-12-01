@@ -102,7 +102,7 @@
                                         <v-row>
                                             <v-col cols="11">
                                                 <SelectCustom
-                                                    dark="true"
+                                                    :dark="darkBoxes"
                                                     label="Usuario Principal"
                                                     :items="addressesParaEnvio"
                                                     @input="changeAddress($event, 0)"
@@ -115,13 +115,13 @@
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
-                                                    v-if="mostrarDatos"
-                                                    @click="ocultarDatosUsuario"
+                                                    v-if="mostrarDatosEnvio"
+                                                    @click="toggleDatosEnvio"
                                                 ></i>
                                                 <i
                                                     class="las la-eye"
                                                     style="font-size: 25px"
-                                                    @click="mostrarDatosUsuario"
+                                                    @click="toggleDatosEnvio"
                                                     v-else
                                                 ></i>
                                             </v-col>
@@ -138,30 +138,37 @@
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Dirección</span>
                                             <span class="body1">{{
-                                                selectedAddressEnvio?.address || "No registra"
+                                                selectedAddressEnvio?.address ||
+                                                "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold"> Dirección adicional </span>
                                             <span class="body1">{{
-                                                selectedAddressEnvio?.address || "No registra"
+                                                selectedAddressEnvio?.address ||
+                                                "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
                                             <span class="body1">{{
-                                                selectedAddressEnvio?.postal_code || "No registra"
+                                                selectedAddressEnvio?.postal_code ||
+                                                "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Departamento</span>
                                             <span class="body1">{{
-                                                selectedAddressEnvio?.country || "No registra"
+                                                selectedAddressEnvio?.country ||
+                                                "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{ selectedAddressEnvio?.city || "No registra" }}</span>
+                                            <span class="body1">{{
+                                                selectedAddressEnvio?.city ||
+                                                "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Localidad</span>
@@ -170,12 +177,17 @@
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Barrio</span>
                                             <span class="body1">
-                                                {{ selectedAddressEnvio?.neighborhood || "No registra" }}
+                                                {{
+                                                    selectedAddressEnvio?.neighborhood ||
+                                                    "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}
                                             </span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                            <span class="body1">{{
+                                                addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                            }}</span>
                                         </div>
                                         <CustomButton
                                             v-if="Object.entries(addressPrincipal).length !== 0"
@@ -235,7 +247,7 @@
                                             <v-row>
                                                 <v-col cols="11">
                                                     <SelectCustom
-                                                        dark="true"
+                                                        :dark="darkBoxes"
                                                         label="Ingrese una direccion"
                                                         :items="addressesParaServicio"
                                                         @input="changeAddress($event, 1)"
@@ -248,13 +260,13 @@
                                                     <i
                                                         class="las la-eye-slash"
                                                         style="font-size: 25px"
-                                                        v-if="mostrarDatos"
-                                                        @click="ocultarDatosUsuario"
+                                                        v-if="mostrarDatosServicio"
+                                                        @click="toggleDatosServicio"
                                                     ></i>
                                                     <i
                                                         class="las la-eye"
                                                         style="font-size: 25px"
-                                                        @click="mostrarDatosUsuario"
+                                                        @click="toggleDatosServicio"
                                                         v-else
                                                     ></i>
                                                 </v-col>
@@ -266,11 +278,16 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                                <span class="body1">{{ addressServicio?.name }}</span>
+                                                <span class="body1">{{
+                                                    addressServicio?.name | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{ addressServicio?.address }}</span>
+                                                <span class="body1 text-right">{{
+                                                    addressServicio?.address
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold"> Dirección adicional </span>
@@ -278,15 +295,23 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{ addressServicio?.postal_code }}</span>
+                                                <span class="body1">{{
+                                                    addressServicio?.postal_code
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{ addressServicio?.country }}</span>
+                                                <span class="body1">{{
+                                                    addressServicio?.country
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{ addressServicio?.city }}</span>
+                                                <span class="body1">{{
+                                                    addressServicio?.city | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">localidad</span>
@@ -298,7 +323,10 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.phone
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                         </div>
                                         <label class="label my-3">
@@ -438,19 +466,43 @@
                                 <v-row>
                                     <v-col>
                                         <TypePayment img="/public/assets/img/pse.png" text="Pse" />
-                                        <input type="radio" v-model="pick" checked="false" :value="1" />
+                                        <input
+                                            type="radio"
+                                            name="medio-de-pago"
+                                            autocomplete="off"
+                                            v-model="pick"
+                                            :value="1"
+                                        />
                                     </v-col>
                                     <v-col>
                                         <TypePayment img="/public/assets/img/credito.png" text="Credito" />
-                                        <input type="radio" v-model="pick" checked="false" :value="2" />
+                                        <input
+                                            type="radio"
+                                            name="medio-de-pago"
+                                            autocomplete="off"
+                                            v-model="pick"
+                                            :value="2"
+                                        />
                                     </v-col>
                                     <v-col>
                                         <TypePayment img="/public/assets/img/debito.png" text="Debito" />
-                                        <input type="radio" v-model="pick" checked="false" :value="3" />
+                                        <input
+                                            type="radio"
+                                            name="medio-de-pago"
+                                            autocomplete="off"
+                                            v-model="pick"
+                                            :value="3"
+                                        />
                                     </v-col>
                                     <v-col>
                                         <TypePayment img="/public/assets/img/efecty.png" text="Efecty" />
-                                        <input type="radio" v-model="pick" :value="5" />
+                                        <input
+                                            type="radio"
+                                            name="medio-de-pago"
+                                            autocomplete="off"
+                                            v-model="pick"
+                                            :value="5"
+                                        />
                                     </v-col>
                                     <v-col>
                                         <div class="d-none d-sm-flex">
@@ -459,7 +511,7 @@
                                         <div class="d-flex d-sm-none">
                                             <TypePayment img="/public/assets/img/transferir.png" text="Transf" />
                                         </div>
-                                        <input type="radio" v-model="pick" :value="4" />
+                                        <input type="radio" name="medio-de-pago" autocomplete="off" :value="4" />
                                     </v-col>
                                 </v-row>
                                 <v-divider class="my-3" />
@@ -467,14 +519,14 @@
                                     <label class="text-uppercase">Tipo de Persona</label>
                                     <SelectCustom
                                         class="selector"
-                                        dark
+                                        :dark="darkBoxes"
                                         label="Tipo de persona"
                                         :items="langSelectItems"
                                     />
                                     <label class="text-uppercase">Banco</label>
                                     <SelectCustom
                                         class="selector"
-                                        dark
+                                        :dark="darkBoxes"
                                         label="Seleccionar banco"
                                         :items="langSelectItems"
                                     />
@@ -487,7 +539,7 @@
                                     <label class="text-uppercase">Fecha de expedicion</label>
                                     <SelectCustom
                                         class="selector"
-                                        dark
+                                        :dark="darkBoxes"
                                         label="Tipo de persona"
                                         :items="langSelectItems"
                                     />
@@ -498,7 +550,7 @@
                                     <label class="text-uppercase">Documento</label>
                                     <SelectCustom
                                         class="selector"
-                                        dark
+                                        :dark="darkBoxes"
                                         label="Seleccionar banco"
                                         :items="langSelectItems"
                                     />
@@ -513,7 +565,7 @@
                                     <label class="text-uppercase">Fecha de expedicion</label>
                                     <SelectCustom
                                         class="selector"
-                                        dark
+                                        :dark="darkBoxes"
                                         label="Tipo de persona"
                                         :items="langSelectItems"
                                     />
@@ -524,7 +576,7 @@
                                     <label class="text-uppercase">Documento</label>
                                     <SelectCustom
                                         class="selector"
-                                        dark
+                                        :dark="darkBoxes"
                                         label="Seleccionar banco"
                                         :items="langSelectItems"
                                     />
@@ -576,7 +628,6 @@
                                 <v-row>
                                     <v-col cols="11">
                                         <SelectCustom
-                                            clear
                                             class="selector"
                                             label="Usuario Principal"
                                             :items="langSelectItems"
@@ -586,13 +637,13 @@
                                         <i
                                             class="las la-eye-slash"
                                             style="font-size: 25px"
-                                            v-if="mostrarDatos"
-                                            @click="ocultarDatosUsuario"
+                                            v-if="mostrarDatosFacturacion"
+                                            @click="toggleDatosFacturacion"
                                         ></i>
                                         <i
                                             class="las la-eye"
                                             style="font-size: 25px"
-                                            @click="mostrarDatosUsuario"
+                                            @click="toggleDatosFacturacion"
                                             v-else
                                         ></i>
                                     </v-col>
@@ -613,7 +664,9 @@
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                        <span class="body1">{{ addressFacturacion?.address }}</span>
+                                        <span class="body1">{{
+                                            addressFacturacion?.address | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                        }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold">Tipo de documento</span>
@@ -947,13 +1000,13 @@
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
-                                                    v-if="mostrarDatos"
-                                                    @click="ocultarDatosUsuario"
+                                                    v-if="mostrarDatosEnvio"
+                                                    @click="toggleDatosEnvio"
                                                 ></i>
                                                 <i
                                                     class="las la-eye"
                                                     style="font-size: 25px"
-                                                    @click="mostrarDatosUsuario"
+                                                    @click="toggleDatosEnvio"
                                                     v-else
                                                 ></i>
                                             </v-col>
@@ -971,25 +1024,39 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{ addressFacturacion?.address }}</span>
+                                                <span class="body1 text-right">{{
+                                                    addressFacturacion?.address
+                                                        | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">
                                                     Descripción de Dirección
                                                 </span>
-                                                <span class="body1">{{ addressFacturacion?.address }}</span>
+                                                <span class="body1">{{
+                                                    addressFacturacion?.address
+                                                        | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{ addressFacturacion?.postal_code }}</span>
+                                                <span class="body1">{{
+                                                    addressFacturacion?.postal_code
+                                                        | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{ addressFacturacion?.country }}</span>
+                                                <span class="body1">{{
+                                                    addressFacturacion?.country
+                                                        | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{ addressFacturacion?.city }}</span>
+                                                <span class="body1">{{
+                                                    addressFacturacion?.city | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -997,7 +1064,9 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                         </div>
 
@@ -1014,25 +1083,36 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{ addressPrincipal?.address }}</span>
+                                                <span class="body1 text-right">{{
+                                                    addressPrincipal?.address | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">
                                                     Descripción de Dirección
                                                 </span>
-                                                <span class="body1">{{ addressPrincipal?.address }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.address | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{ addressPrincipal?.postal_code }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.postal_code
+                                                        | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{ addressPrincipal?.country }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.country | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{ addressPrincipal?.city }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.city | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -1042,11 +1122,15 @@
                                                 <span class="subtitle1 text-uppercase bold">
                                                     Nombre de quien lo va a recibir
                                                 </span>
-                                                <span class="body1">{{ addressPrincipal?.name }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.name | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                }}</span>
                                             </div>
                                         </div>
 
@@ -1099,13 +1183,13 @@
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
-                                                    v-if="mostrarDatos"
-                                                    @click="ocultarDatosUsuario"
+                                                    v-if="mostrarDatosServicio"
+                                                    @click="toggleDatosServicio"
                                                 ></i>
                                                 <i
                                                     class="las la-eye"
                                                     style="font-size: 25px"
-                                                    @click="mostrarDatosUsuario"
+                                                    @click="toggleDatosServicio"
                                                     v-else
                                                 ></i>
                                             </v-col>
@@ -1124,25 +1208,39 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1">{{ addressServicio?.address }}</span>
+                                                <span class="body1">{{
+                                                    addressServicio?.address
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">
                                                     Descripción de Dirección
                                                 </span>
-                                                <span class="body1">{{ addressServicio?.address }}</span>
+                                                <span class="body1">{{
+                                                    addressServicio?.address
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{ addressServicio?.postal_code }}</span>
+                                                <span class="body1">{{
+                                                    addressServicio?.postal_code
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{ addressServicio?.country }}</span>
+                                                <span class="body1">{{
+                                                    addressServicio?.country
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{ addressServicio?.city }}</span>
+                                                <span class="body1">{{
+                                                    addressServicio?.city | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -1150,7 +1248,10 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.phone
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                         </div>
 
@@ -1167,25 +1268,39 @@
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{ addressPrincipal?.address }}</span>
+                                                <span class="body1 text-right">{{
+                                                    addressPrincipal?.address
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">
                                                     Descripción de Dirección
                                                 </span>
-                                                <span class="body1">{{ addressPrincipal?.address }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.address
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{ addressPrincipal?.postal_code }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.postal_code
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{ addressPrincipal?.country }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.country
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{ addressPrincipal?.city }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.city | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -1195,11 +1310,16 @@
                                                 <span class="subtitle1 text-uppercase bold">
                                                     Nombre de quien lo va a recibir
                                                 </span>
-                                                <span class="body1">{{ addressPrincipal?.name }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.name | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                                <span class="body1">{{
+                                                    addressPrincipal?.phone
+                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
+                                                }}</span>
                                             </div>
                                         </div>
 
@@ -1231,13 +1351,13 @@
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
-                                                    v-if="mostrarDatos"
-                                                    @click="ocultarDatosUsuario"
+                                                    v-if="mostrarDatosFacturacion"
+                                                    @click="toggleDatosFacturacion"
                                                 ></i>
                                                 <i
                                                     class="las la-eye"
                                                     style="font-size: 25px"
-                                                    @click="mostrarDatosUsuario"
+                                                    @click="toggleDatosFacturacion"
                                                     v-else
                                                 ></i>
                                             </v-col>
@@ -1246,7 +1366,7 @@
                                         <v-divider class="my-3" />
                                         <SelectCustom
                                             class="selector"
-                                            dark
+                                            :dark="darkBoxes"
                                             label="Usuario Principal"
                                             :items="langSelectItems"
                                         />
@@ -1256,25 +1376,39 @@
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1 text-right">{{ addressPrincipal?.address }}</span>
+                                            <span class="body1 text-right">{{
+                                                addressPrincipal?.address
+                                                    | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">
                                                 Descripción de Dirección
                                             </span>
-                                            <span class="body1">{{ addressPrincipal?.address }}</span>
+                                            <span class="body1">{{
+                                                addressPrincipal?.address
+                                                    | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{ addressPrincipal?.postal_code }}</span>
+                                            <span class="body1">{{
+                                                addressPrincipal?.postal_code
+                                                    | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{ addressPrincipal?.country }}</span>
+                                            <span class="body1">{{
+                                                addressPrincipal?.country
+                                                    | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{ addressPrincipal?.city }}</span>
+                                            <span class="body1">{{
+                                                addressPrincipal?.city | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Barrio</span>
@@ -1284,11 +1418,15 @@
                                             <span class="subtitle1 text-uppercase bold">
                                                 Nombre de quien lo va a recibir
                                             </span>
-                                            <span class="body1">{{ addressPrincipal?.name }}</span>
+                                            <span class="body1">{{
+                                                addressPrincipal?.name | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{ addressPrincipal?.phone }}</span>
+                                            <span class="body1">{{
+                                                addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                            }}</span>
                                         </div>
                                     </div>
                                 </v-col>
@@ -1445,6 +1583,7 @@ export default {
             langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"],
             step: 1,
             numberPag: 1,
+            darkBoxes: true,
             cartItems: [],
             priceTotal: 0,
             addDialogShow: false,
@@ -1467,7 +1606,9 @@ export default {
             dataCheckout: {},
             fecha: new Date(),
             pick: 1,
-            mostrarDatos: false
+            mostrarDatosEnvio: false,
+            mostrarDatosServicio: false,
+            mostrarDatosFacturacion: false
         };
     },
     computed: {
@@ -1477,14 +1618,35 @@ export default {
     mounted() {
         this.$vuetify.theme.dark = false;
     },
+    filters: {
+        filtroParaOcultarInfo(value, ocultarInfo) {
+            if (ocultarInfo) {
+                let conteoRestantes = 2;
+                let caracteresIniciales = value.substring(0, 2);
+                let primerosCaracteres = value.length;
+                if (primerosCaracteres == 1) {
+                    conteoRestantes = 1;
+                    caracteresIniciales = value.substring(0, 1);
+                }
+                let caracteresRestantes = value.substring(conteoRestantes).replace(/./g, "*");
+                let nuevaCadena = caracteresIniciales + caracteresRestantes;
+                return nuevaCadena;
+            }
+            return value;
+        }
+    },
     methods: {
         ...mapActions("auth", ["getUser"]),
-        mostrarDatosUsuario() {
-            this.mostrarDatos = true;
+        toggleDatosEnvio() {
+            this.mostrarDatosEnvio = !this.mostrarDatosEnvio;
         },
-        ocultarDatosUsuario() {
-            this.mostrarDatos = false;
+        toggleDatosServicio() {
+            this.mostrarDatosServicio = !this.mostrarDatosServicio;
         },
+        toggleDatosFacturacion() {
+            this.mostrarDatosFacturacion = !this.mostrarDatosFacturacion;
+        },
+        filtradoParaInfo(cadena) {},
         changeAddress(event, direccionCambiar) {
             if (direccionCambiar === 0) {
                 // Direccion de envio
@@ -1714,6 +1876,12 @@ export default {
     border: 1px solid #e4e6e6 !important;
     border-radius: 10px !important;
     box-shadow: none !important;
+}
+
+.hide-button-check {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
 }
 ::v-deep.cartSteper {
     &-card {

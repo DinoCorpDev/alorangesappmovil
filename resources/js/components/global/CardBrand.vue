@@ -1,13 +1,13 @@
 <template>
     <div class="brand-item">
         <div class="brand-item-header">
-            <template v-if="isThisWishlisted(brandDetails.id)">
-                <button type="button" class="icon active" @click="removeFromWishlist(brandDetails.id)">
+            <template v-if="isThisWishlistedBrands(brandDetails.id)">
+                <button type="button" class="icon active" @click="removeFromWishlist(brandDetails)">
                     <FavoriteIcon />
                 </button>
             </template>
             <template v-else>
-                <button type="button" class="icon" @click="addNewWishlist(brandDetails.id)">
+                <button type="button" class="icon" @click="addNewWishlist(brandDetails)">
                     <FavoriteIcon />
                 </button>
             </template>
@@ -44,13 +44,16 @@ export default {
         FavoriteIcon
     },
     computed: {
-        ...mapGetters("wishlist", ["isThisWishlisted"])
+        ...mapGetters("wishlist", ["isThisWishlistedBrands"])
     },
     props: {
         brandDetails: {
             type: Object,
             default: () => {}
         }
+    },
+    mounted() {
+        this.brandDetails.type = "brand";
     },
     methods: {
         ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),

@@ -21,6 +21,12 @@ export default {
         isThisWishlisted: state => product_id => {
             return state.wislistProductIds.includes(product_id);
         },
+        isThisWishlistedServices: state => product_id => {
+            return state.wislistServicesIds.includes(product_id);
+        },
+        isThisWishlistedBrands: state => product_id => {
+            return state.wislistBrandsIds.includes(product_id);
+        },
         getTotalWishlisted(state) {
             return state.wislistProductIds.length;
         },
@@ -99,8 +105,20 @@ export default {
             }
         },
         removeFromWishlist(state, product_id, type) {
-            if (state.wislistProducts.find(item => item.id === product_id)) {
-                state.wislistProducts = state.wislistProducts.filter(val => val.id !== product_id);
+            if (type === "product") {
+                if (state.wislistProducts.find(item => item.id === product_id)) {
+                    state.wislistProducts = state.wislistProducts.filter(val => val.id !== product_id);
+                }
+            }
+            if (type === "service") {
+                if (state.wisListServices.find(item => item.id === product_id)) {
+                    state.wisListServices = state.wisListServices.filter(val => val.id !== product_id);
+                }
+            }
+            if (type === "brand") {
+                if (state.wisListBrands.find(item => item.id === product_id)) {
+                    state.wisListBrands = state.wisListBrands.filter(val => val.id !== product_id);
+                }
             }
         },
         resetWishlist(state) {
@@ -134,18 +152,35 @@ export default {
                 }
             }
         },
-        async addNewWishlist({ commit }, product_id) {
+        async addNewWishlist({ commit }, product) {
+            const product_id = product.id;
+            const elemType = product.type;
+            let baseUrl = `user/wishlists`;
+            let objToSend = {};
+            console.log(elemType);
             if (this.getters["auth/isAuthenticated"]) {
-                commit("addNewWishlistId", product_id);
-                const res = await Mixin.methods.call_api("post", `user/wishlists`, { product_id: product_id });
+                commit("addNewWishlistId", product_id, elemType);
+                if (elemType === "product") {
+                    objToSend = { product_id: product_id };
+                }
+                if (elemType === "service") {
+                    baseUrl = `${baseUrl}/services`;
+                    objToSend = { services_id: product_id };
+                }
+                if (elemType === "brand") {
+                    baseUrl = `${baseUrl}/brands`;
+                    objToSend = { brands_id: product_id };
+                }
+                const res = await Mixin.methods.call_api("post", baseUrl, objToSend);
+
                 if (res.data.success) {
-                    commit("addNewWishlist", res.data.product);
+                    commit("addNewWishlist", res.data.product, elemType);
                     Mixin.methods.snack({
                         message: i18n.t(res.data.message),
                         color: "green"
                     });
                 } else {
-                    commit("removeFromWishlistID", product_id);
+                    commit("removeFromWishlistID", product_id, elemType);
                     Mixin.methods.snack({
                         message: i18n.t("something_went_wrong"),
                         color: "red"
@@ -155,18 +190,30 @@ export default {
                 commit("auth/showLoginDialog", true, { root: true });
             }
         },
-        async removeFromWishlist({ commit }, product_id) {
+        async removeFromWishlist({ commit }, product) {
+            const product_id = product.id;
+            const elemType = product.type;
+            let baseUrl = `user/wishlists`;
             if (this.getters["auth/isAuthenticated"]) {
-                commit("removeFromWishlistID", product_id);
-                const res = await Mixin.methods.call_api("delete", `user/wishlists/${product_id}`);
+                commit("removeFromWishlistID", product_id, elemType);
+                if (elemType === "product") {
+                    baseUrl = `${baseUrl}/${product_id}`;
+                }
+                if (elemType === "service") {
+                    baseUrl = `${baseUrl}/services/${product_id}`;
+                }
+                if (elemType === "brand") {
+                    baseUrl = `${baseUrl}/brands/${product_id}`;
+                }
+                const res = await Mixin.methods.call_api("delete", baseUrl);
                 if (res.data.success) {
-                    commit("removeFromWishlist", product_id);
+                    commit("removeFromWishlist", product_id, elemType);
                     Mixin.methods.snack({
                         message: i18n.t(res.data.message),
                         color: "green"
                     });
                 } else {
-                    commit("addNewWishlistId", product_id);
+                    commit("addNewWishlistId", product_id, elemType);
                     Mixin.methods.snack({
                         message: i18n.t("something_went_wrong"),
                         color: "red"

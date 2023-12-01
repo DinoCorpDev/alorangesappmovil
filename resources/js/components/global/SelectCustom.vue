@@ -8,7 +8,6 @@
         :item-value="itemValue"
         :items="items"
         :light="light"
-        :clear="clear"
         :placeholder="placeholder"
         :required="required"
         :value="value"
@@ -21,16 +20,12 @@
         rounded
         solo
     >
-    <template v-slot:append> <Flecha /> </template>
+        <template v-slot:append> <Flecha /> </template>
     </v-select>
-    
-
 </template>
 
 <script>
-
 import Flecha from "../../components/icons/Flecha.vue";
-
 
 export default {
     name: "SelectCustom",
@@ -82,12 +77,10 @@ export default {
         multiple: {
             type: Boolean,
             default: false
-        },
-
-        
+        }
     },
     components: {
-            Flecha
+        Flecha
     }
 };
 </script>
@@ -153,7 +146,6 @@ export default {
     }
 }
 
-
 .theme--dark {
     .v-select {
         &::v-deep {
@@ -181,7 +173,7 @@ export default {
     }
 }
 
-.icono-grande{
+.icono-grande {
     font-size: 25px;
 }
 </style>
