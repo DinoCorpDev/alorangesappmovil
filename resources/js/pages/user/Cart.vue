@@ -127,10 +127,15 @@
                                             </v-col>
                                         </v-row>
                                         <v-divider class="my-3" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">País</span>
-                                            <span class="body1">--</span>
-                                        </div>
+                                        <SelectCustom
+                                            dark="true"
+                                            label="Usuario Principal"
+                                            :items="addressesParaEnvio"
+                                            @input="changeAddress($event, 0)"
+                                            item-text="address"
+                                            item-value="id"
+                                            placeholder="Seleccione una opcion"
+                                        />
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
                                             <span class="body1">--</span>
@@ -183,6 +188,7 @@
                                                 }}
                                             </span>
                                         </div>
+
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
                                             <span class="body1">{{
