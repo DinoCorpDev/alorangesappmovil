@@ -26,6 +26,33 @@
                                 <product-box :product-details="product" :is-loading="!wislistLoaded" />
                             </v-col>
                         </v-row>
+                        <v-divider class="my-4" />
+                        <v-row>
+                            <v-col cols="6">
+                                <h5 class="fw-600">Colecciones anheladas</h5>
+
+                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                                    <v-row>
+                                        <v-col cols="3" style="display: flex; place-items: center">
+                                            <ProfileAddress />
+                                        </v-col>
+
+                                        <v-col cols="9" style="display: flex; place-items: center">
+                                            <p class="mb-0">
+                                                Agrega a tu lista las colecciones que deseas adquirir mas adelante.
+                                            </p>
+                                        </v-col>
+                                        <CustomButton
+                                            class="mb-4"
+                                            block
+                                            color="grey"
+                                            text="VER COLECCIONES"
+                                            @click="addAddress"
+                                        />
+                                    </v-row>
+                                </v-card>
+                            </v-col>
+                        </v-row>
                     </template>
                 </v-tab-item>
 
@@ -43,6 +70,33 @@
                         <v-row>
                             <v-col cols="6" sm="6" md="4" lg="2" v-for="(service, i) in getWisListServices" :key="i">
                                 <product-box :product-details="service" :is-loading="!wislistLoaded" />
+                            </v-col>
+                        </v-row>
+                        <v-divider class="my-4" />
+                        <v-row>
+                            <v-col cols="6">
+                                <h5 class="fw-600">Colecciones anheladas</h5>
+
+                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                                    <v-row>
+                                        <v-col cols="3" style="display: flex; place-items: center">
+                                            <ProfileAddress />
+                                        </v-col>
+
+                                        <v-col cols="9" style="display: flex; place-items: center">
+                                            <p class="mb-0">
+                                                Agrega a tu lista las colecciones que deseas adquirir mas adelante.
+                                            </p>
+                                        </v-col>
+                                        <CustomButton
+                                            class="mb-4"
+                                            block
+                                            color="grey"
+                                            text="VER COLECCIONES"
+                                            @click="addAddress"
+                                        />
+                                    </v-row>
+                                </v-card>
                             </v-col>
                         </v-row>
                     </template>
@@ -64,26 +118,36 @@
                                 <product-box :product-details="brands" :is-loading="!wislistLoaded" />
                             </v-col>
                         </v-row>
+                        <v-divider class="my-4" />
+                        <v-row>
+                            <v-col cols="6">
+                                <h5 class="fw-600">Colecciones anheladas</h5>
+
+                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                                    <v-row>
+                                        <v-col cols="3" style="display: flex; place-items: center">
+                                            <ProfileAddress />
+                                        </v-col>
+
+                                        <v-col cols="9" style="display: flex; place-items: center">
+                                            <p class="mb-0">
+                                                Agrega a tu lista las colecciones que deseas adquirir mas adelante.
+                                            </p>
+                                        </v-col>
+                                        <CustomButton
+                                            class="mb-4"
+                                            block
+                                            color="grey"
+                                            text="VER COLECCIONES"
+                                            @click="addAddress"
+                                        />
+                                    </v-row>
+                                </v-card>
+                            </v-col>
+                        </v-row>
                     </template>
                 </v-tab-item>
             </v-tabs-items>
-
-            <!-- AQUÍ TERMINA -->
-            <!-- <v-divider class="my-3" />
-            <v-row v-if="getWislistProducts.length > 0" no-gutters class="wishlist-items">
-                <v-col cols="12" v-for="(product, i) in getWislistProducts" :key="i">
-                    <ProductCart :productDetails="product" productCartType="wishlist" />
-                </v-col>
-            </v-row>
-            <div v-else class="text-center">
-                <div class="emptycart">
-                    <div class="cuadro-emptycart">
-                        <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                        <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
-                        <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
-                    </div>
-                </div>
-            </div> -->
         </v-col>
     </v-row>
 </template>
@@ -93,11 +157,13 @@ import { mapGetters } from "vuex";
 
 import CustomButton from "../../components/global/CustomButton.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
+import ProfileAddress from "../../components/icons/ProfileAddress.vue";
 
 export default {
     components: {
         CustomButton,
-        ProductCart
+        ProductCart,
+        ProfileAddress
     },
     data: () => ({
         currentPage: 1,
@@ -186,6 +252,11 @@ export default {
             color: #ffffff !important;
         }
     }
+}
+
+.form-border {
+    border: 1px solid #e4e4e4;
+    background-color: #f5f5f5;
 }
 // Fin estilos //
 </style>
