@@ -28,13 +28,13 @@
                         </v-row>
                         <v-divider class="my-4" />
                         <v-row>
-                            <v-col cols="6">
+                            <v-col cols="12" sm="6">
                                 <h5 class="fw-600">Colecciones anheladas</h5>
 
                                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                     <v-row>
                                         <v-col cols="3" style="display: flex; place-items: center">
-                                            <ProfileAddress />
+                                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
                                         </v-col>
 
                                         <v-col cols="9" style="display: flex; place-items: center">
@@ -74,13 +74,13 @@
                         </v-row>
                         <v-divider class="my-4" />
                         <v-row>
-                            <v-col cols="6">
+                            <v-col cols="12" sm="6">
                                 <h5 class="fw-600">Colecciones anheladas</h5>
 
                                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                     <v-row>
                                         <v-col cols="3" style="display: flex; place-items: center">
-                                            <ProfileAddress />
+                                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
                                         </v-col>
 
                                         <v-col cols="9" style="display: flex; place-items: center">
@@ -120,13 +120,13 @@
                         </v-row>
                         <v-divider class="my-4" />
                         <v-row>
-                            <v-col cols="6">
+                            <v-col cols="12" sm="6">
                                 <h5 class="fw-600">Colecciones anheladas</h5>
 
                                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                     <v-row>
                                         <v-col cols="3" style="display: flex; place-items: center">
-                                            <ProfileAddress />
+                                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
                                         </v-col>
 
                                         <v-col cols="9" style="display: flex; place-items: center">

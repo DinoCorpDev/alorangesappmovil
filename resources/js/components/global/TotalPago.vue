@@ -39,7 +39,7 @@ export default {
         text-align: center;
     }
     .title {
-        font: normal normal 600 16px/23px Overpass;
+        font: normal normal 600 10px/23px Overpass;
     }
 
     .price {

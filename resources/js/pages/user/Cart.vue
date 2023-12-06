@@ -55,11 +55,11 @@
                         </v-row>
 
                         <v-row class="barra-inferior">
-                            <v-col cols="2" />
                             <v-col
                                 cols="12"
-                                md="7"
-                                style="display: flex; justify-content: flex-start; gap: 25px; align-items: center"
+                                md="9"
+                                class="d-flex justify-center justify-md-end align-center pl-0 pl-md-3"
+                                style="gap: 25px;"
                             >
                                 <total :total="priceTotal" />
                                 <v-divider vertical></v-divider>
@@ -85,10 +85,10 @@
                             <v-col
                                 cols="12"
                                 md="3"
-                                style="display: flex; justify-content: flex-end; align-items: center"
+                                class="d-flex justify-end align-center pl-0 pl-md-3"
                             >
-                                <div v-if="mostrarDetalles == false">
-                                    <CustomButton text="Continuar >" color="grey2" @click="numberPag = 2" />
+                                <div class="boton-continuar" v-if="mostrarDetalles == false">
+                                    <CustomButton class="boton-continuar" text="Continuar >" color="grey2" @click="numberPag = 2" />
                                 </div>
                             </v-col>
                             <v-col cols="12" style="justify-content: center" v-if="mostrarDetalles">
@@ -655,7 +655,7 @@
                         </v-col>
                         <v-col cols="12">
                             <v-row class="barra-inferior">
-                                <v-col cols="2" style="display: flex; justify-content: flex-start; align-items: center">
+                                <v-col  class="d-none d-md-flex justify-start align-center" cols="2" style="display: flex;">
                                     <div v-if="mostrarDetalles == false">
                                         <CustomButton text="< Volver" color="nero" @click="numberPag = 1" />
                                     </div>
@@ -663,7 +663,8 @@
                                 <v-col
                                     cols="12"
                                     md="8"
-                                    style="display: flex; justify-content: flex-start; gap: 25px; align-items: center"
+                                    class="d-flex justify-center justify-md-start  align-center"
+                                    style="gap: 25px;"
                                 >
                                     <TotalFlete :total="priceTotal" />
                                     <v-divider vertical></v-divider>
@@ -720,9 +721,19 @@
                                     md="2"
                                     style="display: flex; justify-content: flex-end; align-items: center"
                                 >
-                                    <div v-if="mostrarDetalles == false">
-                                        <CustomButton text="Continuar >" color="grey2" @click="numberPag = 3" />
-                                    </div>
+                                    <v-row>
+                                        <v-col cols="6" md="0" class="d-flex d-md-none">
+                                            <div v-if="mostrarDetalles == false" class="boton-continuar">
+                                                <CustomButton class="boton-continuar" text="< Volver" color="nero" @click="numberPag = 1" />
+                                            </div>
+                                        </v-col>
+                                        <v-col cols="6" md="12">
+                                            <div v-if="mostrarDetalles == false" class="boton-continuar">
+                                                <CustomButton class="boton-continuar" text="Continuar >" color="grey2" @click="numberPag = 3" />
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+
                                 </v-col>
                                 <v-col cols="12" style="justify-content: center" v-if="mostrarDetalles">
                                     <v-row style="justify-content: center">
@@ -828,11 +839,11 @@
                                         </v-col>
                                     </v-row>
                                     <v-row>
-                                        <v-col style="display: flex; justify-content: flex-start; align-items: center">
-                                            <CustomButton text="< Volver" color="nero" @click="numberPag = 1" />
+                                        <v-col class="boton-continuar" style="display: flex; justify-content: flex-start; align-items: center">
+                                            <CustomButton class="boton-continuar" text="< Volver" color="nero" @click="numberPag = 1" />
                                         </v-col>
-                                        <v-col style="display: flex; justify-content: flex-end; align-items: center">
-                                            <CustomButton text="Continuar >" color="grey2" @click="numberPag = 3" />
+                                        <v-col class="boton-continuar" style="display: flex; justify-content: flex-end; align-items: center">
+                                            <CustomButton class="boton-continuar" text="Continuar >" color="grey2" @click="numberPag = 3" />
                                         </v-col>
                                     </v-row>
                                 </v-col>
@@ -3392,4 +3403,11 @@ export default {
         }
     }
 
+@media screen and (max-width: 959px) {
+    .boton-continuar{
+        width: 100%;
+    }
+}
+
+    
 </style>

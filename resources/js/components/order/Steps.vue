@@ -14,52 +14,52 @@
                     <v-timeline dense>
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
-                                <v-col>
+                                <v-col class="d-flex justify-start align-center">
                                     <span class="body2 text-uppercase font-weight-bold"> En verificación </span>
                                 </v-col>
-                                <v-col>
-                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                <v-col class="d-flex justify-end align-center">
+                                    <span class="body2 font-weight-bold">jueves 08, abril</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
-                                <v-col>
+                                <v-col class="d-flex justify-start align-center">
                                     <span class="body2 text-uppercase font-weight-bold">Facturación</span>
                                 </v-col>
-                                <v-col>
+                                <v-col class="d-flex justify-end align-center">
                                     <span class="body2 font-weight-bold">sabado 09, abril</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
-                                <v-col>
+                                <v-col class="d-flex justify-start align-center">
                                     <span class="body2 text-uppercase font-weight-bold">Alistamiento</span>
                                 </v-col>
-                                <v-col>
+                                <v-col class="d-flex justify-end align-center">
                                     <span class="body2 font-weight-bold">lunes 05, julio</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
-                                <v-col>
+                                <v-col class="d-flex justify-start align-center">
                                     <span class="body2 text-uppercase font-weight-bold">
                                         Recogido por transportadora
                                     </span>
                                 </v-col>
-                                <v-col>
+                                <v-col class="d-flex justify-end align-center">
                                     <span class="body2 font-weight-bold">miércoles 07, julio</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
-                                <v-col>
+                                <v-col class="d-flex justify-start align-center">
                                     <span class="body2 text-uppercase font-weight-bold"> Entregado a cliente </span>
                                 </v-col>
-                                <v-col>
+                                <v-col class="d-flex justify-end align-center">
                                     <span class="body2 font-weight-bold">viernes 09, julio</span>
                                 </v-col>
                             </v-row>
@@ -77,41 +77,53 @@
                     <v-timeline dense>
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
-                                <v-col>
+                                <v-col class="d-flex justify-start align-center">
                                     <span class="body2 text-uppercase font-weight-bold">Comprado</span>
                                 </v-col>
-                                <v-col>
+                                <v-col class="d-flex justify-end align-center">
                                     <span class="body2 font-weight-bold">jueves 07, abril</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
-                                <v-col>
+                                <v-col class="d-flex justify-start align-center">
                                     <span class="body2 text-uppercase font-weight-bold">Agendamiento</span>
                                 </v-col>
-                            </v-row>
-                        </v-timeline-item>
-                        <v-timeline-item color="black" small fill-dot>
-                            <v-row>
-                                <v-col>
-                                    <span class="body2 text-uppercase font-weight-bold"> En preparación </span>
+                                <v-col class="d-flex justify-end align-center">
+                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
-                                <v-col>
+                                <v-col class="d-flex justify-start align-center">
+                                    <span class="body2 text-uppercase font-weight-bold"> En preparación </span>
+                                </v-col>
+                                <v-col class="d-flex justify-end align-center">
+                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                </v-col>
+                            </v-row>
+                        </v-timeline-item>
+                        <v-timeline-item color="black" small fill-dot>
+                            <v-row>
+                                <v-col class="d-flex justify-start align-center">
                                     <span class="body2 text-uppercase font-weight-bold">
                                         Verificación de adecuación
                                     </span>
                                 </v-col>
+                                <v-col class="d-flex justify-end align-center">
+                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                </v-col>
                             </v-row>
                         </v-timeline-item>
                         <v-timeline-item color="black" small fill-dot>
                             <v-row>
-                                <v-col>
+                                <v-col class="d-flex justify-start align-center">
                                     <span class="body2 text-uppercase font-weight-bold"> Instalación concluida </span>
+                                </v-col>
+                                <v-col class="d-flex justify-end align-center">
+                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
