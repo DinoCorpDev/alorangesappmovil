@@ -60,9 +60,10 @@ class OrderController extends Controller
             'orders.shop',
             'orders.collectionDetails.collection.productos.product'
         ])->first();
-
         if ($order) {
             if (auth('api')->user()->id == $order->user_id) {
+                $order_updates = OrderUpdate::where('order_id', $order->id)->get();
+                $order->order_updates = $order_updates;
                 return new OrderSingleCollection($order);
             } else {
                 return response()->json([

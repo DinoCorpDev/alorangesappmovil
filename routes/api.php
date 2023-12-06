@@ -167,7 +167,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::get('order/{order_code}', [OrderController::class, 'show']);
             Route::get('order/cancel/{order_id}', [OrderController::class, 'cancel']);
             Route::get('order/invoice-download/{order_code}', [OrderController::class, 'invoice_download']);
-
             Route::get('review/check/{product_id}', [ReviewController::class, 'check_review_status']);
             Route::post('review/submit', [ReviewController::class, 'submit_review']);
 

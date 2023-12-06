@@ -39,6 +39,7 @@ class OrderResource extends JsonResource
             'courier_name' => $this->courier_name,
             'tracking_number' => $this->tracking_number,
             'tracking_url' => $this->tracking_url,
+            'order_updates' => $this->order_updates
         ];
     }
 

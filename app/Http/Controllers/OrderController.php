@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CommissionHistory;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\OrderUpdate;
 use App\Models\User;
 use App\Models\Wallet;
@@ -170,7 +171,8 @@ class OrderController extends Controller
         OrderUpdate::create([
             'order_id' => $order->id,
             'user_id' => auth()->user()->id,
-            'note' => 'Order status updated to ' . $request->status . '.',
+            'note' => 'Order delivery status updated to ' . $request->status . '.',
+            'status_id' => 0
         ]);
 
         if ($order->delivery_status != 'cancelled' && $request->status == 'cancelled') {
@@ -229,6 +231,24 @@ class OrderController extends Controller
         $order->save();
 
         flash(translate('Delivery status has been updated.'))->success();
+
+        return 1;
+    }
+
+    public function update_service_status(Request $request)
+    {
+        $order = Order::findOrFail($request->order_id);
+        OrderUpdate::create([
+            'order_id' => $order->id,
+            'user_id' => auth()->user()->id,
+            'note' => 'Order service status updated to ' . $request->status . '.',
+            'status_id' => 1
+        ]);
+
+        $order->service_status = $request->status;
+        $order->save();
+
+        flash(translate('Service status has been updated.'))->success();
 
         return 1;
     }

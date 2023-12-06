@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: #fafcfc;">
+    <div style="background-color: #fafcfc">
         <Steps :order-details="order" />
         <div class="my-5">
             <h6>Lista de Pedido</h6>
@@ -17,7 +17,6 @@
                         :showOperation="false"
                         :isCollection="product?.isCollection ?? false"
                         :productsCollection="product?.products"
-                        
                     />
                 </v-col>
             </v-row>
@@ -45,32 +44,32 @@
                 </div>
             </div>
             <v-divider class="my-3" />
-                        <div class="div-total" style="width: 90%">
-                            <div>
-                                <p class="subtitle-2 text-uppercase font-weight-bold">Sub-total</p>
-                                <p class="body-2">{{ format_price(priceTotal) }} COP</p>
-                            </div>
-                            <div>
-                                <p class="subtitle-2 text-uppercase font-weight-bold">Iva</p>
-                                <p class="body-2">000.000.000 COP</p>
-                            </div>
-                            <div>
-                                <p class="subtitle-2 text-uppercase font-weight-bold">Flete</p>
-                                <p class="body-2">000.000.000 COP</p>
-                            </div>
-                            <div>
-                                <p class="subtitle-1 text-uppercase font-weight-bold">Total</p>
-                                <p class="body-1">{{ format_price(priceTotal) }} COP</p>
-                            </div>
-                            <div>
-                                <v-divider class="my-2" style="max-width: 25%;"/>
-                            </div>
-                            <div>
-                                <!-- AQUI -->
-                                <p class="subtitle-2 text-uppercase font-weight-bold">NUMERO DE ARTICULOS</p>
-                                <p class="body-2"><Cubo /> 99</p>
-                            </div>
-                        </div>
+            <div class="div-total" style="width: 90%">
+                <div>
+                    <p class="subtitle-2 text-uppercase font-weight-bold">Sub-total</p>
+                    <p class="body-2">{{ format_price(priceTotal) }} COP</p>
+                </div>
+                <div>
+                    <p class="subtitle-2 text-uppercase font-weight-bold">Iva</p>
+                    <p class="body-2">000.000.000 COP</p>
+                </div>
+                <div>
+                    <p class="subtitle-2 text-uppercase font-weight-bold">Flete</p>
+                    <p class="body-2">000.000.000 COP</p>
+                </div>
+                <div>
+                    <p class="subtitle-1 text-uppercase font-weight-bold">Total</p>
+                    <p class="body-1">{{ format_price(priceTotal) }} COP</p>
+                </div>
+                <div>
+                    <v-divider class="my-2" style="max-width: 25%" />
+                </div>
+                <div>
+                    <!-- AQUI -->
+                    <p class="subtitle-2 text-uppercase font-weight-bold">NUMERO DE ARTICULOS</p>
+                    <p class="body-2"><Cubo /> 99</p>
+                </div>
+            </div>
             <v-divider class="my-3" />
         </div>
 
@@ -154,6 +153,9 @@ export default {
             return headers;
         },
         ...mapGetters("app", ["refundSettings"])
+    },
+    created() {
+        console.log("Hola", this.orderDetails);
     },
     methods: {
         cancelOrder(order) {

@@ -282,6 +282,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     // Orders
     Route::resource('orders', OrderController::class);
     Route::post('/orders/update_delivery_status', [OrderController::class, 'update_delivery_status'])->name('orders.update_delivery_status');
+    Route::post('/orders/update_service_status', [OrderController::class, 'update_service_status'])->name('orders.update_service_status');
     Route::post('/orders/update_payment_status', [OrderController::class, 'update_payment_status'])->name('orders.update_payment_status');
     Route::get('/orders/destroy/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
     Route::get('/orders/invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('orders.invoice.download');

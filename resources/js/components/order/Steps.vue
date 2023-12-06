@@ -6,7 +6,7 @@
         :value="getCurrentStatus()"
         alt-labels
     >
-        <v-row style="background-color: #fafcfc;;">
+        <v-row style="background-color: #fafcfc">
             <v-col cols="12" sm="6">
                 <div class="form">
                     <h6 class="black--text bold">Seguimiento de envió</h6>
@@ -18,7 +18,7 @@
                                     <span class="body2 text-uppercase font-weight-bold"> En verificación </span>
                                 </v-col>
                                 <v-col>
-                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                    <span class="body2 font-weight-bold">Hola</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -150,7 +150,9 @@ import CustomButton from "../global/CustomButton.vue";
 
 export default {
     props: {
-        orderDetails: { type: Object, default: {} }
+        orderDetails: { type: Object, default: {} },
+        actualizacionesEnvio: [],
+        actualizacionesServicio: []
     },
     components: {
         CustomButton
@@ -182,6 +184,9 @@ export default {
             ];
         }
     },
+    created() {
+        this.getOrderUpdates();
+    },
     methods: {
         getLevel(level) {
             return this.orderDetails.delivery_status == "cancelled" ? this.$i18n.t("cancelled") : level;
@@ -196,6 +201,12 @@ export default {
             let activeIndex = this.steps.findIndex(step => step.status == this.orderDetails.delivery_status);
             let currentIndex = this.steps.findIndex(step => step.status == status);
             return currentIndex <= activeIndex;
+        },
+        getOrderUpdates() {
+            // console.log(this.orderDetails);
+            /*  this.orderDetails.order_updates.forEach((val, i) => {
+                console.log(val, i);
+            }); */
         }
     }
 };
