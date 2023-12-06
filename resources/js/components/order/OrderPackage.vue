@@ -20,7 +20,7 @@
                     />
                 </v-col>
             </v-row>
-            <div class="grey lighten-4 border border-gray-200 pa-4 rounded d-flex justify-space-between align-center">
+            <!-- <div class="grey lighten-4 border border-gray-200 pa-4 rounded d-flex justify-space-between align-center">
                 <span class="fs-16 fw-700 lh-1">{{ $t("order_details") }}</span>
                 <div
                     class="fs-12 red--text c-pointer"
@@ -42,34 +42,60 @@
                 >
                     {{ $t("request_refund") }}
                 </div>
-            </div>
+            </div> -->
+
             <v-divider class="my-3" />
-            <div class="div-total" style="width: 90%">
-                <div>
-                    <p class="subtitle-2 text-uppercase font-weight-bold">Sub-total</p>
-                    <p class="body-2">{{ format_price(priceTotal) }} COP</p>
-                </div>
-                <div>
-                    <p class="subtitle-2 text-uppercase font-weight-bold">Iva</p>
-                    <p class="body-2">000.000.000 COP</p>
-                </div>
-                <div>
-                    <p class="subtitle-2 text-uppercase font-weight-bold">Flete</p>
-                    <p class="body-2">000.000.000 COP</p>
-                </div>
-                <div>
-                    <p class="subtitle-1 text-uppercase font-weight-bold">Total</p>
-                    <p class="body-1">{{ format_price(priceTotal) }} COP</p>
-                </div>
-                <div>
-                    <v-divider class="my-2" style="max-width: 25%" />
-                </div>
-                <div>
-                    <!-- AQUI -->
-                    <p class="subtitle-2 text-uppercase font-weight-bold">NUMERO DE ARTICULOS</p>
+            <v-row>
+                <v-col cols="6" sm="9" class="py-1 d-flex justify-start justify-sm-end align-center">
+                    <p class="subtitle-2 text-uppercase font-weight-bold mb-0">Sub-total</p>
+                </v-col>
+
+                <v-col cols="6" sm="3" class="py-1 d-flex justify-end align-center">
+                    <p class="body-2 mb-0">{{ format_price(priceTotal) }} COP</p>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="6" sm="9" class="py-1 d-flex justify-start justify-sm-end align-center">
+                    <p class="subtitle-2 text-uppercase font-weight-bold mb-0">IVA</p>
+                </v-col>
+
+                <v-col cols="6" sm="3" class="py-1 d-flex justify-end align-center">
+                    <p class="body-2 mb-0">000.000.000 COP</p>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="6" sm="9" class="py-1 d-flex justify-start justify-sm-end align-center">
+                    <p class="subtitle-2 text-uppercase font-weight-bold mb-0">FLETE</p>
+                </v-col>
+
+                <v-col cols="6" sm="3" class="py-1 d-flex justify-end align-center">
+                    <p class="body-2 mb-0">000.000.000 COP</p>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="6" sm="9" class="py-1 d-flex justify-start justify-sm-end align-center">
+                    <p class="subtitle-2 text-uppercase font-weight-bold mb-0">TOTAL</p>
+                </v-col>
+
+                <v-col cols="6" sm="3" class="py-1 d-flex justify-end align-center">
+                    <p class="body-1 mb-0">{{ format_price(priceTotal) }} COP</p>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="6" sm="8" class="py-1 d-flex justify-start justify-sm-end align-center"> </v-col>
+
+                <v-col cols="12" sm="4" class="py-1 d-flex justify-center align-center">
+                    <v-divider />
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="0" sm="8" class="py-1 d-flex justify-start justify-sm-end align-center"> </v-col>
+
+                <v-col cols="12" sm="4" class="py-1 d-flex justify-start align-center" style="gap: 50px">
+                    <p class="body-1 mb-0">NUMERO DE ARTICULOS</p>
                     <p class="body-2"><Cubo /> 99</p>
-                </div>
-            </div>
+                </v-col>
+            </v-row>
             <v-divider class="my-3" />
         </div>
 
