@@ -172,7 +172,8 @@ class OrderController extends Controller
             'order_id' => $order->id,
             'user_id' => auth()->user()->id,
             'note' => 'Order delivery status updated to ' . $request->status . '.',
-            'status_id' => 0
+            'status_id' => 0,
+            'status_key' => $request->status
         ]);
 
         if ($order->delivery_status != 'cancelled' && $request->status == 'cancelled') {
@@ -242,7 +243,8 @@ class OrderController extends Controller
             'order_id' => $order->id,
             'user_id' => auth()->user()->id,
             'note' => 'Order service status updated to ' . $request->status . '.',
-            'status_id' => 1
+            'status_id' => 1,
+            'status_key' => $request->status
         ]);
 
         $order->service_status = $request->status;

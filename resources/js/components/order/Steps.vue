@@ -18,7 +18,9 @@
                                     <span class="body2 text-uppercase font-weight-bold"> En verificación </span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">jueves 08, abril</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getSendingStatus("verificacion"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -28,7 +30,9 @@
                                     <span class="body2 text-uppercase font-weight-bold">Facturación</span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">sabado 09, abril</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getSendingStatus("facturacion"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -38,7 +42,9 @@
                                     <span class="body2 text-uppercase font-weight-bold">Alistamiento</span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">lunes 05, julio</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getSendingStatus("alistamiento"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -50,7 +56,9 @@
                                     </span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">miércoles 07, julio</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getSendingStatus("transportadora"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -60,7 +68,9 @@
                                     <span class="body2 text-uppercase font-weight-bold"> Entregado a cliente </span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">viernes 09, julio</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getSendingStatus("entregado"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -81,7 +91,9 @@
                                     <span class="body2 text-uppercase font-weight-bold">Comprado</span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getServiceStatus("comprado"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -91,7 +103,9 @@
                                     <span class="body2 text-uppercase font-weight-bold">Agendamiento</span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getServiceStatus("agendamiento"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -101,7 +115,9 @@
                                     <span class="body2 text-uppercase font-weight-bold"> En preparación </span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getServiceStatus("preparacion"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -113,7 +129,9 @@
                                     </span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getServiceStatus("verificacion"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -123,7 +141,9 @@
                                     <span class="body2 text-uppercase font-weight-bold"> Instalación concluida </span>
                                 </v-col>
                                 <v-col class="d-flex justify-end align-center">
-                                    <span class="body2 font-weight-bold">jueves 07, abril</span>
+                                    <span class="body2 font-weight-bold">{{
+                                        format_date(getServiceStatus("concluida"))
+                                    }}</span>
                                 </v-col>
                             </v-row>
                         </v-timeline-item>
@@ -159,6 +179,15 @@
 
 <script>
 import CustomButton from "../global/CustomButton.vue";
+import moment from "moment";
+import "moment/locale/es";
+moment.locale("es");
+
+Vue.filter("formatDate", function (value) {
+    if (value) {
+        return moment(String(value)).format("MM/DD/YYYY hh:mm");
+    }
+});
 
 export default {
     props: {
@@ -169,7 +198,12 @@ export default {
     components: {
         CustomButton
     },
-    data: () => ({}),
+    data() {
+        return {
+            serviceUpdates: [],
+            sendingUpdates: []
+        };
+    },
     computed: {
         steps() {
             return [
@@ -215,10 +249,35 @@ export default {
             return currentIndex <= activeIndex;
         },
         getOrderUpdates() {
-            // console.log(this.orderDetails);
-            /*  this.orderDetails.order_updates.forEach((val, i) => {
-                console.log(val, i);
-            }); */
+            this.orderDetails.order_updates.forEach((val, i) => {
+                if (val.status_id === 0) {
+                    // Actualizacion tipo envio
+                    this.sendingUpdates.push(val);
+                }
+                if (val.status_id === 1) {
+                    // Actualizacion tipo servicio
+                    this.serviceUpdates.push(val);
+                }
+            });
+        },
+        getSendingStatus(key) {
+            let elemToFind = "";
+            this.sendingUpdates.forEach(val => {
+                if (val.status_key === key) elemToFind = val.created_at;
+            });
+            return elemToFind;
+        },
+        getServiceStatus(key) {
+            let elemToFind = "";
+            this.serviceUpdates.forEach(val => {
+                if (val.status_key === key) elemToFind = val.created_at;
+            });
+            return elemToFind;
+        },
+        format_date(value) {
+            if (value) {
+                return moment(String(value)).format("DD. MMMM YYYY");
+            }
         }
     }
 };
