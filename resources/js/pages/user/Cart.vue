@@ -58,8 +58,7 @@
                             <v-col
                                 cols="12"
                                 md="9"
-                                class="d-flex justify-center justify-md-end align-center pl-0 pl-md-3"
-                                style="gap: 25px;"
+                                class="d-flex justify-center justify-md-end align-center pl-0 pl-md-3 gap"
                             >
                                 <total :total="priceTotal" />
                                 <v-divider vertical></v-divider>
@@ -82,13 +81,14 @@
                                     </i>
                                 </CustomButton>
                             </v-col>
-                            <v-col
-                                cols="12"
-                                md="3"
-                                class="d-flex justify-end align-center pl-0 pl-md-3"
-                            >
+                            <v-col cols="12" md="3" class="d-flex justify-end align-center pl-0 pl-md-3">
                                 <div class="boton-continuar" v-if="mostrarDetalles == false">
-                                    <CustomButton class="boton-continuar" text="Continuar >" color="grey2" @click="numberPag = 2" />
+                                    <CustomButton
+                                        class="boton-continuar"
+                                        text="Continuar >"
+                                        color="grey2"
+                                        @click="numberPag = 2"
+                                    />
                                 </div>
                             </v-col>
                             <v-col cols="12" style="justify-content: center" v-if="mostrarDetalles">
@@ -96,8 +96,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                         <span
                                             class="body2 font-weight-bold"
                                             style="display: flex; justify-content: flex-start"
@@ -105,7 +105,7 @@
                                             Descuento detalle
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold">000.000.000 COP</span>
                                     </v-col>
                                 </v-row>
@@ -113,8 +113,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                         <span
                                             class="body2 font-weight-bold py-0"
                                             style="display: flex; justify-content: flex-start"
@@ -122,7 +122,7 @@
                                             Recargo detalle
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold">000.000.000 COP</span>
                                     </v-col>
                                 </v-row>
@@ -130,8 +130,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0" style="font-size: 15px">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3" style="font-size: 15px">
                                         <span
                                             class="body2 font-weight-bold py-0"
                                             style="display: flex; justify-content: flex-start"
@@ -139,7 +139,7 @@
                                             TOTAL BRUTO FACTURA
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold" style="font-size: 15px"
                                             >000.000.000 COP</span
                                         >
@@ -149,8 +149,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                         <span
                                             class="body2 font-weight-bold py-0"
                                             style="display: flex; justify-content: flex-start"
@@ -158,7 +158,7 @@
                                             IVA
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold">000.000.000 COP</span>
                                     </v-col>
                                 </v-row>
@@ -166,8 +166,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                         <span
                                             class="body2 font-weight-bold py-0"
                                             style="display: flex; justify-content: flex-start"
@@ -175,7 +175,7 @@
                                             Otros impuestos
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold">000.000.000 COP</span>
                                     </v-col>
                                 </v-row>
@@ -183,8 +183,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                         <span
                                             class="body2 font-weight-bold py-0"
                                             style="display: flex; justify-content: flex-start; font-size: 15px"
@@ -192,7 +192,7 @@
                                             TOTAL IMPUESTO
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold" style="font-size: 15px"
                                             >000.000.000 COP</span
                                         >
@@ -202,8 +202,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                         <span
                                             class="body2 font-weight-bold py-0"
                                             style="display: flex; justify-content: flex-start"
@@ -211,7 +211,7 @@
                                             Rete ICA
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold">000.000.000 COP</span>
                                     </v-col>
                                 </v-row>
@@ -219,8 +219,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                         <span
                                             class="body2 font-weight-bold py-0"
                                             style="display: flex; justify-content: flex-start"
@@ -228,7 +228,7 @@
                                             Rete IVA
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold">000.000.000 COP</span>
                                     </v-col>
                                 </v-row>
@@ -236,8 +236,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                         <span
                                             class="body2 font-weight-bold py-0"
                                             style="display: flex; justify-content: flex-start"
@@ -245,7 +245,7 @@
                                             Rete fuente
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold">000.000.000 COP</span>
                                     </v-col>
                                 </v-row>
@@ -253,8 +253,8 @@
                                     <v-divider style="max-width: 60%; margin-right: 82px" />
                                 </v-row>
                                 <v-row>
-                                    <v-col cols="2" />
-                                    <v-col cols="3" class="py-0">
+                                    <v-col cols="0" md="2" class="py-0" />
+                                    <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                         <span
                                             class="body2 font-weight-bold py-0"
                                             style="display: flex; justify-content: flex-start; font-size: 15px"
@@ -262,7 +262,7 @@
                                             TOTAL RETENCIONES
                                         </span>
                                     </v-col>
-                                    <v-col cols="4" class="seguimiento py-0">
+                                    <v-col cols="6" md="4" class="seguimiento py-0">
                                         <span class="body2 font-weight-bold" style="font-size: 15px"
                                             >000.000.000 COP</span
                                         >
@@ -655,7 +655,11 @@
                         </v-col>
                         <v-col cols="12">
                             <v-row class="barra-inferior">
-                                <v-col  class="d-none d-md-flex justify-start align-center" cols="2" style="display: flex;">
+                                <v-col
+                                    class="d-none d-md-flex justify-start align-center pl-0 pl-md-3"
+                                    cols="2"
+                                    style="display: flex"
+                                >
                                     <div v-if="mostrarDetalles == false">
                                         <CustomButton text="< Volver" color="nero" @click="numberPag = 1" />
                                     </div>
@@ -663,8 +667,7 @@
                                 <v-col
                                     cols="12"
                                     md="8"
-                                    class="d-flex justify-center justify-md-start  align-center"
-                                    style="gap: 25px;"
+                                    class="d-flex justify-start justify-md-start align-center gap pl-0 pl-md-3"
                                 >
                                     <TotalFlete :total="priceTotal" />
                                     <v-divider vertical></v-divider>
@@ -722,26 +725,35 @@
                                     style="display: flex; justify-content: flex-end; align-items: center"
                                 >
                                     <v-row>
-                                        <v-col cols="6" md="0" class="d-flex d-md-none">
+                                        <v-col cols="6" md="0" class="d-flex d-md-none pl-0">
                                             <div v-if="mostrarDetalles == false" class="boton-continuar">
-                                                <CustomButton class="boton-continuar" text="< Volver" color="nero" @click="numberPag = 1" />
+                                                <CustomButton
+                                                    class="boton-continuar"
+                                                    text="< Volver"
+                                                    color="nero"
+                                                    @click="numberPag = 1"
+                                                />
                                             </div>
                                         </v-col>
-                                        <v-col cols="6" md="12">
+                                        <v-col cols="6" md="12" class="pl-0">
                                             <div v-if="mostrarDetalles == false" class="boton-continuar">
-                                                <CustomButton class="boton-continuar" text="Continuar >" color="grey2" @click="numberPag = 3" />
+                                                <CustomButton
+                                                    class="boton-continuar"
+                                                    text="Continuar >"
+                                                    color="grey2"
+                                                    @click="numberPag = 3"
+                                                />
                                             </div>
                                         </v-col>
                                     </v-row>
-
                                 </v-col>
                                 <v-col cols="12" style="justify-content: center" v-if="mostrarDetalles">
                                     <v-row style="justify-content: center">
                                         <v-divider style="max-width: 60%; margin-right: 82px" />
                                     </v-row>
                                     <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
+                                        <v-col cols="0" md="2" class="py-0" />
+                                        <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                             <span
                                                 class="body2 font-weight-bold"
                                                 style="display: flex; justify-content: flex-start"
@@ -749,7 +761,7 @@
                                                 Envío de mercancia
                                             </span>
                                         </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
+                                        <v-col cols="6" md="4" class="seguimiento py-0">
                                             <span class="body2 font-weight-bold">000.000.000 COP</span>
                                         </v-col>
                                     </v-row>
@@ -757,8 +769,8 @@
                                         <v-divider style="max-width: 60%; margin-right: 82px" />
                                     </v-row>
                                     <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
+                                        <v-col cols="0" md="2" class="py-0" />
+                                        <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                             <span
                                                 class="body2 font-weight-bold py-0"
                                                 style="display: flex; justify-content: flex-start"
@@ -766,7 +778,7 @@
                                                 Movilidad de servicio
                                             </span>
                                         </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
+                                        <v-col cols="6" md="4" class="seguimiento py-0">
                                             <span class="body2 font-weight-bold">000.000.000 COP</span>
                                         </v-col>
                                     </v-row>
@@ -774,8 +786,8 @@
                                         <v-divider style="max-width: 60%; margin-right: 82px" />
                                     </v-row>
                                     <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
+                                        <v-col cols="0" md="2" class="py-0" />
+                                        <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                             <span
                                                 class="body2 font-weight-bold py-0"
                                                 style="display: flex; justify-content: flex-start"
@@ -783,7 +795,7 @@
                                                 Rete fuente
                                             </span>
                                         </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
+                                        <v-col cols="6" md="4" class="seguimiento py-0">
                                             <span class="body2 font-weight-bold">000.000.000 COP</span>
                                         </v-col>
                                     </v-row>
@@ -791,8 +803,8 @@
                                         <v-divider style="max-width: 60%; margin-right: 82px" />
                                     </v-row>
                                     <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
+                                        <v-col cols="0" md="2" class="py-0" />
+                                        <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                             <span
                                                 class="body2 font-weight-bold py-0"
                                                 style="display: flex; justify-content: flex-start"
@@ -800,7 +812,7 @@
                                                 IVA
                                             </span>
                                         </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
+                                        <v-col cols="6" md="4" class="seguimiento py-0">
                                             <span class="body2 font-weight-bold">000.000.000 COP</span>
                                         </v-col>
                                     </v-row>
@@ -808,8 +820,8 @@
                                         <v-divider style="max-width: 60%; margin-right: 82px" />
                                     </v-row>
                                     <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
+                                        <v-col cols="0" md="2" class="py-0" />
+                                        <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                             <span
                                                 class="body2 font-weight-bold py-0"
                                                 style="display: flex; justify-content: flex-start"
@@ -817,7 +829,7 @@
                                                 Recargo detalle
                                             </span>
                                         </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
+                                        <v-col cols="6" md="4" class="seguimiento py-0">
                                             <span class="body2 font-weight-bold">000.000.000 COP</span>
                                         </v-col>
                                     </v-row>
@@ -825,8 +837,8 @@
                                         <v-divider style="max-width: 60%; margin-right: 82px" />
                                     </v-row>
                                     <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
+                                        <v-col cols="0" md="2" class="py-0" />
+                                        <v-col cols="6" md="3" class="py-0 pl-0 pl-md-3">
                                             <span
                                                 class="body2 font-weight-bold py-0"
                                                 style="display: flex; justify-content: flex-start; font-size: 15px"
@@ -834,16 +846,32 @@
                                                 Otros impuestos
                                             </span>
                                         </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
+                                        <v-col cols="6" md="4" class="seguimiento py-0">
                                             <span class="body2 font-weight-bold">000.000.000 COP</span>
                                         </v-col>
                                     </v-row>
                                     <v-row>
-                                        <v-col class="boton-continuar" style="display: flex; justify-content: flex-start; align-items: center">
-                                            <CustomButton class="boton-continuar" text="< Volver" color="nero" @click="numberPag = 1" />
+                                        <v-col
+                                            class="boton-continuar pl-0 pl-md-3"
+                                            style="display: flex; justify-content: flex-start; align-items: center"
+                                        >
+                                            <CustomButton
+                                                class="boton-continuar"
+                                                text="< Volver"
+                                                color="nero"
+                                                @click="numberPag = 1"
+                                            />
                                         </v-col>
-                                        <v-col class="boton-continuar" style="display: flex; justify-content: flex-end; align-items: center">
-                                            <CustomButton class="boton-continuar" text="Continuar >" color="grey2" @click="numberPag = 3" />
+                                        <v-col
+                                            class="boton-continuar pl-0 pl-md-3"
+                                            style="display: flex; justify-content: flex-end; align-items: center"
+                                        >
+                                            <CustomButton
+                                                class="boton-continuar"
+                                                text="Continuar >"
+                                                color="grey2"
+                                                @click="numberPag = 3"
+                                            />
                                         </v-col>
                                     </v-row>
                                 </v-col>
@@ -1120,16 +1148,16 @@
                         </v-col>
                         <v-col cols="12" order="3" order-md="3" order-sm="3" class="d-flex justify-space-between">
                             <v-row class="barra-inferior">
-                                <v-col cols="2" style="display: flex; justify-content: flex-start; align-items: center">
+                                <v-col
+                                    cols="2"
+                                    class="d-none d-md-flex"
+                                    style="display: flex; justify-content: flex-start; align-items: center"
+                                >
                                     <div v-if="mostrarDetalles == false">
                                         <CustomButton text="< Volver" color="nero" @click="numberPag = 2" />
                                     </div>
                                 </v-col>
-                                <v-col
-                                    cols="12"
-                                    md="8"
-                                    style="display: flex; justify-content: flex-start; gap: 70px; align-items: center"
-                                >
+                                <v-col cols="12" md="8" class="gap-1 pl-0 pl-md-3">
                                     <TotalPago :total="priceTotal" />
 
                                     <v-divider vertical></v-divider>
@@ -1155,13 +1183,26 @@
                                         </i>
                                     </CustomButton>
                                 </v-col>
+
+                                <v-col cols="6" class="d-flex d-md-none pl-0">
+                                    <div v-if="mostrarDetalles == false" class="boton-continuar">
+                                        <CustomButton
+                                            class="boton-continuar"
+                                            text="< Volver"
+                                            color="nero"
+                                            @click="numberPag = 2"
+                                        />
+                                    </div>
+                                </v-col>
+
                                 <v-col
-                                    cols="12"
+                                    cols="6"
                                     md="2"
                                     style="display: flex; justify-content: flex-end; align-items: center"
                                 >
-                                    <div v-if="mostrarDetalles == false">
+                                    <div v-if="mostrarDetalles == false" class="boton-continuar">
                                         <CustomButton
+                                            class="boton-continuar"
                                             text="Continuar"
                                             color="nero"
                                             @click="proceedCheckout()"
@@ -1170,344 +1211,350 @@
                                         />
                                     </div>
                                 </v-col>
-                                <v-col
-                                    cols="12"
-                                    style="justify-content: center; max-height: 300px; overflow-y: scroll"
-                                    v-if="mostrarDetalles"
-                                >
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="4" style="display: flex; justify-content: flex-start; gap: 10px">
-                                            <total :total="priceTotal" />
-                                            <v-divider vertical></v-divider>
-                                            <div class="icono-cantidad">
-                                                <CustomFavorite />
-                                                <span style="color: #919191; margin-left: 10px">{{
-                                                    getCartCount
-                                                }}</span>
-                                            </div>
-                                        </v-col>
-                                        <v-col cols="3" />
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start"
+                                <v-col cols="12" v-if="mostrarDetalles">
+                                    <div style="justify-content: center; max-height: 300px; overflow-y: scroll">
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col
+                                                cols="12"
+                                                md="4"
+                                                style="display: flex; justify-content: flex-start; gap: 10px"
                                             >
-                                                Descuento detalle
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
+                                                <total :total="priceTotal" />
+                                                <v-divider vertical></v-divider>
+                                                <div class="icono-cantidad">
+                                                    <CustomFavorite />
+                                                    <span style="color: #919191; margin-left: 10px">{{
+                                                        getCartCount
+                                                    }}</span>
+                                                </div>
+                                            </v-col>
+                                            <v-col cols="0" md="3" />
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Descuento detalle
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Recargo detalle
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start; font-size: 15px"
+                                                >
+                                                    TOTAL BRUTO FACTURA
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold" style="font-size: 15px"
+                                                    >000.000.000 COP</span
+                                                >
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    IVA
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Otros impuestos
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start; font-size: 15px"
+                                                >
+                                                    TOTAL IMPUESTO
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold" style="font-size: 15px"
+                                                    >000.000.000 COP</span
+                                                >
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Rete ICA
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Rete IVA
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Rete fuente
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start; font-size: 15px"
+                                                >
+                                                    TOTAL RETENCIONES
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold" style="font-size: 15px"
+                                                    >000.000.000 COP</span
+                                                >
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col
+                                                cols="12"
+                                                md="6"
+                                                style="display: flex; justify-content: flex-start; gap: 10px"
                                             >
-                                                Recargo detalle
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start; font-size: 15px"
-                                            >
-                                                TOTAL BRUTO FACTURA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold" style="font-size: 15px"
-                                                >000.000.000 COP</span
-                                            >
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                IVA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Otros impuestos
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start; font-size: 15px"
-                                            >
-                                                TOTAL IMPUESTO
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold" style="font-size: 15px"
-                                                >000.000.000 COP</span
-                                            >
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Rete ICA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Rete IVA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Rete fuente
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start; font-size: 15px"
-                                            >
-                                                TOTAL RETENCIONES
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold" style="font-size: 15px"
-                                                >000.000.000 COP</span
-                                            >
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="6" style="display: flex; justify-content: flex-start; gap: 10px">
-                                            <TotalFlete :total="priceTotal" />
-                                            <v-divider vertical></v-divider>
-                                            <div class="icono-exclamacion d-flex">
-                                                <v-tooltip top color="black">
-                                                    <template v-slot:activator="{ on, attrs }">
-                                                        <i
-                                                            class="las la-exclamation-circle"
-                                                            v-bind="attrs"
-                                                            v-on="on"
-                                                            style="font-size: 30px; transform: rotate(180deg)"
-                                                        ></i>
-                                                    </template>
-                                                    <span>El costo logístico se suma al valor subtotal</span>
-                                                    <br />
-                                                    <span>de la compra al pagar. El precio del Envío de</span>
-                                                    <br />
-                                                    <span>mercancia es gratuito en la ciudad capital al</span>
-                                                    <br />
-                                                    <span>superar el valor de 500.000 COP en el pedido.</span>
-                                                    <br />
-                                                    <span>(Valor sujeto a cambio) El costo de movilidad</span>
-                                                    <br />
-                                                    <span>de servicio varía dependiendo la ubicación de</span>
-                                                    <br />
-                                                    <span>la dirección de servicio. Para saber más.</span>
-                                                </v-tooltip>
-                                            </div>
-                                        </v-col>
-                                        <v-col cols="1" />
-                                    </v-row>
+                                                <TotalFlete :total="priceTotal" />
+                                                <v-divider vertical></v-divider>
+                                                <div class="icono-exclamacion d-flex">
+                                                    <v-tooltip top color="black">
+                                                        <template v-slot:activator="{ on, attrs }">
+                                                            <i
+                                                                class="las la-exclamation-circle"
+                                                                v-bind="attrs"
+                                                                v-on="on"
+                                                                style="font-size: 30px; transform: rotate(180deg)"
+                                                            ></i>
+                                                        </template>
+                                                        <span>El costo logístico se suma al valor subtotal</span>
+                                                        <br />
+                                                        <span>de la compra al pagar. El precio del Envío de</span>
+                                                        <br />
+                                                        <span>mercancia es gratuito en la ciudad capital al</span>
+                                                        <br />
+                                                        <span>superar el valor de 500.000 COP en el pedido.</span>
+                                                        <br />
+                                                        <span>(Valor sujeto a cambio) El costo de movilidad</span>
+                                                        <br />
+                                                        <span>de servicio varía dependiendo la ubicación de</span>
+                                                        <br />
+                                                        <span>la dirección de servicio. Para saber más.</span>
+                                                    </v-tooltip>
+                                                </div>
+                                            </v-col>
+                                            <v-col cols="0" md="1" />
+                                        </v-row>
 
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
 
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Envío de mercancia
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Movilidad de servicio
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Rete fuente
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                IVA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Recargo detalle
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider style="max-width: 60%; margin-right: 82px" />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="2" />
-                                        <v-col cols="3" class="py-0">
-                                            <span
-                                                class="body2 font-weight-bold py-0"
-                                                style="display: flex; justify-content: flex-start; font-size: 15px"
-                                            >
-                                                Otros impuestos
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="4" class="seguimiento py-0">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Envío de mercancia
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Movilidad de servicio
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Rete fuente
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    IVA
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start"
+                                                >
+                                                    Recargo detalle
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row style="justify-content: center">
+                                            <v-divider style="max-width: 60%; margin-right: 82px" />
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="0" md="2" class="py-0" />
+                                            <v-col cols="6" md="3" class="py-0">
+                                                <span
+                                                    class="body2 font-weight-bold py-0"
+                                                    style="display: flex; justify-content: flex-start; font-size: 15px"
+                                                >
+                                                    Otros impuestos
+                                                </span>
+                                            </v-col>
+                                            <v-col cols="6" md="4" class="seguimiento py-0">
+                                                <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                            </v-col>
+                                        </v-row>
+                                    </div>
                                     <v-row>
                                         <v-col style="display: flex; justify-content: flex-start; align-items: center">
                                             <CustomButton text="< Volver" color="nero" @click="numberPag = 2" />
@@ -1745,17 +1792,14 @@
                         <v-divider class="my-5" />
                         <v-row>
                             <v-col cols="12" sm="4" class="pa-0" />
-                            <v-col cols="8" sm="5" class="detalles-final" >
+                            <v-col cols="8" sm="5" class="detalles-final">
                                 <!-- HOLA HOLA HOLA-->
                                 <TotalPago :total="priceTotal" />
-
-                                
-                                
                             </v-col>
-                            <v-col cols="1" class="d-none d-sm-flex detalles-final" >
+                            <v-col cols="1" class="d-none d-sm-flex detalles-final">
                                 <v-divider vertical></v-divider>
                             </v-col>
-                            <v-col cols="4" sm="2" class="detalles-final" >
+                            <v-col cols="4" sm="2" class="detalles-final">
                                 <CustomButton color="black" v-if="mostrarDetallesFinal" @click="ocultarDetalleFinal">
                                     DETALLES
                                     <i
@@ -1777,317 +1821,318 @@
                                     <v-divider />
                                 </v-row>
                                 <v-row>
-                                        
                                     <v-col cols="12" style="display: flex; justify-content: flex-start; gap: 5px">
                                         <total :total="priceTotal" />
                                         <v-divider vertical></v-divider>
                                         <div class="icono-cantidad">
                                             <CustomFavorite />
-                                            <span style="color: #919191; margin-left: 10px">{{
-                                                getCartCount}}</span>
+                                            <span style="color: #919191; margin-left: 10px">{{ getCartCount }}</span>
                                         </div>
                                     </v-col>
-                                        
                                 </v-row>
 
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
 
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado" >
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Descuento detalle
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start"
-                                            >
-                                                Recargo detalle
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado">
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start; font-size: 15px;"
-                                            >
-                                                TOTAL BRUTO FACTURA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento">
-                                            <span class="body2 font-weight-bold" style="font-size: 15px;">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                IVA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                Otros impuestos
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start; font-size: 15px;"
-                                            >
-                                                TOTAL IMPUESTO
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento">
-                                            <span class="body2 font-weight-bold" style="font-size: 15px;">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                Rete ICA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                Rete IVA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                Rete fuente
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start; font-size: 15px;"
-                                            >
-                                                TOTAL RETENCIONES
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento">
-                                            <span class="body2 font-weight-bold" style="font-size: 15px;">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="12" style="display: flex; justify-content: flex-start; gap: 10px">
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Descuento detalle
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Recargo detalle
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start; font-size: 15px"
+                                        >
+                                            TOTAL BRUTO FACTURA
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento">
+                                        <span class="body2 font-weight-bold" style="font-size: 15px"
+                                            >000.000.000 COP</span
+                                        >
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            IVA
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Otros impuestos
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start; font-size: 15px"
+                                        >
+                                            TOTAL IMPUESTO
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento">
+                                        <span class="body2 font-weight-bold" style="font-size: 15px"
+                                            >000.000.000 COP</span
+                                        >
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Rete ICA
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Rete IVA
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Rete fuente
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start; font-size: 15px"
+                                        >
+                                            TOTAL RETENCIONES
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento">
+                                        <span class="body2 font-weight-bold" style="font-size: 15px"
+                                            >000.000.000 COP</span
+                                        >
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="12" style="display: flex; justify-content: flex-start; gap: 10px">
                                         <TotalFlete :total="priceTotal" />
-                                            <v-divider vertical></v-divider>
-                                            <div class="icono-exclamacion d-flex">
-                                                <v-tooltip top color="black">
-                                                    <template v-slot:activator="{ on, attrs }">
-                                                        <i
-                                                            class="las la-exclamation-circle"
-                                                            v-bind="attrs"
-                                                            v-on="on"
-                                                            style="font-size: 30px; transform: rotate(180deg)"
-                                                        ></i>
-                                                    </template>
-                                                    <span>El costo logístico se suma al valor subtotal</span>
-                                                    <br />
-                                                    <span>de la compra al pagar. El precio del Envío de</span>
-                                                    <br />
-                                                    <span>mercancia es gratuito en la ciudad capital al</span>
-                                                    <br />
-                                                    <span>superar el valor de 500.000 COP en el pedido.</span>
-                                                    <br />
-                                                    <span>(Valor sujeto a cambio) El costo de movilidad</span>
-                                                    <br />
-                                                    <span>de servicio varía dependiendo la ubicación de</span>
-                                                    <br />
-                                                    <span>la dirección de servicio. Para saber más.</span>
-                                                </v-tooltip>
-                                            </div>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                Envío de mercancia
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                Movilidad de servicio
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                Rete fuente
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                IVA
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                Recargo detalle
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row style="justify-content: center">
-                                        <v-divider />
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="6" class="espaciado">
-                                            <span
-                                                class="body2 font-weight-bold"
-                                                style="display: flex; justify-content: flex-start;"
-                                            >
-                                                Otros impuestos
-                                            </span>
-                                        </v-col>
-                                        <v-col cols="6" class="seguimiento espaciado" >
-                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                        </v-col>
-                                    </v-row>
+                                        <v-divider vertical></v-divider>
+                                        <div class="icono-exclamacion d-flex">
+                                            <v-tooltip top color="black">
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <i
+                                                        class="las la-exclamation-circle"
+                                                        v-bind="attrs"
+                                                        v-on="on"
+                                                        style="font-size: 30px; transform: rotate(180deg)"
+                                                    ></i>
+                                                </template>
+                                                <span>El costo logístico se suma al valor subtotal</span>
+                                                <br />
+                                                <span>de la compra al pagar. El precio del Envío de</span>
+                                                <br />
+                                                <span>mercancia es gratuito en la ciudad capital al</span>
+                                                <br />
+                                                <span>superar el valor de 500.000 COP en el pedido.</span>
+                                                <br />
+                                                <span>(Valor sujeto a cambio) El costo de movilidad</span>
+                                                <br />
+                                                <span>de servicio varía dependiendo la ubicación de</span>
+                                                <br />
+                                                <span>la dirección de servicio. Para saber más.</span>
+                                            </v-tooltip>
+                                        </div>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Envío de mercancia
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Movilidad de servicio
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Rete fuente
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            IVA
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Recargo detalle
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
+                                <v-row style="justify-content: center">
+                                    <v-divider />
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="6" class="espaciado">
+                                        <span
+                                            class="body2 font-weight-bold"
+                                            style="display: flex; justify-content: flex-start"
+                                        >
+                                            Otros impuestos
+                                        </span>
+                                    </v-col>
+                                    <v-col cols="6" class="seguimiento espaciado">
+                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                    </v-col>
+                                </v-row>
                             </v-col>
-                            
                         </v-row>
-                        
                     </div>
                     <v-divider class="mb-3" />
                     <v-row>
@@ -3366,6 +3411,8 @@ export default {
 
 .icono-cantidad {
     background: white;
+    border: 1px solid #e7e7e7;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3380,34 +3427,51 @@ export default {
 .barra-inferior {
     position: fixed;
     bottom: 0;
-    width: 75%;
     background-color: transparent;
     backdrop-filter: blur(5px);
     margin-bottom: 0 !important;
+    @media screen and (min-width: 820px) {
+        width: 75%;
+    }
 }
 
-.detalles-final{
-    display: flex; 
-    justify-content: flex-end; 
+.detalles-final {
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
 }
 
-.espaciado{
+.espaciado {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
 
 @media screen and (max-width: 600px) {
-        .body2{
-            padding-right: 10px;
-        }
+    .body2 {
+        padding-right: 10px;
     }
+}
 
 @media screen and (max-width: 959px) {
-    .boton-continuar{
+    .boton-continuar {
         width: 100%;
     }
 }
 
-    
+.gap {
+    gap: 5px;
+    @media screen and (min-width: 440px) {
+        gap: 25px;
+    }
+}
+
+.gap-1 {
+    gap: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    @media screen and (min-width: 440px) {
+        gap: 70px;
+    }
+}
 </style>
