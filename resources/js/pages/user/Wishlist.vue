@@ -34,7 +34,10 @@
                                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                     <v-row>
                                         <v-col cols="3" style="display: flex; place-items: center">
-                                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                                            <v-img
+                                                class="img-cartempty mb-6"
+                                                src="/public/assets/img/iconoFavoritos.png"
+                                            />
                                         </v-col>
 
                                         <v-col cols="9" style="display: flex; place-items: center">
@@ -42,13 +45,7 @@
                                                 Agrega a tu lista las colecciones que deseas adquirir mas adelante.
                                             </p>
                                         </v-col>
-                                        <CustomButton
-                                            class="mb-4"
-                                            block
-                                            color="grey"
-                                            text="VER COLECCIONES"
-                                            @click="addAddress"
-                                        />
+                                        <CustomButton class="mb-4" block color="grey" text="VER COLECCIONES" />
                                     </v-row>
                                 </v-card>
                             </v-col>
@@ -80,7 +77,10 @@
                                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                     <v-row>
                                         <v-col cols="3" style="display: flex; place-items: center">
-                                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                                            <v-img
+                                                class="img-cartempty mb-6"
+                                                src="/public/assets/img/iconoFavoritos.png"
+                                            />
                                         </v-col>
 
                                         <v-col cols="9" style="display: flex; place-items: center">
@@ -88,13 +88,7 @@
                                                 Agrega a tu lista las colecciones que deseas adquirir mas adelante.
                                             </p>
                                         </v-col>
-                                        <CustomButton
-                                            class="mb-4"
-                                            block
-                                            color="grey"
-                                            text="VER COLECCIONES"
-                                            @click="addAddress"
-                                        />
+                                        <CustomButton class="mb-4" block color="grey" text="VER COLECCIONES" />
                                     </v-row>
                                 </v-card>
                             </v-col>
@@ -126,7 +120,10 @@
                                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                     <v-row>
                                         <v-col cols="3" style="display: flex; place-items: center">
-                                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                                            <v-img
+                                                class="img-cartempty mb-6"
+                                                src="/public/assets/img/iconoFavoritos.png"
+                                            />
                                         </v-col>
 
                                         <v-col cols="9" style="display: flex; place-items: center">
@@ -134,13 +131,7 @@
                                                 Agrega a tu lista las colecciones que deseas adquirir mas adelante.
                                             </p>
                                         </v-col>
-                                        <CustomButton
-                                            class="mb-4"
-                                            block
-                                            color="grey"
-                                            text="VER COLECCIONES"
-                                            @click="addAddress"
-                                        />
+                                        <CustomButton class="mb-4" block color="grey" text="VER COLECCIONES" />
                                     </v-row>
                                 </v-card>
                             </v-col>

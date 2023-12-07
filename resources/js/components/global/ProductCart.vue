@@ -41,22 +41,19 @@
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-none d-md-flex">
                 <template v-if="productCartType == 'checkout'">
-
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
-                            <button @click="removeFromCart(productDetails.cart_id)" v-bind="attrs"
-                            v-on="on">
+                            <button @click="removeFromCart(productDetails.cart_id)" v-bind="attrs" v-on="on">
                                 <TrashIcon />
                             </button>
                         </template>
-                    <span>Eliminar</span>
+                        <span>Eliminar</span>
                     </v-tooltip>
 
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
-                            <button v-bind="attrs"
-                                v-on="on">
-                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }" >
+                            <button v-bind="attrs" v-on="on">
+                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }">
                                     <EyeIcon />
                                 </router-link>
                             </button>
@@ -67,8 +64,12 @@
                     <template v-if="isThisWishlisted(productDetails.product_id)">
                         <v-tooltip bottom color="black">
                             <template v-slot:activator="{ on, attrs }">
-                                <button type="button" @click="removeFromWishlist(productDetails.product_id)" v-bind="attrs"
-                                v-on="on">
+                                <button
+                                    type="button"
+                                    @click="removeFromWishlist(productDetails.product_id)"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                >
                                     <FavoriteIcon class="active" />
                                 </button>
                             </template>
@@ -76,20 +77,21 @@
                         </v-tooltip>
                     </template>
 
-
                     <template v-else>
                         <v-tooltip bottom color="black">
                             <template v-slot:activator="{ on, attrs }">
-                                <button type="button" @click="addNewWishlist(productDetails.product_id)" v-bind="attrs"
-                                v-on="on">
+                                <button
+                                    type="button"
+                                    @click="addNewWishlist(productDetails.product_id)"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                >
                                     <FavoriteIcon />
                                 </button>
                             </template>
                             <span>Añadir a favoritos</span>
                         </v-tooltip>
                     </template>
-
-
                 </template>
 
                 <template v-if="productCartType == 'wishlist'">
@@ -251,7 +253,6 @@ export default {
     display: grid;
     align-items: stretch;
     grid-template-columns: 6fr 4fr 1fr 1fr;
-
 
     border-radius: 10px;
     background-color: #f5f5f5;

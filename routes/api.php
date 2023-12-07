@@ -175,8 +175,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
             Route::get('wishlists/brands', [WishlistController::class, 'favoriteBrands']);
             Route::post('wishlists/services', [WishlistController::class, 'storeService']);
             Route::post('wishlists/brands', [WishlistController::class, 'storeBrand']);
-            Route::delete('wishlists/services', [WishlistController::class, 'destroyService']);
-            Route::delete('wishlists/brands', [WishlistController::class, 'destroyBrand']);
+            Route::delete('wishlists/services/{services_id}', [WishlistController::class, 'destroyService']);
+            Route::delete('wishlists/brands/{brands_id}', [WishlistController::class, 'destroyBrand']);
             Route::apiResource('follow', FollowController::class)->except(['update', 'show']);
 
             Route::get('addresses', [AddressController::class, 'addresses']);
