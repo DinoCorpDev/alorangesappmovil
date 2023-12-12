@@ -11,9 +11,9 @@
                         :date="item?.date"
                         colorStatus="red"
                         :descriptionStatus="item.orders[0]?.payment_status"
-                        icon1="la-share-alt-square"
-                        icon2="la-eye"
-                        icon3="la-print"
+                        icon1="compartir"
+                        icon2="ojo"
+                        icon3="favorito"
                     />
                 </v-col>
             </v-row>
@@ -33,6 +33,7 @@
 <script>
 import ProyectHistory from "../../components/global/ProyectHistory.vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
+import CustomButton from "../../components/global/CustomButton.vue";
 
 
 export default {
@@ -44,7 +45,8 @@ export default {
         selectedOrder: {}
     }),
     components: {
-        ProyectHistory
+        ProyectHistory,
+        CustomButton
     },
     async created() {
         await this.getUser();

@@ -299,12 +299,12 @@
                             <v-row>
                                 <v-col cols="12">
                                     <h5 class="fw-600">Dirección de envío</h5>
-                                    <v-divider class="my-4" />
+                                    <v-divider class="my-3" />
                                     <div class="form mb-5">
                                         <v-row>
                                             <v-col cols="11">
                                                 <SelectCustom
-                                                    :dark="darkBoxes"
+                                                    dark="true"
                                                     label="Usuario Principal"
                                                     :items="addressesParaEnvio"
                                                     @input="changeAddress($event, 0)"
@@ -329,61 +329,53 @@
                                             </v-col>
                                         </v-row>
                                         <v-divider class="my-3" />
-                                        <SelectCustom
-                                            dark="true"
-                                            label="Usuario Principal"
-                                            :items="addressesParaEnvio"
-                                            @input="changeAddress($event, 0)"
-                                            item-text="address"
-                                            item-value="id"
-                                            placeholder="Seleccione una opcion"
-                                        />
+                                        
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                            <span class="body1">--</span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                            <span class="body1 pr-3">--</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                            <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.address ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold"> Dirección adicional </span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3"> Dirección adicional </span>
+                                            <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.address ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                            <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.postal_code ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                            <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.country ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                            <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.city ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Localidad</span>
-                                            <span class="body1"> -- </span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">Localidad</span>
+                                            <span class="body1 pr-3"> -- </span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                            <span class="body1">
+                                            <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                            <span class="body1 pr-3">
                                                 {{
                                                     selectedAddressEnvio?.neighborhood ||
                                                     "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
@@ -392,38 +384,56 @@
                                         </div>
 
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Telefono / Celular</span>
+                                            <span class="body1 pr-3">{{
                                                 addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
+                                        
                                         <CustomButton
                                             v-if="Object.entries(addressPrincipal).length !== 0"
-                                            class="mr-3"
+                                            class="mr-3 ml-3"
+                                            style="width: 136px"
                                             color="grey"
                                             text="EDITAR"
                                             @click="editAddress(addressPrincipal, 'shipping')"
                                         />
                                         <CustomButton
+                                            v-if="Object.entries(addressPrincipal).length !== 0"
+                                            class="mr-3 ml-3"
+                                            color="grey"
+                                            text="AÑADIR"
+                                            style="width: 136px"
+                                            @click="openAdress('shipping')"
+                                        />
+                                        <CustomButton
                                             v-if="Object.entries(addressPrincipal).length === 0"
                                             block
+                                            class="mr-3 ml-3"
                                             color="grey"
                                             text="AÑADIR"
                                             @click="openAdress('shipping')"
                                         />
+                                        
                                     </div>
                                     <div class="form">
-                                        <h6 class="black--text bold">Encargado</h6>
+                                        <h5 class="black--text pa-3">Encargado</h5>
                                         <v-divider class="my-3" />
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">NOMBRE COMPLETO</span>
-                                            <span class="body1">{{ currentUser.name || "--" }}</span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">NOMBRE COMPLETO</span>
+                                            <span class="body1 pr-3">{{ currentUser.name || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-3">
-                                            <span class="subtitle1 text-uppercase bold">TELÉFONO / CELULAR</span>
-                                            <span class="body1">--</span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">TELÉFONO / CELULAR</span>
+                                            <span class="body1 pr-3">--</span>
                                         </div>
-                                        <CustomButton color="grey" class="mr-3" text="EDITAR" @click="editProfile()" />
+                                        <CustomButton 
+                                            class="mr-3 ml-3"
+                                            style="width: 136px"
+                                            color="grey"
+                                            text="EDITAR" 
+                                            @click="editProfile()" 
+                                        />
                                     </div>
                                 </v-col>
                                 <v-col cols="12"> </v-col>
@@ -481,81 +491,116 @@
                                             </v-row>
                                             <v-divider class="my-3" />
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">país</span>
-                                                <span class="body1">--</span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">país</span>
+                                                <span class="body1 pr-3">--</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                                <span class="body1 pr-3">{{
                                                     addressServicio?.name | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                                <span class="body1 text-right pr-3">{{
                                                     addressServicio?.address
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold"> Dirección adicional </span>
-                                                <span class="body1">--</span>
+                                                <span class="subtitle1 text-uppercase bold pl-3"> Dirección adicional </span>
+                                                <span class="body1 pr-3">--</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                                <span class="body1 pr-3">{{
                                                     addressServicio?.postal_code
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                                <span class="body1 pr-3">{{
                                                     addressServicio?.country
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                                <span class="body1 pr-3">{{
                                                     addressServicio?.city | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">localidad</span>
-                                                <span class="body1"> -- </span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">localidad</span>
+                                                <span class="body1 pr-3"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                                <span class="body1"> -- </span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                                <span class="body1 pr-3"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.phone
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                         </div>
-                                        <label class="label my-3">
+                                        <!-- <label class="label my-3 d-flex justify-end align-end" style="border: 1px solid #9e9e9e; border-radius: 5px;">
                                             <input
                                                 type="checkbox"
                                                 v-model="useDefaultAddress1"
                                                 id="useDefaultAddress1"
                                             />
                                             <span class="body-1 black--text text">
-                                                Usar la misma Dirección de envió para que Idovela preste los servicio de
+                                                Usar la misma <strong>Dirección de envió</strong> para que Idovela preste los servicio de
                                                 instalación, mantenimiento y más.
                                             </span>
-                                            <span class="checkmark"></span>
+                                            <span class="checkmark" style="margin-top: 5%"></span>
+                                            
+                                        </label> -->
+
+                                        <label class="label mt-3" style="border: 2px solid #9e9e9e; border-radius: 5px;">
+                                            <v-row>
+                                                <v-col cols="1" class="py-0 px-0">
+                                                    <input
+                                                        type="checkbox"
+                                                        v-model="useDefaultAddress1"
+                                                        id="useDefaultAddress1"
+                                                    />
+                                                    <span class="checkmark"></span>
+                                                </v-col>
+                                                <v-col cols="11" class="d-flex px-0">
+                                                    <span class="body-1 black--text text py-4" style="padding-right: 17px;">
+                                                        Usar la misma <strong>Dirección de envió</strong> para que Idovela preste los servicio de
+                                                        instalación, mantenimiento y más.
+                                                    </span>
+                                                </v-col>
+                                            </v-row>
                                         </label>
-                                        <v-divider class="my-3" />
+
+                                        <v-row>
+                                                <v-col cols="7" class="d-flex jusify-start align-center">
+                                                    <p class="mb-0" style="font-size: 15px;">¿Desea utilizar otra dirección?</p>
+                                                </v-col>
+                                                <v-col cols="5">
+                                                    <CustomButton
+                                                        class="mr-3"
+                                                        color="grey"
+                                                        text="AÑADIR"
+                                                        @click=""
+                                                    />
+                                                </v-col>
+                                            </v-row>
+
                                         <CustomButton
                                             v-if="
                                                 Object.entries(addressServicio).length !== 0 &&
                                                 useDefaultAddress1 == false
                                             "
-                                            class="mr-3"
+                                            style="width: 136px"
+                                            class="mr-3 ml-3"
                                             color="grey"
                                             text="EDITAR"
                                             @click="editAddress(addressServicio, 'service')"
@@ -1077,26 +1122,26 @@
                                     "
                                 >
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">correo electrónico</span>
-                                        <span class="body1">--</span>
+                                        <span class="subtitle1 text-uppercase bold pl-3">correo electrónico</span>
+                                        <span class="body1 pr-3">--</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Tipo de persona</span>
-                                        <span class="body1 text-right">--</span>
+                                        <span class="subtitle1 text-uppercase bold pl-3">Tipo de persona</span>
+                                        <span class="body1 text-right pr-3">--</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold"> Descripción de Dirección </span>
-                                        <span class="body1">{{
+                                        <span class="subtitle1 text-uppercase bold pl-3"> Descripción de Dirección </span>
+                                        <span class="body1 pr-3">{{
                                             addressFacturacion?.address | filtroParaOcultarInfo(mostrarDatosFacturacion)
                                         }}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Tipo de documento</span>
-                                        <span class="body1">--</span>
+                                        <span class="subtitle1 text-uppercase bold pl-3">Tipo de documento</span>
+                                        <span class="body1 pr-3">--</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">Número de documento</span>
-                                        <span class="body1">--</span>
+                                        <span class="subtitle1 text-uppercase bold pl-3">Número de documento</span>
+                                        <span class="body1 pr-3">--</span>
                                     </div>
                                 </div>
                                 <!-- <label class="label my-3">
@@ -2169,52 +2214,52 @@
                                             "
                                         >
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                                <span class="body1">Dirección principal</span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                                <span class="body1 pr-3">Dirección principal</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                                <span class="body1 text-right pr-3">{{
                                                     addressFacturacion?.address
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">
+                                                <span class="subtitle1 text-uppercase bold pl-3">
                                                     Descripción de Dirección
                                                 </span>
-                                                <span class="body1">{{
+                                                <span class="body1 pr-3">{{
                                                     addressFacturacion?.address
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                                <span class="body1 pr-3">{{
                                                     addressFacturacion?.postal_code
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                                <span class="body1 pr-3">{{
                                                     addressFacturacion?.country
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                                <span class="body1 pr-3">{{
                                                     addressFacturacion?.city | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                                <span class="body1"> -- </span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                                <span class="body1 pr-3"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
@@ -2228,57 +2273,57 @@
                                             "
                                         >
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                                <span class="body1">Dirección principal</span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                                <span class="body1 pr-3">Dirección principal</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                                <span class="body1 text-right pr-3">{{
                                                     addressPrincipal?.address | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">
+                                                <span class="subtitle1 text-uppercase bold pl-3">
                                                     Descripción de Dirección
                                                 </span>
-                                                <span class="body1">{{
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.address | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.postal_code
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.country | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.city | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                                <span class="body1"> -- </span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                                <span class="body1 pr-3"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">
+                                                <span class="subtitle1 text-uppercase bold pl-3">
                                                     Nombre de quien lo va a recibir
                                                 </span>
-                                                <span class="body1">{{
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.name | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
@@ -2301,20 +2346,20 @@
                                         <h5 class="black--text">Encargado</h5>
                                         <v-divider class="my-3" />
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Correo electronico</span>
-                                            <span class="body1">{{ currentUser.email || "--" }}</span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">Correo electronico</span>
+                                            <span class="body1 pr-3">{{ currentUser.email || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Tipo de Persona</span>
-                                            <span class="body1">{{ currentUser.personType || "--" }}</span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">Tipo de Persona</span>
+                                            <span class="body1 pr-3">{{ currentUser.personType || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre</span>
-                                            <span class="body1">{{ currentUser.name || "--" }}</span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">Nombre</span>
+                                            <span class="body1 pr-3">{{ currentUser.name || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-3">
-                                            <span class="subtitle1 text-uppercase bold">Documento</span>
-                                            <span class="body1">
+                                            <span class="subtitle1 text-uppercase bold pl-3">Documento</span>
+                                            <span class="body1 pr-3">
                                                 {{ currentUser.documentType || "--" }}
                                                 {{ currentUser.documentNumber || "--" }}
                                             </span>
@@ -2353,52 +2398,52 @@
                                             "
                                         >
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                                <span class="body1">Dirección principal</span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                                <span class="body1 pr-3">Dirección principal</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                                <span class="body1 pr-3">{{
                                                     addressServicio?.address
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">
+                                                <span class="subtitle1 text-uppercase bold pl-3">
                                                     Descripción de Dirección
                                                 </span>
-                                                <span class="body1">{{
+                                                <span class="body1 pr-3">{{
                                                     addressServicio?.address
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                                <span class="body1 pr-3">{{
                                                     addressServicio?.postal_code
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                                <span class="body1 pr-3">{{
                                                     addressServicio?.country
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                                <span class="body1 pr-3">{{
                                                     addressServicio?.city | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                                <span class="body1"> -- </span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                                <span class="body1 pr-3"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.phone
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
@@ -2413,60 +2458,60 @@
                                             "
                                         >
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                                <span class="body1">Dirección principal</span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                                <span class="body1 pr-3">Dirección principal</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                                <span class="body1 text-right">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                                <span class="body1 text-right pr-3">{{
                                                     addressPrincipal?.address
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">
+                                                <span class="subtitle1 text-uppercase bold pl-3">
                                                     Descripción de Dirección
                                                 </span>
-                                                <span class="body1">{{
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.address
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.postal_code
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.country
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.city | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                                <span class="body1"> -- </span>
+                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                                <span class="body1 pr-3"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">
+                                                <span class="subtitle1 text-uppercase bold pl-3">
                                                     Nombre de quien lo va a recibir
                                                 </span>
-                                                <span class="body1">{{
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.name | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                                <span class="body1">{{
+                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
+                                                <span class="body1 pr-3">{{
                                                     addressPrincipal?.phone
                                                         | filtroParaOcultarInfo(mostrarDatosServicio)
                                                 }}</span>
@@ -2521,60 +2566,60 @@
                                             :items="langSelectItems"
                                         />
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                            <span class="body1">Dirección principal</span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                            <span class="body1 pr-3">Dirección principal</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1 text-right">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                            <span class="body1 text-right pr-3">{{
                                                 addressPrincipal?.address
                                                     | filtroParaOcultarInfo(mostrarDatosFacturacion)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
+                                            <span class="subtitle1 text-uppercase bold pl-3">
                                                 Descripción de Dirección
                                             </span>
-                                            <span class="body1">{{
+                                            <span class="body1 pr-3">{{
                                                 addressPrincipal?.address
                                                     | filtroParaOcultarInfo(mostrarDatosFacturacion)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                            <span class="body1 pr-3">{{
                                                 addressPrincipal?.postal_code
                                                     | filtroParaOcultarInfo(mostrarDatosFacturacion)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                            <span class="body1 pr-3">{{
                                                 addressPrincipal?.country
                                                     | filtroParaOcultarInfo(mostrarDatosFacturacion)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                            <span class="body1 pr-3">{{
                                                 addressPrincipal?.city | filtroParaOcultarInfo(mostrarDatosFacturacion)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                            <span class="body1"> -- </span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                            <span class="body1 pr-3"> -- </span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
+                                            <span class="subtitle1 text-uppercase bold pl-3">
                                                 Nombre de quien lo va a recibir
                                             </span>
-                                            <span class="body1">{{
+                                            <span class="body1 pr-3">{{
                                                 addressPrincipal?.name | filtroParaOcultarInfo(mostrarDatosFacturacion)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{
+                                            <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
+                                            <span class="body1 pr-3">{{
                                                 addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosFacturacion)
                                             }}</span>
                                         </div>
@@ -2756,7 +2801,8 @@ export default {
             selectedAddressServicio: {},
             selectedAddressEnvio: {},
             typeAddress: "shipping",
-            useDefaultAddress1: false,
+            useDefaultAddress1: true,
+            // useDefaultAddress1: false,
             useDefaultAddress2: false,
             profileSelectedForEdit: {},
             profileDialogShow: false,
@@ -3211,8 +3257,8 @@ export default {
 
 .checkmark {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 40px;
+    left: 15px;
     height: 25px;
     width: 25px;
     background-color: #eee;
@@ -3473,5 +3519,9 @@ export default {
     @media screen and (min-width: 440px) {
         gap: 70px;
     }
+}
+
+.bold{
+    font-weight: bold;
 }
 </style>
