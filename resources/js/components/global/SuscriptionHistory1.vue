@@ -1,11 +1,11 @@
 <template>
     <div class="product-box-cart">
         <div class="product-box-cart-body">
-                <v-row>
+            <v-row>
                     <v-col cols="3" md="1" class="d-flex justify-center justify-md-end align-center pr-0">
                         <custom-button
                                 plain
-                                :to="{ name: 'Proyects', params: { code: order } }"
+                                :to="{ name: 'Suscriptions', params: { code: order } }"
                             >
                             <i class="las la-angle-left" style="font-size: 25px;"></i>
                             </custom-button>
@@ -15,8 +15,8 @@
                     </v-col>
                     <v-col cols="12" md="5" class="align-center justify-center justify-md-start" style="display: grid;">
                         <div class="product-box-cart-info pl-0">
-                            <p class="product-box-cart-brand-name mb-0">CDD0097{{ order }}</p>
-                            <h6 style="font-weight: bold;">NOMBRE DE LA COLECCION</h6>
+                            <p class="product-box-cart-brand-name mb-0">01 PLAN</p>
+                            <h6 style="font-weight: bold;">NOMBRE DEL PLAN</h6>
                         </div>
                     </v-col>
                     <v-col cols="1" class="d-none d-md-flex justify-center align-center pl-0">
@@ -33,7 +33,6 @@
                     </v-col>
                 </v-row>
         </div>
-
         <div class="d-none d-md-flex product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-md-flex">
                 <v-tooltip bottom color="black">
@@ -58,11 +57,11 @@
                                 plain 
                                 :to="{ name: 'OrderDetails', params: { code: order } }"
                             >
-                            <Favorito />
+                            <Ojo />
                             </custom-button>
                         </div>
                     </template>
-                    <span>Añadir a favoritos</span>
+                    <span>Renovar</span>
                 </v-tooltip>
             </div>
         </div>
@@ -99,36 +98,28 @@
                                         plain 
                                         :to="{ name: 'OrderDetails', params: { code: order } }"
                                     >
-                                    <Favorito /><p class="mb-0 pl-2">Favorito</p>
+                                    <Ojo /><p class="mb-0 pl-2">Favorito</p>
                                     </custom-button>
                                 </v-list-item-action>
                             </v-list-item>
                         </v-list>
                     </v-menu>
                 </div>
-        
+
+
     </div>
 </template>
 
 <script>
 import CustomButton from "./CustomButton.vue";
-import Favorito from "../../components/icons/Favorito.vue";
 import Compartir from "../../components/icons/Compartir.vue";
-import Ellipsis from "../../components/icons/EllipsisIcon.vue";
+import Ojo from "../../components/icons/Ojo.vue";
 
 export default {
-    data: () => ({
-      items: [
-        { icono: 'la-download', title: 'Descargar' },
-        { icono: 'la-share-alt-square', title: 'Compartir' },
-        { icono: 'la-print', title: 'Imprimir' },
-      ],
-    }),
     components: {
         CustomButton,
-        Favorito,
         Compartir,
-        Ellipsis
+        Ojo
     },
     props: {
         order: String,
@@ -147,9 +138,9 @@ export default {
     display: grid;
     align-items: stretch;
     grid-template-columns: 10fr 2fr;
-    border: 1px solid #eceded;
+
     border-radius: 10px;
-    background-color: #fafcfc !important;
+    background-color: #f5f5f5;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     box-sizing: border-box;
@@ -247,8 +238,7 @@ export default {
 
     &-brand-name {
         font-family: "Roboto", sans-serif;
-        // font-size: var(--font-size-body1);
-        font-size: 10px;
+        font-size: var(--font-size-body1);
         line-height: 24px;
         letter-spacing: 0;
     }
@@ -412,6 +402,4 @@ export default {
     display: flex;
     gap: 8px;
 }
-
-
 </style>

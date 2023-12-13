@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container class="px-0 px-md-3">
         <v-row>
             <v-col cols="12 invoice-div">
                 <ProyectHistory1
