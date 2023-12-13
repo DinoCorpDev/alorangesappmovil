@@ -163,8 +163,7 @@
         <v-divider class="my-4" />
 
         <v-row>
-            <<<<<<< HEAD
-            <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.5%; text-align: left">
+            <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.2rem; text-align: left;">
                 Protección de datos personales: IDOVELA S.A.S garantiza el tratamiento de datos personales acorde a lo
                 establecido en la ley 1581/2012 y decreto 1377/2013. por favor dirija sus inquietudes al correo:
                 soporte@idovela.com Riesgo de lavado de activos, financiación al terrorismo sarlaft y ley antisoborno:
@@ -187,31 +186,6 @@
                 esta factura se entenderá que la mercancía fue recibida y entregada a satisfacción. El CLIENTE acepta
                 los términos de compra generales publicados en www.idovela.con/TyC
             </p>
-            =======
-            <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.2rem; text-align: left">
-                Protección de datos personales: IDOVELA S.A.S garantiza el tratamiento de datos personales acorde a lo
-                establecido en la ley 1581/2012 y decreto 1377/2013. por favor dirija sus inquietudes al correo:
-                soporte@idovela.com Riesgo de lavado de activos, financiación al terrorismo sarlaft y ley antisoborno:
-                EL CLIENTE certifica a IDOVELA S.A.S que sus recursos no provienen ni se destinan al ejercicio de
-                ninguna actividad ilícita o de actividades conexas al lavado de activos provenientes de estas o de
-                actividades relacionadas con la financiación del terrorismo EL CLIENTE se obliga a realizar todas las
-                actividades encaminadas a asegurar que los recursos de estos, no se encuentran relacionados, provengan,
-                de actividades ilícitas, particularmente de lavado de activos o financiación del terrorismo. Igualmente
-                se compromete a respetar el programa de ética empresarial que aplica en IDOVELA S.A.S. Garantía: 1).
-                Garantiza el articulo a partir de la fecha prescrita. únicamente garantía de fábrica. 2). Garantizamos
-                el articulo según nos ofrecen nuestro(s) proveedor(es). 3). Situaciones no cubiertas por la garantía
-                legal: • Productos cuyo periodo de garantía haya expirado o finalizado. • Situaciones ocasionadas por
-                fuerza mayor, caso fortuito, culpa exclusiva del usuario o terceros • Problemas causados como
-                consecuencia de instalaciones físicas y eléctricas inadecuadas, uso o mantenimiento inadecuados o
-                diferentes al indicado en el manual del producto, por personal no autorizado por iDOVELA S.A.S. Cambios
-                y devoluciones: después de 30 días fecha factura, para cambios por favor presentar la factura original
-                en horario de lunes a sábado de 8:00 am a 5:00 pm. la mercancía se recibe en perfecto estado, caja
-                sellada, el material en calidad de segunda (uso o deterioro) no tiene cambios. no devolvemos dinero
-                Logística: la mercancía se deja hasta dónde llega el camión (primera planta). una vez recibida y firmada
-                esta factura se entenderá que la mercancía fue recibida y entregada a satisfacción. El CLIENTE acepta
-                los términos de compra generales publicados en www.idovela.con/TyC
-            </p>
-            >>>>>>> develop
         </v-row>
     </div>
 </template>
@@ -219,7 +193,7 @@
 <script>
 import { mapGetters } from "vuex";
 import Regalo from "../../components/icons/Regalo.vue";
-import OrderPackage from "./OrderPackage";
+import OrderPackage from "./OrderPackage.vue";
 
 export default {
     components: {

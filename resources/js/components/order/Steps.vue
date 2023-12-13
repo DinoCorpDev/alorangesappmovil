@@ -6,7 +6,7 @@
         :value="getCurrentStatus()"
         alt-labels
     >
-        <v-row style="background-color: #fafcfc">
+        <v-row style="background-color: #fafcfc;">
             <v-col cols="12" sm="6">
                 <div class="form">
                     <h6 class="black--text bold">Seguimiento de envió</h6>
@@ -154,7 +154,7 @@
                 </div>
             </v-col>
         </v-row>
-        <v-stepper-header>
+        <!-- <v-stepper-header>
             <template v-for="(step, i) in steps">
                 <v-stepper-step
                     :key="`${i}-step`"
@@ -173,7 +173,7 @@
                     :class="[{ complete: getStepStatus(step.status) }]"
                 ></v-divider>
             </template>
-        </v-stepper-header>
+        </v-stepper-header> -->
     </v-stepper>
 </template>
 
