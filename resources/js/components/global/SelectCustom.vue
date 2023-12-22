@@ -15,12 +15,46 @@
         @blur="$emit('blur', $event)"
         @input="$emit('input', $event)"
         clear-icon="las la-times"
+        :prepend-inner-icon="icono"
         flat
         outlined
         rounded
         solo
+        style="cursor: pointer;"
     >
+        
+        
+        <template v-slot:item="{
+            parent: SelectCustom,
+            item: items
+        }">
+            <i class="las la-star pb-1" style="color: black" v-if="items.favorite"></i>
+            <i class="las la-star pb-1" style="color: grey" v-else></i>
+            <p style="margin: 0;">{{ items.name }}</p>
+        </template>
+        <!-- <template v-slot:prepend-inner>
+            <div v-if="itemValue.favorite">
+                <i class="las la-star" style="color: black"></i> 
+            </div>
+            <div v-if="!itemValue.favorite">
+            <i class="las la-star" style="color: grey"></i>
+            </div>
+        </template> -->
+        <template v-slot:prepend-inner>
+            <div v-if="value">
+                <div v-if="items.default_billing === 1">
+                    <!-- <i class="las la-star" style="color: black"></i>  -->
+                    <i class="las la-cat"></i>
+                </div>
+                <div v-if="items.default_billing === 0">
+                    <!-- <i class="las la-star" style="color: grey"></i> -->
+                    <i class="las la-dog"></i>
+                </div>
+            </div>
+        </template>
+
         <template v-slot:append> <Flecha /> </template>
+
     </v-select>
 </template>
 
@@ -34,6 +68,13 @@ export default {
             type: Boolean,
             default: true
         },
+        // icono: {
+        //     type: String,
+        //     default: "lar la-star",
+        //     get() {
+        //         return this.pruebas ? "las la-star" : this.icono;
+        //     },
+        // },
         dark: {
             type: Boolean,
             default: false
@@ -79,9 +120,17 @@ export default {
             default: false
         }
     },
+    computed: {
+        // adjustedIcon() {
+        //     return this.pruebas ? "las la-star" : this.icono;
+        // },
+    },
+
     components: {
         Flecha
-    }
+    },
+
+    
 };
 </script>
 
