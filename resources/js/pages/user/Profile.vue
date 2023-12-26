@@ -241,7 +241,13 @@
                         </v-row>
                         <v-row>
                             <v-col cols="4">
-                                <custom-button block class="mt-5" text="< Cancelar" @click="editarUser = false;" color="grey" />
+                                <custom-button
+                                    block
+                                    class="mt-5"
+                                    text="< Cancelar"
+                                    @click="editarUser = false"
+                                    color="grey"
+                                />
                             </v-col>
                             <v-col></v-col>
                             <v-col cols="4" style="display: grid; align-items: end">
@@ -426,7 +432,13 @@
                                         {{ emp.company_phone || "--" }}
                                     </v-col>
                                 </v-row>
-                                <custom-button class="mr-3" color="grey" text="Editar" @click="editEmpresa(emp)" />
+                                <custom-button
+                                    class="mr-3"
+                                    color="grey"
+                                    style="width: 33%"
+                                    text="Editar"
+                                    @click="editEmpresa(emp)"
+                                />
                             </v-card>
                         </div>
 
@@ -537,7 +549,13 @@
                                     <v-col class="text-end pb-5"> ********** </v-col>
                                 </v-row>
 
-                                <custom-button class="mr-3" color="grey" text="Editar" @click="editEmpresa(emp)" />
+                                <custom-button
+                                    class="mr-3"
+                                    color="grey"
+                                    style="width: 33%"
+                                    text="Editar"
+                                    @click="editEmpresa(emp)"
+                                />
                             </v-card>
                         </div>
                     </div>
@@ -1317,23 +1335,18 @@
         <!-- DIRECCIONES ----------------------------------------------------------------------------->
 
         <v-row>
-            <v-col cols="12">
+            <v-col cols="12" class="pb-0">
                 <h5 class="fw-600">Direcciones</h5>
                 <v-divider class="my-4" />
             </v-col>
         </v-row>
 
         <v-row>
-            <v-col cols="12" md="6">
-                <v-card
-                    elevation="0"
-                    class="mb-6 form-border rounded-lg pa-5"
-                    v-for="(otherAdd, i) in otherAdress"
-                    :key="i"
-                >
-                    <div class="form">
-                        <div v-if="otherAdd?.editar == false">
-                            <div v-if="otherAdd.mostrarDatos">
+            <v-col cols="12" md="6" class="pt-0">
+                <div v-for="(otherAdd, i) in otherAdress" :key="i">
+                    <div v-if="otherAdd?.editar == false">
+                        <div v-if="otherAdd.mostrarDatos">
+                            <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
                                 <div style="width: auto; display: inline; float: right">
                                     <v-tooltip bottom color="black">
@@ -1414,8 +1427,20 @@
                                     <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>
                                     <span class="body1">{{ otherAdd?.phone }}</span>
                                 </div>
-                            </div>
-                            <div v-else>
+                                <custom-button
+                            class="mr-3"
+                            color="grey"
+                            style="width: 33%"
+                            text="Editar"
+                            @click="editDirection(otherAdd)"
+                        />
+                            </v-card>
+                        </div>
+                        <div v-else>
+                            <v-card
+                                elevation="0"
+                                class="mb-6 form-border rounded-lg pa-5"
+                            >
                                 <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
                                 <div style="width: auto; display: inline; float: right">
                                     <v-tooltip bottom color="black">
@@ -1492,190 +1517,203 @@
                                     <span class="subtitle1 text-uppercase fw-600">Telefono / Movil</span>
                                     <span class="body1">**********</span>
                                 </div>
-                            </div>
-
-                            <custom-button class="mr-3" color="grey" text="Editar" @click="editDirection(otherAdd)" />
+                                <custom-button
+                            class="mr-3"
+                            color="grey"
+                            style="width: 33%"
+                            text="Editar"
+                            @click="editDirection(otherAdd)"
+                        />
+                            </v-card>
                         </div>
 
-                        <div v-if="otherAdd?.editar == true">
-                            <h5 class="fw-600">Editar Dirección</h5>
-                            <v-divider class="ma-4" />
-                            <v-form :validator="$v.otherAdd" autocomplete="chrome-off">
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Nombre de dirección (Casa / oficina)</div>
-                                    <CustomInput
-                                        v-model="otherAdd.name"
-                                        required
-                                        class="place-holder"
-                                        placeholder="Ingresar casa / oficina"
-                                    />
-                                </div>
+                        
+                    </div>
 
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Dirección (calle / carrera)</div>
+                    <div v-if="otherAdd?.editar == true">
+                        <v-card
+                                elevation="0"
+                                class="mb-6 rounded-lg pa-5"
+                                style="background: white;"
+                            >
+                        <h5 class="fw-600">Editar Dirección</h5>
+                        <v-divider class="ma-4" />
+                        <v-form :validator="$v.otherAdd" autocomplete="chrome-off">
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">Nombre de dirección (Casa / oficina)</div>
+                                <CustomInput
+                                    v-model="otherAdd.name"
+                                    required
+                                    class="place-holder"
+                                    placeholder="Ingresar casa / oficina"
+                                />
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">Dirección (calle / carrera)</div>
+                                <CustomInput
+                                    v-model="otherAdd.address"
+                                    required
+                                    class="place-holder"
+                                    placeholder="Ingresar calle / carrera"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">Código postal</div>
+                                <SelectCustom
+                                    class="select-style"
+                                    placeholder="Seleccione codigo postal"
+                                    :items="codigoPostalTypes"
+                                    v-model="otherAdd.postal_code"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">País</div>
+                                <SelectCustom
+                                    placeholder="Seleccione país"
+                                    class="select-style"
+                                    :items="countries"
+                                    @input="countryChanged"
+                                    item-text="name"
+                                    item-value="id"
+                                    required
+                                    v-model="otherAdd.country"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">Departamento</div>
+                                <SelectCustom
+                                    placeholder="Seleccione departamento"
+                                    class="select-style"
+                                    :items="filteredStates"
+                                    @input="stateChanged"
+                                    item-text="name"
+                                    item-value="id"
+                                    required
+                                    v-model="otherAdd.state"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">Ciudad</div>
+                                <SelectCustom
+                                    placeholder="Seleccione ciudad"
+                                    class="select-style"
+                                    :items="filteredCities"
+                                    item-text="name"
+                                    item-value="id"
+                                    required
+                                    v-model="otherAdd.city"
+                                />
+                            </div>
+                            <v-row>
+                                <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase">Localidad</span>
+                                    <SelectCustom
+                                        placeholder="Seleccione localidad"
+                                        class="select-style"
+                                        :items="filteredLocalidad"
+                                        required
+                                        v-model="otherAdd.localidad"
+                                    />
+                                </v-col>
+                                <v-col cols="12" sm="6">
+                                    <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
                                     <CustomInput
-                                        v-model="otherAdd.address"
-                                        required
+                                        v-model="otherAdd.neighborhood"
                                         class="place-holder"
-                                        placeholder="Ingresar calle / carrera"
+                                        placeholder="Ingresar barrio"
                                     />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Código postal</div>
-                                    <SelectCustom
-                                        class="select-style"
-                                        placeholder="Seleccione codigo postal"
-                                        :items="codigoPostalTypes"
-                                        v-model="otherAdd.postal_code"
-                                        required
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">País</div>
-                                    <SelectCustom
-                                        placeholder="Seleccione país"
-                                        class="select-style"
-                                        :items="countries"
-                                        @input="countryChanged"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.country"
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Departamento</div>
-                                    <SelectCustom
-                                        placeholder="Seleccione departamento"
-                                        class="select-style"
-                                        :items="filteredStates"
-                                        @input="stateChanged"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.state"
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Ciudad</div>
-                                    <SelectCustom
-                                        placeholder="Seleccione ciudad"
-                                        class="select-style"
-                                        :items="filteredCities"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.city"
-                                    />
-                                </div>
+                                </v-col>
+                            </v-row>
+
+                            <div class="mb-3"></div>
+                            <div class="mb-3">
+                                <div class="mb-1 fs-13 fw-500">Número de teléfono</div>
                                 <v-row>
-                                    <v-col cols="12" sm="6">
-                                        <span class="black--text body-2 text-uppercase">Localidad</span>
-                                        <SelectCustom
-                                            placeholder="Seleccione localidad"
-                                            class="select-style"
-                                            :items="filteredLocalidad"
-                                            required
-                                            v-model="otherAdd.localidad"
-                                        />
-                                    </v-col>
-                                    <v-col cols="12" sm="6">
-                                        <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
-                                        <CustomInput
-                                            v-model="otherAdd.neighborhood"
-                                            class="place-holder"
-                                            placeholder="Ingresar barrio"
-                                        />
+                                    <v-col cols="12">
+                                        <vue-tel-input
+                                            v-model="otherAdd.phone"
+                                            v-bind="mobileInputProps"
+                                            :onlyCountries="availableCountries"
+                                            @validate="phoneValidate"
+                                            @blur="$v.formDirection.phone.$touch()"
+                                            :class="{
+                                                'error--text':
+                                                    $v.formDirection.phone.$error || formDirection.showInvalidPhone
+                                            }"
+                                        >
+                                            <template slot="arrow-icon">
+                                                <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                            </template>
+                                        </vue-tel-input>
+                                        <div
+                                            class="v-text-field__details mt-2 pl-3"
+                                            v-if="$v.formDirection.phone.$error"
+                                        >
+                                            <div class="v-messages theme--light error--text" role="alert">
+                                                <div class="v-messages__wrapper">
+                                                    <div class="v-messages__message">
+                                                        {{ $t("*Este campo es obligatorio") }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="v-text-field__details mt-2 pl-3"
+                                            v-if="!$v.formDirection.phone.$error && formDirection.showInvalidPhone"
+                                        >
+                                            <div class="v-messages theme--light error--text" role="alert">
+                                                <div class="v-messages__wrapper">
+                                                    <div class="v-messages__message">
+                                                        {{ $t("phone_number_must_be_valid") }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </v-col>
                                 </v-row>
 
-                                <div class="mb-3"></div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Número de teléfono</div>
-                                    <v-row>
-                                        <v-col cols="12">
-                                            <vue-tel-input
-                                                v-model="otherAdd.phone"
-                                                v-bind="mobileInputProps"
-                                                :onlyCountries="availableCountries"
-                                                @validate="phoneValidate"
-                                                @blur="$v.formDirection.phone.$touch()"
-                                                :class="{
-                                                    'error--text':
-                                                        $v.formDirection.phone.$error || formDirection.showInvalidPhone
-                                                }"
-                                            >
-                                                <template slot="arrow-icon">
-                                                    <span class="vti__dropdown-arrow">&nbsp;▼</span>
-                                                </template>
-                                            </vue-tel-input>
-                                            <div
-                                                class="v-text-field__details mt-2 pl-3"
-                                                v-if="$v.formDirection.phone.$error"
-                                            >
-                                                <div class="v-messages theme--light error--text" role="alert">
-                                                    <div class="v-messages__wrapper">
-                                                        <div class="v-messages__message">
-                                                            {{ $t("*Este campo es obligatorio") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="v-text-field__details mt-2 pl-3"
-                                                v-if="!$v.formDirection.phone.$error && formDirection.showInvalidPhone"
-                                            >
-                                                <div class="v-messages theme--light error--text" role="alert">
-                                                    <div class="v-messages__wrapper">
-                                                        <div class="v-messages__message">
-                                                            {{ $t("phone_number_must_be_valid") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </v-col>
-                                    </v-row>
-
-                                    <v-row>
-                                        <v-col cols="4" md="4">
-                                            <custom-button
-                                                block
-                                                class="mt-4"
-                                                text="< Cancelar"
-                                                type="button"
-                                                color="grey"
-                                                @click="cancelEditAddress(otherAdd)"
-                                            />
-                                        </v-col>
-                                        <v-col
-                                            cols="4"
-                                            md="4"
-                                            style="display: flex; align-items: end; justify-content: center"
-                                        >
-                                            <CustomButtonR
-                                                class="mr-3 boton-redondo"
-                                                text="Eliminar"
-                                                @click="deleteAddress(otherAdd?.id)"
-                                            />
-                                        </v-col>
-                                        <v-col cols="4" md="4">
-                                            <custom-button
-                                                block
-                                                class="mt-4"
-                                                text="Guardar >"
-                                                type="button"
-                                                color="grey"
-                                                @click="saveEditAddress(otherAdd)"
-                                                :disabled="infoUpdateLoading"
-                                                :loading="infoUpdateLoading"
-                                            />
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                            </v-form>
-                        </div>
+                                <v-row>
+                                    <v-col cols="4" md="4">
+                                        <custom-button
+                                            block
+                                            class="mt-4"
+                                            text="< Cancelar"
+                                            type="button"
+                                            color="grey"
+                                            @click="cancelEditAddress(otherAdd)"
+                                        />
+                                    </v-col>
+                                    <v-col
+                                        cols="4"
+                                        md="4"
+                                        style="display: flex; align-items: end; justify-content: center"
+                                    >
+                                        <CustomButtonR
+                                            class="mr-3 boton-redondo"
+                                            text="Eliminar"
+                                            @click="deleteAddress(otherAdd?.id)"
+                                        />
+                                    </v-col>
+                                    <v-col cols="4" md="4">
+                                        <custom-button
+                                            block
+                                            class="mt-4"
+                                            text="Guardar >"
+                                            type="button"
+                                            color="grey"
+                                            @click="saveEditAddress(otherAdd)"
+                                            :disabled="infoUpdateLoading"
+                                            :loading="infoUpdateLoading"
+                                        />
+                                    </v-col>
+                                </v-row>
+                            </div>
+                        </v-form>
+                        </v-card>
                     </div>
-                </v-card>
+                </div>
             </v-col>
             <!-- ----------------------------------------------------------- -->
 
@@ -1925,118 +1963,115 @@
 
         <v-row>
             <v-col cols="12" md="6">
-                <h5 class="fw-600" style="width: 100%;">Contraseña</h5>
+                <h5 class="fw-600" style="width: 100%">Contraseña</h5>
                 <v-divider class="my-4" />
-                <v-card
-                        elevation="0"
-                        class="mb-6 form-border rounded-lg pa-5"
-                        style="background-color: white; border-color: white"
-                    >
-                <v-row v-if="changePassword">
-                    <v-col cols="12" class="pb-0">
-                        <h5 class="fw-600">Cambiar contraseña</h5>
+                    <v-row v-if="changePassword" class="pt-3" style="display: flex; justify-content: center;">
+                        
+                        <v-card elevation="0" class="mb-6 rounded-lg py-1 pb-5 px-5" style="width: 95%; background: white;">
 
-                        <v-divider class="ma-4" />
-                    </v-col>
-                    <v-col cols="12" md="12" class="pt-0">
-                    
-                        <span class="black--text body-2 text-uppercase"> CONTRASEÑA ACTUAL </span>
-                        <!-- <v-text-field
+                        <v-col cols="12" class="pb-0">
+                            <h5 class="fw-600">Cambiar contraseña</h5>
+                            <v-divider class="my-4" />
+                        </v-col>
+                        <v-col cols="12" md="12" class="pt-0">
+                            <span class="black--text body-2 text-uppercase"> CONTRASEÑA ACTUAL </span>
+                            <v-text-field
                             v-model="formContrasena.oldPassword"
                             placeholder="Ingresar contraseña"
                             :error-messages="olddPasswordErrors"
                             @blur="$v.formContrasena.oldPassword.$touch()"
                             :type="passwordOldShow ? 'text' : 'password'"
                             :append-icon="passwordOldShow ? 'las la-eye' : 'las la-eye-slash'"
-                            class="input-group--focused place-holder"
+                            class="input-group--focused place-holder borde-none"
                             hide-details="auto"
                             required
                             dense
                             outlined
                             @click:append="passwordOldShow = !passwordOldShow"
                             style="background: #f5f5f5;"
-                        ></v-text-field> -->
-                        <CustomInput
-                                        
-                            v-model="formContrasena.oldPassword"
-                            placeholder="Ingresar contraseña"
-                            :error-messages="olddPasswordErrors"
-                            @blur="$v.formContrasena.oldPassword.$touch()"
-                            :type="passwordOldShow ? 'text' : 'password'"
-                            :append-icon="passwordOldShow ? 'las la-eye' : 'las la-eye-slash'"
-                            class="input-group--focused place-holder"
-                            hide-details="auto"
-                            required
-                            dense
-                            outlined
-                            @click:append="passwordOldShow = !passwordOldShow"
-                            style="background: #f5f5f5;"
-                                    />
-                    </v-col>
-                    <v-col cols="12" md="12">
-                        <span class="black--text body-2 text-uppercase"> NUEVA CONTRASEÑA </span>
-                        <CustomInput
-                            v-model="formContrasena.newPassword"
-                            placeholder="Ingresar contraseña"
-                            :error-messages="newPasswordErrors"
-                            @blur="$v.formContrasena.newPassword.$touch()"
-                            :type="passwordNewShow ? 'text' : 'password'"
-                            :append-icon="passwordNewShow ? 'las la-eye' : 'las la-eye-slash'"
-                            class="input-group--focused place-holder"
-                            hide-details="auto"
-                            required
-                            dense
-                            outlined
-                            @click:append="passwordNewShow = !passwordNewShow"
-                            style="background: #f5f5f5;"
-                        />
-                    </v-col>
+                            ></v-text-field>
+                            <!-- <CustomInput
+                                v-model="formContrasena.oldPassword"
+                                placeholder="Ingresar contraseña"
+                                :error-messages="olddPasswordErrors"
+                                @blur="$v.formContrasena.oldPassword.$touch()"
+                                :type="passwordOldShow ? 'text' : 'password'"
+                                :append-icon="passwordOldShow ? 'las la-eye' : 'las la-eye-slash'"
+                                class="input-group--focused place-holder"
+                                hide-details="auto"
+                                required
+                                dense
+                                outlined
+                                @click:append="passwordOldShow = !passwordOldShow"
+                                style="background: #f5f5f5"
+                            /> -->
+                        </v-col>
+                        <v-col cols="12" md="12">
+                            <span class="black--text body-2 text-uppercase"> NUEVA CONTRASEÑA </span>
+                            <v-text-field
+                                v-model="formContrasena.newPassword"
+                                placeholder="Ingresar contraseña"
+                                :error-messages="newPasswordErrors"
+                                @blur="$v.formContrasena.newPassword.$touch()"
+                                :type="passwordNewShow ? 'text' : 'password'"
+                                :append-icon="passwordNewShow ? 'las la-eye' : 'las la-eye-slash'"
+                                class="input-group--focused place-holder borde-none"
+                                hide-details="auto"
+                                required
+                                dense
+                                outlined
+                                @click:append="passwordNewShow = !passwordNewShow"
+                                style="background: #f5f5f5"
+                            >
+                            </v-text-field>
+                        </v-col>
 
-                    <v-col cols="12" md="12">
-                        <span class="black--text body-2 text-uppercase"> REPETIR NUEVA CONTRASEÑA </span>
-                        <v-text-field
-                            v-model="formContrasena.reptyPassword"
-                            placeholder="Ingresar contraseña"
-                            :error-messages="reptyPasswordErrors"
-                            @blur="$v.formContrasena.reptyPassword.$touch()"
-                            :type="passwordReptyShow ? 'text' : 'password'"
-                            :append-icon="passwordReptyShow ? 'las la-eye' : 'las la-eye-slash'"
-                            class="input-group--focused place-holder"
-                            hide-details="auto"
-                            required
-                            dense
-                            outlined
-                            @click:append="passwordReptyShow = !passwordReptyShow"
-                            style="background: #f5f5f5;"
-                        ></v-text-field>
-                    </v-col>
-                    
-                    <v-row>
-                        <v-col cols="4" md="4">
-                            <custom-button
-                                block
-                                class="mt-4"
-                                text="< Cancelar"
-                                type="button"
-                                color="grey2"
-                                @click="cancelChangePassword()"
-                            />
+                        <v-col cols="12" md="12">
+                            <span class="black--text body-2 text-uppercase"> REPETIR NUEVA CONTRASEÑA </span>
+                            <v-text-field
+                                v-model="formContrasena.reptyPassword"
+                                placeholder="Ingresar contraseña"
+                                :error-messages="reptyPasswordErrors"
+                                @blur="$v.formContrasena.reptyPassword.$touch()"
+                                :type="passwordReptyShow ? 'text' : 'password'"
+                                :append-icon="passwordReptyShow ? 'las la-eye' : 'las la-eye-slash'"
+                                class="input-group--focused place-holder borde-none"
+                                hide-details="auto"
+                                required
+                                dense
+                                outlined
+                                @click:append="passwordReptyShow = !passwordReptyShow"
+                                style="background: #f5f5f5"
+                            ></v-text-field>
                         </v-col>
-                        <v-col cols="4" md="4" style="margin-left: 33%">
-                            <custom-button
-                                block
-                                class="mt-4"
-                                text="Guardar >"
-                                type="submit"
-                                color="grey2"
-                                @click="saveChangePassword()"
-                                :disabled="infoUpdateLoading"
-                                :loading="infoUpdateLoading"
-                            />
-                        </v-col>
+
+                        <v-row>
+                            <v-col cols="4" md="4">
+                                <custom-button
+                                    block
+                                    class="mt-4"
+                                    text="< Cancelar"
+                                    type="button"
+                                    color="grey2"
+                                    @click="cancelChangePassword()"
+                                />
+                            </v-col>
+                            <v-col cols="4" md="4" style="margin-left: 33%">
+                                <custom-button
+                                    block
+                                    class="mt-4"
+                                    text="Guardar >"
+                                    type="submit"
+                                    color="grey2"
+                                    @click="saveChangePassword()"
+                                    :disabled="infoUpdateLoading"
+                                    :loading="infoUpdateLoading"
+                                />
+                            </v-col>
+                        </v-row>
+                    </v-card>
                     </v-row>
-                </v-row>
-                </v-card>
+                
 
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-if="!changePassword">
                     <CustomButton block color="grey" text="Cambiar Contraseña" @click="cambiarContrasena()" />
@@ -2050,59 +2085,73 @@
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                     <div class="tyc mb-3">
                         <div class="custom-checkbox" style="margin-left: -9px !important">
-                            <input type="checkbox" v-model="currentUser.offersConsent" v-on:click="offersConsent" class="checkbox-profile" style="width: 100px !important; margin-right: 20px !important;">
+                            <input
+                                disabled
+                                type="checkbox"
+                                v-model="currentUser.offersConsent"
+                                v-on:click="offersConsent"
+                                class="checkbox-profile"
+                                style="width: 100px !important; margin-right: 20px !important"
+                            />
 
                             <label>
-                                Acepto recibir comunicaciones comerciales personalizadas de idovela a través de email y otros medios.
-                            <a href="#">Conocer newsletter.</a>
-                            </label> 
+                                Acepto recibir comunicaciones comerciales personalizadas de idovela a través de email y
+                                otros medios.
+                                <a href="#">Conocer newsletter.</a>
+                            </label>
                         </div>
 
                         <div class="custom-checkbox">
-                            <input type="checkbox" v-model="currentUser.policiesAndCookiesConsent" v-on:click="policiesAndCookiesConsent" class="checkbox-profile">
+                            <input
+                                disabled
+                                type="checkbox"
+                                v-model="currentUser.policiesAndCookiesConsent"
+                                v-on:click="policiesAndCookiesConsent"
+                                class="checkbox-profile"
+                            />
 
                             <label>
                                 He podido leer y entiendo la <a href="#">Política de privacidad y cookies.</a>
-                            </label> 
+                            </label>
                         </div>
 
                         <div class="custom-checkbox">
-                            <input type="checkbox" v-model="currentUser.termsCondTrade" v-on:click="termsCondTrade" class="checkbox-profile">
+                            <input
+                                disabled
+                                type="checkbox"
+                                v-model="currentUser.termsCondTrade"
+                                v-on:click="termsCondTrade"
+                                class="checkbox-profile"
+                            />
 
                             <label>
                                 Acepto los <a href="#">Términos y condiciones para la compra con Idovela.</a>
-                            </label> 
+                            </label>
                         </div>
 
                         <div class="custom-checkbox">
-                            <input type="checkbox" v-model="currentUser.guaranteePolicies" v-on:click="guaranteePolicies" class="checkbox-profile">
+                            <input
+                                disabled
+                                type="checkbox"
+                                v-model="currentUser.guaranteePolicies"
+                                v-on:click="guaranteePolicies"
+                                class="checkbox-profile"
+                            />
 
-                            <label>
-                                Acepto las <a href="#">Pólizas de garantía.</a>
-                            </label> 
+                            <label> Acepto las <a href="#">Pólizas de garantía.</a> </label>
                         </div>
 
                         <div class="custom-checkbox">
-                            <input type="checkbox" v-model="currentUser.termsLogistics" v-on:click="termsLogistics" class="checkbox-profile">
+                            <input
+                                disabled
+                                type="checkbox"
+                                v-model="currentUser.termsLogistics"
+                                v-on:click="termsLogistics"
+                                class="checkbox-profile"
+                            />
 
-                            <label>
-                                 Acepto los términos de <a href="#">La logística de envió.</a> 
-                            </label> 
+                            <label> Acepto los términos de <a href="#">La logística de envió.</a> </label>
                         </div>
-
-                        <!--<CustomCheckbox v-model="form.offersConsent">
-                            Quiero recibir comunicaciones comerciales personalizadas de Idovela a través de email.
-                            <a href="#">Conocer newsletter.</a>
-                        </CustomCheckbox> -->
-
-                        <!--<CustomCheckbox v-model="form.policiesAndCookiesConsent">
-                            He podido leer y entiendo la <a href="#">Política de privacidad y cookies.</a>
-                        </CustomCheckbox> -->
-                        <!--<CustomCheckbox>
-                            Acepto los <a href="#">Términos y condiciones para la compra con Idovela.</a>
-                        </CustomCheckbox>
-                        <CustomCheckbox> Acepto las <a href="#">Pólizas de garantía.</a> </CustomCheckbox>
-                        <CustomCheckbox> Acepto los términos de <a href="#">La logística de envió.</a> </CustomCheckbox> -->
                     </div>
                     <CustomButton color="grey" text="Saber Más" />
                 </v-card>
@@ -3148,13 +3197,10 @@ export default {
                     color: "red"
                 });
             }
-            
         },
-        async offersConsent(){
-            if(this.currentUser.offersConsent)
-                this.currentUser.offersConsent = 0;
-            else
-                this.currentUser.offersConsent = 1;
+        async offersConsent() {
+            if (this.currentUser.offersConsent) this.currentUser.offersConsent = 0;
+            else this.currentUser.offersConsent = 1;
 
             const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
 
@@ -3168,70 +3214,61 @@ export default {
                     color: "red"
                 });
             }
-        }, 
-        async policiesAndCookiesConsent(){
-            if(this.currentUser.policiesAndCookiesConsent)
-                this.currentUser.policiesAndCookiesConsent = 0;
-            else
-                this.currentUser.policiesAndCookiesConsent = 1;
-
-            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
-
-            if (res.data.success) {
-                this.getAddressUser();
-
-                this.snack({ message: res.data.message });
-            } else {
-                this.snack({
-                    message: this.$i18n.t("something_went_wrong"),
-                    color: "red"
-                });
-            }
-        }, 
-        async termsCondTrade(){
-            if(this.currentUser.termsCondTrade)
-                this.currentUser.termsCondTrade = 0;
-            else
-                this.currentUser.termsCondTrade = 1;
-
-            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
-
-            if (res.data.success) {
-                this.getAddressUser();
-
-                this.snack({ message: res.data.message });
-            } else {
-                this.snack({
-                    message: this.$i18n.t("something_went_wrong"),
-                    color: "red"
-                });
-            }
-            
-        }, 
-        async guaranteePolicies(){
-            if(this.currentUser.guaranteePolicies)
-                this.currentUser.guaranteePolicies = 0;
-            else
-                this.currentUser.guaranteePolicies = 1;
-
-            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
-
-            if (res.data.success) {
-                this.getAddressUser();
-
-                this.snack({ message: res.data.message });
-            } else {
-                this.snack({
-                    message: this.$i18n.t("something_went_wrong"),
-                    color: "red"
-                });
-            } 
         },
-        async termsLogistics(){
-            if(this.currentUser.termsLogistics)
-                this.currentUser.termsLogistics = 0;
-            else
-                this.currentUser.termsLogistics = 1;
+        async policiesAndCookiesConsent() {
+            if (this.currentUser.policiesAndCookiesConsent) this.currentUser.policiesAndCookiesConsent = 0;
+            else this.currentUser.policiesAndCookiesConsent = 1;
+
+            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+        },
+        async termsCondTrade() {
+            if (this.currentUser.termsCondTrade) this.currentUser.termsCondTrade = 0;
+            else this.currentUser.termsCondTrade = 1;
+
+            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+        },
+        async guaranteePolicies() {
+            if (this.currentUser.guaranteePolicies) this.currentUser.guaranteePolicies = 0;
+            else this.currentUser.guaranteePolicies = 1;
+
+            const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
+
+            if (res.data.success) {
+                this.getAddressUser();
+
+                this.snack({ message: res.data.message });
+            } else {
+                this.snack({
+                    message: this.$i18n.t("something_went_wrong"),
+                    color: "red"
+                });
+            }
+        },
+        async termsLogistics() {
+            if (this.currentUser.termsLogistics) this.currentUser.termsLogistics = 0;
+            else this.currentUser.termsLogistics = 1;
 
             const res = await this.call_api("post", "user/info/updateTerms", this.currentUser);
 
@@ -3493,7 +3530,7 @@ export default {
     background: #dfdfdf;
     border: 1px solid #e2e2e2;
 }
-.checkbox-profile{
+.checkbox-profile {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -3506,10 +3543,10 @@ export default {
     background-color: #f5f5f5;
 }
 .checkbox-profile:checked {
-  accent-color: black;
+    accent-color: black;
 }
 
-.custom-checkbox{
+.custom-checkbox {
     display: flex;
     align-items: center;
     position: relative;
@@ -3520,14 +3557,28 @@ export default {
     min-height: 38px;
 }
 
-.custom-checkbox label{
+.custom-checkbox label {
     font-family: "Roboto", sans-serif;
     font-size: var(--font-size-body1);
     cursor: pointer;
 }
 
-.custom-checkbox label a{
+.custom-checkbox label a {
     text-decoration: underline;
     font-weight: 700;
 }
+
+.borde-none{
+    ::v-deep{
+        .v-input__control{
+            .v-input__slot{
+                fieldset{
+                    border: none !important;
+                }
+            }
+        }
+    }
+}
+
+
 </style>
