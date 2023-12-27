@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: #fafcfc">
+    <div style="background-color: #fafcfc;">
         <Steps :order-details="order" />
         <div class="my-5">
             <h6>Lista de Pedido</h6>
@@ -91,7 +91,7 @@
             <v-row>
                 <v-col cols="0" sm="8" class="py-1 d-flex justify-start justify-sm-end align-center"> </v-col>
 
-                <v-col cols="12" sm="4" class="py-1 d-flex justify-start align-center" style="gap: 50px">
+                <v-col cols="12" sm="4" class="py-1 d-flex justify-start align-center" style="gap: 50px;">
                     <p class="body-1 mb-0">NUMERO DE ARTICULOS</p>
                     <p class="body-2"><Cubo /> 99</p>
                 </v-col>

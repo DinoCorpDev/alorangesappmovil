@@ -8,35 +8,9 @@
                 :src="thumbnailImage || productPlaceholderUrl"
             />
             <div class="product-box-cart-info">
-                <p class="product-box-cart-reference mb-0">{{ productDetails.reference || "--" }}</p>
                 <h2 class="product-box-cart-name">{{ productDetails.name || "--" }}</h2>
-                <p class="product-box-cart-brand-name mb-0">{{ productDetails.brand.name || "--" }}</p>
+                <p class="product-box-cart-brand-name mb-0">{{ "43 electrodomesticos - 3 colecciones" }}</p>
             </div>
-        </div>
-        <div class="product-box-cart-body-price">
-            <template v-if="productCartType == 'checkout'">
-                <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
-                    {{ format_price(productDetails.discounted_price * productDetails.qty) }}
-                </span>
-                <del v-if="inDiscount" class="product-box-cart-price">
-                    {{ format_price(productDetails.regular_price * productDetails.qty) }}
-                </del>
-            </template>
-
-            <template v-if="productCartType == 'wishlist'">
-                <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
-                    {{ format_price(productDetails.base_discounted_price) }}
-                </span>
-                <del
-                    v-if="productDetails.base_price > productDetails.base_discounted_price"
-                    class="product-box-cart-price"
-                >
-                    {{ format_price(productDetails.base_price) }}
-                </del>
-            </template>
-        </div>
-        <div class="product-box-cart-quantity">
-            <vue-numeric-input v-model="cartQuantity" :min="1" :max="maxCartLimit" :step="1" align="center" />
         </div>
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-none d-md-flex">
@@ -165,16 +139,16 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 
-import CustomButton from "../../components/global/CustomButton.vue";
+import CustomButton from "./CustomButton.vue";
 
-import AddCartIcon from "../../components/icons/AddCartIcon.vue";
-import EllipsisIcon from "../../components/icons/EllipsisIcon.vue";
-import EyeIcon from "../../components/icons/EyeIcon.vue";
-import FavoriteIcon from "../../components/icons/Favorite.vue";
-import TrashIcon from "../../components/icons/TrashIcon.vue";
+import AddCartIcon from "../icons/AddCartIcon.vue";
+import EllipsisIcon from "../icons/EllipsisIcon.vue";
+import EyeIcon from "../icons/EyeIcon.vue";
+import FavoriteIcon from "../icons/Favorite.vue";
+import TrashIcon from "../icons/TrashIcon.vue";
 
 export default {
-    name: "ProductCart",
+    name: "ProductBrand",
     components: {
         CustomButton,
         AddCartIcon,
@@ -190,7 +164,7 @@ export default {
     },
     data() {
         return {
-            productPlaceholderUrl: "/public/assets/img/item-placeholder.png",
+            productPlaceholderUrl: "/public/assets/img/boshmarca.png",
             cartQuantity: 1,
             minCartLimit: 1,
             maxCartLimit: Infinity
@@ -252,7 +226,7 @@ export default {
 .product-box-cart {
     display: grid;
     align-items: stretch;
-    grid-template-columns: 6fr 4fr 1fr 1fr;
+    grid-template-columns: 10fr 2fr;
 
     border-radius: 10px;
     background-color: #f5f5f5;
@@ -262,7 +236,7 @@ export default {
     padding: 0.5rem 0;
 
     @media (min-width: 768px) {
-        grid-template-columns: 5fr 2fr 2fr 3fr;
+        grid-template-columns: 9fr 3fr;
         padding: 0.75rem 0;
     }
 
@@ -287,12 +261,12 @@ export default {
     }
 
     &-image {
-        background-color: #dfdfdf;
+        background-color: #f5f5f5;
         width: 90px;
         height: auto;
         aspect-ratio: 1;
         object-fit: cover;
-
+        padding: 10px;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
 
@@ -331,7 +305,7 @@ export default {
         padding: 0 0.5rem;
 
         @media (min-width: 768px) {
-            padding: 0.75rem 1.25rem;
+            padding: 0.9rem 1.25rem;
         }
     }
 
@@ -344,11 +318,11 @@ export default {
     }
 
     &-name {
-        font-size: var(--font-size-body1);
+        font-size: var(--font-size-h5);
         font-weight: 700;
         line-height: calc(14px + (24 - 14) * var(--screen-size));
         letter-spacing: 0;
-        text-transform: uppercase;
+        text-transform: capitalize;
     }
 
     &-brand-name {

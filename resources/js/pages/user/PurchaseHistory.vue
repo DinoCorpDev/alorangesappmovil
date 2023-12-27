@@ -2,27 +2,31 @@
     <v-row>
         <v-col class="px-0 px-sm-3" cols="12">
             <v-tabs class="barra-superior" v-model="tab" grow height="38px" :hide-slider="true">
-                    <v-tab :ripple="false">ORDEN DE PEDIDO</v-tab>
-                     <v-tab :ripple="false">HISTORIAL DE PRODUCTOS</v-tab>
+                <v-tab :ripple="false">ORDEN DE PEDIDO</v-tab>
+                <v-tab :ripple="false">HISTORIAL DE PRODUCTOS</v-tab>
             </v-tabs>
             <v-divider class="my-3" />
 
-
             <v-tabs-items v-model="tab">
                 <v-tab-item>
-                    <v-row v-if="orders.length > 0" no-gutters class="compras-items" style="max-width: 95%; max-height: 450px; overflow-y: scroll;">
-                    <v-col cols="12" v-for="(item, i) in orders" :key="i">
-                        <OrderHistory
-                            style="background-color: #f5f5f5;"
-                            :order="item?.code"
-                            :date="item?.date"
-                            colorStatus="red"
-                            :descriptionStatus="item.orders[0]?.payment_status"
-                            icon1="la-download"
-                            icon2="la-eye"
-                            icon3="la-print"
-                        />
-                    </v-col>
+                    <v-row
+                        v-if="orders.length > 0"
+                        no-gutters
+                        class="compras-items"
+                        style="max-width: 95%; max-height: 450px; overflow-y: scroll;"
+                    >
+                        <v-col cols="12" v-for="(item, i) in orders" :key="i">
+                            <OrderHistory
+                                style="background-color: #f5f5f5;"
+                                :order="item?.code"
+                                :date="item?.date"
+                                colorStatus="red"
+                                :descriptionStatus="item.orders[0]?.payment_status"
+                                icon1="la-download"
+                                icon2="la-eye"
+                                icon3="la-print"
+                            />
+                        </v-col>
                     </v-row>
                     <div v-else class="text-center">
                         <div class="emptycart">
@@ -35,7 +39,7 @@
                     </div>
                 </v-tab-item>
 
-            <v-tab-item>
+                <v-tab-item>
                     <div class="emptycart">
                         <div class="cuadro-emptycart">
                             <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/factura.svg" />
@@ -43,14 +47,8 @@
                             <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                         </div>
                     </div>
-            </v-tab-item>
-
-            
+                </v-tab-item>
             </v-tabs-items>
-
-
-
-
 
             <!-- <v-row v-if="orders.length > 0" no-gutters class="compras-items" style="max-width: 95%; max-height: 450px; overflow-y: scroll;">
                 <v-col cols="12" v-for="(item, i) in orders" :key="i">
@@ -75,7 +73,6 @@
                     </div>
                 </div>
             </div> -->
-
         </v-col>
     </v-row>
 </template>
@@ -187,9 +184,12 @@ export default {
 }
 
 .container {
-    background-color: #ffffff;
+    background-color: #fafcfc;
 }
 
+.theme--light.v-tabs-items {
+    background-color: #fafcfc !important;
+}
 .invoice-div {
     padding: 8px 10px 0 10px;
 }
@@ -218,47 +218,47 @@ export default {
 }
 
 .v-tabs {
-        &::v-deep {
-            .v-slide-group__prev,
-            .v-slide-group__next {
-                display: none !important;
-            }
-
-            .v-tabs-bar__content {
-                gap: 0.75rem;
-
-                @media (min-width: 600px) {
-                    gap: 1.5rem;
-                }
-            }
+    &::v-deep {
+        .v-slide-group__prev,
+        .v-slide-group__next {
+            display: none !important;
         }
 
-        .v-tab {
-            background-color: #fafcfc;
-            border: 1px solid #dfdfdf;
-            border-radius: 100px;
+        .v-tabs-bar__content {
+            gap: 0.75rem;
+
+            @media (min-width: 600px) {
+                gap: 1.5rem;
+            }
+        }
+    }
+
+    .v-tab {
+        background-color: #fafcfc;
+        border: 1px solid #dfdfdf;
+        border-radius: 100px;
+        color: #000000 !important;
+        font-size: var(--font-size-btn);
+        font-weight: 600;
+        letter-spacing: 1.25px;
+        line-height: 17px;
+        // flex: 1; // All tabs same width
+
+        &:not(.v-tab--active):hover {
+            background-color: #dfdfdf;
             color: #000000 !important;
-            font-size: var(--font-size-btn);
-            font-weight: 600;
-            letter-spacing: 1.25px;
-            line-height: 17px;
-            // flex: 1; // All tabs same width
-
-            &:not(.v-tab--active):hover {
-                background-color: #dfdfdf;
-                color: #000000 !important;
-            }
-
-            &--active {
-                background-color: #000000;
-                color: #ffffff !important;
-            }
         }
-    }   
+
+        &--active {
+            background-color: #000000;
+            color: #ffffff !important;
+        }
+    }
+}
 
 @media (min-width: 800px) {
-    .barra-superior{
-        width: 70%
+    .barra-superior {
+        width: 70%;
     }
 }
 </style>

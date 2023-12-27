@@ -21,11 +21,11 @@ export default {
         isThisWishlisted: state => product_id => {
             return state.wislistProductIds.includes(product_id);
         },
-        isThisWishlistedServices: state => product_id => {
-            return state.wislistServicesIds.includes(product_id);
+        isThisWishlistedServices: state => service_id => {
+            return state.wislistServicesIds.includes(service_id);
         },
-        isThisWishlistedBrands: state => product_id => {
-            return state.wislistBrandsIds.includes(product_id);
+        isThisWishlistedBrands: state => brand_id => {
+            return state.wislistBrandsIds.includes(brand_id);
         },
         getTotalWishlisted(state) {
             return state.wislistProductIds.length;
@@ -53,78 +53,61 @@ export default {
             state.wisListBrands = data;
             state.wislistBrandsIds = data.map(item => item.id);
         },
-        addNewWishlistId(state, product_id, type) {
-            if (type === "product") {
-                if (!state.wislistProductIds.includes(product_id)) {
-                    state.wislistProductIds.push(product_id);
-                }
-            }
-            if (type === "service") {
-                if (!state.wislistServicesIds.includes(product_id)) {
-                    state.wislistServicesIds.push(product_id);
-                }
-            }
-            if (type === "brand") {
-                if (!state.wislistServicesIds.includes(product_id)) {
-                    state.wislistServicesIds.push(product_id);
-                }
-            }
+        addNewWishlistId(state, product_id) {
+            state.wislistProductIds.push(product_id);
         },
-        addNewWishlist(state, product, type) {
-            if (type === "product") {
+        addNewWishlistServiceId(state, service_id) {
+            state.wislistServicesIds.push(service_id);
+        },
+        addNewWishlistBrandId(state, brand_id) {
+            state.wislistBrandsIds.push(brand_id);
+        },
+
+        addNewWishlist(state, product) {
+            if (product.type === "product") {
                 if (!state.wislistProducts.find(item => item.id === product.id)) {
                     state.wislistProducts.push(product);
                 }
             }
-            if (type === "service") {
+            if (product.type === "service") {
                 if (!state.wisListServices.find(item => item.id === product.id)) {
                     state.wisListServices.push(product);
                 }
             }
-            if (type === "brand") {
+            if (product.type === "brand") {
                 if (!state.wisListBrands.find(item => item.id === product.id)) {
                     state.wisListBrands.push(product);
                 }
             }
         },
-        removeFromWishlistID(state, product_id, type) {
-            if (type === "product") {
-                if (state.wislistProductIds.includes(product_id)) {
-                    state.wislistProductIds = state.wislistProductIds.filter(val => val !== product_id);
-                }
-            }
-            if (type === "service") {
-                if (!state.wisListServices.find(item => item.id === product.id)) {
-                    state.wisListServices.push(product);
-                }
-            }
-            if (type === "brand") {
-                if (!state.wisListBrands.find(item => item.id === product.id)) {
-                    state.wisListBrands.push(product);
-                }
-            }
+
+        removeFromWishlistID(state, product_id) {
+            state.wislistProductIds = state.wislistProductIds.filter(val => val !== product_id);
         },
-        removeFromWishlist(state, product_id, type) {
-            if (type === "product") {
-                if (state.wislistProducts.find(item => item.id === product_id)) {
-                    state.wislistProducts = state.wislistProducts.filter(val => val.id !== product_id);
-                }
-            }
-            if (type === "service") {
-                if (state.wisListServices.find(item => item.id === product_id)) {
-                    state.wisListServices = state.wisListServices.filter(val => val.id !== product_id);
-                }
-            }
-            if (type === "brand") {
-                if (state.wisListBrands.find(item => item.id === product_id)) {
-                    state.wisListBrands = state.wisListBrands.filter(val => val.id !== product_id);
-                }
-            }
+        removeFromWishlistServiceID(state, service_id) {
+            state.wislistServicesIds = state.wislistServicesIds.filter(val => val !== service_id);
         },
-        resetWishlist(state) {
-            state.wislistLoaded = false;
-            state.wislistProductIds = [];
-            state.wislistProducts = [];
+        removeFromWishlistBrandID(state, brand_id) {
+            state.wislistBrandsIds = state.wislistBrandsIds.filter(val => val !== brand_id);
+            console.log(state.wislistBrandsIds);
+        },
+
+        removeFromWishlist(state, product) {
+            if (product.type === "product") {
+                if (state.wislistProducts.find(item => item.id === product.id)) {
+                    state.wislistProducts = state.wislistProducts.filter(val => val.id !== product.id);
+                }
+            }
+            if (product.type === "service") {
+                if (state.wisListServices.find(item => item.id === product.id)) {
+                    state.wisListServices = state.wisListServices.filter(val => val.id !== product.id);
+                }
+            }
+            if (product.type === "brand") {
+                if (state.wisListBrands.find(item => item.id === product.id)) {
+                    state.wisListBrands = state.wisListBrands.filter(val => val.id !== product.id);
+                }
+            }
         }
     },
     actions: {
@@ -152,35 +135,19 @@ export default {
                 }
             }
         },
-        async addNewWishlist({ commit }, product) {
-            const product_id = product.id;
-            const elemType = product.type;
-            let baseUrl = `user/wishlists`;
-            let objToSend = {};
-            console.log(elemType);
+        async addNewWishlist({ commit }, product_id) {
             if (this.getters["auth/isAuthenticated"]) {
-                commit("addNewWishlistId", product_id, elemType);
-                if (elemType === "product") {
-                    objToSend = { product_id: product_id };
-                }
-                if (elemType === "service") {
-                    baseUrl = `${baseUrl}/services`;
-                    objToSend = { services_id: product_id };
-                }
-                if (elemType === "brand") {
-                    baseUrl = `${baseUrl}/brands`;
-                    objToSend = { brands_id: product_id };
-                }
-                const res = await Mixin.methods.call_api("post", baseUrl, objToSend);
-
+                commit("addNewWishlistId", product_id);
+                const res = await Mixin.methods.call_api("post", "user/wishlists", { product_id: product_id });
                 if (res.data.success) {
-                    commit("addNewWishlist", res.data.product, elemType);
+                    res.data.product.type = "product";
+                    commit("addNewWishlist", res.data.product);
                     Mixin.methods.snack({
                         message: i18n.t(res.data.message),
                         color: "green"
                     });
                 } else {
-                    commit("removeFromWishlistID", product_id, elemType);
+                    commit("removeFromWishlistID", product_id);
                     Mixin.methods.snack({
                         message: i18n.t("something_went_wrong"),
                         color: "red"
@@ -190,30 +157,19 @@ export default {
                 commit("auth/showLoginDialog", true, { root: true });
             }
         },
-        async removeFromWishlist({ commit }, product) {
-            const product_id = product.id;
-            const elemType = product.type;
-            let baseUrl = `user/wishlists`;
+        async addNewWishlistBrands({ commit }, brand_id) {
             if (this.getters["auth/isAuthenticated"]) {
-                commit("removeFromWishlistID", product_id, elemType);
-                if (elemType === "product") {
-                    baseUrl = `${baseUrl}/${product_id}`;
-                }
-                if (elemType === "service") {
-                    baseUrl = `${baseUrl}/services/${product_id}`;
-                }
-                if (elemType === "brand") {
-                    baseUrl = `${baseUrl}/brands/${product_id}`;
-                }
-                const res = await Mixin.methods.call_api("delete", baseUrl);
+                commit("addNewWishlistBrandId", brand_id);
+                const res = await Mixin.methods.call_api("post", "user/wishlists/brands", { brands_id: brand_id });
                 if (res.data.success) {
-                    commit("removeFromWishlist", product_id, elemType);
+                    res.data.brand.type = "brand";
+                    commit("addNewWishlist", res.data.brand);
                     Mixin.methods.snack({
                         message: i18n.t(res.data.message),
                         color: "green"
                     });
                 } else {
-                    commit("addNewWishlistId", product_id, elemType);
+                    commit("removeFromWishlistBrandID", brand_id);
                     Mixin.methods.snack({
                         message: i18n.t("something_went_wrong"),
                         color: "red"
@@ -223,15 +179,40 @@ export default {
                 commit("auth/showLoginDialog", true, { root: true });
             }
         },
-        resetWishlist({ commit }) {
-            commit("resetWishlist");
+        async addNewWishlistServices({ commit }, service_id) {
+            if (this.getters["auth/isAuthenticated"]) {
+                commit("addNewWishlistServiceId", service_id);
+                const res = await Mixin.methods.call_api("post", "user/wishlists/services", {
+                    services_id: service_id
+                });
+                if (res.data.success) {
+                    res.data.service.type = "service";
+                    commit("addNewWishlist", res.data.service);
+                    Mixin.methods.snack({
+                        message: i18n.t(res.data.message),
+                        color: "green"
+                    });
+                } else {
+                    commit("removeFromWishlistServiceID", service_id);
+                    Mixin.methods.snack({
+                        message: i18n.t("something_went_wrong"),
+                        color: "red"
+                    });
+                }
+            } else {
+                commit("auth/showLoginDialog", true, { root: true });
+            }
         },
-        async addNewServiceWishList({ commit }, service_id) {
+        async removeFromWishlist({ commit }, product_id) {
             if (this.getters["auth/isAuthenticated"]) {
                 commit("removeFromWishlistID", product_id);
                 const res = await Mixin.methods.call_api("delete", `user/wishlists/${product_id}`);
                 if (res.data.success) {
-                    commit("removeFromWishlist", product_id);
+                    const objState = {
+                        id: product_id,
+                        type: "product"
+                    };
+                    commit("removeFromWishlist", objState);
                     Mixin.methods.snack({
                         message: i18n.t(res.data.message),
                         color: "green"
@@ -247,6 +228,59 @@ export default {
                 commit("auth/showLoginDialog", true, { root: true });
             }
         },
-        async removeFromWishlistService({ commit }, service_id) {}
+        async removeFromWishlistServices({ commit }, service_id) {
+            if (this.getters["auth/isAuthenticated"]) {
+                commit("removeFromWishlistServiceID", service_id);
+                const res = await Mixin.methods.call_api("delete", `user/wishlists/services/${service_id}`);
+                if (res.data.success) {
+                    product.type = "service";
+                    const objState = {
+                        id: service_id,
+                        type: "service"
+                    };
+                    commit("removeFromWishlist", objState);
+                    Mixin.methods.snack({
+                        message: i18n.t(res.data.message),
+                        color: "green"
+                    });
+                } else {
+                    commit("addNewWishlistServiceId", service_id);
+                    Mixin.methods.snack({
+                        message: i18n.t("something_went_wrong"),
+                        color: "red"
+                    });
+                }
+            } else {
+                commit("auth/showLoginDialog", true, { root: true });
+            }
+        },
+        async removeFromWishlistBrands({ commit }, brand_id) {
+            if (this.getters["auth/isAuthenticated"]) {
+                commit("removeFromWishlistBrandID", brand_id);
+                const res = await Mixin.methods.call_api("delete", `user/wishlists/brands/${brand_id}`);
+                if (res.data.success) {
+                    const objState = {
+                        id: brand_id,
+                        type: "brand"
+                    };
+                    commit("removeFromWishlist", objState);
+                    Mixin.methods.snack({
+                        message: i18n.t(res.data.message),
+                        color: "green"
+                    });
+                } else {
+                    commit("addNewWishlistBrandId", brand_id);
+                    Mixin.methods.snack({
+                        message: i18n.t("something_went_wrong"),
+                        color: "red"
+                    });
+                }
+            } else {
+                commit("auth/showLoginDialog", true, { root: true });
+            }
+        },
+        resetWishlist({ commit }) {
+            commit("resetWishlist");
+        }
     }
 };

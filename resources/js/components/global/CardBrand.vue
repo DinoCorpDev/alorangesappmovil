@@ -2,12 +2,12 @@
     <div class="brand-item">
         <div class="brand-item-header">
             <template v-if="isThisWishlistedBrands(brandDetails.id)">
-                <button type="button" class="icon active" @click="removeFromWishlist(brandDetails)">
+                <button type="button" class="icon active" @click="removeFromWishlistBrands(brandDetails.id)">
                     <FavoriteIcon />
                 </button>
             </template>
             <template v-else>
-                <button type="button" class="icon" @click="addNewWishlist(brandDetails)">
+                <button type="button" class="icon" @click="addNewWishlistBrands(brandDetails.id)">
                     <FavoriteIcon />
                 </button>
             </template>
@@ -56,7 +56,7 @@ export default {
         this.brandDetails.type = "brand";
     },
     methods: {
-        ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
+        ...mapActions("wishlist", ["addNewWishlistBrands", "removeFromWishlistBrands"]),
         ...mapActions("cart", ["addToCart", "updateQuantity"]),
         ...mapMutations("auth", ["showAddToCartDialog"]),
         addCart() {

@@ -1,14 +1,14 @@
 <template>
     <v-row class="wishlist">
         <v-col cols="12">
-            <v-tabs v-model="tab" grow height="38px" :hide-slider="true">
+            <v-tabs v-model="tab" grow height="38px" :hide-slider="true" class="mb-4">
                 <v-tab :ripple="true">Productos</v-tab>
                 <v-tab :ripple="true">Servicios</v-tab>
                 <v-tab :ripple="true">Marcas</v-tab>
             </v-tabs>
 
             <!-- AQUI EMPIEZA -->
-
+            <v-divider class="my-4" />
             <v-tabs-items v-model="tab">
                 <v-tab-item>
                     <template v-if="getWislistProducts.length === 0">
@@ -22,33 +22,30 @@
                     </template>
                     <template v-else>
                         <v-row>
-                            <v-col cols="6" sm="6" md="4" lg="2" v-for="(product, i) in getWislistProducts" :key="i">
-                                <product-box :product-details="product" :is-loading="!wislistLoaded" />
+                            <v-col cols="12" v-for="(product, i) in getWislistProducts" :key="i">
+                                <ProductCart :product-details="product" :is-loading="!wislistLoaded" />
                             </v-col>
                         </v-row>
                         <v-divider class="my-4" />
                         <v-row>
                             <v-col cols="12" sm="6">
-                                <h5 class="fw-600">Colecciones anheladas</h5>
+                                <h5 class="fw-600 mb-4">Colecciones anheladas</h5>
 
                                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                     <v-row>
-                                        <v-col cols="3" style="display: flex; place-items: center">
-                                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                                        <v-col cols="3" style="display: flex; place-items: center;">
+                                            <v-img
+                                                class="img-cartempty mb-6"
+                                                src="/public/assets/img/iconoFavoritos.png"
+                                            />
                                         </v-col>
 
-                                        <v-col cols="9" style="display: flex; place-items: center">
+                                        <v-col cols="9" style="display: flex; place-items: center;">
                                             <p class="mb-0">
                                                 Agrega a tu lista las colecciones que deseas adquirir mas adelante.
                                             </p>
                                         </v-col>
-                                        <CustomButton
-                                            class="mb-4"
-                                            block
-                                            color="grey"
-                                            text="VER COLECCIONES"
-                                            @click="addAddress"
-                                        />
+                                        <CustomButton class="mb-4" block color="grey" text="VER COLECCIONES" />
                                     </v-row>
                                 </v-card>
                             </v-col>
@@ -68,33 +65,30 @@
                     </template>
                     <template v-else>
                         <v-row>
-                            <v-col cols="6" sm="6" md="4" lg="2" v-for="(service, i) in getWisListServices" :key="i">
-                                <product-box :product-details="service" :is-loading="!wislistLoaded" />
+                            <v-col cols="12" v-for="(service, i) in getWisListServices" :key="i">
+                                <ProductCart :product-details="service" :is-loading="!wislistLoaded" />
                             </v-col>
                         </v-row>
                         <v-divider class="my-4" />
                         <v-row>
                             <v-col cols="12" sm="6">
-                                <h5 class="fw-600">Colecciones anheladas</h5>
+                                <h5 class="fw-600 mb-4">Colecciones anheladas</h5>
 
                                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                     <v-row>
-                                        <v-col cols="3" style="display: flex; place-items: center">
-                                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                                        <v-col cols="3" style="display: flex; place-items: center;">
+                                            <v-img
+                                                class="img-cartempty mb-6"
+                                                src="/public/assets/img/iconoFavoritos.png"
+                                            />
                                         </v-col>
 
-                                        <v-col cols="9" style="display: flex; place-items: center">
+                                        <v-col cols="9" style="display: flex; place-items: center;">
                                             <p class="mb-0">
                                                 Agrega a tu lista las colecciones que deseas adquirir mas adelante.
                                             </p>
                                         </v-col>
-                                        <CustomButton
-                                            class="mb-4"
-                                            block
-                                            color="grey"
-                                            text="VER COLECCIONES"
-                                            @click="addAddress"
-                                        />
+                                        <CustomButton class="mb-4" block color="grey" text="VER COLECCIONES" />
                                     </v-row>
                                 </v-card>
                             </v-col>
@@ -114,33 +108,30 @@
                     </template>
                     <template v-else>
                         <v-row>
-                            <v-col cols="6" sm="6" md="4" lg="2" v-for="(brands, i) in getWisListBrands" :key="i">
-                                <product-box :product-details="brands" :is-loading="!wislistLoaded" />
+                            <v-col cols="12" v-for="(brands, i) in getWisListBrands" :key="i">
+                                <ProductBrand :product-details="brands" :is-loading="!wislistLoaded" />
                             </v-col>
                         </v-row>
                         <v-divider class="my-4" />
                         <v-row>
                             <v-col cols="12" sm="6">
-                                <h5 class="fw-600">Colecciones anheladas</h5>
+                                <h5 class="fw-600 mb-4">Colecciones anheladas</h5>
 
                                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                     <v-row>
-                                        <v-col cols="3" style="display: flex; place-items: center">
-                                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                                        <v-col cols="3" style="display: flex; place-items: center;">
+                                            <v-img
+                                                class="img-cartempty mb-6"
+                                                src="/public/assets/img/iconoFavoritos.png"
+                                            />
                                         </v-col>
 
-                                        <v-col cols="9" style="display: flex; place-items: center">
+                                        <v-col cols="9" style="display: flex; place-items: center;">
                                             <p class="mb-0">
                                                 Agrega a tu lista las colecciones que deseas adquirir mas adelante.
                                             </p>
                                         </v-col>
-                                        <CustomButton
-                                            class="mb-4"
-                                            block
-                                            color="grey"
-                                            text="VER COLECCIONES"
-                                            @click="addAddress"
-                                        />
+                                        <CustomButton class="mb-4" block color="grey" text="VER COLECCIONES" />
                                     </v-row>
                                 </v-card>
                             </v-col>
@@ -157,13 +148,17 @@ import { mapGetters } from "vuex";
 
 import CustomButton from "../../components/global/CustomButton.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
+import ProductBrand from "../../components/global/ProductBrand.vue";
 import ProfileAddress from "../../components/icons/ProfileAddress.vue";
+import ProductBoxShort from "../../components/product/ProductBoxShort.vue";
 
 export default {
     components: {
         CustomButton,
         ProductCart,
-        ProfileAddress
+        ProductBrand,
+        ProfileAddress,
+        ProductBoxShort
     },
     data: () => ({
         currentPage: 1,
@@ -189,7 +184,7 @@ export default {
 }
 
 .container {
-    background-color: #ffffff;
+    background-color: #fafcfc !important;
 }
 
 // Estilos carrito vacio //
@@ -214,7 +209,12 @@ export default {
     width: 35%;
     margin: auto;
 }
-
+.theme--light.v-tabs > .v-tabs-bar {
+    background-color: #fafcfc !important;
+}
+.theme--light.v-tabs-items {
+    background-color: #fafcfc !important;
+}
 .v-tabs {
     &::v-deep {
         .v-slide-group__prev,

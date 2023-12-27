@@ -155,7 +155,7 @@
         <v-divider class="my-4" />
 
         <v-row>
-            <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.2rem; text-align: left">
+            <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.2rem; text-align: left;">
                 Protección de datos personales: IDOVELA S.A.S garantiza el tratamiento de datos personales acorde a lo
                 establecido en la ley 1581/2012 y decreto 1377/2013. por favor dirija sus inquietudes al correo:
                 soporte@idovela.com Riesgo de lavado de activos, financiación al terrorismo sarlaft y ley antisoborno:
