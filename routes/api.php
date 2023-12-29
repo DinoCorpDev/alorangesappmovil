@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\AddressController;
-use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\BrandController;
@@ -9,6 +8,8 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\ClubPointController;
+use App\Http\Controllers\Api\CollectionController;
+use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\ConversationController;
 use App\Http\Controllers\Api\CouponController;
 use App\Http\Controllers\Api\FollowController;
@@ -27,8 +28,8 @@ use App\Http\Controllers\Api\TranslationController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WalletController;
 use App\Http\Controllers\Api\WishlistController;
+// use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\Payment\PaymentController;
-use App\Http\Controllers\CollectionController;
 
 Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
 
@@ -89,7 +90,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
     });
 
     Route::group(['prefix' => 'collection'], function () {
-        Route::get('/details/{collection_slug}', [CollectionController::class, 'details']);
+        // Route::get('/', [CollectionController::class, 'index']);
+        Route::get('/details/{collection_slug}', [CollectionController::class, 'show']);
     });
 
     Route::group(['prefix' => 'service'], function () {
@@ -114,7 +116,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
     Route::get('all-countries', [AddressController::class, 'get_all_countries']);
     Route::get('all-codigo-ciiu', [AuthController::class, 'get_all_ciiu']);
     Route::get('all-codigo-postal', [AuthController::class, 'get_all_codigo_postal']);
-    Route::get('all-collections', [AuthController::class, 'get_all_collections']);
     Route::get('all-subscriber', [AuthController::class, 'get_all_subscriber']);
     Route::get('states/{country_id}', [AddressController::class, 'get_states_by_country_id']);
     Route::get('cities/{state_id}', [AddressController::class, 'get_cities_by_state_id']);
@@ -122,7 +123,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
 
     Route::post('carts', [CartController::class, 'index']);
     Route::post('carts/add', [CartController::class, 'add']);
-    Route::post('carts/addCollection', [CartController::class, 'addCollection']);
+    // Route::post('carts/addCollection', [CartController::class, 'addCollection']);
     Route::post('carts/change-quantity', [CartController::class, 'changeQuantity']);
     Route::post('carts/destroy', [CartController::class, 'destroy']);
 

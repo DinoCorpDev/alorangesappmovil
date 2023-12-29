@@ -8,7 +8,6 @@ use App\Http\Resources\OrderSingleCollection;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\City;
-use App\Models\CollectionCart;
 use App\Models\CollectionOrderDetail;
 use App\Models\CombinedOrder;
 use App\Models\Coupon;
@@ -216,7 +215,6 @@ class OrderController extends Controller
         }
 
         $cartItems = Cart::whereIn('id', $cart_item_ids)->with(['variation.product'])->get();
-        $cartCollections = CollectionCart::with(['collection'])->whereIn('id', $cart_collection_ids)->get();
 
         $shippingAddress = Address::find($request->shipping_address_id);
         $billingAddress = Address::find($request->billing_address_id);
@@ -477,7 +475,6 @@ class OrderController extends Controller
 
         // clear user's cart
         Cart::destroy($request->cart_item_ids);
-        CollectionCart::destroy($request->cart_collection_ids);
 
         if ($request->payment_type == 'wallet') {
             $user->balance -= $combined_order->grand_total;

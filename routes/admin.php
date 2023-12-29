@@ -104,20 +104,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('attribute_values', AttributeValueController::class)->except(['destroy']);;
     Route::get('/attribute_values/edit/{id}', [AttributeValueController::class, 'edit'])->name('attribute_values.edit');
 
+    // Plans
+    Route::resource('/plans', PlanController::class);
+    // Route::get('/plans/edit/{id}', [PlanController::class, 'edit']);
+    // Route::post('/plans/{id}', [PlanController::class, 'update']);
+    // Route::get('/plans/destroy/{id}', [PlanController::class, 'destroy']);
+
     // Collection
     Route::resource('/collection', CollectionController::class);
-    Route::resource('/plans', PlanController::class);
-    Route::get('/plans/edit/{id}', [PlanController::class, 'edit']);
-    Route::post('/plans/{id}', [PlanController::class, 'update']);
-    Route::get('/plans/destroy/{id}', [PlanController::class, 'destroy']);
-
-
     Route::group(['prefix' => 'collection'], function () {
         Route::post('/import', [CollectionController::class, 'import'])->name('collection.import');
+
         Route::get('/{id}/edit', [CollectionController::class, 'edit'])->name('collection.edit');
         Route::post('/update/{id}', [CollectionController::class, 'update'])->name('collection.update');
+        Route::post('/published', [CollectionController::class, 'updatePublished'])->name('collection.published');
         Route::get('/destroy/{id}', [CollectionController::class, 'destroy'])->name('collection.destroy');
-        Route::get('/collection/{id}', [CollectionController::class, 'show'])->name('collection');
+
         Route::get('/add/{id}', [CollectionController::class, 'add'])->name('collection.add');
         Route::get('/add/{id}/product/{idProduct}', [CollectionController::class, 'addProduct'])->name('collection.addProduct');
         Route::get('/destroy/{id}/product', [CollectionController::class, 'destroyProduct'])->name('collection.destroyProduct');

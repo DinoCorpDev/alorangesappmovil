@@ -14,8 +14,6 @@ use App\Models\Company;
 use App\Models\CodigoCiiu;
 use App\Models\CodigoPostal;
 use App\Models\Subscriber;
-use App\Models\Collection;
-use App\Models\CollectionOrderDetail;
 use App\Notifications\EmailVerificationNotification;
 use Str;
 
@@ -23,7 +21,7 @@ class AuthController extends Controller
 {
     public function signup(Request $request)
     {
-        $input = json_decode($request->form);        
+        $input = json_decode($request->form);
 
         if (get_setting('customer_login_with') == 'email') {
             $user = User::where('email', $input->email)->first();
@@ -49,15 +47,15 @@ class AuthController extends Controller
             ], 200);
         }
 
-        $path_docs = public_path().'/docs/';
-        $path_camara = public_path().'/camara/';
-        $path_ruts = public_path().'/ruts/';
+        $path_docs = public_path() . '/docs/';
+        $path_camara = public_path() . '/camara/';
+        $path_ruts = public_path() . '/ruts/';
 
         $docfile = '';
         $camarafile = '';
         $rutfile = '';
 
-        if($request->hasFile('filecamara')){
+        if ($request->hasFile('filecamara')) {
             $fileCamara = $request->file('filecamara');
             $filenameWithExt = $fileCamara->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -67,7 +65,7 @@ class AuthController extends Controller
             $camarafile = $fileNameToStore;
         }
 
-        if($request->hasFile('filedocumento')){
+        if ($request->hasFile('filedocumento')) {
             $fileDocument = $request->file('filedocumento');
             $filenameWithExt = $fileDocument->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -77,7 +75,7 @@ class AuthController extends Controller
             $docfile = $fileNameToStore;
         }
 
-        if($request->hasFile('filerut')){
+        if ($request->hasFile('filerut')) {
             $fileRut = $request->file('filerut');
             $filenameWithExt = $fileRut->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -115,7 +113,7 @@ class AuthController extends Controller
 
         $user->save();
 
-        if($input->personType == 'Juridical'){
+        if ($input->personType == 'Juridical') {
             $company = new Company([
                 'user_id' => $user->id,
                 'person_type' => $user->person_type,
@@ -141,7 +139,7 @@ class AuthController extends Controller
             $company->save();
         }
 
-        
+
 
         if (isset($input->temp_user_id) && $input->temp_user_id != null) {
             Cart::where('temp_user_id', $input->temp_user_id)->update(
@@ -168,7 +166,7 @@ class AuthController extends Controller
                     'user' => $user,
                     'verified' => false,
                     'message' => translate('A verification code has been sent to your phone.')
-                ], 200); 
+                ], 200);
             }
         }
 
@@ -388,12 +386,12 @@ class AuthController extends Controller
     {
         $user = User::where('first_name', $request->first_name)->where('first_lastname', $request->first_lastname)->where('email', $request->email)->get();
 
-        if($user->count() == 0){
+        if ($user->count() == 0) {
             return response()->json([
                 'result' => false,
                 'message' => 'Error!'
             ]);
-        }else{
+        } else {
             return response()->json([
                 'result' => true,
                 'message' => 'Success!'
@@ -406,8 +404,8 @@ class AuthController extends Controller
         $array = array();
         $codigo = CodigoCiiu::all();
 
-        foreach($codigo as $cod){
-            $arr = [ "text" => $cod->codigo, "value" => $cod->codigo ];
+        foreach ($codigo as $cod) {
+            $arr = ["text" => $cod->codigo, "value" => $cod->codigo];
             array_push($array, $arr);
         }
 
@@ -422,24 +420,14 @@ class AuthController extends Controller
         $array = array();
         $codigo = CodigoPostal::all();
 
-        foreach($codigo as $cod){
-            $arr = [ "text" => $cod->codigo, "value" => $cod->codigo ];
+        foreach ($codigo as $cod) {
+            $arr = ["text" => $cod->codigo, "value" => $cod->codigo];
             array_push($array, $arr);
         }
 
         return response()->json([
             'success' => true,
             'data' => $array
-        ]);
-    }
-
-    public function get_all_collections()
-    {
-        $collections = CollectionOrderDetail::with('collection.productos.product')->get();
-
-        return response()->json([
-            'success' => true,
-            'data' => $collections
         ]);
     }
 

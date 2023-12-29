@@ -729,7 +729,7 @@ class ProductController extends Controller
         $product->discount_type     = $request->discount_type;
 
         if ($request->date_range != null) {
-            $date_var               = explode(" to ", $request->date_range);
+            $date_var                     = explode(" to ", $request->date_range);
             $product->discount_start_date = strtotime($date_var[0]);
             $product->discount_end_date   = strtotime($date_var[1]);
         }

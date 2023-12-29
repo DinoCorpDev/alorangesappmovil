@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddBrandIdToWishlist extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddBrandIdToWishlist extends Migration
      */
     public function up()
     {
-        Schema::table('wishlists', function (Blueprint $table) {
-            $table->integer('brands_id')->nullable();
+        Schema::table('collections', function (Blueprint $table) {
+            $table->tinyInteger('status')->default(1)->after('stock');
         });
     }
 
@@ -25,8 +25,8 @@ class AddBrandIdToWishlist extends Migration
      */
     public function down()
     {
-        Schema::table('wishlists', function (Blueprint $table) {
-            $table->dropColumn('brands_id');
+        Schema::table('collections', function (Blueprint $table) {
+            $table->removeColumn('status');
         });
     }
 };

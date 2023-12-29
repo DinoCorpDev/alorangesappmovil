@@ -87,6 +87,8 @@ Route::get('/category/{slug}', [HomeController::class, 'index'])->name('products
 
 Route::get('/service/{slug}', [HomeController::class, 'index'])->name('service');
 
+Route::get('/collection/{slug}', [HomeController::class, 'index'])->name('collection');
+
 Route::get('/blog-details/{slug}', [HomeController::class, 'index'])->name('blog.details');
 
 //Address

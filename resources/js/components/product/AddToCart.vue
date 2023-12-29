@@ -161,7 +161,7 @@ export default {
     },
     methods: {
         ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
-        ...mapActions("cart", ["addToCart", "updateQuantity", "addToCartCollection"]),
+        ...mapActions("cart", ["addToCart", "updateQuantity"]),
         ...mapActions("auth", ["showConversationDialog"]),
         ...mapMutations("auth", ["updateChatWindow"]),
         addCart() {

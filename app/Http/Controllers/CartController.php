@@ -153,6 +153,111 @@ class CartController extends Controller
         return view('frontend.partials.addedToCart', compact('product', 'data'));
     }
 
+    public function addCollectionToCart(Request $request)
+    {
+        $collection = Collection::find($request->id);
+
+        $data = array();
+        $data['id'] = $collection->id;
+        $data['owner_id'] = $collection->user_id;
+
+        if ($request->quantity < $collection->min_qty) {
+            return view('frontend.partials.minQtyNotSatisfied', [
+                'min_qty' => $collection->min_qty
+            ]);
+        }
+
+
+        if ($str != null && $product->variant_product) {
+            $product_stock = $product->stocks->where('variant', $str)->first();
+            $price = $product_stock->price;
+            $quantity = $product_stock->qty;
+
+            if ($quantity >= $request['quantity']) {
+                // $variations->$str->qty -= $request['quantity'];
+                // $product->variations = json_encode($variations);
+                // $product->save();
+            } else {
+                return view('frontend.partials.outOfStockCart');
+            }
+        } else {
+            $price = $product->unit_price;
+        }
+
+        //discount calculation based on flash deal and regular discount
+        //calculation of taxes
+        $offers = Offer::where('status', 1)->get();
+        $inOffer = false;
+
+        foreach ($offers as $offer) {
+            if ($offer != null && $offer->status == 1  && strtotime(date('d-m-Y')) >= $offer->start_date && strtotime(date('d-m-Y')) <= $offer->end_date && OfferProduct::where('offer_id', $offer->id)->where('product_id', $product->id)->first() != null) {
+                $offer_product = OfferProduct::where('offer_id', $offer->id)->where('product_id', $product->id)->first();
+                if ($offer_product->discount_type == 'percent') {
+                    $price -= ($price * $offer_product->discount) / 100;
+                } elseif ($offer_product->discount_type == 'amount') {
+                    $price -= $offer_product->discount;
+                }
+                $inOffer = true;
+                break;
+            }
+        }
+
+        if (!$inOffer) {
+            if ($product->discount_type == 'percent') {
+                $price -= ($price * $product->discount) / 100;
+            } elseif ($product->discount_type == 'amount') {
+                $price -= $product->discount;
+            }
+        }
+
+        if ($product->tax_type == 'percent') {
+            $tax = ($price * $product->tax) / 100;
+        } elseif ($product->tax_type == 'amount') {
+            $tax = $product->tax;
+        }
+
+        $data['quantity'] = $request['quantity'];
+        $data['price'] = $price;
+        $data['tax'] = $tax;
+        $data['shipping'] = 0;
+        $data['product_referral_code'] = null;
+
+        if ($request['quantity'] == null) {
+            $data['quantity'] = 1;
+        }
+
+        if (Cookie::has('referred_product_id') && Cookie::get('referred_product_id') == $product->id) {
+            $data['product_referral_code'] = Cookie::get('product_referral_code');
+        }
+
+        if ($request->session()->has('cart')) {
+            $foundInCart = false;
+            $cart = collect();
+
+            foreach ($request->session()->get('cart') as $key => $cartItem) {
+                if ($cartItem['id'] == $request->id) {
+                    if ($cartItem['variant'] == $str) {
+                        $foundInCart = true;
+                        $cartItem['quantity'] += $request['quantity'];
+                    }
+                }
+
+                $cart->push($cartItem);
+            }
+
+            if (!$foundInCart) {
+                $cart->push($data);
+            }
+
+            $request->session()->put('cart', $cart);
+        } else {
+            $cart = collect([$data]);
+            $request->session()->put('cart', $cart);
+        }
+
+        return view('frontend.partials.addedToCart', compact('product', 'data'));
+    }
+
     //removes from Cart
     public function removeFromCart(Request $request)
     {
