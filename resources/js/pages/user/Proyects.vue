@@ -3,10 +3,15 @@
         <v-col cols="12">
             <h5 class="proyects-title">COLECCIONES</h5>
             <v-divider class="my-3" />
-            <v-row v-if="orders.length > 0" no-gutters class="proyects-items" style="max-width: 95%; max-height: 450px; overflow-y: scroll;">
+            <v-row
+                v-if="orders.length > 0"
+                no-gutters
+                class="proyects-items"
+                style="max-width: 95%; max-height: 450px; overflow-y: scroll"
+            >
                 <v-col cols="12" v-for="(item, i) in orders" :key="i">
                     <ProyectHistory
-                        style="background-color: #f5f5f5;"
+                        style="background-color: #f5f5f5"
                         :order="item?.code"
                         :date="item?.date"
                         colorStatus="red"
@@ -34,7 +39,6 @@
 import ProyectHistory from "../../components/global/ProyectHistory.vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import CustomButton from "../../components/global/CustomButton.vue";
-
 
 export default {
     data: () => ({

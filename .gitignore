@@ -17,3 +17,5 @@ package-lock.json
 public/web-assets/js
 public/web-assets/css
 lastdb.sql
+
+public/uploads/all

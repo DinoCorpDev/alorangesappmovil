@@ -8,7 +8,6 @@ use App\Http\Resources\ShopResource;
 use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Collection;
-use App\Models\CollectionCart;
 use App\Models\CollectionProduct;
 use App\Models\Product;
 use App\Models\ProductVariation;
@@ -21,29 +20,55 @@ class CartController extends Controller
     public function index(Request $request)
     {
         if (auth('api')->check()) {
-            $carts = Cart::with(['product.brand', 'variation.combinations.attribute', 'variation.combinations.attribute_value'])->where('user_id', auth('api')->user()->id)->get();
+            $product_carts = Cart::with(['product', 'variation.combinations.attribute', 'variation.combinations.attribute_value'])
+                ->where('user_id', auth('api')->user()->id)
+                ->whereNotNull('product_id')
+                ->get();
+            $collection_carts = Cart::with(['collection'])
+                ->where('user_id', auth('api')->user()->id)
+                ->whereNotNull('collection_id')
+                ->get();
         } elseif ($request->has('temp_user_id') && $request->temp_user_id) {
-            $carts = Cart::with(['product', 'variation.combinations.attribute', 'variation.combinations.attribute_value'])->where('temp_user_id', $request->temp_user_id)->get();
+            $product_carts = Cart::with(['product', 'variation.combinations.attribute', 'variation.combinations.attribute_value'])
+                ->where('temp_user_id', $request->temp_user_id)
+                ->whereNotNull('product_id')
+                ->get();
+            $collection_carts = Cart::with(['collection'])
+                ->where('temp_user_id', $request->temp_user_id)
+                ->whereNotNull('collection_id')
+                ->get();
         } else {
-            $carts = collect();
+            $product_carts = collect();
+            $collection_carts = collect();
         }
 
-        $shops = array();
+        // dd($collection_carts);
 
-        foreach ($carts as $key => $cart_item) {
-            //if variation no found remove from cart item
-            if (!$cart_item->variation || !$cart_item->product) {
-                $cart_item->delete();
-                $carts->forget($key);
-            } elseif (!in_array($cart_item->product->shop_id, $shops)) {
-                array_push($shops, $cart_item->product->shop_id);
-            }
-        }
+        $product_carts = $product_carts->filter(function ($cart_item) {
+            return $cart_item->variation && $cart_item->product;
+        });
+
+        $carts = $product_carts->merge($collection_carts);
+
+        // dd($carts);
+
+        $product_shops = $product_carts->pluck('product.shop_id')->unique()->toArray();
+        $collection_shops = $collection_carts->pluck('collection.shop_id')->unique()->toArray();
+
+        $shops = array_unique(array_merge($product_shops, $collection_shops));
+
+        // dd($shops);
+        // dd($collection_shops);
 
         return response()->json([
             'success' => true,
             'cart_items' => new CartCollection($carts),
-            'shops' => new ShopCollection(Shop::with('categories')->withCount(['products', 'reviews'])->find($shops))
+            'shops' => new ShopCollection(Shop::with('categories')
+                ->withCount([
+                    'products',
+                    'collections',
+                    'reviews'
+                ])->find($shops))
         ]);
     }
 
@@ -95,12 +120,6 @@ class CartController extends Controller
     {
         $collection = Collection::findOrFail($request->variation_id);
         $user_id = (auth('api')->check()) ? auth('api')->user()->id : null;
-
-        $cart = CollectionCart::updateOrCreate([
-            'user_id' => $user_id,
-            'temp_user_id' => $user_id,
-            'collection_id' => $collection->id
-        ], ['quantity' => DB::raw('quantity + ' . $request->qty)]);
 
         return response()->json([
             'success' => true,
@@ -158,39 +177,6 @@ class CartController extends Controller
                 }
             }
         } else {
-            $cart = CollectionCart::find($request->cart_id);
-            if ($cart != null) {
-                if ((auth('api')->check() && auth('api')->user()->id == $cart->user_id) || ($request->has('temp_user_id') && $request->temp_user_id == $cart->temp_user_id)) {
-
-                    if ($request->type == 'plus') {
-                        $cart->update([
-                            'quantity' => DB::raw('quantity + 1')
-                        ]);
-                        return response()->json([
-                            'success' => true,
-                            'message' => translate('Cart updated')
-                        ]);
-                    } elseif ($request->type == 'minus') {
-                        if ($cart->quantity == 1) {
-                            $cart->delete();
-                        } else {
-                            $cart->update([
-                                'quantity' => DB::raw('quantity - 1')
-                            ]);
-                        }
-                        return response()->json([
-                            'success' => true,
-                            'message' => translate('Cart updated')
-                        ]);
-                    }
-                    return response()->json([
-                        'success' => false,
-                        'message' => translate('Something went wrong')
-                    ]);
-                } else {
-                    return response()->json(null, 401);
-                }
-            }
         }
     }
 
