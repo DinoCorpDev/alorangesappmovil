@@ -329,8 +329,12 @@ class CollectionController extends Controller
      */
     public function show($id)
     {
+        $collection = Collection::withCount('wishlists', 'carts')->with('variations')->findOrFail($id);
+        $products = CollectionProduct::where("id_collection", $id)->get();
+
         return view('backend.collections.show', [
-            'collection' => Collection::withCount('wishlists', 'carts')->with('variations')->findOrFail($id)
+            'collection' => $collection,
+            'products' => $products
         ]);
     }
 
