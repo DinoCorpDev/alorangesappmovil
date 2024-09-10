@@ -292,7 +292,6 @@ class ProductController extends Controller
     }
 
     public function alegra(Request $request){
-
         $products = [];
         $counter = 0;
         $categoryId = 0;
