@@ -61,7 +61,7 @@
 
 <script>
 import { spacesSeeder } from "../../seeders/spaces";
-import { productsSeeder, sliderSeeder } from "../../seeders/products";
+import { sliderSeeder } from "../../seeders/products";
 
 import Carousel from "../../components/global/Carousel";
 import CarouselActions from "../../components/global/CarouselActions.vue";
@@ -75,7 +75,7 @@ export default {
     name: "ShopSpaces",
     data: () => ({
         spacesSeeder,
-        productsSeeder,
+        productsSeeder: [],
         sliderSeeder,
         sliderItems: [
             {
@@ -119,12 +119,29 @@ export default {
         ShopActionCard,
         ContactDialog
     },
+    mounted(){
+        this.getProducts();
+    },
     methods: {
         contactDialogOpen() {
             this.contactDialogShow = true;
         },
         contactDialogClosed() {
             this.contactDialogShow = false;
+        },
+        async getProducts(){
+            // category_slug;
+            // keyword;
+            // sort_by;
+            // brand_ids;
+            // min_price;
+            // max_price;
+            axios.get("https://alorangesapp.test/api/v1/product/search?category_slug=CAFETERIA&keyword=ab")
+            .then(response => {
+                this.productsSeeder = response.data.products.data
+            }).catch(err => {
+                console.error(err);
+            });
         }
     }
 };

@@ -19,6 +19,9 @@ use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Utility\CategoryUtility;
 
+use App\Http\Services\AlegraServices;
+use Illuminate\Support\Str;
+
 class ProductController extends Controller
 {
     public function index()
@@ -87,7 +90,7 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $category                   = $request->category_slug ? Category::where('slug', $request->category_slug)->first() : null;
+        $category                   = $request->category_slug ? Category::where('name', $request->category_slug)->first() : null;
         $search_keyword             = $request->keyword;
         $sort_by                    = $request->sort_by;
         $category_id                = optional($category)->id;
@@ -286,5 +289,127 @@ class ProductController extends Controller
             'success' => true,
             'specifications' => $products_array,
         ]);
+    }
+
+    public function alegra(Request $request){
+
+        $products = [];
+        $counter = 0;
+        $categoryId = 0;
+
+        try {
+            $categories = (new AlegraServices)->getCategories();
+
+            foreach($categories as $category){
+                $categoryStorage = Category::find($category['id']);
+                if(empty($categoryStorage)){
+                    $categoryStorage = new Category;
+                }
+                $categoryStorage->name = $category['name'];
+                $categoryStorage->id = $category['id'];
+                $categoryStorage->meta_description = $category['description'];
+
+                $categoryStorage->save();
+
+                $products = (new AlegraServices)->getProductsByCategory($category['id']);
+
+                foreach($products as $product){
+                    $productStorage = Product::where('reference', $product['reference'])->first();
+                    if(empty($productStorage)){
+                        $productStorage = new Product;
+                    }
+                    $productStorage->id = $product['id'];
+                    $productStorage->name = $product['name'];
+                    $productStorage->reference = $product['reference'];
+                    $productStorage->description = $product['description'];
+                    $price = $product['price'][0]['price'];
+                    $percentage = $product['tax'] && $product['tax'][0]['percentage'];
+                    
+                    if (is_array($percentage)) {
+                        $percentage = 0.00;
+                    }
+                    $priceWithIva = ((int)$price * $percentage) / 100 + $price;
+                    $productStorage->lowest_price = $priceWithIva;
+                    $productStorage->highest_price = $priceWithIva;
+                    $productStorage->description = $product['description'];
+                    $productStorage->shop_id = 1;
+                    $productStorage->slug = Str::slug($product['name'], '-') . '-' . strtolower(Str::random(5));
+                    $productStorage->published = $product['status'] == 'active' ? 1 : 0;
+                    
+                    if (isset($product['images'])) {
+                        $productStorage->thumbnail_img = $product['images'][0]['url'];
+                    }else{
+                        $productStorage->thumbnail_img = '';
+                    }
+                    
+                    $images = $product['images'] ?? [];
+
+                    foreach($images as $index => $image)
+                    {
+                        $productStorage['imagen'.($index+1)] = $image['url'];
+                    }
+                    
+                    $productStorage->save();
+
+                    $productStorage->categories()->sync([$category['id']]);
+
+                    $counter++;
+                    $categoryId = $product['id'];
+                }
+            }
+            die;
+            return $categoryId;
+        } catch (Exception ) {
+            $error_code = $e->errorInfo[1];
+            $categoryId = $e->errorInfo[1];
+            return back()->withErrors('There was a problem uploading the data!');
+        }
+    }
+
+    public function products_by_letter($letter) {
+        $products = Product::where('published', 1)
+            ->where('approved', 1)
+            ->where('name', 'like', $letter . '%')
+            ->get();
+
+        return response()->json([
+           'success' => true,
+            'products' => $products,
+        ]);
+    }
+
+    private function updateProductsFromAlegra($search_keyword){
+        $updateProducts = (new AlegraServices)->getProductsByQuery($search_keyword);
+        foreach($updateProducts as $product){
+            $productStorage = Product::where('reference', $product['reference'])->first();
+            if(empty($productStorage)){
+                $productStorage = new Product;
+            }
+            $productStorage->id = $product['id'];
+            $productStorage->name = $product['name'];
+            $productStorage->reference = $product['reference'];
+            $productStorage->description = $product['description'];
+            $price = array_filter($product['price'], function ($object) {
+                return $object['name'] == 'PRECIOS APPWEB';
+            });
+            $priceValue = reset($price);
+            $priceWithIva = ($priceValue['price'] * $product['tax'][0]['percentage']/100) + $priceValue['price'];
+            $productStorage->lowest_price = $priceWithIva;
+            $productStorage->highest_price = $priceWithIva;
+            $productStorage->description = $product['description'];
+            $productStorage->shop_id = 1;
+            $productStorage->slug = Str::slug($product['name'], '-') . '-' . strtolower(Str::random(5));
+            $productStorage->published = $product['status'] == 'active' ? 1 : 0;
+
+            $images = $product['images'] ?? [];
+
+            foreach($images as $index => $image){
+                $productStorage['imagen'.($index+1)] = $image['url'];
+            }
+
+            $productStorage->save();
+
+            $productStorage->categories()->sync([$product['category']['id']]);
+        }
     }
 }
