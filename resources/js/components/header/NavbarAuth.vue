@@ -17,7 +17,9 @@
                 <SearchInput />
                 <div class="layout-navbar-auth-nav">
                     <DoubleButton />
-                    <ToggleMenu />
+                    <div style="display: none;">
+                        <ToggleMenu />
+                    </div>
                 </div>
             </v-container>
         </v-app-bar>

@@ -66,8 +66,9 @@ export default {
                 }
 
                 .search-input-button {
-                    background-color: #000000;
-                    border-color: #000000;
+                    color: #fff;
+                    background-color:#f58634 !important;
+                    border-color: #f58634;
 
                     &::v-deep {
                         svg {
@@ -134,9 +135,10 @@ export default {
         display: flex;
         align-items: center;
 
-        background-color: #dfdfdf;
+        color: #000;
+        background-color: #fcd6ba !important;
 
-        border: 1px solid #dfdfdf;
+        border: 1px solid #fcd6ba;
         border-radius: 5px;
 
         padding: 0 10px;
