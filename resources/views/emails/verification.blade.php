@@ -139,16 +139,16 @@
 												<td class="p30-15" style="padding: 70px 30px 70px 30px;">
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
-															<td class="h2 center pb10" style="color:#000000; font-family:'Ubuntu', Arial,sans-serif; font-size:50px; line-height:60px; text-align:center; padding-bottom:10px;">{{ $array['subject'] }}</td>
+															<td class="h2 center pb10" style="color:#000000; font-family:'Ubuntu', Arial,sans-serif; font-size:50px; line-height:60px; text-align:center; padding-bottom:10px;">Email de verificación</td>
 														</tr>
 														<tr>
 															<td class="h5 center blue pb30" style="font-family:'Ubuntu', Arial,sans-serif; font-size:20px; line-height:26px; text-align:center; color:#2e57ae; padding-bottom:30px;">
-															    {{ $array['content'] }} <span>{{ $array['verification_code'] ?? '' }}</span>
+															    Tu código de verificación es <span>{{ $array['verification_code'] ?? '' }}</span>
 															</td>
 														</tr>
 														@if($array['subject'] == 'Email Verification')
 															<td class="center pb10" style="text-align:center; padding-bottom:10px;">
-																<a class="h2 center pb10" style="color:#000000; font-family:'Ubuntu', Arial,sans-serif; font-size:30px; line-height:60px; " href="{{ url('/home2?modal=VerifyAccount') }}">Link verify account</a>
+																<a class="h2 center pb10" style="color:#f58634; font-family:'Ubuntu', Arial,sans-serif; font-size:30px; line-height:60px; " href="{{ url('/home2?modal=VerifyAccount') }}">Verificar cuenta</a>
 															</td>
 														@endif
                                                         @if(!empty( $array['link']))
