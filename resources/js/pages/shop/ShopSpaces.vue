@@ -136,7 +136,7 @@ export default {
             // brand_ids;
             // min_price;
             // max_price;
-            axios.get("https://alorangesapp.test/api/v1/product/search?category_slug=CAFETERIA&keyword=ab")
+            axios.get("http://alorangesapp.test/api/v1/product/search?category_slug=CAFETERIA")
             .then(response => {
                 this.productsSeeder = response.data.products.data
             }).catch(err => {
