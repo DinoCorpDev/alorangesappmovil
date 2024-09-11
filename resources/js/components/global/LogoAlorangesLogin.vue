@@ -72,7 +72,7 @@
 
 <script>
 export default {
-    name: "LogoIdovela",
+    name: "LogoAloranges",
     props: {
         width: {
             type: Number,

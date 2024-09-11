@@ -13,7 +13,7 @@
         <template v-if="slides.length > 0">
             <v-carousel-item v-for="(slide, i) in slides" :key="i">
                 <img :src="slide.src" class="carousel-item-img" />
-                <LogoIdovela class="logo-login" />
+                <LogoAloranges class="logo-login" />
                 <div class="carousel-body white--text">
                     <h4 class="carousel-title mb-3">{{ title }}</h4>
                 </div>
@@ -26,12 +26,12 @@
 </template>
 
 <script>
-import LogoIdovela from "../global/LogoIdovelaLogin.vue";
+import LogoAloranges from "../global/LogoAlorangesLogin.vue";
 
 export default {
     name: "CarouselLogin",
     components: {
-        LogoIdovela
+        LogoAloranges
     },
     props: {
         showArrows: {
