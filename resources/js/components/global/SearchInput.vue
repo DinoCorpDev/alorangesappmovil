@@ -135,16 +135,10 @@ export default {
         display: flex;
         align-items: center;
 
-<<<<<<< HEAD
-        background-color: #f58634;
-
-        border: 1px solid #f58634;
-=======
         color: #000;
         background-color: #fcd6ba !important;
 
         border: 1px solid #fcd6ba;
->>>>>>> 984540b (home, home2, header y sus componentes internos.)
         border-radius: 5px;
 
         padding: 0 10px;

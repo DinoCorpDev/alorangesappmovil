@@ -17,13 +17,9 @@
                 <SearchInput />
                 <div class="layout-navbar-auth-nav">
                     <DoubleButton />
-<<<<<<< HEAD
-                    <!-- <ToggleMenu /> -->
-=======
                     <div style="display: none;">
                         <ToggleMenu />
                     </div>
->>>>>>> 984540b (home, home2, header y sus componentes internos.)
                 </div>
             </v-container>
         </v-app-bar>
