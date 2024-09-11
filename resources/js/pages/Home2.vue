@@ -1,124 +1,69 @@
 <template>
-    <v-container>
-        <v-row class="main mb-6" align="center" tag="main">
-            <v-col cols="12" md="5">
-                <h1 class="home-main-title mb-6 mb-sm-8">
-                    iDOVELA <br />
-                    Para un mundo <br />
-                    más habitable
-                </h1>
+    <v-container style="background-color: white;">
+        <v-row class="main ma-6 bg-orange-ligth border-style-banner" align="center" tag="main">
+            <v-col class="pa-6" cols="12" sm="7" md="7">
+                <h1 class="home-main-title mb-6 mb-sm-8">Compra multi servicios de formal fácil, segura y rápida</h1>
                 <p class="home-main-description mb-6 mb-sm-10">
-                    Mejores espacios conducen a modelos más eficaces de vida. <br />
-                    Las habitats eficientes conducen a una implementación más rápida. Genere valor en su vida con
-                    mejores espacios habitables.
+                    Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtenga todo lo que
+                    desee de una forma fácil
                 </p>
                 <v-row>
-                    <v-col cols="8" sm="6" md="8">
-                        <CustomButton block outlined text="Comunicarse con ventas" />
+                    <v-col cols="12" sm="8" md="8">
+                        <CustomInput block placeholder="Escribe lo que buscas" />
                     </v-col>
-                    <v-col cols="4" offset-sm="3" sm="3" offset-md="0" md="8">
-                        <SelectCustom
-                            :clearable="false"
-                            :items="allLanguages"
-                            @input="agree"
-                            itemText="name"
-                            itemValue="code"
-                            placeholder="Seleccionar país"
-                            v-model="selectedCode"
-                        />
+                    <v-col cols="12" sm="4" md="4">
+                        <CustomButton class="bg-orange" color="orange" block text="Buscar" />
                     </v-col>
                 </v-row>
             </v-col>
-            <v-col cols="12" md="7">
-                <Carousel class="home-main-carousel" :slides="sliderItems" />
+            <v-col class="pa-0" cols="12" sm="5" md="5">
+                <img src="/public/assets/img/bannerhomeimg-removebg-preview.png" style="width: 100%; height: auto;" />
             </v-col>
         </v-row>
 
         <v-row tag="section" class="preambulo mb-6">
             <v-col cols="12">
                 <div class="rounded-section px-5 py-8">
-                    <div class="mb-3">
-                        <span class="subtitle1 text-uppercase font-weight-bold"> Preámbulo </span>
-                    </div>
-                    <h2 class="text-uppercase mb-3 mb-md-0">Titulo</h2>
-                    <v-divider class="mb-5" />
-                    <p class="body1 mb-8">
-                        Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
-                        Incluye Lorem Ipsum is simply dummy text of the printing • Lorem Ipsum has been the industry's •
-                        Incluye Lorem Ipsum is simply dummy text. Incluye Lorem Ipsum is simply dummy text of the
-                        printing • Lorem Ipsum has beenthe industry's • Incluye Lorem Ipsum is simply dummy text of the
-                        printing • Lorem Ipsum has been the industry's • Incluye Lorem Ipsum is simply dummy text.
-                    </p>
                     <v-row justify="center">
                         <v-col cols="12" lg="10">
-                            <v-img
-                                src="/public/assets/img/home/curved-arrows-top-xs.svg"
-                                contain
-                                width="80%"
-                                class="mb-5 mx-auto d-sm-none"
-                            />
-                            <v-img
-                                src="/public/assets/img/home/curved-arrows-top-md.svg"
-                                contain
-                                width="80%"
-                                class="mb-5 mx-auto d-none d-sm-block"
-                            />
                             <v-row
                                 :no-gutters="
                                     $vuetify.breakpoint.name == 'md' || $vuetify.breakpoint.name == 'lg' ? false : true
                                 "
                             >
-                                <v-col>
-                                    <PolygonElement
-                                        text="Esta Allí"
-                                        icon="/public/assets/img/home/icon-be-there.svg"
-                                        href="#be-there"
-                                    />
+                                <v-col class="center-flex" cols="12" sm="6" md="3">
+                                    <v-img src="/public/assets/img/Group13.png" contain class="mb-5" />
+                                    <h3>Domicilios gratis</h3>
+                                    <p>En compras mininmas</p>
                                 </v-col>
-                                <v-col>
-                                    <PolygonElement
-                                        text="Forma"
-                                        icon="/public/assets/img/home/icon-shape.svg"
-                                        href="#shape"
-                                    />
+                                <v-col class="center-flex" cols="12" sm="6" md="3">
+                                    <v-img src="/public/assets/img/Group13.png" contain class="mb-5" />
+                                    <h3>Apoyo 24/7</h3>
+                                    <p>Servicio técnico</p>
                                 </v-col>
-                                <v-col>
-                                    <PolygonElement
-                                        text="Comprobación"
-                                        icon="/public/assets/img/home/icon-validation.svg"
-                                        href="#validation"
-                                    />
+                                <v-col class="center-flex" cols="12" sm="6" md="3">
+                                    <v-img src="/public/assets/img/Group12.png" contain class="mb-5" />
+                                    <h3>Pago seguro</h3>
+                                    <p>Múltiples bancos</p>
                                 </v-col>
-                                <v-col>
-                                    <PolygonElement
-                                        text="Tiempo"
-                                        icon="/public/assets/img/home/icon-time.svg"
-                                        href="#time"
-                                    />
-                                </v-col>
-                                <v-col>
-                                    <PolygonElement
-                                        text="Listo Para Usar"
-                                        icon="/public/assets/img/home/icon-ready-for-use.svg"
-                                        href="#ready-for-use"
-                                    />
+                                <v-col class="center-flex" cols="12" sm="6" md="3">
+                                    <v-img src="/public/assets/img/Refresh.png" contain class="mb-5" />
+                                    <h3>Devoluciones</h3>
+                                    <p>Cambios de productos</p>
                                 </v-col>
                             </v-row>
-                            <v-img
-                                src="/public/assets/img/home/curved-arrows-bottom-xs.svg"
-                                contain
-                                width="80%"
-                                class="mt-5 mx-auto d-sm-none"
-                            />
-                            <v-img
-                                src="/public/assets/img/home/curved-arrows-bottom-md.svg"
-                                contain
-                                width="80%"
-                                class="mt-5 mx-auto d-none d-sm-block"
-                            />
                         </v-col>
                     </v-row>
                 </div>
+            </v-col>
+        </v-row>
+        <v-row class="center-items ma-6">
+            <v-col col="12" sm="12" md="12" class="bg-green-ligth border-style-banner">
+                <CarouselSpaces
+                    title="Categorias"
+                    img="/public/assets/img/home/icon-be-there.svg"
+                    :spaces="itemsArray"
+                />
             </v-col>
         </v-row>
 
@@ -129,7 +74,7 @@
                     icon="/public/assets/img/home/icon-be-there.svg"
                     preamble="Escuchar, Comprender y Percibir al Usuario"
                     title="Estar allí"
-                    image="/public/assets/img/home/img-be-there.png"
+                    image="/public/assets/img/banner2home.png"
                 >
                     <template v-slot:description>
                         Identificamos las necesidades de las personas para mejorar su experiencia del entorno.
@@ -141,174 +86,28 @@
             </v-col>
         </v-row>
 
-        <v-row class="mb-6">
-            <v-col cols="12">
-                <BannerCategoryProduct
-                    title="Titulo"
-                    descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                    idItem="100"
-                    variant="#e9e9e9"
-                    variant-text="black--text"
-                    img="/public/assets/img/home/opa.png"
-                />
-            </v-col>
-        </v-row>
-
-        <v-row class="mb-6">
-            <v-col cols="12">
-                <PresentationBanner
-                    id="shape"
-                    icon="/public/assets/img/home/icon-shape.svg"
-                    preamble="Planificar y diseñar"
-                    title="Forma"
-                    orientation="right"
-                    image="/public/assets/img/home/img-shape.png"
-                >
-                    <template v-slot:description>
-                        El valor añadido se consigue comprendiendo los gustos subjetivos de las personas que
-                        determinarán la función de la forma, lo que conducirá a la planificación de modelos más
-                        eficientes que permitan el ser allí, resultando en una mejor experiencia.
-                    </template>
-                </PresentationBanner>
-            </v-col>
-        </v-row>
-
-        <v-row class="mb-6">
-            <v-col cols="12">
-                <CarouselActions :products="productsSeeder" title="Integración" />
-            </v-col>
-        </v-row>
-
-        <v-row class="mb-6">
-            <v-col cols="12">
-                <PresentationBanner
-                    id="validation"
-                    icon="/public/assets/img/home/icon-validation.svg"
-                    preamble="Prueba, Validar y Depurar Productos"
-                    title="Comprobación"
-                    image="/public/assets/img/home/img-validation.png"
-                >
-                    <template v-slot:description>
-                        Al evaluar eficazmente los prototipos con respecto a los requisitos del usuario, se revelan las
-                        deficiencias estructurales del diseño, lo que garantiza la corrección continua y, por tanto, el
-                        cumplimiento de las normas de calidad, lo que a su vez asegura la entrega satisfactoria de un
-                        espacio habitable.
-                    </template>
-                </PresentationBanner>
-            </v-col>
-        </v-row>
-
-        <v-row class="mb-6">
-            <v-col cols="12">
-                <PresentationBanner
-                    id="time"
-                    icon="/public/assets/img/home/icon-time.svg"
-                    preamble="Obsolescencia Programada, Material y Atemporalidad"
-                    title="Tiempo"
-                    orientation="right"
-                    image="/public/assets/img/home/img-time.png"
-                >
-                    <template v-slot:description>
-                        Nos esforzamos por interiorizar una sólida comprensión y extracción de los materiales que
-                        componen un espacio vital para garantizar su construcción, uso y mantenimiento a lo largo de su
-                        vida. Nos comprometemos a que sea lo más fácil de usar y respetuoso con el medio ambiente
-                        posible.
-                    </template>
-                </PresentationBanner>
-            </v-col>
-        </v-row>
-
-        <v-row class="mb-6">
-            <v-col cols="12">
-                <BannerCategoryProduct
-                    title="Titulo"
-                    descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                    idItem="100"
-                />
-            </v-col>
-        </v-row>
-
-        <v-row class="mb-6">
-            <v-col cols="12">
-                <PresentationBanner
-                    id="ready-for-use"
-                    icon="/public/assets/img/home/icon-ready-for-use.svg"
-                    preamble="Ejecutar e Implementar la Función"
-                    title="Listo para usar"
-                    image="/public/assets/img/home/img-ready-for-use.png"
-                >
-                    <template v-slot:description>
-                        Un espacio habitable finalizado es el conjunto de objetos que acompañan al usuario en el
-                        cumplimiento de una función determinada elaborada con cuidado al detalle el entorno es
-                        transformando en una experiencia reconfortante.
-                    </template>
-                </PresentationBanner>
-            </v-col>
-        </v-row>
-
-        <v-row class="mb-6">
-            <v-col cols="12">
-                <BannerCategoryProduct
-                    title="Titulo"
-                    descripcion="Ad nulla magna labore dolore cupidatat sit. Officia in commodo excepteur dolore consequat tempor consequat adipisicing id qui ullamco eu tempor. Quis enim velit non mollit deserunt. Et non esse do occaecat cupidatat. Non adipisicing ullamco est sit velit laborum fugiat et occaecat ipsum ut et. Amet aliqua laboris cillum adipisicing dolor velit ad sint nisi aute culpa."
-                    idItem="100"
-                />
-            </v-col>
-        </v-row>
-
-        <v-row tag="section" class="home-portfolio mb-6">
-            <v-col>
-                <h5 class="mb-5">Portafolio</h5>
-                <v-row>
-                    <v-col cols="12" sm="6" lg="3">
-                        <div class="home-portfolio-wrap">
-                            <h2 class="home-portfolio-title">Explora nuestros productos y Servicios</h2>
-                        </div>
-                    </v-col>
-                    <v-col cols="12" sm="6" lg="3">
-                        <PortfolioCard
-                            title="Diseño de Espacios"
-                            img="/public/assets/img/home/portfolio-design-img.png"
-                            icon="/public/assets/img/home/portfolio-design-icon.svg"
-                            description="Proyecta tus espacias a la mediada que deseas."
-                            :to="{ name: 'Shop' }"
-                        />
-                    </v-col>
-                    <v-col cols="12" sm="6" lg="3">
-                        <PortfolioCard
-                            title="Servicios"
-                            img="/public/assets/img/home/portfolio-services-img.png"
-                            icon="/public/assets/img/home/portfolio-services-icon.svg"
-                            description="Contrata a profesionales para la instalación y recalibración de tus espacios habitables."
-                            :to="{ name: 'Shop' }"
-                        />
-                    </v-col>
-                    <v-col cols="12" sm="6" lg="3">
-                        <PortfolioCard
-                            title="ESP"
-                            img="/public/assets/img/home/portfolio-esp-img.png"
-                            icon="/public/assets/img/home/portfolio-esp-icon.svg"
-                            description="Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar."
-                            :to="{ name: 'Shop' }"
-                        />
-                    </v-col>
-                </v-row>
-            </v-col>
-        </v-row>
-
-        <v-row class="mb-6">
-            <v-col cols="12">
-                <v-banner color="#242526" class="rounded temp">
-                    <div class="div-map">
-                        <div class="map">
-                            <v-img class="img-map" src="../../public/assets/img/mapa.png"></v-img>
-                        </div>
+        <v-row class="wrapper-app-banner mb-6 center-items hola">
+                <v-col cols="12" lg="4" class="d-none d-lg-flex">
+                    <img class="imgsize-cel" src="public/assets/img/Grupo12203.png" />
+                </v-col>
+                <v-col cols="12" lg="4">
+                    <div class="wrapper-dwn-app">
+                        <h3 class="title-banner-dwn">Descarga Nuesta App Movil</h3>
+                        <CustomButton color="orange" :width="250" :elevation="7" text="Descargar App" />
                     </div>
-                </v-banner>
+                </v-col>
+                <v-col cols="12" lg="4" class="d-flex justify-center align-center">
+                    <div class="Wrapper-AppStore">
+                        <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
+                        <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12234.png" /></a>
+                    </div>
+                </v-col>
+        </v-row>
+        <v-row>
+            <v-col col="12" sm="12" md="12">
+                <CarouselBrands></CarouselBrands>
             </v-col>
         </v-row>
-        <RecuperarPassCodigo v-model="showRecuperarPass" :email="this.$route.query.email"/>
-        <VerifyAccount v-model="showVerifyAccount"/>
     </v-container>
 </template>
 
@@ -325,8 +124,9 @@ import PolygonElement from "../components/global/PolygonElement.vue";
 import PortfolioCard from "../components/global/PortfolioCard.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
-import RecuperarPassCodigo from "../components/auth/RecuperarPassCodigo.vue"; 
-import VerifyAccount from "../components/auth/VerifyAccount.vue"; 
+import CustomInput from "../components/global/CustomInput.vue";
+import CarouselSpaces from "../components/global/CarouselSpaces.vue";
+import CarouselBrands from "../components/global/CarouselBrands.vue";
 
 export default {
     components: {
@@ -339,13 +139,34 @@ export default {
         PortfolioCard,
         PresentationBanner,
         SelectCustom,
-        RecuperarPassCodigo,
-        VerifyAccount,
+        CustomInput,
+        CarouselSpaces,
+        CarouselBrands
     },
     data() {
         return {
-            showRecuperarPass: false,
-            showVerifyAccount: false,
+            itemsArray: [
+                {
+                    title: "Papeleria",
+                    img: "/public/assets/img/Grupo12238.png",
+                    description: "Papeleria"
+                },
+                {
+                    title: "Aseo",
+                    img: "/public/assets/img/Grupo12239.png",
+                    description: "Aseo"
+                },
+                {
+                    title: "Cafeteria",
+                    img: "/public/assets/img/Grupo12240.png",
+                    description: "Cafeteria"
+                },
+                {
+                    title: "Botiqueria",
+                    img: "/public/assets/img/Grupo12241.png",
+                    description: "Botiqueria"
+                }
+            ],
             selectedCode: null,
             sliderSeeder,
             sliderItems: [
@@ -385,14 +206,6 @@ export default {
         this.selectedCode = this.userLanguageObj.code;
 
         this.scrollToCenter();
-        
-        if(this.$route.query.modal == 'Password'){
-            this.showRecuperarPass = true;
-        }
-
-        if(this.$route.query.modal == 'VerifyAccount' || this.$route.query.modal == 'verifyaccount'){
-            this.showVerifyAccount = true;
-        }
     },
     methods: {
         ...mapActions("app", ["setLanguage"]),
@@ -407,8 +220,31 @@ export default {
 </script>
 
 <style lang="scss">
-.v-list-item {
-    // text-transform: uppercase;
+.center-items {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+.wrapper-app-banner {
+    background-image: url("/public/assets/img/bg10400.png");
+    background-position: center;
+    background-size: contain;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.imgsize-cel {
+    width: 150%;
+    height: auto;
+}
+.imgsize-btn-dwn {
+    width: 200px;
+    height: auto;
+}
+.title-banner-dwn {
+    font-size: 25px;
+    font-weight: 700;
 }
 </style>
 
@@ -417,6 +253,8 @@ export default {
     &-main {
         &-description {
             font-size: var(--font-size-h5);
+            color: black;
+            font-weight: 100;
         }
 
         &-carousel {
@@ -464,6 +302,25 @@ export default {
     text-transform: uppercase;
 }
 
+.border-style-banner {
+    border-radius: 20px;
+}
+
+.bg-orange {
+    background: #f58634;
+}
+.bg-orange-ligth {
+    background: #f5cea6;
+}
+.bg-green-ligth {
+    background: #f3f9ec;
+}
+.center-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media (min-width: 835px) {
     .container {
         max-width: 1920px;
@@ -494,5 +351,15 @@ export default {
         border-radius: 50%;
         padding: 20% 0;
     }
+}
+.Wrapper-AppStore{
+    display: flex;
+    flex-direction: column;
+}
+.wrapper-dwn-app{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
 }
 </style>

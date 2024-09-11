@@ -2,7 +2,11 @@
     <div class="layout-navbar-nav">
         <CustomButton
             v-if="!userIsLoggedIn"
+<<<<<<< HEAD
             :color="$vuetify.theme.dark ? 'orange' : 'orange'"
+=======
+            color="orange"
+>>>>>>> 984540b (home, home2, header y sus componentes internos.)
             class="double-button"
             @click="showLoginDialog(true)"
             ><span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
@@ -16,7 +20,11 @@
         </CustomButton>
         <CustomButton
             v-else
+<<<<<<< HEAD
             :color="$vuetify.theme.dark ? 'orange' : 'orange'"
+=======
+            color="orange"
+>>>>>>> 984540b (home, home2, header y sus componentes internos.)
             class="double-button"
             :to="{ name: 'Cart' }"
         >
