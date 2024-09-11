@@ -137,10 +137,14 @@ export default {
             // min_price;
             // max_price;
 <<<<<<< HEAD
+<<<<<<< HEAD
             axios.get("http://alorangesapp.test/api/v1/product/search?category_slug=CAFETERIA")
 =======
             axios.get("https://alorangesapp.test/api/v1/product/search?category_slug=CAFETERIA&keyword=ab")
 >>>>>>> aea77a7 (Conflicto de ramas arreglado)
+=======
+            axios.get("http://alorangesapp.test/api/v1/product/search?category_slug=CAFETERIA")
+>>>>>>> 5d19cc8 (Error de merge en mix-manifest)
             .then(response => {
                 this.productsSeeder = response.data.products.data
             }).catch(err => {
