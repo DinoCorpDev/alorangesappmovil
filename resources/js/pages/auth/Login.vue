@@ -5,7 +5,7 @@
                 <v-col cols="12" lg="6">
                     <CarouselLogin
                         :slides="sliderItems"
-                        title="Idovela te conecta con los espacios que deseas habitar"
+                        title=""
                     />
                 </v-col>
                 <v-col cols="12" lg="6" class="pt-lg-0">
@@ -17,7 +17,7 @@
                             </div>
                             <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
                                 <div class="form-group mb-6">
-                                    <label class="black--text">USUARIO REGISTRADO</label>
+                                    <label class="black--text">Usuario registrado</label>
                                     <CustomInput
                                         placeholder="Correo electrónico o número de teléfono"
                                         v-model="form.email"
@@ -27,7 +27,7 @@
                                     />
                                 </div>
                                 <div class="form-group mb-6">
-                                    <label class="black--text">ESCRIBIR CONTRASEÑA</label>
+                                    <label class="black--text">Escribir contraseña</label>
                                     <!-- <CustomInput
                                         placeholder="Contraseña"
                                         v-model="form.password"
@@ -42,7 +42,7 @@
                                         placeholder="Contraseña"
                                         :error-messages="passwordErrors"
                                         :type="passwordShow ? 'text' : 'password'"
-                                        :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
+                                        :append-icon="passwordShow ? 'las la-eye-slash' : 'las la-eye'"
                                         class="input-group--focused place-holder"
                                         hide-details="auto"
                                         required
@@ -51,13 +51,13 @@
                                         @click:append="passwordShow = !passwordShow"
                                     ></v-text-field>
                                 </div>
-                                <p class="black--text link-forgot">
-                                    ¿HAS OLVIDADO TU CONTRASEÑA?
-                                    <a @click="showModalRecuperarPass" class="black--text">
+                                <div class="d-flex">
+                                <p class="black--text" style="font-size: 13px; margin-right: 15px;">¿Has olvidado tu contraseña?</p>
+                                    
+                                    <a @click="showModalRecuperarPass" class="login-link">
                                         <b>Ir a recuperar contraseña</b>
-                                        <ArrowForget />
                                     </a>
-                                </p>
+                                </div>
 
                                 <CustomButton
                                     :disabled="loading"
@@ -65,12 +65,21 @@
                                     text="Iniciar sesión"
                                     block
                                     class="mt-4 mb-8"
-                                    color="nero"
+                                    color="orange"
                                     type="submit"
                                     @click="login"
                                 />
                             </v-form>
-                            <a @click="showModalRegister" class="black--text link-custom">
+                            <div class="d-flex">
+                                <p class="black--text link-forgot" style="font-size: 13px; margin-right: 15px;">¿No tienes ninguna cuenta?</p>
+                                    
+                                    <a @click="showModalRegister" class="login-link">
+                                        <b>Registrarse</b>
+                                    </a>
+                            </div>
+                            
+                                
+                            <!-- <a @click="showModalRegister" class="black--text link-custom">
                                 ¿No tienes ninguna cuenta?
                             </a>
                             <CustomButton
@@ -80,7 +89,7 @@
                                 class="mt-4 mb-4"
                                 text="Registrarse"
                                 @click="showModalRegister"
-                            />
+                            /> -->
                             <p class="black--text link-custom1">
                                 Al registrarte, aceptas los <b>Términos de servicios</b> y la
                                 <b>Política de privacidad</b>, incluida la politica de <b>Uso de Cookies</b>
@@ -130,7 +139,7 @@ export default {
         showRecuperarPass: false,
         sliderItems: [
             {
-                src: "/public/assets/img/Loginfondo1.jpg",
+                src: "/public/assets/img/login-img.png",
                 type: "image"
             },
             {
@@ -363,6 +372,13 @@ export default {
                 }
             }
         }
+    }
+}
+.login-link{
+    font-size: 13px;
+    color: #f58634;
+    &:hover{
+        color: #fbd6bb;
     }
 }
 </style>

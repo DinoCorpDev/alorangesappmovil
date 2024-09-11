@@ -1,13 +1,13 @@
 <template>
     <v-dialog content-class="modal-register" v-model="showRecuperarPass">
         <v-card class="modal-register-card">
-            <v-card-title v-if="numberPag == 1" class="text-xs-left justify-left title mb-2">
+            <v-card-title v-if="numberPag == 1" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
                 ¿Olvidó su contraseña?
             </v-card-title>
-            <v-card-title v-if="numberPag == 3" class="text-xs-left justify-left title mb-2">
+            <v-card-title v-if="numberPag == 3" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
                 ¿A dónde debemos enviar el código de confirmación?
             </v-card-title>
-            <v-card-title v-if="numberPag == 2" class="text-xs-left justify-left title mb-2">
+            <v-card-title v-if="numberPag == 2" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
                 Confirma tu nombre de usuario
             </v-card-title>
             <div class="forgot-password d-flex flex-column h-100">
@@ -82,7 +82,7 @@
                                 <div class="">
                                     <p>
                                         Confirma tu identida introduciendo el nombre de usuario asociado a tu cuenta de
-                                        Idovela.
+                                        © Alorange.
                                     </p>
                                     <v-row>
                                         <v-col cols="12" md="6" class="inputs mb-5">
@@ -142,7 +142,7 @@
                                             />
                                         </v-col> -->
                                     </v-row>
-                                    <p>Comunícate con el <b>Soporte de Idovela</b> si no tienes acceso.</p>
+                                    <p>Comunícate con el <b>Soporte de © Alorange</b> si no tienes acceso.</p>
                                 </div>
                             </v-container>
                         </v-stepper-content>
@@ -153,8 +153,8 @@
             <v-card-actions class="pa-5 d-block">
                 <CustomButton
                     v-if="numberPag < 3"
-                    text="Siguiente"
-                    color="nero"
+                    text="siguiente"
+                    color="orange"
                     type="button"
                     class="mb-2"
                     block
@@ -163,7 +163,7 @@
                 <CustomButton
                     v-if="numberPag == 3"
                     text="Enviar código"
-                    color="nero"
+                    color="orange"
                     type="submit"
                     class="mb-2"
                     block
@@ -171,7 +171,7 @@
                     :disabled="loadingregister"
                     :loadingregister="loadingregister"
                 />
-                <CustomButton text="Cancelar" color="white2" type="button" class="ml-0" block @click="cerrarModal" />
+                <CustomButton text="Cancelar" color="orange2" type="button" class="ml-0" block @click="cerrarModal" />
             </v-card-actions>
         </v-card>
         <v-dialog v-model="userNotFound" width="500">

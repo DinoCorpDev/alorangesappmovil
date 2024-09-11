@@ -1,8 +1,13 @@
 <template>
     <v-dialog content-class="modal-register" v-model="showRegister">
         <v-card class="modal-register-card">
-            <v-card-title class="text-xs-center justify-center primary title white--text darken-2 font-weight-bold">
-                REGISTRO
+            <v-card-title style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
+                <span v-if="registerNotification == false">REGISTRO</span>
+                <button @click="closeRegister" class="esc-button">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15128 1.15128C1.61991 0.682647 2.3797 0.682647 2.84833 1.15128L7.9998 6.30275L13.1513 1.15128C13.6199 0.682647 14.3797 0.682647 14.8483 1.15128C15.317 1.61991 15.317 2.3797 14.8483 2.84833L9.69686 7.9998L14.8483 13.1513C15.317 13.6199 15.317 14.3797 14.8483 14.8483C14.3797 15.317 13.6199 15.317 13.1513 14.8483L7.9998 9.69686L2.84833 14.8483C2.3797 15.317 1.61991 15.317 1.15128 14.8483C0.682647 14.3797 0.682647 13.6199 1.15128 13.1513L6.30275 7.9998L1.15128 2.84833C0.682647 2.3797 0.682647 1.61991 1.15128 1.15128Z" fill="white"/>
+                    </svg>
+                </button>
             </v-card-title>
             <v-form
                 class="modal-register-form"
@@ -708,10 +713,11 @@
                     style="height: 300px; margin-top: 50px; margin-right: 20px; margin-left: 20px"
                     v-if="registerNotification"
                 >
-                    <i class="las la-check" style="color: green; font-size: 80px"></i>
+                    <img src="/public/assets/img/checked.png" alt="Checkeado">
+                    <!-- <i class="las la-check" style="color: green; font-size: 80px"></i> -->
                     <br /><br />
 
-                    <h5 align="center">¡Gracias por registrarse!</h5>
+                    <h5 align="center"><b>¡Gracias por registrarse!</b></h5>
                     <br /><br />
                     <p class="black--text">
                         Hemos enviado una notificación de confirmación a su dirección de correo electrónico registrado.
@@ -724,7 +730,7 @@
                     v-if="numberPag > 1"
                     icon="la-angle-left"
                     text="Volver"
-                    color="nero"
+                    color="orange2"
                     type="button"
                     @click="before"
                     text-class="mr-6"
@@ -748,7 +754,7 @@
                     icon="la-angle-right"
                     iconPosition="right"
                     text="Continuar"
-                    color="nero"
+                    color="orange"
                     type="button"
                     class="boton-continuar"
                     text-class="ml-6"
@@ -759,7 +765,7 @@
                     icon="la-angle-right"
                     iconPosition="right"
                     text="Registrame"
-                    color="nero"
+                    color="orange"
                     type="submit"
                     text-class="ml-6"
                     @click="register"
@@ -1150,6 +1156,9 @@ export default {
     methods: {
         ...mapActions("auth", ["login"]),
         ...mapMutations("auth", ["updateChatWindow", "showLoginDialog"]),
+        closeRegister(){
+            this.showRegister = false;
+        },
         phoneValidate(phone) {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;
@@ -1566,6 +1575,9 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+::v-deep .v-stepper__step__step.primary{
+    background-color: #f58634 !important;
+}
 .modal-register {
     &-card {
         border-radius: 10px;
@@ -1596,6 +1608,9 @@ export default {
         &.theme--light {
             &::v-deep {
                 .v-stepper__step {
+                    &__step.primary{
+                        background-color: #f58634 !important;
+                    }
                     &:not(.v-stepper__step--active) {
                         .v-stepper__step__step {
                             background: rgba(#000000, 0.25);
@@ -1604,7 +1619,7 @@ export default {
 
                     &.v-stepper__step--complete {
                         .v-stepper__step__step {
-                            background: rgba(0, 0, 0, 0.87);
+                            background-color: #f58634 !important;
                         }
                     }
                 }
@@ -1839,6 +1854,18 @@ export default {
     .custom-checkbox {
         border-color: black;
         color: black;
+    }
+}
+.esc-button{
+    position: absolute;
+    top: 25%;
+    right: 5%;
+    padding: 0;
+    margin: 0;
+    &:hover{
+        path{
+            fill: #fcd6ba;
+        }
     }
 }
 </style>

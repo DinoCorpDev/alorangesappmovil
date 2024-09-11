@@ -150,7 +150,7 @@ export default {
 
     &.bordered {
         padding-left: 40px;
-        border: 1px solid;
+        // border: 1px solid;
         border-radius: 5px;
 
         &-checkmark {
@@ -170,7 +170,7 @@ export default {
         height: 24px;
         width: 24px;
         border-radius: 5px;
-        border: 1px solid #000000;
+        border: 1px solid #7e8693;
         background-color: #f5f5f5;
     }
 
@@ -190,7 +190,8 @@ export default {
 
         &:is(:checked) {
             ~ .custom-checkbox-checkmark {
-                background-color: #000000;
+                background-color: #f58634;
+                border-color: #f58634;
             }
         }
 
@@ -207,6 +208,7 @@ export default {
         font-family: "Roboto", sans-serif;
         font-size: var(--font-size-body1);
         cursor: pointer;
+        color: black;
 
         a {
             text-decoration: underline;

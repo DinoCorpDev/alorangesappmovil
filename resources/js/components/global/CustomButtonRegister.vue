@@ -105,7 +105,7 @@ export default {
         content: unset;
     }
 
-    border-radius: 5px;
+    border-radius: 100px;
 
     i {
         font-size: 20px;
@@ -160,7 +160,36 @@ export default {
             color: #000000;
         }
     }
+    &.orange {
+        color: #fff;
+        background-color: #f58634 !important;
 
+        &:hover {
+            color: #000;
+            background-color: rgba(#fcd6ba, 0.8) !important;
+        }
+
+        &:focus,
+        &.v-btn--active {
+            color: #fff;
+            background-color: #f58634 !important;
+        }
+    }
+    &.orange2 {
+        color: #000;
+        background-color: #fcd6ba !important;
+
+        &:hover {
+            color: #fff;
+            background-color: rgba(#f58634, 0.8) !important;
+        }
+
+        &:focus,
+        &.v-btn--active {
+            color: #fff;
+            background-color: #f58634 !important;
+        }
+    }
     &.grey {
         color: #000000;
         background-color: #dfdfdf !important;
