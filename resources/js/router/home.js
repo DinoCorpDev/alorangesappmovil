@@ -17,10 +17,10 @@ let Shop = () => import("../pages/Shop");
 let About = () => import("../pages/About");
 let Collection = () => import("../pages/Collection");
 
-let ShopSpaces = () => import("../pages/shop/ShopSpaces");
+let ShopCartoneria = () => import("../pages/shop/ShopCartoneria");
 let ShopServices = () => import("../pages/shop/ShopServices");
 let ShopHomeAppliances = () => import("../pages/shop/ShopHomeAppliances");
-let ShopBusinessPortal = () => import("../pages/shop/ShopBusinessPortal");
+let ShopCafeteria = () => import("../pages/shop/ShopCafeteria");
 
 export default [
     {
@@ -57,13 +57,13 @@ export default [
         path: "/shop",
         component: Shop,
         name: "Shop",
-        redirect: "/shop/spaces",
+        redirect: "/shop/cartoneria",
         meta: { requiresAuth: false },
         children: [
             {
-                path: "spaces",
-                component: ShopSpaces,
-                name: "ShopSpaces",
+                path: "cartoneria",
+                component: ShopCartoneria,
+                name: "ShopCartoneria",
                 meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
@@ -79,9 +79,9 @@ export default [
                 meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
-                path: "business-portal",
-                component: ShopBusinessPortal,
-                name: "ShopBusinessPortal",
+                path: "cafeteria",
+                component: ShopCafeteria,
+                name: "ShopCafeteria",
                 meta: { requiresAuth: false, hasBottomBar: false }
             }
         ]

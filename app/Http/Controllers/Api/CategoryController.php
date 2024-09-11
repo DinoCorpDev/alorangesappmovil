@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return new AllCategoryCollection(Category::where('level',0)->orderBy('order_level', 'desc')->get());
+        return Category::all();
     }
 
     public function featured()

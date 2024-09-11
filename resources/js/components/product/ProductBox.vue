@@ -21,7 +21,7 @@
             <div class="product-box-image-hover">
                 <CustomButton
                     block
-                    color="black"
+                    color="orange"
                     text="Ver Detalles"
                     :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }"
                 />
@@ -43,7 +43,7 @@
         <div class="product-box-footer pt-0">
             <CustomButton
                 block
-                color="nero"
+                color="orange"
                 text="Agregar a Compras"
                 @click="showAddToCartDialog({ status: true, slug: productDetails.slug })"
                 :loading="actionLoading"

@@ -4,34 +4,13 @@
 
         <v-row tag="main" class="main">
             <v-col cols="12">
-                <Carousel
-                    class="main-carousel"
-                    :slides="sliderItems"
-                    type="description"
-                    title="Diseño de espacios"
-                    description="Desde el diseño hasta la instalación, nos encargamos de todo para que te sientas confortable en ese espacio habitable ideal."
-                />
-            </v-col>
-        </v-row>
-
-        <v-row tag="section">
-            <v-col cols="12" md="6">
-                <ShopActionCard img="/public/assets/img/shop-spaces/icon-msg.png" @click="contactDialogOpen()" />
-            </v-col>
-            <v-col cols="12" md="6">
-                <ShopActionCard img="/public/assets/img/shop-spaces/icon-house.png" @click="contactDialogOpen()" />
-            </v-col>
-        </v-row>
-
-        <v-row tag="section">
-            <v-col cols="12">
-                <CarouselPortfolio :items="itemsPortfolio" />
+                
             </v-col>
         </v-row>
 
         <v-row tag="section" class="mb-6">
             <v-col cols="12">
-                <h5>H5</h5>
+                <h5>Items</h5>
                 <v-row class="mb-3">
                     <v-col
                         v-for="product in productsSeeder.slice(0, 4)"
@@ -43,17 +22,6 @@
                         <ProductBox boxStyle="two" :productDetails="product" />
                     </v-col>
                 </v-row>
-                <v-row justify="center">
-                    <v-col cols="12" sm="8" md="4">
-                        <CustomButton block color="black" text="Ver más" />
-                    </v-col>
-                </v-row>
-            </v-col>
-        </v-row>
-
-        <v-row tag="section" class="mb-6">
-            <v-col cols="12">
-                <CarouselActions :items="itemsActions" />
             </v-col>
         </v-row>
     </v-container>
@@ -70,9 +38,10 @@ import CustomButton from "../../components/global/CustomButton.vue";
 import ProductBox from "../../components/product/ProductBox.vue";
 import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 import ContactDialog from "../../pages/shop/ContactDialog.vue";
+import Mixin from "../../utils/mixin";
 
 export default {
-    name: "ShopSpaces",
+    name: "ShopCartoneria",
     data: () => ({
         spacesSeeder,
         productsSeeder: [],
@@ -130,18 +99,16 @@ export default {
             this.contactDialogShow = false;
         },
         async getProducts(){
-            // category_slug;
-            // keyword;
-            // sort_by;
-            // brand_ids;
-            // min_price;
-            // max_price;
-            axios.get("http://alorangesapp.test/api/v1/product/search?category_slug=CAFETERIA")
-            .then(response => {
-                this.productsSeeder = response.data.products.data
-            }).catch(err => {
-                console.error(err);
-            });
+            const res = await Mixin.methods.call_api("get", `product/search?category_slug=CARTONERIA`);
+                if(res.data.success){
+                    // category_slug;
+                    // keyword;
+                    // sort_by;
+                    // brand_ids;
+                    // min_price;
+                    // max_price;
+                    this.productsSeeder = res.data.products.data
+                }
         }
     }
 };
