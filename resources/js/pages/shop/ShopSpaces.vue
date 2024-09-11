@@ -136,7 +136,11 @@ export default {
             // brand_ids;
             // min_price;
             // max_price;
+<<<<<<< HEAD
             axios.get("http://alorangesapp.test/api/v1/product/search?category_slug=CAFETERIA")
+=======
+            axios.get("https://alorangesapp.test/api/v1/product/search?category_slug=CAFETERIA&keyword=ab")
+>>>>>>> aea77a7 (Conflicto de ramas arreglado)
             .then(response => {
                 this.productsSeeder = response.data.products.data
             }).catch(err => {
