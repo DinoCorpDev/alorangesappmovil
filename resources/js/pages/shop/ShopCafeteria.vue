@@ -3,10 +3,12 @@
         <contact-dialog :show="contactDialogShow" @close="contactDialogClosed" />
 
         <v-row tag="main" class="main">
-            <v-col cols="12">
-                <SelectCustom
-                    :items="documentTypes"
-                    v-model="documentType"
+            <v-col cols="3">
+                <CustomInput
+                    cols="3"
+                    type="text"
+                    v-model="optionSelected"
+                    placeholder="Buscar"
                 />
             </v-col>
         </v-row>
@@ -31,9 +33,6 @@
 </template>
 
 <script>
-import { spacesSeeder } from "../../seeders/spaces";
-import { sliderSeeder } from "../../seeders/products";
-
 import Carousel from "../../components/global/Carousel";
 import CarouselActions from "../../components/global/CarouselActions.vue";
 import CarouselPortfolio from "../../components/global/CarouselPortfolio.vue";
@@ -41,29 +40,17 @@ import CustomButton from "../../components/global/CustomButton.vue";
 import ProductBox from "../../components/product/ProductBox.vue";
 import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 import ContactDialog from "../../pages/shop/ContactDialog.vue";
-import SelectCustom from "../../components/global/SelectCustom.vue";
+import CustomInput from "../../components/global/CustomInput.vue";
 import Mixin from "../../utils/mixin";
 
 export default {
     name: "ShopCafeteria",
     data: () => ({
-        spacesSeeder,
         productsSeeder: [],
-        sliderSeeder,
-        sliderItems: [
-            {
-                src: "/public/assets/img/shop-spaces/banner-main.png",
-                type: "image"
-            }
-        ],
-        documentTypes: [
-            { text: "(C.C) Cedula de ciudadanía", value: "C.C" },
-            { text: "(N.I.T) Numero de identificación tributario", value: "N.I.T" }
-        ],
-        documentType:{}
+        optionSelected:""
     }),
     components: {
-        SelectCustom,
+        CustomInput,
         Carousel,
         CarouselActions,
         CarouselPortfolio,
@@ -74,6 +61,14 @@ export default {
     },
     mounted(){
         this.getProducts();
+    },
+    watch:{
+        optionSelected: async function(val){
+            const res = await Mixin.methods.call_api("get", `product/search?category_slug=CAFETERIA&&keyword=${val}`);
+            if(res.data.success){
+                this.productsSeeder = res.data.products.data
+            }
+        }
     },
     methods: {
         async getProducts(){
