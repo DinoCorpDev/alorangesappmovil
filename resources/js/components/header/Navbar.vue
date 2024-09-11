@@ -14,15 +14,18 @@
                 <LogoIdovela :large="logoLarge" />
             </router-link>
             <div class="layout-navbar-nav">
-                <CustomButton color="black" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
+                <CustomButton color="orange2" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
                 <CustomButton
                     v-if="!userIsLoggedIn"
-                    color="nero2"
+                    color="orange"
                     text="Iniciar Sesión"
                     @click="showLoginDialog(true)"
                 />
                 <DoubleButton v-else />
-                <ToggleMenu />
+                <div style="display: none;">
+                    <ToggleMenu  />
+                </div>
+                
             </div>
         </v-container>
     </v-app-bar>

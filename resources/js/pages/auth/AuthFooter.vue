@@ -1,6 +1,6 @@
 <template>
     <v-footer class="auth-footer">
-        <span class="auth-footer-copyright mb-6">© Idovela 2023</span>
+        <span class="auth-footer-copyright mb-6">© Aloranges 2024</span>
         <!-- <ul class="auth-footer-links">
             <li class="auth-footer-link" v-for="link in authFooterLinks" :key="`link-${link.label}`">
                 <router-link :to="link.link"> {{ link.label }} </router-link>
