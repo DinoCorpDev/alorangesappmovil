@@ -12,7 +12,7 @@
         >
             <v-container class="pa-0 fill-height justify-space-between" fluid>
                 <router-link :to="{ name: 'Home2' }" class="layout-navbar-auth-brand">
-                    <LogoIdovela :large="logoLarge" />
+                    <LogoAloranges :large="logoLarge" />
                 </router-link>
                 <SearchInput />
                 <div class="layout-navbar-auth-nav">
@@ -32,7 +32,7 @@ import { mapGetters } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
-import LogoIdovela from "./LogoIdovela.vue";
+import LogoAloranges from "./LogoAloranges.vue";
 import NabvarBottomBar from "./NabvarBottomBar.vue";
 import SearchInput from "../global/SearchInput.vue";
 import ToggleMenu from "./ToggleMenu.vue";
@@ -42,7 +42,7 @@ export default {
     components: {
         CustomButton,
         DoubleButton,
-        LogoIdovela,
+        LogoAloranges,
         NabvarBottomBar,
         SearchInput,
         ToggleMenu

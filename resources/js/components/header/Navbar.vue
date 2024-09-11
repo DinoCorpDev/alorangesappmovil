@@ -11,7 +11,7 @@
     >
         <v-container class="pa-0 fill-height justify-space-between" fluid>
             <router-link :to="{ name: 'Home2' }" class="layout-navbar-brand">
-                <LogoIdovela :large="logoLarge" />
+                <LogoAloranges :large="logoLarge" />
             </router-link>
             <div class="layout-navbar-nav">
                 <CustomButton color="orange2" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
@@ -36,7 +36,7 @@ import { mapGetters, mapMutations } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
-import LogoIdovela from "./LogoIdovela.vue";
+import LogoAloranges from "./LogoAloranges.vue";
 import ToggleMenu from "./ToggleMenu.vue";
 
 export default {
@@ -44,7 +44,7 @@ export default {
     components: {
         CustomButton,
         DoubleButton,
-        LogoIdovela,
+        LogoAloranges,
         ToggleMenu
     },
     data() {

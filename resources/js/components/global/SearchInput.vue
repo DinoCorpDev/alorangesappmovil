@@ -116,7 +116,7 @@ export default {
         font-size: 15px;
         letter-spacing: 0.5px;
 
-        border: 1px solid #dfdfdf;
+        border: 1px solid #f58634;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
         outline: none;
@@ -127,7 +127,7 @@ export default {
         transition: all 0.2s ease-in-out;
 
         &::placeholder {
-            color: rgba(#000000, 0.5);
+            color: rgba(#ffffff, 0.5);
         }
     }
 
@@ -158,13 +158,13 @@ export default {
         &::v-deep {
             svg {
                 path {
-                    fill: #040405;
+                    fill: #ffffff;
                 }
             }
         }
 
         span {
-            color: #000000;
+            color: #ffffff;
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
