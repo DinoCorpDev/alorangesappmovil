@@ -12,7 +12,7 @@ class ProductCollection extends ResourceCollection
             'data' => $this->collection->map(function ($data) {
                 return [
                     'id' => (int) $data->id,
-                    'name' => $data->getTranslation('name'),
+                    'name' => $data->name,
                     'slug' => $data->slug,
                     'thumbnail_image' => $data->thumbnail_img,
                     'base_price' => (float) product_base_price($data),

@@ -3,8 +3,13 @@
         <contact-dialog :show="contactDialogShow" @close="contactDialogClosed" />
 
         <v-row tag="main" class="main">
-            <v-col cols="12">
-                
+            <v-col cols="3">
+                <CustomInput
+                    cols="3"
+                    type="text"
+                    v-model="optionSelected"
+                    placeholder="Buscar"
+                />
             </v-col>
         </v-row>
 
@@ -28,9 +33,6 @@
 </template>
 
 <script>
-import { spacesSeeder } from "../../seeders/spaces";
-import { sliderSeeder } from "../../seeders/products";
-
 import Carousel from "../../components/global/Carousel";
 import CarouselActions from "../../components/global/CarouselActions.vue";
 import CarouselPortfolio from "../../components/global/CarouselPortfolio.vue";
@@ -38,48 +40,17 @@ import CustomButton from "../../components/global/CustomButton.vue";
 import ProductBox from "../../components/product/ProductBox.vue";
 import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 import ContactDialog from "../../pages/shop/ContactDialog.vue";
+import CustomInput from "../../components/global/CustomInput.vue";
 import Mixin from "../../utils/mixin";
 
 export default {
     name: "ShopCartoneria",
     data: () => ({
-        spacesSeeder,
         productsSeeder: [],
-        sliderSeeder,
-        sliderItems: [
-            {
-                src: "/public/assets/img/shop-spaces/banner-main.png",
-                type: "image"
-            }
-        ],
-        itemsPortfolio: [
-            {
-                title: "Cocina en Linea",
-                img: "/public/assets/img/shop-spaces/cocinalinea.png",
-                icon: "/public/assets/img/home/portfolio-design-icon.svg",
-                description: "Proyecta tus espacias a la mediada que deseas."
-            },
-            {
-                title: "Cocina en U",
-                img: "/public/assets/img/shop-spaces/cocinau.png",
-                icon: "/public/assets/img/home/portfolio-services-icon.svg",
-                description: "Contrata a profesionales para la instalación y recalibración de tus espacios habitables."
-            },
-            {
-                title: "ESP",
-                icon: "/public/assets/img/home/portfolio-esp-icon.svg",
-                description:
-                    "Explora un catalogo de marcas aliadas y descubre el electrodoméstico que buscas para dar funcionalidad a tu hogar."
-            }
-        ],
-        itemsActions: [
-            { img: "/public/assets/img/shop-spaces/action-a.png" },
-            { img: "/public/assets/img/shop-spaces/action-b.png" },
-            { img: "/public/assets/img/shop-spaces/action-c.png" }
-        ],
-        contactDialogShow: false
+        optionSelected:""
     }),
     components: {
+        CustomInput,
         Carousel,
         CarouselActions,
         CarouselPortfolio,
@@ -91,13 +62,15 @@ export default {
     mounted(){
         this.getProducts();
     },
+    watch:{
+        optionSelected: async function(val){
+            const res = await Mixin.methods.call_api("get", `product/search?category_slug=CARTONERIA&&keyword=${val}`);
+            if(res.data.success){
+                this.productsSeeder = res.data.products.data
+            }
+        }
+    },
     methods: {
-        contactDialogOpen() {
-            this.contactDialogShow = true;
-        },
-        contactDialogClosed() {
-            this.contactDialogShow = false;
-        },
         async getProducts(){
             const res = await Mixin.methods.call_api("get", `product/search?category_slug=CARTONERIA`);
                 if(res.data.success){
