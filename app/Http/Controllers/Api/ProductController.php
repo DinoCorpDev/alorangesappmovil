@@ -292,6 +292,10 @@ class ProductController extends Controller
     }
 
     public function alegra(Request $request){
+<<<<<<< HEAD
+=======
+
+>>>>>>> aea77a7 (Conflicto de ramas arreglado)
         $products = [];
         $counter = 0;
         $categoryId = 0;
