@@ -59,7 +59,7 @@
                     <Custom-Button
                         v-if="Number.isInteger(cartQuantity)"
                         @click="addCart()"
-                        color="nero"
+                        color="orange"
                         text="Agregar a Compras"
                     />
                     <CustomButton text="Consultar a un Asesor" color="grey" />

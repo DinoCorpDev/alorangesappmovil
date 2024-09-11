@@ -27,10 +27,13 @@ import ToolsIcon from "../components/icons/Tools.vue";
 export default {
     data: () => ({
         tabs: [
-            { icon: "ChairIcon", text: "Diseño de espacios", routeName: "ShopSpaces" },
-            { icon: "ToolsIcon", text: "Servicios", routeName: "ShopServices" },
-            { icon: "HomeAppliancesIcon", text: "Electrodomésticos", routeName: "ShopHomeAppliances" },
-            { icon: "BuildingIcon", text: "Portal de empresas", routeName: "ShopBusinessPortal" }
+            { icon: "BuildingIcon", text: "Cafeteria", routeName: "ShopCafeteria" },
+            { icon: "ChairIcon", text: "Cartoneria", routeName: "ShopCartoneria" },
+            { icon: "ToolsIcon", text: "Papeleria", routeName: "ShopServices" },
+            { icon: "HomeAppliancesIcon", text: "Aseo", routeName: "ShopHomeAppliances" },
+            { icon: "ToolsIcon", text: "Tecnología", routeName: "ShopCafeteria" },
+            { icon: "BuildingIcon", text: "Seguridad Industrial", routeName: "ShopCafeteria" },
+            { icon: "BuildingIcon", text: "Aseo", routeName: "ShopCafeteria" },
         ]
     }),
     components: {
@@ -38,9 +41,6 @@ export default {
         ToolsIcon,
         HomeAppliancesIcon,
         BuildingIcon
-    },
-    mounted() {
-        this.$vuetify.theme.dark = this.$router.currentRoute.name === "ShopBusinessPortal" ? true : false;
     }
 };
 </script>
