@@ -108,6 +108,8 @@
                 <CarouselBrands></CarouselBrands>
             </v-col>
         </v-row>
+        <RecuperarPassCodigo v-model="showRecuperarPass" :email="this.$route.query.email"/>
+        <VerifyAccount v-model="showVerifyAccount"/>
     </v-container>
 </template>
 
@@ -127,6 +129,8 @@ import SelectCustom from "../components/global/SelectCustom.vue";
 import CustomInput from "../components/global/CustomInput.vue";
 import CarouselSpaces from "../components/global/CarouselSpaces.vue";
 import CarouselBrands from "../components/global/CarouselBrands.vue";
+import RecuperarPassCodigo from "../components/auth/RecuperarPassCodigo.vue"; 
+import VerifyAccount from "../components/auth/VerifyAccount.vue"; 
 
 export default {
     components: {
@@ -141,10 +145,14 @@ export default {
         SelectCustom,
         CustomInput,
         CarouselSpaces,
-        CarouselBrands
+        CarouselBrands,
+        RecuperarPassCodigo,
+        VerifyAccount
     },
     data() {
         return {
+            showRecuperarPass: false,
+            showVerifyAccount: false,
             itemsArray: [
                 {
                     title: "Papeleria",
@@ -198,7 +206,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("app", ["userLanguageObj", "allLanguages"])
+        ...mapGetters("app", ["userLanguageObj", "allLanguages"]),
     },
     mounted() {
         this.$vuetify.theme.dark = true;
@@ -206,6 +214,13 @@ export default {
         this.selectedCode = this.userLanguageObj.code;
 
         this.scrollToCenter();
+        if(this.$route.query.modal == 'Password'){
+            this.showRecuperarPass = true;
+        }
+
+        if(this.$route.query.modal == 'VerifyAccount' || this.$route.query.modal == 'verifyaccount'){
+            this.showVerifyAccount = true;
+        }
     },
     methods: {
         ...mapActions("app", ["setLanguage"]),
