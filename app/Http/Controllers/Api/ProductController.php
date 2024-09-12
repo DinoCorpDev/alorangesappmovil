@@ -109,7 +109,7 @@ class ProductController extends Controller
 
         // search keyword check
         if ($search_keyword != null) {
-            $products->where('name', 'like', '%'.$search_keyword.'%')->get();
+            $products->where('name', 'like', $search_keyword.'%')->get();
         }
 
         // category + child category check
