@@ -87,6 +87,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::get('random/{limit}/{product_id?}', [ProductController::class, 'random_products']);
         Route::get('latest/{limit}', [ProductController::class, 'latest_products']);
         Route::get('reviews/{product_id}', [ReviewController::class, 'index']);
+        Route::get('/update-alegra', [ProductController::class, 'alegra'])->name('product.alegra');
+        Route::get('/{letter}', [ProductController::class, 'products_by_letter']);
     });
 
     Route::group(['prefix' => 'collection'], function () {
