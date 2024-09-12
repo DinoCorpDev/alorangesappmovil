@@ -1,12 +1,12 @@
 <template>
-    <ShopShowApi category="CAFETERIA"/>
+    <ShopShowApi category="ASEO"/>
 </template>
 
 <script>
 import ShopShowApi from "./ShopShowApi.vue";
 
 export default {
-    name: "ShopCafeteria",
+    name: "ShopAseo",
     components: {
         ShopShowApi
     },
