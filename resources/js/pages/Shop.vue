@@ -29,11 +29,10 @@ export default {
         tabs: [
             { icon: "BuildingIcon", text: "Cafeteria", routeName: "ShopCafeteria" },
             { icon: "ChairIcon", text: "Cartoneria", routeName: "ShopCartoneria" },
-            { icon: "ToolsIcon", text: "Papeleria", routeName: "ShopServices" },
-            { icon: "HomeAppliancesIcon", text: "Aseo", routeName: "ShopHomeAppliances" },
-            { icon: "ToolsIcon", text: "Tecnología", routeName: "ShopCafeteria" },
-            { icon: "BuildingIcon", text: "Seguridad Industrial", routeName: "ShopCafeteria" },
-            { icon: "BuildingIcon", text: "Aseo", routeName: "ShopCafeteria" },
+            { icon: "ToolsIcon", text: "Papeleria", routeName: "ShopPapeleria" },
+            { icon: "HomeAppliancesIcon", text: "Aseo", routeName: "ShopAseo" },
+            { icon: "ToolsIcon", text: "Tecnología", routeName: "ShopTecnologia" },
+            { icon: "BuildingIcon", text: "Seguridad Industrial", routeName: "ShopSeguridadIndustrial" },
         ]
     }),
     components: {
