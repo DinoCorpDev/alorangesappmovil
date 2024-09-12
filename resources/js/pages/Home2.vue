@@ -108,8 +108,6 @@
                 <CarouselBrands></CarouselBrands>
             </v-col>
         </v-row>
-        <RecuperarPassCodigo v-model="showRecuperarPass" :email="this.$route.query.email"/>
-        <VerifyAccount v-model="showVerifyAccount"/>
     </v-container>
 </template>
 

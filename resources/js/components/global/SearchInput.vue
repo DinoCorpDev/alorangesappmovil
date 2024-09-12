@@ -136,6 +136,7 @@ export default {
         align-items: center;
 
         color: #000;
+        color: #000;
         background-color: #fcd6ba !important;
 
         border: 1px solid #fcd6ba;
