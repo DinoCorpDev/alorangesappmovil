@@ -81,7 +81,7 @@ export default {
                     // brand_ids;
                     // min_price;
                     // max_price;
-                    this.productsSeeder = res.data.products.data.slice(0, 4);
+                    this.productsSeeder = res.data.products.data;
 
                     const primerasLetras = this.productsSeeder.map(item => item.name.charAt(0));
 
@@ -92,6 +92,8 @@ export default {
                         text: letra
                     }));
 
+                    
+                    this.productsSeeder = res.data.products.data.slice(0, 4);
                 }
         },
 
