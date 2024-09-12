@@ -18,7 +18,7 @@
                 <h5>Items</h5>
                 <v-row class="mb-3">
                     <v-col
-                        v-for="product in productsSeeder"
+                        v-for="product in productsSeeder.slice(0, 4)"
                         :key="`product-col-${product.id}`"
                         cols="12"
                         sm="6"
