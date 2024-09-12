@@ -2,20 +2,25 @@
     <v-container fluid>
         <contact-dialog :show="contactDialogShow" @close="contactDialogClosed" />
 
-        <v-row tag="main" class="main">
-            <v-col cols="3">
-                <CustomInput
-                    cols="3"
-                    type="text"
-                    v-model="optionSelected"
-                    placeholder="Buscar"
-                />
-            </v-col>
-        </v-row>
-
+        <v-container class="bg-surface-variant mb-6">
+            <v-row align="start" style="height: 150px;" no-gutters>
+                <v-col v-for="filtro in resultadoFiltroBotones" :key="`button-${filtro.id}`">
+                    <v-sheet class="pa-2 ma-2">
+                        <CustomButton
+                            :text="filtro.text"
+                            color="orange"
+                            type="button"
+                            class="mt-4"
+                            block
+                            @click="filter(filtro.text)"
+                        />
+                    </v-sheet>
+                </v-col>
+            </v-row>
+        </v-container>
+        
         <v-row tag="section" class="mb-6">
             <v-col cols="12">
-                <h5>Items</h5>
                 <v-row class="mb-3">
                     <v-col
                         v-for="product in productsSeeder"
@@ -47,7 +52,7 @@ export default {
     name: "ShopShowApi",
     data: () => ({
         productsSeeder: [],
-        optionSelected:""
+        resultadoFiltroBotones: [],
     }),
     props: {
         category: { type: String, default: "one" },
@@ -65,14 +70,7 @@ export default {
     mounted(){
         this.getProducts();
     },
-    watch:{
-        optionSelected: async function(val){
-            const res = await Mixin.methods.call_api("get", `product/search?category_slug=${this.category}&&keyword=${val}`);
-            if(res.data.success){
-                this.productsSeeder = res.data.products.data
-            }
-        }
-    },
+
     methods: {
         async getProducts(){
             const res = await Mixin.methods.call_api("get", `product/search?category_slug=${this.category}`);
@@ -83,8 +81,25 @@ export default {
                     // brand_ids;
                     // min_price;
                     // max_price;
-                    this.productsSeeder = res.data.products.data
+                    this.productsSeeder = res.data.products.data.slice(0, 4);
+
+                    const primerasLetras = this.productsSeeder.map(item => item.name.charAt(0));
+
+                    let letrasFiltro = [...new Set(primerasLetras)];
+
+                    this.resultadoFiltroBotones = letrasFiltro.map((letra, index) => ({
+                        id: index + 1,
+                        text: letra
+                    }));
+
                 }
+        },
+
+        async filter(value){
+            const res = await Mixin.methods.call_api("get", `product/search?category_slug=${this.category}&&keyword=${value}`);
+            if(res.data.success){
+                this.productsSeeder = res.data.products.data;
+            }
         }
     }
 };

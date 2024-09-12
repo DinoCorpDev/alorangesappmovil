@@ -178,7 +178,8 @@ class ProductController extends Controller
         }
 
         $collection = new ProductCollection($products->paginate(20));
-
+        $products = $collection['data'];
+        
         return response()->json([
             'success' => true,
             'metaTitle' => $category ? $category->meta_title : get_setting('meta_title'),
