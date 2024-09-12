@@ -10,7 +10,6 @@ let AllOffers = () => import("../pages/AllOffers");
 let OfferDetails = () => import("../pages/OfferDetails");
 let AllBlogs = () => import("../pages/AllBlogs");
 let BlogDetails = () => import("../pages/BlogDetails");
-let TempLanding = () => import("../pages/TempLanding");
 let TestComponents = () => import("../pages/TestComponents");
 let Home2 = () => import("../pages/Home2");
 let Shop = () => import("../pages/Shop");
@@ -23,12 +22,6 @@ let ShopHomeAppliances = () => import("../pages/shop/ShopHomeAppliances");
 let ShopCafeteria = () => import("../pages/shop/ShopCafeteria");
 
 export default [
-    {
-        path: "/",
-        component: TempLanding,
-        name: "TempLanding",
-        meta: { requiresAuth: false, hasHeader: false, hasFooter: false }
-    },
     {
         path: "/test-components",
         component: TestComponents,
@@ -93,7 +86,7 @@ export default [
         meta: { requiresAuth: false }
     },
     {
-        path: "/home2",
+        path: "/",
         component: Home2,
         name: "Home2",
         meta: { requiresAuth: false }

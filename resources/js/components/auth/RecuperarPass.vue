@@ -317,7 +317,7 @@ export default {
 
             if (res.data.success) {
                 this.showRecuperarPass = false;
-                window.location.href = "/home2?modal=Password&email=" + this.form.email;
+                window.location.href = "/?modal=Password&email=" + this.form.email;
                 // this.$router.replace({ name: 'Home2', query: { modal: "Password", email: this.form.email }});
 
                 this.snack({
