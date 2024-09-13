@@ -109,6 +109,7 @@ export default {
 
                     
                     this.productsSeeder = res.data.products.data.slice(0, 4);
+                    this.activeButton = null;
                 }
         },
 
