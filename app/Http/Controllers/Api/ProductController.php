@@ -109,7 +109,7 @@ class ProductController extends Controller
 
         // search keyword check
         if ($search_keyword != null) {
-            $products->where('name', 'like', '%'.$search_keyword.'%')->get();
+            $products->where('name', 'like', $search_keyword.'%')->get();
         }
 
         // category + child category check
@@ -178,7 +178,8 @@ class ProductController extends Controller
         }
 
         $collection = new ProductCollection($products->paginate(20));
-
+        $products = $collection['data'];
+        
         return response()->json([
             'success' => true,
             'metaTitle' => $category ? $category->meta_title : get_setting('meta_title'),
