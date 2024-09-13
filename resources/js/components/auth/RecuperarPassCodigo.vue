@@ -1,10 +1,10 @@
 <template>
     <v-dialog content-class="modal-register" v-model="showRecuperarPass">
         <v-card class="modal-register-card">
-            <v-card-title v-if="numberPag == 1" class="text-xs-left justify-left title mb-2">
-                Código de verificacion
+            <v-card-title v-if="numberPag == 1" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
+                Código de verificación
             </v-card-title>
-            <v-card-title v-if="numberPag == 2" class="text-xs-left justify-left title mb-2">
+            <v-card-title v-if="numberPag == 2" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
                 Elige una contraseña nueva
             </v-card-title>
             <div class="forgot-password d-flex flex-column h-100">
@@ -25,7 +25,6 @@
                         />
                     </v-stepper-header>
 
-                    <v-divider class="modal-register-subheader" />
 
                     <v-stepper-items>
                         <v-stepper-content step="1">
@@ -35,7 +34,7 @@
                                         Digita el código que enviamos a tu cuenta asociada par cambiar la contraseña.
                                     </p>
                                     <div class="inputs mb-4">
-                                        <label class="black--text text-uppercase">CÓDIGO</label>
+                                        <label class="black--text">Código</label>
                                         <CustomInput
                                             v-model="form.code"
                                             length="6"
@@ -65,7 +64,7 @@
                                         idovela.
                                     </p>
                                     <div class="inputs mb-4">
-                                        <label class="black--text text-uppercase">Introduce una contraseña nueva</label>
+                                        <label class="black--text">Introduce una contraseña nueva</label>
                                         <v-text-field
                                             :type="passwordShow ? 'text' : 'password'"
                                             placeholder="Contraseña"
@@ -82,7 +81,7 @@
                                     </div>
 
                                     <div class="inputs mb-2">
-                                        <label class="black--text text-uppercase">Confirma tu contraseña</label>
+                                        <label class="black--text">Confirma tu contraseña</label>
                                         <v-text-field
                                             :type="passwordShow ? 'text' : 'password'"
                                             placeholder="Contraseña"
@@ -105,12 +104,12 @@
             </div>
 
             <v-card-actions class="pa-5 d-block">
-                <CustomButton v-if="numberPag < 2" text="Continuar" color="nero" block type="button" @click="after" />
+                <CustomButton v-if="numberPag < 2" text="Continuar" color="orange" block type="button" @click="after" />
 
                 <CustomButton
                     v-if="numberPag == 2"
                     text="Cambiar Contraseña"
-                    color="nero"
+                    color="orange"
                     block
                     type="submit"
                     @click="resetPassword"

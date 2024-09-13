@@ -235,6 +235,7 @@ export default {
             return (this.showRegister = true);
         },
         async showModalRecuperarPass() {
+            this.showLoginDialog(false);
             return (this.showRecuperarPass = true);
         }
     }

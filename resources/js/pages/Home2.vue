@@ -108,8 +108,8 @@
                 <CarouselBrands></CarouselBrands>
             </v-col>
         </v-row>
-        <RecuperarPassCodigo v-model="showRecuperarPass" :email="this.$route.query.email"/>
-        <VerifyAccount v-model="showVerifyAccount"/>
+        <RecuperarPassCodigo v-model="showRecuperarPass" :email="this.$route.query.email" />
+        <VerifyAccount v-model="showVerifyAccount" />
     </v-container>
 </template>
 
@@ -208,15 +208,20 @@ export default {
     computed: {
         ...mapGetters("app", ["userLanguageObj", "allLanguages"]),
     },
+    created() {
+        if (this.$route.query.modal === 'Password') {
+            this.showRecuperarPass = true;
+        }
+    },
     mounted() {
         this.$vuetify.theme.dark = true;
 
         this.selectedCode = this.userLanguageObj.code;
 
         this.scrollToCenter();
-        if(this.$route.query.modal == 'Password'){
-            this.showRecuperarPass = true;
-        }
+        // if(this.$route.query.modal == 'Password'){
+        //     this.showRecuperarPass = true;
+        // }
 
         if(this.$route.query.modal == 'VerifyAccount' || this.$route.query.modal == 'verifyaccount'){
             this.showVerifyAccount = true;
