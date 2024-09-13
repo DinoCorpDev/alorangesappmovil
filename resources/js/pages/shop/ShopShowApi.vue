@@ -2,20 +2,34 @@
     <v-container fluid>
         <contact-dialog :show="contactDialogShow" @close="contactDialogClosed" />
 
-        <v-container class="bg-surface-variant mb-6">
-            <v-row align="start" style="height: 150px;" no-gutters>
-                <v-col v-for="filtro in resultadoFiltroBotones" :key="`button-${filtro.id}`">
-                    <v-sheet class="pa-2 ma-2">
+        <v-container class="bg-surface-variant ma-0">
+            <v-row align="start" style="height: 100px; overflow-x: auto;" no-gutters>
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
                         <CustomButton
-                            :text="filtro.text"
+                            text="<"
                             color="orange"
                             type="button"
-                            class="mt-4"
-                            block
-                            @click="filter(filtro.text)"
+                            class="mt-4 mr-1"
+                            width="10"
+                            @click="getProducts"
+                            v-bind="attrs"
+                            v-on="on"
                         />
-                    </v-sheet>
-                </v-col>
+                    </template>
+                    <span>Refrescar</span>
+                </v-tooltip>
+                
+                <div v-for="filtro in resultadoFiltroBotones" :key="`button-${filtro.id}`">
+                    <CustomButton
+                            :text="filtro.text"
+                            :color="activeButton === filtro.id ? 'orange' : 'nero'"
+                            type="button"
+                            class="mt-4"
+                            width="10"
+                            @click="setActiveButton(filtro.id, filtro.text)"
+                        />
+                </div>
             </v-row>
         </v-container>
         
@@ -53,6 +67,7 @@ export default {
     data: () => ({
         productsSeeder: [],
         resultadoFiltroBotones: [],
+        activeButton: null,
     }),
     props: {
         category: { type: String, default: "one" },
@@ -94,6 +109,7 @@ export default {
 
                     
                     this.productsSeeder = res.data.products.data.slice(0, 4);
+                    this.activeButton = null;
                 }
         },
 
@@ -102,7 +118,11 @@ export default {
             if(res.data.success){
                 this.productsSeeder = res.data.products.data;
             }
-        }
+        },
+        setActiveButton(id, value) {
+            this.activeButton = id;  
+            this.filter(value);      
+        },
     }
 };
 </script>
