@@ -17,9 +17,13 @@ let About = () => import("../pages/About");
 let Collection = () => import("../pages/Collection");
 
 let ShopCartoneria = () => import("../pages/shop/ShopCartoneria");
-let ShopServices = () => import("../pages/shop/ShopServices");
-let ShopHomeAppliances = () => import("../pages/shop/ShopHomeAppliances");
+let ShopAseo = () => import("../pages/shop/ShopAseo");
+let ShopPapeleria = () => import("../pages/shop/ShopPapeleria");
 let ShopCafeteria = () => import("../pages/shop/ShopCafeteria");
+let ShopShowApi = () => import("../pages/shop/ShopShowApi.vue");
+let ShopSeguridadIndustrial = ()=> import("../pages/shop/ShopSeguridadIndustrial.vue");
+let ShopTecnologia = ()=> import("../pages/shop/ShopTecnologia.vue");
+
 
 export default [
     {
@@ -50,7 +54,7 @@ export default [
         path: "/shop",
         component: Shop,
         name: "Shop",
-        redirect: "/shop/cartoneria",
+        redirect: "/shop/cafeteria",
         meta: { requiresAuth: false },
         children: [
             {
@@ -60,21 +64,39 @@ export default [
                 meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
-                path: "services",
-                component: ShopServices,
-                name: "ShopServices",
+                path: "aseo",
+                component: ShopAseo,
+                name: "ShopAseo",
                 meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
-                path: "home-appliances",
-                component: ShopHomeAppliances,
-                name: "ShopHomeAppliances",
+                path: "papeleria",
+                component: ShopPapeleria,
+                name: "ShopPapeleria",
                 meta: { requiresAuth: false, hasBottomBar: false }
             },
             {
                 path: "cafeteria",
                 component: ShopCafeteria,
                 name: "ShopCafeteria",
+                meta: { requiresAuth: false, hasBottomBar: false }
+            },
+            {
+                path: "ShopShowApi",
+                component: ShopShowApi,
+                name: "ShopShowApi",
+                meta: { requiresAuth: false, hasBottomBar: false }
+            },
+            {
+                path: "tecnologia",
+                component: ShopTecnologia,
+                name: "ShopTecnologia",
+                meta: { requiresAuth: false, hasBottomBar: false }
+            },
+            {
+                path: "seguridad-industrial",
+                component: ShopSeguridadIndustrial,
+                name: "ShopSeguridadIndustrial",
                 meta: { requiresAuth: false, hasBottomBar: false }
             }
         ]
