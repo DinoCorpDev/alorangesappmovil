@@ -12,6 +12,8 @@
         :ripple="false"
         :to="to"
         :width="width"
+        v-bind="$attrs"
+        v-on="$listeners"
         @click.stop="$emit('click')"
         class="text-uppercase justify-content-center align-items-center flex-direction-column"
         depressed
@@ -89,6 +91,7 @@ export default {
     font-weight: 600;
     letter-spacing: 0;
     transition: all 0.2s ease-in-out;
+    min-width: 40px !important;
 
     @media (max-width: 959px) {
         padding: 0 12px !important;
