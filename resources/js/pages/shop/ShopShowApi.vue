@@ -3,7 +3,7 @@
         <contact-dialog :show="contactDialogShow" @close="contactDialogClosed" />
 
         <v-container class="bg-surface-variant ma-0">
-            <v-row align="start" style="height: 100px; overflow-x: auto;" no-gutters>
+            <v-row align="start" class="container-buttons" no-gutters>
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">
                         <CustomButton
@@ -126,3 +126,30 @@ export default {
     }
 };
 </script>
+<style scoped lang="scss">
+.container-buttons{
+    height: 100px; 
+    overflow-x: auto;  
+    white-space: nowrap;
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #b5b5b5;
+        border-radius: 1px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgba(#5a5a5a, 0.8);
+        border-radius: 1px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #5a5a5a;
+    }
+}
+</style>
