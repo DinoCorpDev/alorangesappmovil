@@ -1,5 +1,5 @@
 <template>
-    <ShopShowApi category="PAPELERIA"/>
+    <ShopShowApi category="Papeleria2"/>
 </template>
 
 <script>
