@@ -189,26 +189,25 @@ export default {
                 });
                 return;
             }
+            //let minMaxCheck = this.checkMinMaxLimit(this.selectedVariation.id);
 
-            let minMaxCheck = this.checkMinMaxLimit(this.selectedVariation.id);
+            // if (!minMaxCheck.success) {
+            //     // selected variation min max limit check
 
-            if (!minMaxCheck.success) {
-                // selected variation min max limit check
+            //     let message =
+            //         minMaxCheck.type == "min_limit"
+            //             ? `${this.$i18n.t("you_need_to_purchase_minimum_quantity")} ${this.minCartLimit}.`
+            //             : `${this.$i18n.t("you_can_purchase_maximum_quantity")} ${this.maxCartLimit}.`;
 
-                let message =
-                    minMaxCheck.type == "min_limit"
-                        ? `${this.$i18n.t("you_need_to_purchase_minimum_quantity")} ${this.minCartLimit}.`
-                        : `${this.$i18n.t("you_can_purchase_maximum_quantity")} ${this.maxCartLimit}.`;
-
-                this.snack({
-                    message: message,
-                    color: "red"
-                });
-                return;
-            }
+            //     this.snack({
+            //         message: message,
+            //         color: "red"
+            //     });
+            //     return;
+            // }
 
             this.addToCart({
-                variation_id: this.selectedVariation.id,
+                // variation_id: this.selectedVariation.id,
                 qty: this.cartQuantity
             });
 

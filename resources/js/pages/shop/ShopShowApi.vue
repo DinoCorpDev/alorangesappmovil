@@ -70,7 +70,7 @@ export default {
         activeButton: null,
     }),
     props: {
-        category: { type: String, default: "one" },
+        category: { type: String, default: '' },
     },
     components: {
         CustomInput,
@@ -99,7 +99,7 @@ export default {
                     this.productsSeeder = res.data.products.data;
 
                     const primerasLetras = this.productsSeeder.map(item => item.name.charAt(0));
-
+                    primerasLetras.sort();
                     let letrasFiltro = [...new Set(primerasLetras)];
 
                     this.resultadoFiltroBotones = letrasFiltro.map((letra, index) => ({

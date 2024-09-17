@@ -16,6 +16,7 @@ use App\Models\Attribute;
 use App\Models\AttributeCategory;
 use App\Models\OrderDetail;
 use App\Models\Shop;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Utility\CategoryUtility;
 
@@ -88,7 +89,45 @@ class ProductController extends Controller
         return new ProductCollection(filter_products(Product::query())->latest()->limit($limit)->get());
     }
 
-    public function search(Request $request)
+    function buscarObjetosPorLetra($array, $letra) {
+        $resultados = [];
+        foreach ($array as $objeto) {
+            if (isset($objeto->name) && strtoupper($objeto->name[0]) === strtoupper($letra)) {
+                $resultados[] = $objeto;
+            }
+        }
+        return $resultados;
+    }
+
+    public function search(Request $request){
+        $products = [];
+        $category = Category::where('name','=',$request->category_slug)->first();
+        if (empty($category)) {
+            return response()->json([
+                'success' => true,
+                'products' => $products,
+            ]);
+        }
+        
+        $productsCategories = ProductCategory::where('category_id',$category['id'])->with('product')->get();
+        
+        foreach ($productsCategories as $key => $prodCat) {
+            array_push($products,$prodCat->product);
+        }
+
+        if ($request->keyword) {
+            $products = $this->buscarObjetosPorLetra($products,$request->keyword);
+        }
+
+        $collection = new ProductCollection($products);
+
+        return response()->json([
+            'success' => true,
+            'products' => $collection,
+        ]);
+    }
+
+    public function searchOld(Request $request)
     {
         $category                   = $request->category_slug ? Category::where('name', $request->category_slug)->first() : null;
         $search_keyword             = $request->keyword;
@@ -294,23 +333,11 @@ class ProductController extends Controller
         $categoryId = 0;
 
         try {
-            $categories = (new AlegraServices)->getCategories();
-
+            $categories = Category::all();
             foreach($categories as $category){
-                $categoryStorage = Category::find($category['id']);
-                if(empty($categoryStorage)){
-                    $categoryStorage = new Category;
-                }
-                $categoryStorage->name = $category['name'];
-                $categoryStorage->id = $category['id'];
-                $categoryStorage->meta_description = $category['description'];
-
-                $categoryStorage->save();
-
                 $products = (new AlegraServices)->getProductsByCategory($category['id']);
-
                 foreach($products as $product){
-                    $productStorage = Product::where('reference', $product['reference'])->first();
+                    $productStorage = Product::where('id', $product['id'])->first();
                     if(empty($productStorage)){
                         $productStorage = new Product;
                     }
@@ -344,7 +371,17 @@ class ProductController extends Controller
                     {
                         $productStorage['imagen'.($index+1)] = $image['url'];
                     }
-                    
+
+                    $productCategories = ProductCategory::where('product_id',$product['id'])->first();
+                    if(empty($productCategories)){
+                        $productCategories = new ProductCategory;
+                    }
+                    $productCategories->product_id = $product['id'];
+                    $productCategories->category_id = $category['id'];
+                    $productCategories->created_at = now();
+                    $productCategories->updated_at = now();
+
+                    $productCategories->save();
                     $productStorage->save();
 
                     $productStorage->categories()->sync([$category['id']]);
@@ -353,7 +390,6 @@ class ProductController extends Controller
                     $categoryId = $product['id'];
                 }
             }
-            die;
             return $categoryId;
         } catch (Exception ) {
             $error_code = $e->errorInfo[1];

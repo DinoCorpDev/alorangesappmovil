@@ -205,19 +205,19 @@ export default {
             }
         },
         addToCart(state, product) {
-            let isAlreadyAdded = state.cartProducts.some(
-                cartProduct => cartProduct.variation_id === product.variation_id
-            );
-            if (isAlreadyAdded) {
-                state.cartProducts.map(cartProduct => {
-                    if (cartProduct.variation_id === product.variation_id)
-                        return (cartProduct.qty = cartProduct.qty + product.qty);
-                });
-            } else {
+            // let isAlreadyAdded = state.cartProducts.some(
+            //     cartProduct => cartProduct.variation_id === product.variation_id
+            // );
+            // if (isAlreadyAdded) {
+            //     state.cartProducts.map(cartProduct => {
+            //         if (cartProduct.variation_id === product.variation_id)
+            //             return (cartProduct.qty = cartProduct.qty + product.qty);
+            //     });
+            // } else {
                 product.selected = true;
                 product.max_qty = product.max_qty > 0 ? product.max_qty : Infinity;
                 state.cartProducts.push(product);
-            }
+            // }
         },
         updateQuantity(state, { type, cart_id }) {
             let item = state.cartProducts.find(cartProduct => cartProduct.cart_id === cart_id);
