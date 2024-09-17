@@ -287,7 +287,7 @@ if (!function_exists('product_tax')) {
 if (!function_exists('variation_price')) {
     function variation_price($product, $variation, $with_tax = true)
     {
-        $price = $variation->price;
+        $price = $variation['highest_price'];
         $tax = 0;
 
         foreach ($product->taxes as $product_tax) {
