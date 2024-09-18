@@ -10,11 +10,15 @@
             shrink-on-scroll
             :fixed="headerFixed"
         >
-            <v-container class="pa-0 fill-height justify-space-between" fluid>
+            <v-container class="pa-0 fill-height justify-space-sm-between" fluid>
                 <router-link :to="{ name: 'Home2' }" class="layout-navbar-auth-brand">
-                    <LogoAloranges :large="logoLarge" />
+                    <LogoAloranges class="d-none d-md-flex" :large="small" />
+                    <LogoAlorange class="d-flex d-md-none"/>
                 </router-link>
                 <SearchInput />
+                <CustomButton color="orange3" :to="{ name: 'Shop' }">
+                    <span class="d-none d-sm-flex">Ir a la tienda</span><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px"/> 
+                </CustomButton>
                 <div class="layout-navbar-auth-nav">
                     <DoubleButton />
                     <div style="display: none;">
@@ -32,7 +36,9 @@ import { mapGetters } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
+import Cart from "../icons/CartIcon.vue";
 import LogoAloranges from "./LogoAloranges.vue";
+import LogoAlorange from "./LogoAlorange.vue";
 import NabvarBottomBar from "./NabvarBottomBar.vue";
 import SearchInput from "../global/SearchInput.vue";
 import ToggleMenu from "./ToggleMenu.vue";
@@ -43,8 +49,10 @@ export default {
         CustomButton,
         DoubleButton,
         LogoAloranges,
+        LogoAlorange,
         NabvarBottomBar,
         SearchInput,
+        Cart,
         ToggleMenu
     },
     data() {
@@ -139,4 +147,5 @@ export default {
         }
     }
 }
+
 </style>

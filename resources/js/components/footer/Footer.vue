@@ -1,6 +1,37 @@
 <template>
     <v-footer class="auth-footer">
-        <div class="auth-footer-copyright-wrap">
+        <v-row class="pt-5">
+            <v-col cols="12" md="6" class="d-flex justify-center align-center">
+                <div style="max-width: 320px;">
+                    <LogoAlorange class="mb-1"/>
+                    <p style="font-size: 15px;">
+                        Compras telefónicas horarios de atención es de lunes a Domingo 
+                        & Festivos de 7:00 am a 7:00 pm, cotizaciones y orden de compra 
+                        dirigirse a contáctanos
+                    </p>
+                    <div style="display: flex; gap: 10px; justify-content: flex-start;">
+                        <a href="#"><img src="../icons/facebook.svg" alt="Facebook" style="width: 50px;"></a>
+                        <a href="#"><img src="../icons/whatsapp.svg" alt="whatsapp" style="width: 50px;"></a>
+                        <a href="#"><img src="../icons/instagram.svg" alt="instagram" style="width: 50px;"></a>
+                    </div>
+                </div>
+                
+            </v-col>
+            <v-col cols="6" md="4"  class="list-footer align-center align-md-start">
+                <a href="#">Politica de Protección de datos</a>
+                <a href="#">Cambios y Devoluciones</a>
+                <a href="#">Tiempo y costo de envío</a>
+            </v-col>
+            <v-col cols="6" md="2"  class="list-footer align-center align-md-start">
+                <a href="#">Mi cuenta</a>
+                <a href="#">Regístrate</a>
+                <a href="#">¿Olvidó su clave?</a>
+            </v-col>
+            <v-col cols="12" class="d-flex justify-center align-center">
+                <p style="font-size: 13px; margin-bottom: 0;"><b>Copyright © 2022 Aloranges.com.</b> Todos los derechos reservados.</p>
+            </v-col>
+        </v-row>
+        <!-- <div class="auth-footer-copyright-wrap">
             <span class="auth-footer-copyright">© Idovela 2023</span>
             <span class="auth-footer-location">
                 <WorldGlobeIcon class="mr-2" />
@@ -11,18 +42,20 @@
             <li class="auth-footer-link" v-for="link in authFooterLinks" :key="`link-${link.label}`">
                 <router-link :to="link.link"> {{ link.label }} </router-link>
             </li>
-        </ul>
+        </ul> -->
     </v-footer>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import WorldGlobeIcon from "../icons/WorldGlobe.vue";
+import LogoAlorange from "../icons/LogoAlorange.vue";
 
 export default {
     name: "FooterCustom",
     components: {
-        WorldGlobeIcon
+        WorldGlobeIcon,
+        LogoAlorange,
     },
     computed: {
         ...mapState("app", ["authFooterLinks"])
@@ -31,11 +64,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    a{
+        margin-bottom: 10px;
+        font-size: 18px;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
 .auth-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    background-color: #ffefdf;
 
     @media (max-width: 599px) {
         flex-direction: column;
