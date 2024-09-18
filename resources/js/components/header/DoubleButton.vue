@@ -2,32 +2,45 @@
     <div class="layout-navbar-nav">
         <CustomButton
             v-if="!userIsLoggedIn"
-            color="orange"
+            color="white"
             class="double-button"
             @click="showLoginDialog(true)"
-            ><span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
+            >
+            <div class="d-none d-sm-flex justify-center align-center">
+                <span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
                 {{ "Iniciar sesión" }}
-            </span>
-            <div class="double-button-cart">
-                <ShopCartIcon class="mr-2 mr-sm-3" />
-                <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
-                <span class="status-indicator" :class="{ active: userShortName }"></span>
+                </span>
+                <div class="double-button-cart">
+                    <ShopCartIcon class="mr-2 mr-sm-3" />
+                    <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
+                    <span class="status-indicator" :class="{ active: userShortName }"></span>
+                </div>
+            </div> 
+            <div class="d-block d-sm-none">
+                <Profile class="mr-2 mr-sm-3" />
             </div>
+            
         </CustomButton>
         <CustomButton
             v-else
-            color="orange"
+            color="white"
             class="double-button"
             :to="{ name: 'Cart' }"
         >
-            <span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
+            <div class="d-none d-sm-flex justify-center align-center pr-2 pr-sm-3">
+                <span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
                 {{ userShortName ? userShortName : "--" }}
-            </span>
-            <div class="double-button-cart">
-                <ShopCartIcon class="mr-2 mr-sm-3" />
-                <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
-                <span class="status-indicator" :class="{ active: userShortName }"></span>
+                </span>
+                <div class="double-button-cart">
+                    <ShopCartIcon class="mr-2 mr-sm-3" />
+                    <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
+                    <span class="status-indicator" :class="{ active: userShortName }"></span>
+                </div>
             </div>
+            <div class="d-flex d-sm-none justify-center align-center">
+                <Profile />
+            </div>
+            
         </CustomButton>
     </div>
 </template>
@@ -38,13 +51,15 @@ import { mapGetters, mapActions, mapMutations } from "vuex";
 import CustomButton from "../global/CustomButton.vue";
 
 import ShopCartIcon from "../icons/ShopCart.vue";
+import Profile from "../icons/ProfileIcon.vue";
 
 export default {
     components: {
         CustomButton,
 
         // Icons
-        ShopCartIcon
+        ShopCartIcon,
+        Profile
     },
     data() {
         return {

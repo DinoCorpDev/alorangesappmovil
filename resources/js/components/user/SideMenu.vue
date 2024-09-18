@@ -51,14 +51,14 @@
                 </v-row>
             </div>
 
-            <CustomButton class="d-none d-sm-flex d-lg-none" color="white" @click="logout">
+            <CustomButton class="d-none d-sm-flex d-lg-none" style="width: 100%;" block color="white" @click="logout">
                 {{ $t("Cerrar sesión") }}
             </CustomButton>
         </div>
 
         <UserMenu />
 
-        <CustomButton class="d-sm-none d-lg-flex" block color="white" @click="logout">
+        <CustomButton class="d-sm-none d-lg-flex" style="width: 100%;" block color="white" @click="logout">
             {{ $t("Cerrar sesión") }}
         </CustomButton>
 
