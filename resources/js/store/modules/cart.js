@@ -205,19 +205,19 @@ export default {
             }
         },
         addToCart(state, product) {
-            let isAlreadyAdded = state.cartProducts.some(
-                cartProduct => cartProduct.variation_id === product.variation_id
-            );
-            if (isAlreadyAdded) {
-                state.cartProducts.map(cartProduct => {
-                    if (cartProduct.variation_id === product.variation_id)
-                        return (cartProduct.qty = cartProduct.qty + product.qty);
-                });
-            } else {
+            // let isAlreadyAdded = state.cartProducts.some(
+            //     cartProduct => cartProduct.variation_id === product.variation_id
+            // );
+            // if (isAlreadyAdded) {
+            //     state.cartProducts.map(cartProduct => {
+            //         if (cartProduct.variation_id === product.variation_id)
+            //             return (cartProduct.qty = cartProduct.qty + product.qty);
+            //     });
+            // } else {
                 product.selected = true;
                 product.max_qty = product.max_qty > 0 ? product.max_qty : Infinity;
                 state.cartProducts.push(product);
-            }
+            // }
         },
         updateQuantity(state, { type, cart_id }) {
             let item = state.cartProducts.find(cartProduct => cartProduct.cart_id === cart_id);
@@ -333,14 +333,14 @@ export default {
                 }
             }
         },
-        async addToCart({ commit, getters, dispatch }, { variation_id, qty }) {
+        async addToCart({ commit, getters, dispatch }, { product_id, qty }) {
             let temp_user_id = getters.getTempUserId;
             if (!this.getters["auth/isAuthenticated"] && !temp_user_id) {
                 temp_user_id = Math.floor(Math.random() * 10000) + new Date().getTime();
                 commit("setTempUserId", temp_user_id);
             }
             const res = await Mixin.methods.call_api("post", `carts/add`, {
-                variation_id: variation_id,
+                product_id: product_id,
                 qty: qty,
                 temp_user_id: temp_user_id
             });

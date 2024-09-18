@@ -58,7 +58,7 @@
                 <div class="add-to-cart-actions">
                     <Custom-Button
                         v-if="Number.isInteger(cartQuantity)"
-                        @click="addCart()"
+                        @click.prevent="addCart()"
                         color="orange"
                         text="Agregar a Compras"
                     />
@@ -189,26 +189,8 @@ export default {
                 });
                 return;
             }
-
-            let minMaxCheck = this.checkMinMaxLimit(this.selectedVariation.id);
-
-            if (!minMaxCheck.success) {
-                // selected variation min max limit check
-
-                let message =
-                    minMaxCheck.type == "min_limit"
-                        ? `${this.$i18n.t("you_need_to_purchase_minimum_quantity")} ${this.minCartLimit}.`
-                        : `${this.$i18n.t("you_can_purchase_maximum_quantity")} ${this.maxCartLimit}.`;
-
-                this.snack({
-                    message: message,
-                    color: "red"
-                });
-                return;
-            }
-
             this.addToCart({
-                variation_id: this.selectedVariation.id,
+                product_id: this.productDetails,
                 qty: this.cartQuantity
             });
 
