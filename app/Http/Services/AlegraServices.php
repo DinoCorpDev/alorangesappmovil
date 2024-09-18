@@ -50,25 +50,31 @@ class AlegraServices{
     public function getProductsByCategory($idCategory){
         $start = 0;
         $filteredResponse = [];
-        while(true){
-            try{
-                $responseService = $this->client->request('GET', 'https://api.alegra.com/api/v1/items?start='.$start.'&idItemCategory='.$idCategory, $this->options);
-
-                $headersResponse = $responseService->getHeaders();
-
-                $response = json_decode($responseService->getBody(), true);
-
-                if(empty($response)){
-                    break;
+        try {
+            while(true){
+                try{
+                    $responseService = $this->client->request('GET', 'https://api.alegra.com/api/v1/items?start='.$start.'&idItemCategory='.$idCategory, $this->options);
+    
+                    $headersResponse = $responseService->getHeaders();
+    
+                    $response = json_decode($responseService->getBody(), true);
+    
+                    if(empty($response)){
+                        break;
+                    }
+    
+                    $filteredResponse = array_merge($filteredResponse, $response);
+    
+                    $start += 15;
+    
+                }catch(Exception $e){
+                    throw new Exception($e);
+                    sleep(2);
                 }
-
-                $filteredResponse = array_merge($filteredResponse, $response);
-
-                $start += 15;
-
-            }catch(Exception $e){
-                sleep(2);
             }
+        } catch (\Throwable $th) {
+            echo $start.'-------';
+            echo $th;
         }
 
         return $filteredResponse;
