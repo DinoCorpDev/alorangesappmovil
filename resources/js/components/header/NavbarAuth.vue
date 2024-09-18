@@ -12,7 +12,7 @@
         >
             <v-container class="pa-0 fill-height justify-space-sm-between" fluid>
                 <router-link :to="{ name: 'Home2' }" class="layout-navbar-auth-brand">
-                    <LogoAloranges class="d-none d-md-flex" :large="small" />
+                    <LogoAloranges class="d-none d-md-flex" />
                     <LogoAlorange class="d-flex d-md-none"/>
                 </router-link>
                 <SearchInput />

@@ -319,7 +319,7 @@ export default {
 
         &:focus,
         &.v-btn--active {
-            background-color: #161616;
+            background-color: #f58634;
         }
     }
 
@@ -337,12 +337,6 @@ export default {
                 background-color: #f58634 !important;
                 color: #ffffff;
             }
-        }
-
-        &:focus,
-        &.v-btn--active {
-            background-color: #161616 !important;
-            color: #ffffff;
         }
     }
     &.white2 {

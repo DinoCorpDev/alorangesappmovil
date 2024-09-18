@@ -1,7 +1,6 @@
 <template>
     <v-select
         :clearable="clearable"
-        :dark="dark"
         :error-messages="errorMessages"
         :hide-details="hideDetails"
         :item-text="itemText"
@@ -75,10 +74,6 @@ export default {
         //         return this.pruebas ? "las la-star" : this.icono;
         //     },
         // },
-        dark: {
-            type: Boolean,
-            default: false
-        },
         errorMessages: {
             type: Array,
             default: () => []
@@ -90,6 +85,10 @@ export default {
         itemText: {
             type: String,
             default: "text"
+        },
+        icono: {
+            type: String,
+            default: "--"
         },
         itemValue: {
             type: String,
@@ -187,33 +186,6 @@ export default {
                         &:hover,
                         fieldset {
                             border-color: #f5f5f5;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-.theme--dark {
-    .v-select {
-        &::v-deep {
-            .v-input__slot {
-                background: #18191a;
-
-                &:hover {
-                    background: #000000;
-                }
-            }
-        }
-
-        &.v-text-field--outlined {
-            &::v-deep {
-                &:not(.v-input--has-state) {
-                    .v-input__slot {
-                        &:hover,
-                        fieldset {
-                            border-color: #18191a;
                         }
                     }
                 }
