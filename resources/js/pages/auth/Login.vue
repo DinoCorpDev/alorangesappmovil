@@ -68,6 +68,7 @@
                                     color="orange"
                                     type="submit"
                                     @click="login"
+                                    style="width: 100%"
                                 />
                             </v-form>
                             <div class="d-flex">
