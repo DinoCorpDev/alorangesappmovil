@@ -2,7 +2,7 @@
     <div class="search-input">
         <input
             @keyup.enter="search()"
-            class="search-input-input d-none d-sm-block"
+            class="search-input-input"
             :placeholder="placeholder"
             v-model="searchKeyword"
             type="search"
@@ -10,7 +10,7 @@
         />
         <button class="search-input-button" type="button" @click.stop.prevent="search()">
             <SearchIcon />
-            <span class="ml-2 d-none d-sm-block">
+            <span class="search-input-label ml-2">
                 {{ buttonLabel }}
             </span>
         </button>
@@ -57,6 +57,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.search-input-input,
+.search-input-label {
+    display: none;
+    @media (min-width: 700px) {
+        display: block;
+    }
+}
 .v-application {
     &.theme--light {
         .search-input {
@@ -67,8 +74,8 @@ export default {
 
                 .search-input-button {
                     color: #fff;
-                    background-color:#f58634 !important;
-                    border-color: #f58634;
+                    background-color: #fcd6ba !important;
+                    border-color: #fcd6ba;
 
                     &::v-deep {
                         svg {
@@ -136,9 +143,9 @@ export default {
         align-items: center;
 
         color: #000;
-        background-color: #fcd6ba !important;
+        background-color: #f58634 !important;
 
-        border: 1px solid #fcd6ba;
+        border: 1px solid #f58634;
         border-radius: 5px;
 
         padding: 0 10px;

@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-stepper elevation="0" v-model="numberPag">
-            <v-stepper-header>
+            <v-stepper-header v-if="cartProducts.length > 0">
                 <v-stepper-step
                     :class="numberPag > 1 ? 'v-stepper__step--complete' : ''"
                     class="cartSteper-step"
@@ -38,7 +38,7 @@
             <!-- <v-divider class="cartSteper-subheader" /> -->
 
             <v-stepper-items>
-                <v-stepper-content class="tamaño-responsive" step="1" style="overflow-y: scroll; max-height: 450px">
+                <v-stepper-content class="tamaño-responsive" step="1" >
                     <template v-if="cartProducts.length > 0">
                         <div class="cart-table-header mb-2" style="width: 100%">
                             <div style="padding-left: 4%">Productos</div>
@@ -48,7 +48,7 @@
                             <div class="d-none d-sm-flex">Opciones</div>
                             <div class="d-flex d-sm-none">Opc</div>
                         </div>
-                        <v-row no-gutters class="car-items" style="">
+                        <v-row no-gutters class="car-items" style="overflow-y: scroll; max-height: 450px">
                             <v-col cols="12" v-for="(product, i) in cartProducts" :key="i">
                                 <ProductCart :productDetails="product" productCartType="checkout" />
                             </v-col>
@@ -86,7 +86,7 @@
                                     <CustomButton
                                         class="boton-continuar"
                                         text="Continuar >"
-                                        color="grey2"
+                                        color="orange"
                                         @click="numberPag = 2"
                                     />
                                 </div>
@@ -284,7 +284,7 @@
                                     <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
                                     <CustomButton
                                         text="IR A PRODUCTOS"
-                                        color="nero"
+                                        color="orange"
                                         class="mt-2"
                                         :to="{ name: 'Shop' }"
                                     />
@@ -706,7 +706,7 @@
                                     style="display: flex"
                                 >
                                     <div v-if="mostrarDetalles == false">
-                                        <CustomButton text="< Volver" color="nero" @click="numberPag = 1" />
+                                        <CustomButton text="< Volver" color="white" @click="numberPag = 1" />
                                     </div>
                                 </v-col>
                                 <v-col
@@ -785,7 +785,7 @@
                                                 <CustomButton
                                                     class="boton-continuar"
                                                     text="Continuar >"
-                                                    color="grey2"
+                                                    color="orange"
                                                     @click="numberPag = 3"
                                                 />
                                             </div>
@@ -1199,7 +1199,7 @@
                                     style="display: flex; justify-content: flex-start; align-items: center"
                                 >
                                     <div v-if="mostrarDetalles == false">
-                                        <CustomButton text="< Volver" color="nero" @click="numberPag = 2" />
+                                        <CustomButton text="< Volver" color="white" @click="numberPag = 2" />
                                     </div>
                                 </v-col>
                                 <v-col cols="12" md="8" class="gap-1 pl-0 pl-md-3">
@@ -1249,7 +1249,7 @@
                                         <CustomButton
                                             class="boton-continuar"
                                             text="Continuar"
-                                            color="nero"
+                                            color="orange"
                                             @click="proceedCheckout()"
                                             :loading="checkoutLoading"
                                             :disabled="checkoutLoading"
@@ -3034,6 +3034,11 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep {
+    .v-stepper__header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     // .v-stepper__step {
     //     padding: 2px;
     //     flex: 1;
@@ -3456,6 +3461,7 @@ export default {
 }
 
 .icono-cantidad {
+    padding: 5px;
     background: white;
     border: 1px solid #e7e7e7;
     border-radius: 6px;
@@ -3471,14 +3477,14 @@ export default {
 }
 
 .barra-inferior {
-    position: fixed;
+    // position: fixed;
     bottom: 0;
     background-color: transparent;
     backdrop-filter: blur(5px);
     margin-bottom: 0 !important;
-    @media screen and (min-width: 820px) {
-        width: 75%;
-    }
+    // @media screen and (min-width: 820px) {
+    //     width: 75%;
+    // }
 }
 
 .detalles-final {

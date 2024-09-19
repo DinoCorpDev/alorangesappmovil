@@ -65,6 +65,10 @@ export default {
 
 .v-tabs {
     &::v-deep {
+        
+        .v-tabs-slider{
+                background-color: #8ec641;
+            }
         .v-tabs-bar {
             background-color: #fafcfc;
 
@@ -78,11 +82,13 @@ export default {
         }
 
         .v-tab {
+            background-color: #f4f5f7;
             font-size: calc(10px + (16 - 10) * var(--screen-size));
             font-weight: 400;
             letter-spacing: 0.15px;
             line-height: calc(18px + (20 - 18) * var(--screen-size));
             max-width: 100%;
+            color: #000000 !important;
 
             @media (max-width: 600px) {
                 flex-direction: column;
@@ -92,6 +98,13 @@ export default {
 
             @media (min-width: 600px) {
                 font-weight: 600;
+            }
+            &--active{
+                color: white !important;
+                background-color: #8ec641;
+            }
+            &:before, .v-tabs-slider{
+                background-color: #8ec641;
             }
         }
 

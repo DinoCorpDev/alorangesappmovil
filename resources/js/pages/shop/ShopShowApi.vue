@@ -8,9 +8,9 @@
                     <template v-slot:activator="{ on, attrs }">
                         <CustomButton
                             text="<"
-                            color="orange"
+                            color="orange-cart"
                             type="button"
-                            class="mt-4 mr-1"
+                            class="mt-4 mr-2"
                             width="10"
                             @click="getProducts"
                             v-bind="attrs"
@@ -23,9 +23,9 @@
                 <div v-for="filtro in resultadoFiltroBotones" :key="`button-${filtro.id}`">
                     <CustomButton
                             :text="filtro.text"
-                            :color="activeButton === filtro.id ? 'orange' : 'nero'"
+                            :color="activeButton === filtro.id ? 'orange-cart' : 'nero3'"
                             type="button"
-                            class="mt-4"
+                            class="mt-4 mr-1"
                             width="10"
                             @click="setActiveButton(filtro.id, filtro.text)"
                         />
@@ -70,7 +70,7 @@ export default {
         activeButton: null,
     }),
     props: {
-        category: { type: String, default: "one" },
+        category: { type: String, default: '' },
     },
     components: {
         CustomInput,
@@ -99,7 +99,7 @@ export default {
                     this.productsSeeder = res.data.products.data;
 
                     const primerasLetras = this.productsSeeder.map(item => item.name.charAt(0));
-
+                    primerasLetras.sort();
                     let letrasFiltro = [...new Set(primerasLetras)];
 
                     this.resultadoFiltroBotones = letrasFiltro.map((letra, index) => ({
