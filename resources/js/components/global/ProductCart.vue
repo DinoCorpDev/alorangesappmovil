@@ -3,24 +3,23 @@
         <div class="product-box-cart-body">
             <img
                 class="product-box-cart-image"
-                :alt="productDetails.name"
                 :class="!thumbnailImage ? 'placeholder' : ''"
                 :src="thumbnailImage || productPlaceholderUrl"
             />
-            <div class="product-box-cart-info">
-                <p class="product-box-cart-reference mb-0">{{ productDetails.reference || "--" }}</p>
+            <div class="product-box-cart-info d-flex justify-center" v-if="productDetails && productDetails.name">
                 <h2 class="product-box-cart-name">{{ productDetails.name || "--" }}</h2>
-                <p class="product-box-cart-brand-name mb-0">{{ productDetails.brand.name || "--" }}</p>
             </div>
         </div>
         <div class="product-box-cart-body-price">
             <template v-if="productCartType == 'checkout'">
-                <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
+                <!-- <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
                     {{ format_price(productDetails.discounted_price * productDetails.qty) }}
                 </span>
                 <del v-if="inDiscount" class="product-box-cart-price">
                     {{ format_price(productDetails.regular_price * productDetails.qty) }}
-                </del>
+                </del> -->
+
+                {{ format_price(productDetails.regular_price * productDetails.qty) }}
             </template>
 
             <template v-if="productCartType == 'wishlist'">
@@ -195,6 +194,9 @@ export default {
             minCartLimit: 1,
             maxCartLimit: Infinity
         };
+    },
+    mounted(){
+        console.log(this.productDetails);
     },
     computed: {
         ...mapGetters("wishlist", ["isThisWishlisted"]),

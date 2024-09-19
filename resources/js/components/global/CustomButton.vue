@@ -212,6 +212,29 @@ export default {
             background-color: #f58634 !important;
         }
     }
+    &.orange3 {
+        color: #f58634;
+        background-color: #fafcfb !important;
+        @media (min-width: 600px) {
+            color: #fff;
+            background-color: #f58634 !important;
+        }
+
+        &:hover {
+            color: #fcd6ba;
+            @media (min-width: 600px) {
+                color: #000;
+                background-color: rgba(#fcd6ba, 0.8) !important;
+            }
+            
+        }
+
+        &:focus,
+        &.v-btn--active {
+            color: #fff;
+            background-color: #f58634 !important;
+        }
+    }
     &.grey2 {
         color: #000000;
         background-color: #dfdfdf;
@@ -296,23 +319,24 @@ export default {
 
         &:focus,
         &.v-btn--active {
-            background-color: #161616;
+            background-color: #f58634;
         }
     }
 
     &.white {
-        color: #000;
-        background-color: #f5f5f5 !important;
+        color: #f58634;
+        background-color: #fafcfb!important;
+        @media (min-width: 600px) {
+            border: 1px solid #f58634 !important;    
+        }
+        
 
         &:hover {
-            background-color: rgba(#161616, 0.8) !important;
-            color: #ffffff;
-        }
-
-        &:focus,
-        &.v-btn--active {
-            background-color: #161616 !important;
-            color: #ffffff;
+            color: #fcd6ba;
+            @media (min-width: 600px) {
+                background-color: #f58634 !important;
+                color: #ffffff;
+            }
         }
     }
     &.white2 {

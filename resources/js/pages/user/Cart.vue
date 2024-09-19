@@ -284,7 +284,7 @@
                                     <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
                                     <CustomButton
                                         text="IR A PRODUCTOS"
-                                        color="nero"
+                                        color="orange"
                                         class="mt-2"
                                         :to="{ name: 'Shop' }"
                                     />

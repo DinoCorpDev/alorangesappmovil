@@ -74,44 +74,39 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        $product_variation = ProductVariation::with(['product.shop', 'combinations.attribute', 'combinations.attribute_value'])->findOrFail($request->variation_id);
-
+        $data = $request->product_id;
+        
+        $productToSell = Product::findOrFail($data['id']);
+        
         $user_id = (auth('api')->check()) ? auth('api')->user()->id : null;
         $temp_user_id = $request->temp_user_id;
 
         $cart = Cart::updateOrCreate([
             'user_id' => $user_id,
             'temp_user_id' => $temp_user_id,
-            'product_id' => $product_variation->product->id,
-            'product_variation_id' => $product_variation->id
-        ], [
-            'quantity' => DB::raw('quantity + ' . $request->qty)
+            'product_id' => $productToSell['id']
         ]);
 
         $product = [
             'cart_id' => (int) $cart->id,
             'product_id' => (int) $cart->product_id,
-            'shop_id' => (int) $product_variation->product->shop_id,
+            'shop_id' => (int) $productToSell->shop_id,
             'earn_point' => (float) $cart->product->earn_point,
-            'variation_id' => (int) $cart->product_variation_id,
-            'name' => $product_variation->product->name,
-            'combinations' => filter_variation_combinations($product_variation->combinations),
-            'thumbnail' => api_asset($product_variation->product->thumbnail_img),
-            'regular_price' => (float) variation_price($product_variation->product, $product_variation),
-            'dicounted_price' => (float) variation_discounted_price($product_variation->product, $product_variation),
-            'tax' => (float) product_variation_tax($product_variation->product, $product_variation),
-            'stock' => (int) $product_variation->stock,
-            'min_qty' => (int) $product_variation->product->min_qty,
-            'max_qty' => (int) $product_variation->product->max_qty,
-            'standard_delivery_time' => (int) $product_variation->product->standard_delivery_time,
-            'express_delivery_time' => (int) $product_variation->product->express_delivery_time,
+            'name' => $productToSell->name,
+            'thumbnail' => api_asset($productToSell->thumbnail_img),
+            'regular_price' => (float) variation_price($productToSell, $productToSell),
+            'dicounted_price' => (float) variation_discounted_price($productToSell, $productToSell),
+            'stock' => (int) $productToSell->stock,
+            'min_qty' => (int) $productToSell->min_qty,
+            'max_qty' => (int) $productToSell->max_qty,
+            'standard_delivery_time' => (int) $productToSell->standard_delivery_time,
+            'express_delivery_time' => (int) $productToSell->express_delivery_time,
             'qty' => (int) $request->qty,
         ];
 
         return response()->json([
             'success' => true,
             'data' => $product,
-            'shop' => new ShopResource($product_variation->product->shop),
             'message' => translate('Product added to cart successfully'),
         ], 200);
     }
