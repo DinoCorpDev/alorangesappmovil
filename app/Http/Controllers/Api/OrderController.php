@@ -251,14 +251,14 @@ class OrderController extends Controller
                 'message' => translate('Sorry, delivery is not available in this shipping address.')
             ]);
 
-        foreach ($cartItems as $cartItem) {
-            if (!$cartItem->stock) {
-                return response()->json([
-                    'success' => false,
-                    'message' => $cartItem->product->getTranslation('name') . ' ' . translate('is out of stock.')
-                ]);
-            }
-        }
+        // foreach ($cartItems as $cartItem) {
+        //     if (!$cartItem->stock) {
+        //         return response()->json([
+        //             'success' => false,
+        //             'message' => $cartItem->product->getTranslation('name') . ' ' . translate('is out of stock.')
+        //         ]);
+        //     }
+        // }
 
         if ($request->delivery_type == 'standard') {
             $shipping_cost = $shippingCity->zone->standard_delivery_cost;
@@ -272,7 +272,7 @@ class OrderController extends Controller
 
         foreach ($cartItems as $cartItem) {
             $cart_ids = array();
-            $product = $cartItem->variation->product;
+            $product = $cartItem->product;
             if (isset($shops_cart_items[$product->shop_id])) {
                 $cart_ids = $shops_cart_items[$product->shop_id];
             }
@@ -287,11 +287,11 @@ class OrderController extends Controller
             }
         }
 
-        foreach ($cartCollections as $cartCollection) {
-            $cart_ids = array();
-            array_push($cart_ids, $cartCollection->id);
-            $shops_cart_items[("collection_" . $cartCollection->id)] = $cart_ids;
-        }
+        // foreach ($cartCollections as $cartCollection) {
+        //     $cart_ids = array();
+        //     array_push($cart_ids, $cartCollection->id);
+        //     $shops_cart_items[("collection_" . $cartCollection->id)] = $cart_ids;
+        // }
 
         // get coupon data based on request
         $coupons = collect();
@@ -330,13 +330,13 @@ class OrderController extends Controller
             $shop_coupon_discount = 0;
 
             //shop total amount calculation
-            foreach ($shop_cart_items as $cartItem) {
-                $itemPriceWithoutTax = variation_discounted_price($cartItem->variation->product, $cartItem->variation, false) * $cartItem->quantity;
-                $itemTax = product_variation_tax($cartItem->variation->product, $cartItem->variation) * $cartItem->quantity;
+            // foreach ($shop_cart_items as $cartItem) {
+            //     $itemPriceWithoutTax = variation_discounted_price($cartItem->variation->product, $cartItem->variation, false) * $cartItem->quantity;
+            //     $itemTax = product_variation_tax($cartItem->variation->product, $cartItem->variation) * $cartItem->quantity;
 
-                $shop_subTotal += $itemPriceWithoutTax;
-                $shop_tax += $itemTax;
-            }
+            //     $shop_subTotal += $itemPriceWithoutTax;
+            //     $shop_tax += $itemTax;
+            // }
 
             $shop_total = $shop_subTotal + $shipping_cost + $shop_tax;
 
@@ -401,8 +401,8 @@ class OrderController extends Controller
             }
 
             foreach ($shop_cart_items as $cartItem) {
-                $itemPriceWithoutTax = variation_discounted_price($cartItem->variation->product, $cartItem->variation, false);
-                $itemTax = product_variation_tax($cartItem->variation->product, $cartItem->variation);
+                $itemPriceWithoutTax = variation_discounted_price($cartItem->product, $cartItem->variation, false);
+                $itemTax = product_variation_tax($cartItem->product, $cartItem->variation);
 
                 $orderDetail = OrderDetail::create([
                     'order_id' => $order->id,
