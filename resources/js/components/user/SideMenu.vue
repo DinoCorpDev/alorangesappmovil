@@ -196,8 +196,6 @@ export default {
 
                 try {
                     let res = axios(config);
-
-                    console.log(res);
                 } catch (e) {
                     // return e.response
                 }

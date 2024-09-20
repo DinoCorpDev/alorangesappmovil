@@ -3009,7 +3009,6 @@ export default {
         },
         fileSelected(evt) {
             evt.preventDefault();
-            console.log(evt);
             this.selectedFile = evt.target.files[0];
             this.uploadImage();
         },
