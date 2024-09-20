@@ -51,7 +51,7 @@
                                 </div>
                             </v-container>
                         </v-stepper-content>
-
+                        {{ numberPag }}
                         <v-stepper-content step="2">
                             <v-container class="d-flex flex-grow-1">
                                 <div class="forgot-password-content">
@@ -104,7 +104,7 @@
             </div>
 
             <v-card-actions class="pa-5 d-block">
-                <CustomButton v-if="numberPag < 2" text="Continuar" color="orange" block type="button" @click="after" />
+                <CustomButton v-if="numberPag < 2" text="Continuar" color="orange" block type="button" @click.stop="after" />
 
                 <CustomButton
                     v-if="numberPag == 2"
