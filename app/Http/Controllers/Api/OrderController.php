@@ -252,10 +252,10 @@ class OrderController extends Controller
             ]);
 
         foreach ($cartItems as $cartItem) {
-            if (!$cartItem->variation->stock) {
+            if (!$cartItem->stock) {
                 return response()->json([
                     'success' => false,
-                    'message' => $cartItem->variation->product->getTranslation('name') . ' ' . translate('is out of stock.')
+                    'message' => $cartItem->product->getTranslation('name') . ' ' . translate('is out of stock.')
                 ]);
             }
         }
