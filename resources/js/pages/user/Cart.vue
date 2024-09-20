@@ -2886,6 +2886,7 @@ export default {
         },
         async getCart() {
             const res = await this.call_api("post", `carts`, {});
+            console.log(res);
             let _cartItems = [];
 
             if (res.data.success) {
@@ -3009,7 +3010,6 @@ export default {
         },
         fileSelected(evt) {
             evt.preventDefault();
-            console.log(evt);
             this.selectedFile = evt.target.files[0];
             this.uploadImage();
         },

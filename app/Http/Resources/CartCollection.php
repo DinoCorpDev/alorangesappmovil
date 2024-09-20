@@ -41,8 +41,9 @@ class CartCollection extends ResourceCollection
                 if ($data->product_id) {
                     $newData['variation_id'] = (int) $data->product_variation_id;
                     $newData['product_id'] = (int) $data->product_id;
-                    $newData['combinations'] = filter_variation_combinations($data->variation->combinations);
                     $newData['regular_price'] = (float) variation_price($data->$objectType, $data->variation);
+                    $newData['highest_price'] = (float) variation_price($data->$objectType, $data->variation);
+                    $newData['lowest_price'] = (float) variation_price($data->$objectType, $data->variation);
                     $newData['discounted_price'] = (float) variation_discounted_price($data->$objectType, $data->variation);
                     $newData['tax'] = (float) product_variation_tax($data->$objectType, $data->variation);
                 } elseif ($data->collection_id) {
