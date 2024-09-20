@@ -51,7 +51,7 @@
                                 </div>
                             </v-container>
                         </v-stepper-content>
-                        {{ numberPag }}
+
                         <v-stepper-content step="2">
                             <v-container class="d-flex flex-grow-1">
                                 <div class="forgot-password-content">
