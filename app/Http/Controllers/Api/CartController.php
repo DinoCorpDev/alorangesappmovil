@@ -71,7 +71,8 @@ class CartController extends Controller
         $cart = Cart::updateOrCreate([
             'user_id' => $user_id,
             'temp_user_id' => $temp_user_id,
-            'product_id' => $productToSell['id']
+            'product_id' => $productToSell['id'],
+            'quantity' => (int) $request->qty,
         ]);
 
         $product = [
