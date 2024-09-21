@@ -17,7 +17,7 @@
                 </router-link>
                 <SearchInput />
                 <CustomButton color="orange3" :to="{ name: 'Shop' }">
-                    <span class="d-none d-sm-flex">Ir a la tienda</span><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px"/> 
+                    <span class="d-none d-sm-flex">Tienda</span><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px"/> 
                 </CustomButton>
                 <div class="layout-navbar-auth-nav">
                     <DoubleButton />

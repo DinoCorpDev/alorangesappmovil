@@ -14,7 +14,10 @@
                 <LogoAloranges :large="logoLarge" />
             </router-link>
             <div class="layout-navbar-nav">
-                <CustomButton color="orange2" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" />
+                <!-- <CustomButton color="orange2" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" /> -->
+                <CustomButton color="orange3" :to="{ name: 'Shop' }">
+                    <span class="d-none d-sm-flex">Tienda</span><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px"/> 
+                </CustomButton>
                 <CustomButton
                     v-if="!userIsLoggedIn"
                     color="orange"
@@ -38,6 +41,7 @@ import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
 import LogoAloranges from "./LogoAloranges.vue";
 import ToggleMenu from "./ToggleMenu.vue";
+import Cart from "../icons/CartIcon.vue";
 
 export default {
     name: "LayoutNavbar",
@@ -45,6 +49,7 @@ export default {
         CustomButton,
         DoubleButton,
         LogoAloranges,
+        Cart,
         ToggleMenu
     },
     data() {
