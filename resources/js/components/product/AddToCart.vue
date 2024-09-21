@@ -55,7 +55,7 @@
                         size="132px"
                     />
                 </div>
-                <div class="add-to-cart-actions">
+                <div class="add-to-cart-actions d-sm-flex justify-center align-center">
                     <Custom-Button
                         v-if="Number.isInteger(cartQuantity)"
                         @click.prevent="addCart()"
@@ -67,15 +67,11 @@
             </div>
 
             <div class="add-to-cart-list-box pa-4 mb-3">
-                <div class="add-to-cart-list-box-item">
-                    <h5 class="subt2 fw-600 text-uppercase">Variación</h5>
-                    <v-btn-toggle multiple borderless>
-                        <v-btn class="blue" depressed :ripple="false" />
-                        <v-btn class="grey" depressed :ripple="false" />
-                        <v-btn class="black" depressed :ripple="false" />
-                        <v-btn class="red" depressed :ripple="false" />
-                    </v-btn-toggle>
-                </div>
+                <h5>Detalle</h5>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam.
+                </p>
             </div>
 
             <ul class="add-to-cart-list-box pa-4 mb-3">

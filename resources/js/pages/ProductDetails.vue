@@ -1,8 +1,8 @@
 <template>
-    <v-container fluid class="product-details">
-        <v-row tag="main" class="flex-column-reverse flex-lg-row mb-6">
+    <v-container fluid class="product-details pa-1 pa-sm-5">
+        <v-row tag="main" class="mb-6">
             <v-col cols="12" lg="4">
-                <v-tabs v-model="tab" grow height="38px" :hide-slider="true">
+                <!-- <v-tabs v-model="tab" grow height="38px" :hide-slider="true">
                     <v-tab :ripple="false">Especificación</v-tab>
                     <v-tab :ripple="false">Reseña</v-tab>
                     <v-tab :ripple="false">Sostenibilidad</v-tab>
@@ -455,16 +455,54 @@
                             </v-row>
                         </div>
                     </v-tab-item>
-                </v-tabs-items>
+                </v-tabs-items> -->
             </v-col>
-            <v-col cols="12" lg="8">
+            <v-col cols="12" lg="12">
                 <AddToCart :is-loading="detailsLoading" :product-details="productDetails" :products="moreProducts" />
             </v-col>
+            <v-col>
+                <v-tabs v-model="tab" grow height="38px" :hide-slider="true">
+                    <v-tab :ripple="false"><span style="font-size: 16px;">DESCRIPCIÓN</span></v-tab>
+                    <v-tab :ripple="false"><span style="font-size: 16px;">VIDEO</span></v-tab>
+                    <v-tab :ripple="false"><span style="font-size: 16px;">OPIONES</span></v-tab>
+                </v-tabs>
+                <v-tabs-items v-model="tab" class="pt-3">
+                    <v-tab-item>
+                        <div class="product-details-specs overflow-y-auto overflow-uw">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam.
+                        </div>
+                    </v-tab-item>
+                    <v-tab-item>
+                        <div class="product-details-specs overflow-y-auto overflow-uw">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam.
+                        </div>
+                    </v-tab-item>
+                    <v-tab-item>
+                        <div class="product-details-specs overflow-y-auto overflow-uw">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam.
+                        </div>
+                    </v-tab-item>
+                </v-tabs-items>
+            </v-col>
+            <v-col cols="12" class="">
+                <ProductsGrid class="mb-6" :products="moreProducts" filtrable cols="6" sm="4" md="3" lg="2" />
+            </v-col>
+            <v-col cols="12" class="pa-0">
+                <ProductsGrid class="mb-6" :products="footerProducts" productStyle="two" filtrable cols="12" sm="6" md="3" />
+            </v-col>
         </v-row>
-
-        <ProductsGrid class="mb-6" :products="moreProducts" filtrable cols="6" sm="4" md="3" lg="2" />
-
-        <ProductsGrid class="mb-6" :products="footerProducts" productStyle="two" filtrable cols="12" sm="6" md="3" />
     </v-container>
 </template>
 
@@ -675,7 +713,7 @@ export default {
 
     @media (min-width: 1264px) {
         main {
-            height: 85vh;
+            
             overflow: hidden;
         }
     }
@@ -688,18 +726,19 @@ export default {
             }
 
             .v-tabs-bar__content {
-                gap: 0.75rem;
+                // gap: 0.75rem;
 
-                @media (min-width: 600px) {
-                    gap: 1.5rem;
-                }
+                // @media (min-width: 600px) {
+                //     gap: 1.5rem;
+                // }
             }
+            max-width: 800px;
         }
 
         .v-tab {
-            background-color: #f5f5f5;
-            border-radius: 5px;
-            color: #000000 !important;
+            background-color: transparent;
+            border-bottom: 1px solid #a5a6a8;
+            color: #a5a6a8 !important;
             font-size: var(--font-size-btn);
             font-weight: 600;
             letter-spacing: 1.25px;
@@ -707,25 +746,22 @@ export default {
             // flex: 1; // All tabs same width
 
             &:not(.v-tab--active):hover {
-                background-color: rgba(#000000, 0.5);
-                color: #ffffff !important;
+                border-bottom: 1px solid #f78735;
+                color: #f78735 !important;
             }
 
             &--active {
-                background-color: #000000;
-                color: #ffffff !important;
+                border-bottom: 1px solid #f78735;
+                color: #f78735 !important;
             }
         }
     }
 
     &-specs {
-        height: 65vh;
         overflow-x: hidden;
         padding-right: 8px;
+        min-height: 50px;
 
-        @media (min-width: 600px) {
-            height: 75vh;
-        }
     }
 
     &-list-box {

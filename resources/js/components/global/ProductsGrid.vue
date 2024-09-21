@@ -1,15 +1,6 @@
 <template>
     <v-row tag="section" class="products-grid">
         <v-col cols="12">
-            <div class="products-grid-bar mb-5">
-                <h5>{{ title || "H5" }}</h5>
-                <div class="d-none d-md-flex products-grid-bar-actions">
-                    <CustomButton color="grey2" text="Nuevo" />
-                    <CustomButton color="grey2" text="Nuevo" />
-                    <CustomButton color="grey2" text="Nuevo" />
-                    <CustomButton color="grey2" text="Nuevo" />
-                </div>
-            </div>
             <v-row dense class="mb-3">
                 <v-col v-if="shopCard" cols="6" sm="8" md="4">
                     <ShopActionCard boxStyle="vertical" :href="shopCardLink" :to="shopCardTo" />
