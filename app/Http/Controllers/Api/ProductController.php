@@ -327,7 +327,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function alegra(Request $request){
+    public function alegra(){
         $products = [];
         $counter = 0;
         $categoryId = 0;
@@ -345,7 +345,7 @@ class ProductController extends Controller
                     $productStorage->name = $product['name'];
                     $productStorage->reference = $product['reference'];
                     $productStorage->description = $product['description'];
-                    $price = null;
+                    $price = 0;
                     foreach ($product['price'] as $key => $listPrices) {
                         if ($listPrices['name'] === 'PUNTO DE VENTA') {
                             $price = $listPrices['price'];
