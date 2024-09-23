@@ -345,15 +345,20 @@ class ProductController extends Controller
                     $productStorage->name = $product['name'];
                     $productStorage->reference = $product['reference'];
                     $productStorage->description = $product['description'];
-                    $price = $product['price'][0]['price'];
+                    $price = null;
+                    foreach ($product['price'] as $key => $listPrices) {
+                        if ($listPrices['name'] === 'PUNTO DE VENTA') {
+                            $price = $listPrices['price'];
+                        }
+                    }
                     $percentage = $product['tax'] && $product['tax'][0]['percentage'];
                     
                     if (is_array($percentage)) {
                         $percentage = 0.00;
                     }
-                    $priceWithIva = ((int)$price * $percentage) / 100 + $price;
-                    $productStorage->lowest_price = $priceWithIva;
-                    $productStorage->highest_price = $priceWithIva;
+                    
+                    $productStorage->lowest_price = $price;
+                    $productStorage->highest_price = $price;
                     $productStorage->description = $product['description'];
                     $productStorage->shop_id = 1;
                     $productStorage->slug = Str::slug($product['name'], '-') . '-' . strtolower(Str::random(5));
