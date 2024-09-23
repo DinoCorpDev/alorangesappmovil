@@ -14,7 +14,7 @@ class AddressController extends Controller
 {
     public function addresses()
     {
-        return new AddressCollection(Address::where('user_id', auth('api')->user()->id)->orderBy("favorite", "desc")->get());
+        return new AddressCollection(Address::where('user_id', auth('api')->user()->id)->orderBy("id", "desc")->get());
     }
 
     public function createShippingAddress(Request $request)
