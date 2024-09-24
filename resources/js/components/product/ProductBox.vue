@@ -45,7 +45,7 @@
                 block
                 color="orange"
                 text="Agregar a Compras"
-                @click="showAddToCartDialog({ status: true, slug: productDetails.slug })"
+                @click="addCart()"
                 :loading="actionLoading"
                 :disabled="actionLoading"
             />
@@ -75,6 +75,7 @@ export default {
     },
     data() {
         return {
+            isAddingToCart: false,
             productPlaceholderUrl: "/public/assets/img/item-placeholder.png"
         };
     },
@@ -86,10 +87,25 @@ export default {
         ...mapActions("cart", ["addToCart", "updateQuantity"]),
         ...mapMutations("auth", ["showAddToCartDialog"]),
         addCart() {
-            if (!this.$props.productDetails.is_variant) {
+            if (!this.isAddingToCart && !this.productDetails.is_variant) {
+                this.isAddingToCart = true;  // Marcar que está en proceso
+
                 this.addToCart({
-                    variation_id: this.$props.productDetails.variations[0].id,
-                    qty: this.$props.productDetails.min_qty
+                    product_id: this.productDetails,
+                    qty: 1
+                }).then(() => {
+                    this.snack({
+                        message: this.$i18n.t("Producto agregado al carrito"),
+                        color: "green"
+                    });
+                }).catch((error) => {
+                    console.error("Error al agregar al carrito:", error);
+                    this.snack({
+                        message: this.$i18n.t("Error agregando el producto"),
+                        color: "red"
+                    });
+                }).finally(() => {
+                    this.isAddingToCart = false; 
                 });
             }
         }

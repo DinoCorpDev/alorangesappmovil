@@ -2,12 +2,12 @@
     <v-container fluid>
         <contact-dialog :show="contactDialogShow" @close="contactDialogClosed" />
 
-        <v-container class="bg-surface-variant ma-0">
-            <v-row align="start" class="container-buttons" no-gutters>
+        <v-container class="bg-surface-variant ma-0 px-0">
+            <div align="start" class="d-flex"  no-gutters>
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">
                         <CustomButton
-                            text="<"
+                            icon="las la-redo-alt"
                             color="orange-cart"
                             type="button"
                             class="mt-4 mr-2"
@@ -19,18 +19,20 @@
                     </template>
                     <span>Refrescar</span>
                 </v-tooltip>
-                
-                <div v-for="filtro in resultadoFiltroBotones" :key="`button-${filtro.id}`">
-                    <CustomButton
-                            :text="filtro.text"
-                            :color="activeButton === filtro.id ? 'orange-cart' : 'nero3'"
-                            type="button"
-                            class="mt-4 mr-1"
-                            width="10"
-                            @click="setActiveButton(filtro.id, filtro.text)"
-                        />
+                <div class="container-buttons">
+                    <div v-for="filtro in resultadoFiltroBotones" :key="`button-${filtro.id}`">
+                        <CustomButton
+                                :text="filtro.text"
+                                :color="activeButton === filtro.id ? 'orange-cart' : 'nero3'"
+                                type="button"
+                                class="mt-4 mr-1"
+                                width="10"
+                                @click="setActiveButton(filtro.id, filtro.text)"
+                            />
+                    </div>
                 </div>
-            </v-row>
+                
+            </div>
         </v-container>
         
         <v-row tag="section" class="mb-6">
@@ -128,11 +130,12 @@ export default {
 </script>
 <style scoped lang="scss">
 .container-buttons{
-    height: 100px; 
+    display: flex;
     overflow-x: auto;  
     white-space: nowrap;
+    width: 100%;
     &::-webkit-scrollbar {
-        width: 3px;
+        height: 0px;
     }
 
     /* Track */

@@ -51,18 +51,17 @@
                 </v-row>
             </div>
 
-            <CustomButton class="d-none d-sm-flex d-lg-none" style="width: 100%;" block color="white" @click="logout">
+            <CustomButton class="d-none d-sm-flex d-lg-none" block color="white" @click="logout">
                 {{ $t("Cerrar sesión") }}
             </CustomButton>
         </div>
 
-        <UserMenu />
-
+        <UserMenu class="mb-5" />
+        <v-divider class="d-none d-md-block my-5" />
         <CustomButton class="d-sm-none d-lg-flex" style="width: 100%;" block color="white" @click="logout">
             {{ $t("Cerrar sesión") }}
         </CustomButton>
 
-        <v-divider class="d-none d-lg-block my-5" />
         <v-dialog
             v-model="dialogAvatar"
             activator="parent"
@@ -257,7 +256,7 @@ export default {
 
 @media (min-width: 1265px) {
     .side-menu {
-        background-color: #f5f5f5;
+        background-color: #fff1e4;
         padding: 10px;
         border-radius: 10px;
     }

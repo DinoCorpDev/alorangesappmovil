@@ -5,7 +5,7 @@
                 <SideMenu class="d-none d-sm-block" />
                 <div class="user-layout-button d-sm-none">
                     <h6>Perfil</h6>
-                    <CustomButton @click="userNavDrawerActive = !userNavDrawerActive" dark>
+                    <CustomButton @click.stop="showMenu" color="orange">
                         <BarsIcon />
                         <span>{{ $t("Menu") }}</span>
                     </CustomButton>
@@ -48,6 +48,12 @@ export default {
     computed: {
         ...mapGetters("auth", ["currentUser"]),
         ...mapState("app", ["previewAvatar"])
+    },
+    methods:{
+        showMenu(){
+            console.log("ENTRÓ A LA FUNCIÓN");
+            this.userNavDrawerActive = !this.userNavDrawerActive;
+        }
     }
 };
 </script>
