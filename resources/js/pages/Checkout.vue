@@ -308,7 +308,7 @@
                     </router-link>
                 </div>
                 <div class="my-8">
-                    <v-btn elevation="0" color="primary" class="" x-large @click="proceedCheckout" :loading="checkoutLoading" :disabled="checkoutLoading">
+                    <v-btn elevation="0" color="primary" class="" x-large @click.stop="proceedCheckout" :loading="checkoutLoading" :disabled="checkoutLoading">
                         <span class="">{{ $t('proceed') }}</span>
                         <span class="border-start border-gray-400 ps-5 ms-5">{{ format_price(totalPrice) }}</span>
                     </v-btn>
