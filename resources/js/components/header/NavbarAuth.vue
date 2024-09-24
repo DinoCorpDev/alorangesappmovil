@@ -27,7 +27,7 @@
                 </div>
             </v-container>
         </v-app-bar>
-        <NabvarBottomBar v-if="$route.meta.hasBottomBar" />
+        <!-- <NabvarBottomBar v-if="$route.meta.hasBottomBar" /> -->
     </div>
 </template>
 
@@ -39,7 +39,7 @@ import DoubleButton from "./DoubleButton.vue";
 import Cart from "../icons/CartIcon.vue";
 import LogoAloranges from "./LogoAloranges.vue";
 import LogoAlorange from "./LogoAlorange.vue";
-import NabvarBottomBar from "./NabvarBottomBar.vue";
+// import NabvarBottomBar from "./NabvarBottomBar.vue";
 import SearchInput from "../global/SearchInput.vue";
 import ToggleMenu from "./ToggleMenu.vue";
 
@@ -50,7 +50,7 @@ export default {
         DoubleButton,
         LogoAloranges,
         LogoAlorange,
-        NabvarBottomBar,
+        // NabvarBottomBar,
         SearchInput,
         Cart,
         ToggleMenu
@@ -97,7 +97,7 @@ export default {
 .layout-navbar-auth {
     min-height: 60px;
     z-index: 10;
-
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 10px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;
     @media (max-width: 960px) {
         max-height: 60px;
     }

@@ -41,9 +41,9 @@
                     <v-col
                         v-for="product in productsSeeder"
                         :key="`product-col-${product.id}`"
-                        cols="12"
-                        sm="6"
-                        md="3"
+                        cols="6"
+                        sm="4"
+                        md="2"
                     >
                         <ProductBox boxStyle="two" :productDetails="product" />
                     </v-col>

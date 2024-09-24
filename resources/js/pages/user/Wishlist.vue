@@ -1,5 +1,5 @@
 <template>
-    <v-row class="wishlist">
+    <v-row class="wishlist d-flex justify-center align-center">
         <template v-if="getWislistProducts.length === 0">
             <div class="emptycart">
                 <div class="cuadro-emptycart">
@@ -20,7 +20,7 @@
             </div>
             <v-row no-gutters class="car-items" style="overflow-y: scroll; max-height: 450px">
                 <v-col cols="12" v-for="(product, i) in getWislistProducts" :key="i">
-                    <ProductCart :product-details="product" :is-loading="!wislistLoaded" />
+                    <ProductCart :product-details="product" :product-cart-type="wishlist" :is-loading="!wislistLoaded" />
                 </v-col>
             </v-row>
         </template>
