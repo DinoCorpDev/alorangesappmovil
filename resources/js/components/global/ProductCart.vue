@@ -19,10 +19,11 @@
                     {{ format_price(productDetails.regular_price * productDetails.qty) }}
                 </del> -->
 
-                {{ format_price(productDetails.regular_price * productDetails.qty) }}
+                {{ format_price(productDetails.regular_price ? productDetails.regular_price * productDetails.qty : productDetails.base_price * cartQuantity) }}
             </template>
 
             <template v-if="productCartType == 'wishlist'">
+                
                 <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
                     {{ format_price(productDetails.base_discounted_price) }}
                 </span>
@@ -39,7 +40,8 @@
         </div>
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-none d-md-flex">
-                <template v-if="productCartType == 'checkout'">
+                <!-- <template v-if="productCartType == 'checkout'"> TEMPORAL MIENTRAS productCartType se arregla-->
+                <template v-if="productDetails.regular_price">
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <button @click="removeFromCart(productDetails.cart_id)" v-bind="attrs" v-on="on">
@@ -93,14 +95,15 @@
                     </template>
                 </template>
 
-                <template v-if="productCartType == 'wishlist'">
+                <!-- <template v-if="productCartType == 'wishlist'"> -->
+                <template v-if="productDetails.base_price">
                     <button @click="removeFromWishlist(productDetails.id)">
                         <TrashIcon />
                     </button>
                     <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }">
                         <EyeIcon />
                     </router-link>
-                    <button>
+                    <button @click="addCart()">
                         <AddCartIcon />
                     </button>
                 </template>
@@ -114,7 +117,7 @@
                     </template>
 
                     <v-list>
-                        <template v-if="productCartType == 'checkout'">
+                        <template v-if="productDetails.regular_price">
                             <v-list-item>
                                 <button @click="removeFromCart(productDetails.cart_id)">
                                     <TrashIcon />
@@ -139,7 +142,7 @@
                             </v-list-item>
                         </template>
 
-                        <template v-if="productCartType == 'wishlist'">
+                        <template v-if="productDetails.base_price">
                             <v-list-item>
                                 <button @click="removeFromWishlist(productDetails.id)">
                                     <TrashIcon />
@@ -150,8 +153,10 @@
                                     <EyeIcon />
                                 </router-link>
                             </v-list-item>
-                            <v-list-item>
-                                <AddCartIcon />
+                            <v-list-item >
+                                <button @click="addCart()">
+                                    <AddCartIcon />
+                                </button>
                             </v-list-item>
                         </template>
                     </v-list>
@@ -236,8 +241,27 @@ export default {
         }
     },
     methods: {
-        ...mapActions("cart", ["updateQuantity", "toggleCartItem", "removeFromCart"]),
-        ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"])
+        ...mapActions("cart", ["updateQuantity", "toggleCartItem", "removeFromCart", "addToCart", "updateQuantity"]),
+        ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
+        addCart() {
+            this.addToCart({
+                    product_id: this.productDetails,
+                    qty: this.cartQuantity
+                }).then(() => {
+                    this.snack({
+                        message: this.$i18n.t("Producto agregado al carrito"),
+                        color: "green"
+                    });
+                    this.removeFromWishlist(this.productDetails.id);
+                }).catch((error) => {
+                    console.error("Error al agregar al carrito:", error);
+                    this.snack({
+                        message: this.$i18n.t("Error agregando el producto"),
+                        color: "red"
+                    });
+                })
+                
+        }
     }
 };
 </script>

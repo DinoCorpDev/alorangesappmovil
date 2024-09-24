@@ -203,9 +203,19 @@ export default {
         border: 1px solid #f58634;
         border-radius: 5px !important;
 
+        &:focus,
+        &.v-btn--active {
+            color: #fff;
+            background-color: #f58634 !important;
+        }
+    }
+    &.orange-sidemenu {
+        color: #e58644;
+        background-color: #fbd6bb !important;
+
         &:hover {
-            color: #000;
-            background-color: rgba(#fcd6ba, 0.8) !important;
+            color: #fff;
+            background-color: #f58634 !important;
         }
 
         &:focus,
