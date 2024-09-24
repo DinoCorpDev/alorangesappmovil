@@ -250,7 +250,7 @@ if (!function_exists('product_discounted_highest_price')) {
 if (!function_exists('product_tax')) {
     function product_variation_tax($product, $variation)
     {
-        $price = $variation->price;
+        $price = $product->price;
         $tax = 0;
 
         $discount_applicable = false;
@@ -287,7 +287,7 @@ if (!function_exists('product_tax')) {
 if (!function_exists('variation_price')) {
     function variation_price($product, $variation, $with_tax = true)
     {
-        $price = $variation['highest_price'];
+        $price = $product['highest_price'];
         $tax = 0;
 
         foreach ($product->taxes as $product_tax) {
@@ -313,7 +313,7 @@ if (!function_exists('variation_discounted_price')) {
      */
     function variation_discounted_price($product, $variation, $with_tax = true)
     {
-        $price = $variation->price;
+        $price = $product->price;
         $tax = 0;
 
         $discount_applicable = false;

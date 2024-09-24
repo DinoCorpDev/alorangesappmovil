@@ -1164,15 +1164,12 @@ export default {
             if (phone.valid) this.form.showInvalidPhone = false;
         },
         onFileChange(e) {
-            console.log(e.target.files[0]);
             this.form.filedocumento = e.target.files[0];
         },
         onFileChangeCamara(e) {
-            console.log(e.target.files[0]);
             this.form.filecamara = e.target.files[0];
         },
         onFileChangeRut(e) {
-            console.log(e.target.files[0]);
             this.form.filerut = e.target.files[0];
         },
         async omitir() {

@@ -53,7 +53,7 @@ export default {
         getCartPrice(state) {
             let total = 0;
             state.cartProducts.forEach(item => {
-                if (item.selected) total += item.discounted_price * item.qty;
+                if (item.selected) total += item.regular_price * item.qty;
             });
             return (state.cartPrice = total);
         },

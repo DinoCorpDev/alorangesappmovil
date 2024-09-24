@@ -200,9 +200,6 @@ export default {
             maxCartLimit: Infinity
         };
     },
-    mounted(){
-        console.log(this.productDetails);
-    },
     computed: {
         ...mapGetters("wishlist", ["isThisWishlisted"]),
         thumbnailImage() {

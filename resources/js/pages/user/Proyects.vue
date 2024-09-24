@@ -54,7 +54,6 @@ export default {
     },
     async created() {
         await this.getUser();
-        console.log(this.getUser());
     },
     computed: {
         ...mapActions("auth", ["getUser"]),
