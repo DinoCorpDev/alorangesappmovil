@@ -266,6 +266,11 @@ class OrderController extends Controller
             $shipping_cost = $shippingCity->zone->express_delivery_cost;
         }
 
+        /**
+         * Se setea la variable en 0 para no enviar costo de envio, en caso de requerirlo
+         * se debe quitar el seteo en cero y configurarlo con base los requisitos.
+         * a la fecha 24 de septiempre de 2024 envia 10 dolares
+         */
         $shipping_cost = 0;
         // generate array of shops cart items
         $shops_cart_items = array();
