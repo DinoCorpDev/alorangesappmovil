@@ -330,14 +330,13 @@ class OrderController extends Controller
             $shop_coupon_discount = 0;
 
             //shop total amount calculation
-            // foreach ($shop_cart_items as $cartItem) {
-            //     $itemPriceWithoutTax = variation_discounted_price($cartItem->variation->product, $cartItem->variation, false) * $cartItem->quantity;
-            //     $itemTax = product_variation_tax($cartItem->variation->product, $cartItem->variation) * $cartItem->quantity;
+            foreach ($shop_cart_items as $cartItem) {
+                $itemPriceWithoutTax = variation_discounted_price($cartItem->product, $cartItem, false) * $cartItem->quantity;
+                $itemTax = product_variation_tax($cartItem->product, $cartItem) * $cartItem->quantity;
 
-            //     $shop_subTotal += $itemPriceWithoutTax;
-            //     $shop_tax += $itemTax;
-            // }
-
+                $shop_subTotal += $itemPriceWithoutTax;
+                $shop_tax += $itemTax;
+            }
             $shop_total = $shop_subTotal + $shipping_cost + $shop_tax;
 
             //shop total amount calculation
@@ -461,9 +460,9 @@ class OrderController extends Controller
         //Invioce mail send to the customer and seller
         try {
             Notification::send($user, new OrderPlacedNotification($combined_order));
-            foreach ($combined_order->orders as $order) {
-                Notification::send($order->orderDetails->first()->product->shop->user, new SellerInvoiceNotification($order));
-            }
+            // foreach ($combined_order->orders as $order) {
+            //     Notification::send($order->orderDetails->first()->product->shop->user, new SellerInvoiceNotification($order));
+            // }
         } catch (\Exception $e) {
             // dd($e);
         }
