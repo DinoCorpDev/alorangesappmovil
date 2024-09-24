@@ -1,145 +1,29 @@
 <template>
     <v-row class="wishlist">
-        <v-col cols="12">
-            <v-tabs v-model="tab" grow height="38px" :hide-slider="true" class="mb-4">
-                <v-tab :ripple="true">Productos</v-tab>
-                <v-tab :ripple="true">Servicios</v-tab>
-                <v-tab :ripple="true">Marcas</v-tab>
-            </v-tabs>
-
-            <!-- AQUI EMPIEZA -->
-            <v-divider class="my-4" />
-            <v-tabs-items v-model="tab">
-                <v-tab-item>
-                    <template v-if="getWislistProducts.length === 0">
-                        <div class="emptycart">
-                            <div class="cuadro-emptycart">
-                                <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                                <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
-                                <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
-                            </div>
-                        </div>
-                    </template>
-                    <template v-else>
-                        <v-row>
-                            <v-col cols="12" v-for="(product, i) in getWislistProducts" :key="i">
-                                <ProductCart :product-details="product" :is-loading="!wislistLoaded" />
-                            </v-col>
-                        </v-row>
-                        <v-divider class="my-4" />
-                        <v-row>
-                            <v-col cols="12" sm="6">
-                                <h5 class="fw-600 mb-4">Colecciones anheladas</h5>
-
-                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                                    <v-row>
-                                        <v-col cols="3" style="display: flex; place-items: center;">
-                                            <v-img
-                                                class="img-cartempty mb-6"
-                                                src="/public/assets/img/iconoFavoritos.png"
-                                            />
-                                        </v-col>
-
-                                        <v-col cols="9" style="display: flex; place-items: center;">
-                                            <p class="mb-0">
-                                                Agrega a tu lista las colecciones que deseas adquirir mas adelante.
-                                            </p>
-                                        </v-col>
-                                        <CustomButton class="mb-4" block color="grey" text="VER COLECCIONES" />
-                                    </v-row>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </template>
-                </v-tab-item>
-
-                <v-tab-item>
-                    <template v-if="getWisListServices.length === 0">
-                        <div class="emptycart">
-                            <div class="cuadro-emptycart">
-                                <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                                <p class="text-cartempty">AUN NO HAY SERVICIOS EN LA LISTA DE DESEOS</p>
-                                <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
-                            </div>
-                        </div>
-                    </template>
-                    <template v-else>
-                        <v-row>
-                            <v-col cols="12" v-for="(service, i) in getWisListServices" :key="i">
-                                <ProductCart :product-details="service" :is-loading="!wislistLoaded" />
-                            </v-col>
-                        </v-row>
-                        <v-divider class="my-4" />
-                        <v-row>
-                            <v-col cols="12" sm="6">
-                                <h5 class="fw-600 mb-4">Colecciones anheladas</h5>
-
-                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                                    <v-row>
-                                        <v-col cols="3" style="display: flex; place-items: center;">
-                                            <v-img
-                                                class="img-cartempty mb-6"
-                                                src="/public/assets/img/iconoFavoritos.png"
-                                            />
-                                        </v-col>
-
-                                        <v-col cols="9" style="display: flex; place-items: center;">
-                                            <p class="mb-0">
-                                                Agrega a tu lista las colecciones que deseas adquirir mas adelante.
-                                            </p>
-                                        </v-col>
-                                        <CustomButton class="mb-4" block color="grey" text="VER COLECCIONES" />
-                                    </v-row>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </template>
-                </v-tab-item>
-
-                <v-tab-item>
-                    <template v-if="getWisListBrands.length === 0">
-                        <div class="emptycart">
-                            <div class="cuadro-emptycart">
-                                <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                                <p class="text-cartempty">AUN NO HAY MARCAS EN LA LISTA DE DESEOS</p>
-                                <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
-                            </div>
-                        </div>
-                    </template>
-                    <template v-else>
-                        <v-row>
-                            <v-col cols="12" v-for="(brands, i) in getWisListBrands" :key="i">
-                                <ProductBrand :product-details="brands" :is-loading="!wislistLoaded" />
-                            </v-col>
-                        </v-row>
-                        <v-divider class="my-4" />
-                        <v-row>
-                            <v-col cols="12" sm="6">
-                                <h5 class="fw-600 mb-4">Colecciones anheladas</h5>
-
-                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                                    <v-row>
-                                        <v-col cols="3" style="display: flex; place-items: center;">
-                                            <v-img
-                                                class="img-cartempty mb-6"
-                                                src="/public/assets/img/iconoFavoritos.png"
-                                            />
-                                        </v-col>
-
-                                        <v-col cols="9" style="display: flex; place-items: center;">
-                                            <p class="mb-0">
-                                                Agrega a tu lista las colecciones que deseas adquirir mas adelante.
-                                            </p>
-                                        </v-col>
-                                        <CustomButton class="mb-4" block color="grey" text="VER COLECCIONES" />
-                                    </v-row>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </template>
-                </v-tab-item>
-            </v-tabs-items>
-        </v-col>
+        <template v-if="getWislistProducts.length === 0">
+            <div class="emptycart">
+                <div class="cuadro-emptycart">
+                    <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                    <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
+                    <CustomButton text="IR A PRODUCTOS" color="orange" class="mt-2" :to="{ name: 'Shop' }" />
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="cart-table-header mb-2" style="width: 100%">
+                <div style="padding-left: 4%">Productos</div>
+                <div>Precio</div>
+                <div class="d-none d-md-flex">Cantidad</div>
+                <div class="d-flex d-md-none">Cant</div>
+                <div class="d-none d-sm-flex">Opciones</div>
+                <div class="d-flex d-sm-none">Opc</div>
+            </div>
+            <v-row no-gutters class="car-items" style="overflow-y: scroll; max-height: 450px">
+                <v-col cols="12" v-for="(product, i) in getWislistProducts" :key="i">
+                    <ProductCart :product-details="product" :is-loading="!wislistLoaded" />
+                </v-col>
+            </v-row>
+        </template>
     </v-row>
 </template>
 
@@ -169,10 +53,37 @@ export default {
         ...mapGetters("wishlist", ["wislistLoaded", "getWislistProducts", "getWisListServices", "getWisListBrands"])
     },
     mounted() {}
+    
 };
 </script>
 
 <style lang="scss" scoped>
+.car-items {
+    gap: 0.5rem;
+}
+.cart {
+    &-table {
+        &-header {
+            display: grid;
+            align-items: stretch;
+            grid-template-columns: 6fr 4fr 1fr 1fr;
+
+            @media (min-width: 768px) {
+                grid-template-columns: 5fr 2fr 2fr 3fr;
+                padding: 0.75rem 0;
+            }
+
+            div {
+                font-size: var(--font-size-body1);
+                font-weight: 700;
+
+                &:not(:first-child) {
+                    padding-left: 1.5rem;
+                }
+            }
+        }
+    }
+}
 .wishlist {
     &-title {
         font-weight: 600;
