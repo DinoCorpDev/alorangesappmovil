@@ -9,8 +9,8 @@
                 class="text-none"
                 link
             >
-                <component :is="tab.icon" class="mb-2 mb-sm-0 mr-sm-3" />
-                <span class="mb-1 mb-sm-0">{{ tab.text }}</span>
+                <component :is="tab.icon" class="mb-2 mt-3 mt-sm-0 mb-sm-0 mr-sm-3" />
+                <span class="mb-1 mt-1 mt-sm-0 mb-sm-0">{{ tab.text }}</span>
             </v-tab>
         </v-tabs>
 
@@ -67,7 +67,7 @@ export default {
     &::v-deep {
         
         .v-tabs-slider{
-                background-color: #8ec641;
+                background-color: transparent;
             }
         .v-tabs-bar {
             background-color: #fafcfc;
@@ -78,7 +78,8 @@ export default {
         }
 
         .v-tabs-bar__content {
-            border-bottom: 1px solid #e4e4e4;
+            display: flex;
+            justify-content: space-between;
         }
 
         .v-tab {
@@ -87,9 +88,10 @@ export default {
             font-weight: 400;
             letter-spacing: 0.15px;
             line-height: calc(18px + (20 - 18) * var(--screen-size));
-            max-width: 100%;
-            color: #000000 !important;
-
+            color: #8ec641 !important;
+            max-width: 195px !important;
+            margin: 0 10px !important;
+            border-radius: 10px;
             @media (max-width: 600px) {
                 flex-direction: column;
                 white-space: nowrap;
@@ -104,7 +106,7 @@ export default {
                 background-color: #8ec641;
             }
             &:before, .v-tabs-slider{
-                background-color: #8ec641;
+                background-color: transparent;
             }
         }
 

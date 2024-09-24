@@ -64,6 +64,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+p{
+    color: white;
+}
 .list-footer{
     display: flex;
     flex-direction: column;
@@ -71,6 +74,7 @@ export default {
     a{
         margin-bottom: 10px;
         font-size: 18px;
+        color: white;
         &:hover{
             text-decoration: underline;
         }
@@ -81,15 +85,15 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    background-color: #ffefdf;
+    background-color: #3a3f43;
 
     @media (max-width: 599px) {
         flex-direction: column;
     }
 
-    &.theme--dark {
-        background-color: #18191a;
-    }
+    // &.theme--dark {
+    //     background-color: #18191a;
+    // }
 
     &-copyright,
     &-location,

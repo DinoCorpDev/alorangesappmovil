@@ -9,7 +9,7 @@
                     :key="`UserNav${item.link}`"
                     :to="{ name: item.link }"
                     :text="$t(item.label)"
-                    color="nero2"
+                    color="orange-sidemenu"
                     block
                 />
             </template>
@@ -24,13 +24,13 @@
                     :key="`UserNav${item.link}`"
                     :to="{ name: item.link }"
                     :text="$t(item.label)"
-                    color="nero2"
+                    color="orange-sidemenu"
                     block
                 />
             </template>
         </div>
 
-        <v-divider class="d-none d-md-block my-5" />
+        <!-- <v-divider class="d-none d-md-block my-5" /> -->
     </div>
 </template>
 
@@ -50,12 +50,12 @@ export default {
                     { label: "Carrito", link: "Cart" },
                     { label: "Favoritos", link: "Wishlist" },
                     { label: "Facturas", link: "PurchaseHistory" },
-                    { label: "Suscripciones", link: "Suscriptions" },
-                    { label: "Proyectos", link: "Proyects" }
+                    //{ label: "Suscripciones", link: "Suscriptions" },
+                    //{ label: "Proyectos", link: "Proyects" }
                 ],
                 user: [
                     { label: "Perfil", link: "Profile" },
-                    { label: "Notificaciones", link: "NotificationAll" }
+                    //{ label: "Notificaciones", link: "NotificationAll" }
                 ]
             }
         };
