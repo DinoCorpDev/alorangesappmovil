@@ -24,8 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('alegra:update')->weeklyOn(1, '23:00'); //Ejecuta el comando cada domingo a las 11:00 PM
     }
 
     /**
