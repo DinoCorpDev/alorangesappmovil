@@ -1213,7 +1213,7 @@
                                             class="boton-continuar"
                                             text="Continuar"
                                             color="orange"
-                                            @click="proceedCheckout()"
+                                            @click.stop="proceedCheckout()"
                                             :loading="checkoutLoading"
                                             :disabled="checkoutLoading"
                                         />
