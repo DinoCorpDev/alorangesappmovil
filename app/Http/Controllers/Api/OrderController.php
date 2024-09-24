@@ -266,6 +266,7 @@ class OrderController extends Controller
             $shipping_cost = $shippingCity->zone->express_delivery_cost;
         }
 
+        $shipping_cost = 0;
         // generate array of shops cart items
         $shops_cart_items = array();
         $club_points = 0;
