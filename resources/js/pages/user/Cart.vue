@@ -425,7 +425,9 @@
                                         </div>
                                         <div class="d-flex justify-space-between mb-3">
                                             <span class="subtitle1 text-uppercase bold pl-3">TELÉFONO / CELULAR</span>
-                                            <span class="body1 pr-3">--</span>
+                                            <span class="body1 pr-3">
+                                                {{userData?.phone || "--"}}
+                                            </span>
                                         </div>
                                         <CustomButton 
                                             class="mr-3 ml-3"
@@ -988,14 +990,14 @@
                                         class="selector"
                                         :dark="darkBoxes"
                                         label="Tipo de persona"
-                                        :items="langSelectItems"
+                                        :items="selectPersonType"
                                     />
                                     <label class="text-uppercase">Banco</label>
                                     <SelectCustom
                                         class="selector"
                                         :dark="darkBoxes"
                                         label="Seleccionar banco"
-                                        :items="langSelectItems"
+                                        :items="selectBancos"
                                     />
                                 </div>
                                 <div v-if="pick === 2">
@@ -1004,12 +1006,7 @@
                                     <label class="text-uppercase">Nombre titular de la tarjeta</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Fecha de expedicion</label>
-                                    <SelectCustom
-                                        class="selector"
-                                        :dark="darkBoxes"
-                                        label="Tipo de persona"
-                                        :items="langSelectItems"
-                                    />
+                                    <CustomInput />
                                     <label class="text-uppercase">Codigo de seguridad</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Numero de CVV2</label>
@@ -1019,7 +1016,7 @@
                                         class="selector"
                                         :dark="darkBoxes"
                                         label="Seleccionar banco"
-                                        :items="langSelectItems"
+                                        :items="selectDocuments"
                                     />
                                     <label class="text-uppercase">Numero de documento</label>
                                     <CustomInput />
@@ -1030,12 +1027,7 @@
                                     <label class="text-uppercase">Nombre titular de la tarjeta</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Fecha de expedicion</label>
-                                    <SelectCustom
-                                        class="selector"
-                                        :dark="darkBoxes"
-                                        label="Tipo de persona"
-                                        :items="langSelectItems"
-                                    />
+                                    <CustomInput />
                                     <label class="text-uppercase">Codigo de seguridad</label>
                                     <CustomInput />
                                     <label class="text-uppercase">Numero de CVV2</label>
@@ -1045,7 +1037,7 @@
                                         class="selector"
                                         :dark="darkBoxes"
                                         label="Seleccionar banco"
-                                        :items="langSelectItems"
+                                        :items="selectDocuments"
                                     />
                                     <label class="text-uppercase">Numero de documento</label>
                                     <CustomInput />
@@ -1092,56 +1084,27 @@
                             <h5 class="fw-600">Facturar a nombre de</h5>
                             <v-divider class="my-4" />
                             <div class="form">
-                                <v-row>
-                                    <v-col cols="11">
-                                        <SelectCustom
-                                            class="selector"
-                                            label="Usuario Principal"
-                                            :items="langSelectItems"
-                                        />
-                                    </v-col>
-                                    <v-col cols="1" class="pl-0 ojo">
-                                        <i
-                                            class="las la-eye-slash"
-                                            style="font-size: 25px"
-                                            v-if="mostrarDatosFacturacion"
-                                            @click="toggleDatosFacturacion"
-                                        ></i>
-                                        <i
-                                            class="las la-eye"
-                                            style="font-size: 25px"
-                                            @click="toggleDatosFacturacion"
-                                            v-else
-                                        ></i>
-                                    </v-col>
-                                </v-row>
                                 <v-divider class="my-3" />
-                                <div
-                                    v-if="
-                                        Object.entries(addressFacturacion).length !== 0 && useDefaultAddress2 == false
-                                    "
-                                >
+                                <div v-if=" Object.entries(userData).length !== 0">
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold pl-3">correo electrónico</span>
-                                        <span class="body1 pr-3">--</span>
+                                        <span class="body1 pr-3">{{userData.email || ""}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold pl-3">Tipo de persona</span>
-                                        <span class="body1 text-right pr-3">--</span>
+                                        <span class="body1 text-right pr-3">{{ userData.personType  || ""}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold pl-3"> Descripción de Dirección </span>
-                                        <span class="body1 pr-3">{{
-                                            addressFacturacion?.address | filtroParaOcultarInfo(mostrarDatosFacturacion)
-                                        }}</span>
+                                        <span class="body1 pr-3">{{addressFacturacion?.address || ""}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold pl-3">Tipo de documento</span>
-                                        <span class="body1 pr-3">--</span>
+                                        <span class="body1 pr-3">{{userData.documentType || ""}}</span>
                                     </div>
                                     <div class="d-flex justify-space-between mb-2">
                                         <span class="subtitle1 text-uppercase bold pl-3">Número de documento</span>
-                                        <span class="body1 pr-3">--</span>
+                                        <span class="body1 pr-3">{{userData.documentNumber || ""}}</span>
                                     </div>
                                 </div>
                                 <!-- <label class="label my-3">
@@ -2814,7 +2777,11 @@ export default {
             mostrarDatosServicio: false,
             mostrarDatosFacturacion: false,
             mostrarDetalles: false,
-            mostrarDetallesFinal: false
+            mostrarDetallesFinal: false,
+            userData: {},
+            selectBancos:['Davivienda','Bancolombia'],
+            selectDocuments:['Cedula Ciudadania','Paraporte'],
+            selectPersonType:['Natural','Juridico']
         };
     },
     computed: {
@@ -2928,6 +2895,10 @@ export default {
                     }
                     if (address?.default_service == 1) {
                         this.addressesParaServicio.push(address);
+                    }else{
+                        this.addressesParaEnvio.push(res.data.data[0]);
+                        this.addressesParaFacturacion.push(res.data.data[0]);
+                        this.addressesParaServicio.push(res.data.data[0]);
                     }
                 });
                 this.addressPrincipal = this.addressesParaEnvio[0];
@@ -2939,6 +2910,12 @@ export default {
                     color: "red"
                 });
                 this.$router.push({ name: "404" });
+            }
+        },
+        async getInfoUser(){
+            const res = await this.call_api('get','user/info');
+            if (res.data.success) {
+                this.userData = res.data.user;
             }
         },
         changeQty(i) {
@@ -3009,7 +2986,6 @@ export default {
         },
         fileSelected(evt) {
             evt.preventDefault();
-            console.log(evt);
             this.selectedFile = evt.target.files[0];
             this.uploadImage();
         },
@@ -3028,6 +3004,7 @@ export default {
         this.getCart();
         this.getAddresses();
         this.getUser();
+        this.getInfoUser();
     }
 };
 </script>

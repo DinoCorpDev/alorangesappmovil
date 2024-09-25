@@ -158,7 +158,7 @@
                     type="button"
                     class="mb-2"
                     block
-                    @click="after"
+                    @click.stop="after"
                 />
                 <CustomButton
                     v-if="numberPag == 3"
@@ -167,7 +167,7 @@
                     type="submit"
                     class="mb-2"
                     block
-                    @click="resetPassword"
+                    @click.stop="resetPassword"
                     :disabled="loadingregister"
                     :loadingregister="loadingregister"
                 />

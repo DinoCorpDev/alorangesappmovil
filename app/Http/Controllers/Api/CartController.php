@@ -42,33 +42,20 @@ class CartController extends Controller
             $collection_carts = collect();
         }
 
-        // dd($collection_carts);
-
         $product_carts = $product_carts->filter(function ($cart_item) {
-            return $cart_item->variation && $cart_item->product;
+            return $cart_item->product;
         });
 
         $carts = $product_carts->merge($collection_carts);
-
-        // dd($carts);
 
         $product_shops = $product_carts->pluck('product.shop_id')->unique()->toArray();
         $collection_shops = $collection_carts->pluck('collection.shop_id')->unique()->toArray();
 
         $shops = array_unique(array_merge($product_shops, $collection_shops));
 
-        // dd($shops);
-        // dd($collection_shops);
-
         return response()->json([
             'success' => true,
-            'cart_items' => new CartCollection($carts),
-            'shops' => new ShopCollection(Shop::with('categories')
-                ->withCount([
-                    'products',
-                    'collections',
-                    'reviews'
-                ])->find($shops))
+            'cart_items' => new CartCollection($carts)
         ]);
     }
 
@@ -84,7 +71,8 @@ class CartController extends Controller
         $cart = Cart::updateOrCreate([
             'user_id' => $user_id,
             'temp_user_id' => $temp_user_id,
-            'product_id' => $productToSell['id']
+            'product_id' => $productToSell['id'],
+            'quantity' => (int) $request->qty,
         ]);
 
         $product = [
