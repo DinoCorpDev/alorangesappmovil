@@ -26,6 +26,17 @@ import ToolsIcon from "../components/icons/Tools.vue";
 
 export default {
     data: () => ({
+        items: [
+            {
+                text: 'Home',
+                disabled: false,
+                href: 'breadcrumbs_dashboard',
+            },
+            {
+                text: 'Tienda',
+                disabled: true
+            },
+        ],
         tabs: [
             { icon: "BuildingIcon", text: "Cafeteria", routeName: "ShopCafeteria" },
             { icon: "ChairIcon", text: "Cartoneria", routeName: "ShopCartoneria" },
@@ -40,7 +51,8 @@ export default {
         ToolsIcon,
         HomeAppliancesIcon,
         BuildingIcon
-    }
+    },
+    
 };
 </script>
 
@@ -51,6 +63,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+
 .theme--dark.v-tabs {
     &::v-deep {
         .v-tabs-bar {

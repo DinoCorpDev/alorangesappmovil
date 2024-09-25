@@ -150,14 +150,13 @@
                 </v-stepper>
             </div>
 
-            <v-card-actions class="pa-5 d-block">
+            <v-card-actions class="pa-5 d-flex">
                 <CustomButton
                     v-if="numberPag < 3"
                     text="siguiente"
                     color="orange"
                     type="button"
-                    class="mb-2"
-                    block
+                    class="mb-2 ml-2"
                     @click.stop="after"
                 />
                 <CustomButton
@@ -166,12 +165,11 @@
                     color="orange"
                     type="submit"
                     class="mb-2"
-                    block
                     @click.stop="resetPassword"
                     :disabled="loadingregister"
                     :loadingregister="loadingregister"
                 />
-                <CustomButton text="Cancelar" color="orange2" type="button" class="ml-0" block @click="cerrarModal" />
+                <CustomButton text="Cancelar" color="orange2" type="button" class="ml-2 mb-2" @click="cerrarModal" />
             </v-card-actions>
         </v-card>
         <v-dialog v-model="userNotFound" width="500">

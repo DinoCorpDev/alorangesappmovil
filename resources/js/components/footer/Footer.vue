@@ -1,8 +1,9 @@
 <template>
     <v-footer class="auth-footer">
         <v-row class="pt-5">
-            <v-col cols="12" md="6" class="d-flex justify-center align-center">
-                <div style="max-width: 320px;">
+            <v-col md="1"/>
+            <v-col cols="12" md="5" class="d-flex justify-center align-center">
+                <div style="max-width: 320px;" class="mr-md-16">
                     <LogoAlorange class="mb-1"/>
                     <p style="font-size: 15px;">
                         Compras telefónicas horarios de atención es de lunes a Domingo 
@@ -17,7 +18,7 @@
                 </div>
                 
             </v-col>
-            <v-col cols="6" md="4"  class="list-footer align-center align-md-start">
+            <v-col cols="6" md="3"  class="list-footer align-center align-md-start">
                 <a href="#">Politica de Protección de datos</a>
                 <a href="#">Cambios y Devoluciones</a>
                 <a href="#">Tiempo y costo de envío</a>
@@ -30,6 +31,7 @@
             <v-col cols="12" class="d-flex justify-center align-center">
                 <p style="font-size: 13px; margin-bottom: 0;"><b>Copyright © 2022 Aloranges.com.</b> Todos los derechos reservados.</p>
             </v-col>
+            <v-col md="1"/>
         </v-row>
         <!-- <div class="auth-footer-copyright-wrap">
             <span class="auth-footer-copyright">© Idovela 2023</span>
@@ -66,15 +68,17 @@ export default {
 <style lang="scss" scoped>
 p{
     color: white;
+    font-weight: 100;
 }
 .list-footer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     a{
-        margin-bottom: 10px;
-        font-size: 18px;
+        margin-bottom: 15px;
+        font-size: 17px;
         color: white;
+        font-weight: 100;
         &:hover{
             text-decoration: underline;
         }
