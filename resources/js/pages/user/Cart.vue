@@ -2791,7 +2791,9 @@ export default {
     },
     mounted() {
         this.$vuetify.theme.dark = false;
-        this.updateBreadcrumb();
+        if (this.currentUser) {
+            this.updateBreadcrumb();
+        }
     },
     filters: {
         filtroParaOcultarInfo(value, ocultarInfo) {
@@ -2810,14 +2812,25 @@ export default {
             return value;
         }
     },
+    watch: {
+        currentUser(newValue) {
+            if (newValue) {
+                this.updateBreadcrumb();
+            }
+        }
+    },
     methods: {
         ...mapActions("auth", ["getUser"]),
         updateBreadcrumb() {
+            const formattedName = this.capitalizeWords(this.currentUser.name);
             const newItems = [
-                { text: 'Home', href: '/home2', disabled: false },
-                { text: this.currentUser.name.toUpperCase(), disabled: true }
+                { text: 'Home', href: '/home', disabled: false },
+                { text: formattedName, disabled: true }
             ];
             this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
+        },
+        capitalizeWords(name) {
+            return name.replace(/\b\w/g, char => char.toUpperCase());
         },
         toggleDatosEnvio() {
             this.mostrarDatosEnvio = !this.mostrarDatosEnvio;

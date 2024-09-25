@@ -91,6 +91,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep  .v-breadcrumbs{
+    padding-left: 50px;
+}
+::v-deep .v-breadcrumbs li a{
+    font-size: 17px !important;
+    position: relative; 
+    &::before{
+        content: '';
+        background-image: url("./User.png");
+        background-size: contain; 
+        background-repeat: no-repeat;
+        width: 20px; 
+        height: 20px; 
+        display: inline-block;
+        position: absolute;
+        left: -20px; 
+        top: 40%;
+        transform: translateY(-50%); 
+    }
+}
+
+::v-deep .v-breadcrumbs li {
+    font-size: 17px !important;
+}
 .custom-breadcrumb .v-breadcrumbs__item a {
   color: green !important; 
 }
@@ -108,6 +132,7 @@ export default {
 }
 ::v-deep .theme--light.v-breadcrumbs .v-breadcrumbs__divider, .theme--light.v-breadcrumbs .v-breadcrumbs__item--disabled {
     color: #f58634;
+    margin-bottom: 5px;
 }
 .container {
     gap: 0.65rem;
