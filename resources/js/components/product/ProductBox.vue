@@ -16,36 +16,59 @@
             </div>
         </div>
         <div class="product-box-body">
-            <p class="product-box-reference mb-3" v-if="productDetails.reference">{{ productDetails.reference || "--" }}</p>
+            <p class="product-box-reference mb-3" v-if="productDetails.reference">
+                {{ productDetails.reference || "--" }}
+            </p>
             <h2 class="product-box-name mb-1">{{ productDetails.name || "--" }}</h2>
-            <p class="product-box-brand-name mb-3" v-if="productDetails.brandName">{{ productDetails.brandName || "--" }}</p>
+            <p class="product-box-brand-name mb-3" v-if="productDetails.brandName">
+                {{ productDetails.brandName || "--" }}
+            </p>
             <template v-if="productDetails.base_price > productDetails.base_discounted_price">
                 <del class="product-box-price discounted">{{ format_price(productDetails.base_price) }}</del>
             </template>
             <span class="product-box-price">{{ format_price(productDetails.base_discounted_price) }}</span>
             <template v-if="boxStyle == 'two'">
                 <v-divider class="my-4" />
-                <p class="product-box-description" v-if="productDetails.description">{{ productDetails.description || "--" }}</p>
+                <p class="product-box-description" v-if="productDetails.description">
+                    {{ productDetails.description || "--" }}
+                </p>
             </template>
         </div>
         <div class="product-box-footer pt-0 d-flex">
-            <CustomButton
-                color="orange"
-                @click="addCart()"
-                :loading="actionLoading"
-                :disabled="actionLoading"
-            >
+            <CustomButton color="orange" @click="addCart()" :loading="actionLoading" :disabled="actionLoading">
                 Añadir <Cart class="ml-1" />
             </CustomButton>
             <template v-if="isThisWishlisted(productDetails.id)">
-                <button type="button" class="icon active" @click="removeFromWishlist(productDetails.id)">
-                    <WishIcon />
-                </button>
+                <v-tooltip bottom color="black">
+                    <template v-slot:activator="{ on, attrs }">
+                        <button
+                            type="button"
+                            class="icon active"
+                            @click="removeFromWishlist(productDetails.id)"
+                            v-bind="attrs"
+                            v-on="on"
+                        >
+                            <WishIcon />
+                        </button>
+                    </template>
+                    <span>Quitar de favoritos</span>
+                </v-tooltip>
             </template>
             <template v-else>
-                <button type="button" class="icon" @click="addNewWishlist(productDetails.id)">
-                    <WishIcon />
-                </button>
+                <v-tooltip bottom color="black">
+                    <template v-slot:activator="{ on, attrs }">
+                        <button
+                            type="button"
+                            class="icon"
+                            @click="addNewWishlist(productDetails.id)"
+                            v-bind="attrs"
+                            v-on="on"
+                        >
+                            <WishIcon />
+                        </button>
+                    </template>
+                    <span>Añadir de favoritos</span>
+                </v-tooltip>
             </template>
         </div>
     </div>
@@ -90,25 +113,28 @@ export default {
         ...mapMutations("auth", ["showAddToCartDialog"]),
         addCart() {
             if (!this.isAddingToCart && !this.productDetails.is_variant) {
-                this.isAddingToCart = true;  // Marcar que está en proceso
+                this.isAddingToCart = true; // Marcar que está en proceso
 
                 this.addToCart({
                     product_id: this.productDetails,
                     qty: 1
-                }).then(() => {
-                    this.snack({
-                        message: this.$i18n.t("Producto agregado al carrito"),
-                        color: "green"
+                })
+                    .then(() => {
+                        this.snack({
+                            message: this.$i18n.t("Producto agregado al carrito"),
+                            color: "green"
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Error al agregar al carrito:", error);
+                        this.snack({
+                            message: this.$i18n.t("Error agregando el producto"),
+                            color: "red"
+                        });
+                    })
+                    .finally(() => {
+                        this.isAddingToCart = false;
                     });
-                }).catch((error) => {
-                    console.error("Error al agregar al carrito:", error);
-                    this.snack({
-                        message: this.$i18n.t("Error agregando el producto"),
-                        color: "red"
-                    });
-                }).finally(() => {
-                    this.isAddingToCart = false; 
-                });
             }
         }
     }
@@ -137,7 +163,7 @@ export default {
     &-image-hover,
     &-footer {
         padding: 0.5rem;
-        
+
         @media (min-width: 600px) {
             padding: 0.65rem 0.7rem;
         }
@@ -231,7 +257,7 @@ export default {
         //     }
         // }
         display: flex;
-        justify-content:space-around;
+        justify-content: space-between
     }
 
     &-reference {

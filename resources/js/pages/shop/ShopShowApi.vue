@@ -86,8 +86,8 @@ export default {
     },
     mounted(){
         this.getProducts();
+        this.updateBreadcrumb();
     },
-
     methods: {
         async getProducts(){
             const res = await Mixin.methods.call_api("get", `product/search?category_slug=${this.category}`);
@@ -113,6 +113,13 @@ export default {
                     this.productsSeeder = res.data.products.data.slice(0, 4);
                     this.activeButton = null;
                 }
+        },
+        updateBreadcrumb() {
+            const newItems = [
+                { text: 'Home', href: '/', disabled: false },
+                { text: 'Tienda', href: '/tienda', disabled: true }
+            ];
+            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
         },
 
         async filter(value){

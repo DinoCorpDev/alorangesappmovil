@@ -1,10 +1,5 @@
 <template>
     <div>
-        <v-breadcrumbs :items="items" style="background-color: #f4f4f3; margin: 12px">
-            <template v-slot:divider>
-                <i class="las la-angle-right"></i>
-            </template>
-        </v-breadcrumbs>
         <v-tabs fixed-tabs :show-arrows="false" class="mt-3">
             <v-tab
                 v-for="tab in tabs"
@@ -56,7 +51,8 @@ export default {
         ToolsIcon,
         HomeAppliancesIcon,
         BuildingIcon
-    }
+    },
+    
 };
 </script>
 
@@ -67,34 +63,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.v-breadcrumbs{
-    padding: 13px 5px;
-    & li .v-breadcrumbs__item{
-        &::v-deep {
-        color: rgba(0, 0, 0, .38) !important;
-        }
-    }
-    & .v-breadcrumbs__item--disabled{
-            &::v-deep {
-            color: black !important;
-            }
-        }
-    & li {
-        & .v-breadcrumbs__item{
-            color: rgba(0, 0, 0, .38);
-        }
-        & .v-breadcrumbs__item--disabled{
-            color: black;
-        }
-        
-    }
-}
-.theme--light.v-breadcrumbs .v-breadcrumbs__divider, .theme--light.v-breadcrumbs .v-breadcrumbs__item--disabled {
-    &::v-deep {
-        color: blue !important;
-    }
-    
-}
+
 .theme--dark.v-tabs {
     &::v-deep {
         .v-tabs-bar {

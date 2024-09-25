@@ -2787,10 +2787,11 @@ export default {
     computed: {
         ...mapGetters("auth", ["currentUser"]),
         ...mapState("cart", ["cartProducts", "cartPrice"]),
-        ...mapGetters("cart", ["getCartPrice", "getCartCount"])
+        ...mapGetters("cart", ["getCartPrice", "getCartCount"]),
     },
     mounted() {
         this.$vuetify.theme.dark = false;
+        this.updateBreadcrumb();
     },
     filters: {
         filtroParaOcultarInfo(value, ocultarInfo) {
@@ -2811,6 +2812,13 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["getUser"]),
+        updateBreadcrumb() {
+            const newItems = [
+                { text: 'Home', href: '/home2', disabled: false },
+                { text: this.currentUser.name.toUpperCase(), disabled: true }
+            ];
+            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
+        },
         toggleDatosEnvio() {
             this.mostrarDatosEnvio = !this.mostrarDatosEnvio;
         },

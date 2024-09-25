@@ -27,6 +27,11 @@
                 </div>
             </v-container>
         </v-app-bar>
+        <v-breadcrumbs v-if="breadcrumbItems[0].text != 'disabled'" class="custom-breadcrumb" exact-active-class="active" active-class="disabled" :items="breadcrumbItems" style="background-color: #f4f4f3; margin: 12px; font-size: 18px !important">
+            <template v-slot:divider>
+                <i class="las la-angle-right"></i>
+            </template>
+        </v-breadcrumbs>
         <!-- <NabvarBottomBar v-if="$route.meta.hasBottomBar" /> -->
     </div>
 </template>
@@ -56,6 +61,7 @@ export default {
         ToggleMenu
     },
     data() {
+        
         return {
             headerFixed: false,
             logoLarge: false,
@@ -63,7 +69,10 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("auth", ["userShortName"])
+        ...mapGetters("auth", ["userShortName"]),
+        breadcrumbItems() {
+            return this.$store.getters["breadcrumb/breadcrumbItems"];
+        }
     },
     mounted() {
         window.addEventListener("resize", this.handleScroll);
@@ -82,6 +91,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.custom-breadcrumb .v-breadcrumbs__item a {
+  color: green !important; 
+}
+::v-deep .v-breadcrumbs__item a {
+  color: blue !important; 
+}
+::v-deep .disabled{
+    color: black;
+}
+::v-deep .active{
+    color: purple;
+}
+::v-deep .v-breadcrumbs__item .v-breadcrumbs__item--disabled{
+    color: yellow;
+}
+::v-deep .theme--light.v-breadcrumbs .v-breadcrumbs__divider, .theme--light.v-breadcrumbs .v-breadcrumbs__item--disabled {
+    color: #f58634;
+}
 .container {
     gap: 0.65rem;
 
