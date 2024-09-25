@@ -313,7 +313,7 @@ if (!function_exists('variation_discounted_price')) {
      */
     function variation_discounted_price($product, $variation, $with_tax = true)
     {
-        $price = $product->price;
+        $price = $product->highest_price;
         $tax = 0;
 
         $discount_applicable = false;
