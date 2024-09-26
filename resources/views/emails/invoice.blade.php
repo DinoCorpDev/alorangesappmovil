@@ -273,7 +273,7 @@
                             <td class="text-left" style="border-bottom:1px dotted #B8B8B8">
                                 {{ translate('Sub Total') }}</td>
                             <td class="bold" style="border-bottom:1px dotted #B8B8B8">
-                                {{ format_price($total - $totalTax) }}</td>
+                                {{ format_price($combined_order->grand_total) }}</td>
                         </tr>
                         <tr class="">
                             <td class="text-left" style="border-bottom:1px dotted #B8B8B8">

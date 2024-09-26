@@ -2787,10 +2787,13 @@ export default {
     computed: {
         ...mapGetters("auth", ["currentUser"]),
         ...mapState("cart", ["cartProducts", "cartPrice"]),
-        ...mapGetters("cart", ["getCartPrice", "getCartCount"])
+        ...mapGetters("cart", ["getCartPrice", "getCartCount"]),
     },
     mounted() {
         this.$vuetify.theme.dark = false;
+        if (this.currentUser) {
+            this.updateBreadcrumb();
+        }
     },
     filters: {
         filtroParaOcultarInfo(value, ocultarInfo) {
@@ -2809,8 +2812,26 @@ export default {
             return value;
         }
     },
+    watch: {
+        currentUser(newValue) {
+            if (newValue) {
+                this.updateBreadcrumb();
+            }
+        }
+    },
     methods: {
         ...mapActions("auth", ["getUser"]),
+        updateBreadcrumb() {
+            const formattedName = this.capitalizeWords(this.currentUser.name);
+            const newItems = [
+                { text: 'Home', href: '/home', disabled: false },
+                { text: formattedName, disabled: true }
+            ];
+            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
+        },
+        capitalizeWords(name) {
+            return name.replace(/\b\w/g, char => char.toUpperCase());
+        },
         toggleDatosEnvio() {
             this.mostrarDatosEnvio = !this.mostrarDatosEnvio;
         },

@@ -83,7 +83,6 @@ export default {
         AddToCart,
         CustomButton,
         ProductsGrid,
-
         CubesIcon,
         MapPinIcon,
         SyncIcon,
@@ -101,6 +100,12 @@ export default {
                 this.getMoreProducts(this.productDetails?.id);
                 this.getMoreProducts2(this.productDetails?.id);
                 this.getRelatedProducts(this.productDetails.id);
+                const newItems = [
+                    { text: 'Home', href: '/home', disabled: false },
+                    { text: 'Tienda', href: '/Shop', disabled: false },
+                    { text: this.productDetails.name, disabled: true }
+                ];
+                this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
             } else {
                 this.snack({
                     message: res.data.message,
