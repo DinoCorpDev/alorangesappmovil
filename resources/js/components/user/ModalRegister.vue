@@ -1,7 +1,7 @@
 <template>
     <v-dialog content-class="modal-register" v-model="showRegister">
         <v-card class="modal-register-card">
-            <v-card-title style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
+            <v-card-title style="background-color: #f58634; color:white; position: relative; padding: 12px 0; min-height: 56px;" class="text-xs-center justify-center title white--text font-weight-bold">
                 <span v-if="registerNotification == false">REGISTRO</span>
                 <button @click="closeRegister" class="esc-button">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1574,6 +1574,7 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .v-stepper__step__step.primary{
     background-color: #f58634 !important;
+    
 }
 .modal-register {
     &-card {

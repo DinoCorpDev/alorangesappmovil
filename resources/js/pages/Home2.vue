@@ -212,6 +212,9 @@ export default {
         if (this.$route.query.modal === 'Password') {
             this.showRecuperarPass = true;
         }
+        if(this.$route.query.modal == 'VerifyAccount' || this.$route.query.modal == 'verifyaccount' || this.$route.query.modal == 'VerifyAccount'){
+            this.showVerifyAccount = true;
+        }
     },
     mounted() {
         this.$vuetify.theme.dark = true;
@@ -223,9 +226,7 @@ export default {
         //     this.showRecuperarPass = true;
         // }
 
-        if(this.$route.query.modal == 'VerifyAccount' || this.$route.query.modal == 'verifyaccount'){
-            this.showVerifyAccount = true;
-        }
+        
     },
     methods: {
         ...mapActions("app", ["setLanguage"]),

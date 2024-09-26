@@ -95,17 +95,8 @@
             </div>
 
             <v-card-actions class="d-block">
-                <div class="d-block">
-                    <CustomButton
-                        block
-                        class="mb-3"
-                        type="submit"
-                        color="orange"
-                        :loading="loading"
-                        :disabled="loading"
-                        @click="verifyAccount"
-                        >Enviar</CustomButton
-                    >
+                <div class="d-flex align-center justify-space-between" style="gap: 5rem;">
+                    
                     <CustomButton
                         block
                         class="mb-2"
@@ -115,6 +106,16 @@
                         :disabled="resendLoading"
                         @click="resendCode"
                         >Reenviar código</CustomButton
+                    >
+                    <CustomButton
+                        block
+                        class="mb-3"
+                        type="submit"
+                        color="orange"
+                        :loading="loading"
+                        :disabled="loading"
+                        @click="verifyAccount"
+                        >Enviar</CustomButton
                     >
                 </div>
             </v-card-actions>
