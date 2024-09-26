@@ -75,7 +75,7 @@
                             <CustomButton
                                 block
                                 color="black"
-                                text="Reset Password"
+                                text="Cambiar contraseña"
                                 type="submit"
                                 @click="resetPassword"
                                 :loading="loading"
