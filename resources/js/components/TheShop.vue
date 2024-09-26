@@ -1,6 +1,6 @@
 <template>
     <v-app class="d-flex flex-column">
-        <Navbar v-if="$route.meta.hasHeader && $route.name == 'Home2'" />
+        <Navbar display="position: fixed; top: 0px" v-if="$route.meta.hasHeader && $route.name == 'Home2'" />
         <NavbarAuth v-if="$route.meta.hasHeader && $route.name != 'Home2'" />
 
         <v-main class="aiz-main-wrap">
