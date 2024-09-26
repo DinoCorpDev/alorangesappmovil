@@ -10,24 +10,36 @@
             shrink-on-scroll
             :fixed="headerFixed"
         >
-            <v-container class="pa-0 fill-height justify-space-sm-between" fluid>
+            <v-container class="pa-0 fill-height d-flex justify-space-between" fluid>
                 <router-link :to="{ name: 'Home2' }" class="layout-navbar-auth-brand">
                     <LogoAloranges class="d-none d-md-flex" />
-                    <LogoAlorange class="d-flex d-md-none"/>
+                    <LogoAlorange class="d-flex d-md-none" />
                 </router-link>
-                <SearchInput />
-                <CustomButton color="orange3" :to="{ name: 'Shop' }">
-                    <span class="d-none d-sm-flex">Tienda</span><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px"/> 
-                </CustomButton>
-                <div class="layout-navbar-auth-nav">
-                    <DoubleButton />
-                    <div style="display: none;">
-                        <ToggleMenu />
+                
+                <SearchInput :placeholder="'Escribe lo que buscas'" style="max-width: 500px;" />
+                <div class="header-actions">
+                    <CustomButton color="orange3" :to="{ name: 'Shop' }">
+                        <span class="d-none d-sm-flex">Tienda</span
+                        ><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px" />
+                    </CustomButton>
+                    <div class="layout-navbar-auth-nav">
+                        <DoubleButton />
+                        <div style="display: none">
+                            <ToggleMenu />
+                        </div>
                     </div>
                 </div>
+                
             </v-container>
         </v-app-bar>
-        <v-breadcrumbs v-if="breadcrumbItems[0].text != 'disabled'" class="custom-breadcrumb" exact-active-class="active" active-class="disabled" :items="breadcrumbItems" style="background-color: #f4f4f3; margin: 12px; font-size: 18px !important">
+        <v-breadcrumbs
+            v-if="breadcrumbItems[0].text != 'disabled'"
+            class="mt-7"
+            exact-active-class="active"
+            active-class="disabled"
+            :items="breadcrumbItems"
+            style="background-color: #f4f4f3; margin: 12px; margin-bottom: 0; font-size: 18px !important"
+        >
             <template v-slot:divider>
                 <i class="las la-angle-right"></i>
             </template>
@@ -61,7 +73,6 @@ export default {
         ToggleMenu
     },
     data() {
-        
         return {
             headerFixed: false,
             logoLarge: false,
@@ -91,46 +102,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep  .v-breadcrumbs{
+.header-actions{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+::v-deep .v-breadcrumbs {
     padding-left: 50px;
 }
-::v-deep .v-breadcrumbs li a{
-    font-size: 17px !important;
-    position: relative; 
-    &::before{
-        content: '';
+::v-deep .v-breadcrumbs li:first-of-type a {
+    &:first-of-type::before {
+        content: "";
         background-image: url("./User.png");
-        background-size: contain; 
+        background-size: contain;
         background-repeat: no-repeat;
-        width: 20px; 
-        height: 20px; 
+        width: 20px;
+        height: 20px;
         display: inline-block;
         position: absolute;
-        left: -20px; 
+        left: -20px;
         top: 40%;
-        transform: translateY(-50%); 
+        transform: translateY(-50%);
     }
+}
+::v-deep .v-breadcrumbs li a {
+    font-size: 17px !important;
+    position: relative;
 }
 
 ::v-deep .v-breadcrumbs li {
     font-size: 17px !important;
 }
-.custom-breadcrumb .v-breadcrumbs__item a {
-  color: green !important; 
-}
-::v-deep .v-breadcrumbs__item a {
-  color: blue !important; 
-}
-::v-deep .disabled{
-    color: black;
-}
-::v-deep .active{
-    color: purple;
-}
-::v-deep .v-breadcrumbs__item .v-breadcrumbs__item--disabled{
-    color: yellow;
-}
-::v-deep .theme--light.v-breadcrumbs .v-breadcrumbs__divider, .theme--light.v-breadcrumbs .v-breadcrumbs__item--disabled {
+
+::v-deep .theme--light.v-breadcrumbs .v-breadcrumbs__divider,
+.theme--light.v-breadcrumbs .v-breadcrumbs__item--disabled {
     color: #f58634;
     margin-bottom: 5px;
 }
@@ -199,5 +205,4 @@ export default {
         }
     }
 }
-
 </style>
