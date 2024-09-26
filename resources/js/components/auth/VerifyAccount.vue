@@ -104,7 +104,7 @@
                         color="orange2"
                         :loading="resendLoading"
                         :disabled="resendLoading"
-                        @click="resendCode"
+                        @click.stop="resendCode"
                         >Reenviar código</CustomButton
                     >
                     <CustomButton
@@ -114,7 +114,7 @@
                         color="orange"
                         :loading="loading"
                         :disabled="loading"
-                        @click="verifyAccount"
+                        @click.stop="verifyAccount"
                         >Enviar</CustomButton
                     >
                 </div>
