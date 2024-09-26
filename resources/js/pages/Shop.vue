@@ -102,7 +102,7 @@ export default {
             letter-spacing: 0.15px;
             line-height: calc(18px + (20 - 18) * var(--screen-size));
             color: #8ec641 !important;
-            max-width: 195px !important;
+            // min-width: 195px !important;
             margin: 0 10px !important;
             border-radius: 10px;
             @media (max-width: 600px) {

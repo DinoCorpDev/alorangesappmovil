@@ -3,7 +3,7 @@
         <input
             @keyup.enter="search()"
             class="search-input-input"
-            :placeholder="placeholder"
+            placeholder="Escribe lo que buscas"
             v-model="searchKeyword"
             type="search"
             required
@@ -122,32 +122,30 @@ export default {
         font-family: "Roboto";
         font-size: 15px;
         letter-spacing: 0.5px;
-
-        border: 1px solid #f58634;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border: 1px solid transparent;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
         outline: none;
-
         width: 100%;
         padding: 0.5rem 1rem;
-
         transition: all 0.2s ease-in-out;
-
+        &:hover{
+            border-color: transparent !important;
+        }
         &::placeholder {
-            color: rgba(#ffffff, 0.5);
+            color: rgb(211, 211, 211);
         }
     }
 
     &-button {
         display: flex;
         align-items: center;
-
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         color: #000;
         background-color: #f58634 !important;
-
         border: 1px solid #f58634;
         border-radius: 5px;
-
         padding: 0 10px;
         height: 40px;
 

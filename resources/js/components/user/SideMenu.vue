@@ -35,16 +35,10 @@
                         </div>
                     </v-col>
 
-                    <v-col cols="8" style="margin-top: 18px">
-                        <v-col cols="12" style="padding-bottom: 0">
+                    <v-col cols="8" class="d-flex align-center">
+                        <v-col cols="12" class="ml-2">
                             <h3 class="user-info-name">
                                 {{ currentUser.name }}
-                            </h3>
-                        </v-col>
-
-                        <v-col cols="12" style="padding-top: 0">
-                            <h3 class="user-info-date">
-                                <p style="font-size: 11px">Se unió en {{ formatDate(currentUser.registerSince) }}</p>
                             </h3>
                         </v-col>
                     </v-col>
