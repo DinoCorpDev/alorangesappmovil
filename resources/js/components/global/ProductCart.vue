@@ -40,8 +40,8 @@
         </div>
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-none d-md-flex">
-                <!-- <template v-if="productCartType == 'checkout'"> TEMPORAL MIENTRAS productCartType se arregla-->
-                <template v-if="productDetails.regular_price">
+                 <template v-if="productCartType == 'checkout'"> 
+                <!-- <template v-if="productDetails.regular_price"> -->
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <button @click="removeFromCart(productDetails.cart_id)" v-bind="attrs" v-on="on">
@@ -95,17 +95,37 @@
                     </template>
                 </template>
 
-                <!-- <template v-if="productCartType == 'wishlist'"> -->
-                <template v-if="productDetails.base_price">
-                    <button @click="removeFromWishlist(productDetails.id)">
-                        <TrashIcon />
-                    </button>
-                    <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }">
-                        <EyeIcon />
-                    </router-link>
-                    <button @click="addCart()">
-                        <AddCartIcon />
-                    </button>
+                <template v-if="productCartType == 'wishlist'">
+                <!-- <template v-if="productDetails.base_price"> -->
+                    <v-tooltip bottom color="black">
+                        <template v-slot:activator="{ on, attrs }">
+                            <button @click="removeFromWishlist(productDetails.id)" v-bind="attrs" v-on="on">
+                                <TrashIcon />
+                            </button>
+                        </template>
+                        <span>Eliminar de favoritos</span>
+                    </v-tooltip>
+                    
+                    <v-tooltip bottom color="black">
+                        <template v-slot:activator="{ on, attrs }">
+                            <button v-bind="attrs" v-on="on">
+                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }">
+                                    <EyeIcon />
+                                </router-link>
+                            </button>
+                        </template>
+                        <span>Ver detalles</span>
+                    </v-tooltip>
+                    
+                    <v-tooltip bottom color="black">
+                        <template v-slot:activator="{ on, attrs }">
+                            <button @click="addCart()" v-bind="attrs" v-on="on">
+                                <AddCartIcon />
+                            </button>
+                        </template>
+                        <span>Agregar a carrito</span>
+                    </v-tooltip>
+                    
                 </template>
             </div>
             <div class="d-md-none">

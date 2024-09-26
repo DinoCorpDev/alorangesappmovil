@@ -187,7 +187,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("app", ["userLanguageObj", "allLanguages"])
+        ...mapGetters("app", ["userLanguageObj", "allLanguages"]),
     },
     mounted() {
         this.$vuetify.theme.dark = true;
@@ -195,10 +195,17 @@ export default {
         this.selectedCode = this.userLanguageObj.code;
 
         this.scrollToCenter();
+        this.updateBreadcrumb();
     },
 
     methods: {
         ...mapActions("app", ["setLanguage"]),
+        updateBreadcrumb() {
+            const newItems = [
+                { text: 'disabled', href: '/', disabled: false },
+            ];
+            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
+        },
         agree() {
             if (this.$i18n.locale !== this.selectedCode) {
                 this.setLanguage(this.selectedCode);

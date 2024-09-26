@@ -41,9 +41,9 @@
                     <v-col
                         v-for="product in productsSeeder"
                         :key="`product-col-${product.id}`"
-                        cols="12"
-                        sm="6"
-                        md="3"
+                        cols="6"
+                        sm="4"
+                        md="2"
                     >
                         <ProductBox boxStyle="two" :productDetails="product" />
                     </v-col>
@@ -86,8 +86,8 @@ export default {
     },
     mounted(){
         this.getProducts();
+        this.updateBreadcrumb();
     },
-
     methods: {
         async getProducts(){
             const res = await Mixin.methods.call_api("get", `product/search?category_slug=${this.category}`);
@@ -113,6 +113,13 @@ export default {
                     this.productsSeeder = res.data.products.data.slice(0, 4);
                     this.activeButton = null;
                 }
+        },
+        updateBreadcrumb() {
+            const newItems = [
+                { text: 'Home', href: '/', disabled: false },
+                { text: 'Tienda', href: '/tienda', disabled: true }
+            ];
+            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
         },
 
         async filter(value){

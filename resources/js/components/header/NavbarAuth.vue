@@ -27,7 +27,12 @@
                 </div>
             </v-container>
         </v-app-bar>
-        <NabvarBottomBar v-if="$route.meta.hasBottomBar" />
+        <v-breadcrumbs v-if="breadcrumbItems[0].text != 'disabled'" class="custom-breadcrumb" exact-active-class="active" active-class="disabled" :items="breadcrumbItems" style="background-color: #f4f4f3; margin: 12px; font-size: 18px !important">
+            <template v-slot:divider>
+                <i class="las la-angle-right"></i>
+            </template>
+        </v-breadcrumbs>
+        <!-- <NabvarBottomBar v-if="$route.meta.hasBottomBar" /> -->
     </div>
 </template>
 
@@ -39,7 +44,7 @@ import DoubleButton from "./DoubleButton.vue";
 import Cart from "../icons/CartIcon.vue";
 import LogoAloranges from "./LogoAloranges.vue";
 import LogoAlorange from "./LogoAlorange.vue";
-import NabvarBottomBar from "./NabvarBottomBar.vue";
+// import NabvarBottomBar from "./NabvarBottomBar.vue";
 import SearchInput from "../global/SearchInput.vue";
 import ToggleMenu from "./ToggleMenu.vue";
 
@@ -50,12 +55,13 @@ export default {
         DoubleButton,
         LogoAloranges,
         LogoAlorange,
-        NabvarBottomBar,
+        // NabvarBottomBar,
         SearchInput,
         Cart,
         ToggleMenu
     },
     data() {
+        
         return {
             headerFixed: false,
             logoLarge: false,
@@ -63,7 +69,10 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("auth", ["userShortName"])
+        ...mapGetters("auth", ["userShortName"]),
+        breadcrumbItems() {
+            return this.$store.getters["breadcrumb/breadcrumbItems"];
+        }
     },
     mounted() {
         window.addEventListener("resize", this.handleScroll);
@@ -82,6 +91,49 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep  .v-breadcrumbs{
+    padding-left: 50px;
+}
+::v-deep .v-breadcrumbs li a{
+    font-size: 17px !important;
+    position: relative; 
+    &::before{
+        content: '';
+        background-image: url("./User.png");
+        background-size: contain; 
+        background-repeat: no-repeat;
+        width: 20px; 
+        height: 20px; 
+        display: inline-block;
+        position: absolute;
+        left: -20px; 
+        top: 40%;
+        transform: translateY(-50%); 
+    }
+}
+
+::v-deep .v-breadcrumbs li {
+    font-size: 17px !important;
+}
+.custom-breadcrumb .v-breadcrumbs__item a {
+  color: green !important; 
+}
+::v-deep .v-breadcrumbs__item a {
+  color: blue !important; 
+}
+::v-deep .disabled{
+    color: black;
+}
+::v-deep .active{
+    color: purple;
+}
+::v-deep .v-breadcrumbs__item .v-breadcrumbs__item--disabled{
+    color: yellow;
+}
+::v-deep .theme--light.v-breadcrumbs .v-breadcrumbs__divider, .theme--light.v-breadcrumbs .v-breadcrumbs__item--disabled {
+    color: #f58634;
+    margin-bottom: 5px;
+}
 .container {
     gap: 0.65rem;
 
@@ -97,7 +149,7 @@ export default {
 .layout-navbar-auth {
     min-height: 60px;
     z-index: 10;
-
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 10px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;
     @media (max-width: 960px) {
         max-height: 60px;
     }
