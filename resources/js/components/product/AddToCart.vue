@@ -3,7 +3,7 @@
         <v-col cols="12" md="7">
             <ProductGallery
                 :is-loading="isLoading"
-                :galleryImages="productDetails.photos"
+                :galleryImages="productDetails.images"
                 :galleryVideos="productDetails.videos"
                 :dataSheet="productDetails.data_sheet"
             />
@@ -154,6 +154,9 @@ export default {
         discount() {
             return this.discount_percent(this.productDetails.base_price, this.productDetails.base_discounted_price);
         }
+    },
+    mounted(){
+        console.log(this.productDetails);
     },
     methods: {
         ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),

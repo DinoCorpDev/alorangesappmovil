@@ -35,7 +35,7 @@
             <template v-else>
                 <template v-if="products.length > 0">
                     <v-col cols="6" sm="4" md="4" lg="2" v-for="(product, i) in products" :key="i">
-                        <ProductBox :product-details="product" />
+                        <ProductBox :productDetails="product" />
                     </v-col>
                 </template>
                 <template v-else>
@@ -122,6 +122,7 @@ export default {
             url += params.categoryIds ? `&category_ids=${params.categoryIds}` : "";
             url += params.attributeValues ? `&attribute_values=${params.attributeValues}` : "";
             url += params.keyword ? `&keyword=${params.keyword}` : "";
+            url += `&form=search`;
             url += params.sortBy ? `&sort_by=${params.sortBy}` : "";
             url += params.minPrice ? `&min_price=${params.minPrice}` : "";
             url += params.maxPrice ? `&max_price=${params.maxPrice}` : "";

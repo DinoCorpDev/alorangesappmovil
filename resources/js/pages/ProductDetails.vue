@@ -43,9 +43,6 @@
             <v-col cols="12" class="">
                 <ProductsGrid class="mb-6" :products="moreProducts" filtrable cols="6" sm="4" md="3" lg="2" />
             </v-col>
-            <v-col cols="12" class="">
-                <ProductsGrid class="mb-6" :products="footerProducts" productStyle="two" filtrable cols="12" sm="6" md="3" />
-            </v-col>
         </v-row>
     </v-container>
 </template>
