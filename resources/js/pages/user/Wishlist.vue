@@ -1,7 +1,7 @@
 <template>
-    <v-row class="wishlist d-flex justify-center align-center">
+    <v-row class="wishlist d-flex align-center">
         <template v-if="getWislistProducts.length === 0">
-            <div class="emptycart">
+            <div class="emptycart d-flex justify-center" style="width: 100%;">
                 <div class="cuadro-emptycart">
                     <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
                     <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
@@ -10,12 +10,13 @@
             </div>
         </template>
         <template v-else>
+            <h5 class="mb-5 mt-1" style="font-size: 25px; font-weight: 400; text-align: left;">Lista de deseos </h5>
             <div class="cart-table-header mb-2" style="width: 100%">
                 <div style="padding-left: 4%">Productos</div>
                 <div>Precio</div>
-                <div class="d-none d-md-flex">Cantidad</div>
+                <div class="d-none d-md-flex"><span class="pl-2">Cantidad</span></div>
                 <div class="d-flex d-md-none">Cant</div>
-                <div class="d-none d-sm-flex">Opciones</div>
+                <div class="d-none d-sm-flex"><span class="pl-3">Opciones</span></div>
                 <div class="d-flex d-sm-none">Opc</div>
             </div>
             <v-row no-gutters class="car-items" style="overflow-y: scroll; max-height: 450px">
@@ -106,8 +107,6 @@ export default {
 .cuadro-emptycart {
     padding: 40px 50px;
     text-align: center;
-    border: 1px solid #f5f5f5;
-    background-color: #f5f5f5;
     margin-top: 7%;
     border-radius: 10px;
 }

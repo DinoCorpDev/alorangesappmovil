@@ -296,9 +296,9 @@ export default {
     display: grid;
     align-items: stretch;
     grid-template-columns: 6fr 4fr 1fr 1fr;
-
+    border: 1px solid #d2d7dd;
     border-radius: 10px;
-    background-color: #f5f5f5;
+    // background-color: #f5f5f5;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     box-sizing: border-box;
@@ -311,12 +311,6 @@ export default {
 
     &-body {
         display: flex;
-    }
-
-    &-body,
-    &-body-price,
-    &-quantity {
-        border-right: 1px solid #dfdfdf;
     }
 
     &-body-price,
@@ -505,22 +499,26 @@ export default {
             @media (min-width: 768px) {
                 .btn-increment {
                     right: 5px;
+                    width: 30px;
+                    height: 30px;
                 }
 
                 .btn-decrement {
                     left: 5px;
+                    width: 30px;
+                    height: 30px;
                 }
             }
 
             .numeric-input {
                 border: none;
-                background: #ffffff;
+                background: transparent;
                 padding: 5px;
                 border-radius: 5px;
             }
 
             .btn {
-                background: none;
+                background: #dddddd;
                 box-shadow: none;
                 border: none;
                 cursor: pointer;
