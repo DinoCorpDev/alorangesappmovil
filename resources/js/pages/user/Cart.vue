@@ -48,7 +48,7 @@
                             <div class="d-none d-sm-flex">Opciones</div>
                             <div class="d-flex d-sm-none">Opc</div>
                         </div>
-                        <v-row no-gutters class="car-items" style="overflow-y: scroll; max-height: 450px">
+                        <v-row no-gutters class="car-items" style="overflow-y: auto; max-height: 450px">
                             <v-col cols="12" v-for="(product, i) in cartProducts" :key="i">
                                 <ProductCart :productDetails="product" productCartType="checkout" />
                             </v-col>
@@ -298,22 +298,22 @@
                         <v-col cols="12" md="6">
                             <v-row>
                                 <v-col cols="12">
-                                    <h5 class="fw-600">Dirección de envío</h5>
-                                    <v-divider class="my-3" />
+                                    <h5 class="fw-600 mb-5">Dirección de envío</h5>
                                     <div class="form mb-5">
                                         <v-row>
-                                            <v-col cols="11">
+                                            <v-col cols="10" sm="11">
                                                 <SelectCustom
                                                     dark="true"
                                                     label="Usuario Principal"
+                                                    color="cart-select"
                                                     :items="addressesParaEnvio"
                                                     @input="changeAddress($event, 0)"
-                                                    item-text="address"
+                                                    item-text="name"
                                                     item-value="id"
                                                     placeholder="Seleccione una opcion"
                                                 />
                                             </v-col>
-                                            <v-col cols="1" class="pl-0 ojo">
+                                            <v-col cols="2" sm="1" class="pl-0 ojo">
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
@@ -332,7 +332,10 @@
                                         
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
-                                            <span class="body1 pr-3">--</span>
+                                            <span class="body1 pr-3">{{ 
+                                                selectedAddressEnvio?.name ||
+                                                "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
@@ -344,7 +347,7 @@
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold pl-3"> Dirección adicional </span>
                                             <span class="body1 pr-3">{{
-                                                selectedAddressEnvio?.address ||
+                                                selectedAddressEnvio?.details ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
@@ -394,14 +397,14 @@
                                             v-if="Object.entries(addressPrincipal).length !== 0"
                                             class="mr-3 ml-3"
                                             style="width: 136px"
-                                            color="grey"
+                                            color="white"
                                             text="EDITAR"
                                             @click="editAddress(addressPrincipal, 'shipping')"
                                         />
                                         <CustomButton
                                             v-if="Object.entries(addressPrincipal).length !== 0"
                                             class="mr-3 ml-3"
-                                            color="grey"
+                                            color="white"
                                             text="AÑADIR"
                                             style="width: 136px"
                                             @click="openAdress('shipping')"
@@ -410,31 +413,18 @@
                                             v-if="Object.entries(addressPrincipal).length === 0"
                                             block
                                             class="mr-3 ml-3"
-                                            color="grey"
+                                            color="white"
                                             text="AÑADIR"
                                             @click="openAdress('shipping')"
                                         />
                                         
                                     </div>
-                                    <div class="form">
-                                        <h5 class="black--text pa-3">Encargado</h5>
-                                        <v-divider class="my-3" />
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">NOMBRE COMPLETO</span>
-                                            <span class="body1 pr-3">{{ currentUser.name || "--" }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-3">
-                                            <span class="subtitle1 text-uppercase bold pl-3">TELÉFONO / CELULAR</span>
-                                            <span class="body1 pr-3">
-                                                {{userData?.phone || "--"}}
-                                            </span>
-                                        </div>
-                                        <CustomButton 
-                                            class="mr-3 ml-3"
-                                            style="width: 136px"
-                                            color="grey"
-                                            text="EDITAR" 
-                                            @click="editProfile()" 
+                                    <div class="form mb-5" v-if="addDialogShow == true">
+                                        <AddressDialog
+                                            :typeAddress="typeAddress"
+                                            :show="addDialogShow"
+                                            @close="addressDialogClosed"
+                                            :old-address="addressSelectedForEdit"
                                         />
                                     </div>
                                 </v-col>
@@ -442,12 +432,12 @@
                             </v-row>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <AddressDialog
+                            <!-- <AddressDialog
                                 :typeAddress="typeAddress"
                                 :show="addDialogShow"
                                 @close="addressDialogClosed"
                                 :old-address="addressSelectedForEdit"
-                            />
+                            /> -->
                             <ProfileDialog
                                 :show="profileDialogShow"
                                 @close="profileDialogClosed"
@@ -455,168 +445,45 @@
                             />
                             <v-row>
                                 <v-col cols="12">
-                                    <h5 class="fw-600">Dirección de servicio</h5>
-                                    <v-divider class="my-3" />
-                                    <div class="form">
-                                        <div
-                                            v-if="
-                                                Object.entries(addressServicio).length !== 0 &&
-                                                useDefaultAddress1 == false
-                                            "
-                                        >
-                                            <v-row>
-                                                <v-col cols="11">
-                                                    <SelectCustom
-                                                        :dark="darkBoxes"
-                                                        label="Ingrese una direccion"
-                                                        :items="addressesParaServicio"
-                                                        @input="changeAddress($event, 1)"
-                                                        item-text="address"
-                                                        item-value="id"
-                                                        placeholder="Seleccione una opcion"
-                                                    />
-                                                </v-col>
-                                                <v-col cols="1" class="pl-0 ojo">
-                                                    <i
-                                                        class="las la-eye-slash"
-                                                        style="font-size: 25px"
-                                                        v-if="mostrarDatosServicio"
-                                                        @click="toggleDatosServicio"
-                                                    ></i>
-                                                    <i
-                                                        class="las la-eye"
-                                                        style="font-size: 25px"
-                                                        @click="toggleDatosServicio"
-                                                        v-else
-                                                    ></i>
-                                                </v-col>
-                                            </v-row>
-                                            <v-divider class="my-3" />
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">país</span>
-                                                <span class="body1 pr-3">--</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressServicio?.name | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
-                                                <span class="body1 text-right pr-3">{{
-                                                    addressServicio?.address
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3"> Dirección adicional </span>
-                                                <span class="body1 pr-3">--</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressServicio?.postal_code
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressServicio?.country
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressServicio?.city | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">localidad</span>
-                                                <span class="body1 pr-3"> -- </span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
-                                                <span class="body1 pr-3"> -- </span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressPrincipal?.phone
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
+                                    <h5 class="fw-600 mb-5">Facturar a nombre de </h5>
+                                    <div class="form" style="gap: 32px;">
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1  bold pl-3">Nombre completo</span>
+                                            <span class="body1 pr-3">{{ capitalizeWords(currentUser.name) || "--" }}</span>
                                         </div>
-                                        <!-- <label class="label my-3 d-flex justify-end align-end" style="border: 1px solid #9e9e9e; border-radius: 5px;">
-                                            <input
-                                                type="checkbox"
-                                                v-model="useDefaultAddress1"
-                                                id="useDefaultAddress1"
-                                            />
-                                            <span class="body-1 black--text text">
-                                                Usar la misma <strong>Dirección de envió</strong> para que Idovela preste los servicio de
-                                                instalación, mantenimiento y más.
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1  bold pl-3">Correo electrónico</span>
+                                            <span class="body1 pr-3">{{ currentUser.email || "--" }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1  bold pl-3">Tipo de persona</span>
+                                            <span class="body1 pr-3">{{ currentUser.personType || "--" }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1  bold pl-3">Dirección</span>
+                                            <span class="body1 pr-3">{{ selectedAddressEnvio?.address || "--" }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1  bold pl-3">Tipo de documento</span>
+                                            <span class="body1 pr-3">{{ currentUser.documentType || "--" }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1  bold pl-3">Número de documento</span>
+                                            <span class="body1 pr-3">{{ currentUser.documentNumber || "--" }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-3">
+                                            <span class="subtitle1 bold pl-3">Teléfono / celular</span>
+                                            <span class="body1 pr-3">
+                                                {{currentUser.phone || "--"}}
                                             </span>
-                                            <span class="checkmark" style="margin-top: 5%"></span>
-                                            
-                                        </label> -->
-
-                                        <label class="label mt-3" style="border: 2px solid #9e9e9e; border-radius: 5px;">
-                                            <v-row>
-                                                <v-col cols="1" class="py-0 px-0">
-                                                    <input
-                                                        type="checkbox"
-                                                        v-model="useDefaultAddress1"
-                                                        id="useDefaultAddress1"
-                                                    />
-                                                    <span class="checkmark"></span>
-                                                </v-col>
-                                                <v-col cols="11" class="d-flex px-0">
-                                                    <span class="body-1 black--text text py-4" style="padding-right: 17px;">
-                                                        Usar la misma <strong>Dirección de envió</strong> para que Idovela preste los servicio de
-                                                        instalación, mantenimiento y más.
-                                                    </span>
-                                                </v-col>
-                                            </v-row>
-                                        </label>
-
-                                        <v-row>
-                                                <v-col cols="7" class="d-flex jusify-start align-center">
-                                                    <p class="mb-0" style="font-size: 15px;">¿Desea utilizar otra dirección?</p>
-                                                </v-col>
-                                                <v-col cols="5">
-                                                    <CustomButton
-                                                        class="mr-3"
-                                                        color="grey"
-                                                        text="AÑADIR"
-                                                        @click=""
-                                                    />
-                                                </v-col>
-                                            </v-row>
-
-                                        <CustomButton
-                                            v-if="
-                                                Object.entries(addressServicio).length !== 0 &&
-                                                useDefaultAddress1 == false
-                                            "
-                                            style="width: 136px"
+                                        </div>
+                                        <!-- <CustomButton 
                                             class="mr-3 ml-3"
+                                            style="width: 136px"
                                             color="grey"
-                                            text="EDITAR"
-                                            @click="editAddress(addressServicio, 'service')"
-                                        />
-                                        <CustomButton
-                                            v-if="
-                                                Object.entries(addressServicio).length === 0 &&
-                                                useDefaultAddress1 == false
-                                            "
-                                            block
-                                            color="grey"
-                                            text="Añadir Dirección"
-                                            @click="openAdress('service')"
-                                        />
+                                            text="EDITAR" 
+                                            @click="editProfile()" 
+                                        /> -->
                                     </div>
                                     <!-- <h5 class="fw-600">Costo logístico</h5>
                                     <v-divider class="my-4" />
@@ -928,162 +795,163 @@
                 </v-stepper-content>
                 <v-stepper-content class="tamaño-responsive" step="3">
                     <v-row>
-                        <v-col cols="12" md="6" order="2" order-md="1" order-sm="1">
+                        <v-col cols="12" md="7" order="2" order-md="1" order-sm="1">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
-                            <v-divider class="my-4" />
-                            <div class="form">
+                            <div class="form" style="border: none !important;">
                                 <v-row>
-                                    <v-col>
-                                        <TypePayment img="/public/assets/img/pse.png" text="Pse" />
-                                        <input
-                                            type="radio"
-                                            name="medio-de-pago"
-                                            autocomplete="off"
-                                            v-model="pick"
-                                            :value="1"
-                                        />
-                                    </v-col>
-                                    <v-col>
-                                        <TypePayment img="/public/assets/img/credito.png" text="Credito" />
-                                        <input
-                                            type="radio"
-                                            name="medio-de-pago"
-                                            autocomplete="off"
-                                            v-model="pick"
-                                            :value="2"
-                                        />
-                                    </v-col>
-                                    <v-col>
-                                        <TypePayment img="/public/assets/img/debito.png" text="Debito" />
-                                        <input
-                                            type="radio"
-                                            name="medio-de-pago"
-                                            autocomplete="off"
-                                            v-model="pick"
-                                            :value="3"
-                                        />
-                                    </v-col>
-                                    <v-col>
-                                        <TypePayment img="/public/assets/img/efecty.png" text="Efecty" />
-                                        <input
-                                            type="radio"
-                                            name="medio-de-pago"
-                                            autocomplete="off"
-                                            v-model="pick"
-                                            :value="5"
-                                        />
-                                    </v-col>
-                                    <v-col>
-                                        <div class="d-none d-sm-flex">
-                                            <TypePayment img="/public/assets/img/transferir.png" text="Transferir" />
+                                    <v-col cols="6" sm="3">
+                                        <div :class="{'active-payment' : pick == 1}" @click="pick = 1" style="cursor: pointer;">
+                                            <TypePayment :active="pick === 1" img="/public/assets/img/pse.svg" text="PSE" />
+                                            <label class="custom-radio ml-3">
+                                                <input
+                                                    type="radio"
+                                                    name="medio-de-pago"
+                                                    autocomplete="off"
+                                                    v-model="pick"
+                                                    :value="1"
+                                                />
+                                                <span class="radio-check d-none"></span>
+                                            </label>
                                         </div>
-                                        <div class="d-flex d-sm-none">
-                                            <TypePayment img="/public/assets/img/transferir.png" text="Transf" />
+                                    </v-col>
+                                    <v-col cols="6" sm="3">
+                                        <div :class="{'active-payment' : pick == 2}"  @click="pick = 2" style="cursor: pointer;">
+                                            <TypePayment :active="pick === 2" img="/public/assets/img/card.png" text="Credito/Debito" />
+                                            <label class="custom-radio ml-3">
+                                                <input
+                                                    type="radio"
+                                                    name="medio-de-pago"
+                                                    autocomplete="off"
+                                                    v-model="pick"
+                                                    :value="2"
+                                                />
+                                                <span class="radio-check d-none"></span>
+                                            </label>
                                         </div>
-                                        <input type="radio" name="medio-de-pago" autocomplete="off" :value="4" />
+                                    </v-col>
+                                    <v-col cols="6" sm="3">
+                                        <div :class="{'active-payment' : pick == 5}"  @click="pick = 5" style="cursor: pointer;">
+                                            <TypePayment :active="pick === 5" img="/public/assets/img/contraentrega.png" text="Contraentrega" />
+                                            <label class="custom-radio ml-3">
+                                                <input
+                                                    type="radio"
+                                                    name="medio-de-pago"
+                                                    autocomplete="off"
+                                                    v-model="pick"
+                                                    :value="5"
+                                                />
+                                                <span class="radio-check d-none"></span>
+                                            </label>
+                                        </div>
+                                    </v-col>
+                                    <v-col cols="6" sm="3">
+                                        <div :class="{'active-payment' : pick == 4}"  @click="pick = 4" style="cursor: pointer;">
+                                            <TypePayment :active="pick === 4" img="/public/assets/img/transferencia.png" text="Transferir" />
+                                            <label class="custom-radio ml-3">
+                                                <input
+                                                    type="radio"
+                                                    name="medio-de-pago"
+                                                    autocomplete="off"
+                                                    v-model="pick"
+                                                    :value="4"
+                                                />
+                                                <span class="radio-check d-none"></span>
+                                            </label>
+                                        </div>
                                     </v-col>
                                 </v-row>
-                                <v-divider class="my-3" />
-                                <div v-if="pick === 1">
-                                    <label class="text-uppercase">Tipo de Persona</label>
-                                    <SelectCustom
-                                        class="selector"
-                                        :dark="darkBoxes"
-                                        label="Tipo de persona"
-                                        :items="selectPersonType"
-                                    />
-                                    <label class="text-uppercase">Banco</label>
-                                    <SelectCustom
-                                        class="selector"
-                                        :dark="darkBoxes"
-                                        label="Seleccionar banco"
-                                        :items="selectBancos"
-                                    />
+                                <div class="mt-3">
+                                    <div v-if="pick === 1">
+                                        <label class="text-uppercase">Tipo de Persona</label>
+                                        <SelectCustom
+                                            class="selector"
+                                            :dark="darkBoxes"
+                                            label="Tipo de persona"
+                                            :items="selectPersonType"
+                                        />
+                                        <label class="text-uppercase">Banco</label>
+                                        <SelectCustom
+                                            class="selector"
+                                            :dark="darkBoxes"
+                                            label="Seleccionar banco"
+                                            :items="selectBancos"
+                                        />
+                                    </div>
+                                    <div v-if="pick === 2">
+                                        <label class="text-uppercase">Numero de tarjeta</label>
+                                        <CustomInput />
+                                        <label class="text-uppercase">Nombre titular de la tarjeta</label>
+                                        <CustomInput />
+                                        <label class="text-uppercase">Fecha de expedicion</label>
+                                        <CustomInput />
+                                        <label class="text-uppercase">Codigo de seguridad</label>
+                                        <CustomInput />
+                                        <label class="text-uppercase">Numero de CVV2</label>
+                                        <CustomInput />
+                                        <label class="text-uppercase">Documento</label>
+                                        <SelectCustom
+                                            class="selector"
+                                            :dark="darkBoxes"
+                                            label="Seleccionar banco"
+                                            :items="selectDocuments"
+                                        />
+                                        <label class="text-uppercase">Numero de documento</label>
+                                        <CustomInput />
+                                    </div>
+                                    <div v-if="pick === 4" class="form">
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">PERSONA JURÍDICA</span>
+                                            <span class="body1"> Aloranges </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">CORREO ELECTRÓNICO</span>
+                                            <span class="body1"> contabilidad@aloranges.com </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">TELÉFONO</span>
+                                            <span class="body1"> 57 125 1254 1254 </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">NIT</span>
+                                            <span class="body1"> 546456546546 </span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 text-uppercase bold">CUENTA DE AHORROS</span>
+                                            <span class="body1"> 768678678 </span>
+                                        </div>
+                                        <CustomButton
+                                            block
+                                            color="grey"
+                                            text="Añadir comprobante de pago"
+                                            @click="$refs.fileInput.click()"
+                                        />
+                                        <input
+                                            style="display: none"
+                                            ref="fileInput"
+                                            type="file"
+                                            @change="fileSelected"
+                                            enctype="multipart/form-data"
+                                        />
+                                    </div>
                                 </div>
-                                <div v-if="pick === 2">
-                                    <label class="text-uppercase">Numero de tarjeta</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Nombre titular de la tarjeta</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Fecha de expedicion</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Codigo de seguridad</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Numero de CVV2</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Documento</label>
-                                    <SelectCustom
-                                        class="selector"
-                                        :dark="darkBoxes"
-                                        label="Seleccionar banco"
-                                        :items="selectDocuments"
-                                    />
-                                    <label class="text-uppercase">Numero de documento</label>
-                                    <CustomInput />
-                                </div>
-                                <div v-if="pick === 3">
-                                    <label class="text-uppercase">Numero de tarjeta</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Nombre titular de la tarjeta</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Fecha de expedicion</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Codigo de seguridad</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Numero de CVV2</label>
-                                    <CustomInput />
-                                    <label class="text-uppercase">Documento</label>
-                                    <SelectCustom
-                                        class="selector"
-                                        :dark="darkBoxes"
-                                        label="Seleccionar banco"
-                                        :items="selectDocuments"
-                                    />
-                                    <label class="text-uppercase">Numero de documento</label>
-                                    <CustomInput />
-                                </div>
-                                <div v-if="pick === 4" class="form">
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">PERSONA JURÍDICA</span>
-                                        <span class="body1"> idovela sas </span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">CORREO ELECTRÓNICO</span>
-                                        <span class="body1"> contabilidad@idovela.com </span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">TELÉFONO</span>
-                                        <span class="body1"> 57 125 1254 1254 </span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">NIT</span>
-                                        <span class="body1"> 546456546546 </span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold">CUENTA DE AHORROS</span>
-                                        <span class="body1"> 768678678 </span>
-                                    </div>
-                                    <CustomButton
-                                        block
-                                        color="grey"
-                                        text="Añadir comprobante de pago"
-                                        @click="$refs.fileInput.click()"
-                                    />
-                                    <input
-                                        style="display: none"
-                                        ref="fileInput"
-                                        type="file"
-                                        @change="fileSelected"
-                                        enctype="multipart/form-data"
-                                    />
-                                </div>
-                                <CustomButton v-if="pick != 0" class="mt-2" text="Aplicar" color="grey" />
+                                <CustomButton v-if="pick != 5 && pick != 4" class="mt-2" text="Aplicar" color="orange" />
                             </div>
                         </v-col>
-                        <v-col cols="12" md="6" order="1" order-md="2" order-sm="2">
-                            <h5 class="fw-600">Facturar a nombre de</h5>
+                        <v-col cols="12" md="5" order="1" order-md="2" order-sm="2">
+                            <h5 class="fw-600">Codigo promocional</h5>
+                            <div class="form" style="border: none !important;">
+                                    <p class="mb-1">
+                                        Regalo/Referido
+                                    </p>
+                                    <CustomInput 
+                                        placeholder="Ingresar código de descuento"
+                                        class="mb-2"
+                                    />
+                                    <CustomButton class="mb-4" block color="white" text="Aplicar" />
+                            </div>
+                            <!--<h5 class="fw-600">Facturar a nombre de</h5>
                             <v-divider class="my-4" />
-                            <div class="form">
+                             <div class="form">
                                 <v-divider class="my-3" />
                                 <div v-if=" Object.entries(userData).length !== 0">
                                     <div class="d-flex justify-space-between mb-2">
@@ -1106,7 +974,7 @@
                                         <span class="subtitle1 text-uppercase bold pl-3">Número de documento</span>
                                         <span class="body1 pr-3">{{userData.documentNumber || ""}}</span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- <label class="label my-3">
                                     <input type="checkbox" v-model="useDefaultAddress2" id="useDefaultAddress2" />
                                     <span class="body-1 black--text text">
@@ -1133,26 +1001,7 @@
                                     text="Añadir Dirección"
                                     @click="openAdress('billing')"
                                 /> -->
-                            </div>
-                        </v-col>
-                        <v-col cols="12" md="6" order="3" order-md="3" order-sm="3">
-                            <h5 class="fw-600">Codigo promocional</h5>
-                            <v-divider class="my-4" />
-                            <div class="form">
-                                <v-row>
-                                    <v-col cols="3" style="display: flex; place-items: center">
-                                        <Promocion />
-                                    </v-col>
-
-                                    <v-col cols="9" style="display: flex; place-items: center">
-                                        <p class="mb-0">
-                                            Si tienes un código promocional, cupón de descuento o un promocional
-                                            agrégalo
-                                        </p>
-                                    </v-col>
-                                    <CustomButton class="mb-4" block color="grey" text="Añadir código" />
-                                </v-row>
-                            </div>
+                            <!-- </div> -->
                         </v-col>
                         <v-col cols="12" order="3" order-md="3" order-sm="3" class="d-flex justify-space-between">
                             <v-row class="barra-inferior">
@@ -2966,6 +2815,8 @@ export default {
             this.getUser();
         },
         async proceedCheckout() {
+            // const res = await this.aceptance_payment_wompi();
+            // console.log(res);
             if (Object.entries(this.dataCheckout).length === 0) {
                 // prettier-ignore
                 const shippingAddressId = this.useDefaultAddress1 ? this.addressPrincipal?.id ?? "" : this.addressServicio?.id ?? "";
@@ -3210,8 +3061,7 @@ export default {
 .cuadro-emptycart {
     padding: 40px 50px;
     text-align: center;
-    border: 1px solid #f5f5f5;
-    background-color: #f5f5f5;
+    background-color: transparent;
     margin-top: 7%;
     border-radius: 10px;
 }
@@ -3231,10 +3081,12 @@ export default {
 }
 
 .form {
-    border: 1px solid #f5f5f5;
+    border: 1px solid #d5d6d9;
     border-radius: 10px;
     padding: 10px;
-    background: #f5f5f5;
+    & .mb-2{
+        margin-bottom: 15px !important;
+    }
 }
 
 .label {
@@ -3524,8 +3376,54 @@ export default {
         gap: 70px;
     }
 }
-
+.active-payment{
+    background-color: #ffefdf;
+    border: 1px solid #f58634;
+    border-radius: 10px;
+}
 .bold{
     font-weight: bold;
+}
+.custom-radio {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  input[type="radio"] {
+    display: none; 
+  }
+
+  .radio-check {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f58634; 
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    margin-right: 8px; 
+  }
+
+
+  input[type="radio"]:checked + .radio-check {
+    background-color: #f58634;
+  }
+
+  .radio-check::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  input[type="radio"]:checked + .radio-check::after {
+    opacity: 1; 
+  }
 }
 </style>

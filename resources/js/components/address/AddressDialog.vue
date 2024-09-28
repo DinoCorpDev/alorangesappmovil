@@ -1,42 +1,45 @@
 <template>
-    <v-dialog v-model="isVisible" max-width="600px" @click:outside="closeDialog">
+    <div v-if="isVisible">
         <div class="white pa-5 rounded">
             <v-form :validator="$v.form" autocomplete="chrome-off">
                 <div class="mb-3">
-                    <div class="mb-1 fs-13 fw-500">Dirección (Calle / Carrera)</div>
+                    <div class="mb-1 fs-13 fw-500">Nombre dirección</div>
                     <CustomInput
                         v-model="form.name"
                         :error-messages="addressNameErrors"
                         @blur="$v.form.name.$touch()"
                         required
+                        placeholder="Nombre de la dirección"
                     />
                 </div>
                 
                 <div class="mb-3">
-                    <div class="mb-1 fs-13 fw-500">{{ $t("address") }}</div>
+                    <div class="mb-1 fs-13 fw-500"> Dirección</div>
                    <CustomInput
                         v-model="form.address"
                         :error-messages="addressErrors"
                         @blur="$v.form.address.$touch()"
+                        placeholder="Nombre"
                         required
                     />
                 </div>
                 <div class="mb-3">
-                    <div class="mb-1 fs-13 fw-500">{{ $t("postal_code") }}</div>
-                    <v-text-field
-                        :placeholder="$t('postal_code')"
-                        type="text"
+                    <div class="mb-1 fs-13 fw-500">Código postal</div>
+                    <SelectCustom
+                        placeholder="Seleccione codigo postal"
+                        class="select-placeholder"
+                        :items="codigoPostalTypes"
                         v-model="form.postal_code"
                         :error-messages="postalCodeErrors"
-                        hide-details="auto"
+                        @blur="$v.form.postal_code.$touch()"
                         required
-                        outlined
-                    ></v-text-field>
+                    />
                 </div>
                 <div class="mb-3">
-                    <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
+                    <div class="mb-1 fs-13 fw-500"> País </div>
                     <SelectCustom
                         :error-messages="countryErrors"
+                        placeholder="País"
                         :items="countries"
                         @blur="$v.form.country.$touch()"
                         @input="countryChanged"
@@ -47,9 +50,10 @@
                     />
                 </div>
                 <div class="mb-3">
-                    <div class="mb-1 fs-13 fw-500">{{ $t("state") }}</div>
+                    <div class="mb-1 fs-13 fw-500"> Estado / Departamento </div>
                     <SelectCustom
                         :error-messages="stateErrors"
+                        placeholder="Estado o departamento"
                         :items="filteredStates"
                         @blur="$v.form.state.$touch()"
                         @input="stateChanged"
@@ -60,8 +64,9 @@
                     />
                 </div>
                 <div class="mb-3">
-                    <div class="mb-1 fs-13 fw-500">City</div>
+                    <div class="mb-1 fs-13 fw-500">Ciudad</div>
                     <SelectCustom
+                        placeholder="Ciudad"
                         :error-messages="cityErrors"
                         :items="filteredCities"
                         @blur="$v.form.city.$touch()"
@@ -73,14 +78,15 @@
                 </div>
                 <div class="mb-3">
                     <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
-                    <CustomInput v-model="form.neighborhood" />
+                    <CustomInput v-model="form.neighborhood" placeholder="Barrio" />
                 </div>
                 <div class="mb-3">
-                    <div class="mb-1 fs-13 fw-500">{{ $t("phone_number") }}</div>
+                    <div class="mb-1 fs-13 fw-500"> Teléfono </div>
                     <v-row>
                         <v-col cols="12">
                             <vue-tel-input
                                 v-model="form.phone"
+                                placeholder="Ingresar teléfono / celular"
                                 v-bind="mobileInputProps"
                                 :onlyCountries="availableCountries"
                                 @validate="phoneValidate"
@@ -121,31 +127,28 @@
                     </v-row>
                 </div>
                 <div class="text-right mt-4">
-                    <v-btn text @click="closeDialog">{{ $t("cancel") }}</v-btn>
-                    <v-btn
+                    <CustomButton text="Cancelar" color="white" @click="closeDialog" />
+                    <CustomButton
                         v-if="!is_empty_obj(oldAddress)"
                         elevation="0"
-                        color="primary"
+                        text="Actualizar"
+                        color="orange"
                         @click="updateAddress"
                         :loading="adding"
-                        :disabled="adding"
-                    >
-                        {{ $t("update") }}
-                    </v-btn>
-                    <v-btn
+                        :disabled="adding" />
+                    <CustomButton
                         v-else
+                        text="Agregar"
                         elevation="0"
-                        color="primary"
+                        color="orange"
                         @click="addNewAddress"
                         :loading="adding"
                         :disabled="adding"
-                    >
-                        {{ $t("add_new") }}
-                    </v-btn>
+                        />
                 </div>
             </v-form>
         </div>
-    </v-dialog>
+    </div>
 </template>
 
 <script>
@@ -155,6 +158,7 @@ import { mapMutations, mapGetters, mapActions } from "vuex";
 import CustomInput from "../../components/global/CustomInput.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
 import snackbar from "../../components/inc/SnackBar";
+import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     props: {
@@ -165,10 +169,12 @@ export default {
     components: {
         SelectCustom,
         CustomInput,
+        CustomButton,
         VueTelInput,
         snackbar
     },
     data: () => ({
+        codigoPostalTypes: [],
         adding: false,
         mobileInputProps: {
             inputOptions: {
@@ -294,6 +300,12 @@ export default {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;
         },
+        async fetchCodigoPostal() {
+            const res = await this.call_api("get", "all-codigo-postal");
+            if (res.data.success) {
+                this.codigoPostalTypes = res.data.data;
+            }
+        },
         async addNewAddress() {
             this.$v.form.$touch();
         
@@ -418,6 +430,7 @@ export default {
     created() {
         this.resetData();
         this.fetchCountries();
+        this.fetchCodigoPostal();
     },
 };
 </script>

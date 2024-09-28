@@ -14,6 +14,10 @@ class ProductSingleCollection extends JsonResource
      */
     public function toArray($request)
     {
+        $images=[];
+        array_push($images, [
+            'src' => $this->thumbnail_img,
+            'type' => 'image']);
         return [
             'id' => (int) $this->id,
             'name' => $this->getTranslation('name'),
@@ -27,6 +31,7 @@ class ProductSingleCollection extends JsonResource
             ],
             'photos' => $this->convertPhotos($this),
             'thumbnail_image' => api_asset($this->thumbnail_img),
+            'images' => $images,
             'tags' => explode(',', $this->tags),
             'featured' => (int) $this->featured,
             'stock' => (int) $this->stock,
@@ -52,7 +57,7 @@ class ProductSingleCollection extends JsonResource
                 'count_2' => (int) $this->reviews_2_count,
                 'count_1' => (int) $this->reviews_1_count,
             ],
-            'description' => $this->getTranslation('description'),
+            'description' => $this->description,
             'variations' => filter_product_variations($this->variations, $this),
             'variation_options' => generate_variation_options($this->variation_combinations),
             'shop' => [

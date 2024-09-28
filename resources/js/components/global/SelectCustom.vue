@@ -11,6 +11,7 @@
         :required="required"
         :value="value"
         :multiple="multiple"
+        :color="color"
         @blur="$emit('blur', $event)"
         @input="$emit('input', $event)"
         clear-icon="las la-times"
@@ -77,6 +78,10 @@ export default {
         errorMessages: {
             type: Array,
             default: () => []
+        },
+        color: {
+            type: String,
+            default: ""
         },
         hideDetails: {
             type: [Boolean, String],
@@ -165,6 +170,15 @@ export default {
     &.v-text-field--rounded {
         border-radius: 5px;
     }
+    &.cart-select{
+        &::v-deep{
+            v-input__slot{
+                border-color: #d5d6d9 !important;
+                // background-color: transparent !important;
+            }
+        }
+        
+    }
 }
 
 .theme--light {
@@ -178,7 +192,29 @@ export default {
                 }
             }
         }
+        &.cart-select{
+            &::v-deep {
+                .v-input__slot {
+                    background: transparent !important;
 
+                    &:hover {
+                        background: transparent !important;
+                    }
+                }
+            }
+            &.v-text-field--outlined {
+                &::v-deep {
+                    &:not(.v-input--has-state) {
+                        .v-input__slot {
+                            &:hover,
+                            fieldset {
+                                border-color: #d5d6d9;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         &.v-text-field--outlined {
             &::v-deep {
                 &:not(.v-input--has-state) {

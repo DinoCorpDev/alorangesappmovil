@@ -1,6 +1,6 @@
 <template>
     <div class="carousel-swiper">
-        <h5 class="mb-3">{{ title || "H5" }}</h5>
+        <h5 class="mb-3"><strong>{{ title || "H5" }}</strong></h5>
         <swiper :options="swiperOptions">
             <slot />
             <template>
