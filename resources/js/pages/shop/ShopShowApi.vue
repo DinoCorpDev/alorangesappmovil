@@ -39,9 +39,9 @@
             <v-col cols="12" v-for="(product, key) in productsSeeder" :key="`product-col-${product.id}`">
                 <v-row class="mb-3">
                     <v-col
-                        cols="8"
-                        sm="6"
-                        md="4"
+                        cols="12"
+                        sm="12"
+                        md="12"
                     >
                     <CarouselSwiper class="carousel-products" :title="key+' '+product.length+' Resultados'" :options="swiperOptions">
                         <!-- <swiper
@@ -81,6 +81,21 @@ export default {
         productsSeeder: [],
         resultadoFiltroBotones: [],
         activeButton: null,
+        swiperOptions: {
+            slidesPerView: 6,
+            spaceBetween: 12,
+            breakpoints: {
+                600: {
+                    slidesPerView:2,
+                    centeredSlides: true
+                },
+                960: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                    centeredSlides: false
+                }
+            }
+        }
     }),
     props: {
         category: { type: String, default: '' },
