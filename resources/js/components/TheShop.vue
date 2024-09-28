@@ -2,8 +2,10 @@
     <v-app class="d-flex flex-column">
         <Navbar display="position: fixed; top: 0px" v-if="$route.meta.hasHeader && $route.name == 'Home2'" />
         <NavbarAuth v-if="$route.meta.hasHeader && $route.name != 'Home2'" />
+        
 
         <v-main class="aiz-main-wrap">
+            <Breadcrumb />
             <!-- prettier-ignore -->
             <router-view :key="['ShopDetails','ShopCoupons','ShopProducts'].includes($route.name) ? null : $route.path"></router-view>
         </v-main>
@@ -25,6 +27,7 @@ import LoginDialog from "./auth/LoginDialog.vue";
 import Navbar from "./header/Navbar.vue";
 import NavbarAuth from "./header/NavbarAuth.vue";
 import SnackBar from "./inc/SnackBar";
+import Breadcrumb from "./header/Breadcrumb.vue";
 
 export default {
     metaInfo() {
@@ -36,9 +39,15 @@ export default {
         AddToCartDialog,
         Footer,
         LoginDialog,
+        Breadcrumb,
         Navbar,
         NavbarAuth,
         SnackBar
+    },
+    watch: {
+        $route(to, from) {
+            window.scrollTo(0, 0); // Esto forzará el scroll al tope en cada cambio de ruta
+        }
     },
     computed: {
         ...mapGetters("auth", ["isAuthenticated"]),

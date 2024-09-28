@@ -19,7 +19,7 @@
                 <div class="d-none d-sm-flex"><span class="pl-3">Opciones</span></div>
                 <div class="d-flex d-sm-none">Opc</div>
             </div>
-            <v-row no-gutters class="car-items" style="overflow-y: scroll; max-height: 450px">
+            <v-row no-gutters class="car-items" style="overflow-y: auto; max-height: 450px">
                 <v-col cols="12" v-for="(product, i) in getWislistProducts" :key="i">
                     <ProductCart :product-details="product" :product-cart-type="'wishlist'" :is-loading="!wislistLoaded" />
                 </v-col>
