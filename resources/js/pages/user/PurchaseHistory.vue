@@ -1,78 +1,36 @@
 <template>
     <v-row>
-        <v-col class="px-0 px-sm-3" cols="12">
-            <v-tabs class="barra-superior" v-model="tab" grow height="38px" :hide-slider="true">
-                <v-tab :ripple="false">ORDEN DE PEDIDO</v-tab>
-                <v-tab :ripple="false">HISTORIAL DE PRODUCTOS</v-tab>
-            </v-tabs>
-            <v-divider class="my-3" />
-
-            <v-tabs-items v-model="tab">
-                <v-tab-item>
-                    <v-row
-                        v-if="orders.length > 0"
-                        no-gutters
-                        class="compras-items"
-                        style="max-width: 95%; max-height: 450px; overflow-y: scroll;"
-                    >
-                        <v-col cols="12" v-for="(item, i) in orders" :key="i">
-                            <OrderHistory
-                                style="background-color: #f5f5f5;"
-                                :order="item?.code"
-                                :date="item?.date"
-                                colorStatus="red"
-                                :descriptionStatus="item.orders[0]?.payment_status"
-                                icon1="la-download"
-                                icon2="la-eye"
-                                icon3="la-print"
-                            />
-                        </v-col>
-                    </v-row>
-                    <div v-else class="text-center">
-                        <div class="emptycart">
-                            <div class="cuadro-emptycart">
-                                <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/factura.svg" />
-                                <p class="text-cartempty">AUN NO HAY FACTURAS REGISTRADAS</p>
-                                <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
-                            </div>
-                        </div>
-                    </div>
-                </v-tab-item>
-
-                <v-tab-item>
-                    <div class="emptycart">
-                        <div class="cuadro-emptycart">
-                            <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/factura.svg" />
-                            <p class="text-cartempty">AUN NO HAY PRODUCTOS EN EL HISTORIAL</p>
-                            <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
-                        </div>
-                    </div>
-                </v-tab-item>
-            </v-tabs-items>
-
-            <!-- <v-row v-if="orders.length > 0" no-gutters class="compras-items" style="max-width: 95%; max-height: 450px; overflow-y: scroll;">
-                <v-col cols="12" v-for="(item, i) in orders" :key="i">
-                    <OrderHistory
-                        style="background-color: #f5f5f5;"
-                        :order="item?.code"
-                        :date="item?.date"
-                        colorStatus="red"
-                        :descriptionStatus="item.orders[0]?.payment_status"
-                        icon1="la-download"
-                        icon2="la-eye"
-                        icon3="la-print"
-                    />
-                </v-col>
-            </v-row>
+        <v-col class="pa-0" cols="12">
+            <div v-if="orders.length > 0">
+                <h5 class="mb-5 mt-1" style="font-size: 25px; font-weight: 400; text-align: left;">Orden de pedidos</h5>
+                <v-row
+                    no-gutters
+                    class="compras-items"
+                    style="max-width: 100%; max-height: 450px; overflow-y: auto"
+                >
+                    <v-col cols="12" v-for="(item, i) in orders" :key="i">
+                        <OrderHistory
+                            style="background-color: #f5f5f5"
+                            :order="item?.code"
+                            :date="item?.date"
+                            colorStatus="red"
+                            :descriptionStatus="item.orders[0]?.payment_status"
+                            icon1="la-download"
+                            icon2="la-eye"
+                            icon3="la-print"
+                        />
+                    </v-col>
+                </v-row>
+            </div>
             <div v-else class="text-center">
                 <div class="emptycart">
                     <div class="cuadro-emptycart">
-                        <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/facturas.svg" />
+                        <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/factura.svg" />
                         <p class="text-cartempty">AUN NO HAY FACTURAS REGISTRADAS</p>
                         <CustomButton text="IR A PRODUCTOS" color="nero" class="mt-2" :to="{ name: 'Shop' }" />
                     </div>
                 </div>
-            </div> -->
+            </div>
         </v-col>
     </v-row>
 </template>

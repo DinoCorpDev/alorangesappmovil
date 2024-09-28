@@ -272,7 +272,7 @@
                                                                     {{ $array['subject'] }}</td> --}}
                                                                     <td class="h2 center pb10"
                                                                     style="color:#000000; font-family:'Montserrat', Arial,sans-serif; font-weight: bold; font-size: 29px; text-align:center; padding-bottom:30px;">
-                                                                    {{ 'Inicia sesión' }}</td>
+                                                                    {{ '¡Bienvenido!' }}</td>
                                                             </tr>
                                                         @else 
                                                             <tr>
@@ -285,7 +285,7 @@
                                                             <tr>
                                                                 <td class="h5 center blue pb30"
                                                                     style="font-family:'Montserrat', Arial,sans-serif; font-size:18px; line-height:20px; text-align:center; color:#28292e; padding-bottom:30px;">
-                                                                    <span style="color: #28292e">{{ 'Para completar el inicio de sesión, ingrese'}}</span> <br /> <span style="color: #28292e">{{'el código de verificación' }}</span>
+                                                                    <span style="color: #28292e">{{ 'Para completar el registro, ingrese el '}}</span> <br /> <span style="color: #28292e">{{'siguiente código de verificación:' }}</span>
                                                                     <span style="font-weight: bold">{{ $array['verification_code'] ?? '' }}</span>
                                                                 </td>
                                                             </tr>

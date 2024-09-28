@@ -9,10 +9,10 @@
         <div class="product-box-cart-body-price">
             <div>
                 <div class="status">
-                    <p class="text-uppercase font-weight-bold">ESTADO</p>
+                    <p class="text-uppercase font-weight-bold mb-0">ESTADO</p>
                     <div class="color-status" :class="colorStatus"></div>
                 </div>
-                <p>{{ descriptionStatus }}</p>
+                <p class="mb-0">{{ descriptionStatus }}</p>
             </div>
         </div>
         <div class="product-box-cart-actions">
@@ -98,9 +98,9 @@ export default {
     display: grid;
     align-items: stretch;
     grid-template-columns: 7fr 3fr 2fr;
-
+    border: 1px solid #d2d7dd;
     border-radius: 10px;
-    background-color: #f5f5f5;
+    background-color: transparent !important;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     box-sizing: border-box;
@@ -132,7 +132,7 @@ export default {
     }
 
     &-image {
-        background-color: #dfdfdf;
+        // background-color: #dfdfdf;
         width: 90px;
         height: auto;
         aspect-ratio: 1;

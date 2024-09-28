@@ -32,7 +32,7 @@
                 
             </v-container>
         </v-app-bar>
-        <v-breadcrumbs
+        <!-- <v-breadcrumbs
             v-if="breadcrumbItems[0].text != 'disabled'"
             class="mt-7"
             exact-active-class="active"
@@ -43,7 +43,7 @@
             <template v-slot:divider>
                 <i class="las la-angle-right"></i>
             </template>
-        </v-breadcrumbs>
+        </v-breadcrumbs> -->
         <!-- <NabvarBottomBar v-if="$route.meta.hasBottomBar" /> -->
     </div>
 </template>
