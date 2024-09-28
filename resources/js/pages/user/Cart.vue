@@ -2815,6 +2815,8 @@ export default {
             this.getUser();
         },
         async proceedCheckout() {
+            // const res = await this.aceptance_payment_wompi();
+            // console.log(res);
             if (Object.entries(this.dataCheckout).length === 0) {
                 // prettier-ignore
                 const shippingAddressId = this.useDefaultAddress1 ? this.addressPrincipal?.id ?? "" : this.addressServicio?.id ?? "";

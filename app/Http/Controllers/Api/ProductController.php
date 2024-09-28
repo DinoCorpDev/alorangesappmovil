@@ -101,6 +101,20 @@ class ProductController extends Controller
 
     public function search(Request $request){
         $products = [];
+
+        if ($request->form == 'search') {
+            if ($request->keyword) {
+                $products = Product::where('name','LIKE','%'.$request->keyword.'%')->get();
+            }
+
+            $collection = new ProductCollection($products);
+            
+            return response()->json([
+                'success' => true,
+                'products' => $collection,
+            ]);
+        }
+
         $category = Category::where('name','=',$request->category_slug)->first();
         if (empty($category)) {
             return response()->json([
@@ -396,7 +410,7 @@ class ProductController extends Controller
                 }
             }
             return $categoryId;
-        } catch (Exception ) {
+        } catch (Exception $e) {
             $error_code = $e->errorInfo[1];
             $categoryId = $e->errorInfo[1];
             return back()->withErrors('There was a problem uploading the data!');
