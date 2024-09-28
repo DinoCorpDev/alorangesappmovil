@@ -209,10 +209,10 @@
                                                                     cellpadding="0">
                                                                     <tr>
                                                                         <td class="img m-center"
-                                                                            style="font-size:0pt; line-height:0pt; text-align:left;">
-                                                                            <img src="{{ uploaded_asset($logo) }}"
-                                                                                width="" height="24"
-                                                                                border="0" alt="" /></td>
+                                                                            style="font-size:0pt; line-height:0pt; text-align:left; padding-bottom: 20px;">
+                                                                            <a href="{{ env('APP_URL') }}">
+                                                                                <img style="max-width: 150px; height: auto;" src="{{url('https://www.aloranges.com/wp-content/uploads/2024/09/Fonograma-Alorange-e1727394124108.png ')}}" />
+                                                                            </a>
                                                                     </tr>
                                                                 </table>
                                                             </th>
@@ -226,11 +226,11 @@
                                                                     <tr>
                                                                         <td class="text-header right"
                                                                             style="color:#000000; font-family:'Fira Mono', Arial,sans-serif; font-size:12px; line-height:16px; text-align:right;">
-                                                                            <a href="{{ env('APP_URL') }}"
+                                                                            {{-- <a href="{{ env('APP_URL') }}"
                                                                                 target="_blank" class="link"
                                                                                 style="color:#000001; text-decoration:none;"><span
                                                                                     class="link"
-                                                                                    style="color:#000001; text-decoration:none;">{{ env('APP_NAME') }}</span></a>
+                                                                                    style="color:#000001; text-decoration:none;">{{ env('APP_NAME') }}</span></a> --}}
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -240,9 +240,14 @@
                                                     <table width="100%" border="0" cellspacing="0"
                                                         cellpadding="0">
                                                         <tr>
-                                                            <td class="separator"
+                                                            {{-- <td class="separator"
                                                                 style="padding-top: 40px; border-bottom:4px solid #000000; font-size:0pt; line-height:0pt;">
-                                                                &nbsp;</td>
+                                                                &nbsp;</td> --}}
+                                                            @if ($array['subject'] == 'Email Verification')
+                                                                <img style="width: 100%; height: auto;" src="{{url('https://www.aloranges.com/wp-content/uploads/2024/09/imginiciarsesion.png')}}" />
+                                                            @else
+                                                                <img style="width: 100%; height: auto;" src="{{url('https://www.aloranges.com/wp-content/uploads/2024/09/imgcambiarcontra.png')}}" />
+                                                            @endif
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -257,31 +262,55 @@
                                                 <td class="p30-15" style="padding: 70px 30px 70px 30px;">
                                                     <table width="100%" border="0" cellspacing="0"
                                                         cellpadding="0">
-                                                        <tr>
-                                                            <td class="h2 center pb10"
-                                                                style="color:#000000; font-family:'Ubuntu', Arial,sans-serif; font-size:50px; line-height:60px; text-align:center; padding-bottom:10px;">
-                                                                {{ $array['subject'] }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="h5 center blue pb30"
-                                                                style="font-family:'Ubuntu', Arial,sans-serif; font-size:20px; line-height:26px; text-align:center; color:#2e57ae; padding-bottom:30px;">
-                                                                {{ $array['content'] }}
-                                                                <span>{{ $array['verification_code'] ?? '' }}</span>
-                                                            </td>
-                                                        </tr>
+{{--                                                         
+                                                        https://www.aloranges.com/wp-content/uploads/2024/06/Fonograma-Alorange.png
+                                                        https://www.aloranges.com/wp-content/uploads/2024/09/imgcambiarcontra.png --}}
+                                                        @if ($array['subject'] == 'Email Verification')
+                                                            <tr>
+                                                                {{-- <td class="h2 center pb10"
+                                                                    style="color:#000000; font-family:'Ubuntu', Arial,sans-serif; font-size:50px; line-height:60px; text-align:center; padding-bottom:10px;">
+                                                                    {{ $array['subject'] }}</td> --}}
+                                                                    <td class="h2 center pb10"
+                                                                    style="color:#000000; font-family:'Montserrat', Arial,sans-serif; font-weight: bold; font-size: 29px; text-align:center; padding-bottom:30px;">
+                                                                    {{ '¡Bienvenido!' }}</td>
+                                                            </tr>
+                                                        @else 
+                                                            <tr>
+                                                                <td class="h2 center pb10"
+                                                                style="color:#000000; font-family:'Montserrat', Arial,sans-serif; font-size:29px; font-weight: bold; text-align:center; padding-bottom:30px;">
+                                                                {{ '¿Olvidó su contraseña?' }}</td>
+                                                            </tr>
+                                                        @endif
+                                                        @if ($array['subject'] == 'Email Verification')
+                                                            <tr>
+                                                                <td class="h5 center blue pb30"
+                                                                    style="font-family:'Montserrat', Arial,sans-serif; font-size:18px; line-height:20px; text-align:center; color:#28292e; padding-bottom:30px;">
+                                                                    <span style="color: #28292e">{{ 'Para completar el registro, ingrese el '}}</span> <br /> <span style="color: #28292e">{{'siguiente código de verificación:' }}</span>
+                                                                    <span style="font-weight: bold">{{ $array['verification_code'] ?? '' }}</span>
+                                                                </td>
+                                                            </tr>
+                                                        @else
+                                                            <tr>
+                                                                <td class="h5 center blue pb30"
+                                                                    style="font-family:'Montserrat', Arial,sans-serif; font-size:18px; line-height:20px; text-align:center; color:#28292e; padding-bottom:30px;">
+                                                                    <span style="color: #28292e">{{ 'Recibimos una solicitud para reestablecer su contraseña.'}}</span> <br /> <span style="color: #28292e">{{'Ingrese el siguiente codigo de verificación' }}</span>
+                                                                    <span style="font-weight: bold">{{ $array['content'] }}</span>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
                                                         @if ($array['subject'] == 'Email Verification')
                                                             <td class="center pb10"
-                                                                style="text-align:center; padding-bottom:10px;">
-                                                                <a class="h2 center pb10"
-                                                                    style="color:#000000; font-family:'Ubuntu', Arial,sans-serif; font-size:30px; line-height:60px; "
-                                                                    href="{{ url('/?modal=VerifyAccount') }}">Link
-                                                                    verify account</a>
+                                                                style="text-align:center; padding-bottom:10px; padding-top: 25px">
+                                                                <a href="{{ url('/?modal=VerifyAccount') }}" style="background-color: #f58633; border-radius: 100px; border: none; padding: 15px 20px; color:white; font-family:'Montserrat', Arial,sans-serif; font-size:14px; text-decoration:none; text-align:center;">
+                                                                    Ingresar código
+                                                                </a>
+                                                                
                                                             </td>
                                                         @endif
                                                         @if (!empty($array['link']))
                                                             <tr>
                                                                 <td class="h5 center blue pb30"
-                                                                    style="font-family:'Ubuntu', Arial,sans-serif; font-size:20px; line-height:26px; text-align:center; color:#2e57ae; padding-bottom:30px;">
+                                                                    style="font-family:'Montserrat', Arial,sans-serif; font-size:20px; line-height:26px; text-align:center; color:#2e57ae; padding-bottom:30px;">
                                                                     <a href="{{ $array['link'] }}"
                                                                         style="background: #007bff;padding: 0.9rem 2rem;font-size: 0.875rem;color:#fff;border-radius: .2rem;"
                                                                         target="_blank">{{ translate('Click Here') }}</a>
