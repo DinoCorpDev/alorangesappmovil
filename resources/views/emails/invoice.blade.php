@@ -83,23 +83,14 @@
                         <td>
                             <table>
                             <tbody>
-                                    <tr>
-                                        <td style="font-size: 2rem;" class="bold">
-                                            Aloranges
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            @if (get_setting('invoice_logo') != null)
-                                                <img src="{{ uploaded_asset(get_setting('invoice_logo')) }}"
-                                                    height="30" style="display:inline-block;margin-bottom:10px">
-                                            @else
-                                                <img src="{{ static_asset('assets/img/logo.png') }}" height="30"
-                                                    style="display:inline-block;margin-bottom:10px">
-                                            @endif
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td class="img m-center"
+                                        style="font-size:0pt; line-height:0pt; text-align:left; padding-bottom: 20px;">
+                                            <a href="{{ env('APP_URL') }}">
+                                                <img style="max-width: 150px; height: auto;" src="{{url('https://www.aloranges.com/wp-content/uploads/2024/09/Fonograma-Alorange-e1727394124108.png ')}}" />
+                                            </a>
+                                    </td>        
+                                </tr>
                                     <tr>
                                         <td class="">Email:
                                             info@aloranges.com</td>
