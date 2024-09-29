@@ -38,7 +38,7 @@
             <!-- <v-divider class="cartSteper-subheader" /> -->
 
             <v-stepper-items>
-                <v-stepper-content class="tamaño-responsive" step="1" >
+                <v-stepper-content class="tamaño-responsive" step="1">
                     <template v-if="cartProducts.length > 0">
                         <div class="cart-table-header mb-2" style="width: 100%">
                             <div style="padding-left: 4%">Productos</div>
@@ -329,10 +329,10 @@
                                             </v-col>
                                         </v-row>
                                         <v-divider class="my-3" />
-                                        
+
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
-                                            <span class="body1 pr-3">{{ 
+                                            <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.name ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
@@ -345,7 +345,9 @@
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3"> Dirección adicional </span>
+                                            <span class="subtitle1 text-uppercase bold pl-3">
+                                                Dirección adicional
+                                            </span>
                                             <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.details ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
@@ -392,7 +394,7 @@
                                                 addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
-                                        
+
                                         <CustomButton
                                             v-if="Object.entries(addressPrincipal).length !== 0"
                                             class="mr-3 ml-3"
@@ -417,7 +419,6 @@
                                             text="AÑADIR"
                                             @click="openAdress('shipping')"
                                         />
-                                        
                                     </div>
                                     <div class="form mb-5" v-if="addDialogShow == true">
                                         <AddressDialog
@@ -445,36 +446,38 @@
                             />
                             <v-row>
                                 <v-col cols="12">
-                                    <h5 class="fw-600 mb-5">Facturar a nombre de </h5>
-                                    <div class="form" style="gap: 32px;">
+                                    <h5 class="fw-600 mb-5">Facturar a nombre de</h5>
+                                    <div class="form" style="gap: 32px">
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1  bold pl-3">Nombre completo</span>
-                                            <span class="body1 pr-3">{{ capitalizeWords(currentUser.name) || "--" }}</span>
+                                            <span class="subtitle1 bold pl-3">Nombre completo</span>
+                                            <span class="body1 pr-3">{{
+                                                capitalizeWords(currentUser.name) || "--"
+                                            }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1  bold pl-3">Correo electrónico</span>
+                                            <span class="subtitle1 bold pl-3">Correo electrónico</span>
                                             <span class="body1 pr-3">{{ currentUser.email || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1  bold pl-3">Tipo de persona</span>
+                                            <span class="subtitle1 bold pl-3">Tipo de persona</span>
                                             <span class="body1 pr-3">{{ currentUser.personType || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1  bold pl-3">Dirección</span>
+                                            <span class="subtitle1 bold pl-3">Dirección</span>
                                             <span class="body1 pr-3">{{ selectedAddressEnvio?.address || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1  bold pl-3">Tipo de documento</span>
+                                            <span class="subtitle1 bold pl-3">Tipo de documento</span>
                                             <span class="body1 pr-3">{{ currentUser.documentType || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1  bold pl-3">Número de documento</span>
+                                            <span class="subtitle1 bold pl-3">Número de documento</span>
                                             <span class="body1 pr-3">{{ currentUser.documentNumber || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-3">
                                             <span class="subtitle1 bold pl-3">Teléfono / celular</span>
                                             <span class="body1 pr-3">
-                                                {{currentUser.phone || "--"}}
+                                                {{ currentUser.phone || "--" }}
                                             </span>
                                         </div>
                                         <!-- <CustomButton 
@@ -797,11 +800,19 @@
                     <v-row>
                         <v-col cols="12" md="7" order="2" order-md="1" order-sm="1">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
-                            <div class="form" style="border: none !important;">
+                            <div class="form" style="border: none !important">
                                 <v-row>
                                     <v-col cols="6" sm="3">
-                                        <div :class="{'active-payment' : pick == 1}" @click="pick = 1" style="cursor: pointer;">
-                                            <TypePayment :active="pick === 1" img="/public/assets/img/pse.svg" text="PSE" />
+                                        <div
+                                            :class="{ 'active-payment': pick == 1 }"
+                                            @click="pick = 1"
+                                            style="cursor: pointer"
+                                        >
+                                            <TypePayment
+                                                :active="pick === 1"
+                                                img="/public/assets/img/pse.svg"
+                                                text="PSE"
+                                            />
                                             <label class="custom-radio ml-3">
                                                 <input
                                                     type="radio"
@@ -815,8 +826,16 @@
                                         </div>
                                     </v-col>
                                     <v-col cols="6" sm="3">
-                                        <div :class="{'active-payment' : pick == 2}"  @click="pick = 2" style="cursor: pointer;">
-                                            <TypePayment :active="pick === 2" img="/public/assets/img/card.png" text="Credito/Debito" />
+                                        <div
+                                            :class="{ 'active-payment': pick == 2 }"
+                                            @click="pick = 2"
+                                            style="cursor: pointer"
+                                        >
+                                            <TypePayment
+                                                :active="pick === 2"
+                                                img="/public/assets/img/card.png"
+                                                text="Credito/Debito"
+                                            />
                                             <label class="custom-radio ml-3">
                                                 <input
                                                     type="radio"
@@ -830,8 +849,16 @@
                                         </div>
                                     </v-col>
                                     <v-col cols="6" sm="3">
-                                        <div :class="{'active-payment' : pick == 5}"  @click="pick = 5" style="cursor: pointer;">
-                                            <TypePayment :active="pick === 5" img="/public/assets/img/contraentrega.png" text="Contraentrega" />
+                                        <div
+                                            :class="{ 'active-payment': pick == 5 }"
+                                            @click="pick = 5"
+                                            style="cursor: pointer"
+                                        >
+                                            <TypePayment
+                                                :active="pick === 5"
+                                                img="/public/assets/img/contraentrega.png"
+                                                text="Contraentrega"
+                                            />
                                             <label class="custom-radio ml-3">
                                                 <input
                                                     type="radio"
@@ -845,8 +872,16 @@
                                         </div>
                                     </v-col>
                                     <v-col cols="6" sm="3">
-                                        <div :class="{'active-payment' : pick == 4}"  @click="pick = 4" style="cursor: pointer;">
-                                            <TypePayment :active="pick === 4" img="/public/assets/img/transferencia.png" text="Transferir" />
+                                        <div
+                                            :class="{ 'active-payment': pick == 4 }"
+                                            @click="pick = 4"
+                                            style="cursor: pointer"
+                                        >
+                                            <TypePayment
+                                                :active="pick === 4"
+                                                img="/public/assets/img/transferencia.png"
+                                                text="Transferir"
+                                            />
                                             <label class="custom-radio ml-3">
                                                 <input
                                                     type="radio"
@@ -861,93 +896,113 @@
                                     </v-col>
                                 </v-row>
                                 <div class="mt-3">
-                                    <div v-if="pick === 1">
-                                        <label class="text-uppercase">Tipo de Persona</label>
-                                        <SelectCustom
-                                            class="selector"
-                                            :dark="darkBoxes"
-                                            label="Tipo de persona"
-                                            :items="selectPersonType"
-                                        />
-                                        <label class="text-uppercase">Banco</label>
-                                        <SelectCustom
-                                            class="selector"
-                                            :dark="darkBoxes"
-                                            label="Seleccionar banco"
-                                            :items="selectBancos"
-                                        />
+                                    <div v-if="pick === 1" class="data-payments">
+                                        <div class="pt-4">
+                                            <label class="text-uppercase">Tipo de Persona</label>
+                                            <SelectCustom
+                                                class="selector"
+                                                :dark="darkBoxes"
+                                                label="Tipo de persona"
+                                                :items="selectPersonType"
+                                                placeholder="Seleccionar una opción"
+                                            />
+                                        </div>
+                                        <div class="pt-4">
+                                            <label class="text-uppercase">Banco</label>
+                                            <SelectCustom
+                                                class="selector"
+                                                :dark="darkBoxes"
+                                                label="Seleccionar banco"
+                                                placeholder="Seleccionar una opción"
+                                                :items="selectBancos"
+                                            />
+                                        </div>
                                     </div>
-                                    <div v-if="pick === 2">
-                                        <label class="text-uppercase">Numero de tarjeta</label>
-                                        <CustomInput />
-                                        <label class="text-uppercase">Nombre titular de la tarjeta</label>
-                                        <CustomInput />
-                                        <label class="text-uppercase">Fecha de expedicion</label>
-                                        <CustomInput />
-                                        <label class="text-uppercase">Codigo de seguridad</label>
-                                        <CustomInput />
-                                        <label class="text-uppercase">Numero de CVV2</label>
-                                        <CustomInput />
-                                        <label class="text-uppercase">Documento</label>
-                                        <SelectCustom
-                                            class="selector"
-                                            :dark="darkBoxes"
-                                            label="Seleccionar banco"
-                                            :items="selectDocuments"
-                                        />
-                                        <label class="text-uppercase">Numero de documento</label>
-                                        <CustomInput />
+                                    <div v-if="pick === 2" class="data-payments">
+                                        <div class="pt-4">
+                                            <label>Numero de tarjeta</label>
+                                            <CustomInput placeholder="Número tarjeta" />
+                                        </div>
+                                        <div class="pt-4">
+                                            <label>Nombre titular de la tarjeta</label>
+                                            <CustomInput placeholder="Nombre titular" />
+                                        </div>
+                                        <div class="pt-4">
+                                            <label>Fecha de expedicion</label>
+                                            <CustomInput placeholder="Fecha expedición" />
+                                        </div>
+                                        <div class="pt-4">
+                                            <label>Codigo de seguridad</label>
+                                            <CustomInput placeholder="Código seguridad" />
+                                        </div>
+                                        <div class="pt-4">
+                                            <label>Numero de CVV2</label>
+                                            <CustomInput placeholder="CVV2" />
+                                        </div>
+                                        <div class="pt-4">
+                                            <label>Tipo de documento</label>
+                                            <SelectCustom
+                                                :dark="darkBoxes"
+                                                label="Seleccionar banco"
+                                                :items="selectDocuments"
+                                                placeholder="Seleccione tipo de documento"
+                                            />
+                                        </div>
+                                        <div class="pt-4">
+                                            <label>Número de documento</label>
+                                            <CustomInput placeholder="Nímero documento" />
+                                        </div>
                                     </div>
-                                    <div v-if="pick === 4" class="form">
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">PERSONA JURÍDICA</span>
-                                            <span class="body1"> Aloranges </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">CORREO ELECTRÓNICO</span>
-                                            <span class="body1"> contabilidad@aloranges.com </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">TELÉFONO</span>
-                                            <span class="body1"> 57 125 1254 1254 </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">NIT</span>
-                                            <span class="body1"> 546456546546 </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">CUENTA DE AHORROS</span>
-                                            <span class="body1"> 768678678 </span>
-                                        </div>
-                                        <CustomButton
-                                            block
-                                            color="grey"
-                                            text="Añadir comprobante de pago"
-                                            @click="$refs.fileInput.click()"
+                                    <div v-if="pick === 4">
+                                        <v-img
+                                            style="max-width: 259px; height: auto"
+                                            src="/public/assets/img/pago-transferencia.png"
+                                            alt="Transferencia"
                                         />
-                                        <input
-                                            style="display: none"
-                                            ref="fileInput"
-                                            type="file"
-                                            @change="fileSelected"
-                                            enctype="multipart/form-data"
+                                        <p>
+                                            Despachamos el producto una vez que se envíe la transferencia y el
+                                            comprobante por WhatsApp
+                                        </p>
+                                        <div class="data-section">
+                                            <h3>DATOS DE BANCO</h3>
+                                            <div class="body-data">
+                                                <p>Banco: Bancolombia</p>
+                                                <p>Tipo de cuenta: Corriente</p>
+                                                <p>Numero cuenta: 20500005130</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="data-section">
+                                            <h3>DATOS DE PROPIETARIO DE CUENTA</h3>
+                                            <div class="body-data">
+                                                <p>Razón social: Aloranges S.A.S</p>
+                                                <p>NIT: 901810257-1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="pick === 5">
+                                        <v-img
+                                            style="max-width: 259px; height: auto"
+                                            src="/public/assets/img/pago-contraentrega.png"
+                                            alt="Contraentrega"
                                         />
+                                        <p>Solo pagas por el producto cuando te lo entregamos en tu domicilio.</p>
                                     </div>
                                 </div>
-                                <CustomButton v-if="pick != 5 && pick != 4" class="mt-2" text="Aplicar" color="orange" />
+                                <CustomButton
+                                    v-if="pick != 5 && pick != 4"
+                                    class="mt-4"
+                                    text="Aplicar"
+                                    color="orange"
+                                />
                             </div>
                         </v-col>
                         <v-col cols="12" md="5" order="1" order-md="2" order-sm="2">
                             <h5 class="fw-600">Codigo promocional</h5>
-                            <div class="form" style="border: none !important;">
-                                    <p class="mb-1">
-                                        Regalo/Referido
-                                    </p>
-                                    <CustomInput 
-                                        placeholder="Ingresar código de descuento"
-                                        class="mb-2"
-                                    />
-                                    <CustomButton class="mb-4" block color="white" text="Aplicar" />
+                            <div class="form" style="border: none !important">
+                                <p class="mb-1">Regalo/Referido</p>
+                                <CustomInput placeholder="Ingresar código de descuento" class="mb-2" />
+                                <CustomButton class="mb-4" block color="white" text="Aplicar" />
                             </div>
                             <!--<h5 class="fw-600">Facturar a nombre de</h5>
                             <v-divider class="my-4" />
@@ -975,7 +1030,7 @@
                                         <span class="body1 pr-3">{{userData.documentNumber || ""}}</span>
                                     </div>
                                 </div> -->
-                                <!-- <label class="label my-3">
+                            <!-- <label class="label my-3">
                                     <input type="checkbox" v-model="useDefaultAddress2" id="useDefaultAddress2" />
                                     <span class="body-1 black--text text">
                                         Usar la misma Dirección de envió para que Idovela entreguela factura física.
@@ -1434,49 +1489,6 @@
                 <v-stepper-content class="tamaño-responsive" step="4">
                     <v-row>
                         <v-col cols="12">
-                            <div class="div-alert">
-                                <div class="information">
-                                    <v-row>
-                                        <v-col
-                                            cols="2"
-                                            sm="1"
-                                            style="
-                                                display: flex;
-                                                justify-content: center;
-                                                align-items: center;
-                                                place-items: center;
-                                            "
-                                        >
-                                            <div>
-                                                <span class="success"><i class="las la-check"></i></span>
-                                            </div>
-                                        </v-col>
-
-                                        <v-col cols="10" sm="8">
-                                            <h6 class="font-weight-bold">Gracias por registrarse</h6>
-                                            <p class="body-1 mb-0" style="margin-top: 4px">
-                                                Enviaremos al e-mail de facturación un correo de verificación por la
-                                                compra
-                                            </p>
-                                        </v-col>
-
-                                        <v-col class="finalizar" cols="12" sm="3">
-                                            <CustomButton
-                                                text="FINALIZAR"
-                                                width="150"
-                                                color="nero"
-                                                @click="numberPag = 3"
-                                            />
-                                        </v-col>
-
-                                        <div>
-                                            <v-row> </v-row>
-                                        </div>
-                                    </v-row>
-                                </div>
-                            </div>
-                        </v-col>
-                        <v-col cols="12">
                             <Order
                                 :order="dataCheckout?.order_code"
                                 :day="fecha?.getDate()"
@@ -1552,85 +1564,17 @@
                                         </v-row>
                                     </v-timeline-item>
                                 </v-timeline>
-                                <a href="#" class="black--text text-decoration-underline font-weight-bold">
-                                    Conocer la logistica de envió
-                                </a>
-                            </div>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <div class="form">
-                                <h6 class="black--text bold">Seguimiento de servicio</h6>
-                                <v-divider class="my-3" />
-                                <v-timeline dense>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">Comprado</span>
-                                            </v-col>
-                                            <v-col class="seguimiento">
-                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">Agendamiento</span>
-                                            </v-col>
-                                            <v-col class="seguimiento">
-                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">
-                                                    En preparación
-                                                </span>
-                                            </v-col>
-                                            <v-col class="seguimiento">
-                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col cols="7">
-                                                <span class="body2 text-uppercase font-weight-bold">
-                                                    Verificación de adecuación
-                                                </span>
-                                            </v-col>
-                                            <v-col class="seguimiento">
-                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                    <v-timeline-item color="black" small fill-dot>
-                                        <v-row>
-                                            <v-col>
-                                                <span class="body2 text-uppercase font-weight-bold">
-                                                    Instalación concluida
-                                                </span>
-                                            </v-col>
-                                            <v-col class="seguimiento">
-                                                <span class="body2 font-weight-bold">jueves 07, abril</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-timeline-item>
-                                </v-timeline>
-                                <a href="#" class="black--text text-decoration-underline font-weight-bold">
-                                    Conocer la logistica de envió
+                                <a href="#" class="text-decoration-underline mt-3" style="color: #1fa0e9">
+                                    Conocer la logística de envio
                                 </a>
                             </div>
                         </v-col>
                     </v-row>
                     <div class="my-5">
                         <h5 class="fw-600">Lista de Pedido</h5>
-                        <v-divider class="my-4" style="margin-bottom: 34px !important" />
 
-                        <v-row class="lista-pedido">
-                            <div class="cart-table-header mb-2" style="width: 100%">
+                        <div class="lista-pedido">
+                            <div class="cart-table-header" style="width: 100%">
                                 <div style="padding-left: 4%">Productos</div>
                                 <div>Precio</div>
                                 <div class="d-none d-md-flex">Cantidad</div>
@@ -1638,372 +1582,381 @@
                                 <div class="d-none d-sm-flex">Opciones</div>
                                 <div class="d-flex d-sm-none">Opc</div>
                             </div>
-                            <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
-                                <ProductCart
-                                    :productDetails="product"
-                                    @changeQty="changeQty"
-                                    @changeQtyMinus="changeQty"
-                                />
-                            </v-col>
-                        </v-row>
-                        <v-divider class="my-5" />
-                        <v-row>
-                            <v-col cols="12" sm="4" class="pa-0" />
-                            <v-col cols="8" sm="5" class="detalles-final">
-                                <!-- HOLA HOLA HOLA-->
-                                <TotalPago :total="priceTotal" />
-                            </v-col>
-                            <v-col cols="1" class="d-none d-sm-flex detalles-final">
-                                <v-divider vertical></v-divider>
-                            </v-col>
-                            <v-col cols="4" sm="2" class="detalles-final">
-                                <CustomButton color="black" v-if="mostrarDetallesFinal" @click="ocultarDetalleFinal">
-                                    DETALLES
-                                    <i
-                                        class="las la-sort-down"
-                                        style="color: white; font-size: 20px; padding-left: 10px; padding-bottom: 5px"
+                            <v-row style="max-height: 450px; overflow-y: auto">
+                                <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
+                                    <ProductCart
+                                        :productDetails="product"
+                                        @changeQty="changeQty"
+                                        @changeQtyMinus="changeQty"
+                                    />
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <div class="mt-4" style="background-color: #f1f1f1">
+                            <v-row style="padding: 10px">
+                                <v-col cols="8" sm="10" class="detalles-final-total">
+                                    <TotalPago :total="priceTotal" />
+                                </v-col>
+                                <v-col cols="4" sm="2" class="detalles-final-details">
+                                    <CustomButton
+                                        color="black"
+                                        v-if="mostrarDetallesFinal"
+                                        @click="ocultarDetalleFinal"
                                     >
-                                    </i>
-                                </CustomButton>
-                                <CustomButton color="grey2" @click="mostrarDetalleFinal" v-else>
-                                    DETALLES
-                                    <i class="las la-sort-up" style="color: black; font-size: 20px; padding-left: 10px">
-                                    </i>
-                                </CustomButton>
-                            </v-col>
-                            <v-col cols="0" sm="6" class="py-0 px-0" />
+                                        DETALLES
+                                        <i
+                                            class="las la-sort-down"
+                                            style="
+                                                color: white;
+                                                font-size: 20px;
+                                                padding-left: 10px;
+                                                padding-bottom: 5px;
+                                            "
+                                        >
+                                        </i>
+                                    </CustomButton>
+                                    <CustomButton color="white" @click="mostrarDetalleFinal" v-else>
+                                        DETALLES
+                                        <i
+                                            class="las la-sort-up"
+                                            style="color: black; font-size: 20px; padding-left: 10px"
+                                        >
+                                        </i>
+                                    </CustomButton>
+                                </v-col>
+                                <v-col cols="0" sm="6" class="py-0 px-0" />
 
-                            <v-col cols="12" sm="6" v-if="mostrarDetallesFinal">
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="12" style="display: flex; justify-content: flex-start; gap: 5px">
-                                        <total :total="priceTotal" />
-                                        <v-divider vertical></v-divider>
-                                        <div class="icono-cantidad">
-                                            <CustomFavorite />
-                                            <span style="color: #919191; margin-left: 10px">{{ getCartCount }}</span>
-                                        </div>
-                                    </v-col>
-                                </v-row>
+                                <v-col cols="12" sm="6" v-if="mostrarDetallesFinal">
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12" style="display: flex; justify-content: flex-start; gap: 5px">
+                                            <total :total="priceTotal" />
+                                            <v-divider vertical></v-divider>
+                                            <div class="icono-cantidad">
+                                                <CustomFavorite />
+                                                <span style="color: #919191; margin-left: 10px">{{
+                                                    getCartCount
+                                                }}</span>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
 
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
 
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Descuento detalle
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Recargo detalle
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start; font-size: 15px"
-                                        >
-                                            TOTAL BRUTO FACTURA
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento">
-                                        <span class="body2 font-weight-bold" style="font-size: 15px"
-                                            >000.000.000 COP</span
-                                        >
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            IVA
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Otros impuestos
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start; font-size: 15px"
-                                        >
-                                            TOTAL IMPUESTO
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento">
-                                        <span class="body2 font-weight-bold" style="font-size: 15px"
-                                            >000.000.000 COP</span
-                                        >
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Rete ICA
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Rete IVA
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Rete fuente
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start; font-size: 15px"
-                                        >
-                                            TOTAL RETENCIONES
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento">
-                                        <span class="body2 font-weight-bold" style="font-size: 15px"
-                                            >000.000.000 COP</span
-                                        >
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="12" style="display: flex; justify-content: flex-start; gap: 10px">
-                                        <TotalFlete :total="priceTotal" />
-                                        <v-divider vertical></v-divider>
-                                        <div class="icono-exclamacion d-flex">
-                                            <v-tooltip top color="black">
-                                                <template v-slot:activator="{ on, attrs }">
-                                                    <i
-                                                        class="las la-exclamation-circle"
-                                                        v-bind="attrs"
-                                                        v-on="on"
-                                                        style="font-size: 30px; transform: rotate(180deg)"
-                                                    ></i>
-                                                </template>
-                                                <span>El costo logístico se suma al valor subtotal</span>
-                                                <br />
-                                                <span>de la compra al pagar. El precio del Envío de</span>
-                                                <br />
-                                                <span>mercancia es gratuito en la ciudad capital al</span>
-                                                <br />
-                                                <span>superar el valor de 500.000 COP en el pedido.</span>
-                                                <br />
-                                                <span>(Valor sujeto a cambio) El costo de movilidad</span>
-                                                <br />
-                                                <span>de servicio varía dependiendo la ubicación de</span>
-                                                <br />
-                                                <span>la dirección de servicio. Para saber más.</span>
-                                            </v-tooltip>
-                                        </div>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Envío de mercancia
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Movilidad de servicio
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Rete fuente
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            IVA
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Recargo detalle
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                                <v-row style="justify-content: center">
-                                    <v-divider />
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="6" class="espaciado">
-                                        <span
-                                            class="body2 font-weight-bold"
-                                            style="display: flex; justify-content: flex-start"
-                                        >
-                                            Otros impuestos
-                                        </span>
-                                    </v-col>
-                                    <v-col cols="6" class="seguimiento espaciado">
-                                        <span class="body2 font-weight-bold">000.000.000 COP</span>
-                                    </v-col>
-                                </v-row>
-                            </v-col>
-                        </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Descuento detalle
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Recargo detalle
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start; font-size: 15px"
+                                            >
+                                                TOTAL BRUTO FACTURA
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento">
+                                            <span class="body2 font-weight-bold" style="font-size: 15px"
+                                                >000.000.000 COP</span
+                                            >
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                IVA
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Otros impuestos
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start; font-size: 15px"
+                                            >
+                                                TOTAL IMPUESTO
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento">
+                                            <span class="body2 font-weight-bold" style="font-size: 15px"
+                                                >000.000.000 COP</span
+                                            >
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Rete ICA
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Rete IVA
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Rete fuente
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start; font-size: 15px"
+                                            >
+                                                TOTAL RETENCIONES
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento">
+                                            <span class="body2 font-weight-bold" style="font-size: 15px"
+                                                >000.000.000 COP</span
+                                            >
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12" style="display: flex; justify-content: flex-start; gap: 10px">
+                                            <TotalFlete :total="priceTotal" />
+                                            <v-divider vertical></v-divider>
+                                            <div class="icono-exclamacion d-flex">
+                                                <v-tooltip top color="black">
+                                                    <template v-slot:activator="{ on, attrs }">
+                                                        <i
+                                                            class="las la-exclamation-circle"
+                                                            v-bind="attrs"
+                                                            v-on="on"
+                                                            style="font-size: 30px; transform: rotate(180deg)"
+                                                        ></i>
+                                                    </template>
+                                                    <span>El costo logístico se suma al valor subtotal</span>
+                                                    <br />
+                                                    <span>de la compra al pagar. El precio del Envío de</span>
+                                                    <br />
+                                                    <span>mercancia es gratuito en la ciudad capital al</span>
+                                                    <br />
+                                                    <span>superar el valor de 500.000 COP en el pedido.</span>
+                                                    <br />
+                                                    <span>(Valor sujeto a cambio) El costo de movilidad</span>
+                                                    <br />
+                                                    <span>de servicio varía dependiendo la ubicación de</span>
+                                                    <br />
+                                                    <span>la dirección de servicio. Para saber más.</span>
+                                                </v-tooltip>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Envío de mercancia
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Movilidad de servicio
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Rete fuente
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                IVA
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Recargo detalle
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row style="justify-content: center">
+                                        <v-divider />
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="6" class="espaciado">
+                                            <span
+                                                class="body2 font-weight-bold"
+                                                style="display: flex; justify-content: flex-start"
+                                            >
+                                                Otros impuestos
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="6" class="seguimiento espaciado">
+                                            <span class="body2 font-weight-bold">000.000.000 COP</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </div>
                     </div>
-                    <v-divider class="mb-3" />
                     <v-row>
                         <v-col cols="12" md="6">
-                            <h5 class="fw-600">Dirección de envío</h5>
-                            <v-divider class="my-4" />
                             <v-row>
                                 <v-col cols="12">
-                                    <div class="form">
-                                        <v-row>
-                                            <v-col cols="11">
-                                                <h5 class="black--text">Variable nombre de dirección *</h5>
+                                    <div class="form-step">
+                                        <v-row class="mb-2">
+                                            <v-col cols="11" class="pb-0">
+                                                <h5 class="fw-600 pl-3">Dirección de envío</h5>
                                             </v-col>
-                                            <v-col cols="1" class="pl-0 ojo">
+                                            <v-col cols="1" class="pl-0 pb-0 ojo">
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
@@ -2018,7 +1971,6 @@
                                                 ></i>
                                             </v-col>
                                         </v-row>
-                                        <v-divider class="my-3" />
                                         <div
                                             v-if="
                                                 Object.entries(addressFacturacion).length !== 0 &&
@@ -2026,19 +1978,21 @@
                                             "
                                         >
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                                <span class="subtitle1 bold pl-3"
+                                                    >Nombre de <dfn></dfn>irección</span
+                                                >
                                                 <span class="body1 pr-3">Dirección principal</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                                <span class="subtitle1 bold pl-3">Dirección</span>
                                                 <span class="body1 text-right pr-3">{{
                                                     addressFacturacion?.address
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">
-                                                    Descripción de Dirección
+                                                <span class="subtitle1 bold pl-3">
+                                                    Descripción de dirección
                                                 </span>
                                                 <span class="body1 pr-3">{{
                                                     addressFacturacion?.address
@@ -2046,31 +2000,31 @@
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                                <span class="subtitle1 bold pl-3">Codigo postal</span>
                                                 <span class="body1 pr-3">{{
                                                     addressFacturacion?.postal_code
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                                <span class="subtitle1 bold pl-3">Departamento</span>
                                                 <span class="body1 pr-3">{{
                                                     addressFacturacion?.country
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                                <span class="subtitle1 bold pl-3">Municipio</span>
                                                 <span class="body1 pr-3">{{
                                                     addressFacturacion?.city | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                                <span class="subtitle1 bold pl-3">Barrio</span>
                                                 <span class="body1 pr-3"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
+                                                <span class="subtitle1 bold pl-3">Telefono / Movil</span>
                                                 <span class="body1 pr-3">{{
                                                     addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
@@ -2085,48 +2039,50 @@
                                             "
                                         >
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                                <span class="subtitle1 text-uppercase bold pl-3"
+                                                    >Nombre de Dirección</span
+                                                >
                                                 <span class="body1 pr-3">Dirección principal</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                                <span class="subtitle1  bold pl-3">Dirección</span>
                                                 <span class="body1 text-right pr-3">{{
                                                     addressPrincipal?.address | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">
-                                                    Descripción de Dirección
+                                                <span class="subtitle1  bold pl-3">
+                                                    Descripción de dirección
                                                 </span>
                                                 <span class="body1 pr-3">{{
                                                     addressPrincipal?.address | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                                <span class="subtitle1 bold pl-3">Codigo postal</span>
                                                 <span class="body1 pr-3">{{
                                                     addressPrincipal?.postal_code
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                                <span class="subtitle1 bold pl-3">Departamento</span>
                                                 <span class="body1 pr-3">{{
                                                     addressPrincipal?.country | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                                <span class="subtitle1 bold pl-3">Municipio</span>
                                                 <span class="body1 pr-3">{{
                                                     addressPrincipal?.city | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                                <span class="subtitle1 bold pl-3">Barrio</span>
                                                 <span class="body1 pr-3"> -- </span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">
+                                                <span class="subtitle1 bold pl-3">
                                                     Nombre de quien lo va a recibir
                                                 </span>
                                                 <span class="body1 pr-3">{{
@@ -2134,7 +2090,7 @@
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
+                                                <span class="subtitle1 bold pl-3">Telefono / Movil</span>
                                                 <span class="body1 pr-3">{{
                                                     addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
@@ -2154,23 +2110,22 @@
                                     </div>
                                 </v-col>
                                 <v-col cols="12">
-                                    <div class="form">
-                                        <h5 class="black--text">Encargado</h5>
-                                        <v-divider class="my-3" />
+                                    <div class="form-step">
+                                        <h5 class="black--text  pl-3 mb-2">Encargado</h5>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Correo electronico</span>
+                                            <span class="subtitle1 bold pl-3">Correo electrónico</span>
                                             <span class="body1 pr-3">{{ currentUser.email || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Tipo de Persona</span>
+                                            <span class="subtitle1 bold pl-3">Tipo de persona</span>
                                             <span class="body1 pr-3">{{ currentUser.personType || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Nombre</span>
+                                            <span class="subtitle1 bold pl-3">Nombre</span>
                                             <span class="body1 pr-3">{{ currentUser.name || "--" }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-3">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Documento</span>
+                                            <span class="subtitle1 bold pl-3">Documento</span>
                                             <span class="body1 pr-3">
                                                 {{ currentUser.documentType || "--" }}
                                                 {{ currentUser.documentNumber || "--" }}
@@ -2179,182 +2134,27 @@
                                     </div>
                                 </v-col>
                                 <v-col cols="12">
-                                    <h5 class="fw-600">Dirección de servicio</h5>
-                                    <v-divider class="my-4" />
-                                    <div class="form">
-                                        <v-row>
-                                            <v-col cols="11">
-                                                <h5 class="black--text">Nombre de dirección servicio *</h5>
-                                            </v-col>
-                                            <v-col cols="1" class="pl-0 ojo">
-                                                <i
-                                                    class="las la-eye-slash"
-                                                    style="font-size: 25px"
-                                                    v-if="mostrarDatosServicio"
-                                                    @click="toggleDatosServicio"
-                                                ></i>
-                                                <i
-                                                    class="las la-eye"
-                                                    style="font-size: 25px"
-                                                    @click="toggleDatosServicio"
-                                                    v-else
-                                                ></i>
-                                            </v-col>
-                                        </v-row>
-                                        <v-divider class="my-3" />
-
-                                        <div
-                                            v-if="
-                                                Object.entries(addressServicio).length !== 0 &&
-                                                useDefaultAddress1 == false
-                                            "
-                                        >
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
-                                                <span class="body1 pr-3">Dirección principal</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressServicio?.address
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">
-                                                    Descripción de Dirección
-                                                </span>
-                                                <span class="body1 pr-3">{{
-                                                    addressServicio?.address
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressServicio?.postal_code
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressServicio?.country
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressServicio?.city | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
-                                                <span class="body1 pr-3"> -- </span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressPrincipal?.phone
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
+                                    <div class="form-step">
+                                        <h5 class="black--text pl-3 my-2">Código promocional</h5>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 bold pl-3">
+                                                Código (Regalo/Referido)
+                                            </span>
+                                            <span class="body1 pr-3">ALO4577</span>
                                         </div>
-
-                                        <div
-                                            class=""
-                                            v-if="
-                                                Object.entries(addressPrincipal).length !== 0 &&
-                                                useDefaultAddress1 == true
-                                            "
-                                        >
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
-                                                <span class="body1 pr-3">Dirección principal</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
-                                                <span class="body1 text-right pr-3">{{
-                                                    addressPrincipal?.address
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">
-                                                    Descripción de Dirección
-                                                </span>
-                                                <span class="body1 pr-3">{{
-                                                    addressPrincipal?.address
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressPrincipal?.postal_code
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressPrincipal?.country
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressPrincipal?.city | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
-                                                <span class="body1 pr-3"> -- </span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">
-                                                    Nombre de quien lo va a recibir
-                                                </span>
-                                                <span class="body1 pr-3">{{
-                                                    addressPrincipal?.name | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                            <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
-                                                <span class="body1 pr-3">{{
-                                                    addressPrincipal?.phone
-                                                        | filtroParaOcultarInfo(mostrarDatosServicio)
-                                                }}</span>
-                                            </div>
-                                        </div>
-
-                                        <CustomButton
-                                            v-if="
-                                                Object.entries(addressFacturacion).length === 0 &&
-                                                useDefaultAddress1 == false
-                                            "
-                                            block
-                                            color="grey"
-                                            text="Añadir Dirección"
-                                            @click="openAdress('service')"
-                                        />
                                     </div>
                                 </v-col>
                             </v-row>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <h5 class="fw-600">Facturar a nombre de</h5>
-                            <v-divider class="my-4" />
                             <v-row>
                                 <v-col cols="12">
-                                    <div class="form">
-                                        <v-row>
-                                            <v-col cols="11">
-                                                <h5 class="black--text">Usuario principal</h5>
+                                    <div class="form-step">
+                                        <v-row class=" mb-2">
+                                            <v-col cols="11" class="pb-0">
+                                                <h5 class="fw-600 pl-3">Facturar a nombre de</h5>
                                             </v-col>
-                                            <v-col cols="1" class="pl-0 ojo">
+                                            <v-col cols="1" class="pl-0 pb-0 ojo">
                                                 <i
                                                     class="las la-eye-slash"
                                                     style="font-size: 25px"
@@ -2369,135 +2169,35 @@
                                                 ></i>
                                             </v-col>
                                         </v-row>
-
-                                        <v-divider class="my-3" />
-                                        <SelectCustom
-                                            class="selector"
-                                            :dark="darkBoxes"
-                                            label="Usuario Principal"
-                                            :items="langSelectItems"
-                                        />
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
-                                            <span class="body1 pr-3">Dirección principal</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                            <span class="subtitle1 bold pl-3">Nombre</span>
                                             <span class="body1 text-right pr-3">{{
-                                                addressPrincipal?.address
+                                                userData?.firstName | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                            }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 bold pl-3">Apellido</span>
+                                            <span class="body1 text-right pr-3">{{
+                                                userData?.firstLastname | filtroParaOcultarInfo(mostrarDatosFacturacion)
+                                            }}</span>
+                                        </div>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 bold pl-3">Documento</span>
+                                            <span class="body1 text-right pr-3">{{
+                                                userData?.documentNumber
                                                     | filtroParaOcultarInfo(mostrarDatosFacturacion)
-                                            }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">
-                                                Descripción de Dirección
-                                            </span>
-                                            <span class="body1 pr-3">{{
-                                                addressPrincipal?.address
-                                                    | filtroParaOcultarInfo(mostrarDatosFacturacion)
-                                            }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
-                                            <span class="body1 pr-3">{{
-                                                addressPrincipal?.postal_code
-                                                    | filtroParaOcultarInfo(mostrarDatosFacturacion)
-                                            }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
-                                            <span class="body1 pr-3">{{
-                                                addressPrincipal?.country
-                                                    | filtroParaOcultarInfo(mostrarDatosFacturacion)
-                                            }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
-                                            <span class="body1 pr-3">{{
-                                                addressPrincipal?.city | filtroParaOcultarInfo(mostrarDatosFacturacion)
-                                            }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
-                                            <span class="body1 pr-3"> -- </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">
-                                                Nombre de quien lo va a recibir
-                                            </span>
-                                            <span class="body1 pr-3">{{
-                                                addressPrincipal?.name | filtroParaOcultarInfo(mostrarDatosFacturacion)
-                                            }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Telefono / Movil</span>
-                                            <span class="body1 pr-3">{{
-                                                addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosFacturacion)
                                             }}</span>
                                         </div>
                                     </div>
                                 </v-col>
 
                                 <v-col cols="12">
-                                    <h5 class="fw-600">Medio de pago</h5>
-                                    <v-divider class="my-4" />
-                                    <div class="form">AQUÍ VA EL MEDIO DE PAGO CON LA RESPECTIVA INFORMACIÓN*</div>
-                                    <!-- <div class="form">
-                                        <h6 class="black--text bold">Dirección de envio</h6>
-                                        <v-divider class="my-3" />
-                                        <SelectCustom dark label="Usuario Principal" :items="langSelectItems" />
+                                    
+                                    <div class="form-step mt-4">
+                                        <h5 class="fw-600 pl-3 mb-2">Medio de pago</h5>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Nombre de Dirección</span>
-                                            <span class="body1">Dirección principal</span>
+                                            <span class="subtitle1 bold pl-3">Transferencia bancaria</span>
                                         </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Dirección</span>
-                                            <span class="body1 text-right">{{ addressPrincipal?.address }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Descripción de Dirección
-                                            </span>
-                                            <span class="body1">{{ addressPrincipal?.address }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Codigo Postal</span>
-                                            <span class="body1">{{ addressPrincipal?.postal_code }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Departamento</span>
-                                            <span class="body1">{{ addressPrincipal?.country }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Municipio</span>
-                                            <span class="body1">{{ addressPrincipal?.city }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Barrio</span>
-                                            <span class="body1"> -- </span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">
-                                                Nombre de quien lo va a recibir
-                                            </span>
-                                            <span class="body1">{{ addressPrincipal?.name }}</span>
-                                        </div>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold">Telefono / Movil</span>
-                                            <span class="body1">{{ addressPrincipal?.phone }}</span>
-                                        </div>
-                                    </div> -->
-                                </v-col>
-                                <v-col cols="12">
-                                    <h5 class="fw-600">Código promocional</h5>
-                                    <v-divider class="my-4" />
-                                    <div class="form">
-                                        <div class="d-flex"><regalo /></div>
-                                        <v-divider class="my-4" />
-                                        <v-row>
-                                            <v-col cols="6" class="text-left"> CODIGO (REGALO/REFERIDO) </v-col>
-                                            <v-col cols="6" class="text-right"> XXXX XXXX XXXX XXXX </v-col>
-                                        </v-row>
                                     </div>
                                 </v-col>
                             </v-row>
@@ -2628,15 +2328,15 @@ export default {
             mostrarDetalles: false,
             mostrarDetallesFinal: false,
             userData: {},
-            selectBancos:['Davivienda','Bancolombia'],
-            selectDocuments:['Cedula Ciudadania','Paraporte'],
-            selectPersonType:['Natural','Juridico']
+            selectBancos: ["Davivienda", "Bancolombia"],
+            selectDocuments: ["Cedula Ciudadania", "Paraporte"],
+            selectPersonType: ["Natural", "Juridico"]
         };
     },
     computed: {
         ...mapGetters("auth", ["currentUser"]),
         ...mapState("cart", ["cartProducts", "cartPrice"]),
-        ...mapGetters("cart", ["getCartPrice", "getCartCount"]),
+        ...mapGetters("cart", ["getCartPrice", "getCartCount"])
     },
     mounted() {
         this.$vuetify.theme.dark = false;
@@ -2673,10 +2373,10 @@ export default {
         updateBreadcrumb() {
             const formattedName = this.capitalizeWords(this.currentUser.name);
             const newItems = [
-                { text: 'Home', href: '/home', disabled: false },
+                { text: "Home", href: "/home", disabled: false },
                 { text: formattedName, disabled: true }
             ];
-            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
+            this.$store.dispatch("breadcrumb/setBreadcrumbItems", newItems);
         },
         capitalizeWords(name) {
             return name.replace(/\b\w/g, char => char.toUpperCase());
@@ -2765,7 +2465,7 @@ export default {
                     }
                     if (address?.default_service == 1) {
                         this.addressesParaServicio.push(address);
-                    }else{
+                    } else {
                         this.addressesParaEnvio.push(res.data.data[0]);
                         this.addressesParaFacturacion.push(res.data.data[0]);
                         this.addressesParaServicio.push(res.data.data[0]);
@@ -2782,8 +2482,8 @@ export default {
                 this.$router.push({ name: "404" });
             }
         },
-        async getInfoUser(){
-            const res = await this.call_api('get','user/info');
+        async getInfoUser() {
+            const res = await this.call_api("get", "user/info");
             if (res.data.success) {
                 this.userData = res.data.user;
             }
@@ -2881,7 +2581,7 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep {
-    .v-stepper__header{
+    .v-stepper__header {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2922,9 +2622,13 @@ export default {
     }
 
     .v-timeline::before {
-        background-color: #000000;
+        background-color: #03be41 !important;
+        border-color: #03be41;
     }
-
+    .v-timeline-item__inner-dot {
+        background-color: #03be41 !important;
+        border-color: #03be41 !important;
+    }
     .v-application--is-ltr,
     .v-timeline--dense:not(.v-timeline--reverse)::before {
         left: 11px;
@@ -3082,7 +2786,16 @@ export default {
     border: 1px solid #d5d6d9;
     border-radius: 10px;
     padding: 10px;
-    & .mb-2{
+    & .mb-2 {
+        margin-bottom: 15px !important;
+    }
+}
+.form-step {
+    border: 1px solid #f1f1f1;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 10px;
+    & .mb-2 {
         margin-bottom: 15px !important;
     }
 }
@@ -3295,8 +3008,6 @@ export default {
 }
 
 .lista-pedido {
-    overflow-y: scroll;
-    max-height: 450px;
     width: 99%;
     @media screen and (max-width: 821px) {
         width: 100%;
@@ -3336,9 +3047,16 @@ export default {
 }
 
 .detalles-final {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    &-total {
+        justify-content: flex-start;
+        display: flex;
+        align-items: center;
+    }
+    &-details {
+        justify-content: flex-end;
+        display: flex;
+        align-items: center;
+    }
 }
 
 .espaciado {
@@ -3374,54 +3092,80 @@ export default {
         gap: 70px;
     }
 }
-.active-payment{
+.active-payment {
     background-color: #ffefdf;
     border: 1px solid #f58634;
     border-radius: 10px;
 }
-.bold{
+.bold {
     font-weight: bold;
 }
 .custom-radio {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
 
-  input[type="radio"] {
-    display: none; 
-  }
+    input[type="radio"] {
+        display: none;
+    }
 
-  .radio-check {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #f58634; 
-    border-radius: 50%;
-    position: relative;
-    display: inline-block;
-    margin-right: 8px; 
-  }
+    .radio-check {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #f58634;
+        border-radius: 50%;
+        position: relative;
+        display: inline-block;
+        margin-right: 8px;
+    }
 
+    input[type="radio"]:checked + .radio-check {
+        background-color: #f58634;
+    }
 
-  input[type="radio"]:checked + .radio-check {
-    background-color: #f58634;
-  }
+    .radio-check::after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
 
-  .radio-check::after {
-    content: "";
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
+    input[type="radio"]:checked + .radio-check::after {
+        opacity: 1;
+    }
+}
 
-  input[type="radio"]:checked + .radio-check::after {
-    opacity: 1; 
-  }
+.data-payments {
+    width: 100%;
+    @media (min-width: 600px) {
+        width: 70%;
+    }
+}
+.data-section {
+    margin-bottom: 20px; /* Espaciado entre los cuadros */
+    //   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ececec;
+}
+
+.data-section h3 {
+    background-color: #ececec;
+    font-size: 16px; /* Tamaño del título */
+    padding: 10px;
+}
+
+.data-section .body-data {
+    padding: 10px;
+}
+.data-section .body-data p {
+    margin: 2px 0; /* Espaciado entre las líneas de texto */
+    font-size: 18px; /* Tamaño del texto */
+    color: #333; /* Color del texto */
 }
 </style>
