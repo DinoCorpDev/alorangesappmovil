@@ -447,7 +447,8 @@ export default {
             this.expressDeliveryCost = parseFloat(res.data.express_delivery_cost)
         },
         async proceedCheckout(){
-            
+            // const res = await this.aceptance_payment_wompi();
+            // console.log(res);
             if(this.getSelectedCartIds.length == 0){
                 this.snack({ message: `Please select a cart product`, color: "red" });
                 return
