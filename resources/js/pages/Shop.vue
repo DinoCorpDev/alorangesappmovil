@@ -94,7 +94,7 @@ export default {
             font-weight: 400;
             letter-spacing: 0.15px;
             line-height: calc(18px + (20 - 18) * var(--screen-size));
-            color: #8ec641 !important;
+            color: #f58634 !important;
             // min-width: 195px !important;
             margin: 0 10px !important;
             border-radius: 10px;
@@ -109,7 +109,8 @@ export default {
             }
             &--active{
                 color: white !important;
-                background-color: #8ec641;
+                background-color: #f58634;
+                font-size: 17px
             }
             &:before, .v-tabs-slider{
                 background-color: transparent;

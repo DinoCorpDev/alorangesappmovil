@@ -1,6 +1,6 @@
 <template>
     <v-row>
-        <v-col cols="12" md="7">
+        <v-col cols="12" md="5">
             <ProductGallery
                 :is-loading="isLoading"
                 :galleryImages="productDetails.images"
@@ -8,7 +8,7 @@
                 :dataSheet="productDetails.data_sheet"
             />
         </v-col>
-        <v-col cols="12" md="5">
+        <v-col cols="12" md="7">
             <div v-if="!isLoading" class="add-to-cart-list-box pa-4 mb-3">
                 <div class="d-flex justify-space-between">
                     <h5 class="subt2 font-weight-bold text-uppercase mb-2">

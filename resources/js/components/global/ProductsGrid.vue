@@ -6,7 +6,7 @@
                     <ShopActionCard boxStyle="vertical" :href="shopCardLink" :to="shopCardTo" />
                 </v-col>
                 <v-col
-                    v-for="product in products.slice(0, visibleProducts)"
+                    v-for="product in shuffledProducts.slice(0, visibleProducts)"
                     :key="`product-col-${product.slug}`"
                     :cols="cols"
                     :sm="sm"
@@ -54,11 +54,30 @@ export default {
         ShopActionCard
     },
     data(){
-        return{
-            visibleProducts: 6
+        return {
+            visibleProducts: 6,
+            shuffledProducts: [] // Arreglo desordenado de productos
+        };
+    },
+    mounted(){
+        // Desordenar los productos cuando el componente se monta
+        this.shuffleProducts();
+        console.log(this.shuffledProducts); // Mostrar los productos desordenados
+    },
+    watch: {
+        products: {
+            handler(newProducts) {
+                // Si los productos cambian, desordenarlos
+                this.shuffleProducts();
+            },
+            immediate: true // Llamar al handler inmediatamente si hay productos
         }
     },
-    methods:{
+    methods: {
+        shuffleProducts(){
+            // Crear una copia del array de productos y desordenarlo aleatoriamente
+            this.shuffledProducts = [...this.products].sort(() => Math.random() - 0.5);
+        },
         showMore(){
             this.visibleProducts += 6;
         }

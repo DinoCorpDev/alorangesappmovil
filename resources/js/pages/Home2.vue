@@ -7,14 +7,6 @@
                     Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtenga todo lo que
                     desee de una forma fácil
                 </p>
-                <v-row>
-                    <v-col cols="12" sm="8" md="8">
-                        <CustomInput block placeholder="Escribe lo que buscas" />
-                    </v-col>
-                    <v-col cols="12" sm="4" md="4">
-                        <CustomButton class="bg-orange" color="orange" block text="Buscar" />
-                    </v-col>
-                </v-row>
             </v-col>
             <v-col class="pa-0" cols="12" sm="5" md="5">
                 <img src="/public/assets/img/bannerhomeimg-removebg-preview.png" style="width: 100%; height: auto;" />
@@ -222,6 +214,7 @@ export default {
         this.selectedCode = this.userLanguageObj.code;
 
         this.scrollToCenter();
+        this.updateBreadcrumb();
         // if(this.$route.query.modal == 'Password'){
         //     this.showRecuperarPass = true;
         // }
@@ -235,7 +228,13 @@ export default {
                 this.setLanguage(this.selectedCode);
                 window.location.reload();
             }
-        }
+        },
+        updateBreadcrumb() {
+            const newItems = [
+                { text: 'Home', href: '/', disabled: true },
+            ];
+            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
+        },
     }
 };
 </script>
