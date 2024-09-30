@@ -331,21 +331,21 @@
                                         <v-divider class="my-3" />
 
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
+                                            <span class="subtitle1 bold pl-3">Nombre de dirección</span>
                                             <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.name ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
+                                            <span class="subtitle1 bold pl-3">Dirección</span>
                                             <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.address ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">
+                                            <span class="subtitle1 bold pl-3">
                                                 Dirección adicional
                                             </span>
                                             <span class="body1 pr-3">{{
@@ -354,32 +354,32 @@
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
+                                            <span class="subtitle1 bold pl-3">Código postal</span>
                                             <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.postal_code ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
+                                            <span class="subtitle1 bold pl-3">Departamento</span>
                                             <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.country ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
+                                            <span class="subtitle1 bold pl-3">Municipio</span>
                                             <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.city ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Localidad</span>
+                                            <span class="subtitle1 bold pl-3">Localidad</span>
                                             <span class="body1 pr-3"> -- </span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
+                                            <span class="subtitle1 bold pl-3">Barrio</span>
                                             <span class="body1 pr-3">
                                                 {{
                                                     selectedAddressEnvio?.neighborhood ||
@@ -389,7 +389,7 @@
                                         </div>
 
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 text-uppercase bold pl-3">Telefono / Celular</span>
+                                            <span class="subtitle1 bold pl-3">Teléfono / Celular</span>
                                             <span class="body1 pr-3">{{
                                                 addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
                                             }}</span>

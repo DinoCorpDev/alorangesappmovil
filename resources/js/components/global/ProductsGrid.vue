@@ -6,7 +6,7 @@
                     <ShopActionCard boxStyle="vertical" :href="shopCardLink" :to="shopCardTo" />
                 </v-col>
                 <v-col
-                    v-for="product in products"
+                    v-for="product in products.slice(0, visibleProducts)"
                     :key="`product-col-${product.slug}`"
                     :cols="cols"
                     :sm="sm"
@@ -19,7 +19,7 @@
             </v-row>
             <v-row justify="center">
                 <v-col cols="12" sm="8" md="4">
-                    <CustomButton block color="grey" text="Ver más" :href="href" :to="to" />
+                    <CustomButton @click.stop="showMore()" block color="white" style="width: 100%;" text="Ver más"/>
                 </v-col>
             </v-row>
         </v-col>
@@ -52,6 +52,16 @@ export default {
         CustomButton,
         ProductBox,
         ShopActionCard
+    },
+    data(){
+        return{
+            visibleProducts: 6
+        }
+    },
+    methods:{
+        showMore(){
+            this.visibleProducts += 6;
+        }
     }
 };
 </script>
