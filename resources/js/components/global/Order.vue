@@ -1,14 +1,11 @@
 <template>
     <div class="div-order">
         <v-row class="order">
-            <v-col cols="7">
+            <v-col cols="9">
                 <div>
                     <h5 class="font-weight-bold">Orden de pedido # {{ order }}</h5>
                     <p class="body-1" style="margin: 0 !important">Fecha {{ day }} de {{ month }} de {{ year }}</p>
                 </div>
-            </v-col>
-            <v-col cols="2" style="display: flex; justify-content: flex-end;">
-                <v-divider vertical />
             </v-col>
             <v-col cols="3" class="pr-5 iconos">
                 <div class="d-none d-md-flex pr-5 iconos">
