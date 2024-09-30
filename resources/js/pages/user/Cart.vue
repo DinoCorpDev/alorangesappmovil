@@ -2465,15 +2465,15 @@ export default {
                     }
                     if (address?.default_service == 1) {
                         this.addressesParaServicio.push(address);
-                    } else {
-                        this.addressesParaEnvio.push(res.data.data[0]);
-                        this.addressesParaFacturacion.push(res.data.data[0]);
-                        this.addressesParaServicio.push(res.data.data[0]);
+                    }else{
+                        this.addressesParaEnvio.push(address);
+                        this.addressesParaFacturacion.push(address);
+                        this.addressesParaServicio.push(address);
                     }
                 });
-                this.addressPrincipal = this.addressesParaEnvio[0];
-                this.addressFacturacion = this.addressesParaFacturacion[0];
-                this.addressServicio = this.addressesParaServicio[0];
+                this.addressPrincipal = this.addressesParaEnvio;
+                this.addressFacturacion = this.addressesParaFacturacion;
+                this.addressServicio = this.addressesParaServicio;
             } else {
                 this.snack({
                     message: res.data.message,
