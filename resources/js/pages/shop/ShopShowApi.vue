@@ -82,17 +82,16 @@ export default {
         resultadoFiltroBotones: [],
         activeButton: null,
         swiperOptions: {
-            slidesPerView: 6,
+            slidesPerView: 2,
+            centeredSlides: false,
             spaceBetween: 12,
             breakpoints: {
                 600: {
-                    slidesPerView:2,
-                    centeredSlides: true
+                    slidesPerView:4
                 },
                 960: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                    centeredSlides: false
+                    slidesPerView: 6,
+                    spaceBetween: 20
                 }
             }
         }
@@ -126,7 +125,7 @@ export default {
                     // min_price;
                     // max_price;
                     this.productsSeeder = res.data.products.data;
-
+                    console.log(res.data.products.data);
                     const primerasLetras = this.productsSeeder.map(item => item.name.charAt(0));
                     primerasLetras.sort();
                     let letrasFiltro = [...new Set(primerasLetras)];

@@ -4,42 +4,6 @@
             <v-col cols="12" lg="12">
                 <AddToCart :is-loading="detailsLoading" :product-details="productDetails" :products="moreProducts" />
             </v-col>
-            <v-col>
-                <v-tabs v-model="tab" grow height="38px" :hide-slider="true">
-                    <v-tab :ripple="false"><span style="font-size: 16px;">DESCRIPCIÓN</span></v-tab>
-                    <v-tab :ripple="false"><span style="font-size: 16px;">VIDEO</span></v-tab>
-                    <v-tab :ripple="false"><span style="font-size: 16px;">OPIONES</span></v-tab>
-                </v-tabs>
-                <v-tabs-items v-model="tab" class="pt-3">
-                    <v-tab-item>
-                        <div class="product-details-specs overflow-y-auto overflow-uw">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam.
-                        </div>
-                    </v-tab-item>
-                    <v-tab-item>
-                        <div class="product-details-specs overflow-y-auto overflow-uw">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam.
-                        </div>
-                    </v-tab-item>
-                    <v-tab-item>
-                        <div class="product-details-specs overflow-y-auto overflow-uw">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam.
-                        </div>
-                    </v-tab-item>
-                </v-tabs-items>
-            </v-col>
             <v-col cols="12" class="">
                 <ProductsGrid class="mb-6" :products="moreProducts" filtrable cols="6" sm="4" md="3" lg="2" />
             </v-col>
