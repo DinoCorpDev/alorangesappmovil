@@ -86,7 +86,7 @@ export default {
             }
         },
         async getMoreProducts(id) {
-            const res = await this.call_api("get", `product/random/6/${id}`);
+            const res = await this.call_api("get", `product/random/9999/${id}`);
             if (res.data.success) {
                 res.data?.data?.map(product => {
                     this.moreProducts.push({
