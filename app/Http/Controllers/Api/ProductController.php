@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use App\Utility\CategoryUtility;
 
 use App\Http\Services\AlegraServices;
+use App\Http\Services\WompiServices;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -339,6 +340,63 @@ class ProductController extends Controller
             'success' => true,
             'specifications' => $products_array,
         ]);
+    }
+
+    public function wompiAceptanceToken(){
+        $wompiData = (new WompiServices)->getAceptanceToken();
+        $token = $wompiData['presigned_acceptance'];
+        $acceptance_token = $wompiData['presigned_acceptance']['acceptance_token'];
+        
+        $cardData = [
+            "number" => "4242424242424242",
+            "cvc" => "789",
+            "exp_month" => "12",
+            "exp_year" => "29",
+            "card_holder" => "Pedro Pérez",
+        ];
+        
+        $wompiTokenizeCard = (new WompiServices)->tokenizeCard($cardData);
+        
+        $payment_information = [
+            "acceptance_token" => $acceptance_token,
+            "amount_in_cents" => 3000000,
+            "currency" => "COP",
+            "signature" => "sk8-438k4-xmxm392-sn2m2490000COPprod_integrity_Z5mMke9x0k8gpErbDqwrJXMqsI6SFli6",
+            "customer_email" => "example@wompi.co",
+            "payment_method" => [
+                "type" => "CARD",
+                "token" => $wompiTokenizeCard['data']['id'],
+                "installments" => 2 //Numero de cuotas
+            ],
+            "payment_source_id" => 1234,
+            // "redirect_url" => "https =>//mitienda.com.co/pago/resultado",
+            "reference" => "TUPtdnVugyU40XlkhixhhGE6uYV2gh89",
+            "expiration_time" => "2023-06-09T20 =>28 =>50.000Z",
+            "customer_data" => [
+                "phone_number" => "573307654321",
+                "full_name" => "Juan Alfonso Pérez Rodríguez",
+                "legal_id" => "1234567890",
+                "legal_id_type" => "CC"
+            ],
+            "shipping_address" => [
+                "address_line_1" => "Calle 34 # 56 - 78",
+                "address_line_2" => "Apartamento 502, Torre I",
+                "country" => "CO",
+                "region" => "Cundinamarca",
+                "city" => "Bogotá",
+                "name" => "Pepe Perez",
+                "phone_number" => "573109999999",
+                "postal_code" => "111111"
+            ]
+        ];
+        
+        $PaymentResult = (new WompiServices)->wompiTransaction($payment_information);
+
+        return response()->json([
+            'success' => true,
+            'PaymentResult' => $PaymentResult,
+        ]);
+
     }
 
     public function alegra(){

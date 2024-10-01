@@ -155,9 +155,6 @@ export default {
             return this.discount_percent(this.productDetails.base_price, this.productDetails.base_discounted_price);
         }
     },
-    mounted(){
-        console.log(this.productDetails);
-    },
     methods: {
         ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
         ...mapActions("cart", ["addToCart", "updateQuantity"]),

@@ -2515,14 +2515,11 @@ export default {
             this.getUser();
         },
         async proceedCheckout() {
-            // const res = await this.aceptance_payment_wompi();
-            // console.log(res);
             if (Object.entries(this.dataCheckout).length === 0) {
                 // prettier-ignore
-                const shippingAddressId = this.useDefaultAddress1 ? this.addressPrincipal?.id ?? "" : this.addressServicio?.id ?? "";
+                const shippingAddressId = this.selectedAddressEnvio.id;
                 // prettier-ignore
-                const billingAddressId = this.useDefaultAddress2 ? this.addressPrincipal?.id ?? "" : this.addressFacturacion?.id ?? "";
-
+                const billingAddressId = this.userData.id;
                 let formData = new FormData();
                 formData.append("shipping_address_id", shippingAddressId);
                 formData.append("billing_address_id", billingAddressId);
