@@ -47,7 +47,7 @@ class WompiServices{
                 'json' => $cardData
             ]);
 
-            $res = $response = json_decode($response->getBody()->getContents(), true);;
+            $res = json_decode($response->getBody()->getContents(), true);;
 
             return $res;
         } catch (\Exception $e) {
@@ -55,7 +55,7 @@ class WompiServices{
             echo 'Error: ' . $e->getMessage();
         }
 
-        return $response;
+        return $res;
     }
 
     public function wompiTransaction($paymentInformation){
@@ -63,6 +63,21 @@ class WompiServices{
             $response = $this->client->request('POST', $this->url.'transactions', [
                 'headers' => $this->postHeaders,
                 'json' => $paymentInformation
+            ]);
+
+            $res = json_decode($response->getBody()->getContents(), true);
+
+            return $res;
+        } catch (\Exception $e) {
+            // Manejar el error
+            return $e->getMessage();
+        }
+    }
+
+    public function wompiGetTransaction($id_transaction){
+        try {
+            $response = $this->client->request('GET', $this->url.'transactions/'.$id_transaction, [
+                'headers' => $this->options
             ]);
 
             $res = json_decode($response->getBody()->getContents(), true);
