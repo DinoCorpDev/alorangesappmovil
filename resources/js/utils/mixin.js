@@ -24,23 +24,6 @@ export default {
         snack: (data = {}) => {
             store.commit("snackbar/createSnack", data);
         },
-        // aceptance_payment_wompi(){
-        //     let pub_key = 'pub_prod_yPmmrawVOXbJ6osBjdD95FHFTGFVayP9';
-        //     let config = {
-        //         method: 'GET',
-        //         url: 'https://sandbox.wompi.co/v1/merchants/'+pub_key,
-        //         header: {
-        //             'Content_Type': 'application/json;charset=UTF8',
-        //             'Access-allow-control-origin': '*',
-        //         }
-        //     }
-        //     try {
-        //         let res = axios(config);
-        //         return res;   
-        //     } catch (error) {
-        //         console.log(res);
-        //     }
-        // },
         format_price: (amount = 0) => {
             amount = parseFloat(amount);
             amount = typeof amount == "number" ? amount : 0.0;

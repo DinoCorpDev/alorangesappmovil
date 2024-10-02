@@ -125,7 +125,6 @@ export default {
                     // min_price;
                     // max_price;
                     this.productsSeeder = res.data.products.data;
-                    console.log(res.data.products.data);
                     const primerasLetras = this.productsSeeder.map(item => item.name.charAt(0));
                     primerasLetras.sort();
                     let letrasFiltro = [...new Set(primerasLetras)];

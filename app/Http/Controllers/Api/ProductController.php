@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use App\Utility\CategoryUtility;
 
 use App\Http\Services\AlegraServices;
+use App\Http\Services\WompiServices;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -339,6 +340,45 @@ class ProductController extends Controller
             'success' => true,
             'specifications' => $products_array,
         ]);
+    }
+
+    public function wompiPaymentCard(Request $request){
+        $wompiData = (new WompiServices)->getAceptanceToken();
+        $token = $wompiData['presigned_acceptance'];
+        $acceptance_token = $wompiData['presigned_acceptance']['acceptance_token'];
+        
+        $wompiTokenizeCard = (new WompiServices)->tokenizeCard($request['cardData']);
+        $mount = $request->mount;
+        $currency = $request->currency;
+        $reference = $request->reference;
+        $llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
+        $payment_information = [
+            "acceptance_token" => $acceptance_token,
+            "amount_in_cents" => $mount,
+            "currency" => $currency,
+            "signature" => hash("sha256",$llaveConcatenada),
+            "customer_email" => $request->customer_email,
+            "payment_method" => [
+                "type" => "CARD",
+                "token" => $wompiTokenizeCard['data']['id'],
+                "installments" => $request['cardData']['installments'], //Numero de cuotas
+            ],
+            // "redirect_url" => "https =>//mitienda.com.co/pago/resultado",
+            "reference" => $reference,
+            // "expiration_time" => "2023-06-09T20 =>28 =>50.000Z",
+            "customer_data" => $request['customer_data'],
+            "shipping_address" => $request['shipping_address'],
+        ];
+
+        $PaymentResult = (new WompiServices)->wompiTransaction($payment_information);
+
+        // // $wompiData = (new WompiServices)->wompiGetTransaction($PaymentResult['data']['id']);
+        
+        return response()->json([
+            'success' => true,
+            'PaymentResult' => $PaymentResult,
+        ]);
+
     }
 
     public function alegra(){
