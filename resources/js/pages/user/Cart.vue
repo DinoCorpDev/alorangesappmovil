@@ -800,7 +800,7 @@
                     <v-row>
                         <v-col cols="12" md="7" order="2" order-md="1" order-sm="1">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
-                            <div class="form" style="border: none !important">
+                            <div class="form" style="border: none !important; box-shadow: none;">
                                 <v-row>
                                     <v-col cols="6" sm="3">
                                         <div
@@ -991,7 +991,7 @@
                         </v-col>
                         <v-col cols="12" md="5" order="1" order-md="2" order-sm="2">
                             <h5 class="fw-600">Codigo promocional</h5>
-                            <div class="form" style="border: none !important">
+                            <div class="form" style="border: none !important;  box-shadow: none;">
                                 <p class="mb-1">Regalo/Referido</p>
                                 <CustomInput placeholder="Ingresar código de descuento" class="mb-2" />
                                 <CustomButton class="mb-4" block color="white" text="Aplicar" />
@@ -1943,7 +1943,7 @@
                         <v-col cols="12" md="6">
                             <v-row>
                                 <v-col cols="12">
-                                    <div class="form-step">
+                                    <div class="form">
                                         <v-row class="mb-2">
                                             <v-col cols="11" class="pb-0">
                                                 <h5 class="fw-600 pl-3">Dirección de envío</h5>
@@ -2102,7 +2102,7 @@
                                     </div>
                                 </v-col>
                                 <v-col cols="12">
-                                    <div class="form-step">
+                                    <div class="form">
                                         <h5 class="black--text  pl-3 mb-2">Encargado</h5>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 bold pl-3">Correo electrónico</span>
@@ -2126,7 +2126,7 @@
                                     </div>
                                 </v-col>
                                 <v-col cols="12">
-                                    <div class="form-step">
+                                    <div class="form">
                                         <h5 class="black--text pl-3 my-2">Código promocional</h5>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 bold pl-3">
@@ -2141,7 +2141,7 @@
                         <v-col cols="12" md="6">
                             <v-row>
                                 <v-col cols="12">
-                                    <div class="form-step">
+                                    <div class="form">
                                         <v-row class=" mb-2">
                                             <v-col cols="11" class="pb-0">
                                                 <h5 class="fw-600 pl-3">Facturar a nombre de</h5>
@@ -2185,7 +2185,7 @@
 
                                 <v-col cols="12">
                                     
-                                    <div class="form-step mt-4">
+                                    <div class="form mt-4">
                                         <h5 class="fw-600 pl-3 mb-2">Medio de pago</h5>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 bold pl-3">Transferencia bancaria</span>
@@ -2366,7 +2366,7 @@ export default {
         updateBreadcrumb() {
             const formattedName = this.capitalizeWords(this.currentUser.name);
             const newItems = [
-                { text: "Home", href: "/home", disabled: false },
+                { text: "Home", href: "/", disabled: false },
                 { text: formattedName, disabled: true }
             ];
             this.$store.dispatch("breadcrumb/setBreadcrumbItems", newItems);
@@ -2808,15 +2808,7 @@ export default {
 
 .form {
     border: 1px solid #d5d6d9;
-    border-radius: 10px;
-    padding: 10px;
-    & .mb-2 {
-        margin-bottom: 15px !important;
-    }
-}
-.form-step {
-    border: 1px solid #f1f1f1;
-    background-color: #f1f1f1;
+    box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1), 2px 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 10px;
     & .mb-2 {

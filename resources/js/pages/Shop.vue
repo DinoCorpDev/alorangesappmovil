@@ -9,7 +9,7 @@
                 class="text-none"
                 link
             >
-                <component :is="tab.icon" class="mb-2 mt-3 mt-sm-0 mb-sm-0 mr-sm-3" />
+                <component :is="tab.icon" class="mb-1 mt-3 mt-sm-0 mr-sm-3" />
                 <span class="mb-1 mt-1 mt-sm-0 mb-sm-0">{{ tab.text }}</span>
             </v-tab>
         </v-tabs>
@@ -19,38 +19,31 @@
 </template>
 
 <script>
-import BuildingIcon from "../components/icons/Building.vue";
-import ChairIcon from "../components/icons/Chair.vue";
-import HomeAppliancesIcon from "../components/icons/HomeAppliances.vue";
-import ToolsIcon from "../components/icons/Tools.vue";
+import Cafeteria from "../components/icons/Cafeteria.vue";
+import Cartoneria from "../components/icons/Cartoneria.vue";
+import Papeleria from "../components/icons/Papeleria.vue";
+import Aseo from "../components/icons/Aseo.vue";
+import Tecnologia from "../components/icons/Tecnologia.vue";
+import SeguridadIndustrial from "../components/icons/SeguridadIndustrial.vue";
 
 export default {
     data: () => ({
-        items: [
-            {
-                text: 'Home',
-                disabled: false,
-                href: 'breadcrumbs_dashboard',
-            },
-            {
-                text: 'Tienda',
-                disabled: true
-            },
-        ],
         tabs: [
-            { icon: "BuildingIcon", text: "Cafeteria", routeName: "ShopCafeteria" },
-            { icon: "ChairIcon", text: "Cartoneria", routeName: "ShopCartoneria" },
-            { icon: "ToolsIcon", text: "Papeleria", routeName: "ShopPapeleria" },
-            { icon: "HomeAppliancesIcon", text: "Aseo", routeName: "ShopAseo" },
-            { icon: "ToolsIcon", text: "Tecnología", routeName: "ShopTecnologia" },
-            { icon: "BuildingIcon", text: "Seguridad Industrial", routeName: "ShopSeguridadIndustrial" },
+            { icon: "Cafeteria", text: "Cafeteria", routeName: "ShopCafeteria" },
+            { icon: "Cartoneria", text: "Cartoneria", routeName: "ShopCartoneria" },
+            { icon: "Papeleria", text: "Papeleria", routeName: "ShopPapeleria" },
+            { icon: "Aseo", text: "Aseo", routeName: "ShopAseo" },
+            { icon: "Tecnologia", text: "Tecnología", routeName: "ShopTecnologia" },
+            { icon: "SeguridadIndustrial", text: "Seguridad Industrial", routeName: "ShopSeguridadIndustrial" },
         ]
     }),
     components: {
-        ChairIcon,
-        ToolsIcon,
-        HomeAppliancesIcon,
-        BuildingIcon
+        Cafeteria,
+        Cartoneria,
+        Papeleria,
+        Aseo,
+        Tecnologia,
+        SeguridadIndustrial,
     },
     
 };
@@ -101,7 +94,7 @@ export default {
             font-weight: 400;
             letter-spacing: 0.15px;
             line-height: calc(18px + (20 - 18) * var(--screen-size));
-            color: #8ec641 !important;
+            color: #f58634 !important;
             // min-width: 195px !important;
             margin: 0 10px !important;
             border-radius: 10px;
@@ -116,7 +109,8 @@ export default {
             }
             &--active{
                 color: white !important;
-                background-color: #8ec641;
+                background-color: #f58634;
+                font-size: 17px
             }
             &:before, .v-tabs-slider{
                 background-color: transparent;
