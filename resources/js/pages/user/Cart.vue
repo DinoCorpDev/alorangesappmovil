@@ -904,6 +904,7 @@
                                                 :dark="darkBoxes"
                                                 label="Tipo de persona"
                                                 :items="selectPersonType"
+                                                v-model="personTypeSelected"
                                                 placeholder="Seleccionar una opción"
                                             />
                                         </div>
@@ -915,6 +916,7 @@
                                                 label="Seleccionar banco"
                                                 placeholder="Seleccionar una opción"
                                                 :items="selectBancos"
+                                                v-model="bancoSelected"
                                             />
                                         </div>
                                     </div>
@@ -2260,6 +2262,7 @@ import Cubo from "../../components/icons/Cubo.vue";
 import CustomFavorite from "../../components/icons/CustomFavorite.vue";
 import Flecha from "../../components/icons/Flecha.vue";
 import TotalPago from "../../components/global/TotalPago.vue";
+import { forEach } from "lodash";
 
 // const button = document.getElementById("customButton");
 // const tooltip = document.getElementById("tooltip");
@@ -2320,9 +2323,14 @@ export default {
             mostrarDetalles: false,
             mostrarDetallesFinal: false,
             userData: {},
-            selectBancos: ["Davivienda", "Bancolombia"],
+            selectBancos: [],
             selectDocuments: ["Cedula Ciudadania", "Paraporte"],
-            selectPersonType: ["Natural", "Juridico"],
+            selectPersonType: [
+                { text: "Natural", value: 0 },
+                { text: "Juridico", value: 1 }
+            ],
+            personTypeSelected:"",
+            bancoSelected:"",
             formCard:{}
         };
     },
@@ -2336,6 +2344,7 @@ export default {
         if (this.currentUser) {
             this.updateBreadcrumb();
         }
+        this.wompiBanks();
     },
     filters: {
         filtroParaOcultarInfo(value, ocultarInfo) {
@@ -2507,6 +2516,14 @@ export default {
             this.profileDialogShow = false;
             this.getUser();
         },
+        async wompiBanks(){
+            let result = await this.call_api('GET','product/payment-wompi-banks');
+            result.data.banks.data.forEach(element => {
+                this.selectBancos.push(
+                    { text: element.financial_institution_name, value: element.financial_institution_code }
+                )
+            });
+        },
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
                 const date = new Date();
@@ -2537,31 +2554,65 @@ export default {
                     this.checkoutLoading = true;
                     const res = await this.call_api("post", "checkout/order/store", formData);
 
-                    let totalPrice = this.priceTotal.toString();
-                    let data = {
-                        mount: parseInt( totalPrice.replace(/[^\w\s]/gi, '') ),
-                        currency: 'COP',
-                        reference: referenceToPayment,
-                        customer_email: this.userData.email,
-                        customer_data: {
-                            phone_number: this.userData.phone,
-                            full_name: this.userData.name,
-                            legal_id: this.userData.documentNumber,
-                            legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''),
-                        },
-                        shipping_address:{
-                            address_line_1: this.selectedAddressEnvio.address,
-                            country: "CO",
-                            region: this.selectedAddressEnvio.state,
-                            city: this.selectedAddressEnvio.city,
-                            name: this.userData.name,
-                            phone_number: this.userData.phone,
-                            postal_code: this.selectedAddressEnvio.postal_code
-                        },
-                        cardData: this.formCard,
-                    };
-                    let result = await this.call_api('POST','product/payment-card-wompi',data);
-
+                    if(this.pick === 2){
+                        let totalPrice = this.priceTotal.toString();
+                        let data = {
+                            mount: parseInt( totalPrice.replace(/[^\w\s]/gi, '') ),
+                            currency: 'COP',
+                            reference: referenceToPayment,
+                            customer_email: this.userData.email,
+                            customer_data: {
+                                phone_number: this.userData.phone,
+                                full_name: this.userData.name,
+                                legal_id: this.userData.documentNumber,
+                                legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''),
+                            },
+                            shipping_address:{
+                                address_line_1: this.selectedAddressEnvio.address,
+                                country: "CO",
+                                region: this.selectedAddressEnvio.state,
+                                city: this.selectedAddressEnvio.city,
+                                name: this.userData.name,
+                                phone_number: this.userData.phone,
+                                postal_code: this.selectedAddressEnvio.postal_code
+                            },
+                            cardData: this.formCard,
+                        };
+                        let result = await this.call_api('POST','product/payment-card-wompi',data);
+                    }else if (this.pick === 1){
+                        let totalPrice = this.priceTotal.toString();
+                        let data = {
+                            mount: parseInt( totalPrice.replace(/[^\w\s]/gi, '') ),
+                            currency: 'COP',
+                            reference: referenceToPayment,
+                            customer_email: this.userData.email,
+                            customer_data: {
+                                phone_number: this.userData.phone,
+                                full_name: this.userData.name,
+                                legal_id: this.userData.documentNumber,
+                                legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''),
+                            },
+                            shipping_address:{
+                                address_line_1: this.selectedAddressEnvio.address,
+                                country: "CO",
+                                region: this.selectedAddressEnvio.state,
+                                city: this.selectedAddressEnvio.city,
+                                name: this.userData.name,
+                                phone_number: this.userData.phone,
+                                postal_code: this.selectedAddressEnvio.postal_code
+                            },
+                            payment_method: {
+                                type: "PSE",
+                                user_type: this.personTypeSelected, // Tipo de persona, natural (0) o jurídica (1)
+                                user_legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''), // Tipo de documento, CC o NIT
+                                user_legal_id: this.userData.documentNumber, // Número de documento
+                                financial_institution_code: this.bancoSelected, // Código (`code`) de la institución financiera
+                                payment_description: 'Pago de productos de aloranges',
+                            },
+                        }
+                        let result = await this.call_api('POST','product/payment-wompi-pse',data);
+                        console.log(result);
+                    }
                     if (res.data.success) {
                         this.dataCheckout = res.data;
                         this.numberPag = 4;

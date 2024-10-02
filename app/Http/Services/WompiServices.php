@@ -88,4 +88,19 @@ class WompiServices{
             return $e->getMessage();
         }
     }
+
+    public function wompiPSEPayments(){
+        try {
+            $response = $this->client->request('GET', $this->url.'pse/financial_institutions', [
+                'headers' => $this->postHeaders
+            ]);
+
+            $res = json_decode($response->getBody()->getContents(), true);
+
+            return $res;
+        } catch (\Exception $e) {
+            // Manejar el error
+            return $e->getMessage();
+        }
+    }
 }
