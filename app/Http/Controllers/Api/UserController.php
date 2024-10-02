@@ -93,14 +93,14 @@ class UserController extends Controller
     
             return response()->json([
                 'success' => true,
-                'message' => translate('Profile information has been updated successfully'),
+                'message' => translate('¡Información de usuario actualizada exitosamente!'),
                 'user' => new UserCollection($user)
             ]);
 
         }else{
             return response()->json([
                 'success' => true,
-                'message' => translate('Error Password!'),
+                'message' => translate('Ingrese una contrasña válida'),
                 'user' => new UserCollection($user)
             ]);
         }        
