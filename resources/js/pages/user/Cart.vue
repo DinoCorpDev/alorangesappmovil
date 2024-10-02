@@ -921,36 +921,28 @@
                                     <div v-if="pick === 2" class="data-payments">
                                         <div class="pt-4">
                                             <label>Numero de tarjeta</label>
-                                            <CustomInput placeholder="Número tarjeta" />
+                                            <CustomInput type="number" placeholder="Número tarjeta" v-model="formCard.number"/>
                                         </div>
                                         <div class="pt-4">
-                                            <label>Nombre titular de la tarjeta</label>
-                                            <CustomInput placeholder="Nombre titular" />
+                                            <label>Nombre del tarjetahabiente</label>
+                                            <CustomInput placeholder="Número tarjeta" v-model="formCard.card_holder"/>
                                         </div>
                                         <div class="pt-4">
-                                            <label>Fecha de expedicion</label>
-                                            <CustomInput placeholder="Fecha expedición" />
+                                            <label>Numero de CVC</label>
+                                            <CustomInput placeholder="CVC" v-model="formCard.cvc"/>
                                         </div>
                                         <div class="pt-4">
-                                            <label>Codigo de seguridad</label>
-                                            <CustomInput placeholder="Código seguridad" />
+                                            <label>Año de expiración</label>
+                                            <CustomInput placeholder="Año de expiración" v-model="formCard.exp_year"/>
                                         </div>
                                         <div class="pt-4">
-                                            <label>Numero de CVV2</label>
-                                            <CustomInput placeholder="CVV2" />
+                                            <label>Mes de expiración</label>
+                                            <CustomInput placeholder="Mes de expiración" v-model="formCard.exp_month"/>
                                         </div>
+
                                         <div class="pt-4">
-                                            <label>Tipo de documento</label>
-                                            <SelectCustom
-                                                :dark="darkBoxes"
-                                                label="Seleccionar banco"
-                                                :items="selectDocuments"
-                                                placeholder="Seleccione tipo de documento"
-                                            />
-                                        </div>
-                                        <div class="pt-4">
-                                            <label>Número de documento</label>
-                                            <CustomInput placeholder="Nímero documento" />
+                                            <label>Numero de cuotas</label>
+                                            <CustomInput placeholder="Numero de Cuotas" v-model="formCard.installments"/>
                                         </div>
                                     </div>
                                     <div v-if="pick === 4">
@@ -2330,7 +2322,8 @@ export default {
             userData: {},
             selectBancos: ["Davivienda", "Bancolombia"],
             selectDocuments: ["Cedula Ciudadania", "Paraporte"],
-            selectPersonType: ["Natural", "Juridico"]
+            selectPersonType: ["Natural", "Juridico"],
+            formCard:{}
         };
     },
     computed: {
@@ -2516,14 +2509,21 @@ export default {
         },
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
-                // prettier-ignore
+                const date = new Date();
+                const formattedDate = date.toISOString().slice(0, 10).replace(/-/g, '');
+                const formattedTime = date.toTimeString().slice(0, 8).replace(/:/g, '');
+                const randomNum = Math.floor(10 + Math.random() * 90);
+                let referenceToPayment = formattedDate+''+formattedTime+''+randomNum;
+
+                //prettier-ignore
                 const shippingAddressId = this.selectedAddressEnvio.id;
-                // prettier-ignore
+                //prettier-ignore
                 const billingAddressId = this.userData.id;
                 let formData = new FormData();
                 formData.append("shipping_address_id", shippingAddressId);
                 formData.append("billing_address_id", billingAddressId);
                 formData.append("delivery_type", "standard");
+                formData.append("code", referenceToPayment);
 
                 this.cartItems.forEach((item, index) => {
                     if (item?.isCollection) {
@@ -2536,6 +2536,31 @@ export default {
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
                     const res = await this.call_api("post", "checkout/order/store", formData);
+
+                    let totalPrice = this.priceTotal.toString();
+                    let data = {
+                        mount: parseInt( totalPrice.replace(/[^\w\s]/gi, '') ),
+                        currency: 'COP',
+                        reference: referenceToPayment,
+                        customer_email: this.userData.email,
+                        customer_data: {
+                            phone_number: this.userData.phone,
+                            full_name: this.userData.name,
+                            legal_id: this.userData.documentNumber,
+                            legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''),
+                        },
+                        shipping_address:{
+                            address_line_1: this.selectedAddressEnvio.address,
+                            country: "CO",
+                            region: this.selectedAddressEnvio.state,
+                            city: this.selectedAddressEnvio.city,
+                            name: this.userData.name,
+                            phone_number: this.userData.phone,
+                            postal_code: this.selectedAddressEnvio.postal_code
+                        },
+                        cardData: this.formCard,
+                    };
+                    let result = await this.call_api('POST','product/payment-card-wompi',data);
 
                     if (res.data.success) {
                         this.dataCheckout = res.data;
