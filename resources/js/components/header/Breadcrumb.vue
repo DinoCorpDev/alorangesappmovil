@@ -37,11 +37,11 @@ export default {
 ::v-deep .v-breadcrumbs li:first-of-type a {
     &:first-of-type::before {
         content: "";
-        background-image: url("./User.png");
+        background-image: url("./Home.png");
         background-size: contain;
         background-repeat: no-repeat;
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
         display: inline-block;
         position: absolute;
         left: -20px;

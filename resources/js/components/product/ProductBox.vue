@@ -28,7 +28,7 @@
             </template>
             <span class="product-box-price">{{ format_price(productDetails.base_discounted_price) }}</span>
             <template v-if="boxStyle == 'two'">
-                <v-divider class="my-4" />
+                <!-- <v-divider class="my-4" /> -->
                 <p class="product-box-description" v-if="productDetails.description">
                     {{ productDetails.description || "--" }}
                 </p>
@@ -151,10 +151,12 @@ export default {
 }
 
 .product-box {
+    border: 1px solid #e4e4e4;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) !important;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    background-color: #f5f5f5;
+    background-color: transparent;
     height: 100%;
     overflow: hidden;
     box-sizing: border-box;
@@ -201,9 +203,9 @@ export default {
 
     &-image {
         position: relative;
-        background-color: #dfdfdf;
         cursor: pointer;
-
+        padding: 10px 10px 0px 10px;
+        background: transparent;
         &::after {
             content: "";
             display: block;

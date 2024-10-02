@@ -158,7 +158,7 @@ export default {
         updateBreadcrumb() {
             const newItems = [
                 { text: 'Home', href: '/', disabled: false },
-                { text: 'Tienda', href: '/tienda', disabled: true }
+                { text: 'Tienda', href: '/', disabled: true }
             ];
             this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
         },

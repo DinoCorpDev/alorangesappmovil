@@ -32,19 +32,6 @@
                 
             </v-container>
         </v-app-bar>
-        <!-- <v-breadcrumbs
-            v-if="breadcrumbItems[0].text != 'disabled'"
-            class="mt-7"
-            exact-active-class="active"
-            active-class="disabled"
-            :items="breadcrumbItems"
-            style="background-color: #f4f4f3; margin: 12px; margin-bottom: 0; font-size: 18px !important"
-        >
-            <template v-slot:divider>
-                <i class="las la-angle-right"></i>
-            </template>
-        </v-breadcrumbs> -->
-        <!-- <NabvarBottomBar v-if="$route.meta.hasBottomBar" /> -->
     </div>
 </template>
 
@@ -108,38 +95,7 @@ export default {
     justify-content: flex-end;
     gap: 0.5rem;
 }
-::v-deep .v-breadcrumbs {
-    padding-left: 50px;
-}
-::v-deep .v-breadcrumbs li:first-of-type a {
-    &:first-of-type::before {
-        content: "";
-        background-image: url("./User.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 20px;
-        height: 20px;
-        display: inline-block;
-        position: absolute;
-        left: -20px;
-        top: 40%;
-        transform: translateY(-50%);
-    }
-}
-::v-deep .v-breadcrumbs li a {
-    font-size: 17px !important;
-    position: relative;
-}
 
-::v-deep .v-breadcrumbs li {
-    font-size: 17px !important;
-}
-
-::v-deep .theme--light.v-breadcrumbs .v-breadcrumbs__divider,
-.theme--light.v-breadcrumbs .v-breadcrumbs__item--disabled {
-    color: #f58634;
-    margin-bottom: 5px;
-}
 .container {
     gap: 0.65rem;
 
@@ -155,7 +111,7 @@ export default {
 .layout-navbar-auth {
     min-height: 60px;
     z-index: 10;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 10px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 6px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;
     @media (max-width: 960px) {
         max-height: 60px;
     }

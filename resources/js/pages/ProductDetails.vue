@@ -58,7 +58,7 @@ export default {
                 this.setVidaUtil(this.productDetails.vida_util);
                 this.setComposition(this.productDetails);
                 this.setImpacto(this.productDetails?.impacto_ambiental);
-                this.getMoreProducts(this.productDetails?.id);
+                this.getMoreProducts(this.productDetails?.category_name);
                 this.getMoreProducts2(this.productDetails?.id);
                 this.getRelatedProducts(this.productDetails.id);
                 const newItems = [
@@ -86,9 +86,13 @@ export default {
             }
         },
         async getMoreProducts(id) {
-            const res = await this.call_api("get", `product/random/6/${id}`);
+             //const res = await this.call_api("get", `product/random/9999/${id}`);
+            const res = await this.call_api("get", `product/search?category_slug=${id}`);
+
             if (res.data.success) {
-                res.data?.data?.map(product => {
+                console.log("MIRAR DEBAJO DE ESTO")
+                console.log(res.data)
+                res.data?.products?.data?.map(product => {
                     this.moreProducts.push({
                         id: product?.id,
                         name: product?.name,
@@ -97,7 +101,8 @@ export default {
                         description: product?.description,
                         brand: product?.brandName,
                         ref: product?.reference,
-                        slug: product?.slug
+                        slug: product?.slug,
+                        category: product?.category_name
                     });
                 });
             }
