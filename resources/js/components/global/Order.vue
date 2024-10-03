@@ -3,7 +3,7 @@
         <v-row class="order">
             <v-col cols="9">
                 <div>
-                    <h5 class="font-weight-bold">Orden de pedido # {{ order }}</h5>
+                    <h5 class="font-weight-bold mb-2" style="font-size: 24px;">Orden de pedido # {{ order }}</h5>
                     <p class="body-1" style="margin: 0 !important">Fecha {{ day }} de {{ month }} de {{ year }}</p>
                 </div>
             </v-col>
@@ -106,7 +106,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    padding: 10px;
+    padding: 17px;
     border: 1px solid #e6e6e6;
     border-radius: 10px;
 }

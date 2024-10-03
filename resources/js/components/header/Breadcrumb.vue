@@ -2,7 +2,7 @@
     <div>
         <v-breadcrumbs
             v-if="breadcrumbItems[0].text != 'disabled'"
-            class="mt-7"
+            class="mt-4"
             exact-active-class="active"
             active-class="disabled"
             :items="breadcrumbItems"
