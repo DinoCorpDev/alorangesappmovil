@@ -125,7 +125,6 @@ export default {
                     // min_price;
                     // max_price;
                     this.productsSeeder = res.data.products.data;
-                    console.log(res.data.products.data);
                     const primerasLetras = this.productsSeeder.map(item => item.name.charAt(0));
                     primerasLetras.sort();
                     let letrasFiltro = [...new Set(primerasLetras)];
@@ -159,7 +158,7 @@ export default {
         updateBreadcrumb() {
             const newItems = [
                 { text: 'Home', href: '/', disabled: false },
-                { text: 'Tienda', href: '/tienda', disabled: true }
+                { text: 'Tienda', href: '/', disabled: true }
             ];
             this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
         },

@@ -51,7 +51,6 @@ export default {
     },
     methods:{
         showMenu(){
-            console.log("ENTRÓ A LA FUNCIÓN");
             this.userNavDrawerActive = !this.userNavDrawerActive;
         }
     }

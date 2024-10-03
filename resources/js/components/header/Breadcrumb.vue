@@ -2,7 +2,7 @@
     <div>
         <v-breadcrumbs
             v-if="breadcrumbItems[0].text != 'disabled'"
-            class="mt-7"
+            class="mt-4"
             exact-active-class="active"
             active-class="disabled"
             :items="breadcrumbItems"
@@ -37,11 +37,11 @@ export default {
 ::v-deep .v-breadcrumbs li:first-of-type a {
     &:first-of-type::before {
         content: "";
-        background-image: url("./User.png");
+        background-image: url("./Home.png");
         background-size: contain;
         background-repeat: no-repeat;
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
         display: inline-block;
         position: absolute;
         left: -20px;

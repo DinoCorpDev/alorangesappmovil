@@ -1,7 +1,7 @@
 <template>
-    <div class="side-menu">
-        <div class="user-info-wrap mb-sm-5 mb-lg-0">
-            <div class="user-info">
+    <div class="side-menu" style="box-sizing: border-box;">
+        <div class="user-info-wrap mb-sm-5 mb-lg-0"  style="box-sizing: border-box;">
+            <div class="user-info" >
                 <v-row>
                     <v-col cols="4" style="position: relative">
                         <v-avatar class="user-info-avatar">
@@ -49,12 +49,17 @@
                 {{ $t("Cerrar sesión") }}
             </CustomButton>
         </div>
-
-        <UserMenu class="mb-5" />
-        <v-divider class="d-none d-md-block my-5" />
-        <CustomButton class="d-sm-none d-lg-flex" style="width: 100%;" block color="white" @click="logout">
-            {{ $t("Cerrar sesión") }}
-        </CustomButton>
+        <div style="height: 80%; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; ">
+            <UserMenu class="mb-5" />
+            <div >
+                <v-divider class="d-none d-md-block my-5" style="    border-color: #e4e4e4 !important;
+    border-width: 2px 0 0;"/>
+                <button class="logout-button d-sm-none d-lg-flex" style=""  @click="logout">
+                    {{ $t("Cerrar sesión") }}
+                </button>
+            </div>
+        </div>
+        
 
         <v-dialog
             v-model="dialogAvatar"
@@ -212,7 +217,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.logout-button{
+    width: 100%; 
+    justify-content: center; 
+    align-items: center; 
+    font-weight: bold; 
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid transparent;
+    &:hover{
+        border: 1px solid #f58634;
+        border-radius: 100px;
+    }
+}
 .side-menu {
+    height: 100%;
     .user-info {
         display: flex;
         align-items: center;

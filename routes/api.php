@@ -88,6 +88,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::get('latest/{limit}', [ProductController::class, 'latest_products']);
         Route::get('reviews/{product_id}', [ReviewController::class, 'index']);
         Route::get('/update-alegra', [ProductController::class, 'alegra'])->name('product.alegra');
+        Route::post('/payment-card-wompi', [ProductController::class, 'wompiPaymentCard'])->name('product.wompi.card');
+        Route::post('/payment-wompi-pse', [ProductController::class, 'wompiPaymentPSE'])->name('product.wompi.pse');
+        Route::get('/payment-wompi-banks', [ProductController::class, 'getPSEBanksOptions'])->name('product.wompi.banks');
         Route::get('/{letter}', [ProductController::class, 'products_by_letter']);
     });
 

@@ -217,7 +217,7 @@ class OrderController extends Controller
         $cartItems = Cart::whereIn('id', $cart_item_ids)->with(['variation.product'])->get();
 
         $shippingAddress = Address::find($request->shipping_address_id);
-        $billingAddress = Address::find($request->billing_address_id);
+        $billingAddress = Address::find($request->billing_address_id); 
         $shippingCity = City::with('zone')->find($shippingAddress->city_id);
         $user = auth('api')->user();
 
@@ -311,7 +311,7 @@ class OrderController extends Controller
 
         $combined_order = new CombinedOrder;
         $combined_order->user_id = $user->id;
-        $combined_order->code = date('Ymd-His') . rand(10, 99);
+        $combined_order->code = $request->code;
         $combined_order->shipping_address = json_encode($shippingAddress);
         $combined_order->billing_address = json_encode($billingAddress);
         $combined_order->save();
@@ -492,7 +492,7 @@ class OrderController extends Controller
             $wallet->details = 'Order Placed. Order Code ' . $combined_order->code;
             $wallet->save();
 
-            $this->paymentDone($combined_order, $request->payment_type);
+            $this->paymentDone($combined_order, $request->payment_type, $request->payment_status);
         }
 
         if ($request->payment_type == 'cash_on_delivery' || $request->payment_type == 'wallet' || strpos($request->payment_type, 'offline_payment')  !== false) {
@@ -539,13 +539,13 @@ class OrderController extends Controller
         ]);
     }
 
-    public function paymentDone($combined_order, $payment_method, $payment_info = null)
+    public function paymentDone($combined_order, $payment_method, $payment_info = null, $payment_status = 'unpaid')
     {
         foreach ($combined_order->orders as $order) {
             // commission calculation
             calculate_seller_commision($order);
 
-            $order->payment_status = 'paid';
+            $order->payment_status = $payment_status;
             $order->payment_type = $payment_method;
             $order->payment_details = $payment_info;
             $order->save();

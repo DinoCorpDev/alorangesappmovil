@@ -180,9 +180,6 @@ export default {
         },
         ...mapGetters("app", ["refundSettings"])
     },
-    created() {
-        console.log("Hola", this.orderDetails);
-    },
     methods: {
         cancelOrder(order) {
             this.$refs.confirmCancel

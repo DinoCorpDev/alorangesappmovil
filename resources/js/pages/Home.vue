@@ -202,7 +202,7 @@ export default {
         ...mapActions("app", ["setLanguage"]),
         updateBreadcrumb() {
             const newItems = [
-                { text: 'disabled', href: '/', disabled: false },
+                { text: 'Home', href: '/', disabled: true },
             ];
             this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
         },

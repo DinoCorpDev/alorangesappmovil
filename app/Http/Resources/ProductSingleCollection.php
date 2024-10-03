@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Category;
+use App\Models\ProductCategory;
 
 class ProductSingleCollection extends JsonResource
 {
@@ -14,6 +16,9 @@ class ProductSingleCollection extends JsonResource
      */
     public function toArray($request)
     {
+        $productCategories = ProductCategory::where('product_id',$this->id)->first();
+        $category = Category::where('id',$productCategories->category_id)->first();
+
         $images=[];
         array_push($images, [
             'src' => $this->thumbnail_img,
@@ -23,6 +28,7 @@ class ProductSingleCollection extends JsonResource
             'name' => $this->getTranslation('name'),
             'slug' => $this->slug,
             'metaTitle' => $this->meta_title,
+            'category_name' => $category->name,
             'brand' => [
                 'id' => optional($this->brand)->id,
                 'name' => optional($this->brand)->getTranslation('name'),

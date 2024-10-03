@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="product-box-cart-body-price">
-            <template v-if="productCartType == 'checkout'">
+            <template v-if="productCartType == 'checkout' || productCartType == 'bill'">
                 <!-- <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
                     {{ format_price(productDetails.discounted_price * productDetails.qty) }}
                 </span>
@@ -36,13 +36,14 @@
             </template>
         </div>
         <div class="product-box-cart-quantity">
-            <vue-numeric-input v-model="cartQuantity" :min="1" :max="maxCartLimit" :step="1" align="center" />
+            <vue-numeric-input v-if="productCartType == 'bill'" disabled v-model="cartQuantity" :step="1" align="center" />
+            <vue-numeric-input v-else v-model="cartQuantity" :min="1" :max="maxCartLimit" :step="1" align="center" />
         </div>
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-none d-md-flex">
-                 <template v-if="productCartType == 'checkout'"> 
+                 <template v-if="productCartType == 'checkout' || productCartType == 'bill'"> 
                 <!-- <template v-if="productDetails.regular_price"> -->
-                    <v-tooltip bottom color="black">
+                    <v-tooltip bottom color="black" v-if="productCartType != 'bill'">
                         <template v-slot:activator="{ on, attrs }">
                             <button @click="removeFromCart(productDetails.cart_id)" v-bind="attrs" v-on="on">
                                 <TrashIcon />
@@ -194,7 +195,7 @@ import CustomButton from "../../components/global/CustomButton.vue";
 import AddCartIcon from "../../components/icons/AddCartIcon.vue";
 import EllipsisIcon from "../../components/icons/EllipsisIcon.vue";
 import EyeIcon from "../../components/icons/EyeIcon.vue";
-import FavoriteIcon from "../../components/icons/Favorite.vue";
+import FavoriteIcon from "../../components/icons/WishIcon.vue";
 import TrashIcon from "../../components/icons/TrashIcon.vue";
 
 export default {
@@ -269,7 +270,7 @@ export default {
                         message: this.$i18n.t("Producto agregado al carrito"),
                         color: "green"
                     });
-                    this.removeFromWishlist(this.productDetails.id);
+                    // this.removeFromWishlist(this.productDetails.id);
                 }).catch((error) => {
                     console.error("Error al agregar al carrito:", error);
                     this.snack({
