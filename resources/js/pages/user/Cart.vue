@@ -2592,6 +2592,7 @@ export default {
                             cardData: this.formCard,
                         };
                         result = await this.call_api('POST','product/payment-card-wompi',data);
+                        this.numberPag = 4;
                     }else if (this.pick === 1){
                         let totalPrice = this.priceTotal.toString();
                         let data = {
