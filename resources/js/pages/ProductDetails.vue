@@ -62,9 +62,8 @@ export default {
                 this.getMoreProducts2(this.productDetails?.id);
                 this.getRelatedProducts(this.productDetails.id);
                 const newItems = [
-                    { text: 'Home', href: '/home', disabled: false },
-                    { text: 'Tienda', href: '/Shop', disabled: false },
-                    { text: this.productDetails.name, disabled: true }
+                    { text: 'Home', href: '/', disabled: false },
+                    { text: 'Tienda', href: '/Shop', disabled: true }
                 ];
                 this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
             } else {
