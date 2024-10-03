@@ -26,6 +26,12 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    public function __construct(){
+        $wompiData = (new WompiServices)->getAceptanceToken();
+        $token = $wompiData['presigned_acceptance'];
+        $this->acceptance_token = $wompiData['presigned_acceptance']['acceptance_token'];
+    }
+
     public function index()
     {
         return new ProductCollection(Product::latest()->paginate(10));
@@ -343,17 +349,13 @@ class ProductController extends Controller
     }
 
     public function wompiPaymentCard(Request $request){
-        $wompiData = (new WompiServices)->getAceptanceToken();
-        $token = $wompiData['presigned_acceptance'];
-        $acceptance_token = $wompiData['presigned_acceptance']['acceptance_token'];
-        
         $wompiTokenizeCard = (new WompiServices)->tokenizeCard($request['cardData']);
         $mount = $request->mount;
         $currency = $request->currency;
         $reference = $request->reference;
         $llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
         $payment_information = [
-            "acceptance_token" => $acceptance_token,
+            "acceptance_token" => $this->acceptance_token,
             "amount_in_cents" => $mount,
             "currency" => $currency,
             "signature" => hash("sha256",$llaveConcatenada),
@@ -372,13 +374,52 @@ class ProductController extends Controller
 
         $PaymentResult = (new WompiServices)->wompiTransaction($payment_information);
 
-        // // $wompiData = (new WompiServices)->wompiGetTransaction($PaymentResult['data']['id']);
+        return response()->json([
+            'success' => true,
+            'PaymentResult' => $PaymentResult,
+        ]);
+    }
+
+    public function getPSEBanksOptions(){
+        $wompiData = (new WompiServices)->wompiPSEPayments();
+        return response()->json([
+            'success' => true,
+            'banks' => $wompiData,
+        ]);
+    }
+
+    public function wompiPaymentPSE(Request $request){
+        $mount = $request->mount;
+        $currency = $request->currency;
+        $reference = $request->reference;
+        $llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
+        $payment_information = [
+            "acceptance_token" => $this->acceptance_token,
+            "amount_in_cents" => $mount,
+            "currency" => $currency,
+            "signature" => hash("sha256",$llaveConcatenada),
+            "customer_email" => $request->customer_email,
+            "payment_method" => [
+                "type" => $request['payment_method']['type'],
+                "user_type" => $request['payment_method']['user_type'],
+                "user_legal_id_type" => $request['payment_method']['user_legal_id_type'],
+                "user_legal_id" => $request['payment_method']['user_legal_id'],
+                "financial_institution_code" => $request['payment_method']['financial_institution_code'],
+                "payment_description" => $request['payment_method']['payment_description'],
+            ],
+            "redirect_url" => "http://alorangesapp.test/user/checkout",
+            "reference" => $reference,
+            // "expiration_time" => "2023-06-09T20 =>28 =>50.000Z",
+            "customer_data" => $request['customer_data'],
+            //"shipping_address" => $request['shipping_address'],
+        ];
+        
+        $PaymentResult = (new WompiServices)->wompiTransaction($payment_information);
         
         return response()->json([
             'success' => true,
             'PaymentResult' => $PaymentResult,
         ]);
-
     }
 
     public function alegra(){
