@@ -345,9 +345,7 @@
                                             }}</span>
                                         </div>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 bold pl-3">
-                                                Dirección adicional
-                                            </span>
+                                            <span class="subtitle1 bold pl-3"> Dirección adicional </span>
                                             <span class="body1 pr-3">{{
                                                 selectedAddressEnvio?.details ||
                                                 "No registra" | filtroParaOcultarInfo(mostrarDatosEnvio)
@@ -800,7 +798,7 @@
                     <v-row>
                         <v-col cols="12" md="7" order="2" order-md="1" order-sm="1">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
-                            <div class="form" style="border: none !important; box-shadow: none;">
+                            <div class="form" style="border: none !important; box-shadow: none">
                                 <v-row>
                                     <v-col cols="6" sm="3">
                                         <div
@@ -921,28 +919,35 @@
                                     <div v-if="pick === 2" class="data-payments">
                                         <div class="pt-4">
                                             <label>Numero de tarjeta</label>
-                                            <CustomInput type="number" placeholder="Número tarjeta" v-model="formCard.number"/>
+                                            <CustomInput
+                                                type="number"
+                                                placeholder="Número tarjeta"
+                                                v-model="formCard.number"
+                                            />
                                         </div>
                                         <div class="pt-4">
                                             <label>Nombre del tarjetahabiente</label>
-                                            <CustomInput placeholder="Número tarjeta" v-model="formCard.card_holder"/>
+                                            <CustomInput placeholder="Número tarjeta" v-model="formCard.card_holder" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Numero de CVC</label>
-                                            <CustomInput placeholder="CVC" v-model="formCard.cvc"/>
+                                            <CustomInput placeholder="CVC" v-model="formCard.cvc" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Año de expiración</label>
-                                            <CustomInput placeholder="Año de expiración" v-model="formCard.exp_year"/>
+                                            <CustomInput placeholder="Año de expiración" v-model="formCard.exp_year" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Mes de expiración</label>
-                                            <CustomInput placeholder="Mes de expiración" v-model="formCard.exp_month"/>
+                                            <CustomInput placeholder="Mes de expiración" v-model="formCard.exp_month" />
                                         </div>
 
                                         <div class="pt-4">
                                             <label>Numero de cuotas</label>
-                                            <CustomInput placeholder="Numero de Cuotas" v-model="formCard.installments"/>
+                                            <CustomInput
+                                                placeholder="Numero de Cuotas"
+                                                v-model="formCard.installments"
+                                            />
                                         </div>
                                     </div>
                                     <div v-if="pick === 4">
@@ -991,7 +996,7 @@
                         </v-col>
                         <v-col cols="12" md="5" order="1" order-md="2" order-sm="2">
                             <h5 class="fw-600">Codigo promocional</h5>
-                            <div class="form" style="border: none !important;  box-shadow: none;">
+                            <div class="form" style="border: none !important; box-shadow: none">
                                 <p class="mb-1">Regalo/Referido</p>
                                 <CustomInput placeholder="Ingresar código de descuento" class="mb-2" />
                                 <CustomButton class="mb-4" block color="white" text="Aplicar" />
@@ -1575,9 +1580,12 @@
                                 <div class="d-flex d-sm-none">Opc</div>
                             </div>
                             <v-row style="max-height: 450px; overflow-y: auto">
-                                <v-col cols="12" v-for="(product, i) in cartItems" :key="i">
+                                <!-- <v-col cols="12" v-for="(product, i) in cartItems" :key="i"> -->
+                                <v-col cols="12" v-for="(product, i) in cartItemsTwo" :key="i"> 
+                                    
                                     <ProductCart
                                         :productDetails="product"
+                                        productCartType="bill"
                                         @changeQty="changeQty"
                                         @changeQtyMinus="changeQty"
                                     />
@@ -1586,7 +1594,7 @@
                         </div>
                         <div class="mt-4" style="background-color: #f1f1f1">
                             <v-row style="padding: 10px">
-                                <v-col cols="8" sm="10" class="detalles-final-total">
+                                <v-col cols="8" sm="10" class="detalles-final-total pl-5">
                                     <TotalPago :total="priceTotal" />
                                 </v-col>
                                 <v-col cols="4" sm="2" class="detalles-final-details">
@@ -1943,10 +1951,10 @@
                         <v-col cols="12" md="6">
                             <v-row>
                                 <v-col cols="12">
-                                    <div class="form">
+                                    <div class="form" style="background-color: #f1f1f1">
                                         <v-row class="mb-2">
                                             <v-col cols="11" class="pb-0">
-                                                <h5 class="fw-600 pl-3">Dirección de envío</h5>
+                                                <h5 class="fw-600 pl-3" style="font-size: 25px">Dirección de envío</h5>
                                             </v-col>
                                             <v-col cols="1" class="pl-0 pb-0 ojo">
                                                 <i
@@ -1970,9 +1978,7 @@
                                             "
                                         >
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 bold pl-3"
-                                                    >Nombre de <dfn></dfn>irección</span
-                                                >
+                                                <span class="subtitle1 bold pl-3">Nombre de <dfn></dfn>irección</span>
                                                 <span class="body1 pr-3">Dirección principal</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
@@ -1983,9 +1989,7 @@
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 bold pl-3">
-                                                    Descripción de dirección
-                                                </span>
+                                                <span class="subtitle1 bold pl-3"> Descripción de dirección </span>
                                                 <span class="body1 pr-3">{{
                                                     addressFacturacion?.address
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
@@ -2037,15 +2041,13 @@
                                                 <span class="body1 pr-3">Dirección principal</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1  bold pl-3">Dirección</span>
+                                                <span class="subtitle1 bold pl-3">Dirección</span>
                                                 <span class="body1 text-right pr-3">{{
                                                     addressPrincipal?.address | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1  bold pl-3">
-                                                    Descripción de dirección
-                                                </span>
+                                                <span class="subtitle1 bold pl-3"> Descripción de dirección </span>
                                                 <span class="body1 pr-3">{{
                                                     addressPrincipal?.address | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
@@ -2102,8 +2104,8 @@
                                     </div>
                                 </v-col>
                                 <v-col cols="12">
-                                    <div class="form">
-                                        <h5 class="black--text  pl-3 mb-2">Encargado</h5>
+                                    <div class="form" style="background-color: #f1f1f1">
+                                        <h5 class="black--text pl-3 mb-2" style="font-size: 25px">Encargado</h5>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 bold pl-3">Correo electrónico</span>
                                             <span class="body1 pr-3">{{ currentUser.email || "--" }}</span>
@@ -2125,26 +2127,16 @@
                                         </div>
                                     </div>
                                 </v-col>
-                                <v-col cols="12">
-                                    <div class="form">
-                                        <h5 class="black--text pl-3 my-2">Código promocional</h5>
-                                        <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 bold pl-3">
-                                                Código (Regalo/Referido)
-                                            </span>
-                                            <span class="body1 pr-3">ALO4577</span>
-                                        </div>
-                                    </div>
-                                </v-col>
+                                
                             </v-row>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-row>
                                 <v-col cols="12">
-                                    <div class="form">
-                                        <v-row class=" mb-2">
+                                    <div class="form" style="background-color: #f1f1f1">
+                                        <v-row class="mb-2">
                                             <v-col cols="11" class="pb-0">
-                                                <h5 class="fw-600 pl-3">Facturar a nombre de</h5>
+                                                <h5 class="fw-600 pl-3" style="font-size: 25px">Facturar a nombre de</h5>
                                             </v-col>
                                             <v-col cols="1" class="pl-0 pb-0 ojo">
                                                 <i
@@ -2184,11 +2176,19 @@
                                 </v-col>
 
                                 <v-col cols="12">
-                                    
-                                    <div class="form mt-4">
-                                        <h5 class="fw-600 pl-3 mb-2">Medio de pago</h5>
+                                    <div class="form mt-4" style="background-color: #f1f1f1">
+                                        <h5 class="fw-600 pl-3 mb-2" style="font-size: 25px">Medio de pago</h5>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 bold pl-3">Transferencia bancaria</span>
+                                        </div>
+                                    </div>
+                                </v-col>
+                                <v-col cols="12">
+                                    <div class="form" style="background-color: #f1f1f1">
+                                        <h5 class="black--text pl-3 my-2" style="font-size: 25px">Código promocional</h5>
+                                        <div class="d-flex justify-space-between mb-2">
+                                            <span class="subtitle1 bold pl-3"> Código (Regalo/Referido) </span>
+                                            <span class="body1 pr-3">ALO4577</span>
                                         </div>
                                     </div>
                                 </v-col>
@@ -2200,39 +2200,21 @@
 
                     <v-row>
                         <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.2rem; text-align: left">
-                            Protección de datos personales: IDOVELA S.A.S garantiza el tratamiento de datos personales
-                            acorde a lo establecido en la ley 1581/2012 y decreto 1377/2013. por favor dirija sus
-                            inquietudes al correo: soporte@idovela.com Riesgo de lavado de activos, financiación al
-                            terrorismo sarlaft y ley antisoborno: EL CLIENTE certifica a IDOVELA S.A.S que sus recursos
-                            no provienen ni se destinan al ejercicio de ninguna actividad ilícita o de actividades
-                            conexas al lavado de activos provenientes de estas o de actividades relacionadas con la
-                            financiación del terrorismo EL CLIENTE se obliga a realizar todas las actividades
-                            encaminadas a asegurar que los recursos de estos, no se encuentran relacionados, provengan,
-                            de actividades ilícitas, particularmente de lavado de activos o financiación del terrorismo.
-                            Igualmente se compromete a respetar el programa de ética empresarial que aplica en IDOVELA
-                            S.A.S. Garantía: 1). Garantiza el articulo a partir de la fecha prescrita. únicamente
-                            garantía de fábrica. 2). Garantizamos el articulo según nos ofrecen nuestro(s)
-                            proveedor(es). 3). Situaciones no cubiertas por la garantía legal: • Productos cuyo periodo
-                            de garantía haya expirado o finalizado. • Situaciones ocasionadas por fuerza mayor, caso
-                            fortuito, culpa exclusiva del usuario o terceros • Problemas causados como consecuencia de
-                            instalaciones físicas y eléctricas inadecuadas, uso o mantenimiento inadecuados o diferentes
-                            al indicado en el manual del producto, por personal no autorizado por iDOVELA S.A.S. Cambios
-                            y devoluciones: después de 30 días fecha factura, para cambios por favor presentar la
-                            factura original en horario de lunes a sábado de 8:00 am a 5:00 pm. la mercancía se recibe
-                            en perfecto estado, caja sellada, el material en calidad de segunda (uso o deterioro) no
-                            tiene cambios. no devolvemos dinero Logística: la mercancía se deja hasta dónde llega el
-                            camión (primera planta). una vez recibida y firmada esta factura se entenderá que la
-                            mercancía fue recibida y entregada a satisfacción. El CLIENTE acepta los términos de compra
-                            generales publicados en www.idovela.con/TyC
+                            Lorem ipsum odor amet, consectetuer adipiscing elit. Urna curabitur aliquet condimentum
+                            facilisis ex nec morbi porta laoreet. Tempus fusce et mollis dolor est augue cursus. Fusce
+                            et nisi venenatis ad neque tincidunt dapibus. Condimentum maximus in leo mollis nascetur
+                            dignissim. Curae leo odio morbi efficitur sociosqu metus. Magnis feugiat hac conubia non
+                            torquent commodo sit. Euismod metus hac ullamcorper tristique feugiat ut. Praesent turpis
+                            magnis himenaeos quis adipiscing. Fusce sodales morbi dictum felis feugiat. Pellentesque
+                            condimentum nisl integer tincidunt ac urna nascetur ante fermentum. Montes nec integer
+                            sagittis eu accumsan orci lacus orci sociosqu. Cras etiam augue non fermentum finibus sed.
+                            Cursus primis ridiculus in faucibus velit ultricies lectus. Amet tempus quam sollicitudin
+                            aenean imperdiet accumsan imperdiet. Enim himenaeos rhoncus montes sollicitudin lacinia dis
+                            mus commodo. Etiam vitae senectus phasellus hendrerit pretium mi adipiscing. Dui libero
+                            montes; ante elementum augue lectus. Hac phasellus felis feugiat nulla ante. Interdum
+                            malesuada sem finibus, etiam penatibus gravida molestie ante faucibus? Ipsum in metus nibh
+                            faucibus dapibus proin suspendisse eget.
                         </p>
-                    </v-row>
-                    <v-row>
-                        <v-col cols="12" class="d-flex justify-space-between">
-                            <div class="mb-2">
-                                <CustomButton text="Volver" color="nero" @click="numberPag = 3" />
-                            </div>
-                            <total :total="cartPrice" />
-                        </v-col>
                     </v-row>
                 </v-stepper-content>
             </v-stepper-items>
@@ -2261,10 +2243,6 @@ import CustomFavorite from "../../components/icons/CustomFavorite.vue";
 import Flecha from "../../components/icons/Flecha.vue";
 import TotalPago from "../../components/global/TotalPago.vue";
 
-// const button = document.getElementById("customButton");
-// const tooltip = document.getElementById("tooltip");
-// const tooltipLink = document.getElementById("tooltipLink");
-
 export default {
     components: {
         AddressDialog,
@@ -2292,6 +2270,7 @@ export default {
             numberPag: 1,
             darkBoxes: true,
             cartItems: [],
+            cartItemsTwo: [],
             priceTotal: 0,
             addDialogShow: false,
             addressSelectedForEdit: {},
@@ -2323,7 +2302,7 @@ export default {
             selectBancos: ["Davivienda", "Bancolombia"],
             selectDocuments: ["Cedula Ciudadania", "Paraporte"],
             selectPersonType: ["Natural", "Juridico"],
-            formCard:{}
+            formCard: {}
         };
     },
     computed: {
@@ -2358,6 +2337,11 @@ export default {
         currentUser(newValue) {
             if (newValue) {
                 this.updateBreadcrumb();
+            }
+        },
+        numberPag(newVal){
+            if(newVal == 2){
+                this.cartItemsTwo = [...this.$store.state.cart.cartProducts];
             }
         }
     },
@@ -2458,7 +2442,7 @@ export default {
                     }
                     if (address?.default_service == 1) {
                         this.addressesParaServicio.push(address);
-                    }else{
+                    } else {
                         this.addressesParaEnvio.push(address);
                         this.addressesParaFacturacion.push(address);
                         this.addressesParaServicio.push(address);
@@ -2510,10 +2494,10 @@ export default {
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
                 const date = new Date();
-                const formattedDate = date.toISOString().slice(0, 10).replace(/-/g, '');
-                const formattedTime = date.toTimeString().slice(0, 8).replace(/:/g, '');
+                const formattedDate = date.toISOString().slice(0, 10).replace(/-/g, "");
+                const formattedTime = date.toTimeString().slice(0, 8).replace(/:/g, "");
                 const randomNum = Math.floor(10 + Math.random() * 90);
-                let referenceToPayment = formattedDate+''+formattedTime+''+randomNum;
+                let referenceToPayment = formattedDate + "" + formattedTime + "" + randomNum;
 
                 //prettier-ignore
                 const shippingAddressId = this.selectedAddressEnvio.id;
@@ -2539,17 +2523,17 @@ export default {
 
                     let totalPrice = this.priceTotal.toString();
                     let data = {
-                        mount: parseInt( totalPrice.replace(/[^\w\s]/gi, '') ),
-                        currency: 'COP',
+                        mount: parseInt(totalPrice.replace(/[^\w\s]/gi, "")),
+                        currency: "COP",
                         reference: referenceToPayment,
                         customer_email: this.userData.email,
                         customer_data: {
                             phone_number: this.userData.phone,
                             full_name: this.userData.name,
                             legal_id: this.userData.documentNumber,
-                            legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''),
+                            legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, "")
                         },
-                        shipping_address:{
+                        shipping_address: {
                             address_line_1: this.selectedAddressEnvio.address,
                             country: "CO",
                             region: this.selectedAddressEnvio.state,
@@ -2558,9 +2542,9 @@ export default {
                             phone_number: this.userData.phone,
                             postal_code: this.selectedAddressEnvio.postal_code
                         },
-                        cardData: this.formCard,
+                        cardData: this.formCard
                     };
-                    let result = await this.call_api('POST','product/payment-card-wompi',data);
+                    //let result = await this.call_api('POST','product/payment-card-wompi',data);
 
                     if (res.data.success) {
                         this.dataCheckout = res.data;
@@ -2620,10 +2604,10 @@ export default {
     //     box-shadow: none;
     // }
 
-    // .v-stepper__content {
-    //     // padding: 12px 8px 16px;
-    //     padding: 0;
-    // }
+     .v-stepper__content {
+        padding: 24px 0px 16px !important;
+         //padding: 0;
+     }
 
     // .v-stepper__step__step {
     //     display: none;
@@ -3183,5 +3167,8 @@ export default {
     margin: 2px 0; /* Espaciado entre las líneas de texto */
     font-size: 18px; /* Tamaño del texto */
     color: #333; /* Color del texto */
+}
+h5{
+    font-size: 25px
 }
 </style>
