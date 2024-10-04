@@ -27,17 +27,24 @@ use DB;
 use Illuminate\Http\Request;
 use Notification;
 use PDF;
+use App\Http\Services\WompiServices;
 
 class OrderController extends Controller
 {
     public function index()
     {
-        return new OrderCollection(CombinedOrder::with([
+        $order = new OrderCollection(CombinedOrder::with([
             'user',
             'orders.orderDetails.variation.product',
             'orders.orderDetails.variation.combinations',
             'orders.shop'
         ])->where('user_id', auth('api')->user()->id)->latest()->paginate(12));
+        
+        foreach ($order as $key => $item) {    
+            $wompiData = (new WompiServices)->wompiGetTransactionFacturas($item['code']);
+            $item['orders'][0]['payment_status'] = $wompiData['data'][0]['status'];
+        }
+        return $order;
     }
 
     public function getOrders(Request $request)
@@ -59,6 +66,10 @@ class OrderController extends Controller
             'orders.shop',
             'orders.collectionDetails.collection.productos.product'
         ])->first();
+
+        $wompiData = (new WompiServices)->wompiGetTransactionFacturas($order->code);
+        $order->orders[0]['payment_status'] = $wompiData['data'][0]['status'];
+        
         if ($order) {
             if (auth('api')->user()->id == $order->user_id) {
                 $order_updates = OrderUpdate::where('order_id', $order->id)->get();
