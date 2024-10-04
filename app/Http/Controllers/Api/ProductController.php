@@ -400,7 +400,11 @@ class ProductController extends Controller
         $mount = $request->mount;
         $currency = $request->currency;
         $reference = $request->reference;
-        $llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
+        /**
+         * Llave para pruebas
+         */
+        //$llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
+        $llaveConcatenada = $reference.$mount.$currency."prod_integrity_h9ukTOEnWfo9EM3hkTLCR6XiEpRGCfG5";
         $payment_information = [
             "acceptance_token" => $this->acceptance_token,
             "amount_in_cents" => $mount,
