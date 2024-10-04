@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="product-box-cart-body-price">
-            <template v-if="productCartType == 'checkout' || productCartType == 'bill'">
+            <template v-if="productCartType == 'checkout'">
                 <!-- <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
                     {{ format_price(productDetails.discounted_price * productDetails.qty) }}
                 </span>
@@ -20,6 +20,10 @@
                 </del> -->
 
                 {{ format_price(productDetails.regular_price ? productDetails.regular_price * productDetails.qty : productDetails.base_price * cartQuantity) }}
+            </template>
+            <template v-if="productCartType == 'bill'">
+
+                {{ format_price(productDetails.regular_price ? productDetails.regular_price : productDetails.base_price) }}
             </template>
 
             <template v-if="productCartType == 'wishlist'">

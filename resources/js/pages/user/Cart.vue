@@ -1949,22 +1949,8 @@
                                 <v-col cols="12">
                                     <div class="form" style="background-color: #f1f1f1">
                                         <v-row class="mb-2">
-                                            <v-col cols="11" class="pb-0">
+                                            <v-col cols="12" class="pb-0">
                                                 <h5 class="fw-600 pl-3" style="font-size: 25px">Dirección de envío</h5>
-                                            </v-col>
-                                            <v-col cols="1" class="pl-0 pb-0 ojo">
-                                                <i
-                                                    class="las la-eye-slash"
-                                                    style="font-size: 25px"
-                                                    v-if="mostrarDatosEnvio"
-                                                    @click="toggleDatosEnvio"
-                                                ></i>
-                                                <i
-                                                    class="las la-eye"
-                                                    style="font-size: 25px"
-                                                    @click="toggleDatosEnvio"
-                                                    v-else
-                                                ></i>
                                             </v-col>
                                         </v-row>
                                         <div
@@ -2131,22 +2117,8 @@
                                 <v-col cols="12">
                                     <div class="form" style="background-color: #f1f1f1">
                                         <v-row class="mb-2">
-                                            <v-col cols="11" class="pb-0">
+                                            <v-col cols="12" class="pb-0">
                                                 <h5 class="fw-600 pl-3" style="font-size: 25px">Facturar a nombre de</h5>
-                                            </v-col>
-                                            <v-col cols="1" class="pl-0 pb-0 ojo">
-                                                <i
-                                                    class="las la-eye-slash"
-                                                    style="font-size: 25px"
-                                                    v-if="mostrarDatosFacturacion"
-                                                    @click="toggleDatosFacturacion"
-                                                ></i>
-                                                <i
-                                                    class="las la-eye"
-                                                    style="font-size: 25px"
-                                                    @click="toggleDatosFacturacion"
-                                                    v-else
-                                                ></i>
                                             </v-col>
                                         </v-row>
                                         <div class="d-flex justify-space-between mb-2">
