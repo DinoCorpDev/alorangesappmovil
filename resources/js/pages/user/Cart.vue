@@ -2541,7 +2541,7 @@ export default {
                             reference: referenceToPayment,
                             customer_email: this.userData.email,
                             customer_data: {
-                                phone_number: this.userData.phone,
+                                phone_number: this.userData.phone ? this.userData.phone : this.addressPrincipal.phone ? this.addressPrincipal.phone : '+573007819686',
                                 full_name: this.userData.name,
                                 legal_id: this.userData.documentNumber,
                                 legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''),
@@ -2552,7 +2552,7 @@ export default {
                                 region: this.selectedAddressEnvio.state,
                                 city: this.selectedAddressEnvio.city,
                                 name: this.userData.name,
-                                phone_number: this.userData.phone,
+                                phone_number: this.userData.phone ? this.userData.phone : this.addressPrincipal.phone ? this.addressPrincipal.phone : '+573007819686',
                                 postal_code: this.selectedAddressEnvio.postal_code
                             },
                             cardData: this.formCard,
@@ -2567,7 +2567,7 @@ export default {
                             reference: referenceToPayment,
                             customer_email: this.userData.email,
                             customer_data: {
-                                phone_number: this.userData.phone,
+                                phone_number: this.userData.phone ? this.userData.phone : this.addressPrincipal.phone ? this.addressPrincipal.phone : '+573007819686',
                                 full_name: this.userData.name,
                                 legal_id: this.userData.documentNumber,
                                 legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''),
@@ -2578,7 +2578,7 @@ export default {
                                 region: this.selectedAddressEnvio.state,
                                 city: this.selectedAddressEnvio.city,
                                 name: this.userData.name,
-                                phone_number: this.userData.phone,
+                                phone_number: this.userData.phone ? this.userData.phone : this.addressPrincipal.phone ? this.addressPrincipal.phone : '+573007819686',
                                 postal_code: this.selectedAddressEnvio.postal_code
                             },
                             payment_method: {
@@ -2590,14 +2590,22 @@ export default {
                                 payment_description: 'Pago de productos de aloranges',
                             },
                         }
-                        result = await this.call_api('POST','product/payment-wompi-pse',data);
+                        try {
+                            result = await this.call_api('POST','product/payment-wompi-pse',data);
                         
-                        let idTransaction = result.data.PaymentResult.data.id;
-                        let dataToTransaction = {
-                            id: idTransaction,
-                        };
+                            let idTransaction = result.data.PaymentResult.data.id;
+                            let dataToTransaction = {
+                                id: idTransaction,
+                            };   
 
-                        this.verifyStatusPayment(dataToTransaction);
+                            this.verifyStatusPayment(dataToTransaction);
+                        } catch (error) {
+                            this.snack({
+                                message: 'Algo ha salido mal, intenta nuevamente mas tarde',
+                                color: "red"
+                            });  
+                            console.log(error); 
+                        }
                     }
 
                     if (result.data.success) {
