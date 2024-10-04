@@ -2221,7 +2221,7 @@
                 </v-stepper-content>
             </v-stepper-items>
         </v-stepper>
-        <v-dialog v-model="dialogPSEModal" max-width="600">
+        <v-dialog v-model="dialogPSEModal" max-width="600" persistent>
             <v-card>
                 <v-card-title class="headline">Proceso de Pago</v-card-title>
                 <v-card-text>
