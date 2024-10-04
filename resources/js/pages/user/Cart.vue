@@ -2193,6 +2193,18 @@
                 </v-stepper-content>
             </v-stepper-items>
         </v-stepper>
+        <v-dialog v-model="dialogPSEModal" max-width="600" persistent>
+            <v-card>
+                <v-card-title class="headline">Proceso de Pago</v-card-title>
+                <v-card-text>
+                    <iframe :src="urlPagoPSE" style="width: 100%; height: 100vh; border: 0;"></iframe>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" text @click="closePSEModal">Cerrar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 
@@ -2282,7 +2294,9 @@ export default {
             ],
             personTypeSelected:"",
             bancoSelected:"",
-            formCard:{}
+            formCard:{},
+            dialogPSEModal: false,
+            urlPagoPSE:'',
         };
     },
     computed: {
@@ -2480,6 +2494,21 @@ export default {
                 )
             });
         },
+        async verifyStatusPayment(dataToTransaction){
+            let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
+            if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
+                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
+                this.dialogPSEModal = true;
+            }else{
+                this.verifyStatusPayment(dataToTransaction);
+            }
+        },
+
+        closePSEModal(){
+            this.urlPagoPSE = '';
+            this.dialogPSEModal = false;
+            this.numberPag = 4;
+        },
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
                 const date = new Date();
@@ -2506,10 +2535,10 @@ export default {
                     }
                 });
 
+                let result;
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
                     const res = await this.call_api("post", "checkout/order/store", formData);
-
                     if(this.pick === 2){
                         let totalPrice = this.priceTotal.toString();
                         let data = {
@@ -2534,7 +2563,8 @@ export default {
                             },
                             cardData: this.formCard,
                         };
-                        let result = await this.call_api('POST','product/payment-card-wompi',data);
+                        result = await this.call_api('POST','product/payment-card-wompi',data);
+                        this.numberPag = 4;
                     }else if (this.pick === 1){
                         let totalPrice = this.priceTotal.toString();
                         let data = {
@@ -2566,13 +2596,18 @@ export default {
                                 payment_description: 'Pago de productos de aloranges',
                             },
                         }
-                        let result = await this.call_api('POST','product/payment-wompi-pse',data);
-                        console.log(result);
+                        result = await this.call_api('POST','product/payment-wompi-pse',data);
+                        
+                        let idTransaction = result.data.PaymentResult.data.id;
+                        let dataToTransaction = {
+                            id: idTransaction,
+                        };
+
+                        this.verifyStatusPayment(dataToTransaction);
                     }
 
-                    if (res.data.success) {
+                    if (result.data.success) {
                         this.dataCheckout = res.data;
-                        this.numberPag = 4;
                     } else {
                         this.snack({
                             message: res.data.message,

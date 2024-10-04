@@ -388,6 +388,14 @@ class ProductController extends Controller
         ]);
     }
 
+    public function getTransactionWompi(Request $request){
+        $transactionResult = (new WompiServices)->wompiGetResultTransaction($request->id);
+        return response()->json([
+            'success' => true,
+            'TransactionResult' => $transactionResult,
+        ]);
+    }
+
     public function wompiPaymentPSE(Request $request){
         $mount = $request->mount;
         $currency = $request->currency;
@@ -407,7 +415,7 @@ class ProductController extends Controller
                 "financial_institution_code" => $request['payment_method']['financial_institution_code'],
                 "payment_description" => $request['payment_method']['payment_description'],
             ],
-            "redirect_url" => "http://alorangesapp.test/user/checkout",
+            //"redirect_url" => "http://alorangesapp.test/user/checkout",
             "reference" => $reference,
             // "expiration_time" => "2023-06-09T20 =>28 =>50.000Z",
             "customer_data" => $request['customer_data'],
