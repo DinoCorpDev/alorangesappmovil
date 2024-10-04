@@ -103,4 +103,19 @@ class WompiServices{
             return $e->getMessage();
         }
     }
+
+    public function wompiGetResultTransaction($id){
+        try {
+            $response = $this->client->request('GET', $this->url.'transactions/'.$id, [
+                'headers' => $this->postHeaders
+            ]);
+
+            $res = json_decode($response->getBody()->getContents(), true);
+            
+            return $res;
+        } catch (\Exception $e) {
+            // Manejar el error
+            return $e->getMessage();
+        }   
+    }
 }

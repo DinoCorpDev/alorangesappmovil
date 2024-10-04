@@ -90,6 +90,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::get('/update-alegra', [ProductController::class, 'alegra'])->name('product.alegra');
         Route::post('/payment-card-wompi', [ProductController::class, 'wompiPaymentCard'])->name('product.wompi.card');
         Route::post('/payment-wompi-pse', [ProductController::class, 'wompiPaymentPSE'])->name('product.wompi.pse');
+        Route::post('/transaction-wompi', [ProductController::class, 'getTransactionWompi'])->name('product.wompi.transaction');
         Route::get('/payment-wompi-banks', [ProductController::class, 'getPSEBanksOptions'])->name('product.wompi.banks');
         Route::get('/{letter}', [ProductController::class, 'products_by_letter']);
     });
