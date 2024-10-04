@@ -203,7 +203,7 @@ export default {
     },
     methods: {
         iterateOrderUpdates() {
-            const orderUpdates = this.orderDetails.order_updates;
+            const orderUpdates = this.orderDetails.orders;
             this.orderDetails.orders[0].order_updates = orderUpdates;
         }
     }
