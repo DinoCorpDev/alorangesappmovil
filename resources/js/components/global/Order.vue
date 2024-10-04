@@ -12,7 +12,7 @@
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <div v-bind="attrs" v-on="on">
-                                <custom-button plain> <Descargar /> </custom-button>
+                                <custom-button plain @click.stop="printWindow"> <Descargar /> </custom-button>
                             </div>
                         </template>
                         <span>Descargar</span>
@@ -25,15 +25,6 @@
                             </div>
                         </template>
                         <span>Compartir</span>
-                    </v-tooltip>
-
-                    <v-tooltip bottom color="black">
-                        <template v-slot:activator="{ on, attrs }">
-                            <div v-bind="attrs" v-on="on">
-                                <custom-button plain> <Imprimir /> </custom-button>
-                            </div>
-                        </template>
-                        <span>Imprimir</span>
                     </v-tooltip>
                 </div>
                 <div class="d-md-none" style="display: flex; justify-content: flex-end;">
@@ -96,6 +87,11 @@ export default {
         year: [String, Number],
         descriptionStatus: String,
         
+    },
+    methods:{
+        printWindow(){
+            window.print();
+        }   
     }
 };
 </script>
