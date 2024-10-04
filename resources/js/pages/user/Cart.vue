@@ -988,12 +988,6 @@
                                         <p>Solo pagas por el producto cuando te lo entregamos en tu domicilio.</p>
                                     </div>
                                 </div>
-                                <CustomButton
-                                    v-if="pick != 5 && pick != 4"
-                                    class="mt-4"
-                                    text="Aplicar"
-                                    color="orange"
-                                />
                             </div>
                         </v-col>
                         <v-col cols="12" md="5" order="1" order-md="2" order-sm="2">

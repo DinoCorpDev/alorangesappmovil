@@ -34,6 +34,13 @@
                     {{ format_price(productDetails.base_price) }}
                 </del>
             </template>
+
+            <template v-if="productCartType == 'purchase-history'">
+                
+                <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
+                    {{ format_price(productDetails.price) }}
+                </span>
+            </template>
         </div>
         <div class="product-box-cart-quantity">
             <vue-numeric-input v-if="productCartType == 'bill'" disabled v-model="cartQuantity" :step="1" align="center" />
