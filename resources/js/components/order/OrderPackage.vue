@@ -7,6 +7,8 @@
             <v-row>
                 <v-col cols="12" v-for="(product, i) in items" :key="i">
                     <ProductCart
+                        :productDetails="product"
+                        :productCartType="'purchase-history'"
                         :name="product?.name"
                         :price="product?.price"
                         icon1="/public/assets/img/icons/back.svg"
@@ -60,7 +62,7 @@
                 </v-col>
 
                 <v-col cols="6" sm="3" class="py-1 d-flex justify-end align-center">
-                    <p class="body-2 mb-0">000.000.000 COP</p>
+                    <p class="body-2 mb-0">$0 COP</p>
                 </v-col>
             </v-row>
             <v-row>
@@ -69,7 +71,7 @@
                 </v-col>
 
                 <v-col cols="6" sm="3" class="py-1 d-flex justify-end align-center">
-                    <p class="body-2 mb-0">000.000.000 COP</p>
+                    <p class="body-2 mb-0">$0 COP</p>
                 </v-col>
             </v-row>
             <v-row>
@@ -93,7 +95,7 @@
 
                 <v-col cols="12" sm="4" class="py-1 d-flex justify-start align-center" style="gap: 50px;">
                     <p class="body-1 mb-0">NUMERO DE ARTICULOS</p>
-                    <p class="body-2"><Cubo /> 99</p>
+                    <p class="body-2"><Cubo /> {{totalArticles}}</p>
                 </v-col>
             </v-row>
             <v-divider class="my-3" />
@@ -126,7 +128,9 @@ export default {
     },
     data() {
         return {
-            items: []
+            items: [],
+            priceTotal: 0,
+            totalArticles: 0,
         };
     },
     computed: {
@@ -209,6 +213,10 @@ export default {
     },
     created() {
         this.items = this.order?.products?.data;
+        this.items.map(col =>{
+            this.priceTotal += col.price,
+            this.totalArticles += col.quantity
+        });
 
         if (this.order?.collections && this.order?.collections.length > 0) {
             this.order?.collections.map(col => {

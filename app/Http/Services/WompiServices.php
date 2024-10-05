@@ -17,12 +17,20 @@ class WompiServices{
                 'accept' => 'application/json',
             ],
         ];
+        
         $this->url = 'https://sandbox.wompi.co/v1/';
         $this->token_pub_key = 'pub_test_0HFZFgu0zGNrczp6mTp0vtuuosqQjf8l';
+        $this->token_priv_key = 'prv_test_lURl0xnvDWs03TC7lnExxbMdG3omewow';
 
         $this->postHeaders = [
             'accept' => '/',
             'Authorization'=> 'Bearer '.$this->token_pub_key,
+            'Content-Type' => 'application/json',
+        ];
+
+        $this->postPrivateHeaders = [
+            'accept' => '/',
+            'Authorization'=> 'Bearer '.$this->token_priv_key,
             'Content-Type' => 'application/json',
         ];
     }
@@ -117,5 +125,20 @@ class WompiServices{
             // Manejar el error
             return $e->getMessage();
         }   
+    }
+
+    public function wompiGetTransactionFacturas($reference){
+        try {
+            $response = $this->client->request('GET', $this->url.'transactions?reference='.$reference, [
+                'headers' => $this->postPrivateHeaders
+            ]);
+
+            $res = json_decode($response->getBody()->getContents(), true);
+            
+            return $res;
+        } catch (\Exception $e) {
+            // Manejar el error
+            return $e->getMessage();
+        }
     }
 }
