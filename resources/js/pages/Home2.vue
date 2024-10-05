@@ -3,10 +3,11 @@
         <v-row class="main ma-6 bg-orange-ligth border-style-banner" align="center" tag="main">
             <v-col class="pa-6" cols="12" sm="7" md="7">
                 <h1 class="home-main-title mb-6 mb-sm-8">Compra multi servicios de formal fácil, segura y rápida</h1>
-                <p class="home-main-description mb-6 mb-sm-10">
+                <p class="home-main-description mb-6">
                     Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtenga todo lo que
                     desee de una forma fácil
                 </p>
+                <SearchInput class="search-menu" menu="true" :placeholder="'Escribe lo que buscas'"  />
             </v-col>
             <v-col class="pa-0" cols="12" sm="5" md="5">
                 <img src="/public/assets/img/bannerhomeimg-removebg-preview.png" style="width: 100%; height: auto;" />
@@ -17,7 +18,7 @@
             <v-col cols="12">
                 <div class="rounded-section px-5 py-8">
                     <v-row justify="center">
-                        <v-col cols="12" lg="10">
+                        <v-col cols="12" lg="12">
                             <v-row
                                 :no-gutters="
                                     $vuetify.breakpoint.name == 'md' || $vuetify.breakpoint.name == 'lg' ? false : true
@@ -26,10 +27,10 @@
                                 <v-col class="center-flex" cols="12" sm="6" md="3">
                                     <v-img src="/public/assets/img/Group13.png" contain class="mb-5" />
                                     <h3>Domicilios gratis</h3>
-                                    <p>En compras mininmas</p>
+                                    <p>En compras mínimas</p>
                                 </v-col>
                                 <v-col class="center-flex" cols="12" sm="6" md="3">
-                                    <v-img src="/public/assets/img/Group13.png" contain class="mb-5" />
+                                    <v-img src="/public/assets/img/Group14.png" contain class="mb-5" />
                                     <h3>Apoyo 24/7</h3>
                                     <p>Servicio técnico</p>
                                 </v-col>
@@ -78,23 +79,32 @@
             </v-col>
         </v-row>
 
-        <v-row class="wrapper-app-banner mb-6 center-items hola">
-                <v-col cols="12" lg="4" class="d-none d-lg-flex">
-                    <img class="imgsize-cel" src="public/assets/img/Grupo12203.png" />
-                </v-col>
-                <v-col cols="12" lg="4">
-                    <div class="wrapper-dwn-app">
-                        <h3 class="title-banner-dwn">Descarga Nuesta App Movil</h3>
-                        <CustomButton color="orange" :width="250" :elevation="7" text="Descargar App" />
-                    </div>
-                </v-col>
-                <v-col cols="12" lg="4" class="d-flex justify-center align-center">
-                    <div class="Wrapper-AppStore">
-                        <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
-                        <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12234.png" /></a>
-                    </div>
-                </v-col>
-        </v-row>
+        <div class="wrapper-app-banner mb-6 center-items" style="display: flex; justify-content: center">
+            <div style="width: 90%; border-radius: 24px; background-color: #F9FAFB">
+                <v-row>
+                    <v-col cols="12" sm="6" class="d-flex align-items-center justify-content-start">
+                        <div class="ml-7 mt-7 mt-sm-0 d-flex flex-column justify-center align-start">
+                            <h2 class="banner-title font-weight-bold mb-3" style="font-size: 58px;">Descarga Nuesta App Móvil</h2>
+                            <CustomButton class=" mb-5" color="orange" :width="200" :elevation="7" text="Descargar App" />
+                            <div class="Wrapper-AppStore d-none d-sm-flex">
+                                <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
+                                <a href="#"><img class="imgsize-btn-dwn ml-5" src="public/assets/img/Grupo12234.png" /></a>
+                            </div>
+                        </div>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                        <img class="imgsize-cel" src="public/assets/img/Grupo12203.png" />
+                    </v-col>
+                    <v-col cols="12" class="d-flex d-sm-none justify-center align-center">
+                        <div class="Wrapper-AppStore-responsive mb-7 mb-sm-0">
+                            <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
+                            <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12234.png" /></a>
+                        </div>
+                    </v-col>
+                </v-row>
+            </div>
+        </div>
+
         <v-row>
             <v-col col="12" sm="12" md="12">
                 <CarouselBrands></CarouselBrands>
@@ -123,6 +133,7 @@ import CarouselSpaces from "../components/global/CarouselSpaces.vue";
 import CarouselBrands from "../components/global/CarouselBrands.vue";
 import RecuperarPassCodigo from "../components/auth/RecuperarPassCodigo.vue"; 
 import VerifyAccount from "../components/auth/VerifyAccount.vue"; 
+import SearchInput from "../components/global/SearchInput.vue";
 
 export default {
     components: {
@@ -139,7 +150,8 @@ export default {
         CarouselSpaces,
         CarouselBrands,
         RecuperarPassCodigo,
-        VerifyAccount
+        VerifyAccount,
+        SearchInput
     },
     data() {
         return {
@@ -240,6 +252,15 @@ export default {
 </script>
 
 <style lang="scss">
+.search-menu {
+  @media (max-width: 700px) {
+    max-width: 100% !important;
+  }
+  
+  @media (min-width: 700px) {
+    max-width: 90% !important;
+  }
+}
 .center-items {
     display: flex;
     flex-direction: column;
@@ -247,7 +268,7 @@ export default {
     align-items: center;
 }
 .wrapper-app-banner {
-    background-image: url("/public/assets/img/bg10400.png");
+    // background-image: url("/public/assets/img/bg10400.png");
     background-position: center;
     background-size: contain;
     display: flex;
@@ -255,7 +276,7 @@ export default {
     align-items: center;
 }
 .imgsize-cel {
-    width: 150%;
+    width: 100%;
     height: auto;
 }
 .imgsize-btn-dwn {
@@ -374,6 +395,9 @@ export default {
 }
 .Wrapper-AppStore{
     display: flex;
+}
+.Wrapper-AppStore-responsive{
+    display: flex;
     flex-direction: column;
 }
 .wrapper-dwn-app{
@@ -382,4 +406,5 @@ export default {
     justify-content: center;
     align-items: center ;
 }
+
 </style>
