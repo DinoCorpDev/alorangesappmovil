@@ -7,6 +7,7 @@
             v-model="searchKeyword"
             type="search"
             required
+            :class="{'show-input' : menu=true}"
         />
         <button class="search-input-button" type="button" @click.stop.prevent="search()">
             <SearchIcon />
@@ -30,6 +31,10 @@ export default {
         buttonLabel: {
             type: String,
             default: "Buscar"
+        },
+        menu: {
+            type: Boolean,
+            default: false
         }
     },
     components: {
@@ -64,12 +69,16 @@ export default {
         display: block;
     }
 }
+.show-input{
+    display: block !important;
+}
 .v-application {
     &.theme--light {
         .search-input {
             &:hover {
                 .search-input-input {
                     border-color: #000000;
+                    background-color: #ffffff;
                 }
 
                 .search-input-button {
@@ -121,6 +130,7 @@ export default {
     &-input {
         font-family: "Roboto";
         font-size: 15px;
+        background-color: #ffffff;
         letter-spacing: 0.5px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         border: 1px solid transparent;

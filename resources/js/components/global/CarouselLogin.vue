@@ -1,12 +1,12 @@
 <template>
     <v-carousel :hide-delimiters="hideDelimiters" :show-arrows="showArrows" :height="carouselHeight">
         <template v-slot:prev="{ on, attrs }">
-            <v-btn small color="#000000" v-bind="attrs" v-on="on">
+            <v-btn v-if="slides.length > 1" small color="#000000" v-bind="attrs" v-on="on">
                 <i class="las la-angle-left"></i>
             </v-btn>
         </template>
         <template v-slot:next="{ on, attrs }">
-            <v-btn small color="#000000" v-bind="attrs" v-on="on">
+            <v-btn v-if="slides.length > 1" small color="#000000" v-bind="attrs" v-on="on">
                 <i class="las la-angle-right"></i>
             </v-btn>
         </template>
