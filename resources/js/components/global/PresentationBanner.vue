@@ -86,7 +86,7 @@ export default {
     // max-height: 600px;
 
     &-preamble {
-        font-size: calc(13px + (18 - 13) * var(--screen-size));
+        font-size: calc(13px + (10) * var(--screen-size));
         line-height: calc(24px + (26 - 24) * var(--screen-size));
         font-weight: 700;
         text-transform: uppercase;
@@ -104,7 +104,6 @@ export default {
     }
 
     &-image {
-        background-color: #dfdfdf;
         object-fit: cover;
         height: 100%;
         width: 100%;

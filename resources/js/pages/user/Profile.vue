@@ -32,12 +32,12 @@
 
                         <v-col class="text-end" style="display: flex; align-items: center; justify-content: right">
                             <div style="margin-right: 15px; margin-top: 3px">
-                                <v-tooltip bottom color="black">
+                                <!-- <v-tooltip bottom color="black">
                                     <template v-slot:activator="{ on, attrs }">
                                         <i class="las la-star" v-bind="attrs" v-on="on" style="font-size: 25px"> </i>
                                     </template>
                                     <span>Favorito</span>
-                                </v-tooltip>
+                                </v-tooltip> -->
                             </div>
                             <i
                                 class="las la-eye-slash"
@@ -310,7 +310,7 @@
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
                                 <div style="width: auto; display: inline; float: right">
-                                    <v-tooltip bottom color="black">
+                                    <!-- <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
                                                 v-if="emp.favorite == 1"
@@ -333,7 +333,7 @@
                                             </i>
                                         </template>
                                         <span>Favorito</span>
-                                    </v-tooltip>
+                                    </v-tooltip> -->
                                     <i
                                         class="las la-eye-slash"
                                         style="font-size: 25px"
@@ -439,7 +439,7 @@
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
                                 <div style="width: auto; display: inline; float: right">
-                                    <v-tooltip bottom color="black">
+                                    <!-- <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
                                                 v-if="emp.favorite == 1"
@@ -462,7 +462,7 @@
                                             </i>
                                         </template>
                                         <span>Favorito</span>
-                                    </v-tooltip>
+                                    </v-tooltip> -->
                                     <i
                                         class="las la-eye-slash"
                                         v-if="emp.mostrarDatos"
@@ -1329,14 +1329,14 @@
         </v-row>
 
         <v-row>
-            <v-col cols="12" md="6" class="pt-0">
-                <div v-for="(otherAdd, i) in otherAdress" :key="i">
+            <v-col cols="12" md="6" class="pt-0" v-for="(otherAdd, i) in otherAdress" :key="i">
+                <div >
                     <div v-if="otherAdd?.editar == false">
                         <div v-if="otherAdd.mostrarDatos">
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
                                 <div style="width: auto; display: inline; float: right">
-                                    <v-tooltip bottom color="black">
+                                    <!-- <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
                                                 v-if="otherAdd.favorite == 1"
@@ -1359,7 +1359,7 @@
                                             </i>
                                         </template>
                                         <span>Favorito</span>
-                                    </v-tooltip>
+                                    </v-tooltip> -->
                                     <i
                                         class="las la-eye-slash"
                                         v-if="otherAdd.mostrarDatos"
@@ -1427,7 +1427,7 @@
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
                                 <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
                                 <div style="width: auto; display: inline; float: right">
-                                    <v-tooltip bottom color="black">
+                                    <!-- <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
                                                 v-if="otherAdd.favorite == 1"
@@ -1450,7 +1450,7 @@
                                             </i>
                                         </template>
                                         <span>Favorito</span>
-                                    </v-tooltip>
+                                    </v-tooltip> -->
                                     <i
                                         class="las la-eye-slash"
                                         v-if="otherAdd.mostrarDatos"
@@ -2055,85 +2055,6 @@
                     v-if="!changePassword"
                 >
                     <CustomButton block color="white" text="Cambiar Contraseña" @click="cambiarContrasena()" />
-                </v-card>
-            </v-col>
-
-            <v-col cols="12" md="6">
-                <h5 class="fw-600">Términos y condiciones</h5>
-                <v-divider class="my-4" />
-
-                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <div class="tyc mb-3">
-                        <div class="custom-checkbox" style="margin-left: -9px !important">
-                            <input
-                                disabled
-                                type="checkbox"
-                                v-model="currentUser.offersConsent"
-                                v-on:click="offersConsent"
-                                class="checkbox-profile"
-                                style="width: 100px !important; margin-right: 20px !important"
-                            />
-
-                            <label>
-                                Acepto recibir comunicaciones comerciales personalizadas de Aloranges a través de email
-                                y otros medios.
-                                <a href="#">Conocer newsletter.</a>
-                            </label>
-                        </div>
-
-                        <div class="custom-checkbox">
-                            <input
-                                disabled
-                                type="checkbox"
-                                v-model="currentUser.policiesAndCookiesConsent"
-                                v-on:click="policiesAndCookiesConsent"
-                                class="checkbox-profile"
-                            />
-
-                            <label>
-                                He podido leer y entiendo la <a href="#">Política de privacidad y cookies.</a>
-                            </label>
-                        </div>
-
-                        <div class="custom-checkbox">
-                            <input
-                                disabled
-                                type="checkbox"
-                                v-model="currentUser.termsCondTrade"
-                                v-on:click="termsCondTrade"
-                                class="checkbox-profile"
-                            />
-
-                            <label>
-                                Acepto los <a href="#">Términos y condiciones para la compra con Idovela.</a>
-                            </label>
-                        </div>
-
-                        <div class="custom-checkbox">
-                            <input
-                                disabled
-                                type="checkbox"
-                                v-model="currentUser.guaranteePolicies"
-                                v-on:click="guaranteePolicies"
-                                class="checkbox-profile"
-                            />
-
-                            <label> Acepto las <a href="#">Pólizas de garantía.</a> </label>
-                        </div>
-
-                        <div class="custom-checkbox">
-                            <input
-                                disabled
-                                type="checkbox"
-                                v-model="currentUser.termsLogistics"
-                                v-on:click="termsLogistics"
-                                class="checkbox-profile"
-                            />
-
-                            <label> Acepto los términos de <a href="#">La logística de envió.</a> </label>
-                        </div>
-                    </div>
-                    <CustomButton color="white" text="Saber Más" />
                 </v-card>
             </v-col>
         </v-row>
