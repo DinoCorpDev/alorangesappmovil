@@ -2501,8 +2501,10 @@ export default {
         async verifyStatusPayment(dataToTransaction){
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
-                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
-                this.dialogPSEModal = true;
+                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url
+                window.open(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url,'_blank','width=800,height=600');
+                //this.dialogPSEModal = true;
+                this.numberPag = 4;
             }else{
                 this.verifyStatusPayment(dataToTransaction);
             }
