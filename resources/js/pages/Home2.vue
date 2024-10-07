@@ -2,15 +2,16 @@
     <v-container style="background-color: white;">
         <v-row class="main ma-6 bg-orange-ligth border-style-banner" align="center" tag="main">
             <v-col class="pa-6" cols="12" sm="7" md="7">
-                <h1 class="home-main-title mb-6 mb-sm-8">Compra multi servicios de formal fácil, segura y rápida</h1>
+                <h1 class="home-main-title mb-6 mb-sm-8">Suministros de papelería, aseo, cafetería, cartonería 
+                    y seguridad industrial para empresas!</h1>
                 <p class="home-main-description mb-6">
-                    Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtenga todo lo que
+                    Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtengan todo lo que
                     desee de una forma fácil
                 </p>
                 <SearchInput class="search-menu" menu="true" :placeholder="'Escribe lo que buscas'"  />
             </v-col>
-            <v-col class="pa-0" cols="12" sm="5" md="5">
-                <img src="/public/assets/img/bannerhomeimg-removebg-preview.png" style="width: 100%; height: auto;" />
+            <v-col class="pa-0 d-flex" cols="12" sm="5" md="5">
+                <img src="/public/assets/img/bannerhomeimg-removebg-preview2.png" style="width: 100%; height: auto;" />
             </v-col>
         </v-row>
 
@@ -84,8 +85,8 @@
                 <v-row>
                     <v-col cols="12" sm="6" class="d-flex align-items-center justify-content-start">
                         <div class="ml-7 mt-7 mt-sm-0 d-flex flex-column justify-center align-start">
-                            <h2 class="banner-title font-weight-bold mb-3" style="font-size: 58px;">Descarga Nuesta App Móvil</h2>
-                            <CustomButton class=" mb-5" color="orange" :width="200" :elevation="7" text="Descargar App" />
+                            <h2 class="banner-title font-weight-bold mb-3">Descarga Nuesta App Móvil</h2>
+                            <CustomButton class=" mb-5" color="orange" :width="200" :elevation="7">Descargar App</CustomButton>
                             <div class="Wrapper-AppStore d-none d-sm-flex">
                                 <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
                                 <a href="#"><img class="imgsize-btn-dwn ml-5" src="public/assets/img/Grupo12234.png" /></a>
@@ -293,11 +294,26 @@ export default {
 .home {
     &-main {
         &-description {
-            font-size: var(--font-size-h5);
             color: black;
-            font-weight: 100;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 22px;
+            @media (min-width: 600px) {
+                font-size: 31px;
+                line-height: 37px;
+            }
+            
+            
         }
-
+        &-title{
+            font-size: 30px;
+            line-height: 36px;
+            font-weight: 600;
+            @media (min-width: 600px) {
+                line-height: 74px;
+                font-size: 61px;
+            }
+        }
         &-carousel {
             height: 80vh !important;
             max-height: 786px;
@@ -406,5 +422,11 @@ export default {
     justify-content: center;
     align-items: center ;
 }
-
+.banner-title{
+    // font-family: 'Montserrat', Courier, monospace;
+    font-size: 35px;
+    @media (min-width: 600px) {
+        font-size: 58px;
+    }
+}
 </style>
