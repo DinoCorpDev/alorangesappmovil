@@ -353,6 +353,12 @@ class ProductController extends Controller
         $mount = $request->mount;
         $currency = $request->currency;
         $reference = $request->reference;
+        $installments = null;
+        if (isset($request['cardData']['installments'])) {
+            $installments = $request['cardData']['installments'];
+        }else{
+            $installments = 1;
+        }
         $llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
         $payment_information = [
             "acceptance_token" => $this->acceptance_token,
@@ -363,7 +369,7 @@ class ProductController extends Controller
             "payment_method" => [
                 "type" => "CARD",
                 "token" => $wompiTokenizeCard['data']['id'],
-                "installments" => $request['cardData']['installments'], //Numero de cuotas
+                "installments" => $installments, //Numero de cuotas
             ],
             // "redirect_url" => "https =>//mitienda.com.co/pago/resultado",
             "reference" => $reference,
