@@ -143,14 +143,6 @@ export default {
                 src: "/public/assets/img/login-img.png",
                 type: "image"
             },
-            {
-                src: "/public/assets/img/Loginfondo2.jpg",
-                type: "image"
-            },
-            {
-                src: "/public/assets/img/Loginfondo3.gif",
-                type: "image"
-            }
         ]
     }),
     validations: {

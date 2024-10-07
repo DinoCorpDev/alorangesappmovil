@@ -49,7 +49,6 @@
                 {{ $t("Cerrar sesión") }}
             </CustomButton>
         </div>
-        <div style="height: 80%; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; ">
             <UserMenu class="mb-5" />
             <div >
                 <v-divider class="d-none d-md-block my-5" style="    border-color: #e4e4e4 !important;
@@ -58,7 +57,6 @@
                     {{ $t("Cerrar sesión") }}
                 </button>
             </div>
-        </div>
         
 
         <v-dialog

@@ -67,7 +67,7 @@
                                     <span style="color: #919191; margin-left: 10px">{{ getCartCount }}</span>
                                 </div>
                                 <v-divider vertical></v-divider>
-                                <CustomButton color="black" v-if="mostrarDetalles" @click="ocultarDetalle">
+                                <!-- <CustomButton color="black" v-if="mostrarDetalles" @click="ocultarDetalle">
                                     DETALLES
                                     <i
                                         class="las la-sort-down"
@@ -79,9 +79,9 @@
                                     DETALLES
                                     <i class="las la-sort-up" style="color: black; font-size: 20px; padding-left: 10px">
                                     </i>
-                                </CustomButton>
+                                </CustomButton> -->
                             </v-col>
-                            <v-col cols="12" md="3" class="d-flex justify-end align-center pl-0 pl-md-3">
+                            <v-col cols="12" md="3" class="d-flex justify-end align-center pl-md-3">
                                 <div class="boton-continuar" v-if="mostrarDetalles == false">
                                     <CustomButton
                                         class="boton-continuar"
@@ -571,7 +571,7 @@
                         <v-col cols="12">
                             <v-row class="barra-inferior">
                                 <v-col
-                                    class="d-none d-md-flex justify-start align-center pl-0 pl-md-3"
+                                    class="d-none d-md-flex justify-start justify-md-end align-center pl-0 pl-md-3"
                                     cols="2"
                                     style="display: flex"
                                 >
@@ -582,9 +582,9 @@
                                 <v-col
                                     cols="12"
                                     md="8"
-                                    class="d-flex justify-start justify-md-start align-center gap pl-0 pl-md-3"
+                                    class="d-flex justify-center align-center gap pl-0 pl-md-3"
                                 >
-                                    <TotalFlete :total="priceTotal" />
+                                    <total :total="priceTotal" />
                                     <v-divider vertical></v-divider>
                                     <div class="icono-exclamacion d-flex">
                                         <v-tooltip top color="black">
@@ -612,7 +612,7 @@
                                         </v-tooltip>
                                     </div>
                                     <v-divider vertical></v-divider>
-                                    <CustomButton color="black" v-if="mostrarDetalles" @click="ocultarDetalle">
+                                    <!-- <CustomButton color="black" v-if="mostrarDetalles" @click="ocultarDetalle">
                                         DETALLES
                                         <i
                                             class="las la-sort-down"
@@ -632,7 +632,7 @@
                                             style="color: black; font-size: 20px; padding-left: 10px"
                                         >
                                         </i>
-                                    </CustomButton>
+                                    </CustomButton> -->
                                 </v-col>
                                 <v-col
                                     cols="12"
@@ -640,7 +640,7 @@
                                     style="display: flex; justify-content: flex-end; align-items: center"
                                 >
                                     <v-row>
-                                        <v-col cols="6" md="0" class="d-flex d-md-none pl-0">
+                                        <v-col cols="6" md="0" class="d-flex d-md-none">
                                             <div v-if="mostrarDetalles == false" class="boton-continuar">
                                                 <CustomButton
                                                     class="boton-continuar"
@@ -656,7 +656,7 @@
                                                     class="boton-continuar"
                                                     text="Continuar >"
                                                     color="orange"
-                                                    @click="numberPag = 3"
+                                                    @click="goStepThree"
                                                 />
                                             </div>
                                         </v-col>
@@ -785,7 +785,7 @@
                                                 class="boton-continuar"
                                                 text="Continuar >"
                                                 color="grey2"
-                                                @click="numberPag = 3"
+                                                @click="goStepThree"
                                             />
                                         </v-col>
                                     </v-row>
@@ -796,7 +796,7 @@
                 </v-stepper-content>
                 <v-stepper-content class="tamaño-responsive" step="3">
                     <v-row>
-                        <v-col cols="12" md="7" order="2" order-md="1" order-sm="1">
+                        <v-col cols="12" md="7" order="1" order-md="1" order-sm="1">
                             <h5 class="fw-600">Seleccionar medio de pago</h5>
                             <div class="form" style="border: none !important; box-shadow: none">
                                 <v-row>
@@ -990,8 +990,8 @@
                                 </div>
                             </div>
                         </v-col>
-                        <v-col cols="12" md="5" order="1" order-md="2" order-sm="2">
-                            <h5 class="fw-600">Codigo promocional</h5>
+                        <v-col cols="12" md="5" order="2" order-md="2" order-sm="2">
+                            <h5 class="fw-600">Código promocional</h5>
                             <div class="form" style="border: none !important; box-shadow: none">
                                 <p class="mb-1">Regalo/Referido</p>
                                 <CustomInput placeholder="Ingresar código de descuento" class="mb-2" />
@@ -1055,18 +1055,17 @@
                             <v-row class="barra-inferior">
                                 <v-col
                                     cols="2"
-                                    class="d-none d-md-flex"
-                                    style="display: flex; justify-content: flex-start; align-items: center"
+                                    class="d-none d-md-flex justify-center justify-md-center align-center"
                                 >
                                     <div v-if="mostrarDetalles == false">
                                         <CustomButton text="< Volver" color="white" @click="numberPag = 2" />
                                     </div>
                                 </v-col>
-                                <v-col cols="12" md="8" class="gap-1 pl-0 pl-md-3">
+                                <v-col cols="12" md="8" class="gap-1 pl-md-3">
                                     <TotalPago :total="priceTotal" />
 
                                     <v-divider vertical></v-divider>
-                                    <CustomButton color="black" v-if="mostrarDetalles" @click="ocultarDetalle">
+                                    <!-- <CustomButton color="black" v-if="mostrarDetalles" @click="ocultarDetalle">
                                         DETALLES
                                         <i
                                             class="las la-sort-down"
@@ -1086,10 +1085,10 @@
                                             style="color: black; font-size: 20px; padding-left: 10px"
                                         >
                                         </i>
-                                    </CustomButton>
+                                    </CustomButton> -->
                                 </v-col>
 
-                                <v-col cols="6" class="d-flex d-md-none pl-0">
+                                <v-col cols="6" class="d-flex d-md-none">
                                     <div v-if="mostrarDetalles == false" class="boton-continuar">
                                         <CustomButton
                                             class="boton-continuar"
@@ -2344,6 +2343,17 @@ export default {
             ];
             this.$store.dispatch("breadcrumb/setBreadcrumbItems", newItems);
         },
+        goStepThree(){
+            if(this.selectedAddressEnvio.name){
+                this.numberPag = 3;
+            }else{
+                this.snack({
+                        message: "Seleccione una dirección de envio",
+                        color: "red"
+                    });
+            }
+            
+        },
         capitalizeWords(name) {
             return name.replace(/\b\w/g, char => char.toUpperCase());
         },
@@ -2491,8 +2501,10 @@ export default {
         async verifyStatusPayment(dataToTransaction){
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
-                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
-                this.dialogPSEModal = true;
+                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url
+                window.open(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url,'_blank','width=800,height=600');
+                //this.dialogPSEModal = true;
+                this.numberPag = 4;
             }else{
                 this.verifyStatusPayment(dataToTransaction);
             }
