@@ -943,7 +943,7 @@
                                         </div>
                                         <div class="pt-4">
                                             <label>Nombre del tarjetahabiente</label>
-                                            <CustomInput placeholder="Número tarjeta" v-model="formCard.card_holder" />
+                                            <CustomInput placeholder="Nombre del tarjetahabiente" v-model="formCard.card_holder" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Numero de CVC</label>
