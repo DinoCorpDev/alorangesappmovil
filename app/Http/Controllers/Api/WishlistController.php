@@ -41,7 +41,7 @@ class WishlistController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => translate('Producto agregado a favoritos'),
+            'message' => translate('Producto agregado exitosamente a MI LISTA'),
             'product' => [
                 'id' => (int) $product->id,
                 'name' => $product->name,
@@ -141,7 +141,7 @@ class WishlistController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => translate('Product is successfully removed from your wishlist')
+            'message' => translate('Producto eliminado de MI LISTA')
         ], 200);
     }
 

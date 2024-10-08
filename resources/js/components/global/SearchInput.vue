@@ -7,7 +7,7 @@
             v-model="searchKeyword"
             type="search"
             required
-            :class="{'show-input' : menu=true}"
+            :class="{'show-input' : showInput}"
         />
         <button class="search-input-button" type="button" @click.stop.prevent="search()">
             <SearchIcon />
@@ -32,7 +32,7 @@ export default {
             type: String,
             default: "Buscar"
         },
-        menu: {
+        showInput: {
             type: Boolean,
             default: false
         }
@@ -69,6 +69,7 @@ export default {
         display: block;
     }
 }
+
 .show-input{
     display: block !important;
 }

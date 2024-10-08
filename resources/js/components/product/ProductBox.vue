@@ -12,7 +12,7 @@
                     color="orange"
                     text="Ver Detalles"
                     :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }"
-                />
+                />.
             </div>
         </div>
         <div class="product-box-body">
@@ -220,7 +220,7 @@ export default {
         }
 
         &-hover {
-            width: 100%;
+            width: 90%;
             position: absolute;
             bottom: 0;
             opacity: 0;

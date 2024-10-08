@@ -45,18 +45,18 @@
                 </v-row>
             </div>
 
-            <CustomButton class="d-none d-sm-flex d-lg-none" block color="white" @click="logout">
+            <!-- <CustomButton class="d-none d-sm-flex d-lg-none" block color="white" @click="logout">
                 {{ $t("Cerrar sesión") }}
-            </CustomButton>
+            </CustomButton> -->
         </div>
             <UserMenu class="mb-5" />
-            <div >
+            <!-- <div >
                 <v-divider class="d-none d-md-block my-5" style="    border-color: #e4e4e4 !important;
     border-width: 2px 0 0;"/>
                 <button class="logout-button d-sm-none d-lg-flex" style=""  @click="logout">
                     {{ $t("Cerrar sesión") }}
                 </button>
-            </div>
+            </div> -->
         
 
         <v-dialog
