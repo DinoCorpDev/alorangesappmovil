@@ -42,7 +42,7 @@ class OrderController extends Controller
         
         foreach ($order as $key => $item) {    
             $wompiData = (new WompiServices)->wompiGetTransactionFacturas($item['code']);
-            $item['orders'][0]['payment_status'] = $wompiData['data'][0]['status'];
+            $item['orders'][0]['payment_status'] = $wompiData['data'] ? $wompiData['data'][0]['status'] : 'unpaid';
         }
         return $order;
     }

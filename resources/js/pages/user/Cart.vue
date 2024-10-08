@@ -2570,8 +2570,10 @@ export default {
                     const res = await this.call_api("post", "checkout/order/store", formData);
                     if(this.pick === 2){
                         let totalPrice = this.priceTotal.toString();
+                        let mountToPass = parseInt( totalPrice.replace(/[^\w\s]/gi, '') );
+                        let total = parseInt(`${mountToPass}00`);
                         let data = {
-                            mount: parseInt( totalPrice.replace(/[^\w\s]/gi, '') ),
+                            mount: total,
                             currency: 'COP',
                             reference: referenceToPayment,
                             customer_email: this.userData.email,
@@ -2596,8 +2598,10 @@ export default {
                         this.numberPag = 4;
                     }else if (this.pick === 1){
                         let totalPrice = this.priceTotal.toString();
+                        let mountToPass = parseInt( totalPrice.replace(/[^\w\s]/gi, '') );
+                        let total = parseInt(`${mountToPass}00`);
                         let data = {
-                            mount: parseInt( totalPrice.replace(/[^\w\s]/gi, '') ),
+                            mount: total,
                             currency: 'COP',
                             reference: referenceToPayment,
                             customer_email: this.userData.email,
