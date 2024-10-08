@@ -1,6 +1,6 @@
 <template>
     <v-container fluid>
-        <contact-dialog :show="contactDialogShow" @close="contactDialogClosed" />
+        
 
         <v-container class="bg-surface-variant ma-0 px-0">
             <div align="start" class="d-flex"  no-gutters>
@@ -36,7 +36,7 @@
         </v-container>
         
         <v-row tag="section" class="mb-6">
-            <v-col cols="12" v-for="(product, key) in productsSeeder" :key="`product-col-${product.id}`">
+            <v-col cols="12" v-for="(product, key) in productsSeeder" :key="product.id">
                 <v-row class="mb-3">
                     <v-col
                         cols="12"

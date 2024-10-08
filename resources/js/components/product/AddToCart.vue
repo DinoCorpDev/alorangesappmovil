@@ -20,12 +20,12 @@
                             @click="removeFromWishlist(productDetails.id)"
                             class="icon"
                         >
-                            <FavoriteIcon />
+                            <WishIcon />
                         </button>
                     </template>
                     <template v-else>
                         <button :title="$t('add_to_wishlist')" @click="addNewWishlist(productDetails.id)" class="icon">
-                            <FavoriteIcon />
+                            <WishIcon />
                         </button>
                     </template>
                 </div>
@@ -111,8 +111,8 @@ import { mapGetters, mapActions, mapMutations } from "vuex";
 import ProductGallery from "../product/ProductGallery.vue";
 import ProductBoxShort from "../product/ProductBoxShort.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
-
 import FavoriteIcon from "../../components/icons/Favorite.vue";
+import WishIcon from "../../components/icons/WishIcon.vue";
 
 export default {
     props: {
@@ -146,6 +146,7 @@ export default {
         ProductGallery,
         ProductBoxShort,
         FavoriteIcon,
+        WishIcon,
         CustomButton
     },
     computed: {

@@ -1,16 +1,17 @@
 <template>
     <v-container style="background-color: white;">
-        <v-row class="main ma-6 bg-orange-ligth border-style-banner" align="center" tag="main">
+        <v-row class="main mx-2 my-6 mx-sm-6  bg-orange-ligth border-style-banner" align="center" tag="main">
             <v-col class="pa-6" cols="12" sm="7" md="7">
-                <h1 class="home-main-title mb-6 mb-sm-8">Compra multi servicios de formal fácil, segura y rápida</h1>
+                <h1 class="home-main-title mb-6 mb-sm-8">Suministros de papelería, aseo, cafetería, cartonería 
+                    y seguridad industrial para empresas!</h1>
                 <p class="home-main-description mb-6">
-                    Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtenga todo lo que
+                    Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtengan todo lo que
                     desee de una forma fácil
                 </p>
-                <SearchInput class="search-menu" menu="true" :placeholder="'Escribe lo que buscas'"  />
+                <SearchInput class="search-menu" :showInput="true" :placeholder="'Escribe lo que buscas'"  />
             </v-col>
-            <v-col class="pa-0" cols="12" sm="5" md="5">
-                <img src="/public/assets/img/bannerhomeimg-removebg-preview.png" style="width: 100%; height: auto;" />
+            <v-col class="pa-0 d-flex" cols="12" sm="5" md="5">
+                <img src="/public/assets/img/bannerhomeimg-removebg-preview2.png" style="width: 100%; height: auto;" />
             </v-col>
         </v-row>
 
@@ -27,22 +28,22 @@
                                 <v-col class="center-flex" cols="12" sm="6" md="3">
                                     <v-img src="/public/assets/img/Group13.png" contain class="mb-5" />
                                     <h3>Domicilios gratis</h3>
-                                    <p>En compras mínimas</p>
+                                    <p class="preambulo-text">En compras mínimas</p>
                                 </v-col>
                                 <v-col class="center-flex" cols="12" sm="6" md="3">
                                     <v-img src="/public/assets/img/Group14.png" contain class="mb-5" />
                                     <h3>Apoyo 24/7</h3>
-                                    <p>Servicio técnico</p>
+                                    <p class="preambulo-text">Servicio técnico</p>
                                 </v-col>
                                 <v-col class="center-flex" cols="12" sm="6" md="3">
                                     <v-img src="/public/assets/img/Group12.png" contain class="mb-5" />
                                     <h3>Pago seguro</h3>
-                                    <p>Múltiples bancos</p>
+                                    <p class="preambulo-text">Múltiples bancos</p>
                                 </v-col>
                                 <v-col class="center-flex" cols="12" sm="6" md="3">
                                     <v-img src="/public/assets/img/Refresh.png" contain class="mb-5" />
                                     <h3>Devoluciones</h3>
-                                    <p>Cambios de productos</p>
+                                    <p class="preambulo-text">Cambios de productos</p>
                                 </v-col>
                             </v-row>
                         </v-col>
@@ -61,13 +62,14 @@
         </v-row>
 
         <v-row class="mb-6">
-            <v-col cols="12">
+            <v-col cols="12" class="d-flex justify-center">
                 <PresentationBanner
                     id="be-there"
                     icon="/public/assets/img/home/icon-be-there.svg"
                     preamble="Escuchar, Comprender y Percibir al Usuario"
                     title="Estar allí"
                     image="/public/assets/img/banner2home.png"
+                    style="max-width: 98%;"
                 >
                     <template v-slot:description>
                         Identificamos las necesidades de las personas para mejorar su experiencia del entorno.
@@ -80,12 +82,12 @@
         </v-row>
 
         <div class="wrapper-app-banner mb-6 center-items" style="display: flex; justify-content: center">
-            <div style="width: 90%; border-radius: 24px; background-color: #F9FAFB">
+            <div style="width: 95%; border-radius: 24px; background-color: #F4F9EC">
                 <v-row>
                     <v-col cols="12" sm="6" class="d-flex align-items-center justify-content-start">
                         <div class="ml-7 mt-7 mt-sm-0 d-flex flex-column justify-center align-start">
-                            <h2 class="banner-title font-weight-bold mb-3" style="font-size: 58px;">Descarga Nuesta App Móvil</h2>
-                            <CustomButton class=" mb-5" color="orange" :width="200" :elevation="7" text="Descargar App" />
+                            <h2 class="banner-title font-weight-bold mb-3">Descarga Nuesta App Móvil</h2>
+                            <CustomButton class=" mb-5" color="orange" :width="200" :elevation="7">Descargar App</CustomButton>
                             <div class="Wrapper-AppStore d-none d-sm-flex">
                                 <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
                                 <a href="#"><img class="imgsize-btn-dwn ml-5" src="public/assets/img/Grupo12234.png" /></a>
@@ -97,8 +99,14 @@
                     </v-col>
                     <v-col cols="12" class="d-flex d-sm-none justify-center align-center">
                         <div class="Wrapper-AppStore-responsive mb-7 mb-sm-0">
-                            <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
-                            <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12234.png" /></a>
+                            <v-row>
+                                <v-col cols="6" class="pr-1 pl-5">
+                                    <a href="#"><img class="imgsize-btn-dwn" style="width: 100%; height: auto;" src="public/assets/img/Grupo12233.png" /></a>
+                                </v-col>
+                                <v-col cols="6" class="pl-1 pr-5">
+                                    <a href="#"><img class="imgsize-btn-dwn" style="width: 100%; height: auto;" src="public/assets/img/Grupo12234.png" /></a>
+                                </v-col>
+                            </v-row>
                         </div>
                     </v-col>
                 </v-row>
@@ -243,7 +251,7 @@ export default {
         },
         updateBreadcrumb() {
             const newItems = [
-                { text: 'Home', href: '/', disabled: true },
+                { text: 'disabled', href: '/', disabled: true },
             ];
             this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
         },
@@ -293,11 +301,26 @@ export default {
 .home {
     &-main {
         &-description {
-            font-size: var(--font-size-h5);
             color: black;
-            font-weight: 100;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 22px;
+            @media (min-width: 600px) {
+                font-size: 31px;
+                line-height: 37px;
+            }
+            
+            
         }
-
+        &-title{
+            font-size: 30px;
+            line-height: 36px;
+            font-weight: 600;
+            @media (min-width: 600px) {
+                line-height: 74px;
+                font-size: 61px;
+            }
+        }
         &-carousel {
             height: 80vh !important;
             max-height: 786px;
@@ -332,7 +355,21 @@ export default {
 .temp {
     padding: 0 15%;
 }
-
+h3{
+    font-size: 18px;
+    font-weight: 700;
+    @media (min-width: 600px) {
+        font-size: 35px;
+        font-weight: 500;
+    }
+}
+.preambulo-text{
+    font-size: 18px;
+    font-weight: 400;
+    @media (min-width: 600px) {
+        font-size: 25px;
+    }
+}
 .theme--dark {
     .preambulo .rounded-section {
         background-color: #18191a;
@@ -406,5 +443,11 @@ export default {
     justify-content: center;
     align-items: center ;
 }
-
+.banner-title{
+    // font-family: 'Montserrat', Courier, monospace;
+    font-size: 35px;
+    @media (min-width: 600px) {
+        font-size: 58px;
+    }
+}
 </style>
