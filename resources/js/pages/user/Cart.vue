@@ -2538,6 +2538,25 @@ export default {
             this.dialogPSEModal = false;
             this.numberPag = 4;
         },
+        processToSendStore(referenceToPayment){
+            const shippingAddressId = this.selectedAddressEnvio.id;
+            const billingAddressId = this.userData.id;
+
+            let formData = new FormData();
+            formData.append("shipping_address_id", shippingAddressId);
+            formData.append("billing_address_id", billingAddressId);
+            formData.append("delivery_type", "standard");
+            formData.append("code", referenceToPayment);
+
+            this.cartItems.forEach((item, index) => {
+                if (item?.isCollection) {
+                    formData.append("cart_collection_ids[]", item?.cart_id);
+                } else {
+                    formData.append("cart_item_ids[]", item?.cart_id);
+                }
+            });
+            return formData;
+        },
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
                 const date = new Date();
@@ -2546,28 +2565,9 @@ export default {
                 const randomNum = Math.floor(10 + Math.random() * 90);
                 let referenceToPayment = formattedDate + "" + formattedTime + "" + randomNum;
 
-                //prettier-ignore
-                const shippingAddressId = this.selectedAddressEnvio.id;
-                //prettier-ignore
-                const billingAddressId = this.userData.id;
-                let formData = new FormData();
-                formData.append("shipping_address_id", shippingAddressId);
-                formData.append("billing_address_id", billingAddressId);
-                formData.append("delivery_type", "standard");
-                formData.append("code", referenceToPayment);
-
-                this.cartItems.forEach((item, index) => {
-                    if (item?.isCollection) {
-                        formData.append("cart_collection_ids[]", item?.cart_id);
-                    } else {
-                        formData.append("cart_item_ids[]", item?.cart_id);
-                    }
-                });
-
                 let result;
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
-                    const res = await this.call_api("post", "checkout/order/store", formData);
                     if(this.pick === 2){
                         let totalPrice = this.priceTotal.toString();
                         let mountToPass = parseInt( totalPrice.replace(/[^\w\s]/gi, '') );
@@ -2595,7 +2595,17 @@ export default {
                             cardData: this.formCard,
                         };
                         result = await this.call_api('POST','product/payment-card-wompi',data);
-                        this.numberPag = 4;
+                        if(result.data.success){
+                            let formData = this.processToSendStore(referenceToPayment);
+                            const res = await this.call_api("post", "checkout/order/store", formData);
+                            this.numberPag = 4;
+                            this.dataCheckout = res.data;
+                        }else{
+                            this.snack({
+                                message: 'Algo ha salido mal, Revisa la información e intenta nuevamente',
+                                color: "red"
+                            });
+                        }
                     }else if (this.pick === 1){
                         let totalPrice = this.priceTotal.toString();
                         let mountToPass = parseInt( totalPrice.replace(/[^\w\s]/gi, '') );
@@ -2631,13 +2641,21 @@ export default {
                         }
                         try {
                             result = await this.call_api('POST','product/payment-wompi-pse',data);
-                        
                             let idTransaction = result.data.PaymentResult.data.id;
-                            let dataToTransaction = {
-                                id: idTransaction,
-                            };   
-
-                            this.verifyStatusPayment(dataToTransaction);
+                            if(idTransaction){
+                                let dataToTransaction = {
+                                    id: idTransaction,
+                                };   
+                                this.verifyStatusPayment(dataToTransaction);
+                                let formData = this.processToSendStore(referenceToPayment);
+                                const res = await this.call_api("post", "checkout/order/store", formData);
+                                this.dataCheckout = res.data;   
+                            }else{
+                                this.snack({
+                                    message: 'Algo ha salido mal, intenta nuevamente mas tarde',
+                                    color: "red"
+                                }); 
+                            }
                         } catch (error) {
                             this.snack({
                                 message: 'Algo ha salido mal, intenta nuevamente mas tarde',
@@ -2645,15 +2663,6 @@ export default {
                             });  
                             console.log(error); 
                         }
-                    }
-
-                    if (result.data.success) {
-                        this.dataCheckout = res.data;
-                    } else {
-                        this.snack({
-                            message: res.data.message,
-                            color: "red"
-                        });
                     }
 
                     this.checkoutLoading = false;

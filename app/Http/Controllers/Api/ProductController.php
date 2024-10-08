@@ -349,43 +349,48 @@ class ProductController extends Controller
     }
 
     public function wompiPaymentCard(Request $request){
-        $wompiTokenizeCard = (new WompiServices)->tokenizeCard($request['cardData']);
-        $mount = $request->mount;
-        $currency = $request->currency;
-        $reference = $request->reference;
-        $installments = null;
-        if (isset($request['cardData']['installments'])) {
-            $installments = $request['cardData']['installments'];
-        }else{
-            $installments = 1;
+        try {
+            $wompiTokenizeCard = (new WompiServices)->tokenizeCard($request['cardData']);
+            $mount = $request->mount;
+            $currency = $request->currency;
+            $reference = $request->reference;
+            $installments = null;
+            if (isset($request['cardData']['installments'])) {
+                $installments = $request['cardData']['installments'];
+            }else{
+                $installments = 1;
+            }
+            $llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
+            $payment_information = [
+                "acceptance_token" => $this->acceptance_token,
+                "amount_in_cents" => $mount,
+                "currency" => $currency,
+                "signature" => hash("sha256",$llaveConcatenada),
+                "customer_email" => $request->customer_email,
+                "payment_method" => [
+                    "type" => "CARD",
+                    "token" => $wompiTokenizeCard['data']['id'],
+                    "installments" => $installments, //Numero de cuotas
+                ],
+                // "redirect_url" => "https =>//mitienda.com.co/pago/resultado",
+                "reference" => $reference,
+                // "expiration_time" => "2023-06-09T20 =>28 =>50.000Z",
+                "customer_data" => $request['customer_data'],
+                "shipping_address" => $request['shipping_address'],
+            ];
+
+            $PaymentResult = (new WompiServices)->wompiTransaction($payment_information);
+
+            return response()->json([
+                'success' => true,
+                'PaymentResult' => $PaymentResult,
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'PaymentResult' => 'Verifica los datos e intenta nuevamente',
+            ]);
         }
-        //$llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
-        $llaveConcatenada = $reference.$mount.$currency.'prod_integrity_h9ukTOEnWfo9EM3hkTLCR6XiEpRGCfG5';
-
-        $payment_information = [
-            "acceptance_token" => $this->acceptance_token,
-            "amount_in_cents" => $mount,
-            "currency" => $currency,
-            "signature" => hash("sha256",$llaveConcatenada),
-            "customer_email" => $request->customer_email,
-            "payment_method" => [
-                "type" => "CARD",
-                "token" => $wompiTokenizeCard['data']['id'],
-                "installments" => $installments, //Numero de cuotas
-            ],
-            // "redirect_url" => "https =>//mitienda.com.co/pago/resultado",
-            "reference" => $reference,
-            // "expiration_time" => "2023-06-09T20 =>28 =>50.000Z",
-            "customer_data" => $request['customer_data'],
-            "shipping_address" => $request['shipping_address'],
-        ];
-
-        $PaymentResult = (new WompiServices)->wompiTransaction($payment_information);
-
-        return response()->json([
-            'success' => true,
-            'PaymentResult' => $PaymentResult,
-        ]);
     }
 
     public function getPSEBanksOptions(){
@@ -408,11 +413,7 @@ class ProductController extends Controller
         $mount = $request->mount;
         $currency = $request->currency;
         $reference = $request->reference;
-        /**
-         * Llave para pruebas
-         */
-        //$llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
-        $llaveConcatenada = $reference.$mount.$currency."prod_integrity_h9ukTOEnWfo9EM3hkTLCR6XiEpRGCfG5";
+        $llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";      
         $payment_information = [
             "acceptance_token" => $this->acceptance_token,
             "amount_in_cents" => $mount,
