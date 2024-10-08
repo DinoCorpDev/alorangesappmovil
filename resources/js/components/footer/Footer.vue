@@ -33,18 +33,6 @@
             </v-col>
             <v-col md="1"/>
         </v-row>
-        <!-- <div class="auth-footer-copyright-wrap">
-            <span class="auth-footer-copyright">© Idovela 2023</span>
-            <span class="auth-footer-location">
-                <WorldGlobeIcon class="mr-2" />
-                <span>Bogota, Colombia</span>
-            </span>
-        </div>
-        <ul class="auth-footer-links">
-            <li class="auth-footer-link" v-for="link in authFooterLinks" :key="`link-${link.label}`">
-                <router-link :to="link.link"> {{ link.label }} </router-link>
-            </li>
-        </ul> -->
     </v-footer>
 </template>
 

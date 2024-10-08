@@ -1,12 +1,15 @@
 <template>
     <v-app class="d-flex flex-column">
         <Navbar display="position: fixed; top: 0px" v-if="$route.meta.hasHeader && $route.name == 'Home2'" />
-        <NavbarAuth v-if="$route.meta.hasHeader && $route.name != 'Home2'" />
+        <NavbarAuth v-if="$route.meta.hasHeader && $route.name != 'Home2'" @toggleMenu="toggleMenu" />
         
 
         <v-main class="aiz-main-wrap">
             <Breadcrumb />
             <!-- prettier-ignore -->
+            <v-navigation-drawer v-model="userNavDrawerActive" fixed temporary right style="z-index: 999">
+                <SideMenu class="pa-3" />
+            </v-navigation-drawer>
             <router-view :key="['ShopDetails','ShopCoupons','ShopProducts'].includes($route.name) ? null : $route.path"></router-view>
         </v-main>
 
@@ -28,12 +31,19 @@ import Navbar from "./header/Navbar.vue";
 import NavbarAuth from "./header/NavbarAuth.vue";
 import SnackBar from "./inc/SnackBar";
 import Breadcrumb from "./header/Breadcrumb.vue";
+import SideMenu from "./user/SideMenu";
 
 export default {
     metaInfo() {
         return {
-            title: this.appMetaTitle
+            title: this.appMetaTitle,
+            
         };
+    },
+    data(){
+        return{
+            userNavDrawerActive: false
+        }
     },
     components: {
         AddToCartDialog,
@@ -42,6 +52,7 @@ export default {
         Breadcrumb,
         Navbar,
         NavbarAuth,
+        SideMenu,
         SnackBar
     },
     watch: {
@@ -65,6 +76,9 @@ export default {
             } else {
                 this.$vuetify.rtl = false;
             }
+        },
+        toggleMenu(){
+            this.userNavDrawerActive = !this.userNavDrawerActive;
         },
         async getTempCartData() {
             if (this.isAuthenticated && this.getTempUserId) {

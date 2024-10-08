@@ -32,111 +32,14 @@
                         ><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px" />
                     </CustomButton>
                     <div class="layout-navbar-auth-nav">
-                        <DoubleButton class="d-none d-sm-flex" />
-                        <div class="d-flex d-sm-none">
-                            <v-menu offset-y>
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-btn class="logout-icon-esc" style="min-width: 45px" v-bind="attrs" v-on="on">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="18"
-                                            height="15"
-                                            viewBox="0 0 18 15"
-                                            fill="none"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                clip-rule="evenodd"
-                                                d="M0.599976 1.50005C0.599976 0.837307 1.13723 0.300049 1.79998 0.300049H16.2C16.8627 0.300049 17.4 0.837307 17.4 1.50005C17.4 2.16279 16.8627 2.70005 16.2 2.70005H1.79998C1.13723 2.70005 0.599976 2.16279 0.599976 1.50005Z"
-                                                fill="#F58634"
-                                            />
-                                            <path
-                                                fill-rule="evenodd"
-                                                clip-rule="evenodd"
-                                                d="M0.599976 7.50005C0.599976 6.83731 1.13723 6.30005 1.79998 6.30005H16.2C16.8627 6.30005 17.4 6.83731 17.4 7.50005C17.4 8.16279 16.8627 8.70005 16.2 8.70005H1.79998C1.13723 8.70005 0.599976 8.16279 0.599976 7.50005Z"
-                                                fill="#F58634"
-                                            />
-                                            <path
-                                                fill-rule="evenodd"
-                                                clip-rule="evenodd"
-                                                d="M0.599976 13.5C0.599976 12.8373 1.13723 12.3 1.79998 12.3H16.2C16.8627 12.3 17.4 12.8373 17.4 13.5C17.4 14.1628 16.8627 14.7 16.2 14.7H1.79998C1.13723 14.7 0.599976 14.1628 0.599976 13.5Z"
-                                                fill="#F58634"
-                                            />
-                                        </svg>
-                                    </v-btn>
-                                </template>
-                                <v-list>
-                                    <v-list-item class="d-flex justify-center">
-                                        <DoubleButton />
-                                    </v-list-item>
-                                    <v-list-item class="d-flex justify-center">
-                                        <v-dialog v-model="dialogResposive" width="500">
-                                            <template v-slot:activator="{ on, attrs }">
-                                                <v-btn class="logout-icon" v-bind="attrs" v-on="on">
-                                                    <Logout />
-                                                </v-btn>
-                                            </template>
-
-                                            <v-card>
-                                                <v-card-text
-                                                        style="
-                                                            display: flex;
-                                                            flex-direction: column;
-                                                            justify-content: center;
-                                                            align-items: center;
-                                                        "
-                                                    >
-                                                        <img style="width: 200px; padding-top: 10%;" src="./Logo Aloranges.png" />
-                                                        <h3
-                                                            class="pa-12"
-                                                            style="
-                                                                font-size: 35px;
-                                                                font-weight: 500px;
-                                                                line-height: 42px;
-                                                                text-align: center;
-                                                                color: black;
-                                                            "
-                                                        >
-                                                            ¿Seguro que desea cerrar sesión?
-                                                        </h3>
-                                                    </v-card-text>
-                                                    <v-card-actions class="justify-center">
-                                                        <CustomButton color="white" @click="dialogResposive = false"
-                                                            >Cancelar</CustomButton
-                                                        >
-                                                        <CustomButton color="orange" @click="logout"
-                                                            >Cerrar sesión</CustomButton
-                                                        >
-                                                    </v-card-actions>
-                                                    <v-btn
-                                                        class="logout-icon-esc"
-                                                        style="position: absolute; top: 5px; right: 5px"
-                                                        @click="dialogResposive = false"
-                                                    >
-                                                        <svg
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            width="21"
-                                                            height="20"
-                                                            viewBox="0 0 21 20"
-                                                            fill="none"
-                                                        >
-                                                            <path
-                                                                fill-rule="evenodd"
-                                                                clip-rule="evenodd"
-                                                                d="M1.36853 0.868532C1.99337 0.243693 3.00643 0.243693 3.63127 0.868532L10.4999 7.73716L17.3685 0.868532C17.9934 0.243693 19.0064 0.243693 19.6313 0.868532C20.2561 1.49337 20.2561 2.50643 19.6313 3.13127L12.7626 9.9999L19.6313 16.8685C20.2561 17.4934 20.2561 18.5064 19.6313 19.1313C19.0064 19.7561 17.9934 19.7561 17.3685 19.1313L10.4999 12.2626L3.63127 19.1313C3.00643 19.7561 1.99337 19.7561 1.36853 19.1313C0.743693 18.5064 0.743693 17.4934 1.36853 16.8685L8.23716 9.9999L1.36853 3.13127C0.743693 2.50643 0.743693 1.49337 1.36853 0.868532Z"
-                                                                fill="#25292E"
-                                                            />
-                                                        </svg>
-                                                    </v-btn>
-                                                    
-                                            </v-card>
-                                        </v-dialog>
-                                    </v-list-item>
-                                </v-list>
-                            </v-menu>
+                        <DoubleButton class="d-none d-lg-flex" />
+                        <div class="d-flex d-lg-none">
+                            <CustomButton @click.stop="toggleMenu" color="orange3">
+                                <BurgerMenu />
+                            </CustomButton>
                         </div>
                         <!-- MODAL LOGOUT START -->
-                        <div class="d-none d-sm-flex">
+                        <div class="d-none d-lg-flex">
                             <v-dialog transition="dialog-top-transition" max-width="600">
                                 <template v-slot:activator="dialog">
                                     <button
@@ -203,6 +106,7 @@
                             </v-dialog>
                         </div>
                         <!-- MODAL LOGOUT END -->
+                        
                     </div>
                 </div>
             </v-container>
@@ -211,17 +115,20 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
 import Cart from "../icons/CartIcon.vue";
+import BurgerMenu from "../icons/BurgerMenu.vue";
 import Search from "../icons/IconSearch.vue";
 import Logout from "../icons/Logout.vue";
 import LogoAloranges from "./LogoAloranges.vue";
 import LogoAlorange from "./LogoAlorange.vue";
 import SearchInput from "../global/SearchInput.vue";
 import ToggleMenu from "./ToggleMenu.vue";
+
+import SideMenu from "../user/SideMenu";
 
 export default {
     name: "LayoutNavbarAuth",
@@ -231,7 +138,9 @@ export default {
         LogoAloranges,
         LogoAlorange,
         Search,
+        BurgerMenu,
         Logout,
+        SideMenu,
         SearchInput,
         Cart,
         ToggleMenu
@@ -241,7 +150,8 @@ export default {
             headerFixed: false,
             logoLarge: false,
             scrollThreshold: 70,
-            dialogResposive: false
+            dialogResposive: false,
+            userNavDrawerActive: false
         };
     },
     computed: {
@@ -270,6 +180,9 @@ export default {
             this.$router.push({ name: "Home2" }).catch(() => {
                 console.log("Error while redirecting to home");
             });
+        },
+        toggleMenu(){
+            this.$emit('toggleMenu');
         }
     }
 };
@@ -372,4 +285,17 @@ export default {
         }
     }
 }
+::v-deep {
+        .v-overlay--active {
+            .v-overlay__scrim {
+                backdrop-filter: blur(30px);
+                background-color: rgba(0, 0, 0, 0.15) !important;
+                opacity: 1 !important;
+            }
+        }
+    }
+
+    .v-navigation-drawer {
+        box-shadow: none;
+    }
 </style>
