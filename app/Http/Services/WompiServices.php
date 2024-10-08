@@ -147,8 +147,11 @@ class WompiServices{
             ]);
 
             $res = json_decode($response->getBody()->getContents(), true);
-            
-            return $res;
+            $status = 'unpaid';
+            foreach ($res['data'] as $key => $wompi) {
+                $status = $wompi['status'];
+            }
+            return $status;
         } catch (\Exception $e) {
             // Manejar el error
             return $e->getMessage();
