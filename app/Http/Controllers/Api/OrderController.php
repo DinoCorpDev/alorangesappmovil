@@ -41,8 +41,10 @@ class OrderController extends Controller
         ])->where('user_id', auth('api')->user()->id)->latest()->paginate(12));
         
         foreach ($order as $key => $item) {    
-            $wompiData = (new WompiServices)->wompiGetTransactionFacturas($item['code']);
-            $item['orders'][0]['payment_status'] = $wompiData['data'] ? $wompiData['data'][0]['status'] : 'unpaid';
+            $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($item['code']);
+            foreach ($item['orders'] as $key => $itemOrdes) {
+                $itemOrdes['payment_status'] = $wompiResult;
+            }
         }
         return $order;
     }

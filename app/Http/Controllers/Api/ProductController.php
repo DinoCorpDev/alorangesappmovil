@@ -30,6 +30,7 @@ class ProductController extends Controller
         $wompiData = (new WompiServices)->getAceptanceToken();
         $token = $wompiData['presigned_acceptance'];
         $this->acceptance_token = $wompiData['presigned_acceptance']['acceptance_token'];
+        $this->signatureWompi = 'test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn';
     }
 
     public function index()
@@ -360,7 +361,7 @@ class ProductController extends Controller
             }else{
                 $installments = 1;
             }
-            $llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";
+            $llaveConcatenada = $reference.$mount.$currency.$this->signatureWompi;
             $payment_information = [
                 "acceptance_token" => $this->acceptance_token,
                 "amount_in_cents" => $mount,
@@ -413,7 +414,7 @@ class ProductController extends Controller
         $mount = $request->mount;
         $currency = $request->currency;
         $reference = $request->reference;
-        $llaveConcatenada = $reference.$mount.$currency."test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn";      
+        $llaveConcatenada = $reference.$mount.$currency.$this->signatureWompi;      
         $payment_information = [
             "acceptance_token" => $this->acceptance_token,
             "amount_in_cents" => $mount,
