@@ -463,7 +463,8 @@ class ProductController extends Controller
                     $price = 0;
                     foreach ($product['price'] as $key => $listPrices) {
                         if ($listPrices['name'] === 'PUNTO DE VENTA') {
-                            $price = $listPrices['price'];
+                            $finalPrice = substr($listPrices['price'], 0, -2) . "00";
+                            $price = $finalPrice;
                         }
                     }
                     $percentage = $product['tax'] && $product['tax'][0]['percentage'];
