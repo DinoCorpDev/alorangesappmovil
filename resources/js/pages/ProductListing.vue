@@ -1,5 +1,8 @@
 <template>
     <v-container class="search mb-5" fluid>
+        <div class="d-flex d-sm-none">
+            <SearchInput  :showInput="true" :placeholder="'Escribe lo que buscas'" style="max-width: 500px; margin-bottom: 25px;  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" />
+        </div>
         <v-row class="filter-bar-wrap mb-5">
             <v-col cols="12">
                 <div class="filter-bar">
@@ -26,7 +29,7 @@
         <v-row class="d-flex flex-wrap">
             <v-col cols="12">
                 <h5 class="search-results" v-if="queryParam.keyword">
-                    {{ $t("search_results_for") }} "{{ queryParam.keyword }}"
+                    Resultados para {{ queryParam.keyword }}
                 </h5>
             </v-col>
             <v-col cols="12" sm="6" md="4" lg="2" v-if="loading">
@@ -40,7 +43,7 @@
                 </template>
                 <template v-else>
                     <v-col cols="12">
-                        {{ $t("no_product_found") }}
+                        {{ $t("Producto no encontrado") }}
                     </v-col>
                 </template>
             </template>
@@ -50,9 +53,10 @@
 
 <script>
 import ProductBox from "../components/product/ProductBox.vue";
-
+import SearchInput from "../components/global/SearchInput.vue";
 export default {
     components: {
+        SearchInput,
         ProductBox
     },
     data() {

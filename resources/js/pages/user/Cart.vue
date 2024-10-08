@@ -57,8 +57,8 @@
                         <v-row class="barra-inferior">
                             <v-col
                                 cols="12"
-                                md="9"
-                                class="d-flex justify-center justify-md-end align-center pl-0 pl-md-3 gap"
+                                md="10"
+                                class="d-flex justify-center justify-md-center align-center pl-0 pl-md-3 gap"
                             >
                                 <total :total="priceTotal" />
                                 <v-divider vertical></v-divider>
@@ -81,8 +81,8 @@
                                     </i>
                                 </CustomButton> -->
                             </v-col>
-                            <v-col cols="12" md="3" class="d-flex justify-end align-center pl-md-3">
-                                <div class="boton-continuar" v-if="mostrarDetalles == false">
+                            <v-col cols="12" md="2" class="d-flex justify-end align-center pl-md-3">
+                                <div class="boton-continuar pr-md-5" v-if="mostrarDetalles == false">
                                     <CustomButton
                                         class="boton-continuar"
                                         text="Continuar >"
@@ -797,8 +797,8 @@
                 <v-stepper-content class="tamaño-responsive" step="3">
                     <v-row>
                         <v-col cols="12" md="7" order="1" order-md="1" order-sm="1">
-                            <h5 class="fw-600">Seleccionar medio de pago</h5>
-                            <div class="form" style="border: none !important; box-shadow: none">
+                            <h5 class="fw-600 pt-1">Seleccionar medio de pago</h5>
+                            <div class="form px-0" style="border: none !important; box-shadow: none">
                                 <v-row>
                                     <v-col cols="6" sm="3">
                                         <div
@@ -896,7 +896,7 @@
                                 <div class="mt-3">
                                     <div v-if="pick === 1" class="data-payments">
                                         <div class="pt-4">
-                                            <label class="text-uppercase">Tipo de Persona</label>
+                                            <label>Tipo de Persona</label>
                                             <SelectCustom
                                                 class="selector"
                                                 :dark="darkBoxes"
@@ -907,7 +907,7 @@
                                             />
                                         </div>
                                         <div class="pt-4">
-                                            <label class="text-uppercase">Banco</label>
+                                            <label>Banco</label>
                                             <SelectCustom
                                                 class="selector"
                                                 :dark="darkBoxes"
@@ -991,8 +991,8 @@
                             </div>
                         </v-col>
                         <v-col cols="12" md="5" order="2" order-md="2" order-sm="2">
-                            <h5 class="fw-600">Código promocional</h5>
-                            <div class="form" style="border: none !important; box-shadow: none">
+                            <h5 class="fw-600 pt-1">Código promocional</h5>
+                            <div class="form px-0" style="border: none !important; box-shadow: none">
                                 <p class="mb-1">Regalo/Referido</p>
                                 <CustomInput placeholder="Ingresar código de descuento" class="mb-2" />
                                 <CustomButton class="mb-4" block color="white" text="Aplicar" />
@@ -3109,8 +3109,7 @@ export default {
 .barra-inferior {
     // position: fixed;
     bottom: 0;
-    background-color: transparent;
-    backdrop-filter: blur(5px);
+    background-color: #f4f5f7;
     margin-bottom: 0 !important;
     // @media screen and (min-width: 820px) {
     //     width: 75%;
