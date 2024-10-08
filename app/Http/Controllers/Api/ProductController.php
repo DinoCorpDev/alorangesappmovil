@@ -31,6 +31,7 @@ class ProductController extends Controller
         $token = $wompiData['presigned_acceptance'];
         $this->acceptance_token = $wompiData['presigned_acceptance']['acceptance_token'];
         $this->signatureWompi = 'test_integrity_uKHYzUy57fASMOf8nmdVOB4aeBhgjYyn';
+
     }
 
     public function index()
