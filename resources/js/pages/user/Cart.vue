@@ -919,6 +919,20 @@
                                         </div>
                                     </div>
                                     <div v-if="pick === 2" class="data-payments">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="mr-5">
+                                                <input type="checkbox" class="form-check-input" :checked="isCredit" id="isCredit"  @change="toggleCheckbox('first')"/>
+                                                <label class="form-check-label" for="isCredit">
+                                                    Tarjeta Credito
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" class="form-check-input" :checked="isDebit" id="isDebit"  @change="toggleCheckbox('second')"/>
+                                                <label class="form-check-label" for="isDebit">
+                                                    Tarjeta Debito
+                                                </label>
+                                            </div>
+                                        </div>
                                         <div class="pt-4">
                                             <label>Numero de tarjeta</label>
                                             <CustomInput
@@ -929,22 +943,20 @@
                                         </div>
                                         <div class="pt-4">
                                             <label>Nombre del tarjetahabiente</label>
-                                            <CustomInput placeholder="Número tarjeta" v-model="formCard.card_holder" />
+                                            <CustomInput placeholder="Nombre del tarjetahabiente" v-model="formCard.card_holder" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Numero de CVC</label>
                                             <CustomInput placeholder="CVC" v-model="formCard.cvc" />
                                         </div>
                                         <div class="pt-4">
-                                            <label>Año de expiración</label>
-                                            <CustomInput placeholder="Año de expiración" v-model="formCard.exp_year" />
+                                            <label>Mes / año de expiración</label>
+                                            <div class="d-flex justify-content-between">            
+                                                <CustomInput class="col-md-3" placeholder="Mes" v-model="formCard.exp_month" />
+                                                <CustomInput placeholder="Año" v-model="formCard.exp_year" />
+                                            </div>
                                         </div>
-                                        <div class="pt-4">
-                                            <label>Mes de expiración</label>
-                                            <CustomInput placeholder="Mes de expiración" v-model="formCard.exp_month" />
-                                        </div>
-
-                                        <div class="pt-4">
+                                        <div class="pt-4" v-if="isCredit">
                                             <label>Numero de cuotas</label>
                                             <CustomInput
                                                 placeholder="Numero de Cuotas"
@@ -2290,6 +2302,8 @@ export default {
             formCard:{},
             dialogPSEModal: false,
             urlPagoPSE:'',
+            isCredit:true,
+            isDebit:false
         };
     },
     computed: {
@@ -2335,6 +2349,15 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["getUser"]),
+        toggleCheckbox(option){
+            if (option === 'first') {
+                this.isCredit = true;
+                this.isDebit = false;
+            }else if(option === 'second'){
+                this.isCredit = false;
+                this.isDebit = true;
+            }
+        },
         updateBreadcrumb() {
             const formattedName = this.capitalizeWords(this.currentUser.name);
             const newItems = [
