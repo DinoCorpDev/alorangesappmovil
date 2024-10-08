@@ -21,17 +21,19 @@ class WompiServices{
         /**
          * Llaves y link de prueba
          */
-        $this->url = 'https://sandbox.wompi.co/v1/';
-        $this->token_pub_key = 'pub_test_0HFZFgu0zGNrczp6mTp0vtuuosqQjf8l';
-        $this->token_priv_key = 'prv_test_lURl0xnvDWs03TC7lnExxbMdG3omewow';
+        
+        // $this->url = 'https://sandbox.wompi.co/v1/';
+        // $this->token_pub_key = 'pub_test_0HFZFgu0zGNrczp6mTp0vtuuosqQjf8l';
+        // $this->token_priv_key = 'prv_test_lURl0xnvDWs03TC7lnExxbMdG3omewow';
+        
 
         /**
          * Llaves y link de producción
          */
 
-        // $this->url = 'https://production.wompi.co/v1/';
-        // $this->token_pub_key = 'pub_prod_yPmmrawVOXbJ6osBjdD95FHFTGFVayP9';
-        // $this->token_priv_key = 'prv_prod_1CLeQcqw6UpkhPjKlCcEVOsu6C4dZL8q';
+        $this->url = 'https://production.wompi.co/v1/';
+        $this->token_pub_key = 'pub_prod_yPmmrawVOXbJ6osBjdD95FHFTGFVayP9';
+        $this->token_priv_key = 'prv_prod_1CLeQcqw6UpkhPjKlCcEVOsu6C4dZL8q';
 
         $this->postHeaders = [
             'accept' => '/',
@@ -66,14 +68,15 @@ class WompiServices{
                 'json' => $cardData
             ]);
 
-            $res = json_decode($response->getBody()->getContents(), true);
+            $res = json_decode($response->getBody()->getContents(), true);;
 
             return $res;
         } catch (\Exception $e) {
             // Manejar el error
-            $res = json_decode($e->getMessage(), true);
-            return $res;
+            echo 'Error: ' . $e->getMessage();
         }
+
+        return $res;
     }
 
     public function wompiTransaction($paymentInformation){
@@ -88,7 +91,7 @@ class WompiServices{
             return $res;
         } catch (\Exception $e) {
             // Manejar el error
-            return json_decode($e->getMessage());
+            return $e->getMessage();
         }
     }
 
