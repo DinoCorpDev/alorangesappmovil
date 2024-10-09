@@ -21,20 +21,10 @@ class WompiServices{
         /**
          * Llaves y link de prueba
          */
-        /*
-            $this->url = 'https://sandbox.wompi.co/v1/';
-            $this->token_pub_key = 'pub_test_0HFZFgu0zGNrczp6mTp0vtuuosqQjf8l';
-            $this->token_priv_key = 'prv_test_lURl0xnvDWs03TC7lnExxbMdG3omewow';
-        */
-
-        /**
-         * Llaves y link de producción
-         */
-
-        $this->url = 'https://production.wompi.co/v1/';
-        $this->token_pub_key = 'pub_prod_yPmmrawVOXbJ6osBjdD95FHFTGFVayP9';
-        $this->token_priv_key = 'prv_prod_1CLeQcqw6UpkhPjKlCcEVOsu6C4dZL8q';
-
+        $this->url = 'https://sandbox.wompi.co/v1/';
+        $this->token_pub_key = 'pub_test_0HFZFgu0zGNrczp6mTp0vtuuosqQjf8l';
+        $this->token_priv_key = 'prv_test_lURl0xnvDWs03TC7lnExxbMdG3omewow';
+      
         $this->postHeaders = [
             'accept' => '/',
             'Authorization'=> 'Bearer '.$this->token_pub_key,
@@ -147,8 +137,11 @@ class WompiServices{
             ]);
 
             $res = json_decode($response->getBody()->getContents(), true);
-            
-            return $res;
+            $status = 'unpaid';
+            foreach ($res['data'] as $key => $wompi) {
+                $status = $wompi['status'];
+            }
+            return $status;
         } catch (\Exception $e) {
             // Manejar el error
             return $e->getMessage();
