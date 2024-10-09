@@ -15,8 +15,6 @@
                     </div>
                 </div>
             </v-col>
-
-
         </v-row>
 
         <swiper :options="swiperOptions">
@@ -69,7 +67,7 @@ export default {
                         spaceBetween: 20
                     },
                     100: {
-                        slidesPerView: 2,
+                        slidesPerView: 3,
                         spaceBetween: 20
                     },
                     769: {

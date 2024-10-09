@@ -1,17 +1,18 @@
 <template>
-    <v-container style="background-color: white;">
-        <v-row class="main mx-2 my-6 mx-sm-6  bg-orange-ligth border-style-banner" align="center" tag="main">
-            <v-col class="pa-6" cols="12" sm="7" md="7">
-                <h1 class="home-main-title mb-6 mb-sm-8">Suministros de papelería, aseo, cafetería, cartonería 
-                    y seguridad industrial para empresas!</h1>
+    <v-container style="background-color: white">
+        <v-row class="main mx-2 my-6 mx-sm-6 bg-orange-ligth border-style-banner" align="center" tag="main">
+            <v-col class="pa-6 pa-sm-8" cols="12" sm="7" md="7">
+                <h1 class="home-main-title mb-6 mb-sm-8">
+                    ¡Suministros de papelería, aseo, cafetería, cartonería y seguridad industrial para empresas!
+                </h1>
                 <p class="home-main-description mb-6">
                     Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtengan todo lo que
                     desee de una forma fácil
                 </p>
-                <SearchInput class="search-menu" :showInput="true" :placeholder="'Escribe lo que buscas'"  />
+                <SearchInput class="search-menu" :showInput="true" :placeholder="'Escribe lo que buscas'" />
             </v-col>
             <v-col class="pa-0 d-flex" cols="12" sm="5" md="5">
-                <img src="/public/assets/img/bannerhomeimg-removebg-preview2.png" style="width: 100%; height: auto;" />
+                <img src="/public/assets/img/bannerhomeimg-removebg-preview2.png" style="width: 100%; height: auto" />
             </v-col>
         </v-row>
 
@@ -51,7 +52,7 @@
                 </div>
             </v-col>
         </v-row>
-        <v-row class="center-items ma-6">
+        <v-row class="center-items ma-2 ma-sm-6">
             <v-col col="12" sm="12" md="12" class="bg-green-ligth border-style-banner">
                 <CarouselSpaces
                     title="Categorias"
@@ -67,44 +68,58 @@
                     id="be-there"
                     icon="/public/assets/img/home/icon-be-there.svg"
                     preamble="Escuchar, Comprender y Percibir al Usuario"
-                    title="Estar allí"
+                    title="Utilizamos la tecnología para facilitar tus procesos"
                     image="/public/assets/img/banner2home.png"
-                    style="max-width: 98%;"
+                    style="max-width: 99%"
                 >
                     <template v-slot:description>
-                        Identificamos las necesidades de las personas para mejorar su experiencia del entorno.
-                        Estableciendo la conexión entre el espacio vital y la persona que lo habita, teniendo en cuenta:
-                        la representación antropométrica, la adaptación ergonómica, la evaluación de la propiocepción y
-                        la estimulación espacial.
+                        En <b>Aloranges,</b> nos especializamos en solucionar las necesidades de las empresas para facilitar la
+                        compra de los suministros de <b>Papelería, Cartonería, Cafetería, Aseo, Tecnología y Botiquería.</b>
+                        Nos adaptamos a la nueva era digital y ahora puedes adquirir tus productos desde nuestra app.
                     </template>
                 </PresentationBanner>
             </v-col>
         </v-row>
 
         <div class="wrapper-app-banner mb-6 center-items" style="display: flex; justify-content: center">
-            <div style="width: 95%; border-radius: 24px; background-color: #F4F9EC">
+            <div style="width: 95%; border-radius: 24px; background-color: #f4f9ec">
                 <v-row>
                     <v-col cols="12" sm="6" class="d-flex align-items-center justify-content-start">
                         <div class="ml-7 mt-7 mt-sm-0 d-flex flex-column justify-center align-start">
-                            <h2 class="banner-title font-weight-bold mb-3">Descarga Nuesta App Móvil</h2>
-                            <CustomButton class=" mb-5" color="orange" :width="200" :elevation="7">Descargar App</CustomButton>
+                            <h2 class="banner-title font-weight-bold mb-3">Descarga Nuestra <br />App Móvil</h2>
+                            <CustomButton class="mb-5" color="orange" :width="200" :elevation="7"
+                                >Descargar App</CustomButton
+                            >
+                            <button style="background-color: #f58634; border-radius: 100px; color: white; ">Descargar App</button>
                             <div class="Wrapper-AppStore d-none d-sm-flex">
                                 <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
-                                <a href="#"><img class="imgsize-btn-dwn ml-5" src="public/assets/img/Grupo12234.png" /></a>
+                                <a href="#"
+                                    ><img class="imgsize-btn-dwn ml-5" src="public/assets/img/Grupo12234.png"
+                                /></a>
                             </div>
                         </div>
                     </v-col>
-                    <v-col cols="12" sm="6">
-                        <img class="imgsize-cel" src="public/assets/img/Grupo12203.png" />
+                    <v-col cols="12" sm="6" class="d-flex justify-center">
+                        <img class="imgsize-cel" src="/public/assets/img/bannerhomeimg-removebg-preview2.png" />
                     </v-col>
                     <v-col cols="12" class="d-flex d-sm-none justify-center align-center">
                         <div class="Wrapper-AppStore-responsive mb-7 mb-sm-0">
                             <v-row>
                                 <v-col cols="6" class="pr-1 pl-5">
-                                    <a href="#"><img class="imgsize-btn-dwn" style="width: 100%; height: auto;" src="public/assets/img/Grupo12233.png" /></a>
+                                    <a href="#"
+                                        ><img
+                                            class="imgsize-btn-dwn"
+                                            style="width: 100%; height: auto"
+                                            src="public/assets/img/Grupo12233.png"
+                                    /></a>
                                 </v-col>
                                 <v-col cols="6" class="pl-1 pr-5">
-                                    <a href="#"><img class="imgsize-btn-dwn" style="width: 100%; height: auto;" src="public/assets/img/Grupo12234.png" /></a>
+                                    <a href="#"
+                                        ><img
+                                            class="imgsize-btn-dwn"
+                                            style="width: 100%; height: auto"
+                                            src="public/assets/img/Grupo12234.png"
+                                    /></a>
                                 </v-col>
                             </v-row>
                         </div>
@@ -114,7 +129,7 @@
         </div>
 
         <v-row>
-            <v-col col="12" sm="12" md="12">
+            <v-col col="12" sm="12" md="12" class="py-14">
                 <CarouselBrands></CarouselBrands>
             </v-col>
         </v-row>
@@ -139,8 +154,8 @@ import SelectCustom from "../components/global/SelectCustom.vue";
 import CustomInput from "../components/global/CustomInput.vue";
 import CarouselSpaces from "../components/global/CarouselSpaces.vue";
 import CarouselBrands from "../components/global/CarouselBrands.vue";
-import RecuperarPassCodigo from "../components/auth/RecuperarPassCodigo.vue"; 
-import VerifyAccount from "../components/auth/VerifyAccount.vue"; 
+import RecuperarPassCodigo from "../components/auth/RecuperarPassCodigo.vue";
+import VerifyAccount from "../components/auth/VerifyAccount.vue";
 import SearchInput from "../components/global/SearchInput.vue";
 
 export default {
@@ -172,9 +187,9 @@ export default {
                     description: "Papeleria"
                 },
                 {
-                    title: "Aseo",
-                    img: "/public/assets/img/Grupo12239.png",
-                    description: "Aseo"
+                    title: "Cartonería",
+                    img: "/public/assets/img/Group 6.png",
+                    description: "Cartoneria"
                 },
                 {
                     title: "Cafeteria",
@@ -182,9 +197,20 @@ export default {
                     description: "Cafeteria"
                 },
                 {
-                    title: "Botiqueria",
+                    title: "Aseo",
+                    img: "/public/assets/img/Grupo12239.png",
+                    description: "Aseo"
+                },
+
+                {
+                    title: "Tecnología",
+                    img: "/public/assets/img/Group 5.png",
+                    description: "Tecnologia"
+                },
+                {
+                    title: "Seguridad ind",
                     img: "/public/assets/img/Grupo12241.png",
-                    description: "Botiqueria"
+                    description: "Seguridad ind"
                 }
             ],
             selectedCode: null,
@@ -218,13 +244,17 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("app", ["userLanguageObj", "allLanguages"]),
+        ...mapGetters("app", ["userLanguageObj", "allLanguages"])
     },
     created() {
-        if (this.$route.query.modal === 'Password') {
+        if (this.$route.query.modal === "Password") {
             this.showRecuperarPass = true;
         }
-        if(this.$route.query.modal == 'VerifyAccount' || this.$route.query.modal == 'verifyaccount' || this.$route.query.modal == 'VerifyAccount'){
+        if (
+            this.$route.query.modal == "VerifyAccount" ||
+            this.$route.query.modal == "verifyaccount" ||
+            this.$route.query.modal == "VerifyAccount"
+        ) {
             this.showVerifyAccount = true;
         }
     },
@@ -238,8 +268,6 @@ export default {
         // if(this.$route.query.modal == 'Password'){
         //     this.showRecuperarPass = true;
         // }
-
-        
     },
     methods: {
         ...mapActions("app", ["setLanguage"]),
@@ -250,24 +278,22 @@ export default {
             }
         },
         updateBreadcrumb() {
-            const newItems = [
-                { text: 'disabled', href: '/', disabled: true },
-            ];
-            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
-        },
+            const newItems = [{ text: "disabled", href: "/", disabled: true }];
+            this.$store.dispatch("breadcrumb/setBreadcrumbItems", newItems);
+        }
     }
 };
 </script>
 
 <style lang="scss">
 .search-menu {
-  @media (max-width: 700px) {
-    max-width: 100% !important;
-  }
-  
-  @media (min-width: 700px) {
-    max-width: 90% !important;
-  }
+    @media (max-width: 700px) {
+        max-width: 100% !important;
+    }
+
+    @media (min-width: 700px) {
+        max-width: 90% !important;
+    }
 }
 .center-items {
     display: flex;
@@ -284,7 +310,7 @@ export default {
     align-items: center;
 }
 .imgsize-cel {
-    width: 100%;
+    width: 75%;
     height: auto;
 }
 .imgsize-btn-dwn {
@@ -309,16 +335,14 @@ export default {
                 font-size: 31px;
                 line-height: 37px;
             }
-            
-            
         }
-        &-title{
+        &-title {
             font-size: 30px;
             line-height: 36px;
             font-weight: 600;
             @media (min-width: 600px) {
-                line-height: 74px;
-                font-size: 61px;
+                line-height: 65px;
+                font-size: 59px;
             }
         }
         &-carousel {
@@ -355,7 +379,7 @@ export default {
 .temp {
     padding: 0 15%;
 }
-h3{
+h3 {
     font-size: 18px;
     font-weight: 700;
     @media (min-width: 600px) {
@@ -363,7 +387,7 @@ h3{
         font-weight: 500;
     }
 }
-.preambulo-text{
+.preambulo-text {
     font-size: 18px;
     font-weight: 400;
     @media (min-width: 600px) {
@@ -430,20 +454,20 @@ h3{
         padding: 20% 0;
     }
 }
-.Wrapper-AppStore{
+.Wrapper-AppStore {
     display: flex;
 }
-.Wrapper-AppStore-responsive{
+.Wrapper-AppStore-responsive {
     display: flex;
     flex-direction: column;
 }
-.wrapper-dwn-app{
+.wrapper-dwn-app {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
 }
-.banner-title{
+.banner-title {
     // font-family: 'Montserrat', Courier, monospace;
     font-size: 35px;
     @media (min-width: 600px) {
