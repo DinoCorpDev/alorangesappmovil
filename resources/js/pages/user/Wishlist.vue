@@ -4,7 +4,7 @@
             <div class="emptycart d-flex justify-center" style="width: 100%;">
                 <div class="cuadro-emptycart">
                     <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                    <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE DESEOS</p>
+                    <p class="text-cartempty">AUN NO HAY PRODUCTOS EN MI LISTA</p>
                     <CustomButton text="IR A PRODUCTOS" color="orange" class="mt-2" :to="{ name: 'Shop' }" />
                 </div>
             </div>

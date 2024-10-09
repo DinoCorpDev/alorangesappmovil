@@ -374,10 +374,10 @@ export default {
                 commit("updateCartShops");
                 dispatch("proccessCoupon");
             } else {
-                Mixin.methods.snack({
-                    message: res.data.message,
-                    color: "red"
-                });
+                // Mixin.methods.snack({
+                //     message: res.data.message,
+                //     color: "red"
+                // });
             }
         },
         async removeFromCart({ commit, getters, dispatch }, cart_id) {

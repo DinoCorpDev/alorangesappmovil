@@ -2,7 +2,7 @@
     <v-footer class="auth-footer">
         <v-row class="pt-5">
             <v-col md="1"/>
-            <v-col cols="12" md="5" class="d-flex justify-center align-center">
+            <v-col cols="12" md="5" class="d-flex justify-start justify-md-center align-center">
                 <div style="max-width: 320px;" class="mr-md-16">
                     <LogoAlorange class="mb-1"/>
                     <p style="font-size: 15px;">
@@ -18,12 +18,12 @@
                 </div>
                 
             </v-col>
-            <v-col cols="6" md="3"  class="list-footer align-center align-md-start">
+            <v-col cols="12" md="3"  class="list-footer align-start pb-0 pb-md-3">
                 <a href="#">Politica de Protección de datos</a>
                 <a href="#">Cambios y Devoluciones</a>
                 <a href="#">Tiempo y costo de envío</a>
             </v-col>
-            <v-col cols="6" md="2"  class="list-footer align-center align-md-start">
+            <v-col cols="12" md="2"  class="list-footer align-start pt-0 pt-md-3">
                 <a href="#">Mi cuenta</a>
                 <a href="#">Regístrate</a>
                 <a href="#">¿Olvidó su clave?</a>
@@ -33,18 +33,6 @@
             </v-col>
             <v-col md="1"/>
         </v-row>
-        <!-- <div class="auth-footer-copyright-wrap">
-            <span class="auth-footer-copyright">© Idovela 2023</span>
-            <span class="auth-footer-location">
-                <WorldGlobeIcon class="mr-2" />
-                <span>Bogota, Colombia</span>
-            </span>
-        </div>
-        <ul class="auth-footer-links">
-            <li class="auth-footer-link" v-for="link in authFooterLinks" :key="`link-${link.label}`">
-                <router-link :to="link.link"> {{ link.label }} </router-link>
-            </li>
-        </ul> -->
     </v-footer>
 </template>
 

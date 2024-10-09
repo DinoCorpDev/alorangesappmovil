@@ -50,15 +50,15 @@
                         </div>
                         <v-row no-gutters class="car-items" style="overflow-y: auto; max-height: 450px">
                             <v-col cols="12" v-for="(product, i) in cartProducts" :key="i">
-                                <ProductCart :productDetails="product" productCartType="checkout" />
+                                <ProductCart style="box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 6px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;" :productDetails="product" productCartType="checkout" />
                             </v-col>
                         </v-row>
 
                         <v-row class="barra-inferior">
                             <v-col
                                 cols="12"
-                                md="9"
-                                class="d-flex justify-center justify-md-end align-center pl-0 pl-md-3 gap"
+                                md="10"
+                                class="d-flex justify-center justify-md-center align-center pl-0 pl-md-3 gap"
                             >
                                 <total :total="priceTotal" />
                                 <v-divider vertical></v-divider>
@@ -81,8 +81,8 @@
                                     </i>
                                 </CustomButton> -->
                             </v-col>
-                            <v-col cols="12" md="3" class="d-flex justify-end align-center pl-md-3">
-                                <div class="boton-continuar" v-if="mostrarDetalles == false">
+                            <v-col cols="12" md="2" class="d-flex justify-end align-center pl-md-3">
+                                <div class="boton-continuar pr-md-5" v-if="mostrarDetalles == false">
                                     <CustomButton
                                         class="boton-continuar"
                                         text="Continuar >"
@@ -797,8 +797,8 @@
                 <v-stepper-content class="tamaño-responsive" step="3">
                     <v-row>
                         <v-col cols="12" md="7" order="1" order-md="1" order-sm="1">
-                            <h5 class="fw-600">Seleccionar medio de pago</h5>
-                            <div class="form" style="border: none !important; box-shadow: none">
+                            <h5 class="fw-600 pt-1">Seleccionar medio de pago</h5>
+                            <div class="form px-0" style="border: none !important; box-shadow: none">
                                 <v-row>
                                     <v-col cols="6" sm="3">
                                         <div
@@ -896,7 +896,7 @@
                                 <div class="mt-3">
                                     <div v-if="pick === 1" class="data-payments">
                                         <div class="pt-4">
-                                            <label class="text-uppercase">Tipo de Persona</label>
+                                            <label>Tipo de Persona</label>
                                             <SelectCustom
                                                 class="selector"
                                                 :dark="darkBoxes"
@@ -907,7 +907,7 @@
                                             />
                                         </div>
                                         <div class="pt-4">
-                                            <label class="text-uppercase">Banco</label>
+                                            <label>Banco</label>
                                             <SelectCustom
                                                 class="selector"
                                                 :dark="darkBoxes"
@@ -919,6 +919,20 @@
                                         </div>
                                     </div>
                                     <div v-if="pick === 2" class="data-payments">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="mr-5">
+                                                <input type="checkbox" class="form-check-input" :checked="isCredit" id="isCredit"  @change="toggleCheckbox('first')"/>
+                                                <label class="form-check-label" for="isCredit">
+                                                    Tarjeta Credito
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" class="form-check-input" :checked="isDebit" id="isDebit"  @change="toggleCheckbox('second')"/>
+                                                <label class="form-check-label" for="isDebit">
+                                                    Tarjeta Debito
+                                                </label>
+                                            </div>
+                                        </div>
                                         <div class="pt-4">
                                             <label>Numero de tarjeta</label>
                                             <CustomInput
@@ -929,22 +943,20 @@
                                         </div>
                                         <div class="pt-4">
                                             <label>Nombre del tarjetahabiente</label>
-                                            <CustomInput placeholder="Número tarjeta" v-model="formCard.card_holder" />
+                                            <CustomInput placeholder="Nombre del tarjetahabiente" v-model="formCard.card_holder" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Numero de CVC</label>
                                             <CustomInput placeholder="CVC" v-model="formCard.cvc" />
                                         </div>
                                         <div class="pt-4">
-                                            <label>Año de expiración</label>
-                                            <CustomInput placeholder="Año de expiración" v-model="formCard.exp_year" />
+                                            <label>Mes / año de expiración</label>
+                                            <div class="d-flex justify-content-between">            
+                                                <CustomInput class="col-md-3" placeholder="Mes" v-model="formCard.exp_month" />
+                                                <CustomInput placeholder="Año" v-model="formCard.exp_year" />
+                                            </div>
                                         </div>
-                                        <div class="pt-4">
-                                            <label>Mes de expiración</label>
-                                            <CustomInput placeholder="Mes de expiración" v-model="formCard.exp_month" />
-                                        </div>
-
-                                        <div class="pt-4">
+                                        <div class="pt-4" v-if="isCredit">
                                             <label>Numero de cuotas</label>
                                             <CustomInput
                                                 placeholder="Numero de Cuotas"
@@ -991,8 +1003,8 @@
                             </div>
                         </v-col>
                         <v-col cols="12" md="5" order="2" order-md="2" order-sm="2">
-                            <h5 class="fw-600">Código promocional</h5>
-                            <div class="form" style="border: none !important; box-shadow: none">
+                            <h5 class="fw-600 pt-1">Código promocional</h5>
+                            <div class="form px-0" style="border: none !important; box-shadow: none">
                                 <p class="mb-1">Regalo/Referido</p>
                                 <CustomInput placeholder="Ingresar código de descuento" class="mb-2" />
                                 <CustomButton class="mb-4" block color="white" text="Aplicar" />
@@ -2290,6 +2302,8 @@ export default {
             formCard:{},
             dialogPSEModal: false,
             urlPagoPSE:'',
+            isCredit:true,
+            isDebit:false
         };
     },
     computed: {
@@ -2335,6 +2349,15 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["getUser"]),
+        toggleCheckbox(option){
+            if (option === 'first') {
+                this.isCredit = true;
+                this.isDebit = false;
+            }else if(option === 'second'){
+                this.isCredit = false;
+                this.isDebit = true;
+            }
+        },
         updateBreadcrumb() {
             const formattedName = this.capitalizeWords(this.currentUser.name);
             const newItems = [
@@ -2501,8 +2524,10 @@ export default {
         async verifyStatusPayment(dataToTransaction){
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
-                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
-                this.dialogPSEModal = true;
+                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url
+                window.open(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url,'_blank','width=800,height=600');
+                //this.dialogPSEModal = true;
+                this.numberPag = 4;
             }else{
                 this.verifyStatusPayment(dataToTransaction);
             }
@@ -2513,6 +2538,25 @@ export default {
             this.dialogPSEModal = false;
             this.numberPag = 4;
         },
+        processToSendStore(referenceToPayment){
+            const shippingAddressId = this.selectedAddressEnvio.id;
+            const billingAddressId = this.userData.id;
+
+            let formData = new FormData();
+            formData.append("shipping_address_id", shippingAddressId);
+            formData.append("billing_address_id", billingAddressId);
+            formData.append("delivery_type", "standard");
+            formData.append("code", referenceToPayment);
+
+            this.cartItems.forEach((item, index) => {
+                if (item?.isCollection) {
+                    formData.append("cart_collection_ids[]", item?.cart_id);
+                } else {
+                    formData.append("cart_item_ids[]", item?.cart_id);
+                }
+            });
+            return formData;
+        },
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
                 const date = new Date();
@@ -2521,32 +2565,15 @@ export default {
                 const randomNum = Math.floor(10 + Math.random() * 90);
                 let referenceToPayment = formattedDate + "" + formattedTime + "" + randomNum;
 
-                //prettier-ignore
-                const shippingAddressId = this.selectedAddressEnvio.id;
-                //prettier-ignore
-                const billingAddressId = this.userData.id;
-                let formData = new FormData();
-                formData.append("shipping_address_id", shippingAddressId);
-                formData.append("billing_address_id", billingAddressId);
-                formData.append("delivery_type", "standard");
-                formData.append("code", referenceToPayment);
-
-                this.cartItems.forEach((item, index) => {
-                    if (item?.isCollection) {
-                        formData.append("cart_collection_ids[]", item?.cart_id);
-                    } else {
-                        formData.append("cart_item_ids[]", item?.cart_id);
-                    }
-                });
-
                 let result;
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
-                    const res = await this.call_api("post", "checkout/order/store", formData);
                     if(this.pick === 2){
                         let totalPrice = this.priceTotal.toString();
+                        let mountToPass = parseInt( totalPrice.replace(/[^\w\s]/gi, '') );
+                        let total = parseInt(`${mountToPass}00`);
                         let data = {
-                            mount: parseInt( totalPrice.replace(/[^\w\s]/gi, '') ),
+                            mount: total,
                             currency: 'COP',
                             reference: referenceToPayment,
                             customer_email: this.userData.email,
@@ -2568,11 +2595,23 @@ export default {
                             cardData: this.formCard,
                         };
                         result = await this.call_api('POST','product/payment-card-wompi',data);
-                        this.numberPag = 4;
+                        if(result.data.success){
+                            let formData = this.processToSendStore(referenceToPayment);
+                            const res = await this.call_api("post", "checkout/order/store", formData);
+                            this.numberPag = 4;
+                            this.dataCheckout = res.data;
+                        }else{
+                            this.snack({
+                                message: 'Algo ha salido mal, Revisa la información e intenta nuevamente',
+                                color: "red"
+                            });
+                        }
                     }else if (this.pick === 1){
                         let totalPrice = this.priceTotal.toString();
+                        let mountToPass = parseInt( totalPrice.replace(/[^\w\s]/gi, '') );
+                        let total = parseInt(`${mountToPass}00`);
                         let data = {
-                            mount: parseInt( totalPrice.replace(/[^\w\s]/gi, '') ),
+                            mount: total,
                             currency: 'COP',
                             reference: referenceToPayment,
                             customer_email: this.userData.email,
@@ -2602,13 +2641,21 @@ export default {
                         }
                         try {
                             result = await this.call_api('POST','product/payment-wompi-pse',data);
-                        
                             let idTransaction = result.data.PaymentResult.data.id;
-                            let dataToTransaction = {
-                                id: idTransaction,
-                            };   
-
-                            this.verifyStatusPayment(dataToTransaction);
+                            if(idTransaction){
+                                let dataToTransaction = {
+                                    id: idTransaction,
+                                };   
+                                this.verifyStatusPayment(dataToTransaction);
+                                let formData = this.processToSendStore(referenceToPayment);
+                                const res = await this.call_api("post", "checkout/order/store", formData);
+                                this.dataCheckout = res.data;   
+                            }else{
+                                this.snack({
+                                    message: 'Algo ha salido mal, intenta nuevamente mas tarde',
+                                    color: "red"
+                                }); 
+                            }
                         } catch (error) {
                             this.snack({
                                 message: 'Algo ha salido mal, intenta nuevamente mas tarde',
@@ -2616,15 +2663,6 @@ export default {
                             });  
                             console.log(error); 
                         }
-                    }
-
-                    if (result.data.success) {
-                        this.dataCheckout = res.data;
-                    } else {
-                        this.snack({
-                            message: res.data.message,
-                            color: "red"
-                        });
                     }
 
                     this.checkoutLoading = false;
@@ -3109,8 +3147,7 @@ export default {
 .barra-inferior {
     // position: fixed;
     bottom: 0;
-    background-color: transparent;
-    backdrop-filter: blur(5px);
+    background-color: #f4f5f7;
     margin-bottom: 0 !important;
     // @media screen and (min-width: 820px) {
     //     width: 75%;

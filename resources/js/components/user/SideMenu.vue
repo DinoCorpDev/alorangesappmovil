@@ -1,7 +1,7 @@
 <template>
-    <div class="side-menu" style="box-sizing: border-box;">
-        <div class="user-info-wrap mb-sm-5 mb-lg-0"  style="box-sizing: border-box;">
-            <div class="user-info" >
+    <div class="side-menu" style="box-sizing: border-box">
+        <div class="user-info-wrap mb-sm-5 mb-lg-0" style="box-sizing: border-box">
+            <div class="user-info">
                 <v-row>
                     <v-col cols="4" style="position: relative">
                         <v-avatar class="user-info-avatar">
@@ -12,12 +12,12 @@
                             />
                         </v-avatar>
 
-                        <div class="avatar-upload" style="width: 10px; position: absolute; right: 0; top: 75px">
+                        <div class="avatar-upload" style="width: 10px; position: absolute; right: 0; bottom: 0">
                             <v-tooltip bottom color="black">
                                 <template v-slot:activator="{ on, attrs }">
                                     <custom-button
                                         @click="changeAvatar"
-                                        style="min-width: 2px; background: transparent; padding: 0 !important;"
+                                        style="min-width: 2px; background: transparent; padding: 0 !important"
                                     >
                                         <i class="las la-pen icono-avatar" v-bind="attrs" v-on="on"></i>
                                     </custom-button>
@@ -44,27 +44,20 @@
                     </v-col>
                 </v-row>
             </div>
-
-            <CustomButton class="d-none d-sm-flex d-lg-none" block color="white" @click="logout">
+            
+            <!-- <CustomButton class="d-none d-sm-flex d-lg-none" block color="white" @click="logout">
                 {{ $t("Cerrar sesión") }}
-            </CustomButton>
+            </CustomButton> -->
         </div>
-            <UserMenu class="mb-5" />
-            <div >
-                <v-divider class="d-none d-md-block my-5" style="    border-color: #e4e4e4 !important;
-    border-width: 2px 0 0;"/>
-                <button class="logout-button d-sm-none d-lg-flex" style=""  @click="logout">
-                    {{ $t("Cerrar sesión") }}
-                </button>
-            </div>
-        
+        <UserMenu class="mb-5" />
+        <div>
+            <v-divider class=" d-flex my-5" style="border-color: #e4e4e4 !important; border-width: 2px 0 0" />
+            <button class="logout-button d-flex" style="" @click="logout">
+                {{ $t("Cerrar sesión") }}
+            </button>
+        </div>
 
-        <v-dialog
-            v-model="dialogAvatar"
-            activator="parent"
-            persistent
-            width="1000px"
-        >
+        <v-dialog v-model="dialogAvatar" activator="parent" persistent width="1000px">
             <v-card>
                 <v-card-title>
                     <span class="text-h5">Cambiar Foto</span>
@@ -72,62 +65,68 @@
                 <v-divider class="d-none d-lg-block my-5" />
 
                 <v-container>
-                    <v-row style="margin-left: 10px;">
+                    <v-row style="margin-left: 10px">
                         <v-col cols="12" md="3">
-                            <img  @click="selectAvatar('Idovela_Diseñador.svg')"
-                                    src="/public/avatars/Idovela_Diseñador.svg"
-                                    class="border border-4 img-avatar"
-                                />
+                            <img
+                                @click="selectAvatar('Idovela_Diseñador.svg')"
+                                src="/public/avatars/Idovela_Diseñador.svg"
+                                class="border border-4 img-avatar"
+                            />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="selectAvatar('Idovela_Diseñadora.svg')"
-                                    src="/public/avatars/Idovela_Diseñadora.svg"
-                                    class="border border-4 img-avatar"
-                                />
+                            <img
+                                @click="selectAvatar('Idovela_Diseñadora.svg')"
+                                src="/public/avatars/Idovela_Diseñadora.svg"
+                                class="border border-4 img-avatar"
+                            />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="selectAvatar('Idovela_Ingeniero.svg')"
-                                    src="/public/avatars/Idovela_Ingeniero.svg"
-                                    class="border border-4 img-avatar"
-                                />
+                            <img
+                                @click="selectAvatar('Idovela_Ingeniero.svg')"
+                                src="/public/avatars/Idovela_Ingeniero.svg"
+                                class="border border-4 img-avatar"
+                            />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="selectAvatar('Idovela_Ingeniera.svg')"
-                                    src="/public/avatars/Idovela_Ingeniera.svg"
-                                    class="border border-4 img-avatar"
-                                />
+                            <img
+                                @click="selectAvatar('Idovela_Ingeniera.svg')"
+                                src="/public/avatars/Idovela_Ingeniera.svg"
+                                class="border border-4 img-avatar"
+                            />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="selectAvatar('Idovela_Mascota.svg')"
-                                    src="/public/avatars/Idovela_Mascota.svg"
-                                    class="border border-4 img-avatar"
-                                />
+                            <img
+                                @click="selectAvatar('Idovela_Mascota.svg')"
+                                src="/public/avatars/Idovela_Mascota.svg"
+                                class="border border-4 img-avatar"
+                            />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="selectAvatar('Idovela_Flor.svg')"
-                                    src="/public/avatars/Idovela_Flor.svg"
-                                    class="border border-4 img-avatar"
-                                />
+                            <img
+                                @click="selectAvatar('Idovela_Flor.svg')"
+                                src="/public/avatars/Idovela_Flor.svg"
+                                class="border border-4 img-avatar"
+                            />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="selectAvatar('Idovela_Arquitectura.svg')"
-                                    src="/public/avatars/Idovela_Arquitectura.svg"
-                                    class="border border-4 img-avatar"
-                                />
+                            <img
+                                @click="selectAvatar('Idovela_Arquitectura.svg')"
+                                src="/public/avatars/Idovela_Arquitectura.svg"
+                                class="border border-4 img-avatar"
+                            />
                         </v-col>
                         <v-col cols="12" md="3">
-                            <img  @click="selectAvatar('Idovela_Robot.svg')"
-                                    src="/public/avatars/Idovela_Robot.svg"  
-                                    class="border border-4 img-avatar"
-                                />
+                            <img
+                                @click="selectAvatar('Idovela_Robot.svg')"
+                                src="/public/avatars/Idovela_Robot.svg"
+                                class="border border-4 img-avatar"
+                            />
                         </v-col>
                     </v-row>
                 </v-container>
-                <v-card-actions>
-                
-                </v-card-actions>
+                <v-card-actions> </v-card-actions>
             </v-card>
-      </v-dialog>
+        </v-dialog>
     </div>
 </template>
 
@@ -147,7 +146,7 @@ export default {
     }),
     computed: {
         ...mapGetters("auth", ["currentUser"]),
-        ...mapState("app", ["previewAvatar"]),
+        ...mapState("app", ["previewAvatar"])
     },
     methods: {
         ...mapActions(["auth/logout"]),
@@ -158,14 +157,14 @@ export default {
             //this.$refs["avatar-input"].click();
         },
         ...mapActions("wishlist", ["resetWishlist"]),
-        async selectAvatar(name){
+        async selectAvatar(name) {
             var form_data = new FormData();
-            form_data.append('id', this.currentUser.id);
-            form_data.append('avatar', name);
+            form_data.append("id", this.currentUser.id);
+            form_data.append("avatar", name);
 
             const res = await this.call_api("post", "user/info/updateAvatar", form_data);
 
-            this.setPreviewAvatar("/public/avatars/"+name);
+            this.setPreviewAvatar("/public/avatars/" + name);
             this.dialogAvatar = false;
         },
         async logout() {
@@ -215,15 +214,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logout-button{
-    width: 100%; 
-    justify-content: center; 
-    align-items: center; 
-    font-weight: bold; 
+.logout-button {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
     font-size: 16px;
     padding: 8px;
     border: 1px solid transparent;
-    &:hover{
+    &:hover {
         border: 1px solid #f58634;
         border-radius: 100px;
     }
@@ -289,13 +288,13 @@ export default {
     background: transparent;
 }
 
-.img-avatar{
+.img-avatar {
     width: 200px;
     border: 20px solid #f7f2f2;
     border-radius: 50%;
 }
 
-.img-avatar:hover{
+.img-avatar:hover {
     cursor: pointer;
     border: 20px solid darkgray;
     border-radius: 50%;
