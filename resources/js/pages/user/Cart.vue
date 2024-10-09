@@ -50,7 +50,7 @@
                         </div>
                         <v-row no-gutters class="car-items" style="overflow-y: auto; max-height: 450px">
                             <v-col cols="12" v-for="(product, i) in cartProducts" :key="i">
-                                <ProductCart :productDetails="product" productCartType="checkout" />
+                                <ProductCart style="box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 6px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;" :productDetails="product" productCartType="checkout" />
                             </v-col>
                         </v-row>
 

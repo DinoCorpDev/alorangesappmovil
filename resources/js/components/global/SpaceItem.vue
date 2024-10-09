@@ -17,7 +17,8 @@
                   color="transparent"
                   class="mb-5 img-size"
                 />
-                <h4 class="mb-11" :class="{ 'show-btns': hover }" color="transparent"><strong>{{ data.description }}</strong></h4>
+                <h4 class="mb-11 d-flex d-sm-none" style="font-size: 17px;" color="transparent"><strong>{{ data.description }}</strong></h4>
+                <h4 class="mb-11 d-none d-sm-flex" color="transparent"><strong>{{ data.description }}</strong></h4>
               </div>
             </v-row>
       </div>

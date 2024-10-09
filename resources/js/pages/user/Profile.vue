@@ -1,5 +1,5 @@
 <template>
-    <div class="px-5 py-3">
+    <div class="px-0 px-sm-5 py-3">
         <address-dialog
             :typeAddress="typeAddress"
             :show="addDialogShow"
