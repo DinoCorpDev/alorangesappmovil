@@ -33,16 +33,12 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $order = new OrderCollection(CombinedOrder::with([
-            'user',
-            'orders.orderDetails.variation.product',
-            'orders.orderDetails.variation.combinations',
-            'orders.shop'
-        ])->where('user_id', auth('api')->user()->id)->latest()->paginate(12));
-        
+        $order = new OrderCollection(CombinedOrder::where('user_id', auth('api')->user()->id)->latest()->paginate(12)); 
         foreach ($order as $key => $item) {    
-            $wompiData = (new WompiServices)->wompiGetTransactionFacturas($item['code']);
-            $item['orders'][0]['payment_status'] = $wompiData['data'][0]['status'];
+            $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($item['code']);
+            foreach ($item['orders'] as $key => $itemOrdes) {
+                $itemOrdes['payment_status'] = $wompiResult;
+            }
         }
         return $order;
     }
@@ -67,8 +63,8 @@ class OrderController extends Controller
             'orders.collectionDetails.collection.productos.product'
         ])->first();
 
-        $wompiData = (new WompiServices)->wompiGetTransactionFacturas($order->code);
-        $order->orders[0]['payment_status'] = $wompiData['data'][0]['status'];
+        $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($order->code);
+        $order->orders[0]['payment_status'] = $wompiResult;
         
         if ($order) {
             if (auth('api')->user()->id == $order->user_id) {
