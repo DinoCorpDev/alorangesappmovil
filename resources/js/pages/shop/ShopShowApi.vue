@@ -11,7 +11,8 @@
                             color="orange-cart"
                             type="button"
                             class="mt-4 mr-2"
-                            width="10"
+                            width="45"
+                            height="54"
                             @click="getProducts"
                             v-bind="attrs"
                             v-on="on"
@@ -23,10 +24,11 @@
                     <div v-for="filtro in resultadoFiltroBotones" :key="`button-${filtro.id}`">
                         <CustomButton
                                 :text="filtro.text"
-                                :color="activeButton === filtro.id ? 'orange-cart' : 'nero3'"
+                                :color="activeButton === filtro.id ? 'orange-cart2' : 'nero3'"
                                 type="button"
-                                class="mt-4 mr-1"
-                                width="10"
+                                class="mt-4 mr-3"
+                                width="45"
+                                height="54"
                                 @click="setActiveButton(filtro.id, filtro.text)"
                             />
                     </div>

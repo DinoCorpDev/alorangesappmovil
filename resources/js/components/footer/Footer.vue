@@ -1,37 +1,60 @@
 <template>
     <v-footer class="auth-footer">
         <v-row class="pt-5">
-            <v-col md="1"/>
+            <!-- <v-col md="1"/> -->
             <v-col cols="12" md="5" class="d-flex justify-start justify-md-center align-center">
-                <div style="max-width: 320px;" class="mr-md-16">
-                    <LogoAlorange class="mb-1"/>
-                    <p style="font-size: 15px;">
-                        Compras telefónicas horarios de atención es de lunes a Domingo 
-                        & Festivos de 7:00 am a 7:00 pm, cotizaciones y orden de compra 
-                        dirigirse a contáctanos
+                <div style="max-width: 320px" class="pl-md-5 mr-md-16">
+                    <LogoAlorange class="mb-1" />
+                    <p style="font-size: 15px">
+                        Compras telefónicas horarios de atención es de lunes a Domingo & Festivos de 7:00 am a 7:00 pm,
+                        cotizaciones y orden de compra dirigirse a contáctanos
                     </p>
-                    <div style="display: flex; gap: 10px; justify-content: flex-start;">
-                        <a href="#"><img src="../icons/facebook.svg" alt="Facebook" style="width: 50px;"></a>
-                        <a href="#"><img src="../icons/whatsapp.svg" alt="whatsapp" style="width: 50px;"></a>
-                        <a href="#"><img src="../icons/instagram.svg" alt="instagram" style="width: 50px;"></a>
+                    <div style="display: flex; gap: 10px; justify-content: flex-start">
+                        <a href="#"><img src="../icons/facebook.svg" alt="Facebook" style="width: 50px" /></a>
+                        <a href="#"><img src="../icons/whatsapp.svg" alt="whatsapp" style="width: 50px" /></a>
+                        <a href="#"><img src="../icons/instagram.svg" alt="instagram" style="width: 50px" /></a>
                     </div>
                 </div>
-                
             </v-col>
-            <v-col cols="12" md="3"  class="list-footer align-start pb-0 pb-md-3">
+            <v-col cols="12" md="4" class="list-footer align-start pb-0 pb-md-3 pl-md-11">
                 <a href="#">Politica de Protección de datos</a>
                 <a href="#">Cambios y Devoluciones</a>
                 <a href="#">Tiempo y costo de envío</a>
             </v-col>
-            <v-col cols="12" md="2"  class="list-footer align-start pt-0 pt-md-3">
+            <v-col cols="12" md="3" class="list-footer align-start pt-0 pt-md-3 pl-md-16">
                 <a href="#">Mi cuenta</a>
                 <a href="#">Regístrate</a>
                 <a href="#">¿Olvidó su clave?</a>
             </v-col>
-            <v-col cols="12" class="d-flex justify-center align-center">
-                <p style="font-size: 13px; margin-bottom: 0;"><b>Copyright © 2022 Aloranges.com.</b> Todos los derechos reservados.</p>
+            <v-col cols="12" class="d-none d-md-flex align-center" style="justify-content: space-around">
+                <img src="../icons/Logo_fondo_Emprender_blanco.png" alt="" style="max-width: 266px; height: auto" />
+                <p style="font-size: 13px; margin-bottom: 0">
+                    <b>Copyright © 2022 Aloranges.com.</b> Todos los derechos reservados.
+                </p>
+                <p class="d-flex align-center mb-0">Powered by <DinoLabs class="ml-1" /></p>
             </v-col>
-            <v-col md="1"/>
+            <v-col cols="12" class="d-flex d-md-none pa-0">
+                <v-row class="pt-5">
+                    <v-col cols="12" class="pl-6 pb-0">
+                        <p style="font-size: 17px; margin-bottom: 0">
+                            <b>Copyright © 2022 Aloranges.com.</b><br/>Todos los derechos reservados.
+                        </p>
+                    </v-col>
+                    <v-col cols="6" class="pt-0 d-flex align-center">
+                        <img
+                            src="../icons/Logo_fondo_Emprender_blanco.png"
+                            alt=""
+                            style="max-width: 180px; height: auto"
+                        />
+                    </v-col>
+                    <v-col cols="6" class="d-flex align-center justify-end pr-5 pt-0">
+                        <p class="mb-0 align-center justify-center" style="display: flex;">
+                            Powered by <img src="../icons/DinoLabs.png" style="max-width: 60px;"/>
+                        </p>
+                    </v-col>
+                </v-row>
+            </v-col>
+            <v-col md="1" />
         </v-row>
     </v-footer>
 </template>
@@ -40,12 +63,14 @@
 import { mapState } from "vuex";
 import WorldGlobeIcon from "../icons/WorldGlobe.vue";
 import LogoAlorange from "../icons/LogoAlorange.vue";
+import DinoLabs from "../icons/DinoLabs.vue";
 
 export default {
     name: "FooterCustom",
     components: {
         WorldGlobeIcon,
         LogoAlorange,
+        DinoLabs
     },
     computed: {
         ...mapState("app", ["authFooterLinks"])
@@ -54,20 +79,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-p{
+p {
     color: white;
     font-weight: 100;
 }
-.list-footer{
+.list-footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    a{
+    a {
         margin-bottom: 15px;
         font-size: 17px;
         color: white;
         font-weight: 100;
-        &:hover{
+        &:hover {
             text-decoration: underline;
         }
     }

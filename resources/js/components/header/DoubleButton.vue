@@ -19,8 +19,8 @@
             <div class="d-block d-sm-none">
                 <Profile class="mr-2 mr-sm-3" />
             </div>
-            
         </CustomButton>
+        
         <CustomButton
             v-else
             color="white"
@@ -40,7 +40,6 @@
             <div class="d-flex d-sm-none justify-center align-center">
                 <Profile />
             </div>
-            
         </CustomButton>
     </div>
 </template>
