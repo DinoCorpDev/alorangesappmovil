@@ -2239,6 +2239,19 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+
+        <v-dialog v-model="dialogPSEPaymentModal" persistent>
+            <v-card>
+                <v-card-title class="headline">Activación de Ventanas emergentes</v-card-title>
+                <v-card-text>
+                    <iframe :src="`${this.urlPagoPSE}`" width="730px" height="1000px" ></iframe>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" text @click="closePSEPaymentModal">Cerrar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 
@@ -2334,6 +2347,8 @@ export default {
             isCredit:true,
             isDebit:false,
             dialogTutorial: false,
+            dialogPSEPaymentModal:false,
+            referenceToPayment:null
         };
     },
     computed: {
@@ -2555,17 +2570,32 @@ export default {
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
                 this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url
-                window.open(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url,'_blank','width=800,height=600');
-                //this.dialogPSEModal = true;
-                this.numberPag = 4;
+                this.dialogPSEPaymentModal = true;
             }else{
                 this.verifyStatusPayment(dataToTransaction);
             }
         },
 
         closePSEModal(){
-            this.urlPagoPSE = '';
             this.dialogPSEModal = false;
+        },
+        async closePSEPaymentModal(){
+            let paymentPSEStatus = await this.verifyPaymentPSEStatus();
+            if(paymentPSEStatus.data == "APPROVED"){
+                let formData = this.processToSendStore(this.referenceToPayment);
+                const res = await this.call_api("post", "checkout/order/store", formData);
+                this.dataCheckout = res.data;
+                this.urlPagoPSE = '';
+                this.dialogPSEPaymentModal = false;
+                this.numberPag = 4;
+            }else{
+                this.urlPagoPSE = '';
+                this.dialogPSEPaymentModal = false;
+                this.snack({
+                    message: 'Algo ha salido mal, Intenta de nuevo mas tarde',
+                    color: "red"
+                });
+            }
         },
         processToSendStore(referenceToPayment){
             const shippingAddressId = this.selectedAddressEnvio.id;
@@ -2586,6 +2616,19 @@ export default {
             });
             return formData;
         },
+        async verifyPaymentPSEStatus(){
+            try{
+                let result = await this.call_api('POST',`checkout/order/resultPse/${this.referenceToPayment}`);
+                return result;
+            }catch(error){
+                this.snack({
+                    message: 'Algo ha salido mal, Revisa la factura',
+                    color: "red"
+                });
+                console.log(error);
+                return null;
+            }
+        },
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
                 const date = new Date();
@@ -2593,7 +2636,7 @@ export default {
                 const formattedTime = date.toTimeString().slice(0, 8).replace(/:/g, "");
                 const randomNum = Math.floor(10 + Math.random() * 90);
                 let referenceToPayment = formattedDate + "" + formattedTime + "" + randomNum;
-
+                this.referenceToPayment = referenceToPayment;
                 let result;
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
@@ -2676,15 +2719,7 @@ export default {
                                     id: idTransaction,
                                 };   
                                 this.verifyStatusPayment(dataToTransaction);
-                                let formData = this.processToSendStore(referenceToPayment);
-                                const res = await this.call_api("post", "checkout/order/store", formData);
-                                this.dataCheckout = res.data;   
-                            }else{
-                                this.snack({
-                                    message: 'Algo ha salido mal, intenta nuevamente mas tarde',
-                                    color: "red"
-                                }); 
-                            }
+                            }                            
                         } catch (error) {
                             this.snack({
                                 message: 'Algo ha salido mal, intenta nuevamente mas tarde',
@@ -2698,7 +2733,6 @@ export default {
                         this.dataCheckout = res.data;
                         this.numberPag = 4;
                     }
-
                     this.checkoutLoading = false;
                 }
             } else {

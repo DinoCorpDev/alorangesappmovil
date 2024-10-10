@@ -146,6 +146,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::group(['prefix' => 'checkout'], function () {
             Route::get('get-shipping-cost/{address_id}', [OrderController::class, 'get_shipping_cost']);
             Route::post('order/store', [OrderController::class, 'store']);
+            Route::post('order/resultPse/{reference}',[OrderController::class, 'getResultTransactionPSE'],'get_result_pse_payment');
             Route::post('coupon/apply', [CouponController::class, 'apply']);
         });
 
