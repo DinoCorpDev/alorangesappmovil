@@ -895,6 +895,10 @@
                                 </v-row>
                                 <div class="mt-3">
                                     <div v-if="pick === 1" class="data-payments">
+                                        <div class="mb-3">
+                                            <strong>Para poder continuar con el pago, debes habilitar las ventanas emergentes</strong>
+                                        </div>
+                                        <CustomButton @click="dialogPSEModal = true" class="mb-4" block color="white" text="Tutorial" />
                                         <div class="pt-4">
                                             <label>Tipo de Persona</label>
                                             <SelectCustom
@@ -942,8 +946,8 @@
                                             />
                                         </div>
                                         <div class="pt-4">
-                                            <label>Nombre del tarjetahabiente</label>
-                                            <CustomInput placeholder="Nombre del tarjetahabiente" v-model="formCard.card_holder" />
+                                            <label>Nombre del titular</label>
+                                            <CustomInput placeholder="Nombre del titular" v-model="formCard.card_holder" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Numero de CVC</label>
@@ -2198,15 +2202,53 @@
                 </v-stepper-content>
             </v-stepper-items>
         </v-stepper>
-        <v-dialog v-model="dialogPSEModal" max-width="600" persistent>
+        <v-dialog v-model="dialogPSEModal" max-width="600">
             <v-card>
-                <v-card-title class="headline">Proceso de Pago</v-card-title>
+                <v-card-title class="headline">Activación de Ventanas emergentes</v-card-title>
                 <v-card-text>
-                    <iframe :src="urlPagoPSE" style="width: 100%; height: 100vh; border: 0;"></iframe>
+                    <v-table theme="dark">
+                        <thead>
+                            <tr>
+                                <th class="text-left">#</th>
+                                <th class="text-left">Paso en Google</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>En tu ordenador, abre Chrome.</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Arriba a la derecha, haz clic en Más y luego Configuración.</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Haz clic en Privacidad y seguridad y luego Configuración de sitios y luego Ventanas emergentes y redirecciones.</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Elige la opción que quieras definir como predeterminada o elige la opción de añadir en la sección "Puede enviar ventanas emergentes y usar redirecciones" y agrega la url https://webapp.aloranges.com/</td>
+                            </tr>
+                        </tbody>
+                    </v-table>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" text @click="closePSEModal">Cerrar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="dialogPSEPaymentModal" persistent>
+            <v-card>
+                <v-card-title class="headline">Pago PSE</v-card-title>
+                <v-card-text>
+                    <iframe :src="`${this.urlPagoPSE}`" width="730px" height="1000px" ></iframe>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" text @click="closePSEPaymentModal">Cerrar</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -2303,7 +2345,10 @@ export default {
             dialogPSEModal: false,
             urlPagoPSE:'',
             isCredit:true,
-            isDebit:false
+            isDebit:false,
+            dialogTutorial: false,
+            dialogPSEPaymentModal:false,
+            referenceToPayment:null
         };
     },
     computed: {
@@ -2525,18 +2570,32 @@ export default {
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
                 this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url
-                window.open(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url,'_blank','width=800,height=600');
-                //this.dialogPSEModal = true;
-                this.numberPag = 4;
+                this.dialogPSEPaymentModal = true;
             }else{
                 this.verifyStatusPayment(dataToTransaction);
             }
         },
 
         closePSEModal(){
-            this.urlPagoPSE = '';
             this.dialogPSEModal = false;
-            this.numberPag = 4;
+        },
+        async closePSEPaymentModal(){
+            let paymentPSEStatus = await this.verifyPaymentPSEStatus();
+            if(paymentPSEStatus.data == "APPROVED"){
+                let formData = this.processToSendStore(this.referenceToPayment);
+                const res = await this.call_api("post", "checkout/order/store", formData);
+                this.dataCheckout = res.data;
+                this.urlPagoPSE = '';
+                this.dialogPSEPaymentModal = false;
+                this.numberPag = 4;
+            }else{
+                this.urlPagoPSE = '';
+                this.dialogPSEPaymentModal = false;
+                this.snack({
+                    message: 'Algo ha salido mal, Intenta de nuevo mas tarde',
+                    color: "red"
+                });
+            }
         },
         processToSendStore(referenceToPayment){
             const shippingAddressId = this.selectedAddressEnvio.id;
@@ -2557,6 +2616,19 @@ export default {
             });
             return formData;
         },
+        async verifyPaymentPSEStatus(){
+            try{
+                let result = await this.call_api('POST',`checkout/order/resultPse/${this.referenceToPayment}`);
+                return result;
+            }catch(error){
+                this.snack({
+                    message: 'Algo ha salido mal, Revisa la factura',
+                    color: "red"
+                });
+                console.log(error);
+                return null;
+            }
+        },
         async proceedCheckout() {
             if (Object.entries(this.dataCheckout).length === 0) {
                 const date = new Date();
@@ -2564,7 +2636,7 @@ export default {
                 const formattedTime = date.toTimeString().slice(0, 8).replace(/:/g, "");
                 const randomNum = Math.floor(10 + Math.random() * 90);
                 let referenceToPayment = formattedDate + "" + formattedTime + "" + randomNum;
-
+                this.referenceToPayment = referenceToPayment;
                 let result;
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
@@ -2647,15 +2719,7 @@ export default {
                                     id: idTransaction,
                                 };   
                                 this.verifyStatusPayment(dataToTransaction);
-                                let formData = this.processToSendStore(referenceToPayment);
-                                const res = await this.call_api("post", "checkout/order/store", formData);
-                                this.dataCheckout = res.data;   
-                            }else{
-                                this.snack({
-                                    message: 'Algo ha salido mal, intenta nuevamente mas tarde',
-                                    color: "red"
-                                }); 
-                            }
+                            }                            
                         } catch (error) {
                             this.snack({
                                 message: 'Algo ha salido mal, intenta nuevamente mas tarde',
@@ -2669,7 +2733,6 @@ export default {
                         this.dataCheckout = res.data;
                         this.numberPag = 4;
                     }
-
                     this.checkoutLoading = false;
                 }
             } else {

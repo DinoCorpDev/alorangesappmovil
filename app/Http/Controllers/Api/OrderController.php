@@ -43,6 +43,19 @@ class OrderController extends Controller
         return $order;
     }
 
+    public function getResultTransactionPSE($reference){
+        try {
+            $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($reference);
+            return $wompiResult;
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => "No se encuentra información del pago",
+                'status' => 404
+            ]);
+        }
+    }
+
     public function getOrders(Request $request)
     {
         return new OrderCollection(CombinedOrder::with([
