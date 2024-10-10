@@ -2244,7 +2244,7 @@
             <v-card>
                 <v-card-title class="headline">Pago PSE</v-card-title>
                 <v-card-text>
-                    <iframe :src="`${this.urlPagoPSE}`" width="730px" height="1000px" ></iframe>
+                    <iframe :src="`${this.urlPagoPSE}`" width="100%" height="100%" ></iframe>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -2570,7 +2570,7 @@ export default {
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
                 this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url
-                this.dialogPSEPaymentModal = true;
+                window.open(this.urlPagoPSE);
             }else{
                 this.verifyStatusPayment(dataToTransaction);
             }
@@ -2719,6 +2719,13 @@ export default {
                                     id: idTransaction,
                                 };   
                                 this.verifyStatusPayment(dataToTransaction);
+
+                                setTimeout(async () => {
+                                    let formData = this.processToSendStore(referenceToPayment);
+                                    const res = await this.call_api("post", "checkout/order/store", formData);
+                                    this.dataCheckout = res.data;
+                                    this.numberPag = 4;
+                                }, 1000);
                             }                            
                         } catch (error) {
                             this.snack({
