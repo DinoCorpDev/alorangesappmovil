@@ -63,27 +63,28 @@ export default {
     }
 
     .swiper-button-prev {
-        left: 0;
+        right: 51% !important;
+        border-radius: 100px;
+        left: inherit;
+        // @media (min-width: 600px) {
+        //     left: 20%;
+        // }
 
-        @media (min-width: 600px) {
-            left: 20%;
-        }
-
-        @media (min-width: 960px) {
-            left: 37%;
-        }
+        // @media (min-width: 960px) {
+        //     left: 37%;
+        // }
     }
 
     .swiper-button-next {
-        right: 0;
+        left: 51%;
+        border-radius: 100px;
+        // @media (min-width: 600px) {
+        //     right: 20%;
+        // }
 
-        @media (min-width: 600px) {
-            right: 20%;
-        }
-
-        @media (min-width: 960px) {
-            right: 37%;
-        }
+        // @media (min-width: 960px) {
+        //     right: 37%;
+        // }
     }
 
     &::v-deep {

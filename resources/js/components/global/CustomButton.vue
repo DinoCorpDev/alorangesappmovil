@@ -117,7 +117,7 @@ export default {
     }
 
     &.v-size--default {
-        height: 38px !important;
+        height: 38px;
     }
 
     &::v-deep {
@@ -203,6 +203,19 @@ export default {
         border: 1px solid #f58634;
         border-radius: 5px !important;
 
+        &:focus,
+        &.v-btn--active {
+            color: #fff;
+            background-color: #f58634 !important;
+        }
+    }
+    &.orange-cart2 {
+        color: #fff;
+        background-color: #f58634 !important;
+        border: 1px solid #f58634;
+        border-radius: 5px !important;
+        font-size: 18px;
+        font-weight: 700;
         &:focus,
         &.v-btn--active {
             color: #fff;
@@ -352,9 +365,10 @@ export default {
     &.nero3 {
         color: black !important;
         background-color: transparent;
-        border: 1px solid black;
-        border-radius: 5px !important;
-
+        border: 1px solid #707780;
+        border-radius: 8px !important;
+        font-size: 18px;
+        font-weight: 700;
         &:hover {
             background-color: rgba(#434343, 0.8);
         }
