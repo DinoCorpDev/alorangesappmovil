@@ -2663,6 +2663,11 @@ export default {
                             });  
                             console.log(error); 
                         }
+                    }else{
+                        let formData = this.processToSendStore(referenceToPayment);
+                        const res = await this.call_api("post", "checkout/order/store", formData);
+                        this.dataCheckout = res.data;
+                        this.numberPag = 4;
                     }
 
                     this.checkoutLoading = false;
