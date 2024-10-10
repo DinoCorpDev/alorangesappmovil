@@ -895,10 +895,10 @@
                                 </v-row>
                                 <div class="mt-3">
                                     <div v-if="pick === 1" class="data-payments">
-                                        <div class="mb-3">
+                                        <!-- <div class="mb-3">
                                             <strong>Para poder continuar con el pago, debes habilitar las ventanas emergentes</strong>
                                         </div>
-                                        <CustomButton @click="dialogPSEModal = true" class="mb-4" block color="white" text="Tutorial" />
+                                        <CustomButton @click="dialogPSEModal = true" class="mb-4" block color="white" text="Tutorial" /> -->
                                         <div class="pt-4">
                                             <label>Tipo de Persona</label>
                                             <SelectCustom
