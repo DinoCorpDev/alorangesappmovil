@@ -895,6 +895,10 @@
                                 </v-row>
                                 <div class="mt-3">
                                     <div v-if="pick === 1" class="data-payments">
+                                        <div class="mb-3">
+                                            <strong>Para poder continuar con el pago, debes habilitar las ventanas emergentes</strong>
+                                        </div>
+                                        <CustomButton @click="dialogPSEModal = true" class="mb-4" block color="white" text="Tutorial" />
                                         <div class="pt-4">
                                             <label>Tipo de Persona</label>
                                             <SelectCustom
@@ -942,8 +946,8 @@
                                             />
                                         </div>
                                         <div class="pt-4">
-                                            <label>Nombre del tarjetahabiente</label>
-                                            <CustomInput placeholder="Nombre del tarjetahabiente" v-model="formCard.card_holder" />
+                                            <label>Nombre del titular</label>
+                                            <CustomInput placeholder="Nombre del titular" v-model="formCard.card_holder" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Numero de CVC</label>
@@ -2198,11 +2202,36 @@
                 </v-stepper-content>
             </v-stepper-items>
         </v-stepper>
-        <v-dialog v-model="dialogPSEModal" max-width="600" persistent>
+        <v-dialog v-model="dialogPSEModal" max-width="600">
             <v-card>
-                <v-card-title class="headline">Proceso de Pago</v-card-title>
+                <v-card-title class="headline">Activación de Ventanas emergentes</v-card-title>
                 <v-card-text>
-                    <iframe :src="urlPagoPSE" style="width: 100%; height: 100vh; border: 0;"></iframe>
+                    <v-table theme="dark">
+                        <thead>
+                            <tr>
+                                <th class="text-left">#</th>
+                                <th class="text-left">Paso en Google</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>En tu ordenador, abre Chrome.</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Arriba a la derecha, haz clic en Más y luego Configuración.</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Haz clic en Privacidad y seguridad y luego Configuración de sitios y luego Ventanas emergentes y redirecciones.</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Elige la opción que quieras definir como predeterminada o elige la opción de añadir en la sección "Puede enviar ventanas emergentes y usar redirecciones" y agrega la url https://webapp.aloranges.com/</td>
+                            </tr>
+                        </tbody>
+                    </v-table>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -2303,7 +2332,8 @@ export default {
             dialogPSEModal: false,
             urlPagoPSE:'',
             isCredit:true,
-            isDebit:false
+            isDebit:false,
+            dialogTutorial: false,
         };
     },
     computed: {
@@ -2536,7 +2566,6 @@ export default {
         closePSEModal(){
             this.urlPagoPSE = '';
             this.dialogPSEModal = false;
-            this.numberPag = 4;
         },
         processToSendStore(referenceToPayment){
             const shippingAddressId = this.selectedAddressEnvio.id;
