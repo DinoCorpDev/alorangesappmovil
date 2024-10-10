@@ -2242,7 +2242,7 @@
 
         <v-dialog v-model="dialogPSEPaymentModal" persistent>
             <v-card>
-                <v-card-title class="headline">Activación de Ventanas emergentes</v-card-title>
+                <v-card-title class="headline">Pago PSE</v-card-title>
                 <v-card-text>
                     <iframe :src="`${this.urlPagoPSE}`" width="730px" height="1000px" ></iframe>
                 </v-card-text>
