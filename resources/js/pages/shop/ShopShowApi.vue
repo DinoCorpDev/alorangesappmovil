@@ -1,8 +1,8 @@
 <template>
-    <v-container fluid>
+    <v-container class="pt-0" fluid>
         
 
-        <v-container class="bg-surface-variant ma-0 px-0">
+        <v-container class="bg-surface-variant ma-0 px-0 pb-8 pt-0">
             <div align="start" class="d-flex"  no-gutters>
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">

@@ -98,7 +98,7 @@ export default {
         line-height: 36px;
         font-weight: 600;
         @media (min-width: 600px) {
-            font-size: 43px;
+            font-size: 40px;
             line-height: 47px;
             letter-spacing: 0.25px;
             font-weight: 600;
