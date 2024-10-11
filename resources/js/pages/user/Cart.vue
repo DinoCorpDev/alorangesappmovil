@@ -1970,46 +1970,46 @@
                                         </v-row>
                                         <div
                                             v-if="
-                                                Object.entries(addressFacturacion).length !== 0 &&
+                                                Object.entries(selectedAddressEnvio).length !== 0 &&
                                                 useDefaultAddress2 == false
                                             "
                                         >
                                             <div class="d-flex justify-space-between mb-2">
-                                                <span class="subtitle1 bold pl-3">Nombre de <dfn></dfn>irección</span>
+                                                <span class="subtitle1 bold pl-3">Nombre de dirección</span>
                                                 <span class="body1 pr-3">Dirección principal</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 bold pl-3">Dirección</span>
                                                 <span class="body1 text-right pr-3">{{
-                                                    addressFacturacion?.address
+                                                    selectedAddressEnvio?.address
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 bold pl-3"> Descripción de dirección </span>
                                                 <span class="body1 pr-3">{{
-                                                    addressFacturacion?.address
+                                                    selectedAddressEnvio?.address
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 bold pl-3">Codigo postal</span>
                                                 <span class="body1 pr-3">{{
-                                                    addressFacturacion?.postal_code
+                                                    selectedAddressEnvio?.postal_code
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 bold pl-3">Departamento</span>
                                                 <span class="body1 pr-3">{{
-                                                    addressFacturacion?.country
+                                                    selectedAddressEnvio?.country
                                                         | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 bold pl-3">Municipio</span>
                                                 <span class="body1 pr-3">{{
-                                                    addressFacturacion?.city | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                    selectedAddressEnvio?.city | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
@@ -2019,7 +2019,7 @@
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 bold pl-3">Telefono / Movil</span>
                                                 <span class="body1 pr-3">{{
-                                                    addressPrincipal?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                    selectedAddressEnvio?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                         </div>
@@ -2162,7 +2162,13 @@
                                     <div class="form mt-4" style="background-color: #f1f1f1">
                                         <h5 class="fw-600 pl-3 mb-2" style="font-size: 25px">Medio de pago</h5>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span class="subtitle1 bold pl-3">Transferencia bancaria</span>
+                                            <span v-if="pick == 4" class="subtitle1 bold pl-3">Transferencia bancaria</span>
+                                            <span v-else-if="pick == 5" class="subtitle1 bold pl-3">Contraentrega</span>
+                                            <span v-else-if="pick == 2" class="subtitle1 bold pl-3">
+                                                <p v-if="isCredit">Tarjeta Credito</p>
+                                                <p v-else-if="isDebit">Tarjeta Debito</p>
+                                            </span>
+                                            <span v-else-if="pick == 1" class="subtitle1 bold pl-3">PSE</span>
                                         </div>
                                     </div>
                                 </v-col>
@@ -2569,8 +2575,7 @@ export default {
         async verifyStatusPayment(dataToTransaction){
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
-                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url
-                window.open(this.urlPagoPSE);
+                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
             }else{
                 this.verifyStatusPayment(dataToTransaction);
             }
@@ -2668,7 +2673,7 @@ export default {
                         };
                         result = await this.call_api('POST','product/payment-card-wompi',data);
                         if(result.data.success){
-                            let formData = this.processToSendStore(referenceToPayment);
+                            let formData = this.processToSendStore(this.referenceToPayment);
                             const res = await this.call_api("post", "checkout/order/store", formData);
                             this.numberPag = 4;
                             this.dataCheckout = res.data;

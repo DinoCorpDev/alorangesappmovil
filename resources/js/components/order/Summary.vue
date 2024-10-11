@@ -1,7 +1,7 @@
 <template>
     <div v-if="!is_empty_obj(orderDetails) && orderDetails.orders.length > 0">
         <v-sheet class="" color="white" elevation="0" v-for="(order, i) in orderDetails.orders" :key="i">
-            <OrderPackage :order-details="order" />
+            <!-- <OrderPackage :order-details="order" /> -->
         </v-sheet>
         <v-row>
             <v-col cols="12" md="6">
@@ -45,60 +45,6 @@
                                 <span class="body1 pr-3">{{ orderDetails.shipping_address?.phone }}</span>
                             </div>
                         </div>
-
-                        <div class="form">
-                            <h6 class="black--text bold">Encargado</h6>
-                            <v-divider class="my-3" />
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold pl-3">Nombre</span>
-                                <span class="body1 pr-3">{{ orderDetails.user.name || "--" }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-3">
-                                <span class="subtitle1 text-uppercase bold pl-3">TELÉFONO / CELULAR</span>
-                                <span class="body1 pr-3">
-                                    {{ "--" }}
-                                </span>
-                            </div>
-                        </div>
-
-                        <h5 class="fw-600">Dirección de servicio</h5>
-                        <v-divider class="my-4" />
-                        <div class="form">
-                            <h6 class="black--text bold">Nombre de direccion servicio</h6>
-                            <v-divider class="my-3" />
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold pl-3">Nombre de Dirección</span>
-                                <span class="body1 pr-3">Dirección principal</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold pl-3">Dirección</span>
-                                <span class="body1 text-right pr-3">{{ orderDetails.shipping_address?.address }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold pl-3"> Descripción de Dirección </span>
-                                <span class="body1 pr-3">{{ orderDetails.shipping_address?.address }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold pl-3">Codigo Postal</span>
-                                <span class="body1 pr-3">{{ orderDetails.shipping_address?.postal_code }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold pl-3">Departamento</span>
-                                <span class="body1 pr-3">{{ orderDetails.shipping_address?.country }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold pl-3">Municipio</span>
-                                <span class="body1 pr-3">{{ orderDetails.shipping_address?.city }}</span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold pl-3">Barrio</span>
-                                <span class="body1 pr-3"> -- </span>
-                            </div>
-                            <div class="d-flex justify-space-between mb-2">
-                                <span class="subtitle1 text-uppercase bold pl-3">Telefono / Celular</span>
-                                <span class="body1 pr-3">{{ orderDetails.shipping_address?.phone }}</span>
-                            </div>
-                        </div>
                     </v-col>
                 </v-row>
             </v-col>
@@ -108,7 +54,7 @@
                         <h5 class="fw-600">Facturar a nombre de</h5>
                         <v-divider class="my-4" />
                         <div class="form">
-                            <h6 class="black--text bold">Uuario principal</h6>
+                            <h6 class="black--text bold">Usuario principal</h6>
                             <v-divider class="my-3" />
                             <div class="d-flex justify-space-between mb-2">
                                 <span class="subtitle1 text-uppercase bold pl-3">Correo electronico</span>
@@ -132,10 +78,14 @@
 
                         <h5 class="fw-600">Medio de pago</h5>
                         <v-divider class="my-4" />
-                        <div class="form">
-                            <h6 class="black--text bold">Método de pago</h6>
-                            <v-divider class="my-3" />
-                            <div>acá va la info del metodo de pago</div>
+                        <div class="form" v-if="payment_method.payment_method">
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase bold pl-3">{{payment_method.payment_method.extra.brand || 'PSE'}}</span>
+                                <span class="body1 pr-3">{{ payment_method.payment_method.extra.last_four ? `************${payment_method.payment_method.extra.last_four}` : payment_method.status }}</span>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <div>Información no recibida</div>
                         </div>
                         <h5 class="fw-600">Código promocional</h5>
                         <v-divider class="my-4" />
@@ -188,6 +138,11 @@ import Regalo from "../../components/icons/Regalo.vue";
 import OrderPackage from "./OrderPackage.vue";
 
 export default {
+    data(){
+        return {
+            payment_method:{},
+        }
+    },
     components: {
         OrderPackage,
         Regalo
@@ -204,6 +159,8 @@ export default {
     methods: {
         iterateOrderUpdates() {
             const orderUpdates = this.orderDetails.order_updates;
+            this.payment_method = this.orderDetails.orders[0].manual_payment;
+            console.log(this.payment_method);
             this.orderDetails.orders[0].order_updates = orderUpdates;
         }
     }

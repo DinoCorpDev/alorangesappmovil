@@ -77,7 +77,10 @@ class OrderController extends Controller
         ])->first();
 
         $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($order->code);
+        $wompiResultTransaction = (new WompiServices)->wompiGetTransactionComplete($order->code);
+
         $order->orders[0]['payment_status'] = $wompiResult;
+        $order->orders[0]['manual_payment'] = $wompiResultTransaction['data'][0];
         
         if ($order) {
             if (auth('api')->user()->id == $order->user_id) {
