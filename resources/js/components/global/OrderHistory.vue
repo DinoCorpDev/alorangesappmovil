@@ -23,8 +23,8 @@
                             <custom-button
                                 v-if="icon1"
                                 plain
-                                :to="{ name: 'OrderDetails', params: { code: order } }"
-                            >
+                                onclick="window.print()"
+                                >
                                 <Descargar />
                             </custom-button>
                         </div>
@@ -53,7 +53,7 @@
                             <custom-button
                                 v-if="icon3"
                                 plain
-                                :to="{ name: 'OrderDetails', params: { code: order } }"
+                                onclick="window.print()"
                             >
                                 <Imprimir />
                             </custom-button>
@@ -89,6 +89,11 @@ export default {
         icon1: String,
         icon2: String,
         icon3: String
+    },
+    method:{
+        printWindow(){
+            window.print();
+        }
     }
 };
 </script>

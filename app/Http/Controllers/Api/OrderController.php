@@ -33,7 +33,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $order = new OrderCollection(CombinedOrder::where('user_id', auth('api')->user()->id)->latest()->paginate(40)); 
+        $order = new OrderCollection(CombinedOrder::where('user_id', auth('api')->user()->id)->latest()->paginate(12)); 
         foreach ($order as $key => $item) {    
             $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($item['code']);
             foreach ($item['orders'] as $key => $itemOrdes) {
