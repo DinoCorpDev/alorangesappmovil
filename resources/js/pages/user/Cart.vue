@@ -2576,6 +2576,7 @@ export default {
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
                 this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
+                window.open(this.urlPagoPSE);
             }else{
                 this.verifyStatusPayment(dataToTransaction);
             }
