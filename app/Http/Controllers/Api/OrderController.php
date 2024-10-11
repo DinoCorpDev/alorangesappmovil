@@ -33,7 +33,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $order = new OrderCollection(CombinedOrder::where('user_id', auth('api')->user()->id)->latest()->paginate(12)); 
+        $order = new OrderCollection(CombinedOrder::where('user_id', auth('api')->user()->id)->latest()->paginate(40)); 
         foreach ($order as $key => $item) {    
             $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($item['code']);
             foreach ($item['orders'] as $key => $itemOrdes) {
@@ -77,7 +77,10 @@ class OrderController extends Controller
         ])->first();
 
         $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($order->code);
+        $wompiResultTransaction = (new WompiServices)->wompiGetTransactionComplete($order->code);
+
         $order->orders[0]['payment_status'] = $wompiResult;
+        $order->orders[0]['manual_payment'] = $wompiResultTransaction['data'][0];
         
         if ($order) {
             if (auth('api')->user()->id == $order->user_id) {
