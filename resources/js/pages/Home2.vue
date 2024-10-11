@@ -1,6 +1,6 @@
 <template>
     <v-container style="background-color: white">
-        <v-row class="main mx-2 my-6 mx-sm-6 bg-orange-ligth border-style-banner" align="center" tag="main">
+        <v-row class="main mx-2 my-2 mx-sm-6 bg-orange-ligth border-style-banner" align="center" tag="main">
             <v-col class="pa-6 pa-sm-8" cols="12" sm="7" md="7">
                 <h1 class="home-main-title mb-6 mb-sm-8">
                     ¡Suministros de papelería, aseo, cafetería, cartonería y seguridad industrial para empresas!

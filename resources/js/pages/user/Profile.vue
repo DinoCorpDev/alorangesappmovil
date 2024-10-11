@@ -55,7 +55,7 @@
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">CORREO ELECTRONICO</label>
+                                <label class="profile-label">Correo electroníco</label>
                             </v-col>
 
                             <v-col class="text-end usuario-lineado">
@@ -64,7 +64,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">TIPO DE PERSONA</label>
+                                <label class="profile-label">Tipo de persona</label>
                             </v-col>
 
                             <v-col class="text-end usuario-lineado">
@@ -73,7 +73,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">NOMBRE COMPLETO</label>
+                                <label class="profile-label">Nombre completo</label>
                             </v-col>
 
                             <v-col class="text-end usuario-lineado">
@@ -82,7 +82,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">TIPO DE DOCUMENTO</label>
+                                <label class="profile-label">Tipo de documento</label>
                             </v-col>
 
                             <v-col class="text-end usuario-lineado">
@@ -91,7 +91,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">NÚMERO DE DOCUMENTO</label>
+                                <label class="profile-label">Número de documento</label>
                             </v-col>
 
                             <v-col class="text-end">
@@ -104,25 +104,25 @@
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
                             <v-col cols="6" class="text-start usuario-lineado">
-                                <label class="profile-label">CORREO ELECTRONICO</label>
+                                <label class="profile-label">Correo electroníco</label>
                             </v-col>
                             <v-col cols="6" class="text-end usuario-lineado">******@******.*** </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">TIPO DE PERSONA</label>
+                                <label class="profile-label">Tipo de persona</label>
                             </v-col>
                             <v-col class="text-end usuario-lineado"> {{ currentUser.personType || "--" }} </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">NOMBRE COMPLETO</label>
+                                <label class="profile-label">Nombre completo</label>
                             </v-col>
                             <v-col class="text-end usuario-lineado">***** ***** ******</v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">TIPO DE DOCUMENTO</label>
+                                <label class="profile-label">Tipo de documento</label>
                             </v-col>
                             <v-col class="text-end usuario-lineado">
                                 {{ currentUser.documentType || "--" }}
@@ -130,7 +130,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">NÚMERO DE DOCUMENTO</label>
+                                <label class="profile-label">Número de documento</label>
                             </v-col>
                             <v-col class="text-end"> *********** </v-col>
                         </v-row>
@@ -351,19 +351,19 @@
 
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">CORREO ELECTRONICO</label>
+                                        <label class="profile-label">Correo electroníco</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">{{ emp.company_razon || "--" }} </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">TIPO DE PERSONA</label>
+                                        <label class="profile-label">Tipo de persona</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado"> {{ emp.person_type || "--" }} </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">NOMBRE REPRESENTANTE</label>
+                                        <label class="profile-label">Nombre representante</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">{{
                                         emp.first_name + " " + emp.first_lastname || "--"
@@ -933,7 +933,7 @@
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6">
-                                    <span class="black--text body-2  "> Segundo Nombre (Opcional) </span>
+                                    <span class="black--text body-2  ">Segundo Nombre (Opcional) </span>
                                     <CustomInput
                                         class="place-holder"
                                         v-model="formEmpresa.secondName"
@@ -943,7 +943,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12" sm="6">
-                                    <span class="black--text body-2  "> Primer Apellido </span>
+                                    <span class="black--text body-2  ">Primer Apellido </span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Ingresar primer apellido"
@@ -954,7 +954,7 @@
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6">
-                                    <span class="black--text body-2  "> Segundo Apellido </span>
+                                    <span class="black--text body-2  ">Segundo Apellido </span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Ingresar segundo apellido"
@@ -967,7 +967,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2  "> Documento (Representante) </span>
+                                    <span class="black--text body-2  ">Documento (Representante) </span>
                                     <SelectCustom
                                         class="select-style"
                                         placeholder="Seleccionar tipo de documento"
@@ -1021,7 +1021,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2  "> Numero de NIT </span>
+                                    <span class="black--text body-2  ">Numero de NIT </span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Indicar número de documento"
@@ -1036,7 +1036,7 @@
                             <v-row>
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2  ">
-                                        {{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }}
+                                        {{ $t("Correo electroníco o número de teléfono") }}
                                     </span>
 
                                     <div class="input-group">
@@ -1111,7 +1111,7 @@
                             <v-row>
                                 <v-col cols="12" md="6">
                                     <span class="black--text body-2  ">
-                                        {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }}
+                                        {{ $t("ACTIVIDAD ECONOMICA (Código CIIU)") }}
                                     </span>
 
                                     <div class="input-group">
@@ -1129,7 +1129,7 @@
                                 </v-col>
 
                                 <v-col cols="12" md="6" style="display: grid; align-items: end">
-                                    <span class="black--text body-2  ">REGIMEN FISCAL</span>
+                                    <span class="black--text body-2  ">Regimen fiscal</span>
 
                                     <div class="input-group">
                                         <SelectCustom
@@ -1148,7 +1148,7 @@
 
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2  ">RESPONSABILIDAD TRIBUTARIA </span>
+                                    <span class="black--text body-2  ">Responsabilidad tributaria </span>
                                     <SelectCustom
                                         class="select-style"
                                         placeholder="Seleccione responsabilidad tributaria"
@@ -1164,7 +1164,7 @@
 
                             <v-row>
                                 <v-col cols="12" class="texto-upload">
-                                    <span class="black--text body-2  "> DOCUMENTO (ARCHIVO) </span>
+                                    <span class="black--text body-2  ">Documento (ARCHIVO) </span>
                                 </v-col>
 
                                 <v-col cols="11" class="area-upload">
@@ -1176,7 +1176,7 @@
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                            <span class="subir-documento">Subir documento</span>
                                         </template>
                                     </v-file-input>
                                 </v-col>
@@ -1203,7 +1203,7 @@
                             <v-row>
                                 <v-col cols="12" class="texto-upload">
                                     <span class="black--text body-2  ">
-                                        Numero de CAMARA DE COMERCIO (ARCHIVO)
+                                        Numero de Camara de comercio (ARCHIVO)
                                     </span>
                                 </v-col>
                                 <v-col cols="11" class="area-upload">
@@ -1216,7 +1216,7 @@
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                            <span class="subir-documento">Subir documento</span>
                                         </template>
                                     </v-file-input>
 
@@ -1253,7 +1253,7 @@
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                            <span class="subir-documento">Subir documento</span>
                                         </template>
                                     </v-file-input>
                                 </v-col>
@@ -1706,7 +1706,7 @@
                         <v-divider class="my-4" />
                         <v-form :validator="$v.formDirection" autocomplete="chrome-off">
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("PAÍS") }}</div>
+                                <div class="mb-1 fs-13 fw-500">{{ $t("País") }}</div>
                                 <SelectCustom
                                     class="select-style"
                                     placeholder="Seleccionar país"
@@ -1722,7 +1722,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">NOMBRE DE DIRECCION (CASA/OFICINA)</div>
+                                <div class="mb-1 fs-13 fw-500">Nombre de dirección (CASA/OFICINA)</div>
                                 <CustomInput
                                     placeholder="Ingresar nombre de dirección"
                                     class="place-holder"
@@ -1734,7 +1734,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("DIRECCIÓN (CALLE/CARRERA)") }}</div>
+                                <div class="mb-1 fs-13 fw-500">{{ $t("Dirección (CALLE/CARRERA)") }}</div>
                                 <CustomInput
                                     placeholder="Ingresar dirección"
                                     class="place-holder"
@@ -1745,7 +1745,7 @@
                                 />
                             </div>
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("DIRECCIÓN ADICIONAL (PISO/APTO/OFICINA)") }}</div>
+                                <div class="mb-1 fs-13 fw-500">{{ $t("Dirección adicional (PISO/APTO/OFICINA)") }}</div>
                                 <CustomInput
                                     placeholder="Ingresar piso / apartamento / oficina"
                                     class="place-holder"
@@ -1756,7 +1756,7 @@
                                 />
                             </div>
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("CÓDIGO POSTAL") }}</div>
+                                <div class="mb-1 fs-13 fw-500">{{ $t("Código postal") }}</div>
                                 <SelectCustom
                                     class="select-style"
                                     placeholder="Seleccione codigo postal"
@@ -1769,7 +1769,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("DEPARTAMENTO") }}</div>
+                                <div class="mb-1 fs-13 fw-500">{{ $t("Departamento") }}</div>
                                 <SelectCustom
                                     class="select-style"
                                     placeholder="Seleccionar departamento"
@@ -1784,7 +1784,7 @@
                                 />
                             </div>
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">CIUDAD</div>
+                                <div class="mb-1 fs-13 fw-500">Ciudad</div>
                                 <SelectCustom
                                     class="select-style"
                                     placeholder="Seleccionar ciudad"
@@ -1838,7 +1838,7 @@
                                 </v-row> -->
                             </div>
                             <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("NÚMERO DE TELÉFONO") }}</div>
+                                <div class="mb-1 fs-13 fw-500">{{ $t("Número de teléfono") }}</div>
                                 <v-row>
                                     <v-col cols="12">
                                         <vue-tel-input
@@ -1950,7 +1950,7 @@
                             <v-divider class="my-4" />
                         </v-col>
                         <v-col cols="12" md="12" class="pt-0">
-                            <span class="black--text body-2  "> CONTRASEÑA ACTUAL </span>
+                            <span class="black--text body-2  ">Contraseña actual </span>
                             <v-text-field
                                 v-model="formContrasena.oldPassword"
                                 placeholder="Ingresar contraseña"
@@ -1983,7 +1983,7 @@
                             /> -->
                         </v-col>
                         <v-col cols="12" md="12">
-                            <span class="black--text body-2  "> NUEVA CONTRASEÑA </span>
+                            <span class="black--text body-2  ">Nueva contraseña </span>
                             <v-text-field
                                 v-model="formContrasena.newPassword"
                                 placeholder="Ingresar contraseña"
@@ -2003,7 +2003,7 @@
                         </v-col>
 
                         <v-col cols="12" md="12">
-                            <span class="black--text body-2  "> REPETIR NUEVA CONTRASEÑA </span>
+                            <span class="black--text body-2  ">Repetir nueva contraseña </span>
                             <v-text-field
                                 v-model="formContrasena.reptyPassword"
                                 placeholder="Ingresar contraseña"
@@ -3220,7 +3220,7 @@ export default {
 
 .profile {
     &-label {
-        text-transform: uppercase;
+        text-transform:initial;
         font-size: 15px;
         font-weight: 700;
         line-height: 25.2px;

@@ -6,7 +6,7 @@
             exact-active-class="active"
             active-class="disabled"
             :items="breadcrumbItems"
-            style="background-color: #f4f4f3; margin: 12px; margin-bottom: 0; font-size: 18px !important"
+            style="background-color: #F4F5F7; margin: 12px; margin-bottom: 0; font-size: 18px !important"
         >
             <template v-slot:divider>
                 <i class="las la-angle-right"></i>
