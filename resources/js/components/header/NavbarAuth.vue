@@ -32,14 +32,17 @@
                         ><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px" />
                     </CustomButton>
                     <div class="layout-navbar-auth-nav">
-                        <DoubleButton class="d-none d-lg-flex" />
-                        <div class="d-flex d-lg-none">
-                            <CustomButton @click.stop="toggleMenu" color="orange3">
+                        <DoubleButton />
+                        <div class="d-flex d-lg-none" v-if="userIsLoggedIn">
+                            <CustomButton v-if="userIsLoggedIn" @click.stop="toggleMenu" color="orange3">
                                 <BurgerMenu />
                             </CustomButton>
                         </div>
+                        <div style="display: none;">
+                            <ToggleMenu  />
+                        </div>
                         <!-- MODAL LOGOUT START -->
-                        <div class="d-none d-lg-flex">
+                        <div class="d-none d-lg-flex" v-if="userIsLoggedIn">
                             <v-dialog transition="dialog-top-transition" max-width="600">
                                 <template v-slot:activator="dialog">
                                     <button
@@ -156,6 +159,7 @@ export default {
     },
     computed: {
         ...mapGetters("auth", ["userShortName"]),
+        ...mapGetters("auth", ["userIsLoggedIn"]),
         breadcrumbItems() {
             return this.$store.getters["breadcrumb/breadcrumbItems"];
         }

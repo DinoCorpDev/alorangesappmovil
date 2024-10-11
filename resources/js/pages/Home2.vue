@@ -17,32 +17,32 @@
         </v-row>
 
         <v-row tag="section" class="preambulo mb-6">
-            <v-col cols="12">
+            <v-col cols="12" class="px-0">
                 <div class="rounded-section px-5 py-8">
                     <v-row justify="center">
-                        <v-col cols="12" lg="12">
+                        <v-col cols="12" lg="12" class="px-0 px-sm-3">
                             <v-row
                                 :no-gutters="
                                     $vuetify.breakpoint.name == 'md' || $vuetify.breakpoint.name == 'lg' ? false : true
                                 "
                             >
-                                <v-col class="center-flex" cols="12" sm="6" md="3">
-                                    <v-img src="/public/assets/img/Group13.png" contain class="mb-5" />
+                                <v-col class="center-flex" cols="6" md="3">
+                                    <v-img src="/public/assets/img/Group13.png" style="width: 90%; height: auto" contain class="mb-5" />
                                     <h3>Domicilios gratis</h3>
                                     <p class="preambulo-text">En compras mínimas</p>
                                 </v-col>
-                                <v-col class="center-flex" cols="12" sm="6" md="3">
-                                    <v-img src="/public/assets/img/Group14.png" contain class="mb-5" />
+                                <v-col class="center-flex" cols="6" md="3">
+                                    <v-img src="/public/assets/img/Group14.png" style="width: 70%; height: auto" contain class="mb-5" />
                                     <h3>Apoyo 24/7</h3>
                                     <p class="preambulo-text">Servicio técnico</p>
                                 </v-col>
-                                <v-col class="center-flex" cols="12" sm="6" md="3">
-                                    <v-img src="/public/assets/img/Group12.png" contain class="mb-5" />
+                                <v-col class="center-flex" cols="6" md="3">
+                                    <v-img src="/public/assets/img/Group12.png" style="width: 70%; height: auto" contain class="mb-5" />
                                     <h3>Pago seguro</h3>
                                     <p class="preambulo-text">Múltiples bancos</p>
                                 </v-col>
-                                <v-col class="center-flex" cols="12" sm="6" md="3">
-                                    <v-img src="/public/assets/img/Refresh.png" contain class="mb-5" />
+                                <v-col class="center-flex" cols="6" md="3">
+                                    <v-img src="/public/assets/img/Refresh.png" style="width: 70%; height: auto" contain class="mb-5" />
                                     <h3>Devoluciones</h3>
                                     <p class="preambulo-text">Cambios de productos</p>
                                 </v-col>
@@ -87,10 +87,9 @@
                     <v-col cols="12" sm="6" class="d-flex align-items-center justify-content-start">
                         <div class="ml-7 mt-7 mt-sm-0 d-flex flex-column justify-center align-start">
                             <h2 class="banner-title font-weight-bold mb-3">Descarga Nuestra <br />App Móvil</h2>
-                            <CustomButton class="mb-5" color="orange" :width="200" :elevation="7"
+                            <CustomButton class="mb-5" color="orange" :width="200"
                                 >Descargar App</CustomButton
                             >
-                            <button style="background-color: #f58634; border-radius: 100px; color: white; ">Descargar App</button>
                             <div class="Wrapper-AppStore d-none d-sm-flex">
                                 <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
                                 <a href="#"
@@ -105,7 +104,7 @@
                     <v-col cols="12" class="d-flex d-sm-none justify-center align-center">
                         <div class="Wrapper-AppStore-responsive mb-7 mb-sm-0">
                             <v-row>
-                                <v-col cols="6" class="pr-1 pl-5">
+                                <v-col cols="6" class="pr-1 pl-10 pb-0">
                                     <a href="#"
                                         ><img
                                             class="imgsize-btn-dwn"
@@ -113,7 +112,7 @@
                                             src="public/assets/img/Grupo12233.png"
                                     /></a>
                                 </v-col>
-                                <v-col cols="6" class="pl-1 pr-5">
+                                <v-col cols="6" class="pl-1 pr-10 pb-0">
                                     <a href="#"
                                         ><img
                                             class="imgsize-btn-dwn"
