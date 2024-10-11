@@ -363,19 +363,21 @@ export default {
         }
     }
     &.nero3 {
-        color: black !important;
+        color: #464b52;
         background-color: transparent;
         border: 1px solid #707780;
         border-radius: 8px !important;
         font-size: 18px;
         font-weight: 700;
         &:hover {
-            background-color: rgba(#434343, 0.8);
+            background-color: rgba(#fcd6ba, 0.8);
+            border: 1px solid rgba(#fcd6ba, 0.8);
+            color: white;
         }
 
         &:focus,
         &.v-btn--active {
-            background-color: #161616;
+            background-color: rgba(#fcd6ba, 0.8);
         }
     }
 
