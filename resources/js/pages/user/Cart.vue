@@ -951,13 +951,13 @@
                                         </div>
                                         <div class="pt-4">
                                             <label>Numero de CVC</label>
-                                            <CustomInput placeholder="CVC" v-model="formCard.cvc" />
+                                            <CustomInput placeholder="CVC" maxlength="3" v-model="formCard.cvc" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Mes / año de expiración</label>
                                             <div class="d-flex justify-content-between">            
-                                                <CustomInput class="col-md-3" placeholder="Mes" v-model="formCard.exp_month" />
-                                                <CustomInput placeholder="Año" v-model="formCard.exp_year" />
+                                                <CustomInput class="col-md-3" placeholder="01" card="numberCard" maxlength="2" v-model="formCard.exp_month" />
+                                                <CustomInput placeholder="29" card="numberCard" maxlength="2" v-model="formCard.exp_year" />
                                             </div>
                                         </div>
                                         <div class="pt-4" v-if="isCredit">
