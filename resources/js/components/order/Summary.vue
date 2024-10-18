@@ -84,7 +84,7 @@
                                 <span class="body1 pr-3">{{ payment_method.payment_method.extra.last_four ? `************${payment_method.payment_method.extra.last_four}` : payment_method.status }}</span>
                             </div>
                         </div>
-                        <div v-else>
+                        <div class="form" v-else>
                             <div>Información no recibida</div>
                         </div>
                         <h5 class="fw-600">Código promocional</h5>
