@@ -29,12 +29,12 @@ import SeguridadIndustrial from "../components/icons/SeguridadIndustrial.vue";
 export default {
     data: () => ({
         tabs: [
-            { icon: "Cafeteria", text: "Cafeteria", routeName: "ShopCafeteria" },
-            { icon: "Cartoneria", text: "Cartoneria", routeName: "ShopCartoneria" },
             { icon: "Papeleria", text: "Papeleria", routeName: "ShopPapeleria" },
             { icon: "Aseo", text: "Aseo", routeName: "ShopAseo" },
+            { icon: "Cafeteria", text: "Cafeteria", routeName: "ShopCafeteria" },
+            { icon: "Cartoneria", text: "Cartoneria", routeName: "ShopCartoneria" },
             { icon: "Tecnologia", text: "Tecnología", routeName: "ShopTecnologia" },
-            { icon: "SeguridadIndustrial", text: "Seguridad Industrial", routeName: "ShopSeguridadIndustrial" },
+            { icon: "SeguridadIndustrial", text: "Seguridad Industrial", routeName: "ShopSeguridadIndustrial" }
         ]
     }),
     components: {
@@ -43,9 +43,8 @@ export default {
         Papeleria,
         Aseo,
         Tecnologia,
-        SeguridadIndustrial,
-    },
-    
+        SeguridadIndustrial
+    }
 };
 </script>
 
@@ -56,7 +55,6 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-
 .theme--dark.v-tabs {
     &::v-deep {
         .v-tabs-bar {
@@ -71,10 +69,9 @@ export default {
 
 .v-tabs {
     &::v-deep {
-        
-        .v-tabs-slider{
-                background-color: transparent;
-            }
+        .v-tabs-slider {
+            background-color: transparent;
+        }
         .v-tabs-bar {
             background-color: #fafcfc;
 
@@ -107,12 +104,13 @@ export default {
             @media (min-width: 600px) {
                 font-weight: 600;
             }
-            &--active{
+            &--active {
                 color: white !important;
                 background-color: #f58634;
-                font-size: 17px
+                font-size: 17px;
             }
-            &:before, .v-tabs-slider{
+            &:before,
+            .v-tabs-slider {
                 background-color: transparent;
             }
         }
