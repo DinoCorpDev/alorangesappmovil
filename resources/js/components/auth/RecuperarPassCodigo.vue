@@ -61,7 +61,7 @@
                                     </p>
                                     <p>
                                         Una vez que cambies tu contraseña, se cerrarán todas tus sesiones activas de
-                                        idovela.
+                                        Aloranges.
                                     </p>
                                     <div class="inputs mb-4">
                                         <label class="black--text">Introduce una contraseña nueva</label>
