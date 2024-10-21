@@ -157,4 +157,19 @@ class WompiServices{
             return $e->getMessage();
         }
     }
+
+    public function wompiGetTransactionComplete($reference){
+        try {
+            $response = $this->client->request('GET', $this->url.'transactions?reference='.$reference, [
+                'headers' => $this->postPrivateHeaders
+            ]);
+
+            $res = json_decode($response->getBody()->getContents(), true);
+            
+            return $res;
+        } catch (\Exception $e) {
+            // Manejar el error
+            return null;
+        }
+    }
 }
