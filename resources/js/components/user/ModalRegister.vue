@@ -181,16 +181,6 @@
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6">
-                                    <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
-                                    <CustomInput
-                                        class="place-holder"
-                                        v-model="form.secondName"
-                                        placeholder="Ingresar segundo nombre"
-                                    />
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Primer Apellido </span>
                                     <CustomInput
                                         class="place-holder"
@@ -201,7 +191,16 @@
                                         required
                                     />
                                 </v-col>
-                                <v-col cols="12" sm="6">
+                            </v-row>
+                            <v-row>
+                                <!-- <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
+                                    <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar segundo nombre"
+                                    />
+                                </v-col> -->
+                                <!-- <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Segundo Apellido </span>
                                     <CustomInput
                                         class="place-holder"
@@ -211,7 +210,7 @@
                                         @blur="$v.form.secondLastname.$touch()"
                                         required
                                     />
-                                </v-col>
+                                </v-col> -->
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
@@ -416,11 +415,11 @@
                                 </v-row>
 
                                 <v-row>
-                                    <v-col cols="12" class="texto-upload">
+                                    <!-- <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase"> DOCUMENTO (ARCHIVO) </span>
-                                    </v-col>
+                                    </v-col> -->
 
-                                    <v-col cols="11" class="area-upload">
+                                    <!-- <v-col cols="11" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
                                             class="upload"
@@ -432,9 +431,9 @@
                                                 <span>SUBIR DOCUMENTO</span>
                                             </template>
                                         </v-file-input>
-                                    </v-col>
+                                    </v-col> -->
 
-                                    <v-col cols="1" class="icono-documento">
+                                    <!-- <v-col cols="1" class="icono-documento">
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }">
                                                 <i
@@ -450,16 +449,16 @@
                                             <br />
                                             <span>&bullet; Documento legible y en color</span>
                                         </v-tooltip>
-                                    </v-col>
+                                    </v-col> -->
                                 </v-row>
 
                                 <v-row>
-                                    <v-col cols="12" class="texto-upload">
+                                    <!-- <v-col cols="12" class="texto-upload">
                                         <span class="black--text body-2 text-uppercase">
                                             Numero de CAMARA DE COMERCIO (ARCHIVO)
                                         </span>
-                                    </v-col>
-                                    <v-col cols="11" class="area-upload">
+                                    </v-col> -->
+                                    <!-- <v-col cols="11" class="area-upload">
                                         <v-file-input
                                             class="form-control upload"
                                             v-model="form.filecamara"
@@ -471,10 +470,10 @@
                                                 <span>SUBIR DOCUMENTO</span>
                                             </template>
                                         </v-file-input>
-                                    </v-col>
-                                    <v-col cols="1" class="icono-documento">
+                                    </v-col> -->
+                                    <!-- <v-col cols="1" class="icono-documento"> -->
                                         <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
-                                        <v-tooltip bottom color="black">
+                                        <!-- <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }">
                                                 <i
                                                     class="las la-exclamation-circle icon-tooltip-dos"
@@ -487,7 +486,7 @@
                                             <br />
                                             <span>&bullet; Cámara de comercio no mayor a 90 días</span>
                                         </v-tooltip>
-                                    </v-col>
+                                    </v-col> -->
                                 </v-row>
 
                                 <v-row>
@@ -590,13 +589,11 @@
                             <v-row>
                                 <v-col cols="12" md="12">
                                     <span class="black--text body-2 text-uppercase">Codigo Postal</span>
-                                    <SelectCustom
+                                    <CustomInput
+                                        class="place-holder"
                                         placeholder="Seleccione codigo postal"
-                                        class="select-placeholder"
-                                        :items="codigoPostalTypes"
                                         v-model="mainAddress.postal_code"
                                         :error-messages="postalCodeErros"
-                                        
                                         @blur="$v.mainAddress.postal_code.$touch()"
                                         required
                                     />
@@ -879,9 +876,7 @@ export default {
                 confirmPassword: "",
                 personType: "Natural",
                 firstName: "",
-                secondName: "",
                 firstLastname: "",
-                secondLastname: "",
                 documentType: "",
                 documentNumber: "",
                 companyRazon: "",
@@ -898,8 +893,8 @@ export default {
                 offersConsent: false,
                 invalidPhone: true,
                 showInvalidPhone: false,
-                filedocumento: [],
-                filecamara: [],
+                // filedocumento: [],
+                // filecamara: [],
                 filerut: []
             },
             mainAddress: {
@@ -930,7 +925,6 @@ export default {
             personType: { required },
             firstName: { required },
             firstLastname: { required },
-            secondLastname: { required },
             documentType: { required },
             documentNumber: { required },
             companyRazon: { requiredIf: requiredIf(item => item.personType === "Juridical") },
@@ -998,22 +992,10 @@ export default {
             !this.$v.form.firstName.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
-        secondNameErrors() {
-            const errors = [];
-            if (!this.$v.form.secondName.$dirty) return errors;
-            !this.$v.form.secondName.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
-            return errors;
-        },
         firstLastnameErrors() {
             const errors = [];
             if (!this.$v.form.firstLastname.$dirty) return errors;
             !this.$v.form.firstLastname.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
-            return errors;
-        },
-        secondLastnameErrors() {
-            const errors = [];
-            if (!this.$v.form.secondLastname.$dirty) return errors;
-            !this.$v.form.secondLastname.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
         documentTypeErrors() {
@@ -1118,18 +1100,18 @@ export default {
             !this.$v.mainAddress.postal_code.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
-        fileDocumentoErrors() {
-            const errors = [];
-            if (!this.$v.form.filedocumento.$dirty) return errors;
-            !this.$v.form.filedocumento.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
-            return errors;
-        },
-        fileCamaraErrors() {
-            const errors = [];
-            if (!this.$v.form.filecamara.$dirty) return errors;
-            !this.$v.form.filecamara.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
-            return errors;
-        },
+        // fileDocumentoErrors() {
+        //     const errors = [];
+        //     if (!this.$v.form.filedocumento.$dirty) return errors;
+        //     !this.$v.form.filedocumento.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+        //     return errors;
+        // },
+        // fileCamaraErrors() {
+        //     const errors = [];
+        //     if (!this.$v.form.filecamara.$dirty) return errors;
+        //     !this.$v.form.filecamara.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+        //     return errors;
+        // },
         fileRutErrors() {
             const errors = [];
             if (!this.$v.form.filerut.$dirty) return errors;
@@ -1163,12 +1145,12 @@ export default {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;
         },
-        onFileChange(e) {
-            this.form.filedocumento = e.target.files[0];
-        },
-        onFileChangeCamara(e) {
-            this.form.filecamara = e.target.files[0];
-        },
+        // onFileChange(e) {
+        //     this.form.filedocumento = e.target.files[0];
+        // },
+        // onFileChangeCamara(e) {
+        //     this.form.filecamara = e.target.files[0];
+        // },
         onFileChangeRut(e) {
             this.form.filerut = e.target.files[0];
         },
@@ -1176,7 +1158,6 @@ export default {
             if (
                 this.form.firstName == "" ||
                 this.form.firstLastname == "" ||
-                this.form.secondLastname == "" ||
                 this.form.documentType == "" ||
                 this.form.documentNumber == ""
             ) {
@@ -1200,8 +1181,8 @@ export default {
                 }
 
                 if (
-                    this.form.filecamara.length == 0 ||
-                    this.form.filedocumento.length == 0 ||
+                    // this.form.filecamara.length == 0 ||
+                    // this.form.filedocumento.length == 0 ||
                     this.form.filerut.length == 0
                 ) {
                     this.snack({
@@ -1218,8 +1199,8 @@ export default {
             this.loadingregister = true;
             let formData = new FormData();
 
-            formData.append("filecamara", this.form.filecamara);
-            formData.append("filedocumento", this.form.filedocumento);
+            // formData.append("filecamara", this.form.filecamara);
+            // formData.append("filedocumento", this.form.filedocumento);
             formData.append("filerut", this.form.filerut);
             formData.append("form", JSON.stringify(this.form));
 
@@ -1265,8 +1246,8 @@ export default {
 
             if (this.form.personType == "Juridical") {
                 if (
-                    this.form.filecamara.length == 0 ||
-                    this.form.filedocumento.length == 0 ||
+                    // this.form.filecamara.length == 0 ||
+                    // this.form.filedocumento.length == 0 ||
                     this.form.filerut.length == 0
                 ) {
                     this.snack({
@@ -1283,8 +1264,8 @@ export default {
             this.loadingregister = true;
             let formData = new FormData();
 
-            formData.append("filecamara", this.form.filecamara);
-            formData.append("filedocumento", this.form.filedocumento);
+            // formData.append("filecamara", this.form.filecamara);
+            // formData.append("filedocumento", this.form.filedocumento);
             formData.append("filerut", this.form.filerut);
             formData.append("form", JSON.stringify(this.form));
 
@@ -1410,7 +1391,6 @@ export default {
                 if (
                     this.form.firstName == "" ||
                     this.form.firstLastname == "" ||
-                    this.form.secondLastname == "" ||
                     this.form.documentType == "" ||
                     this.form.documentNumber == ""
                 ) {
@@ -1435,8 +1415,9 @@ export default {
 
                 if (
                     this.form.personType == "Juridical" &&
-                    (this.form.filecamara.length == 0 ||
-                        this.form.filedocumento.length == 0 ||
+                    (
+                        // this.form.filecamara.length == 0 ||
+                        // this.form.filedocumento.length == 0 ||
                         this.form.filerut.length == 0)
                 ) {
                     this.snack({
@@ -1458,9 +1439,7 @@ export default {
             this.form.confirmPassword = "";
             this.form.personType = "Natural";
             this.form.firstName = "";
-            this.form.secondName = "";
             this.form.firstLastname = "";
-            this.form.secondLastname = "";
             this.form.documentType = "";
             this.form.regimenFiscal = "";
             this.form.responsabilidadTribut = "";
@@ -1472,8 +1451,8 @@ export default {
             this.form.companyActividad = "";
             this.form.companyPhone = "";
             this.form.companyEmail = "";
-            this.form.filecamara = "";
-            this.form.filedocumento = "";
+            // this.form.filecamara = "";
+            // this.form.filedocumento = "";
             this.form.filerut = "";
             this.form.phone = "";
             this.form.policiesAndCookiesConsent = false;

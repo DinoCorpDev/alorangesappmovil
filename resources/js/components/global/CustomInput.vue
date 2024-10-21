@@ -6,8 +6,10 @@
         :required="required"
         :type="type"
         :value="value"
+        :maxlength="maxlength"
         @blur="$emit('blur', $event)"
         @input="$emit('input', $event)"
+        @change="limitDigits"
         flat
         outlined
         solo
@@ -41,6 +43,23 @@ export default {
         value: {
             type: String,
             default: ""
+        },
+        maxlength:{
+            type: String,
+            default: "1000"
+        },
+        card:{
+            type: String,
+            default: ""
+        }
+    },
+    methods: {
+        limitDigits() {
+            if (this.props.card == 'numberCard') {
+                if (this.props.value.length > 3) {
+                    this.props.value = this.props.value.slice(0, 3);
+                }   
+            }
         }
     }
 };
