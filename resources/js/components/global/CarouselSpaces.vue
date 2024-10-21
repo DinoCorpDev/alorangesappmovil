@@ -26,9 +26,10 @@
                     v-for="space in spaces"
                     :key="`slide-space-${space.id}`"
                 >
-                <a href="#">
-                    <img class="images-responsive" :src="space.img" :alt="space.title" />
-                </a>
+                    <a href="#">
+                        <img class="images-responsive" :src="space.img" :alt="space.title" />
+                        <p style="font-size: 24px; text-align: center; margin: 0; font-weight: 700;">{{ space.title }}</p>
+                    </a>
                 </v-col>
             </v-row>
         </div>
@@ -226,7 +227,7 @@ export default {
         }
     }
 }
-.images-responsive{
+.images-responsive {
     width: 150px;
 }
 </style>
