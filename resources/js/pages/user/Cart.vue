@@ -1007,12 +1007,12 @@
                             </div>
                         </v-col>
                         <v-col cols="12" md="5" order="2" order-md="2" order-sm="2">
-                            <h5 class="fw-600 pt-1">Código promocional</h5>
+                            <!-- <h5 class="fw-600 pt-1">Código promocional</h5>
                             <div class="form px-0" style="border: none !important; box-shadow: none">
                                 <p class="mb-1">Regalo/Referido</p>
                                 <CustomInput placeholder="Ingresar código de descuento" class="mb-2" />
                                 <CustomButton class="mb-4" block color="white" text="Aplicar" />
-                            </div>
+                            </div> -->
                             <!--<h5 class="fw-600">Facturar a nombre de</h5>
                             <v-divider class="my-4" />
                              <div class="form">
@@ -2575,8 +2575,7 @@ export default {
         async verifyStatusPayment(dataToTransaction){
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
-                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
-                window.open(this.urlPagoPSE, '_blank', 'noopener,noreferrer');
+                return resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
                 //window.location.href = this.urlPagoPSE;
             }else{
                 this.verifyStatusPayment(dataToTransaction);
@@ -2725,14 +2724,14 @@ export default {
                                 let dataToTransaction = {
                                     id: idTransaction,
                                 };   
-                                this.verifyStatusPayment(dataToTransaction);
-
-                                setTimeout(async () => {
+                                let resultURL = await this.verifyStatusPayment(dataToTransaction);
+                                if (typeof resultURL === 'string') {
+                                    window.open(resultURL, '_blank', 'noopener,noreferrer');
                                     let formData = this.processToSendStore(referenceToPayment);
                                     const res = await this.call_api("post", "checkout/order/store", formData);
                                     this.dataCheckout = res.data;
                                     this.numberPag = 4;
-                                }, 1000);
+                                }
                             }                            
                         } catch (error) {
                             this.snack({
