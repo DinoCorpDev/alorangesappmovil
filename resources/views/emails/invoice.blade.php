@@ -134,30 +134,6 @@
         </div>
 
         <div style="margin:8px 8px 15px 8px; clear:both">
-            <div style="padding:10px 14px; width:45%;float:left;">
-                <table class="">
-                    <tbody>
-                        @php
-                            $billing_address = json_decode($combined_order->billing_address);
-                        @endphp
-                        <tr>
-                            <td class="bold">Dirección de envío:</td>
-                        </tr>
-                        <tr>
-                            <td class="">{{ $billing_address->address }},
-                                {{ $billing_address->postal_code }}</td>
-                        </tr>
-                        <tr>
-                            <td class="">{{ $billing_address->city }},
-                                {{ $billing_address->state }}, {{ $billing_address->country }}</td>
-                        </tr>
-                        <tr>
-                            <td class="">{{ translate('Phone') }}: {{ $billing_address->phone }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
             <div style="padding:10px 14px; width:45%;float:right">
                 <table class="text-right">
                     <tbody>
@@ -165,7 +141,7 @@
                             $shipping_address = json_decode($combined_order->shipping_address);
                         @endphp
                         <tr>
-                            <td class="bold">Dirección Comercial:</td>
+                            <td class="bold">Dirección de envío:</td>
                         </tr>
                         <tr>
                             <td class="">{{ $shipping_address->address }},
