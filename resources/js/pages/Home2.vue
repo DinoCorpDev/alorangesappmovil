@@ -26,23 +26,23 @@
                                     $vuetify.breakpoint.name == 'md' || $vuetify.breakpoint.name == 'lg' ? false : true
                                 "
                             >
-                                <v-col class="center-flex" cols="6" md="3">
-                                    <v-img src="/public/assets/img/Group13.png" style="width: 90%; height: auto" contain class="mb-5" />
+                                <v-col class="center-flex" cols="3">
+                                    <v-img src="/public/assets/img/Group13.png" style="width: 70%; height: auto" contain class="mb-5" />
                                     <h3>Domicilios gratis</h3>
                                     <p class="preambulo-text">En compras mínimas</p>
                                 </v-col>
-                                <v-col class="center-flex" cols="6" md="3">
-                                    <v-img src="/public/assets/img/Group14.png" style="width: 70%; height: auto" contain class="mb-5" />
+                                <v-col class="center-flex" cols="3">
+                                    <v-img src="/public/assets/img/Group14.png" style="width: 50%; height: auto" contain class="mb-5" />
                                     <h3>Apoyo 24/7</h3>
                                     <p class="preambulo-text">Servicio técnico</p>
                                 </v-col>
-                                <v-col class="center-flex" cols="6" md="3">
-                                    <v-img src="/public/assets/img/Group12.png" style="width: 70%; height: auto" contain class="mb-5" />
+                                <v-col class="center-flex" cols="3">
+                                    <v-img src="/public/assets/img/Group12.png" style="width: 50%; height: auto" contain class="mb-5" />
                                     <h3>Pago seguro</h3>
                                     <p class="preambulo-text">Múltiples bancos</p>
                                 </v-col>
-                                <v-col class="center-flex" cols="6" md="3">
-                                    <v-img src="/public/assets/img/Refresh.png" style="width: 70%; height: auto" contain class="mb-5" />
+                                <v-col class="center-flex" cols="3">
+                                    <v-img src="/public/assets/img/Refresh.png" style="width: 50%; height: auto" contain class="mb-5" />
                                     <h3>Devoluciones</h3>
                                     <p class="preambulo-text">Cambios de productos</p>
                                 </v-col>
@@ -379,7 +379,7 @@ export default {
     padding: 0 15%;
 }
 h3 {
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 700;
     @media (min-width: 600px) {
         font-size: 35px;
@@ -387,7 +387,7 @@ h3 {
     }
 }
 .preambulo-text {
-    font-size: 18px;
+    font-size: 10px;
     font-weight: 400;
     @media (min-width: 600px) {
         font-size: 25px;

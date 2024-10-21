@@ -355,7 +355,7 @@
                                                 required
                                             />
                                             <CustomCheckbox
-                                                label="Quiero recibir comunicaciones comerciales personalizadas de Idovela a través de email."
+                                                label="Quiero recibir comunicaciones comerciales personalizadas de Aloranges a través de email."
                                                 v-model="form.offersConsent"
                                             />
                                         </v-col>

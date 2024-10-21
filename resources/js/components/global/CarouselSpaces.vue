@@ -2,10 +2,12 @@
     <div>
         <v-row class="pt-2 pt-md-10 pl-0 pl-md-10 pr-2 pr-md-10">
             <v-col cols="6">
-                <h2><strong>{{ title }}</strong></h2>
+                <h2>
+                    <strong>{{ title }}</strong>
+                </h2>
             </v-col>
 
-            <v-col cols="6">
+            <v-col cols="6" class="d-none d-sm-block">
                 <div class="wrapper-arrows">
                     <div class="wrap-arrow mr-3">
                         <div class="prev-button-orange" slot="button-prev"></div>
@@ -16,12 +18,27 @@
                 </div>
             </v-col>
         </v-row>
-
-        <swiper :options="swiperOptions">
-            <swiper-slide v-for="space in spaces" :key="`slide-space-${space.id}`">
-                <space-item class="bg-trasnparent" :data="space" />
-            </swiper-slide>
-        </swiper>
+        <div class="image-container d-block d-sm-none">
+            <v-row>
+                <v-col
+                    style="display: flex; justify-content: center; align-items: center"
+                    cols="6"
+                    v-for="space in spaces"
+                    :key="`slide-space-${space.id}`"
+                >
+                <a href="#">
+                    <img class="images-responsive" :src="space.img" :alt="space.title" />
+                </a>
+                </v-col>
+            </v-row>
+        </div>
+        <div class="d-none d-sm-block">
+            <swiper :options="swiperOptions">
+                <swiper-slide v-for="space in spaces" :key="`slide-space-${space.id}`">
+                    <space-item class="bg-trasnparent" :data="space" />
+                </swiper-slide>
+            </swiper>
+        </div>
     </div>
 </template>
 
@@ -150,7 +167,6 @@ export default {
     background-color: transparent;
 }
 .swiper-container {
-
     @media (max-width: 600px) {
         padding-bottom: 0 !important;
     }
@@ -209,5 +225,8 @@ export default {
             display: none;
         }
     }
+}
+.images-responsive{
+    width: 150px;
 }
 </style>
