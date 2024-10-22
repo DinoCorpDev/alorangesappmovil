@@ -996,6 +996,20 @@
                                         </div>
                                     </div>
                                     <div v-if="pick === 5">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="mr-5">
+                                                <input type="checkbox" class="form-check-input" :checked="isEfectivo" id="isEfectivo"  @change="toggleCheckboxPagoContraentrega('efectivo')" required/>
+                                                <label class="form-check-label" for="isEfectivo">
+                                                    Efectivo
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" class="form-check-input" :checked="isDatafono" id="isDatafono"  @change="toggleCheckboxPagoContraentrega('datafono')" required/>
+                                                <label class="form-check-label" for="isDatafono">
+                                                    Datafono
+                                                </label>
+                                            </div>
+                                        </div>
                                         <v-img
                                             style="max-width: 259px; height: auto"
                                             src="/public/assets/img/pago-contraentrega.png"
@@ -2354,7 +2368,9 @@ export default {
             isDebit:false,
             dialogTutorial: false,
             dialogPSEPaymentModal:false,
-            referenceToPayment:null
+            referenceToPayment:null,
+            isEfectivo:false,
+            isDatafono:false,
         };
     },
     computed: {
@@ -2407,6 +2423,15 @@ export default {
             }else if(option === 'second'){
                 this.isCredit = false;
                 this.isDebit = true;
+            }
+        },
+        toggleCheckboxPagoContraentrega(option){
+            if (option === 'datafono') {
+                this.isDatafono = true;
+                this.isEfectivo = false;
+            }else if(option === 'efectivo'){
+                this.isDatafono = false;
+                this.isEfectivo = true;
             }
         },
         updateBreadcrumb() {

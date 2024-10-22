@@ -13,7 +13,7 @@
             <router-link :to="{ name: 'Home2' }" class="layout-navbar-brand">
                 <LogoAloranges :large="logoLarge" class="d-none d-sm-block" />
                 <!-- <img src="./Logo Aloranges.png" alt="" class="d-block d-sm-none"> -->
-                <LogoAlorange class="d-block d-sm-none" style="max-width: 175px;"/>
+                <LogoAlorange class="d-block d-sm-none" style="max-width: 175px; height: auto;"/>
             </router-link>
             <div class="layout-navbar-nav">
                 <!-- <CustomButton color="orange2" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" /> -->

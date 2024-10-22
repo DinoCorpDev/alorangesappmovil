@@ -5,14 +5,14 @@
                 <h1 class="home-main-title mb-6 mb-sm-8">
                     ¡Suministros de papelería, aseo, cafetería, cartonería y seguridad industrial para empresas!
                 </h1>
-                <p class="home-main-description mb-6">
+                <p class="home-main-description mb-6 d-none d-sm-block">
                     Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtengan todo lo que
                     desee de una forma fácil
                 </p>
                 <SearchInput class="search-menu" :showInput="true" :placeholder="'Escribe lo que buscas'" />
             </v-col>
             <v-col class="pa-0 d-flex" cols="12" sm="5" md="5">
-                <img src="/public/assets/img/bannerhomeimg-removebg-preview2.png" style="width: 100%; height: auto" />
+                <img src="/public/assets/img/bannerhomeimg-removebg-preview3.png" style="width: 100%; height: auto" />
             </v-col>
         </v-row>
 
@@ -27,22 +27,42 @@
                                 "
                             >
                                 <v-col class="center-flex" cols="3">
-                                    <v-img src="/public/assets/img/Group13.png" style="width: 70%; height: auto" contain class="mb-5" />
+                                    <v-img
+                                        src="/public/assets/img/Group13.png"
+                                        style="width: 70%; height: auto"
+                                        contain
+                                        class="mb-5"
+                                    />
                                     <h3>Domicilios gratis</h3>
                                     <p class="preambulo-text">En compras mínimas</p>
                                 </v-col>
                                 <v-col class="center-flex" cols="3">
-                                    <v-img src="/public/assets/img/Group14.png" style="width: 50%; height: auto" contain class="mb-5" />
+                                    <v-img
+                                        src="/public/assets/img/Group14.png"
+                                        style="width: 50%; height: auto"
+                                        contain
+                                        class="mb-5"
+                                    />
                                     <h3>Apoyo 24/7</h3>
                                     <p class="preambulo-text">Servicio técnico</p>
                                 </v-col>
                                 <v-col class="center-flex" cols="3">
-                                    <v-img src="/public/assets/img/Group12.png" style="width: 50%; height: auto" contain class="mb-5" />
+                                    <v-img
+                                        src="/public/assets/img/Group12.png"
+                                        style="width: 50%; height: auto"
+                                        contain
+                                        class="mb-5"
+                                    />
                                     <h3>Pago seguro</h3>
                                     <p class="preambulo-text">Múltiples bancos</p>
                                 </v-col>
                                 <v-col class="center-flex" cols="3">
-                                    <v-img src="/public/assets/img/Refresh.png" style="width: 50%; height: auto" contain class="mb-5" />
+                                    <v-img
+                                        src="/public/assets/img/Refresh.png"
+                                        style="width: 50%; height: auto"
+                                        contain
+                                        class="mb-5"
+                                    />
                                     <h3>Devoluciones</h3>
                                     <p class="preambulo-text">Cambios de productos</p>
                                 </v-col>
@@ -62,7 +82,7 @@
             </v-col>
         </v-row>
 
-        <v-row class="mb-6">
+        <v-row class="mb-6 mt-5">
             <v-col cols="12" class="d-flex justify-center">
                 <PresentationBanner
                     id="be-there"
@@ -73,8 +93,9 @@
                     style="max-width: 99%"
                 >
                     <template v-slot:description>
-                        En <b>Aloranges,</b> nos especializamos en solucionar las necesidades de las empresas para facilitar la
-                        compra de los suministros de <b>Papelería, Cartonería, Cafetería, Aseo, Tecnología y Botiquería.</b>
+                        En <b>Aloranges,</b> nos especializamos en solucionar las necesidades de las empresas para
+                        facilitar la compra de los suministros de
+                        <b>Papelería, Cartonería, Cafetería, Aseo, Tecnología y Botiquería.</b>
                         Nos adaptamos a la nueva era digital y ahora puedes adquirir tus productos desde nuestra app.
                     </template>
                 </PresentationBanner>
@@ -84,22 +105,26 @@
         <div class="wrapper-app-banner mb-6 center-items" style="display: flex; justify-content: center">
             <div style="width: 95%; border-radius: 24px; background-color: #f4f9ec">
                 <v-row>
-                    <v-col cols="12" sm="6" class="d-flex align-items-center justify-content-start">
+                    <v-col cols="12" class="d-flex d-sm-none justify-start">
+                        <div class="ml-7 mt-7 mt-sm-0 d-flex  flex-column justify-start align-start">
+                            <h2 class="banner-title font-weight-bold mb-3">Descarga Nuestra <br />App Móvil</h2>
+                            <CustomButton class="mb-5" color="orange" :width="200">Descargar App</CustomButton>
+                        </div>
+                    </v-col>
+                    <v-col cols="12" sm="6" class="d-flex align-items-center" style="justify-content: center">
+                        <img class="imgsize-cel" src="/public/assets/img/img-download.png" />
+                    </v-col>
+                    <v-col cols="12" sm="6" class="justify-center d-none d-sm-flex">
                         <div class="ml-7 mt-7 mt-sm-0 d-flex flex-column justify-center align-start">
                             <h2 class="banner-title font-weight-bold mb-3">Descarga Nuestra <br />App Móvil</h2>
-                            <CustomButton class="mb-5" color="orange" :width="200"
-                                >Descargar App</CustomButton
-                            >
-                            <div class="Wrapper-AppStore d-none d-sm-flex">
+                            <CustomButton class="mb-5" color="orange" :width="200">Descargar App</CustomButton>
+                            <div class="Wrapper-AppStore">
                                 <a href="#"><img class="imgsize-btn-dwn" src="public/assets/img/Grupo12233.png" /></a>
                                 <a href="#"
                                     ><img class="imgsize-btn-dwn ml-5" src="public/assets/img/Grupo12234.png"
                                 /></a>
                             </div>
                         </div>
-                    </v-col>
-                    <v-col cols="12" sm="6" class="d-flex justify-center">
-                        <img class="imgsize-cel" src="/public/assets/img/bannerhomeimg-removebg-preview2.png" />
                     </v-col>
                     <v-col cols="12" class="d-flex d-sm-none justify-center align-center">
                         <div class="Wrapper-AppStore-responsive mb-7 mb-sm-0">
