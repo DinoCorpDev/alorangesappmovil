@@ -33,6 +33,8 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .v-breadcrumbs {
     padding-left: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 ::v-deep .v-breadcrumbs li:first-of-type a {
     &:first-of-type::before {
