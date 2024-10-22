@@ -431,12 +431,6 @@
                             </v-row>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <!-- <AddressDialog
-                                :typeAddress="typeAddress"
-                                :show="addDialogShow"
-                                @close="addressDialogClosed"
-                                :old-address="addressSelectedForEdit"
-                            /> -->
                             <ProfileDialog
                                 :show="profileDialogShow"
                                 @close="profileDialogClosed"
@@ -969,15 +963,16 @@
                                         </div>
                                     </div>
                                     <div v-if="pick === 4">
-                                        <v-img
-                                            style="max-width: 259px; height: auto"
-                                            src="/public/assets/img/pago-transferencia.png"
-                                            alt="Transferencia"
-                                        />
+                                        
                                         <p>
                                             Despachamos el producto una vez que se envíe la transferencia y el
                                             comprobante por WhatsApp
                                         </p>
+                                        <v-img
+                                            style="width: 500px; height: auto;"
+                                            src="/public/assets/img/pago-transferencia.png"
+                                            alt="Transferencia"
+                                        />
                                         <div class="data-section">
                                             <h3>DATOS DE BANCO</h3>
                                             <div class="body-data">
@@ -996,76 +991,15 @@
                                         </div>
                                     </div>
                                     <div v-if="pick === 5">
+                                        <p>Solo pagas por el producto cuando te lo entregamos en tu domicilio.</p>
                                         <v-img
                                             style="max-width: 259px; height: auto"
                                             src="/public/assets/img/pago-contraentrega.png"
                                             alt="Contraentrega"
                                         />
-                                        <p>Solo pagas por el producto cuando te lo entregamos en tu domicilio.</p>
                                     </div>
                                 </div>
                             </div>
-                        </v-col>
-                        <v-col cols="12" md="5" order="2" order-md="2" order-sm="2">
-                            <!-- <h5 class="fw-600 pt-1">Código promocional</h5>
-                            <div class="form px-0" style="border: none !important; box-shadow: none">
-                                <p class="mb-1">Regalo/Referido</p>
-                                <CustomInput placeholder="Ingresar código de descuento" class="mb-2" />
-                                <CustomButton class="mb-4" block color="white" text="Aplicar" />
-                            </div> -->
-                            <!--<h5 class="fw-600">Facturar a nombre de</h5>
-                            <v-divider class="my-4" />
-                             <div class="form">
-                                <v-divider class="my-3" />
-                                <div v-if=" Object.entries(userData).length !== 0">
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3">correo electrónico</span>
-                                        <span class="body1 pr-3">{{userData.email || ""}}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3">Tipo de persona</span>
-                                        <span class="body1 text-right pr-3">{{ userData.personType  || ""}}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3"> Descripción de Dirección </span>
-                                        <span class="body1 pr-3">{{addressFacturacion?.address || ""}}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3">Tipo de documento</span>
-                                        <span class="body1 pr-3">{{userData.documentType || ""}}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3">Número de documento</span>
-                                        <span class="body1 pr-3">{{userData.documentNumber || ""}}</span>
-                                    </div>
-                                </div> -->
-                            <!-- <label class="label my-3">
-                                    <input type="checkbox" v-model="useDefaultAddress2" id="useDefaultAddress2" />
-                                    <span class="body-1 black--text text">
-                                        Usar la misma Dirección de envió para que Idovela entreguela factura física.
-                                    </span>
-                                    <span class="checkmark"></span>
-                                </label>
-                                <v-divider class="my-3" />
-                                <CustomButton
-                                    v-if="
-                                        Object.entries(addressFacturacion).length !== 0 && useDefaultAddress2 == false
-                                    "
-                                    class="mr-3"
-                                    color="grey"
-                                    text="Editar"
-                                    @click="editAddress(addressFacturacion, 'billing')"
-                                />
-                                <CustomButton
-                                    v-if="
-                                        Object.entries(addressFacturacion).length === 0 && useDefaultAddress2 == false
-                                    "
-                                    block
-                                    color="grey"
-                                    text="Añadir Dirección"
-                                    @click="openAdress('billing')"
-                                /> -->
-                            <!-- </div> -->
                         </v-col>
                         <v-col cols="12" order="3" order-md="3" order-sm="3" class="d-flex justify-space-between">
                             <v-row class="barra-inferior">
