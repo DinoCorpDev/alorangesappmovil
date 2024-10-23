@@ -112,7 +112,7 @@
                         </div>
                     </v-col>
                     <v-col cols="12" sm="6" class="d-flex align-items-center" style="justify-content: center">
-                        <img class="imgsize-cel" src="/public/assets/img/img-download.png" />
+                        <img class="imgsize-cel" src="/public/assets/img/download-img.svg" />
                     </v-col>
                     <v-col cols="12" sm="6" class="justify-center d-none d-sm-flex">
                         <div class="ml-7 mt-7 mt-sm-0 d-flex flex-column justify-center align-start">
