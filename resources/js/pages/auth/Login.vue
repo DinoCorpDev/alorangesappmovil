@@ -140,7 +140,11 @@ export default {
         showRecuperarPass: false,
         sliderItems: [
             {
-                src: "/public/assets/img/login-img.png",
+                src: "/public/assets/img/login1.png",
+                type: "image"
+            },
+            {
+                src: "/public/assets/img/login2.png",
                 type: "image"
             },
         ]
