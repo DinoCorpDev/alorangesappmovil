@@ -2288,7 +2288,9 @@ export default {
             isDebit:false,
             dialogTutorial: false,
             dialogPSEPaymentModal:false,
-            referenceToPayment:null
+            referenceToPayment:null,
+            isEfectivo:false,
+            isDatafono:false,
         };
     },
     computed: {
@@ -2341,6 +2343,15 @@ export default {
             }else if(option === 'second'){
                 this.isCredit = false;
                 this.isDebit = true;
+            }
+        },
+        toggleCheckboxPagoContraentrega(option){
+            if (option === 'datafono') {
+                this.isDatafono = true;
+                this.isEfectivo = false;
+            }else if(option === 'efectivo'){
+                this.isDatafono = false;
+                this.isEfectivo = true;
             }
         },
         updateBreadcrumb() {
