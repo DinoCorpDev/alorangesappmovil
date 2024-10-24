@@ -915,6 +915,10 @@
                                                 v-model="bancoSelected"
                                             />
                                         </div>
+                                        <div v-if="urlPagoPSE !== null" class="pt-4">
+                                            <p v-if="isLinkVisible">{{urlPagoPSE}}</p>
+                                            <CustomButton @click="openWindow(urlPagoPSE)" class="mb-4" block color="white" text="Click aqui para dirigirte al banco"/>
+                                        </div>
                                     </div>
                                     <div v-if="pick === 2" class="data-payments">
                                         <div class="d-flex justify-content-between">
@@ -2179,19 +2183,6 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-
-        <v-dialog v-model="dialogPSEPaymentModal" persistent>
-            <v-card>
-                <v-card-title class="headline">Pago PSE</v-card-title>
-                <v-card-text>
-                    <iframe :src="`${this.urlPagoPSE}`" width="100%" height="100%" ></iframe>
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="closePSEPaymentModal">Cerrar</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
     </div>
 </template>
 
@@ -2283,7 +2274,7 @@ export default {
             bancoSelected:"",
             formCard:{},
             dialogPSEModal: false,
-            urlPagoPSE:'',
+            urlPagoPSE:null,
             isCredit:true,
             isDebit:false,
             dialogTutorial: false,
@@ -2291,6 +2282,7 @@ export default {
             referenceToPayment:null,
             isEfectivo:false,
             isDatafono:false,
+            isLinkVisible:false,
         };
     },
     computed: {
@@ -2344,6 +2336,10 @@ export default {
                 this.isCredit = false;
                 this.isDebit = true;
             }
+        },
+        openWindow(url){
+            window.open(url, '_blank', 'noopener,noreferrer');
+            this.numberPag = 4;  
         },
         toggleCheckboxPagoContraentrega(option){
             if (option === 'datafono') {
@@ -2530,24 +2526,6 @@ export default {
         closePSEModal(){
             this.dialogPSEModal = false;
         },
-        async closePSEPaymentModal(){
-            let paymentPSEStatus = await this.verifyPaymentPSEStatus();
-            if(paymentPSEStatus.data == "APPROVED"){
-                let formData = this.processToSendStore(this.referenceToPayment);
-                const res = await this.call_api("post", "checkout/order/store", formData);
-                this.dataCheckout = res.data;
-                this.urlPagoPSE = '';
-                this.dialogPSEPaymentModal = false;
-                this.numberPag = 4;
-            }else{
-                this.urlPagoPSE = '';
-                this.dialogPSEPaymentModal = false;
-                this.snack({
-                    message: 'Algo ha salido mal, Intenta de nuevo mas tarde',
-                    color: "red"
-                });
-            }
-        },
         processToSendStore(referenceToPayment){
             const shippingAddressId = this.selectedAddressEnvio.id;
             const billingAddressId = this.userData.id;
@@ -2671,11 +2649,10 @@ export default {
                                 };   
                                 let resultURL = await this.verifyStatusPayment(dataToTransaction);
                                 if (typeof resultURL === 'string') {
-                                    window.open(resultURL, '_blank', 'noopener,noreferrer');
+                                    this.urlPagoPSE = resultURL;
                                     let formData = this.processToSendStore(referenceToPayment);
                                     const res = await this.call_api("post", "checkout/order/store", formData);
                                     this.dataCheckout = res.data;
-                                    this.numberPag = 4;
                                 }
                             }                            
                         } catch (error) {
