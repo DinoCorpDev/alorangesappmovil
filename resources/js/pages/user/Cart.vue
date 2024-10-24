@@ -970,7 +970,7 @@
                                         </p>
                                         <v-img
                                             style="width: 500px; height: auto;"
-                                            src="/public/assets/img/pago-transferencia.png"
+                                            src="/public/assets/img/pago-contraentrega.svg"
                                             alt="Transferencia"
                                         />
                                         <div class="data-section">
@@ -993,8 +993,8 @@
                                     <div v-if="pick === 5">
                                         <p>Solo pagas por el producto cuando te lo entregamos en tu domicilio.</p>
                                         <v-img
-                                            style="max-width: 259px; height: auto"
-                                            src="/public/assets/img/pago-contraentrega.png"
+                                            style="width: 400px; height: auto"
+                                            src="/public/assets/img/pago-transferencia.svg"
                                             alt="Contraentrega"
                                         />
                                     </div>

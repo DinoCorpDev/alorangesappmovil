@@ -3,7 +3,7 @@
         <div class="div-icon">
             <v-img max-width="50px" min-height="50px" :src="img"></v-img>
         </div>
-        <p class="text-caption text-uppercase">{{ text }}</p>
+        <p class="text-caption text-uppercase mb-0">{{ text }}</p>
     </div>
 </template>
 

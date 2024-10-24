@@ -33,8 +33,8 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .v-breadcrumbs {
     padding-left: 50px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 ::v-deep .v-breadcrumbs li:first-of-type a {
     &:first-of-type::before {
@@ -47,7 +47,7 @@ export default {
         display: inline-block;
         position: absolute;
         left: -20px;
-        top: 40%;
+        top: 45%;
         transform: translateY(-50%);
     }
 }

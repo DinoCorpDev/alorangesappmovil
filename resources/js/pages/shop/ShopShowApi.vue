@@ -1,9 +1,7 @@
 <template>
     <v-container class="pt-0" fluid>
-        
-
         <v-container class="bg-surface-variant ma-0 px-0 pb-8 pt-0">
-            <div align="start" class="d-flex"  no-gutters>
+            <div align="start" class="d-flex" no-gutters>
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">
                         <CustomButton
@@ -23,41 +21,60 @@
                 <div class="container-buttons">
                     <div v-for="filtro in resultadoFiltroBotones" :key="`button-${filtro.id}`">
                         <CustomButton
-                                :text="filtro.text"
-                                :color="activeButton === filtro.id ? 'orange-cart2' : 'nero3'"
-                                type="button"
-                                class="mt-4 mr-3"
-                                width="45"
-                                height="54"
-                                @click="setActiveButton(filtro.id, filtro.text)"
-                            />
+                            :text="filtro.text"
+                            :color="activeButton === filtro.id ? 'orange-cart2' : 'nero3'"
+                            type="button"
+                            class="mt-4 mr-3"
+                            width="45"
+                            height="54"
+                            @click="setActiveButton(filtro.id, filtro.text)"
+                        />
                     </div>
                 </div>
-                
             </div>
         </v-container>
-        
+        <v-row
+            style="
+                background-image: url('/public/assets/img/Background.png');
+                background-size: cover;
+                background-repeat: no-repeat;
+                height: auto;
+            "
+        >
+            <v-col cols="6" class="d-flex justify-center align-center">
+                <div>
+                    <h2 style="font-size: 85px; font-weight: 800; line-height: 30px">AZ</h2>
+                    <h4 style="font-size: 35px; font-weight: 800; line-height: 97.52px">FABRIFOLDER</h4>
+                    <h3 style="font-size: 37px; font-weight: 500; line-height: 40px">
+                        Tenemos lo que necesitas <br />de la <b>A</b> a la <b>Z</b>
+                    </h3>
+                </div>
+            </v-col>
+            <v-col cols="6" class="d-flex justify-center align-center">
+                <img src="/public/assets/img/Fabrifolder.png" style="height: 350px; width: auto" />
+            </v-col>
+        </v-row>
         <v-row tag="section" class="mb-6">
             <v-col cols="12" v-for="(product, key) in productsSeeder" :key="product.id">
                 <v-row class="mb-3">
-                    <v-col
-                        cols="12"
-                        sm="12"
-                        md="12"
-                    >
-                    <CarouselSwiper class="carousel-products" :title="key+' '+product.length+' Resultados'" :options="swiperOptions">
-                        <!-- <swiper
+                    <v-col cols="12" sm="12" md="12">
+                        <CarouselSwiper
+                            class="carousel-products"
+                            :title="key + ' ' + product.length + ' Resultados'"
+                            :options="swiperOptions"
+                        >
+                            <!-- <swiper
                             :slides-per-view="4"    
                             :space-between="30"     
                             :loop="true"            
                             :pagination="{ clickable: true }" 
                             :navigation="true"   
                         > -->
-                            <swiper-slide  v-for="item in product" :key="`carousel-products-slide-${item.id}`">
+                            <swiper-slide v-for="item in product" :key="`carousel-products-slide-${item.id}`">
                                 <ProductBox boxStyle="two" :productDetails="item" />
                             </swiper-slide>
-                        <!-- </swiper> -->
-                    </CarouselSwiper>
+                            <!-- </swiper> -->
+                        </CarouselSwiper>
                     </v-col>
                 </v-row>
             </v-col>
@@ -89,7 +106,7 @@ export default {
             spaceBetween: 12,
             breakpoints: {
                 600: {
-                    slidesPerView:4
+                    slidesPerView: 4
                 },
                 960: {
                     slidesPerView: 6,
@@ -99,7 +116,7 @@ export default {
         }
     }),
     props: {
-        category: { type: String, default: '' },
+        category: { type: String, default: "" }
     },
     components: {
         CustomInput,
@@ -112,61 +129,64 @@ export default {
         ContactDialog,
         CarouselSwiper
     },
-    mounted(){
+    mounted() {
         this.getProducts();
         this.updateBreadcrumb();
     },
     methods: {
-        async getProducts(){
+        async getProducts() {
             const res = await Mixin.methods.call_api("get", `product/search?category_slug=${this.category}`);
-                if(res.data.success){
-                    // category_slug;
-                    // keyword;
-                    // sort_by;
-                    // brand_ids;
-                    // min_price;
-                    // max_price;
-                    this.productsSeeder = res.data.products.data;
-                    const primerasLetras = this.productsSeeder.map(item => item.name.charAt(0));
-                    primerasLetras.sort();
-                    let letrasFiltro = [...new Set(primerasLetras)];
+            if (res.data.success) {
+                // category_slug;
+                // keyword;
+                // sort_by;
+                // brand_ids;
+                // min_price;
+                // max_price;
+                this.productsSeeder = res.data.products.data;
+                const primerasLetras = this.productsSeeder.map(item => item.name.charAt(0));
+                primerasLetras.sort();
+                let letrasFiltro = [...new Set(primerasLetras)];
 
-                    this.resultadoFiltroBotones = letrasFiltro.map((letra, index) => ({
-                        id: index + 1,
-                        text: letra
-                    }));
+                this.resultadoFiltroBotones = letrasFiltro.map((letra, index) => ({
+                    id: index + 1,
+                    text: letra
+                }));
 
-                    let data = res.data.products.data;
-                    const clasificadosPorLetra = data.reduce((acc, product) => {
-                        // Obtenemos la primera letra del nombre
-                        const primeraLetra = product.name.charAt(0).toUpperCase();
-                        
-                        // Si la letra no existe como clave en acc, inicializamos el array
-                        if (!acc[primeraLetra]) {
-                            acc[primeraLetra] = [];
-                        }
-                        
-                        // Agregamos el objeto al array correspondiente
-                        acc[primeraLetra].push(product);
-                        return acc;
-                    }, {});
-                    
-                    // this.productsSeeder = res.data.products.data.slice(0, 12);
-                   
-                    this.productsSeeder = clasificadosPorLetra
-                    this.activeButton = null;
-                }
+                let data = res.data.products.data;
+                const clasificadosPorLetra = data.reduce((acc, product) => {
+                    // Obtenemos la primera letra del nombre
+                    const primeraLetra = product.name.charAt(0).toUpperCase();
+
+                    // Si la letra no existe como clave en acc, inicializamos el array
+                    if (!acc[primeraLetra]) {
+                        acc[primeraLetra] = [];
+                    }
+
+                    // Agregamos el objeto al array correspondiente
+                    acc[primeraLetra].push(product);
+                    return acc;
+                }, {});
+
+                // this.productsSeeder = res.data.products.data.slice(0, 12);
+
+                this.productsSeeder = clasificadosPorLetra;
+                this.activeButton = null;
+            }
         },
         updateBreadcrumb() {
             const newItems = [
-                { text: 'Home', href: '/', disabled: false },
-                { text: 'Tienda', href: '/', disabled: true }
+                { text: "Home", href: "/", disabled: false },
+                { text: "Tienda", href: "/", disabled: true }
             ];
-            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
+            this.$store.dispatch("breadcrumb/setBreadcrumbItems", newItems);
         },
 
-        async filter(value){
-            const res = await Mixin.methods.call_api("get", `product/search?category_slug=${this.category}&&keyword=${value}`);
+        async filter(value) {
+            const res = await Mixin.methods.call_api(
+                "get",
+                `product/search?category_slug=${this.category}&&keyword=${value}`
+            );
 
             let data = res.data.products.data;
             const clasificadosPorLetra = data.reduce((acc, product) => {
@@ -174,25 +194,25 @@ export default {
                 if (!acc[primeraLetra]) {
                     acc[primeraLetra] = [];
                 }
-                        
+
                 acc[primeraLetra].push(product);
                 return acc;
             }, {});
-            if(res.data.success){
+            if (res.data.success) {
                 this.productsSeeder = clasificadosPorLetra;
             }
         },
         setActiveButton(id, value) {
-            this.activeButton = id;  
-            this.filter(value);      
-        },
+            this.activeButton = id;
+            this.filter(value);
+        }
     }
 };
 </script>
 <style scoped lang="scss">
-.container-buttons{
+.container-buttons {
     display: flex;
-    overflow-x: auto;  
+    overflow-x: auto;
     white-space: nowrap;
     width: 100%;
     &::-webkit-scrollbar {
