@@ -333,6 +333,8 @@ export default {
                 });
             }
             this.adding = false;
+            const currentScroll = window.scrollY;
+            window.scrollTo(0, currentScroll);
         },
         async fetchCountries() {
             if (!this.countriesLoaded) {
