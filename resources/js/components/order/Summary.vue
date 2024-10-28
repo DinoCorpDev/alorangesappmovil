@@ -84,8 +84,14 @@
                                 <span class="body1 pr-3">{{ payment_method.payment_method.extra.last_four ? `************${payment_method.payment_method.extra.last_four}` : payment_method.status }}</span>
                             </div>
                         </div>
+                        <div class="form" v-else-if="contraentregaType !== false">
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase bold pl-3">Contraentrega</span>
+                                <span class="body1 pr-3">Pago con {{contraentregaType}}</span>
+                            </div>
+                        </div>
                         <div class="form" v-else>
-                            <div>Información no recibida</div>
+                            <div>Transferencia Bancolombia</div>
                         </div>
                         <h5 class="fw-600">Código promocional</h5>
                         <v-divider class="my-4" />
@@ -132,6 +138,7 @@ export default {
     data(){
         return {
             payment_method:{},
+            contraentregaType: false,
         }
     },
     components: {
@@ -151,7 +158,9 @@ export default {
         iterateOrderUpdates() {
             const orderUpdates = this.orderDetails.order_updates;
             this.payment_method = this.orderDetails.orders[0].manual_payment;
-            console.log(this.payment_method);
+            if (this.orderDetails.orders[0].metodo_pago_contraentrega) {
+                this.contraentregaType = this.orderDetails.orders[0].metodo_pago_contraentrega
+            }    
             this.orderDetails.orders[0].order_updates = orderUpdates;
         }
     }

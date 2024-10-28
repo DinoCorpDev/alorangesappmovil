@@ -2543,12 +2543,13 @@ export default {
         processToSendStore(referenceToPayment){
             const shippingAddressId = this.selectedAddressEnvio.id;
             const billingAddressId = this.userData.id;
-
+            let metodoPagoContraentregra = this.isEfectivo ? 'Efectivo' : 'Datafono'
             let formData = new FormData();
             formData.append("shipping_address_id", shippingAddressId);
             formData.append("billing_address_id", billingAddressId);
             formData.append("delivery_type", "standard");
             formData.append("code", referenceToPayment);
+            formData.append("metodo_pago_contraentrega", metodoPagoContraentregra);
 
             this.cartItems.forEach((item, index) => {
                 if (item?.isCollection) {
