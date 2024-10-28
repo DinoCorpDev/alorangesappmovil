@@ -996,6 +996,20 @@
                                     </div>
                                     <div v-if="pick === 5">
                                         <p>Solo pagas por el producto cuando te lo entregamos en tu domicilio.</p>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="mr-5">
+                                                <input type="checkbox" class="form-check-input" :checked="isEfectivo" id="isCredit"  @change="toggleCheckboxcontraentrega('first')"/>
+                                                <label class="form-check-label" for="isCredit">
+                                                    Pago con Efectivo
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" class="form-check-input" :checked="isDatafono" id="isDebit"  @change="toggleCheckboxcontraentrega('second')"/>
+                                                <label class="form-check-label" for="isDebit">
+                                                    Pago con Datafono
+                                                </label>
+                                            </div>
+                                        </div>
                                         <v-img
                                             style="width: 400px; height: auto"
                                             src="/public/assets/img/pago-transferencia.svg"
@@ -2337,18 +2351,18 @@ export default {
                 this.isDebit = true;
             }
         },
+        toggleCheckboxcontraentrega(option){
+            if (option === 'first') {
+                this.isEfectivo=true;
+                this.isDatafono=false;
+            }else if(option === 'second'){
+                this.isEfectivo=false;
+                this.isDatafono=true;
+            }
+        },
         openWindow(url){
             window.open(url, '_blank', 'noopener,noreferrer');
             this.numberPag = 4;  
-        },
-        toggleCheckboxPagoContraentrega(option){
-            if (option === 'datafono') {
-                this.isDatafono = true;
-                this.isEfectivo = false;
-            }else if(option === 'efectivo'){
-                this.isDatafono = false;
-                this.isEfectivo = true;
-            }
         },
         updateBreadcrumb() {
             const formattedName = this.capitalizeWords(this.currentUser.name);

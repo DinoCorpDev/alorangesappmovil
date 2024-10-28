@@ -89,8 +89,8 @@ export default {
             const res = await this.call_api("get", `product/search?category_slug=${id}`);
 
             if (res.data.success) {
-                console.log("MIRAR DEBAJO DE ESTO")
-                console.log(res.data)
+                // console.log("MIRAR DEBAJO DE ESTO")
+                // console.log(res.data)
                 res.data?.products?.data?.map(product => {
                     this.moreProducts.push({
                         id: product?.id,
@@ -101,7 +101,8 @@ export default {
                         brand: product?.brandName,
                         ref: product?.reference,
                         slug: product?.slug,
-                        category: product?.category_name
+                        category: product?.category_name,
+                        tax: product?.tax
                     });
                 });
             }

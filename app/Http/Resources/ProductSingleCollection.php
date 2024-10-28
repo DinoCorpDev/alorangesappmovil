@@ -29,6 +29,7 @@ class ProductSingleCollection extends JsonResource
             'slug' => $this->slug,
             'metaTitle' => $this->meta_title,
             'category_name' => $category->name,
+            'tax' => $this->tax,
             'brand' => [
                 'id' => optional($this->brand)->id,
                 'name' => optional($this->brand)->getTranslation('name'),
