@@ -54,7 +54,7 @@ export default [
         path: "/shop",
         component: Shop,
         name: "Shop",
-        redirect: "/shop/cafeteria",
+        redirect: "/shop/papeleria",
         meta: { requiresAuth: false },
         children: [
             {
