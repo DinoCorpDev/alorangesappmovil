@@ -5,10 +5,10 @@
                 <h1 class="home-main-title mb-6 mb-sm-8">
                     ¡Suministros de papelería, aseo, cafetería, cartonería y seguridad industrial para empresas!
                 </h1>
-                <p class="home-main-description mb-6 d-none d-sm-block">
+                <!-- <p class="home-main-description mb-6 d-none d-sm-block">
                     Ofrecemos múltiples alternativas de compra y pago para que nuestros clientes obtengan todo lo que
                     desee de una forma fácil
-                </p>
+                </p> -->
                 <SearchInput class="search-menu" :showInput="true" :placeholder="'Escribe lo que buscas'" />
             </v-col>
             <v-col class="pa-0 d-flex" cols="12" sm="5" md="5">
@@ -29,7 +29,7 @@
                                 <v-col class="center-flex" cols="3">
                                     <v-img
                                         src="/public/assets/img/Group13.png"
-                                        style="width: 70%; height: auto"
+                                        style="width: 60%; height: auto"
                                         contain
                                         class="mb-5"
                                     />
@@ -39,7 +39,7 @@
                                 <v-col class="center-flex" cols="3">
                                     <v-img
                                         src="/public/assets/img/Group14.png"
-                                        style="width: 50%; height: auto"
+                                        style="width: 40%; height: auto"
                                         contain
                                         class="mb-5"
                                     />
@@ -49,7 +49,7 @@
                                 <v-col class="center-flex" cols="3">
                                     <v-img
                                         src="/public/assets/img/Group12.png"
-                                        style="width: 50%; height: auto"
+                                        style="width: 40%; height: auto"
                                         contain
                                         class="mb-5"
                                     />
@@ -59,7 +59,7 @@
                                 <v-col class="center-flex" cols="3">
                                     <v-img
                                         src="/public/assets/img/Refresh.png"
-                                        style="width: 50%; height: auto"
+                                        style="width: 40%; height: auto"
                                         contain
                                         class="mb-5"
                                     />
@@ -365,8 +365,8 @@ export default {
             line-height: 36px;
             font-weight: 600;
             @media (min-width: 600px) {
-                line-height: 65px;
-                font-size: 59px;
+                line-height: 57px;
+                font-size: 53px;
             }
         }
         &-carousel {
