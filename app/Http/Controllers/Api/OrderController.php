@@ -80,7 +80,9 @@ class OrderController extends Controller
         $wompiResultTransaction = (new WompiServices)->wompiGetTransactionComplete($order->code);
 
         $order->orders[0]['payment_status'] = $wompiResult;
-        $order->orders[0]['manual_payment'] = $wompiResultTransaction['data'][0];
+        if (!empty($wompiResultTransaction['data'])) {
+            $order->orders[0]['manual_payment'] = $wompiResultTransaction['data'][0];
+        }
         
         if ($order) {
             if (auth('api')->user()->id == $order->user_id) {
@@ -409,6 +411,7 @@ class OrderController extends Controller
                 'coupon_discount' => $shop_coupon_discount,
                 'delivery_type' => $request->delivery_type,
                 'payment_type' => $request->payment_type,
+                'metodo_pago_contraentrega' => $request->metodo_pago_contraentrega,
             ]);
 
             $package_number++;

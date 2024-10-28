@@ -431,12 +431,6 @@
                             </v-row>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <!-- <AddressDialog
-                                :typeAddress="typeAddress"
-                                :show="addDialogShow"
-                                @close="addressDialogClosed"
-                                :old-address="addressSelectedForEdit"
-                            /> -->
                             <ProfileDialog
                                 :show="profileDialogShow"
                                 @close="profileDialogClosed"
@@ -921,6 +915,10 @@
                                                 v-model="bancoSelected"
                                             />
                                         </div>
+                                        <div v-if="urlPagoPSE !== null" class="pt-4">
+                                            <p v-if="isLinkVisible">{{urlPagoPSE}}</p>
+                                            <CustomButton @click="openWindow(urlPagoPSE)" class="mb-4" block color="white" text="Click aqui para dirigirte al banco"/>
+                                        </div>
                                     </div>
                                     <div v-if="pick === 2" class="data-payments">
                                         <div class="d-flex justify-content-between">
@@ -951,13 +949,13 @@
                                         </div>
                                         <div class="pt-4">
                                             <label>Numero de CVC</label>
-                                            <CustomInput placeholder="CVC" v-model="formCard.cvc" />
+                                            <CustomInput placeholder="CVC" maxlength="3" v-model="formCard.cvc" />
                                         </div>
                                         <div class="pt-4">
                                             <label>Mes / año de expiración</label>
                                             <div class="d-flex justify-content-between">            
-                                                <CustomInput class="col-md-3" placeholder="Mes" v-model="formCard.exp_month" />
-                                                <CustomInput placeholder="Año" v-model="formCard.exp_year" />
+                                                <CustomInput class="col-md-3" placeholder="01" card="numberCard" maxlength="2" v-model="formCard.exp_month" />
+                                                <CustomInput placeholder="29" card="numberCard" maxlength="2" v-model="formCard.exp_year" />
                                             </div>
                                         </div>
                                         <div class="pt-4" v-if="isCredit">
@@ -969,15 +967,16 @@
                                         </div>
                                     </div>
                                     <div v-if="pick === 4">
-                                        <v-img
-                                            style="max-width: 259px; height: auto"
-                                            src="/public/assets/img/pago-transferencia.png"
-                                            alt="Transferencia"
-                                        />
+                                        
                                         <p>
                                             Despachamos el producto una vez que se envíe la transferencia y el
                                             comprobante por WhatsApp
                                         </p>
+                                        <v-img
+                                            style="width: 500px; height: auto;"
+                                            src="/public/assets/img/pago-contraentrega.svg"
+                                            alt="Transferencia"
+                                        />
                                         <div class="data-section">
                                             <h3>DATOS DE BANCO</h3>
                                             <div class="body-data">
@@ -996,76 +995,29 @@
                                         </div>
                                     </div>
                                     <div v-if="pick === 5">
+                                        <p>Solo pagas por el producto cuando te lo entregamos en tu domicilio.</p>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="mr-5">
+                                                <input type="checkbox" class="form-check-input" :checked="isEfectivo" id="isCredit"  @change="toggleCheckboxcontraentrega('first')"/>
+                                                <label class="form-check-label" for="isCredit">
+                                                    Pago con Efectivo
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" class="form-check-input" :checked="isDatafono" id="isDebit"  @change="toggleCheckboxcontraentrega('second')"/>
+                                                <label class="form-check-label" for="isDebit">
+                                                    Pago con Datafono
+                                                </label>
+                                            </div>
+                                        </div>
                                         <v-img
-                                            style="max-width: 259px; height: auto"
-                                            src="/public/assets/img/pago-contraentrega.png"
+                                            style="width: 400px; height: auto"
+                                            src="/public/assets/img/pago-transferencia.svg"
                                             alt="Contraentrega"
                                         />
-                                        <p>Solo pagas por el producto cuando te lo entregamos en tu domicilio.</p>
                                     </div>
                                 </div>
                             </div>
-                        </v-col>
-                        <v-col cols="12" md="5" order="2" order-md="2" order-sm="2">
-                            <h5 class="fw-600 pt-1">Código promocional</h5>
-                            <div class="form px-0" style="border: none !important; box-shadow: none">
-                                <p class="mb-1">Regalo/Referido</p>
-                                <CustomInput placeholder="Ingresar código de descuento" class="mb-2" />
-                                <CustomButton class="mb-4" block color="white" text="Aplicar" />
-                            </div>
-                            <!--<h5 class="fw-600">Facturar a nombre de</h5>
-                            <v-divider class="my-4" />
-                             <div class="form">
-                                <v-divider class="my-3" />
-                                <div v-if=" Object.entries(userData).length !== 0">
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3">correo electrónico</span>
-                                        <span class="body1 pr-3">{{userData.email || ""}}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3">Tipo de persona</span>
-                                        <span class="body1 text-right pr-3">{{ userData.personType  || ""}}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3"> Descripción de Dirección </span>
-                                        <span class="body1 pr-3">{{addressFacturacion?.address || ""}}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3">Tipo de documento</span>
-                                        <span class="body1 pr-3">{{userData.documentType || ""}}</span>
-                                    </div>
-                                    <div class="d-flex justify-space-between mb-2">
-                                        <span class="subtitle1 text-uppercase bold pl-3">Número de documento</span>
-                                        <span class="body1 pr-3">{{userData.documentNumber || ""}}</span>
-                                    </div>
-                                </div> -->
-                            <!-- <label class="label my-3">
-                                    <input type="checkbox" v-model="useDefaultAddress2" id="useDefaultAddress2" />
-                                    <span class="body-1 black--text text">
-                                        Usar la misma Dirección de envió para que Idovela entreguela factura física.
-                                    </span>
-                                    <span class="checkmark"></span>
-                                </label>
-                                <v-divider class="my-3" />
-                                <CustomButton
-                                    v-if="
-                                        Object.entries(addressFacturacion).length !== 0 && useDefaultAddress2 == false
-                                    "
-                                    class="mr-3"
-                                    color="grey"
-                                    text="Editar"
-                                    @click="editAddress(addressFacturacion, 'billing')"
-                                />
-                                <CustomButton
-                                    v-if="
-                                        Object.entries(addressFacturacion).length === 0 && useDefaultAddress2 == false
-                                    "
-                                    block
-                                    color="grey"
-                                    text="Añadir Dirección"
-                                    @click="openAdress('billing')"
-                                /> -->
-                            <!-- </div> -->
                         </v-col>
                         <v-col cols="12" order="3" order-md="3" order-sm="3" class="d-flex justify-space-between">
                             <v-row class="barra-inferior">
@@ -2245,19 +2197,6 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-
-        <v-dialog v-model="dialogPSEPaymentModal" persistent>
-            <v-card>
-                <v-card-title class="headline">Pago PSE</v-card-title>
-                <v-card-text>
-                    <iframe :src="`${this.urlPagoPSE}`" width="100%" height="100%" ></iframe>
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="closePSEPaymentModal">Cerrar</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
     </div>
 </template>
 
@@ -2349,12 +2288,15 @@ export default {
             bancoSelected:"",
             formCard:{},
             dialogPSEModal: false,
-            urlPagoPSE:'',
+            urlPagoPSE:null,
             isCredit:true,
             isDebit:false,
             dialogTutorial: false,
             dialogPSEPaymentModal:false,
-            referenceToPayment:null
+            referenceToPayment:null,
+            isEfectivo:false,
+            isDatafono:false,
+            isLinkVisible:false,
         };
     },
     computed: {
@@ -2408,6 +2350,19 @@ export default {
                 this.isCredit = false;
                 this.isDebit = true;
             }
+        },
+        toggleCheckboxcontraentrega(option){
+            if (option === 'first') {
+                this.isEfectivo=true;
+                this.isDatafono=false;
+            }else if(option === 'second'){
+                this.isEfectivo=false;
+                this.isDatafono=true;
+            }
+        },
+        openWindow(url){
+            window.open(url, '_blank', 'noopener,noreferrer');
+            this.numberPag = 4;  
         },
         updateBreadcrumb() {
             const formattedName = this.capitalizeWords(this.currentUser.name);
@@ -2575,8 +2530,8 @@ export default {
         async verifyStatusPayment(dataToTransaction){
             let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
             if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
-                this.urlPagoPSE = resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
-                window.open(this.urlPagoPSE);
+                return resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
+                //window.location.href = this.urlPagoPSE;
             }else{
                 this.verifyStatusPayment(dataToTransaction);
             }
@@ -2585,33 +2540,16 @@ export default {
         closePSEModal(){
             this.dialogPSEModal = false;
         },
-        async closePSEPaymentModal(){
-            let paymentPSEStatus = await this.verifyPaymentPSEStatus();
-            if(paymentPSEStatus.data == "APPROVED"){
-                let formData = this.processToSendStore(this.referenceToPayment);
-                const res = await this.call_api("post", "checkout/order/store", formData);
-                this.dataCheckout = res.data;
-                this.urlPagoPSE = '';
-                this.dialogPSEPaymentModal = false;
-                this.numberPag = 4;
-            }else{
-                this.urlPagoPSE = '';
-                this.dialogPSEPaymentModal = false;
-                this.snack({
-                    message: 'Algo ha salido mal, Intenta de nuevo mas tarde',
-                    color: "red"
-                });
-            }
-        },
         processToSendStore(referenceToPayment){
             const shippingAddressId = this.selectedAddressEnvio.id;
             const billingAddressId = this.userData.id;
-
+            let metodoPagoContraentregra = this.isEfectivo ? 'Efectivo' : 'Datafono'
             let formData = new FormData();
             formData.append("shipping_address_id", shippingAddressId);
             formData.append("billing_address_id", billingAddressId);
             formData.append("delivery_type", "standard");
             formData.append("code", referenceToPayment);
+            formData.append("metodo_pago_contraentrega", metodoPagoContraentregra);
 
             this.cartItems.forEach((item, index) => {
                 if (item?.isCollection) {
@@ -2724,14 +2662,13 @@ export default {
                                 let dataToTransaction = {
                                     id: idTransaction,
                                 };   
-                                this.verifyStatusPayment(dataToTransaction);
-
-                                setTimeout(async () => {
+                                let resultURL = await this.verifyStatusPayment(dataToTransaction);
+                                if (typeof resultURL === 'string') {
+                                    this.urlPagoPSE = resultURL;
                                     let formData = this.processToSendStore(referenceToPayment);
                                     const res = await this.call_api("post", "checkout/order/store", formData);
                                     this.dataCheckout = res.data;
-                                    this.numberPag = 4;
-                                }, 1000);
+                                }
                             }                            
                         } catch (error) {
                             this.snack({

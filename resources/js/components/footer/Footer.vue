@@ -31,7 +31,7 @@
                 <p style="font-size: 13px; margin-bottom: 0">
                     <b>Copyright © 2022 Aloranges.com.</b> Todos los derechos reservados.
                 </p>
-                <p class="d-flex align-center mb-0">Powered by <DinoLabs class="ml-1" /></p>
+                <p class="d-flex align-center mb-0">Powered by <img src="../icons/DinoLabs-logo.svg" style="max-width: 60px;"/></p>
             </v-col>
             <v-col cols="12" class="d-flex d-md-none pa-0">
                 <v-row class="pt-5">
@@ -49,7 +49,7 @@
                     </v-col>
                     <v-col cols="6" class="d-flex align-center justify-end pr-5 pt-0">
                         <p class="mb-0 align-center justify-center" style="display: flex;">
-                            Powered by <img src="../icons/DinoLabs.png" style="max-width: 60px;"/>
+                            Powered by <img src="../icons/DinoLabs-logo.svg" style="max-width: 60px;"/>
                         </p>
                     </v-col>
                 </v-row>

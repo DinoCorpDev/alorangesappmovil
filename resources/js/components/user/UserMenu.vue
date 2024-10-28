@@ -1,8 +1,7 @@
 <template>
     <div class="user-nav">
 
-        <h6 class="user-nav-label mb-3">Compras</h6>
-        <div class="user-nav-buttons top mb-5 mb-sm-0">
+        <div class="user-nav-buttons top mt-8 mb-8 mb-sm-0">
             <template v-for="item in userNavLinks.purchase">
                 <CustomButton
                     :key="`UserNav${item.link}`"
@@ -12,11 +11,6 @@
                     block
                 />
             </template>
-        </div>
-
-
-        <h6 class="user-nav-label mb-3 mt-10">Cuenta</h6>
-        <div class="user-nav-buttons bottom mb-3 mb-sm-0">
             <template v-for="item in userNavLinks.user">
                 <CustomButton
                     :key="`UserNav${item.link}`"

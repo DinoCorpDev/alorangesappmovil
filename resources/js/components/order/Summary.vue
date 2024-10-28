@@ -84,8 +84,14 @@
                                 <span class="body1 pr-3">{{ payment_method.payment_method.extra.last_four ? `************${payment_method.payment_method.extra.last_four}` : payment_method.status }}</span>
                             </div>
                         </div>
-                        <div v-else>
-                            <div>Información no recibida</div>
+                        <div class="form" v-else-if="contraentregaType !== false">
+                            <div class="d-flex justify-space-between mb-2">
+                                <span class="subtitle1 text-uppercase bold pl-3">Contraentrega</span>
+                                <span class="body1 pr-3">Pago con {{contraentregaType}}</span>
+                            </div>
+                        </div>
+                        <div class="form" v-else>
+                            <div>Transferencia Bancolombia</div>
                         </div>
                         <h5 class="fw-600">Código promocional</h5>
                         <v-divider class="my-4" />
@@ -105,28 +111,19 @@
         <v-divider class="my-4" />
 
         <v-row>
-            <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.2rem; text-align: left;">
-                Protección de datos personales: IDOVELA S.A.S garantiza el tratamiento de datos personales acorde a lo
-                establecido en la ley 1581/2012 y decreto 1377/2013. por favor dirija sus inquietudes al correo:
-                soporte@idovela.com Riesgo de lavado de activos, financiación al terrorismo sarlaft y ley antisoborno:
-                EL CLIENTE certifica a IDOVELA S.A.S que sus recursos no provienen ni se destinan al ejercicio de
-                ninguna actividad ilícita o de actividades conexas al lavado de activos provenientes de estas o de
-                actividades relacionadas con la financiación del terrorismo EL CLIENTE se obliga a realizar todas las
-                actividades encaminadas a asegurar que los recursos de estos, no se encuentran relacionados, provengan,
-                de actividades ilícitas, particularmente de lavado de activos o financiación del terrorismo. Igualmente
-                se compromete a respetar el programa de ética empresarial que aplica en IDOVELA S.A.S. Garantía: 1).
-                Garantiza el articulo a partir de la fecha prescrita. únicamente garantía de fábrica. 2). Garantizamos
-                el articulo según nos ofrecen nuestro(s) proveedor(es). 3). Situaciones no cubiertas por la garantía
-                legal: • Productos cuyo periodo de garantía haya expirado o finalizado. • Situaciones ocasionadas por
-                fuerza mayor, caso fortuito, culpa exclusiva del usuario o terceros • Problemas causados como
-                consecuencia de instalaciones físicas y eléctricas inadecuadas, uso o mantenimiento inadecuados o
-                diferentes al indicado en el manual del producto, por personal no autorizado por iDOVELA S.A.S. Cambios
-                y devoluciones: después de 30 días fecha factura, para cambios por favor presentar la factura original
-                en horario de lunes a sábado de 8:00 am a 5:00 pm. la mercancía se recibe en perfecto estado, caja
-                sellada, el material en calidad de segunda (uso o deterioro) no tiene cambios. no devolvemos dinero
-                Logística: la mercancía se deja hasta dónde llega el camión (primera planta). una vez recibida y firmada
-                esta factura se entenderá que la mercancía fue recibida y entregada a satisfacción. El CLIENTE acepta
-                los términos de compra generales publicados en www.idovela.con/TyC
+            <p style="font-size: 0.7rem; color: #b4b5b5; padding-left: 1.2rem; text-align: left">
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Urna curabitur aliquet condimentum facilisis ex nec
+                morbi porta laoreet. Tempus fusce et mollis dolor est augue cursus. Fusce et nisi venenatis ad neque
+                tincidunt dapibus. Condimentum maximus in leo mollis nascetur dignissim. Curae leo odio morbi efficitur
+                sociosqu metus. Magnis feugiat hac conubia non torquent commodo sit. Euismod metus hac ullamcorper
+                tristique feugiat ut. Praesent turpis magnis himenaeos quis adipiscing. Fusce sodales morbi dictum felis
+                feugiat. Pellentesque condimentum nisl integer tincidunt ac urna nascetur ante fermentum. Montes nec
+                integer sagittis eu accumsan orci lacus orci sociosqu. Cras etiam augue non fermentum finibus sed.
+                Cursus primis ridiculus in faucibus velit ultricies lectus. Amet tempus quam sollicitudin aenean
+                imperdiet accumsan imperdiet. Enim himenaeos rhoncus montes sollicitudin lacinia dis mus commodo. Etiam
+                vitae senectus phasellus hendrerit pretium mi adipiscing. Dui libero montes; ante elementum augue
+                lectus. Hac phasellus felis feugiat nulla ante. Interdum malesuada sem finibus, etiam penatibus gravida
+                molestie ante faucibus? Ipsum in metus nibh faucibus dapibus proin suspendisse eget.
             </p>
         </v-row>
     </div>
@@ -141,6 +138,7 @@ export default {
     data(){
         return {
             payment_method:{},
+            contraentregaType: false,
         }
     },
     components: {
@@ -160,7 +158,9 @@ export default {
         iterateOrderUpdates() {
             const orderUpdates = this.orderDetails.order_updates;
             this.payment_method = this.orderDetails.orders[0].manual_payment;
-            console.log(this.payment_method);
+            if (this.orderDetails.orders[0].metodo_pago_contraentrega) {
+                this.contraentregaType = this.orderDetails.orders[0].metodo_pago_contraentrega
+            }    
             this.orderDetails.orders[0].order_updates = orderUpdates;
         }
     }
@@ -180,7 +180,7 @@ export default {
     margin-bottom: 15px;
 }
 
-.bold{
+.bold {
     font-weight: bold;
 }
 </style>

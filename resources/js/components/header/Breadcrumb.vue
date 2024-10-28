@@ -6,7 +6,7 @@
             exact-active-class="active"
             active-class="disabled"
             :items="breadcrumbItems"
-            style="background-color: #f4f4f3; margin: 12px; margin-bottom: 0; font-size: 18px !important"
+            style="background-color: #F4F5F7; margin: 12px; margin-bottom: 0; font-size: 18px !important"
         >
             <template v-slot:divider>
                 <i class="las la-angle-right"></i>
@@ -33,6 +33,8 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .v-breadcrumbs {
     padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 ::v-deep .v-breadcrumbs li:first-of-type a {
     &:first-of-type::before {
@@ -45,7 +47,7 @@ export default {
         display: inline-block;
         position: absolute;
         left: -20px;
-        top: 40%;
+        top: 45%;
         transform: translateY(-50%);
     }
 }

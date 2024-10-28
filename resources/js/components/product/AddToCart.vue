@@ -45,7 +45,7 @@
                     </h5>
                 </div>
                 <div class="d-flex justify-space-between align-center mb-3">
-                    <span class="tx-caption">* Iva Incluido</span>
+                    <span class="tx-caption">* Iva Incluido ({{ parseInt(productDetails.tax) }} %)</span>
                     <vue-numeric-input
                         v-model="cartQuantity"
                         :min="1"

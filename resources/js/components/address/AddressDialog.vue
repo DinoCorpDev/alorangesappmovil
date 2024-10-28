@@ -133,7 +133,7 @@
                         elevation="0"
                         text="Actualizar"
                         color="orange"
-                        @click="updateAddress"
+                        @click.stop="updateAddress"
                         :loading="adding"
                         :disabled="adding" />
                     <CustomButton
@@ -141,7 +141,7 @@
                         text="Agregar"
                         elevation="0"
                         color="orange"
-                        @click="addNewAddress"
+                        @click.stop="addNewAddress"
                         :loading="adding"
                         :disabled="adding"
                         />
@@ -333,6 +333,8 @@ export default {
                 });
             }
             this.adding = false;
+            const currentScroll = window.scrollY;
+            window.scrollTo(0, currentScroll);
         },
         async fetchCountries() {
             if (!this.countriesLoaded) {

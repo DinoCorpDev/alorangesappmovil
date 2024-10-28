@@ -1,11 +1,11 @@
 <template>
     <div class="px-0 px-sm-5 py-3">
-        <address-dialog
+        <!-- <address-dialog
             :typeAddress="typeAddress"
             :show="addDialogShow"
             @close="addressDialogClosed"
             :old-address="addressSelectedForEdit"
-        />
+        /> -->
         <profile-dialog :show="profileDialogShow" @close="profileDialogClosed" :old-profile="profileSelectedForEdit" />
         <password-dialog
             :show="passwordDialogShow"
@@ -55,7 +55,7 @@
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">CORREO ELECTRONICO</label>
+                                <label class="profile-label">Correo electroníco</label>
                             </v-col>
 
                             <v-col class="text-end usuario-lineado">
@@ -64,7 +64,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">TIPO DE PERSONA</label>
+                                <label class="profile-label">Tipo de persona</label>
                             </v-col>
 
                             <v-col class="text-end usuario-lineado">
@@ -73,7 +73,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">NOMBRE COMPLETO</label>
+                                <label class="profile-label">Nombre completo</label>
                             </v-col>
 
                             <v-col class="text-end usuario-lineado">
@@ -82,7 +82,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">TIPO DE DOCUMENTO</label>
+                                <label class="profile-label">Tipo de documento</label>
                             </v-col>
 
                             <v-col class="text-end usuario-lineado">
@@ -91,7 +91,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">NÚMERO DE DOCUMENTO</label>
+                                <label class="profile-label">Número de documento</label>
                             </v-col>
 
                             <v-col class="text-end">
@@ -104,25 +104,25 @@
                         <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                         <v-row>
                             <v-col cols="6" class="text-start usuario-lineado">
-                                <label class="profile-label">CORREO ELECTRONICO</label>
+                                <label class="profile-label">Correo electroníco</label>
                             </v-col>
                             <v-col cols="6" class="text-end usuario-lineado">******@******.*** </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">TIPO DE PERSONA</label>
+                                <label class="profile-label">Tipo de persona</label>
                             </v-col>
                             <v-col class="text-end usuario-lineado"> {{ currentUser.personType || "--" }} </v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">NOMBRE COMPLETO</label>
+                                <label class="profile-label">Nombre completo</label>
                             </v-col>
                             <v-col class="text-end usuario-lineado">***** ***** ******</v-col>
                         </v-row>
                         <v-row>
                             <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">TIPO DE DOCUMENTO</label>
+                                <label class="profile-label">Tipo de documento</label>
                             </v-col>
                             <v-col class="text-end usuario-lineado">
                                 {{ currentUser.documentType || "--" }}
@@ -130,7 +130,7 @@
                         </v-row>
                         <v-row>
                             <v-col class="text-start">
-                                <label class="profile-label">NÚMERO DE DOCUMENTO</label>
+                                <label class="profile-label">Número de documento</label>
                             </v-col>
                             <v-col class="text-end"> *********** </v-col>
                         </v-row>
@@ -150,7 +150,7 @@
                     <v-form class="inputs" ref="loginForm" lazy-validation>
                         <v-row>
                             <v-col cols="12" md="6" style="display: grid; align-items: end">
-                                <span class="black--text body-2  ">Primer Nombre</span>
+                                <span class="black--text body-2">Primer Nombre</span>
                                 <custom-input
                                     class="place-holder"
                                     placeholder="Ingresar nombre"
@@ -161,7 +161,7 @@
                                 />
                             </v-col>
                             <v-col cols="12" md="6">
-                                <span class="black--text body-2  "> Segundo Nombre (Opcional) </span>
+                                <span class="black--text body-2"> Segundo Nombre (Opcional) </span>
                                 <custom-input
                                     class="place-holder"
                                     placeholder="Ingresar segundo nombre"
@@ -171,7 +171,7 @@
                         </v-row>
                         <v-row>
                             <v-col cols="12" md="6">
-                                <span class="black--text body-2  ">Primer Apellido</span>
+                                <span class="black--text body-2">Primer Apellido</span>
                                 <custom-input
                                     class="place-holder"
                                     placeholder="Ingresar primer apellido"
@@ -182,7 +182,7 @@
                                 />
                             </v-col>
                             <v-col cols="12" md="6">
-                                <span class="black--text body-2  ">Segundo Apellido</span>
+                                <span class="black--text body-2">Segundo Apellido</span>
                                 <custom-input
                                     class="place-holder"
                                     placeholder="Ingresar segundo apellido"
@@ -195,7 +195,7 @@
                         </v-row>
                         <v-row>
                             <v-col cols="12" md="12">
-                                <span class="black--text body-2  ">Documento</span>
+                                <span class="black--text body-2">Documento</span>
                                 <select-custom
                                     placeholder="Seleccionar tipo de documento"
                                     class="select-placeholder"
@@ -207,7 +207,7 @@
                                 />
                             </v-col>
                             <v-col cols="12" md="12">
-                                <span class="black--text body-2  ">Numero de Documento</span>
+                                <span class="black--text body-2">Numero de Documento</span>
                                 <custom-input
                                     class="place-holder"
                                     placeholder="Ingresar número de documento"
@@ -220,7 +220,7 @@
                         </v-row>
                         <v-row>
                             <v-col cols="12" md="12">
-                                <span class="black--text body-2  ">
+                                <span class="black--text body-2">
                                     {{ $t("Contraseña") }}
                                 </span>
                                 <v-text-field
@@ -301,7 +301,7 @@
                 </v-card>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" v-if="currentUser.personType !== 'Natural'">
                 <h5 class="fw-600">Empresas</h5>
                 <v-divider class="my-4" />
                 <div v-for="(emp, i) in empresas" :key="i">
@@ -351,19 +351,19 @@
 
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">CORREO ELECTRONICO</label>
+                                        <label class="profile-label">Correo electroníco</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">{{ emp.company_razon || "--" }} </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">TIPO DE PERSONA</label>
+                                        <label class="profile-label">Tipo de persona</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado"> {{ emp.person_type || "--" }} </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">NOMBRE REPRESENTANTE</label>
+                                        <label class="profile-label">Nombre representante</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">{{
                                         emp.first_name + " " + emp.first_lastname || "--"
@@ -371,7 +371,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">TIPO DE DOCUMENTO</label>
+                                        <label class="profile-label">Tipo de documento</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">
                                         {{ emp.document_type || "--" }}
@@ -379,7 +379,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">NÚMERO DE DOCUMENTO</label>
+                                        <label class="profile-label">Número de documento</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">
                                         {{ emp.document_number || "--" }}
@@ -387,7 +387,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">RAZÓN SOCIAL</label>
+                                        <label class="profile-label">Razón social</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">
                                         {{ emp.company_razon || "--" }}
@@ -395,7 +395,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">ENTIDAD COMERCIAL</label>
+                                        <label class="profile-label">Entidad comercial</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">
                                         {{ emp.company_type || "--" }}
@@ -403,7 +403,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">NÚMERO DE NIT</label>
+                                        <label class="profile-label">Número de NIT</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">
                                         {{ emp.document_number || "--" }}
@@ -411,7 +411,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">CORREO ELECTRÓNICO (FACTURACIÓN)</label>
+                                        <label class="profile-label">Correo electrónico (facturación)</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">
                                         {{ emp.company_email || "--" }}
@@ -419,7 +419,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start pb-5">
-                                        <label class="profile-label">TELÉFONO / CELULAR ( ÁREA CONTABLE )</label>
+                                        <label class="profile-label">Teléfono/Celular (área contrable)</label>
                                     </v-col>
                                     <v-col class="text-end pb-5">
                                         {{ emp.company_phone || "--" }}
@@ -479,25 +479,25 @@
                                 <v-divider class="my-4" />
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">CORREO ELECTRONICO</label>
+                                        <label class="profile-label">Correo electrónico</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">******@*******.*****</v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">TIPO DE PERSONA</label>
+                                        <label class="profile-label">Tipo de persona</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado"> {{ emp.person_type || "--" }} </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">NOMBRE REPRESENTANTE</label>
+                                        <label class="profile-label">Nombre representante</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">********* **********</v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">TIPO DE DOCUMENTO</label>
+                                        <label class="profile-label">Tipo de documento</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">
                                         {{ emp.document_type || "--" }}
@@ -505,19 +505,19 @@
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">NÚMERO DE DOCUMENTO</label>
+                                        <label class="profile-label">Número de documento</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado"> ************ </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">RAZÓN SOCIAL</label>
+                                        <label class="profile-label">Razón social</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado"> ************** </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">ENTIDAD COMERCIAL</label>
+                                        <label class="profile-label">Entidad comercial</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado">
                                         {{ emp.company_type || "--" }}
@@ -525,19 +525,19 @@
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">NÚMERO DE NIT</label>
+                                        <label class="profile-label">Número de NIT</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado"> ************* </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">CORREO ELECTRÓNICO (FACTURACIÓN)</label>
+                                        <label class="profile-label">Correo electrónico (facturación)</label>
                                     </v-col>
                                     <v-col class="text-end usuario-lineado"> *******@*****.**** </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col class="text-start pb-5">
-                                        <label class="profile-label">TELÉFONO / CELULAR ( ÁREA CONTABLE )</label>
+                                        <label class="profile-label">Teléfono/celular (área contable)</label>
                                     </v-col>
                                     <v-col class="text-end pb-5"> ********** </v-col>
                                 </v-row>
@@ -560,7 +560,7 @@
                             <v-form :validator="$v.emp" autocomplete="chrome-off">
                                 <v-row>
                                     <v-col cols="12" sm="6" style="display: grid; align-items: end">
-                                        <span class="black--text body-2  ">Primer Nombre *</span>
+                                        <span class="black--text body-2">Primer Nombre *</span>
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Ingresar nombre"
@@ -569,9 +569,7 @@
                                         />
                                     </v-col>
                                     <v-col cols="12" sm="6">
-                                        <span class="black--text body-2  ">
-                                            Segundo Nombre (Opcional)
-                                        </span>
+                                        <span class="black--text body-2"> Segundo Nombre (Opcional) </span>
                                         <CustomInput
                                             class="place-holder"
                                             v-model="emp.second_name"
@@ -581,7 +579,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12" sm="6">
-                                        <span class="black--text body-2  "> Primer Apellido *</span>
+                                        <span class="black--text body-2"> Primer Apellido *</span>
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Ingresar primer apellido"
@@ -590,7 +588,7 @@
                                         />
                                     </v-col>
                                     <v-col cols="12" sm="6">
-                                        <span class="black--text body-2  "> Segundo Apellido *</span>
+                                        <span class="black--text body-2"> Segundo Apellido *</span>
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Ingresar segundo apellido"
@@ -601,9 +599,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2  ">
-                                            Documento (Representante) *</span
-                                        >
+                                        <span class="black--text body-2"> Documento (Representante) *</span>
                                         <SelectCustom
                                             class="select-style"
                                             placeholder="Seleccionar tipo de documento"
@@ -615,7 +611,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2  ">Numero de Documento *</span>
+                                        <span class="black--text body-2">Numero de Documento *</span>
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Ingresar número de documento"
@@ -627,9 +623,7 @@
 
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2  "
-                                            >Razón Social de la Empresa *</span
-                                        >
+                                        <span class="black--text body-2">Razón Social de la Empresa *</span>
                                         <CustomInput
                                             placeholder="Ingrese razón social de la empresa"
                                             class="place-holder"
@@ -640,7 +634,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2  ">Entidad Comercial *</span>
+                                        <span class="black--text body-2">Entidad Comercial *</span>
                                         <SelectCustom
                                             class="select-style"
                                             placeholder="Seleccione entidad comercial"
@@ -652,7 +646,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2  ">Numero de NIT *</span>
+                                        <span class="black--text body-2">Numero de NIT *</span>
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Indicar número de documento"
@@ -664,7 +658,7 @@
 
                                 <v-row>
                                     <v-col cols="12" md="12">
-                                        <span class="black--text body-2  "
+                                        <span class="black--text body-2"
                                             >{{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }} *</span
                                         >
 
@@ -682,9 +676,7 @@
 
                                 <v-row>
                                     <v-col cols="12" md="12">
-                                        <span class="black--text body-2  "
-                                            >Teléfono / Celular (Área Contable) *</span
-                                        >
+                                        <span class="black--text body-2">Teléfono / Celular (Área Contable) *</span>
                                         <v-row>
                                             <v-col cols="12">
                                                 <vue-tel-input
@@ -705,7 +697,7 @@
 
                                 <v-row>
                                     <v-col cols="12" md="6">
-                                        <span class="black--text body-2  ">
+                                        <span class="black--text body-2">
                                             {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }} *
                                         </span>
 
@@ -722,7 +714,7 @@
                                     </v-col>
 
                                     <v-col cols="12" md="6" style="display: grid; align-items: end">
-                                        <span class="black--text body-2  ">REGIMEN FISCAL *</span>
+                                        <span class="black--text body-2">REGIMEN FISCAL *</span>
 
                                         <div class="input-group">
                                             <SelectCustom
@@ -739,9 +731,7 @@
 
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2  "
-                                            >RESPONSABILIDAD TRIBUTARIA *</span
-                                        >
+                                        <span class="black--text body-2">RESPONSABILIDAD TRIBUTARIA *</span>
                                         <SelectCustom
                                             class="select-style"
                                             placeholder="Seleccione responsabilidad tributaria"
@@ -755,7 +745,7 @@
 
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
-                                        <span class="black--text body-2  "> DOCUMENTO (ARCHIVO) </span>
+                                        <span class="black--text body-2"> DOCUMENTO (ARCHIVO) </span>
                                     </v-col>
                                     <v-col cols="10" class="area-upload">
                                         <v-file-input
@@ -791,9 +781,7 @@
 
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
-                                        <span class="black--text body-2  ">
-                                            Numero de CAMARA DE COMERCIO (ARCHIVO)
-                                        </span>
+                                        <span class="black--text body-2"> Numero de CAMARA DE COMERCIO (ARCHIVO) </span>
                                     </v-col>
                                     <v-col cols="10" class="area-upload">
                                         <!-- REVISAR--------------------------------- -->
@@ -831,9 +819,7 @@
 
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
-                                        <span class="black--text body-2  ">
-                                            RUT (ARCHIVO) kjjkbhjbbjhb
-                                        </span>
+                                        <span class="black--text body-2"> RUT (ARCHIVO) kjjkbhjbbjhb </span>
                                     </v-col>
                                     <v-col cols="10" class="area-upload">
                                         <v-file-input
@@ -921,7 +907,7 @@
                         <v-form :validator="$v.formEmpresa" autocomplete="chrome-off">
                             <v-row>
                                 <v-col cols="12" sm="6" style="display: grid; align-items: end">
-                                    <span class="black--text body-2  ">Primer Nombre</span>
+                                    <span class="black--text body-2">Primer Nombre</span>
 
                                     <CustomInput
                                         class="place-holder"
@@ -933,7 +919,7 @@
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6">
-                                    <span class="black--text body-2  "> Segundo Nombre (Opcional) </span>
+                                    <span class="black--text body-2">Segundo Nombre (Opcional) </span>
                                     <CustomInput
                                         class="place-holder"
                                         v-model="formEmpresa.secondName"
@@ -943,7 +929,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12" sm="6">
-                                    <span class="black--text body-2  "> Primer Apellido </span>
+                                    <span class="black--text body-2">Primer Apellido </span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Ingresar primer apellido"
@@ -954,7 +940,7 @@
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6">
-                                    <span class="black--text body-2  "> Segundo Apellido </span>
+                                    <span class="black--text body-2">Segundo Apellido </span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Ingresar segundo apellido"
@@ -967,7 +953,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2  "> Documento (Representante) </span>
+                                    <span class="black--text body-2">Documento (Representante) </span>
                                     <SelectCustom
                                         class="select-style"
                                         placeholder="Seleccionar tipo de documento"
@@ -981,7 +967,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2  ">Numero de Documento</span>
+                                    <span class="black--text body-2">Numero de Documento</span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Ingresar número de documento"
@@ -994,7 +980,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2  ">Razón Social de la Empresa</span>
+                                    <span class="black--text body-2">Razón Social de la Empresa</span>
                                     <CustomInput
                                         placeholder="Ingrese razón social de la empresa"
                                         class="place-holder"
@@ -1007,7 +993,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2  ">Entidad Comercial</span>
+                                    <span class="black--text body-2">Entidad Comercial</span>
                                     <SelectCustom
                                         class="select-style"
                                         placeholder="Seleccione entidad comercial"
@@ -1021,7 +1007,7 @@
                             </v-row>
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2  "> Numero de NIT </span>
+                                    <span class="black--text body-2">Numero de NIT </span>
                                     <CustomInput
                                         class="place-holder"
                                         placeholder="Indicar número de documento"
@@ -1035,8 +1021,8 @@
 
                             <v-row>
                                 <v-col cols="12" md="12">
-                                    <span class="black--text body-2  ">
-                                        {{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }}
+                                    <span class="black--text body-2">
+                                        {{ $t("Correo electroníco o número de teléfono") }}
                                     </span>
 
                                     <div class="input-group">
@@ -1055,9 +1041,7 @@
 
                             <v-row>
                                 <v-col cols="12" md="12">
-                                    <span class="black--text body-2  "
-                                        >Teléfono / Celular (Área Contable)</span
-                                    >
+                                    <span class="black--text body-2">Teléfono / Celular (Área Contable)</span>
                                     <v-row>
                                         <v-col cols="12">
                                             <vue-tel-input
@@ -1110,8 +1094,8 @@
 
                             <v-row>
                                 <v-col cols="12" md="6">
-                                    <span class="black--text body-2  ">
-                                        {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }}
+                                    <span class="black--text body-2">
+                                        {{ $t("ACTIVIDAD ECONOMICA (Código CIIU)") }}
                                     </span>
 
                                     <div class="input-group">
@@ -1129,7 +1113,7 @@
                                 </v-col>
 
                                 <v-col cols="12" md="6" style="display: grid; align-items: end">
-                                    <span class="black--text body-2  ">REGIMEN FISCAL</span>
+                                    <span class="black--text body-2">Regimen fiscal</span>
 
                                     <div class="input-group">
                                         <SelectCustom
@@ -1148,7 +1132,7 @@
 
                             <v-row>
                                 <v-col cols="12">
-                                    <span class="black--text body-2  ">RESPONSABILIDAD TRIBUTARIA </span>
+                                    <span class="black--text body-2">Responsabilidad tributaria </span>
                                     <SelectCustom
                                         class="select-style"
                                         placeholder="Seleccione responsabilidad tributaria"
@@ -1164,7 +1148,7 @@
 
                             <v-row>
                                 <v-col cols="12" class="texto-upload">
-                                    <span class="black--text body-2  "> DOCUMENTO (ARCHIVO) </span>
+                                    <span class="black--text body-2">Documento (ARCHIVO) </span>
                                 </v-col>
 
                                 <v-col cols="11" class="area-upload">
@@ -1176,7 +1160,7 @@
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                            <span class="subir-documento">Subir documento</span>
                                         </template>
                                     </v-file-input>
                                 </v-col>
@@ -1202,9 +1186,7 @@
 
                             <v-row>
                                 <v-col cols="12" class="texto-upload">
-                                    <span class="black--text body-2  ">
-                                        Numero de CAMARA DE COMERCIO (ARCHIVO)
-                                    </span>
+                                    <span class="black--text body-2"> Numero de Camara de comercio (ARCHIVO) </span>
                                 </v-col>
                                 <v-col cols="11" class="area-upload">
                                     <!-- REVISAR--------------------------------- -->
@@ -1216,7 +1198,7 @@
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                            <span class="subir-documento">Subir documento</span>
                                         </template>
                                     </v-file-input>
 
@@ -1242,7 +1224,7 @@
 
                             <v-row>
                                 <v-col cols="12" class="texto-upload">
-                                    <span class="black--text body-2  "> RUT (ARCHIVO) </span>
+                                    <span class="black--text body-2"> RUT (ARCHIVO) </span>
                                 </v-col>
                                 <v-col cols="11" class="area-upload">
                                     <v-file-input
@@ -1253,7 +1235,7 @@
                                     >
                                         <template v-slot:label>
                                             <ArrowUpload />
-                                            <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                            <span class="subir-documento">Subir documento</span>
                                         </template>
                                     </v-file-input>
                                 </v-col>
@@ -1330,7 +1312,7 @@
 
         <v-row>
             <v-col cols="12" md="6" class="pt-0" v-for="(otherAdd, i) in otherAdress" :key="i">
-                <div >
+                <div>
                     <div v-if="otherAdd?.editar == false">
                         <div v-if="otherAdd.mostrarDatos">
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
@@ -1375,43 +1357,43 @@
                                 </div>
                                 <v-divider class="my-4" />
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">País</span>
+                                    <span class="subtitle1 fw-600">País</span>
                                     <span class="body1 text-right">{{ otherAdd?.country }}</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Dirección</span>
+                                    <span class="subtitle1 fw-600">Dirección</span>
                                     <span class="body1 text-right">{{ otherAdd?.address }}</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Dirección adicional</span>
+                                    <span class="subtitle1 fw-600">Dirección adicional</span>
                                     <span class="body1 text-right">{{ otherAdd?.details }}</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Codigo Postal</span>
+                                    <span class="subtitle1 fw-600">Codigo Postal</span>
                                     <span class="body1">{{ otherAdd?.postal_code }}</span>
                                 </div>
                                 <!-- localidad -->
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Departamento</span>
+                                    <span class="subtitle1 fw-600">Departamento</span>
                                     <span class="body1">{{ otherAdd?.state }}</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Municipio</span>
+                                    <span class="subtitle1 fw-600">Municipio</span>
                                     <span class="body1">{{ otherAdd?.city }}</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Localidad</span>
+                                    <span class="subtitle1 fw-600">Localidad</span>
                                     <span class="body1">{{ otherAdd?.localidad }}</span>
                                 </div>
 
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Barrio</span>
+                                    <span class="subtitle1 fw-600">Barrio</span>
                                     <span class="body1">
                                         {{ otherAdd?.neighborhood ? otherAdd?.neighborhood : "--" }}
                                     </span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Telefono / Movil</span>
+                                    <span class="subtitle1 fw-600">Telefono / Movil</span>
                                     <span class="body1">{{ otherAdd?.phone }}</span>
                                 </div>
                                 <custom-button
@@ -1466,39 +1448,39 @@
                                 </div>
                                 <v-divider class="my-4" />
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">País</span>
+                                    <span class="subtitle1 fw-600">País</span>
                                     <span class="body1 text-right">********</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Dirección</span>
+                                    <span class="subtitle1 fw-600">Dirección</span>
                                     <span class="body1 text-right">******** ***** *****</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Dirección adicional</span>
+                                    <span class="subtitle1 fw-600">Dirección adicional</span>
                                     <span class="body1 text-right">******** *****</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Codigo Postal</span>
+                                    <span class="subtitle1 fw-600">Codigo Postal</span>
                                     <span class="body1">******</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Departamento</span>
+                                    <span class="subtitle1 fw-600">Departamento</span>
                                     <span class="body1">*******</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Municipio</span>
+                                    <span class="subtitle1 fw-600">Municipio</span>
                                     <span class="body1">*********</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Localidad</span>
+                                    <span class="subtitle1 fw-600">Localidad</span>
                                     <span class="body1">**********</span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Barrio</span>
+                                    <span class="subtitle1 fw-600">Barrio</span>
                                     <span class="body1"> *********** </span>
                                 </div>
                                 <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1   fw-600">Telefono / Movil</span>
+                                    <span class="subtitle1 fw-600">Telefono / Movil</span>
                                     <span class="body1">**********</span>
                                 </div>
                                 <custom-button
@@ -1586,7 +1568,7 @@
                                 </div>
                                 <v-row>
                                     <v-col cols="12" sm="6">
-                                        <span class="black--text body-2  ">Localidad</span>
+                                        <span class="black--text body-2">Localidad</span>
                                         <SelectCustom
                                             placeholder="Seleccione localidad"
                                             class="select-style"
@@ -1695,223 +1677,22 @@
             </v-col>
             <!-- ----------------------------------------------------------- -->
 
-            <v-col cols="12" md="6">
-                <div v-if="addDirection">
-                    <v-card
-                        elevation="0"
-                        class="mb-6 form-border rounded-lg pa-5"
-                        style="background-color: white; border-color: white"
-                    >
-                        <h5 class="fw-600">Añadir Dirección</h5>
-                        <v-divider class="my-4" />
-                        <v-form :validator="$v.formDirection" autocomplete="chrome-off">
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("PAÍS") }}</div>
-                                <SelectCustom
-                                    class="select-style"
-                                    placeholder="Seleccionar país"
-                                    :error-messages="countryErrors"
-                                    :items="countries"
-                                    @blur="$v.formDirection.country.$touch()"
-                                    @input="countryChanged"
-                                    item-text="name"
-                                    item-value="id"
-                                    required
-                                    v-model="formDirection.country"
-                                />
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">NOMBRE DE DIRECCION (CASA/OFICINA)</div>
-                                <CustomInput
-                                    placeholder="Ingresar nombre de dirección"
-                                    class="place-holder"
-                                    v-model="formDirection.name"
-                                    :error-messages="addressNameErrors"
-                                    @blur="$v.formDirection.name.$touch()"
-                                    required
-                                />
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("DIRECCIÓN (CALLE/CARRERA)") }}</div>
-                                <CustomInput
-                                    placeholder="Ingresar dirección"
-                                    class="place-holder"
-                                    v-model="formDirection.address"
-                                    :error-messages="addressErrors"
-                                    @blur="$v.formDirection.address.$touch()"
-                                    required
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("DIRECCIÓN ADICIONAL (PISO/APTO/OFICINA)") }}</div>
-                                <CustomInput
-                                    placeholder="Ingresar piso / apartamento / oficina"
-                                    class="place-holder"
-                                    v-model="formDirection.address"
-                                    :error-messages="addressErrors"
-                                    @blur="$v.formDirection.address.$touch()"
-                                    required
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("CÓDIGO POSTAL") }}</div>
-                                <SelectCustom
-                                    class="select-style"
-                                    placeholder="Seleccione codigo postal"
-                                    :items="codigoPostalTypes"
-                                    v-model="formDirection.postal_code"
-                                    :error-messages="postalCodeErrors"
-                                    @blur="$v.formDirection.postal_code.$touch()"
-                                    required
-                                />
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("DEPARTAMENTO") }}</div>
-                                <SelectCustom
-                                    class="select-style"
-                                    placeholder="Seleccionar departamento"
-                                    :error-messages="stateErrors"
-                                    :items="filteredStates"
-                                    @blur="$v.formDirection.state.$touch()"
-                                    @input="stateChanged"
-                                    item-text="name"
-                                    item-value="id"
-                                    required
-                                    v-model="formDirection.state"
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">CIUDAD</div>
-                                <SelectCustom
-                                    class="select-style"
-                                    placeholder="Seleccionar ciudad"
-                                    :error-messages="cityErrors"
-                                    :items="filteredCities"
-                                    @blur="$v.formDirection.city.$touch()"
-                                    item-text="name"
-                                    item-value="id"
-                                    required
-                                    v-model="formDirection.city"
-                                />
-                            </div>
-                            <v-row>
-                                <v-col cols="12" sm="6">
-                                    <span class="black--text body-2  ">Localidad</span>
-                                    <SelectCustom
-                                        :items="filteredLocalidad"
-                                        required
-                                        v-model="formDirection.localidad"
-                                        @blur="$v.formDirection.localidad.$touch()"
-                                        :error-messages="localidadErrors"
-                                    />
-                                </v-col>
-                                <v-col cols="12" sm="6">
-                                    <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
-                                    <CustomInput
-                                        v-model="formDirection.neighborhood"
-                                        placeholder="Ingresar barrio"
-                                        class="place-holder"
-                                    />
-                                </v-col>
-                            </v-row>
-
-                            <div class="mb-3">
-                                <!-- <v-row>
-                                    <v-col cols="6">
-                                        <div class="mb-1 fs-13 fw-500">LOCALIDAD</div>
-                                        <SelectCustom
-                                            class="select-style"
-                                            placeholder="Seleccionar localidad"
-                                            :error-messages="cityErrors"
-                                            :items="filteredCities"
-                                            @blur="$v.formDirection.city.$touch()"
-                                            item-text="name"
-                                            item-value="id"
-                                            required
-                                            v-model="formDirection.city"
-                                        />
-                                    </v-col>
-
-                                </v-row> -->
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-1 fs-13 fw-500">{{ $t("NÚMERO DE TELÉFONO") }}</div>
-                                <v-row>
-                                    <v-col cols="12">
-                                        <vue-tel-input
-                                            v-model="formDirection.phone"
-                                            v-bind="mobileInputProps"
-                                            :onlyCountries="availableCountries"
-                                            @validate="phoneValidate"
-                                            @blur="$v.formDirection.phone.$touch()"
-                                            :class="{
-                                                'error--text':
-                                                    $v.formDirection.phone.$error || formDirection.showInvalidPhone
-                                            }"
-                                            class="place-holder"
-                                        >
-                                            <template slot="arrow-icon">
-                                                <span class="vti__dropdown-arrow">&nbsp;▼</span>
-                                            </template>
-                                        </vue-tel-input>
-                                        <div
-                                            class="v-text-field__details mt-2 pl-3"
-                                            v-if="$v.formDirection.phone.$error"
-                                        >
-                                            <div class="v-messages theme--light error--text" role="alert">
-                                                <div class="v-messages__wrapper">
-                                                    <div class="v-messages__message">
-                                                        {{ $t("*Este campo es obligatorio") }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="v-text-field__details mt-2 pl-3"
-                                            v-if="!$v.formDirection.phone.$error && formDirection.showInvalidPhone"
-                                        >
-                                            <div class="v-messages theme--light error--text" role="alert">
-                                                <div class="v-messages__wrapper">
-                                                    <div class="v-messages__message">
-                                                        {{ $t("phone_number_must_be_valid") }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </v-col>
-                                </v-row>
-
-                                <v-row>
-                                    <v-col cols="4" md="4">
-                                        <custom-button
-                                            block
-                                            class="mt-5"
-                                            text="< Cancelar"
-                                            type="button"
-                                            color="grey"
-                                            @click="cancelAddAddress"
-                                        />
-                                    </v-col>
-
-                                    <v-col cols="4" md="4" style="margin-left: 33%">
-                                        <custom-button
-                                            block
-                                            class="mt-5"
-                                            text="Guardar >"
-                                            type="submit"
-                                            color="orange"
-                                            @click="saveAddress"
-                                            :disabled="infoUpdateLoading"
-                                            :loading="infoUpdateLoading"
-                                        />
-                                    </v-col>
-                                </v-row>
-                            </div>
-                        </v-form>
-                    </v-card>
+            <v-col cols="12" md="6" class="pt-0" v-if="addDialogShow">
+                <div
+                    class="form"
+                    style="
+                        border: 1px solid #d5d6d9;
+                        box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1), 2px 2px 5px rgba(0, 0, 0, 0.2);
+                        border-radius: 10px;
+                        padding: 10px;
+                    "
+                >
+                    <AddressDialog
+                        :typeAddress="typeAddress"
+                        :show="addDialogShow"
+                        @close="addressDialogClosed"
+                        :old-address="addressSelectedForEdit"
+                    />
                 </div>
             </v-col>
         </v-row>
@@ -1931,7 +1712,13 @@
                                 y solicitudes de servicio.
                             </p>
                         </v-col>
-                        <CustomButton class="mb-4" color="white" text="Añadir Dirección" @click="addAddress" />
+                        <CustomButton
+                            v-if="!addDialogShow"
+                            class="mb-4"
+                            color="white"
+                            text="Añadir Dirección"
+                            @click="openAdress('shipping')"
+                        />
                     </v-row>
                 </v-card>
             </v-col>
@@ -1950,7 +1737,7 @@
                             <v-divider class="my-4" />
                         </v-col>
                         <v-col cols="12" md="12" class="pt-0">
-                            <span class="black--text body-2  "> CONTRASEÑA ACTUAL </span>
+                            <span class="black--text body-2">Contraseña actual </span>
                             <v-text-field
                                 v-model="formContrasena.oldPassword"
                                 placeholder="Ingresar contraseña"
@@ -1983,7 +1770,7 @@
                             /> -->
                         </v-col>
                         <v-col cols="12" md="12">
-                            <span class="black--text body-2  "> NUEVA CONTRASEÑA </span>
+                            <span class="black--text body-2">Nueva contraseña </span>
                             <v-text-field
                                 v-model="formContrasena.newPassword"
                                 placeholder="Ingresar contraseña"
@@ -2003,7 +1790,7 @@
                         </v-col>
 
                         <v-col cols="12" md="12">
-                            <span class="black--text body-2  "> REPETIR NUEVA CONTRASEÑA </span>
+                            <span class="black--text body-2">Repetir nueva contraseña </span>
                             <v-text-field
                                 v-model="formContrasena.reptyPassword"
                                 placeholder="Ingresar contraseña"
@@ -2655,7 +2442,6 @@ export default {
             this.mostrarDatos = false;
         },
         async updateInfoUser() {
-            
             this.$v.formUser.$touch();
 
             if (this.$v.formUser.$anyError) {
@@ -2672,14 +2458,13 @@ export default {
                 this.setUser(res.data.user);
                 this.dialog = false;
                 this.snack({ message: res.data.message });
-                
             } else {
-                this.snack({ message: 'Ingrese una contraseña válida', color: "red" });
+                this.snack({ message: "Ingrese una contraseña válida", color: "red" });
             }
 
             this.editarUser = false;
             this.infoUpdateLoading = false;
-            this.formUser.oldPassword = '';
+            this.formUser.oldPassword = "";
         },
         async saveAddress() {
             this.$v.formDirection.$touch();
@@ -3220,7 +3005,7 @@ export default {
 
 .profile {
     &-label {
-        text-transform: uppercase;
+        text-transform: initial;
         font-size: 15px;
         font-weight: 700;
         line-height: 25.2px;

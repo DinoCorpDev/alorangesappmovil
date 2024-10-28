@@ -62,7 +62,7 @@ class AddressController extends Controller
                 'default_billing' => $address->default_billing,
                 'default_service' => $address->default_service
             ],
-            'message' => translate('Address has been added successfully.')
+            'message' => translate('¡Dirección agregada satisfactoriamente!')
         ]);
     }
 

@@ -14,8 +14,15 @@
 // @import "main";
 
 // Theme overrides
+
+@font-face {
+    font-family: 'CaustenRegular';
+    src: url('/fonts/Causten-Regular.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
 .v-application {
-    font-family: "Overpass", sans-serif;
+    font-family: "CaustenRegular", sans-serif;
 
     &.theme--light {
         background: #fafcfc;
@@ -27,18 +34,9 @@
     }
 }
 
-// .v-menu__content {
-//     &.theme--dark {
-//         .v-list {
-//             background: #18191a;
-//         }
-//     }
-// }
-
 .rounded-section {
     border-radius: 10px;
 }
-
 .v-divider {
     border-color: #dfdfdf !important;
     // border-width: 2px 0 0;
@@ -58,14 +56,14 @@ a {
 
 h1 {
     font-size: var(--font-size-h1);
-    font-weight: 300;
+    font-weight: 400;
     line-height: calc(43px + (122 - 43) * var(--screen-size));
     letter-spacing: -1.5px;
 }
 
 h2 {
     font-size: var(--font-size-h2);
-    font-weight: 300;
+    font-weight: 400;
     line-height: calc(45px + (76 - 45) * var(--screen-size));
     letter-spacing: -0.5px;
 }
@@ -157,8 +155,3 @@ a {
 .overflow-uw::-webkit-scrollbar-track:active {
     background: #d4d4d4;
 }
-
-// html * {
-//     background: rgba(255, 0, 0, 0.1);
-//     box-shadow: 0 0 0 1px red;
-// }
