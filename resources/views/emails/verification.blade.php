@@ -87,6 +87,7 @@
             .td {
                 width: 100% !important;
                 min-width: 100% !important;
+                text-align: center;
             }
 
             .m-br-15 {
@@ -238,15 +239,16 @@
                                                         </tr>
                                                     </table>
                                                     <table width="100%" border="0" cellspacing="0"
-                                                        cellpadding="0">
+                                                        cellpadding="0"
+                                                        style="text-align: center;">
                                                         <tr>
                                                             {{-- <td class="separator"
                                                                 style="padding-top: 40px; border-bottom:4px solid #000000; font-size:0pt; line-height:0pt;">
                                                                 &nbsp;</td> --}}
                                                             @if ($array['subject'] == 'Email Verification')
-                                                                <img style="width: 100%; height: auto;" src="{{url('https://dinolabs.dev/wp-content/uploads/2024/10/BienvenidaAloranges.png')}}" />
+                                                                <img style="width: 60%; height: auto;" src="{{url('https://dinolabs.dev/wp-content/uploads/2024/10/BienvenidaAloranges-1.png')}}" />
                                                             @else
-                                                                <img style="width: 100%; height: auto;" src="{{url('https://www.aloranges.com/wp-content/uploads/2024/09/imgcambiarcontra.png')}}" />
+                                                                <img style="width: 60%; height: auto;" src="{{url('https://dinolabs.dev/wp-content/uploads/2024/10/VerificacionAloranges.png')}}" />
                                                             @endif
                                                         </tr>
                                                     </table>

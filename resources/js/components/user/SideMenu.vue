@@ -53,7 +53,7 @@
         <div>
             <v-divider class=" d-flex my-5" style="border-color: #e4e4e4 !important; border-width: 2px 0 0" />
             <button class="logout-button d-flex" style="" @click="logout">
-                {{ $t("Cerrar sesión") }}
+                {{ $t("CERRAR SESIÓN") }}
             </button>
         </div>
 

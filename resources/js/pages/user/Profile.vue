@@ -1,11 +1,11 @@
 <template>
     <div class="px-0 px-sm-5 py-3">
-        <address-dialog
+        <!-- <address-dialog
             :typeAddress="typeAddress"
             :show="addDialogShow"
             @close="addressDialogClosed"
             :old-address="addressSelectedForEdit"
-        />
+        /> -->
         <profile-dialog :show="profileDialogShow" @close="profileDialogClosed" :old-profile="profileSelectedForEdit" />
         <password-dialog
             :show="passwordDialogShow"
@@ -301,7 +301,7 @@
                 </v-card>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" v-if="currentUser.personType !== 'Natural'">
                 <h5 class="fw-600">Empresas</h5>
                 <v-divider class="my-4" />
                 <div v-for="(emp, i) in empresas" :key="i">

@@ -1,5 +1,27 @@
 <template>
     <v-container class="pt-0" fluid>
+        <v-row
+            class="banner-principal"
+            style="
+                background-image: url('/public/assets/img/BannerShop.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                margin: 10px 0;
+            "
+        >
+            <v-col cols="6" class="d-flex justify-center align-center">
+                <div>
+                    <!-- <h2 style="font-size: 85px; font-weight: 800; line-height: 30px">AZ</h2>
+                    <h4 style="font-size: 35px; font-weight: 800; line-height: 97.52px">FABRIFOLDER</h4>
+                    <h3 style="font-size: 37px; font-weight: 500; line-height: 40px">
+                        Tenemos lo que necesitas <br />de la <b>A</b> a la <b>Z</b>
+                    </h3> -->
+                </div>
+            </v-col>
+            <v-col cols="6" class="d-flex justify-center align-center">
+                <!-- <img src="/public/assets/img/Fabrifolder.png" style="height: 350px; width: auto" /> -->
+            </v-col>
+        </v-row>
         <v-container class="bg-surface-variant ma-0 px-0 pb-8 pt-0">
             <div align="start" class="d-flex" no-gutters>
                 <v-tooltip bottom>
@@ -33,27 +55,6 @@
                 </div>
             </div>
         </v-container>
-        <v-row
-            style="
-                background-image: url('/public/assets/img/Background.png');
-                background-size: cover;
-                background-repeat: no-repeat;
-                height: auto;
-            "
-        >
-            <v-col cols="6" class="d-flex justify-center align-center">
-                <div>
-                    <h2 style="font-size: 85px; font-weight: 800; line-height: 30px">AZ</h2>
-                    <h4 style="font-size: 35px; font-weight: 800; line-height: 97.52px">FABRIFOLDER</h4>
-                    <h3 style="font-size: 37px; font-weight: 500; line-height: 40px">
-                        Tenemos lo que necesitas <br />de la <b>A</b> a la <b>Z</b>
-                    </h3>
-                </div>
-            </v-col>
-            <v-col cols="6" class="d-flex justify-center align-center">
-                <img src="/public/assets/img/Fabrifolder.png" style="height: 350px; width: auto" />
-            </v-col>
-        </v-row>
         <v-row tag="section" class="mb-6">
             <v-col cols="12" v-for="(product, key) in productsSeeder" :key="product.id">
                 <v-row class="mb-3">
@@ -234,6 +235,13 @@ export default {
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
         background: #5a5a5a;
+    }
+}
+.banner-principal {
+    height: 400px;
+    @media (max-width: 600px) 
+    {
+        height: 130px;
     }
 }
 </style>
