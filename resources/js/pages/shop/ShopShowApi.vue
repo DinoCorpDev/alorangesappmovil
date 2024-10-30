@@ -59,23 +59,32 @@
             <v-col cols="12" v-for="(product, key) in productsSeeder" :key="product.id">
                 <v-row class="mb-3">
                     <v-col cols="12" sm="12" md="12">
-                        <CarouselSwiper
-                            class="carousel-products"
-                            :title="key + ' ' + product.length + ' Resultados'"
-                            :options="swiperOptions"
-                        >
-                            <!-- <swiper
-                            :slides-per-view="4"    
-                            :space-between="30"     
-                            :loop="true"            
-                            :pagination="{ clickable: true }" 
-                            :navigation="true"   
-                        > -->
-                            <swiper-slide v-for="item in product" :key="`carousel-products-slide-${item.id}`">
-                                <ProductBox boxStyle="two" :productDetails="item" />
-                            </swiper-slide>
-                            <!-- </swiper> -->
-                        </CarouselSwiper>
+                        <div v-if="isList">
+                            <v-row>
+                                <v-col v-for="item in product" :key="`list-product-${item.id}`" cols="12" sm="4" md="2">
+                                    <ProductBox boxStyle="two" :productDetails="item" />
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <div v-else>
+                            <CarouselSwiper
+                                class="carousel-products"
+                                :title="key + ' ' + product.length + ' Resultados'"
+                                :options="swiperOptions"
+                            >
+                                <!-- <swiper
+                                :slides-per-view="4"    
+                                :space-between="30"     
+                                :loop="true"            
+                                :pagination="{ clickable: true }" 
+                                :navigation="true"   
+                            > -->
+                                <swiper-slide v-for="item in product" :key="`carousel-products-slide-${item.id}`">
+                                    <ProductBox boxStyle="two" :productDetails="item" />
+                                </swiper-slide>
+                                <!-- </swiper> -->
+                            </CarouselSwiper>
+                        </div>
                     </v-col>
                 </v-row>
             </v-col>
@@ -114,7 +123,8 @@ export default {
                     spaceBetween: 20
                 }
             }
-        }
+        },
+        isList:false
     }),
     props: {
         category: { type: String, default: "" }
@@ -138,6 +148,7 @@ export default {
         async getProducts() {
             const res = await Mixin.methods.call_api("get", `product/search?category_slug=${this.category}`);
             if (res.data.success) {
+                this.isList = false;
                 // category_slug;
                 // keyword;
                 // sort_by;
@@ -204,6 +215,7 @@ export default {
             }
         },
         setActiveButton(id, value) {
+            this.isList = true;
             this.activeButton = id;
             this.filter(value);
         }
