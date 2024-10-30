@@ -825,7 +825,7 @@
                                         >
                                             <TypePayment
                                                 :active="pick === 2"
-                                                img="/public/assets/img/card.png"
+                                                img="/public/assets/img/Card.svg"
                                                 text="Credito/Debito"
                                             />
                                             <label class="custom-radio ml-3">
@@ -848,7 +848,7 @@
                                         >
                                             <TypePayment
                                                 :active="pick === 5"
-                                                img="/public/assets/img/contraentrega.png"
+                                                img="/public/assets/img/Contraentrega.svg"
                                                 text="Contraentrega"
                                             />
                                             <label class="custom-radio ml-3">
@@ -871,7 +871,7 @@
                                         >
                                             <TypePayment
                                                 :active="pick === 4"
-                                                img="/public/assets/img/transferencia.png"
+                                                img="/public/assets/img/Transferencia.svg"
                                                 text="Transferir"
                                             />
                                             <label class="custom-radio ml-3">

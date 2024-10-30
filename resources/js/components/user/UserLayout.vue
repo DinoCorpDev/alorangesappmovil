@@ -59,7 +59,7 @@ export default {
 
 <style lang="scss" scoped>
 .user-layout {
-    min-height: 85vh;
+    // min-height: 85vh;
 
     &-sidebar {
         background-color: #7c7c7c;
