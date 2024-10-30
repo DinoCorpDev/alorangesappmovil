@@ -26,6 +26,7 @@ class ProductCollection extends ResourceCollection
                     'is_variant' => (int) $data->is_variant,
                     'variations' => $data->variations,
                     'is_digital' => $data->digital == 1 ? true : false,
+                    'tax' => $data->tax,
                 ];
             })
         ];

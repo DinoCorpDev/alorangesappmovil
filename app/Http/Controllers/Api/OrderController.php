@@ -411,6 +411,7 @@ class OrderController extends Controller
                 'coupon_discount' => $shop_coupon_discount,
                 'delivery_type' => $request->delivery_type,
                 'payment_type' => $request->payment_type,
+                'metodo_pago_contraentrega' => $request->metodo_pago_contraentrega,
             ]);
 
             $package_number++;
