@@ -44,8 +44,10 @@
                         {{ format_price(productDetails.base_discounted_price) }}
                     </h5>
                 </div>
-                <div class="d-flex justify-space-between align-center mb-3">
-                    <span class="tx-caption">* Iva Incluido</span>
+                <div class="d-flex justify-start align-center mb-3">
+                    <span class="tx-caption">* Iva Incluido ({{ productDetails.tax ? parseInt(productDetails.tax) : 0 }} %)</span>
+                </div>
+                <div class="d-flex justify-start align-center mb-3 mt-3">
                     <vue-numeric-input
                         v-model="cartQuantity"
                         :min="1"
@@ -55,7 +57,7 @@
                         size="132px"
                     />
                 </div>
-                <div class="add-to-cart-actions d-sm-flex justify-center align-center">
+                <div class="add-to-cart-actions d-sm-flex justify-start align-center">
                     <Custom-Button
                         v-if="Number.isInteger(cartQuantity)"
                         @click.prevent="addCart()"
@@ -66,31 +68,31 @@
                 </div>
             </div>
 
-            <div class="add-to-cart-list-box pa-4 mb-3">
+            <!-- <div class="add-to-cart-list-box pa-4 mb-3">
                 <h5>Detalle</h5>
                 <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     Ut enim ad minim veniam.
                 </p>
-            </div>
+            </div> -->
 
             <ul class="add-to-cart-list-box pa-4 mb-3">
-                <li class="add-to-cart-list-box-item mb-2">
+                <!-- <li class="add-to-cart-list-box-item mb-2">
                     <h5 class="subt2 text-uppercase">Disponibilidad</h5>
                     <span class="subt2">{{ productDetails?.stock ?? "000" }} en stock</span>
                 </li>
                 <li class="add-to-cart-list-box-item mb-2">
                     <h5 class="subt2 text-uppercase">Garantía</h5>
                     <span class="subt2">{{ productDetails?.warranty_text ?? "--" }}</span>
-                </li>
+                </li> -->
                 <li class="add-to-cart-list-box-item mb-2">
                     <h5 class="subt2 text-uppercase">Pago</h5>
                     <img src="/public/assets/img/product/icons-payments.png" alt="" />
                 </li>
-                <li class="add-to-cart-list-box-item">
+                <!-- <li class="add-to-cart-list-box-item">
                     <h5 class="subt2 text-uppercase">Envío</h5>
                     <span class="subt2">{{ productDetails?.shipping ?? "--" }}</span>
-                </li>
+                </li> -->
             </ul>
 
             <!-- <div v-if="products.length > 0">

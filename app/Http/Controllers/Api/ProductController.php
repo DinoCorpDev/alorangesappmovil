@@ -470,12 +470,12 @@ class ProductController extends Controller
                             $price = $finalPrice;
                         }
                     }
-                    $percentage = $product['tax'] && $product['tax'][0]['percentage'];
+                    $percentage = $product['tax'] ? $product['tax'][0]['percentage'] : 0.00;
                     
-                    if (is_array($percentage)) {
-                        $percentage = 0.00;
-                    }
-                    
+                    // if (is_array($percentage)) {
+                    //     $percentage = 0.00;
+                    // }
+                    $productStorage->tax = $percentage;
                     $productStorage->lowest_price = $price;
                     $productStorage->highest_price = $price;
                     $productStorage->description = $product['description'];
