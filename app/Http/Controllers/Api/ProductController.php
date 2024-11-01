@@ -467,10 +467,16 @@ class ProductController extends Controller
                     $price = 0;
                     foreach ($product['price'] as $key => $listPrices) {
                         if ($listPrices['name'] === 'PUNTO DE VENTA') {
-                            $entero = (int) $listPrices['price'];
-                            $cadena = strval($entero);
-                            $finalPrice = $cadena;
-                            $price = $finalPrice;
+                            $finalPrice = (int)$listPrices['price'];
+                            if ($percentage > 0) {
+                                $percentageToPrice = (int)$percentage / 100 + 1;
+                            }else{
+                                $percentageToPrice = 1;
+                            }
+                            
+                            $total = $finalPrice * $percentageToPrice;
+                            $totalSinCentavos = floor($total);
+                            $price = $totalSinCentavos;
                         }
                     }
                     $productStorage->tax = $percentage;
