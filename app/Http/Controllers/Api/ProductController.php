@@ -469,7 +469,7 @@ class ProductController extends Controller
                         if ($listPrices['name'] === 'PUNTO DE VENTA') {
                             $entero = (int) $listPrices['price'];
                             $cadena = strval($entero);
-                            $finalPrice = $cadena."00";
+                            $finalPrice = $cadena;
                             $price = $finalPrice;
                         }
                     }
