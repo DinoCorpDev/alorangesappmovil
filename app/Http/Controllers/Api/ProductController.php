@@ -521,7 +521,7 @@ class ProductController extends Controller
                     $categoryId = $product['id'];
                 }
             }
-            $url = config('app.url').'admin/product';
+            $url = config('app.url').'/admin/product';
             return redirect($url)->with('Actualizado', 'Los productos han sido actualizados correctamente');
         } catch (Exception $e) {
             $error_code = $e->errorInfo[1];
