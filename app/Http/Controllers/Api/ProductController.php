@@ -450,6 +450,9 @@ class ProductController extends Controller
         $counter = 0;
         $categoryId = 0;
 
+        Product::truncate();
+        ProductCategory::truncate();
+
         try {
             $categories = Category::all();
             foreach($categories as $category){
@@ -518,7 +521,8 @@ class ProductController extends Controller
                     $categoryId = $product['id'];
                 }
             }
-            return $categoryId;
+            $url = config('app.url').'admin/product';
+            return redirect($url)->with('Actualizado', 'Los productos han sido actualizados correctamente');
         } catch (Exception $e) {
             $error_code = $e->errorInfo[1];
             $categoryId = $e->errorInfo[1];

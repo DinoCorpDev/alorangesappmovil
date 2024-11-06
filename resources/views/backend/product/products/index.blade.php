@@ -3,10 +3,10 @@
 @section('content')
     <div class="aiz-titlebar text-left mt-2 mb-3">
         <div class="row align-items-center">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <h1 class="h3">{{ translate('All products') }}</h1>
             </div>
-            <div class="col-md-3 offset-md-2 text-md-right">
+            <div class="col-md-2 offset-md-2 text-md-right">
                 @can('add_products')
                     <label
                         class="btn btn-secondary w-100 mb-0"
@@ -43,7 +43,7 @@
                     </form>
                 @endcan
             </div>
-            <div class="col-md-3 text-md-right">
+            <div class="col-md-3">
                 @can('add_products')
                     <a
                         href="{{ route('product.create') }}"
@@ -52,6 +52,15 @@
                         <span>{{ translate('Add New Product') }}</span>
                     </a>
                 @endcan
+            </div>
+
+            <div class="col-md-2 text-md-right">
+                <a
+                    href="{{ config('app.url') }}api/v1/product/update-alegra"
+                    class="btn btn-primary w-100"
+                >
+                    <span>{{ translate('Update Product') }}</span>
+                </a>
             </div>
         </div>
     </div>
