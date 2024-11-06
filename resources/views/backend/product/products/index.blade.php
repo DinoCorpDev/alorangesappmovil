@@ -56,7 +56,7 @@
 
             <div class="col-md-2 text-md-right">
                 <a
-                    href="{{ config('app.url') }}api/v1/product/update-alegra"
+                    href="{{ config('app.url') }}/api/v1/product/update-alegra"
                     class="btn btn-primary w-100"
                 >
                     <span>{{ translate('Update Product') }}</span>
