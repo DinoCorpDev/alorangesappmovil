@@ -229,14 +229,14 @@ class AddressController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => State::where('country_id', $country_id)->where('status', 1)->get()
+            'data' => State::where('country_id', $country_id)->where('status', 1)->orderBy('name', 'asc')->get()
         ]);
     }
 
     public function get_localidad_by_state_id($state_id)
     {
         $array = array();
-        $localidad = Localidad::where('state_id', $state_id)->get();
+        $localidad = Localidad::where('state_id', $state_id)->orderBy('localidad', 'asc')->get();
 
         foreach($localidad as $l){
             $arr = [ "text" => $l->localidad, "value" => $l->id ];
@@ -254,7 +254,7 @@ class AddressController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => City::where('state_id', $state_id)->where('status', 1)->get()
+            'data' => City::where('state_id', $state_id)->where('status', 1)->orderBy('name', 'asc')->get()
         ]);
     }
 

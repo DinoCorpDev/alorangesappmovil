@@ -29,7 +29,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'person_type',
         'first_name',
+        'second_name',
         'first_lastname',
+        'second_lastname',
         'document_type',
         'document_number',
         'company_razon',
@@ -51,6 +53,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'avatar',
         'provider_id',
         'email_verified_at',
+        'emailPurchasingPerson',
+        'cellphonePurchasingPerson',
+        'phonePurchasingPerson',
         // 'verification_code',
     ];
 

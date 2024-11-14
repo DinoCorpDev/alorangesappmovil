@@ -27,7 +27,7 @@ class CartCollection extends ResourceCollection
                         'name' => optional($data->$objectType->brand)->getTranslation('name'),
                         'slug' => optional($data->$objectType->brand)->slug,
                     ],
-                    'thumbnail' => $data->variation ? api_asset($data->variation->img) : api_asset($data->$objectType->thumbnail_img),
+                    'thumbnail_image' => $data->variation ? api_asset($data->variation->img) : api_asset($data->$objectType->thumbnail_img),
                     'stock' => $data->variation ? (int) $data->variation->stock : (int) $data->$objectType->stock,
                     'min_qty' => (int) $data->$objectType->min_qty,
                     'max_qty' => (int) $data->$objectType->max_qty,
@@ -46,6 +46,7 @@ class CartCollection extends ResourceCollection
                     $newData['lowest_price'] = (float) variation_price($data->$objectType, $data->variation);
                     $newData['discounted_price'] = (float) variation_discounted_price($data->$objectType, $data->variation);
                     $newData['tax'] = (float) product_variation_tax($data->$objectType, $data->variation);
+                    $newData['thumbnail_image'] = $data->product->thumbnail_img;
                 } elseif ($data->collection_id) {
                     $newData['collection_id'] = (int) $data->collection_id;
                     $newData['regular_price'] = (float) product_base_price($data->$objectType, false);

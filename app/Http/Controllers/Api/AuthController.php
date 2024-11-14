@@ -90,7 +90,9 @@ class AuthController extends Controller
             'password' => Hash::make($input->password),
             'person_type' => $input->personType,
             'first_name' => $input->firstName,
+            'second_name' => $input->secondName,
             'first_lastname' => $input->firstLastname,
+            'second_lastname' => $input->secondLastname,
             'document_type' => $input->documentType,
             'document_number' => $input->documentNumber,
             'company_razon' => $input->companyRazon,
@@ -106,7 +108,10 @@ class AuthController extends Controller
             'phone' => $input->phone,
             'policies_and_cookies_consent' => $input->policiesAndCookiesConsent,
             'offers_consent' => $input->offersConsent,
-            'verification_code' => rand(100000, 999999)
+            'verification_code' => rand(100000, 999999),
+            'emailPurchasingPerson' => $input->emailPurchasingPerson,
+            'cellphonePurchasingPerson' => $input->cellphonePurchasingPerson,
+            'phonePurchasingPerson' => $input->phonePurchasingPerson,
         ]);
 
         $user->save();

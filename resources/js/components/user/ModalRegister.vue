@@ -182,6 +182,16 @@
                                     />
                                 </v-col>
                                 <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
+                                    <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar segundo nombre"
+                                        v-model="form.secondName"
+                                    />
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Primer Apellido </span>
                                     <CustomInput
                                         class="place-holder"
@@ -192,7 +202,54 @@
                                         required
                                     />
                                 </v-col>
+                                <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase"> Segundo Apellido(Opcional) </span>
+                                    <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar segundo apellido"
+                                        v-model="form.secondLastname"
+                                    />
+                                </v-col>
                             </v-row>
+                            
+                            <v-row v-if="form.personType == 'Juridical'">
+                                <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase"> Correo </span>
+                                    <CustomInput
+                                        class="place-holder"
+                                        type="email"
+                                        placeholder="Ingresar Correo"
+                                        v-model="form.emailPurchasingPerson"
+                                        :error-messages="emailPurchasingPersonErrors"
+                                        @blur="$v.form.emailPurchasingPerson.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                                <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase"> Celular </span>
+                                    <CustomInput
+                                        type="number"
+                                        class="place-holder"
+                                        placeholder="Ingresar celular"
+                                        v-model="form.cellphonePurchasingPerson"
+                                        :error-messages="cellphonePurchasingPersonErrors"
+                                        @blur="$v.form.cellphonePurchasingPerson.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                                <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase"> Telefono fijo </span>
+                                    <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar telefono fijo"
+                                        v-model="form.phonePurchasingPerson"
+                                        :error-messages="phonePurchasingPersonErrors"
+                                        @blur="$v.form.phonePurchasingPerson.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                            </v-row>
+
                             <v-row>
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase"> Documento</span>
@@ -345,7 +402,7 @@
                                 </v-row>
 
                                 <v-row>
-                                    <v-col cols="12">
+                                    <!-- <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">
                                             {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }}
                                         </span>
@@ -362,9 +419,9 @@
                                                 required
                                             />
                                         </div>
-                                    </v-col>
+                                    </v-col> -->
 
-                                    <v-col cols="12">
+                                    <!-- <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">REGIMEN FISCAL</span>
 
                                         <div class="input-group">
@@ -379,7 +436,7 @@
                                             required
                                         />
                                         </div>
-                                    </v-col>
+                                    </v-col> -->
                                 </v-row>
 
                                 <v-row>
@@ -577,9 +634,6 @@
                                         class="place-holder"
                                         placeholder="Seleccione codigo postal"
                                         v-model="mainAddress.postal_code"
-                                        :error-messages="postalCodeErros"
-                                        @blur="$v.mainAddress.postal_code.$touch()"
-                                        required
                                     />
                                 </v-col>
                             </v-row>
@@ -751,7 +805,7 @@
                     text-class="ml-6"
                     @click="register"
                     :disabled="loadingregister"
-                    :loadingregister="loadingregister"
+                    :loading="loadingregister"
                 />
             </v-card-actions>
         </v-card>
@@ -812,31 +866,17 @@ export default {
             filteredLocalidad: [],
             documentTypes: [
                 { text: "(C.C) Cedula de ciudadanía", value: "C.C" },
-                { text: "(R.C) Registro Civil", value: "R.C" },
                 { text: "(C.E) Cédula de Extranjería", value: "C.E" },
-                { text: "(NIP) Numero de Identificación Personal", value: "N.I.P" },
-                { text: "(NUIP) Numero Ùnico de Identificación Personal", value: "N.U.I.P" },
-                { text: "(NES) Numero de Secretaría", value: "N.E.S" }
+                { text: "(PAS) Pasaporte", value: "PAS" },
+                { text: "(NIT) NIT", value: "NIT" },
             ],
             responsabilidadTypes:[
-                { value: "01", text: "01-IVA" },
-                { value: "02", text: "02-IC" },
-                { value: "03", text: "03-ICA" },
-                { value: "04", text: "04-INC" },
-                { value: "05", text: "05-ReteIVA" },
-                { value: "06", text: "06-ReteFuente" },
-                { value: "07", text: "07-ReteICA" },
-                { value: "20", text: "20-FtoHorticultura" },
-                { value: "21", text: "21-Timbre" },
-                { value: "22", text: "22-Bolsas" },
-                { value: "23", text: "23-INCarbono" },
-                { value: "24", text: "24-INCombustibles" },
-                { value: "25", text: "25-Sobretasa Combustibles" },
-                { value: "26", text: "26-Sordicom" },
-                { value: "ZY", text: "ZY-No causa (cuando se selecciona esta opción no puede ir otras de las demás)" },
-                { value: "ZZ", text: "ZZ-Nombre de la figura tributaria" },
-                { value: "48", text: "48-Responsable del Impuesto sobre las ventas - IVA" },
-                { value: "49", text: "49-No responsable de IVA" },
+                { value: "01", text: "Responsable de IVA" },
+                { value: "02", text: "No responsable de IVA" },
+                { value: "03", text: "Impuesto nacional al consumo - INC" },
+                { value: "04", text: "No responsable de INC" },
+                { value: "05", text: "Responsable de IVA e INC" },
+                { value: "06", text: "Regimen especial" }
             ],
             regimenTypes:[
                 { value:"O-13", text: "O-13" },
@@ -861,6 +901,8 @@ export default {
                 personType: "Natural",
                 firstName: "",
                 firstLastname: "",
+                secondName:"",
+                secondLastname: "",
                 documentType: "",
                 documentNumber: "",
                 companyRazon: "",
@@ -877,6 +919,9 @@ export default {
                 offersConsent: false,
                 invalidPhone: true,
                 showInvalidPhone: false,
+                emailPurchasingPerson:"",
+                cellphonePurchasingPerson:"",
+                phonePurchasingPerson:"",
                 // filedocumento: [],
                 // filecamara: [],
                 filerut: []
@@ -914,11 +959,14 @@ export default {
             companyRazon: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            companyActividad: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            //companyActividad: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyPhone: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            regimenFiscal: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            // regimenFiscal: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             responsabilidadTribut: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyEmail: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            emailPurchasingPerson: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            cellphonePurchasingPerson: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            phonePurchasingPerson: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             phone: { required }
         },
         mainAddress: {
@@ -929,7 +977,7 @@ export default {
             state: { required },
             localidad: { required },
             city: { required },
-            postal_code: { required }
+            // postal_code: { required }
         }
     },
     computed: {
@@ -994,6 +1042,28 @@ export default {
             !this.$v.form.documentNumber.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
+
+        cellphonePurchasingPersonErrors() {
+            const errors = [];
+            if (!this.$v.form.cellphonePurchasingPerson.$dirty) return errors;
+            !this.$v.form.cellphonePurchasingPerson.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            return errors;
+        },
+
+        emailPurchasingPersonErrors() {
+            const errors = [];
+            if (!this.$v.form.emailPurchasingPerson.$dirty) return errors;
+            !this.$v.form.emailPurchasingPerson.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            return errors;
+        },
+
+        phonePurchasingPersonErrors() {
+            const errors = [];
+            if (!this.$v.form.phonePurchasingPerson.$dirty) return errors;
+            !this.$v.form.phonePurchasingPerson.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            return errors;
+        },
+
         companyRazonErrors() {
             const errors = [];
             if (!this.$v.form.companyRazon.$dirty) return errors;
@@ -1006,12 +1076,12 @@ export default {
             !this.$v.form.companyType.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
-        regimenFiscalErrors() {
-            const errors = [];
-            if (!this.$v.form.regimenFiscal.$dirty) return errors;
-            !this.$v.form.regimenFiscal.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
-            return errors;
-        },
+        // regimenFiscalErrors() {
+        //     const errors = [];
+        //     if (!this.$v.form.regimenFiscal.$dirty) return errors;
+        //     !this.$v.form.regimenFiscal.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+        //     return errors;
+        // },
         responsabilidadTributErrors() {
             const errors = [];
             if (!this.$v.form.responsabilidadTribut.$dirty) return errors;
@@ -1030,12 +1100,12 @@ export default {
             !this.$v.form.companyDocumentNumber.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
-        actividadErrors() {
-            const errors = [];
-            if (!this.$v.form.companyActividad.$dirty) return errors;
-            !this.$v.form.companyActividad.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
-            return errors;
-        },
+        // actividadErrors() {
+        //     const errors = [];
+        //     if (!this.$v.form.companyActividad.$dirty) return errors;
+        //     !this.$v.form.companyActividad.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+        //     return errors;
+        // },
         addressErrors() {
             const errors = [];
             if (!this.$v.mainAddress.address.$dirty) return errors;
@@ -1078,12 +1148,12 @@ export default {
             !this.$v.mainAddress.localidad.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
-        postalCodeErros() {
-            const errors = [];
-            if (!this.$v.mainAddress.postal_code.$dirty) return errors;
-            !this.$v.mainAddress.postal_code.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
-            return errors;
-        },
+        // postalCodeErros() {
+        //     const errors = [];
+        //     if (!this.$v.mainAddress.postal_code.$dirty) return errors;
+        //     !this.$v.mainAddress.postal_code.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+        //     return errors;
+        // },
         // fileDocumentoErrors() {
         //     const errors = [];
         //     if (!this.$v.form.filedocumento.$dirty) return errors;
@@ -1225,6 +1295,9 @@ export default {
             }*/
 
             if (this.$v.form.$anyError || this.$v.mainAddress.$anyError) {
+                console.log(this.$v.form);
+                console.log(this.$v.mainAddress.$anyError);
+                console.log('pasa por aqui');
                 return;
             }
 
@@ -1248,8 +1321,8 @@ export default {
             this.loadingregister = true;
             let formData = new FormData();
 
-            // formData.append("filecamara", this.form.filecamara);
-            // formData.append("filedocumento", this.form.filedocumento);
+            //formData.append("filecamara", this.form.filecamara);
+            //formData.append("filedocumento", this.form.filedocumento);
             formData.append("filerut", this.form.filerut);
             formData.append("form", JSON.stringify(this.form));
 
@@ -1388,9 +1461,9 @@ export default {
                         this.form.companyType == "" ||
                         this.form.companyDocumentNumber == "" ||
                         this.form.companyEmail == "" ||
-                        this.form.companyActividad == "" ||
+                        // this.form.companyActividad == "" ||
                         this.form.companyPhone == "" ||
-                        this.form.regimenFiscal == "" ||
+                        // this.form.regimenFiscal == "" ||
                         this.form.responsabilidadTribut == "")
                 ) {
                     this.$v.form.$touch();
@@ -1435,6 +1508,9 @@ export default {
             this.form.companyActividad = "";
             this.form.companyPhone = "";
             this.form.companyEmail = "";
+            this.form.emailPurchasingPerson = "";
+            this.form.cellphonePurchasingPerson = "";
+            this.form.phonePurchasingPerson = "";
             // this.form.filecamara = "";
             // this.form.filedocumento = "";
             this.form.filerut = "";

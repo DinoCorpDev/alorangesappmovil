@@ -450,6 +450,9 @@ class ProductController extends Controller
         $counter = 0;
         $categoryId = 0;
 
+        Product::truncate();
+        ProductCategory::truncate();
+
         try {
             $categories = Category::all();
             foreach($categories as $category){
@@ -463,18 +466,22 @@ class ProductController extends Controller
                     $productStorage->name = $product['name'];
                     $productStorage->reference = $product['reference'];
                     $productStorage->description = $product['description'];
+                    $percentage = $product['tax'] ? $product['tax'][0]['percentage'] : 0;
                     $price = 0;
                     foreach ($product['price'] as $key => $listPrices) {
                         if ($listPrices['name'] === 'PUNTO DE VENTA') {
-                            $finalPrice = substr($listPrices['price'], 0, -2) . "00";
-                            $price = $finalPrice;
+                            $finalPrice = (int)$listPrices['price'];
+                            if ($percentage > 0) {
+                                $percentageToPrice = (int)$percentage / 100 + 1;
+                            }else{
+                                $percentageToPrice = 1;
+                            }
+                            
+                            $total = $finalPrice * $percentageToPrice;
+                            $totalSinCentavos = floor($total);
+                            $price = $totalSinCentavos;
                         }
                     }
-                    $percentage = $product['tax'] ? $product['tax'][0]['percentage'] : 0.00;
-                    
-                    // if (is_array($percentage)) {
-                    //     $percentage = 0.00;
-                    // }
                     $productStorage->tax = $percentage;
                     $productStorage->lowest_price = $price;
                     $productStorage->highest_price = $price;
@@ -514,7 +521,8 @@ class ProductController extends Controller
                     $categoryId = $product['id'];
                 }
             }
-            return $categoryId;
+            $url = config('app.url').'/admin/product';
+            return redirect($url)->with('Actualizado', 'Los productos han sido actualizados correctamente');
         } catch (Exception $e) {
             $error_code = $e->errorInfo[1];
             $categoryId = $e->errorInfo[1];
