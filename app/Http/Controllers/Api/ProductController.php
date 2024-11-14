@@ -450,6 +450,9 @@ class ProductController extends Controller
         $counter = 0;
         $categoryId = 0;
 
+        Product::truncate();
+        ProductCategory::truncate();
+
         try {
             $categories = Category::all();
             foreach($categories as $category){
@@ -467,15 +470,16 @@ class ProductController extends Controller
                     $price = 0;
                     foreach ($product['price'] as $key => $listPrices) {
                         if ($listPrices['name'] === 'PUNTO DE VENTA') {
-                            $finalPrice = $listPrices['price'];
+                            $finalPrice = (int)$listPrices['price'];
                             if ($percentage > 0) {
                                 $percentageToPrice = (int)$percentage / 100 + 1;
                             }else{
                                 $percentageToPrice = 1;
                             }
                             
-                            $price = $finalPrice * $percentageToPrice;
-                            $price = substr($price, 0, -2) . "00";
+                            $total = $finalPrice * $percentageToPrice;
+                            $totalSinCentavos = floor($total);
+                            $price = $totalSinCentavos;
                         }
                     }
                     $productStorage->tax = $percentage;
@@ -517,7 +521,8 @@ class ProductController extends Controller
                     $categoryId = $product['id'];
                 }
             }
-            return $categoryId;
+            $url = config('app.url').'/admin/product';
+            return redirect($url)->with('Actualizado', 'Los productos han sido actualizados correctamente');
         } catch (Exception $e) {
             $error_code = $e->errorInfo[1];
             $categoryId = $e->errorInfo[1];

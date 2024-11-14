@@ -168,7 +168,8 @@
                         </v-stepper-content>
 
                         <v-stepper-content step="2">
-                            <v-row>
+                            <template v-if="form.personType == 'Juridical'"><label><b>DATOS PERSONA DE COMPRAS</b></label></template>
+                            <v-row class="pt-3">
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase">Primer Nombre</span>
                                     <CustomInput
@@ -241,6 +242,9 @@
                                 </v-col>
                             </v-row>
                             <template v-if="form.personType == 'Juridical'">
+                                <div class="mb-3 mt-5">
+                                    <label><b>DATOS DE LA EMPRESA</b></label>
+                                </div>
                                 <v-row>
                                     <v-col cols="12">
                                         <span class="black--text body-2 text-uppercase">

@@ -384,11 +384,7 @@ export default {
     &.white {
         color: #f58634;
         background-color: #fafcfb!important;
-        @media (min-width: 600px) {
-            border: 1px solid #f58634 !important;    
-        }
-        
-
+        border: 1px solid #f58634 !important;    
         &:hover {
             color: #fcd6ba;
             @media (min-width: 600px) {
@@ -429,26 +425,4 @@ export default {
         }
     }
 }
-
-// .theme--light {
-//     &.v-btn {
-//         color: #000000;
-
-//         &.v-btn--has-bg {
-//             background-color: #dfdfdf;
-
-//             &:before {
-//                 background-color: #ffffff;
-//             }
-
-//             &.v-btn--disabled {
-//                 color: #000000 !important;
-
-//                 &.v-btn--has-bg {
-//                     background-color: #fafcfc !important;
-//                 }
-//             }
-//         }
-//     }
-// }
 </style>
