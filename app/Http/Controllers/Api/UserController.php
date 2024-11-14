@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\UserCollection;
 use App\Models\Order;
+use App\Models\Cart;
+use App\Models\Wishlist;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\Wallet;
@@ -198,5 +200,18 @@ class UserController extends Controller
         ]);
     }
 
+    public function deleteAccount($user_id){
+        $user = User::where('id', $user_id)->delete();
+        $userCart = Cart::where('user_id', $user_id)->delete();
+        $userOrder = Order::where('user_id', $user_id)->delete();
+        $userWishlist = Wishlist::where('user_id', $user_id)->delete();
+
+        auth()->logout();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Cuenta eliminada',
+        ]);
+    }
 
 }

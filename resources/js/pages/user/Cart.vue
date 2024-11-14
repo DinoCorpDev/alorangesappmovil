@@ -1463,7 +1463,7 @@
                     </v-row>
                     <v-row>
                         <v-col cols="12" md="6">
-                            <div class="form">
+                            <!-- <div class="form">
                                 <h6 class="black--text bold">Seguimiento de envió</h6>
                                 <v-divider class="my-3" />
                                 <v-timeline dense>
@@ -1527,7 +1527,7 @@
                                 <a href="#" class="text-decoration-underline mt-3" style="color: #1fa0e9">
                                     Conocer la logística de envio
                                 </a>
-                            </div>
+                            </div> -->
                         </v-col>
                     </v-row>
                     <div class="my-5">

@@ -24,9 +24,9 @@
                 {{ productDetails.brandName || "--" }}
             </p>
             <template v-if="productDetails.base_price > productDetails.base_discounted_price">
-                <del class="product-box-price discounted">{{ format_price(productDetails.base_price) }}</del>
+                <del class="product-box-price discounted">{{ formatearMoneda(productDetails.base_price) }}</del>
             </template>
-            <span class="product-box-price">{{ format_price(productDetails.base_discounted_price) }}</span>
+            <span class="product-box-price">{{ formatearMoneda(productDetails.base_discounted_price) }}</span>
             <template v-if="boxStyle == 'two'">
                 <!-- <v-divider class="my-4" /> -->
                 <p class="product-box-description" v-if="productDetails.description">
@@ -136,6 +136,14 @@ export default {
                         this.isAddingToCart = false;
                     });
             }
+        },
+        formatearMoneda(valor) {
+            return valor.toLocaleString('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
         }
     }
 };

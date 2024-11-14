@@ -57,6 +57,13 @@
             </button>
         </div>
 
+        <div>
+            <v-divider class=" d-flex my-5" style="border-color: #e4e4e4 !important; border-width: 2px 0 0" />
+            <button class="logout-button d-flex" style="" @click="deleteAccount">
+                {{ $t("ELIMINAR CUENTA") }}
+            </button>
+        </div>
+
         <v-dialog v-model="dialogAvatar" activator="parent" persistent width="1000px">
             <v-card>
                 <v-card-title>
@@ -175,6 +182,16 @@ export default {
             this.$router.push({ name: "Home2" }).catch(() => {
                 console.log("Error while redirecting to home");
             });
+        },
+
+        async deleteAccount() {
+            if (window.confirm("¿Estás seguro de que deseas continuar?")) {
+                const res = await this.call_api("post", "user/delete-account/"+this.currentUser.id);
+                this["auth/logout"]();
+                this.$router.push({ name: "Home2" }).catch(() => {
+                    console.log("Error while redirecting to home");
+                });
+            }
         },
         async previewThumbnail(event) {
             this.form.avatar = event.target.files[0];

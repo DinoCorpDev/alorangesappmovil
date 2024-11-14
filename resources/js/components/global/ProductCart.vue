@@ -13,36 +13,36 @@
         <div class="product-box-cart-body-price">
             <template v-if="productCartType == 'checkout'">
                 <!-- <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
-                    {{ format_price(productDetails.discounted_price * productDetails.qty) }}
+                    {{ formatearMoneda(productDetails.discounted_price * productDetails.qty) }}
                 </span>
                 <del v-if="inDiscount" class="product-box-cart-price">
-                    {{ format_price(productDetails.regular_price * productDetails.qty) }}
+                    {{ formatearMoneda(productDetails.regular_price * productDetails.qty) }}
                 </del> -->
 
-                {{ format_price(productDetails.regular_price ? productDetails.regular_price * productDetails.qty : productDetails.base_price * cartQuantity) }}
+                {{ formatearMoneda(productDetails.regular_price ? productDetails.regular_price * productDetails.qty : productDetails.base_price * cartQuantity) }}
             </template>
             <template v-if="productCartType == 'bill'">
 
-                {{ format_price(productDetails.regular_price ? productDetails.regular_price : productDetails.base_price) }}
+                {{ formatearMoneda(productDetails.regular_price ? productDetails.regular_price : productDetails.base_price) }}
             </template>
 
             <template v-if="productCartType == 'wishlist'">
                 
                 <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
-                    {{ format_price(productDetails.base_discounted_price) }}
+                    {{ formatearMoneda(productDetails.base_discounted_price) }}
                 </span>
                 <del
                     v-if="productDetails.base_price > productDetails.base_discounted_price"
                     class="product-box-cart-price"
                 >
-                    {{ format_price(productDetails.base_price) }}
+                    {{ formatearMoneda(productDetails.base_price) }}
                 </del>
             </template>
 
             <template v-if="productCartType == 'purchase-history'">
                 
                 <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
-                    {{ format_price(productDetails.price) }}
+                    {{ formatearMoneda(productDetails.price) }}
                 </span>
             </template>
         </div>
@@ -290,6 +290,14 @@ export default {
                     });
                 })
                 
+        },
+        formatearMoneda(valor) {
+            return valor.toLocaleString('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
         }
     }
 };
