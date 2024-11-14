@@ -3,7 +3,7 @@
         <div class="div_total">
             <div class="cuerpo" style="display: flex; align-items: end">
                 <span class="text-uppercase bold title pr-1 pr-sm-5">SUBTOTAL</span>
-                <span class="text-uppercase price"> {{ format_price(getCartPrice) }} COP</span>
+                <span class="text-uppercase price"> {{ formatearMoneda(getCartPrice) }} COP</span>
             </div>
         </div>
     </div>
@@ -20,6 +20,16 @@ export default {
     },
     computed: {
         ...mapGetters("cart", ["getCartPrice", "getCartCount"])
+    },
+    methods:{
+        formatearMoneda(valor) {
+            return valor.toLocaleString('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+        }
     }
 };
 </script>

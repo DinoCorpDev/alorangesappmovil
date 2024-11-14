@@ -2555,6 +2555,7 @@ export default {
         editProfile() {
             this.editarUser = true;
             this.formUser.firstName = this.currentUser.firstName;
+            this.formUser.secondName = this.currentUser.secondName;
             this.formUser.firstLastname = this.currentUser.firstLastname;
             this.formUser.secondLastname = this.currentUser.secondLastname;
             this.formUser.documentType = this.currentUser.documentType;

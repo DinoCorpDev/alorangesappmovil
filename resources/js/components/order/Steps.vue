@@ -8,7 +8,7 @@
     >
         <v-row style="background-color: #fafcfc;">
             <v-col cols="12" sm="6">
-                <div class="form">
+                <!-- <div class="form">
                     <h6 class="black--text bold">Seguimiento de envió</h6>
                     <v-divider class="my-3" />
                     <v-timeline dense>
@@ -78,7 +78,7 @@
                     <a href="#" class="black--text text-decoration-underline font-weight-bold">
                         Conocer la logistica de envió
                     </a>
-                </div>
+                </div> -->
             </v-col>
             <v-col cols="12" sm="6">
                 <div class="form">

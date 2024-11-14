@@ -137,6 +137,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
         Route::post('address/create', [AddressController::class, 'createShippingAddress']);
         Route::post('address/createRegister', [AddressController::class, 'createShippingAddressRegister']);
         Route::post('info/updateAvatar', [UserController::class, 'updateAvatar']);
+        Route::post('delete-account/{id}',[UserController::class,'deleteAccount']);
     });
 
     Route::post('payment/image', [OrderController::class, 'paymentImage']);
