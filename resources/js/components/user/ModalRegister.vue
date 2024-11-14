@@ -211,6 +211,45 @@
                                     />
                                 </v-col>
                             </v-row>
+                            
+                            <v-row v-if="form.personType == 'Juridical'">
+                                <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase"> Correo </span>
+                                    <CustomInput
+                                        class="place-holder"
+                                        type="email"
+                                        placeholder="Ingresar Correo"
+                                        v-model="form.emailPurchasingPerson"
+                                        :error-messages="emailPurchasingPersonErrors"
+                                        @blur="$v.form.emailPurchasingPerson.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                                <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase"> Celular </span>
+                                    <CustomInput
+                                        type="number"
+                                        class="place-holder"
+                                        placeholder="Ingresar celular"
+                                        v-model="form.cellphonePurchasingPerson"
+                                        :error-messages="cellphonePurchasingPersonErrors"
+                                        @blur="$v.form.cellphonePurchasingPerson.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                                <v-col cols="12" sm="6">
+                                    <span class="black--text body-2 text-uppercase"> Telefono fijo </span>
+                                    <CustomInput
+                                        class="place-holder"
+                                        placeholder="Ingresar telefono fijo"
+                                        v-model="form.phonePurchasingPerson"
+                                        :error-messages="phonePurchasingPersonErrors"
+                                        @blur="$v.form.phonePurchasingPerson.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                            </v-row>
+
                             <v-row>
                                 <v-col cols="12">
                                     <span class="black--text body-2 text-uppercase"> Documento</span>
@@ -766,7 +805,7 @@
                     text-class="ml-6"
                     @click="register"
                     :disabled="loadingregister"
-                    :loadingregister="loadingregister"
+                    :loading="loadingregister"
                 />
             </v-card-actions>
         </v-card>
@@ -880,6 +919,9 @@ export default {
                 offersConsent: false,
                 invalidPhone: true,
                 showInvalidPhone: false,
+                emailPurchasingPerson:"",
+                cellphonePurchasingPerson:"",
+                phonePurchasingPerson:"",
                 // filedocumento: [],
                 // filecamara: [],
                 filerut: []
@@ -917,11 +959,14 @@ export default {
             companyRazon: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyType: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyDocumentNumber: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            companyActividad: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            //companyActividad: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyPhone: { requiredIf: requiredIf(item => item.personType === "Juridical") },
-            regimenFiscal: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            // regimenFiscal: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             responsabilidadTribut: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             companyEmail: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            emailPurchasingPerson: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            cellphonePurchasingPerson: { requiredIf: requiredIf(item => item.personType === "Juridical") },
+            phonePurchasingPerson: { requiredIf: requiredIf(item => item.personType === "Juridical") },
             phone: { required }
         },
         mainAddress: {
@@ -997,6 +1042,28 @@ export default {
             !this.$v.form.documentNumber.required && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
+
+        cellphonePurchasingPersonErrors() {
+            const errors = [];
+            if (!this.$v.form.cellphonePurchasingPerson.$dirty) return errors;
+            !this.$v.form.cellphonePurchasingPerson.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            return errors;
+        },
+
+        emailPurchasingPersonErrors() {
+            const errors = [];
+            if (!this.$v.form.emailPurchasingPerson.$dirty) return errors;
+            !this.$v.form.emailPurchasingPerson.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            return errors;
+        },
+
+        phonePurchasingPersonErrors() {
+            const errors = [];
+            if (!this.$v.form.phonePurchasingPerson.$dirty) return errors;
+            !this.$v.form.phonePurchasingPerson.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
+            return errors;
+        },
+
         companyRazonErrors() {
             const errors = [];
             if (!this.$v.form.companyRazon.$dirty) return errors;
@@ -1228,6 +1295,9 @@ export default {
             }*/
 
             if (this.$v.form.$anyError || this.$v.mainAddress.$anyError) {
+                console.log(this.$v.form);
+                console.log(this.$v.mainAddress.$anyError);
+                console.log('pasa por aqui');
                 return;
             }
 
@@ -1251,8 +1321,8 @@ export default {
             this.loadingregister = true;
             let formData = new FormData();
 
-            // formData.append("filecamara", this.form.filecamara);
-            // formData.append("filedocumento", this.form.filedocumento);
+            //formData.append("filecamara", this.form.filecamara);
+            //formData.append("filedocumento", this.form.filedocumento);
             formData.append("filerut", this.form.filerut);
             formData.append("form", JSON.stringify(this.form));
 
@@ -1438,6 +1508,9 @@ export default {
             this.form.companyActividad = "";
             this.form.companyPhone = "";
             this.form.companyEmail = "";
+            this.form.emailPurchasingPerson = "";
+            this.form.cellphonePurchasingPerson = "";
+            this.form.phonePurchasingPerson = "";
             // this.form.filecamara = "";
             // this.form.filedocumento = "";
             this.form.filerut = "";
