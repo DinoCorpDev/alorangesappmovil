@@ -81,7 +81,7 @@ class CartController extends Controller
             'shop_id' => (int) $productToSell->shop_id,
             'earn_point' => (float) $cart->product->earn_point,
             'name' => $productToSell->name,
-            'thumbnail' => api_asset($productToSell->thumbnail_img),
+            'thumbnail_image' => $productToSell->thumbnail_img,
             'regular_price' => (float) variation_price($productToSell, $productToSell),
             'dicounted_price' => (float) variation_discounted_price($productToSell, $productToSell),
             'stock' => (int) $productToSell->stock,

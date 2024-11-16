@@ -3,8 +3,8 @@
         <div class="product-box-cart-body">
             <img
                 class="product-box-cart-image"
-                :class="!thumbnailImage ? 'placeholder' : ''"
-                :src="thumbnailImage || productPlaceholderUrl"
+                :class="!productDetails.thumbnail_image ? 'placeholder' : ''"
+                :src="productDetails.thumbnail_image || productPlaceholderUrl"
             />
             <div class="product-box-cart-info d-flex justify-center" v-if="productDetails && productDetails.name">
                 <h2 class="product-box-cart-name">{{ productDetails.name || "--" }}</h2>

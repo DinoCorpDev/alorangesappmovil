@@ -53,6 +53,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'avatar',
         'provider_id',
         'email_verified_at',
+        'emailPurchasingPerson',
+        'cellphonePurchasingPerson',
+        'phonePurchasingPerson',
         // 'verification_code',
     ];
 

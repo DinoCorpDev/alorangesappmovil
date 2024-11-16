@@ -2677,7 +2677,22 @@ export default {
                             });  
                             console.log(error); 
                         }
-                    }else{
+                    }else if(this.pick === 5){
+                        if(this.isEfectivo == false && this.isDatafono == false){
+                            this.snack({
+                                message: 'Debe elegir un medio de pago "Pago con Efectivo" o "Pago con Datafono" ',
+                                color: "red"
+                            });
+
+                            this.checkoutLoading = false;
+                        }else{
+                            let formData = this.processToSendStore(referenceToPayment);
+                            const res = await this.call_api("post", "checkout/order/store", formData);
+                            this.dataCheckout = res.data;
+                            this.numberPag = 4;
+                        }   
+                    }
+                    else{
                         let formData = this.processToSendStore(referenceToPayment);
                         const res = await this.call_api("post", "checkout/order/store", formData);
                         this.dataCheckout = res.data;
