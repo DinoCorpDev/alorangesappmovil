@@ -214,18 +214,6 @@
                             
                             <v-row v-if="form.personType == 'Juridical'">
                                 <v-col cols="12" sm="6">
-                                    <span class="black--text body-2 text-uppercase"> Correo </span>
-                                    <CustomInput
-                                        class="place-holder"
-                                        type="email"
-                                        placeholder="Ingresar Correo"
-                                        v-model="form.emailPurchasingPerson"
-                                        :error-messages="emailPurchasingPersonErrors"
-                                        @blur="$v.form.emailPurchasingPerson.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                                <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Celular </span>
                                     <CustomInput
                                         type="number"
@@ -245,6 +233,18 @@
                                         v-model="form.phonePurchasingPerson"
                                         :error-messages="phonePurchasingPersonErrors"
                                         @blur="$v.form.phonePurchasingPerson.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                                <v-col cols="12" sm="12">
+                                    <span class="black--text body-2 text-uppercase"> Correo </span>
+                                    <CustomInput
+                                        class="place-holder"
+                                        type="email"
+                                        placeholder="Ingresar Correo"
+                                        v-model="form.emailPurchasingPerson"
+                                        :error-messages="emailPurchasingPersonErrors"
+                                        @blur="$v.form.emailPurchasingPerson.$touch()"
                                         required
                                     />
                                 </v-col>
@@ -447,7 +447,7 @@
                                             class="select-placeholder"
                                             :items="responsabilidadTypes"
                                             v-model="form.responsabilidadTribut"
-                                            :multiple="true"
+                                            :multiple="false"
                                             :error-messages="responsabilidadTributErrors"
                                             @blur="$v.form.responsabilidadTribut.$touch()"
                                             required
