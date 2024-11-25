@@ -1,9 +1,14 @@
 <template>
     <v-app class="d-flex flex-column">
-        <Navbar display="position: fixed; top: 0px" v-if="$route.meta.hasHeader && $route.name == 'Home2'" />
-        <NavbarAuth v-if="$route.meta.hasHeader && $route.name != 'Home2'" @toggleMenu="toggleMenu" />
+        <div v-if="isMobile">
+            <NavbarMobile display="position: fixed; top: 0px" v-if="$route.meta.hasHeader && $route.name == 'mobileHome'" />
+            <NavbarAuthMobile v-if="$route.meta.hasHeader && $route.name != 'mobileHome' && isMobile" @toggleMenu="toggleMenu" />
+        </div>
+        <div v-else>
+            <Navbar display="position: fixed; top: 0px" v-if="$route.meta.hasHeader && $route.name == 'Home2'" />
+            <NavbarAuth v-if="$route.meta.hasHeader && $route.name != 'Home2'" @toggleMenu="toggleMenu" />
+        </div>
         
-
         <v-main class="aiz-main-wrap">
             <Breadcrumb />
             <!-- prettier-ignore -->
@@ -13,7 +18,7 @@
             <router-view :key="['ShopDetails','ShopCoupons','ShopProducts'].includes($route.name) ? null : $route.path"></router-view>
         </v-main>
 
-        <Footer v-if="$route.meta.hasFooter" :class="[{ 'd-none': routerLoading }]" />
+        <Footer v-if="$route.meta.hasFooter && !isMobile" :class="[{ 'd-none': routerLoading }]" />
 
         <AddToCartDialog />
         <LoginDialog v-if="!isAuthenticated" />
@@ -29,6 +34,8 @@ import Footer from "./footer/Footer";
 import LoginDialog from "./auth/LoginDialog.vue";
 import Navbar from "./header/Navbar.vue";
 import NavbarAuth from "./header/NavbarAuth.vue";
+import NavbarMobile from "./header/NavbarMobile.vue";
+import NavbarAuthMobile from "./header/NavbarAuthMobile.vue";
 import SnackBar from "./inc/SnackBar";
 import Breadcrumb from "./header/Breadcrumb.vue";
 import SideMenu from "./user/SideMenu";
@@ -42,7 +49,8 @@ export default {
     },
     data(){
         return{
-            userNavDrawerActive: false
+            userNavDrawerActive: false,
+            isMobile: false,
         }
     },
     components: {
@@ -52,6 +60,8 @@ export default {
         Breadcrumb,
         Navbar,
         NavbarAuth,
+        NavbarMobile,
+        NavbarAuthMobile,
         SideMenu,
         SnackBar
     },
@@ -59,6 +69,10 @@ export default {
         $route(to, from) {
             window.scrollTo(0, 0); // Esto forzará el scroll al tope en cada cambio de ruta
         }
+    },
+    mounted() {
+        this.checkIfMobile();
+        window.addEventListener('resize', this.checkIfMobile); // Escucha cambios de tamaño
     },
     computed: {
         ...mapGetters("auth", ["isAuthenticated"]),
@@ -95,7 +109,10 @@ export default {
                 this.fetchWislistServices();
                 this.fetchWislistBrands();
             }
-        }
+        },
+        checkIfMobile() {
+            this.isMobile = window.innerWidth <= 768; // Cambia el umbral según tus necesidades
+        },
     },
     async created() {
         this.changeRTL();
