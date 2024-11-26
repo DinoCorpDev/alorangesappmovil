@@ -3,7 +3,7 @@
         <v-app-bar
             ref="layoutNavbar"
             class="layout-navbar-auth"
-            :color="$vuetify.theme.dark ? '#000000' : '#FFEFDE'"
+            color="#FFEFDE"
             elevation="0"
             prominent
             dense
@@ -16,17 +16,12 @@
                     <LogoAlorange class="d-flex d-md-none" />
                 </router-link>
 
-                <SearchInput
-                    class="d-none d-sm-flex"
-                    :showInput="false"
-                    :placeholder="'Escribe lo que buscas'"
-                    style="max-width: 500px"
-                />
-
                 <div class="header-actions">
-                    <CustomButton class="d-flex d-sm-none" color="orange3" :to="{ name: 'Search' }">
-                        <Search class="cart-icon ml-sm-2" style="margin-bottom: 4px" />
-                    </CustomButton>
+                    <SearchInput
+                        :showInput="true"
+                        :placeholder="'Escribe lo que buscas'"
+                        style="max-width: 500px;"
+                    />
                     <CustomButton color="orange3" :to="{ name: 'Shop' }">
                         <span class="d-none d-sm-flex">Tienda</span
                         ><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px" />
@@ -126,8 +121,8 @@ import Cart from "../icons/CartIcon.vue";
 import BurgerMenu from "../icons/BurgerMenu.vue";
 import Search from "../icons/IconSearch.vue";
 import Logout from "../icons/Logout.vue";
-import LogoAloranges from "./LogoAloranges.vue";
-import LogoAlorange from "./LogoAlorange.vue";
+import LogoAloranges from "../icons/LogoIconoAloranges.vue";
+import LogoAlorange from "../icons/LogoIconoAloranges.vue";
 import SearchInput from "../global/SearchInput.vue";
 import ToggleMenu from "./ToggleMenu.vue";
 

@@ -1,6 +1,7 @@
 <template>
     <v-container class="pt-0" fluid>
         <v-row
+            v-if="!isMobile"
             class="banner-principal"
             style="
                 background-image: url('/public/assets/img/BannerShop.jpg');
@@ -124,7 +125,8 @@ export default {
                 }
             }
         },
-        isList:false
+        isList:false,
+        isMobile: false,
     }),
     props: {
         category: { type: String, default: "" }
@@ -143,6 +145,9 @@ export default {
     mounted() {
         this.getProducts();
         this.updateBreadcrumb();
+
+        this.checkIfMobile();
+        window.addEventListener('resize', this.checkIfMobile); // Escucha cambios de tamaño
     },
     methods: {
         async getProducts() {
@@ -218,7 +223,10 @@ export default {
             this.isList = true;
             this.activeButton = id;
             this.filter(value);
-        }
+        },
+        checkIfMobile() {
+            this.isMobile = window.innerWidth <= 768; // Cambia el umbral según tus necesidades
+        },
     }
 };
 </script>

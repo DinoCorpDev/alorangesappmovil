@@ -10,7 +10,10 @@
         </div>
         
         <v-main class="aiz-main-wrap">
-            <Breadcrumb />
+            <div v-if="!isMobile">
+                <Breadcrumb />
+            </div>
+            
             <!-- prettier-ignore -->
             <v-navigation-drawer v-model="userNavDrawerActive" fixed temporary right style="z-index: 999">
                 <SideMenu class="pa-3" />

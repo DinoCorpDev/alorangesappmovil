@@ -2,7 +2,7 @@
     <v-app-bar
         ref="layoutNavbar"
         class="layout-navbar"
-        :color="$vuetify.theme.dark ? '#000000' : '#FFEFDE'"
+        :color="$vuetify.theme.dark ? '#000000' : '#FAFCFC'"
         elevation="0"
         prominent
         dense
@@ -10,12 +10,17 @@
         :fixed="headerFixed"
     >
         <v-container class="pa-0 fill-height justify-space-between" fluid>
-            <router-link :to="{ name: 'Home2' }" class="layout-navbar-brand">
+            <router-link :to="{ name: 'MobileHome' }" class="layout-navbar-brand">
                 <LogoAloranges :large="logoLarge" class="d-none d-sm-block" />
                 <!-- <img src="./Logo Aloranges.png" alt="" class="d-block d-sm-none"> -->
                 <LogoAlorange class="d-block d-sm-none" style="max-width: 175px; height: auto;"/>
             </router-link>
             <div class="layout-navbar-nav">
+                <SearchInput
+                    :showInput="true"
+                    :placeholder="'Escribe lo que buscas'"
+                    style="max-width: 500px; width: 125px;"
+                />
                 <!-- <CustomButton color="orange2" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" /> -->
                 <CustomButton color="orange3" :to="{ name: 'Shop' }">
                     <span class="d-none d-sm-flex">Tienda</span><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px"/> 
@@ -41,10 +46,11 @@ import { mapGetters, mapMutations } from "vuex";
 
 import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
-import LogoAloranges from "./LogoAloranges.vue";
-import LogoAlorange from "../icons/LogoAlorange.vue";
+import LogoAloranges from "../icons/LogoIconoAloranges.vue";
+import LogoAlorange from "../icons/LogoIconoAloranges.vue";
 import ToggleMenu from "./ToggleMenu.vue";
 import Cart from "../icons/CartIcon.vue";
+import SearchInput from "../global/SearchInput.vue";
 
 export default {
     name: "LayoutNavbarMobile",
@@ -54,7 +60,8 @@ export default {
         LogoAlorange,
         LogoAloranges,
         Cart,
-        ToggleMenu
+        ToggleMenu,
+        SearchInput
     },
     data() {
         return {
