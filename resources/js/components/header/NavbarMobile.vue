@@ -24,14 +24,14 @@
                 <!-- <CustomButton color="orange2" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" /> -->
                 <!-- <CustomButton color="orange3" :to="{ name: 'Shop' }">
                     <span class="d-none d-sm-flex">Tienda</span><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px"/> 
-                </CustomButton>
+                </CustomButton> -->
                 <CustomButton
                     v-if="!userIsLoggedIn"
                     color="orange"
                     text="Iniciar Sesión"
                     @click="showLoginDialog(true)"
                 />
-                <DoubleButton v-else /> -->
+                <DoubleButton v-else />
                 <div style="display: none;">
                     <ToggleMenu  />
                 </div>

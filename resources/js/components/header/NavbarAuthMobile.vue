@@ -23,6 +23,7 @@
                         style="max-width: 500px;"
                     />
                     <div class="layout-navbar-auth-nav">
+                        <DoubleButton v-if="!userIsLoggedIn" />
                         <div class="d-flex d-lg-none" v-if="userIsLoggedIn">
                             <CustomButton v-if="userIsLoggedIn" @click.stop="toggleMenu" color="orange3">
                                 <BurgerMenu />
