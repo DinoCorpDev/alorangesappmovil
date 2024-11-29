@@ -16,13 +16,13 @@
                 <LogoAlorange class="d-block d-sm-none" style="max-width: 175px; height: auto;"/>
             </router-link>
             <div class="layout-navbar-nav">
-                <SearchInput
+                <!-- <SearchInput
                     :showInput="true"
                     :placeholder="'Escribe lo que buscas'"
                     style="max-width: 500px; width: 125px;"
-                />
+                /> -->
                 <!-- <CustomButton color="orange2" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" /> -->
-                <CustomButton color="orange3" :to="{ name: 'Shop' }">
+                <!-- <CustomButton color="orange3" :to="{ name: 'Shop' }">
                     <span class="d-none d-sm-flex">Tienda</span><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px"/> 
                 </CustomButton>
                 <CustomButton
@@ -31,7 +31,7 @@
                     text="Iniciar Sesión"
                     @click="showLoginDialog(true)"
                 />
-                <DoubleButton v-else />
+                <DoubleButton v-else /> -->
                 <div style="display: none;">
                     <ToggleMenu  />
                 </div>
