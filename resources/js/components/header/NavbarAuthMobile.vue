@@ -22,12 +22,7 @@
                         :placeholder="'Escribe lo que buscas'"
                         style="max-width: 500px;"
                     />
-                    <CustomButton color="orange3" :to="{ name: 'Shop' }">
-                        <span class="d-none d-sm-flex">Tienda</span
-                        ><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px" />
-                    </CustomButton>
                     <div class="layout-navbar-auth-nav">
-                        <DoubleButton />
                         <div class="d-flex d-lg-none" v-if="userIsLoggedIn">
                             <CustomButton v-if="userIsLoggedIn" @click.stop="toggleMenu" color="orange3">
                                 <BurgerMenu />

@@ -37,39 +37,46 @@ export default {
             itemsArray: [
                 {
                     title: "Papeleria",
-                    img: "/public/assets/img/Grupo12238.png",
+                    img: "/public/assets/img/PapeleriaMobile.png",
                     description: "Papeleria"
                 },
                 {
                     title: "Aseo",
-                    img: "/public/assets/img/Grupo12239.png",
+                    img: "/public/assets/img/AseoMobile.png",
                     description: "Aseo"
                 },
                 {
                     marginbottom: '30px',
                     title: "Cafeteria",
-                    img: "/public/assets/img/Grupo12240.png",
+                    img: "/public/assets/img/CafeteriaMobile.png",
                     description: "Cafeteria"
                 },
                 {
                     marginLeft: '43px',
                     marginTextRigh:'49px', 
                     title: "Seguridad industrial",
-                    img: "/public/assets/img/Grupo12241.png",
+                    img: "/public/assets/img/SeguridadIndMobile.png",
                     description: "Seguridad ind"
                 },
                 {
                     marginbottom: '30px',
                     title: "Cartonería",
-                    img: "/public/assets/img/Group 6.png",
+                    img: "/public/assets/img/CartoneriaMobile.png",
                     description: "Cartoneria"
                 },
                 {
                     marginLeft: '43px',
                     marginTextRigh:'49px', 
                     title: "Accesorios de oficina",
-                    img: "/public/assets/img/Group 5.png",
+                    img: "/public/assets/img/AccesoriosOffMobile.png",
                     description: "Tecnologia"
+                },
+                {
+                    marginLeft: '43px',
+                    marginTextRigh:'49px', 
+                    title: "Botiqueria",
+                    img: "/public/assets/img/BotiqueriaMobile.png",
+                    description: "Botiqueria"
                 },
             ],
             selectedCode: null,

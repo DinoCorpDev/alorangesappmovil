@@ -28,7 +28,7 @@
                 >
                     <a href="#" :style="{marginBottom: space.marginbottom ? space.marginbottom : '0px', marginLeft: space.marginLeft ? space.marginLeft : '0px'}">
                         <img class="images-responsive" :src="space.img" :alt="space.title"/>
-                        <p :style="{fontSize: '24px', textAlign:'center', margin:'0', fontWeight: '700', marginRight: space.marginTextRigh ? space.marginTextRigh : '0px', }">{{ space.title }}</p>
+                        <p :style="{fontSize: '24px', textAlign:'center', margin:'0', fontWeight: '700', marginRight: space.marginTextRigh ? space.marginTextRigh : '0px', color:'black' }">{{ space.title }}</p>
                     </a>
                 </v-col>
             </v-row>
