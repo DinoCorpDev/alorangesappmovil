@@ -35,8 +35,8 @@
                                         contain
                                         class="mb-5"
                                     />
-                                    <h3>Domicilios gratis</h3>
-                                    <p class="preambulo-text">En compras mínimas</p>
+                                    <h3 style="text-align: center">Domicilios gratis</h3>
+                                    <p class="preambulo-text" style="text-align: center">En compras mínimas</p>
                                 </v-col>
                                 <v-col class="center-flex" cols="3">
                                     <v-img
@@ -66,7 +66,7 @@
                                         class="mb-5"
                                     />
                                     <h3>Devoluciones</h3>
-                                    <p class="preambulo-text">Cambios de productos</p>
+                                    <p class="preambulo-text" style="text-align: center">Cambios de productos</p>
                                 </v-col>
                             </v-row>
                         </v-col>

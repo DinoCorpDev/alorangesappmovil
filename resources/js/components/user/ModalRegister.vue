@@ -1437,7 +1437,8 @@ export default {
                     this.form.email == "" ||
                     this.form.password == "" ||
                     this.form.confirmPassword == "" ||
-                    this.form.password != this.form.confirmPassword
+                    this.form.password != this.form.confirmPassword||
+                    this.$v.form.password.$invalid
                 ) {
                     this.$v.form.$touch();
                     return;
