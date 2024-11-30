@@ -11,7 +11,7 @@ let OfferDetails = () => import("../pages/OfferDetails");
 let AllBlogs = () => import("../pages/AllBlogs");
 let BlogDetails = () => import("../pages/BlogDetails");
 let TestComponents = () => import("../pages/TestComponents");
-let Home2 = () => import("../pages/Home2");
+let Home2 = () => import("../pages/MobileVersion/HomeMobile.vue");
 let Shop = () => import("../pages/Shop");
 let About = () => import("../pages/About");
 let Collection = () => import("../pages/Collection");
