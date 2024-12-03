@@ -1,5 +1,5 @@
 let Login = () => import("../pages/auth/Login");
-let Registration = () => import("../pages/auth/Registration");
+let Registration = () => import("../components/user/ModalRegister.vue");
 let RegistrationSuccess = () => import("../pages/auth/RegistrationSuccess");
 let ForgotPassword = () => import("../pages/auth/ForgotPassword");
 let NewPassword = () => import("../pages/auth/NewPassword");

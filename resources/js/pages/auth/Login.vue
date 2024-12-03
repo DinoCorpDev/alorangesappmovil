@@ -1,14 +1,11 @@
 <template>
-    <div class="login d-flex flex-column h-100">
+    <div class="login d-flex flex-column h-100" style="background-color:#ffefdf">
         <v-container class="flex-grow-1 pa-0" fluid>
-            <v-row class="wrap" no-gutters>
-                <v-col cols="12" lg="6">
-                    <CarouselLogin
-                        :slides="sliderItems"
-                        title=""
-                    />
+            <v-row class="wrap" no-gutters style="background-color:#ffefdf">
+                <v-col cols="12" lg="12" class="pt-lg-0 text-xs-center justify-center title white--text font-weight-bold">
+                    <LogoAloranges style="margin-left: 14%;"class="d-md-flex" />
                 </v-col>
-                <v-col cols="12" lg="6" class="pt-lg-0">
+                <v-col cols="12" lg="12" class="pt-lg-0">
                     <div class="login-content h-100 pa-lg-5 pa-3 pt-lg-8">
                         <div class="inputs mb-8">
                             <div class="mt-lg-6">
@@ -118,6 +115,7 @@ import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import ModalRegister from "../../components/user/ModalRegister.vue";
 import RecuperarPass from "../../components/auth/RecuperarPass.vue";
+import LogoAloranges from "../../components/icons/LogoAlorange.vue";
 
 export default {
     components: {
@@ -127,7 +125,8 @@ export default {
         CustomInput,
         ModalRegister,
         RecuperarPass,
-        ArrowForget
+        ArrowForget,
+        LogoAloranges
     },
     data: () => ({
         form: {
@@ -266,7 +265,6 @@ export default {
 <style lang="scss" scoped>
 .login {
     /* width */
-
     &-title {
         font-size: 24px;
         font-weight: 500;

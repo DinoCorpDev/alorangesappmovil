@@ -1,22 +1,22 @@
 <template>
-    <v-dialog content-class="modal-register" v-model="showRegister">
-        <v-card class="modal-register-card">
-            <v-card-title style="background-color: #f58634; color:white; position: relative; padding: 12px 0; min-height: 56px;" class="text-xs-center justify-center title white--text font-weight-bold">
-                <span v-if="registerNotification == false">REGISTRO</span>
-                <button @click="closeRegister" class="esc-button">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15128 1.15128C1.61991 0.682647 2.3797 0.682647 2.84833 1.15128L7.9998 6.30275L13.1513 1.15128C13.6199 0.682647 14.3797 0.682647 14.8483 1.15128C15.317 1.61991 15.317 2.3797 14.8483 2.84833L9.69686 7.9998L14.8483 13.1513C15.317 13.6199 15.317 14.3797 14.8483 14.8483C14.3797 15.317 13.6199 15.317 13.1513 14.8483L7.9998 9.69686L2.84833 14.8483C2.3797 15.317 1.61991 15.317 1.15128 14.8483C0.682647 14.3797 0.682647 13.6199 1.15128 13.1513L6.30275 7.9998L1.15128 2.84833C0.682647 2.3797 0.682647 1.61991 1.15128 1.15128Z" fill="white"/>
-                    </svg>
-                </button>
-            </v-card-title>
+    <div class="register-form-container" style="background-color: #ffefdf;">
+        <div class="modal-register-card">
+            <div
+                style="background-color: #ffefdf; color: white; position: relative; padding: 12px 0; min-height: 56px;"
+                class="text-xs-center justify-center title white--text font-weight-bold"
+            >
+                <span style="margin-left: 40%; color: black;">REGISTRO</span>
+            </div>
+  
             <v-form
                 class="modal-register-form"
                 ref="loginForm"
                 lazy-validation
-                @submit.prevent="register()"
+                @submit.prevent="register"
                 enctype="multipart/form-data"
+                style="background-color: #ffefdf;"
             >
-                <v-stepper v-model="numberPag" v-if="registerNotification == false">
+                <v-stepper v-model="numberPag" v-if="registerNotification == false" style="background-color: #ffefdf;">
                     <v-stepper-header>
                         <v-stepper-step
                             :class="numberPag > 1 ? 'v-stepper__step--complete' : ''"
@@ -808,8 +808,8 @@
                     :loading="loadingregister"
                 />
             </v-card-actions>
-        </v-card>
-    </v-dialog>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -843,6 +843,7 @@ export default {
     },
     data() {
         return {
+            showRegister:true,
             registerNotification: false,
             mobileInputProps: {
                 inputOptions: {
@@ -1583,7 +1584,7 @@ export default {
     left: 0;
     z-index: 999;
     color: white;
-    background-color: grey;
+    background-color: white;
     font-size: 15px;
     padding: 20px;
     width: 300px;
@@ -1600,7 +1601,7 @@ export default {
     left: 0;
     z-index: 500;
     color: white;
-    background-color: grey;
+    background-color: white;
     font-size: 15px;
     padding: 20px;
     width: 300px;
@@ -1625,11 +1626,11 @@ export default {
         box-shadow: none;
 
         .v-divider {
-            border-color: rgba(#707070, 0.5) !important;
+            border-color: rgba(white, 0.5) !important;
             border-width: 2px 0 0;
 
             &.step-active {
-                border-color: #707070 !important;
+                border-color: white !important;
             }
         }
     }
