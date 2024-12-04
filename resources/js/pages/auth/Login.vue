@@ -71,7 +71,7 @@
                             <div class="d-flex">
                                 <p class="black--text link-forgot" style="font-size: 13px; margin-right: 15px;">¿No tienes ninguna cuenta?</p>
                                     
-                                    <a @click="showModalRegister" class="login-link">
+                                    <a href="/user/registration" class="login-link">
                                         <b>Registrarse</b>
                                     </a>
                             </div>
@@ -98,7 +98,6 @@
                 </v-col>
             </v-row>
 
-            <ModalRegister v-model="showRegister" />
             <RecuperarPass v-model="showRecuperarPass" />
         </v-container>
     </div>
@@ -113,7 +112,6 @@ import ArrowForget from "../../components/icons/ArrowForget.vue";
 import CarouselLogin from "../../components/global/CarouselLogin.vue";
 import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
-import ModalRegister from "../../components/user/ModalRegister.vue";
 import RecuperarPass from "../../components/auth/RecuperarPass.vue";
 import LogoAloranges from "../../components/icons/LogoAlorange.vue";
 
@@ -123,7 +121,6 @@ export default {
         CarouselLogin,
         CustomButton,
         CustomInput,
-        ModalRegister,
         RecuperarPass,
         ArrowForget,
         LogoAloranges

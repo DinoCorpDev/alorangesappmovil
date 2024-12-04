@@ -1,6 +1,9 @@
 <template>
     <div class="register-form-container" style="background-color: #ffefdf;">
         <div class="modal-register-card">
+            <v-col cols="12" lg="12" class="pt-lg-0 text-xs-center justify-center title white--text font-weight-bold">
+                <LogoAloranges style="margin-left: 14%;"class="d-md-flex" />
+            </v-col>
             <div
                 style="background-color: #ffefdf; color: white; position: relative; padding: 12px 0; min-height: 56px;"
                 class="text-xs-center justify-center title white--text font-weight-bold"
@@ -823,6 +826,7 @@ import CustomInput from "../../components/global/CustomInput.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
 import snackbar from "../../components/inc/SnackBar";
 import ArrowUpload from "../../components/icons/ArrowUpload.vue";
+import LogoAloranges from "../../components/icons/LogoAlorange.vue";
 
 // Custom validators
 const isTrue = value => value === true;
@@ -839,7 +843,8 @@ export default {
         CustomInput,
         SelectCustom,
         VueTelInput,
-        snackbar
+        snackbar,
+        LogoAloranges
     },
     data() {
         return {
