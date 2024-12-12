@@ -1,8 +1,8 @@
 <template>
     <v-app class="d-flex flex-column">
         <div>
-            <NavbarMobile display="position: fixed; top: 0px" v-if="$route.meta.hasHeader && $route.name == 'Home2'" />
-            <NavbarAuthMobile v-if="$route.meta.hasHeader && $route.name != 'Home2' && isMobile" @toggleMenu="toggleMenu" />
+            <NavbarMobile display="position: fixed; top: 0px" v-if="$route.meta.hasHeader && $route.name == 'Home2'  && $route.name != 'Login' && $route.name != 'Registration'" />
+            <NavbarAuthMobile v-if="$route.meta.hasHeader && $route.name != 'Home2' && $route.name != 'Login' && $route.name != 'Registration' && isMobile" @toggleMenu="toggleMenu" />
         </div>
         
         <v-main class="aiz-main-wrap">

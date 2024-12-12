@@ -1520,12 +1520,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">Código postal</div>
-                                    <SelectCustom
-                                        class="select-style"
-                                        placeholder="Seleccione codigo postal"
-                                        :items="codigoPostalTypes"
+                                    <CustomInput
                                         v-model="otherAdd.postal_code"
                                         required
+                                        class="place-holder"
+                                        placeholder="Ingresar calle / carrera"
                                     />
                                 </div>
                                 <div class="mb-3">

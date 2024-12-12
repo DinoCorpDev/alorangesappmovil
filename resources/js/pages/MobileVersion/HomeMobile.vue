@@ -38,45 +38,60 @@ export default {
                 {
                     title: "Papeleria",
                     img: "/public/assets/img/PapeleriaMobile.png",
-                    description: "Papeleria"
+                    description: "Papeleria",
+                    url: "/shop/papeleria"
                 },
                 {
                     title: "Aseo",
                     img: "/public/assets/img/AseoMobile.png",
-                    description: "Aseo"
+                    description: "Aseo",
+                    url:"/shop/aseo"
                 },
                 {
                     marginbottom: '30px',
                     title: "Cafeteria",
                     img: "/public/assets/img/CafeteriaMobile.png",
-                    description: "Cafeteria"
+                    description: "Cafeteria",
+                    url:"/shop/cafeteria"
                 },
                 {
                     marginLeft: '43px',
                     marginTextRigh:'49px', 
                     title: "Seguridad industrial",
                     img: "/public/assets/img/SeguridadIndMobile.png",
-                    description: "Seguridad ind"
+                    description: "Seguridad ind",
+                    url:"/shop/seguridad-industrial"
                 },
                 {
                     marginbottom: '30px',
                     title: "Cartonería",
                     img: "/public/assets/img/CartoneriaMobile.png",
-                    description: "Cartoneria"
+                    description: "Cartoneria",
+                    url:"/shop/cartoneria"
                 },
                 {
                     marginLeft: '43px',
                     marginTextRigh:'49px', 
                     title: "Accesorios de oficina",
                     img: "/public/assets/img/AccesoriosOffMobile.png",
-                    description: "Tecnologia"
+                    description: "Tecnologia",
+                    url:"/shop/tecnologia",
                 },
                 {
                     marginLeft: '43px',
                     marginTextRigh:'49px', 
                     title: "Botiqueria",
                     img: "/public/assets/img/BotiqueriaMobile.png",
-                    description: "Botiqueria"
+                    description: "Botiqueria",
+                    url:"#",
+                },
+                {
+                    marginLeft: '43px',
+                    marginTextRigh:'49px', 
+                    title: "Uniformes",
+                    img: "/public/assets/img/DotacionMobile.png",
+                    description: "Dotación",
+                    url:"#",
                 },
             ],
             selectedCode: null,

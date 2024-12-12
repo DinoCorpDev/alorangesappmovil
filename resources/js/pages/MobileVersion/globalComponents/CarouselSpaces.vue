@@ -26,10 +26,29 @@
                     v-for="space in spaces"
                     :key="`slide-space-${space.id}`"
                 >
-                    <a href="#" :style="{marginBottom: space.marginbottom ? space.marginbottom : '0px', marginLeft: space.marginLeft ? space.marginLeft : '0px'}">
-                        <img class="images-responsive" :src="space.img" :alt="space.title"/>
-                        <p :style="{fontSize: '24px', textAlign:'center', margin:'0', fontWeight: '700', marginRight: space.marginTextRigh ? space.marginTextRigh : '0px', color:'black' }">{{ space.title }}</p>
-                    </a>
+                <a 
+                    :href="space.url" 
+                    @click="debugUrl(space.url)"
+                    :style="{
+                        marginBottom: space.marginbottom || '0px', 
+                        marginLeft: space.marginLeft || '0px'
+                    }">
+                    <img 
+                        class="images-responsive" 
+                        :src="space.img" 
+                        :alt="space.title" />
+                    <p 
+                        :style="{
+                            fontSize: '24px', 
+                            textAlign: 'center', 
+                            margin: '0', 
+                            fontWeight: '700', 
+                            marginRight: space.marginTextRigh || '0px', 
+                            color: 'black'
+                        }">
+                        {{ space.title }}
+                    </p>
+                </a>
                 </v-col>
             </v-row>
         </div>
@@ -63,6 +82,11 @@ export default {
         spaces: {
             type: Array,
             default: () => []
+        }
+    },
+    methods:{
+        debugUrl(url) {
+            window.location.href = url;
         }
     },
     data() {

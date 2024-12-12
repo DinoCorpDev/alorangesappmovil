@@ -25,13 +25,11 @@
                 </div>
                 <div class="mb-3">
                     <div class="mb-1 fs-13 fw-500">Código postal</div>
-                    <SelectCustom
-                        placeholder="Seleccione codigo postal"
-                        class="select-placeholder"
-                        :items="codigoPostalTypes"
+                    <CustomInput
                         v-model="form.postal_code"
                         :error-messages="postalCodeErrors"
                         @blur="$v.form.postal_code.$touch()"
+                        placeholder="codigo postal"
                         required
                     />
                 </div>

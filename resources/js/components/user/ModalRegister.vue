@@ -1,5 +1,5 @@
 <template>
-    <div class="register-form-container" style="background-color: #ffefdf;">
+    <div class="register-form-container" style="height: 100%;background-color: #ffefdf;">
         <div class="modal-register-card">
             <v-col cols="12" lg="12" class="pt-lg-0 text-xs-center justify-center title white--text font-weight-bold">
                 <LogoAloranges style="margin-left: 14%;"class="d-md-flex" />
@@ -8,7 +8,7 @@
                 style="background-color: #ffefdf; color: white; position: relative; padding: 12px 0; min-height: 56px;"
                 class="text-xs-center justify-center title white--text font-weight-bold"
             >
-                <span style="margin-left: 40%; color: black;">REGISTRO</span>
+                <span style="margin-left: 40%; color: black;">Registro</span>
             </div>
   
             <v-form
@@ -635,7 +635,7 @@
                                     <span class="black--text body-2 text-uppercase">Codigo Postal</span>
                                     <CustomInput
                                         class="place-holder"
-                                        placeholder="Seleccione codigo postal"
+                                        placeholder="codigo postal"
                                         v-model="mainAddress.postal_code"
                                     />
                                 </v-col>
@@ -748,7 +748,6 @@
 
                 <div
                     align="center"
-                    style="height: 300px; margin-top: 50px; margin-right: 20px; margin-left: 20px"
                     v-if="registerNotification"
                 >
                     <img src="/public/assets/img/checked.png" alt="Checkeado">
@@ -1549,6 +1548,23 @@ export default {
 </script>
 
 <style lang="scss">
+body{
+    box-shadow: none !important;
+}
+.modal-register-subheader{
+    width: 92% !important;
+    margin: auto !important;
+    border-width: 0px 0 0 !important;
+}
+
+.v-stepper__header{
+    height: 72px !important;
+    align-items: stretch !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    box-shadow: none !important;
+}
 
 .modal-register {
     max-width: 550px;
@@ -1628,7 +1644,7 @@ export default {
     }
 
     .v-stepper__header {
-        box-shadow: none;
+        box-shadow: none !important;
 
         .v-divider {
             border-color: rgba(white, 0.5) !important;
@@ -1647,7 +1663,7 @@ export default {
     }
 
     .v-stepper {
-        box-shadow: none;
+        box-shadow: none !important;
 
         &.theme--light {
             &::v-deep {
@@ -1696,7 +1712,7 @@ export default {
     border-radius: 5px;
 
     &:focus-within {
-        box-shadow: none;
+        box-shadow: none !important;
     }
 
     &.error--text {
