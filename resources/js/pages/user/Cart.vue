@@ -2054,7 +2054,7 @@
                                 </v-col>
                                 <v-col cols="12">
                                     <div class="form" style="background-color: #f1f1f1">
-                                        <h5 class="black--text pl-3 mb-2" style="font-size: 25px">Encargado</h5>
+                                        <h5 class="fw-600 mb-5">Encargado</h5>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 bold pl-3">Correo electrónico</span>
                                             <span class="body1 pr-3">{{ currentUser.email || "--" }}</span>
@@ -2085,7 +2085,7 @@
                                     <div class="form" style="background-color: #f1f1f1">
                                         <v-row class="mb-2">
                                             <v-col cols="12" class="pb-0">
-                                                <h5 class="fw-600 pl-3" style="font-size: 25px">Facturar a nombre de</h5>
+                                                <h5 class="fw-600 mb-5">Facturar a nombre de</h5>
                                             </v-col>
                                         </v-row>
                                         <div class="d-flex justify-space-between mb-2">
@@ -2112,7 +2112,7 @@
 
                                 <v-col cols="12">
                                     <div class="form mt-4" style="background-color: #f1f1f1">
-                                        <h5 class="fw-600 pl-3 mb-2" style="font-size: 25px">Medio de pago</h5>
+                                        <h5 class="fw-600 mb-5">Medio de pago</h5>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span v-if="pick == 4" class="subtitle1 bold pl-3">Transferencia bancaria</span>
                                             <span v-else-if="pick == 5" class="subtitle1 bold pl-3">Contraentrega</span>
@@ -2126,7 +2126,7 @@
                                 </v-col>
                                 <v-col cols="12">
                                     <div class="form" style="background-color: #f1f1f1">
-                                        <h5 class="black--text pl-3 my-2" style="font-size: 25px">Código promocional</h5>
+                                        <h5 class="fw-600 mb-5">Código promocional</h5>
                                         <div class="d-flex justify-space-between mb-2">
                                             <span class="subtitle1 bold pl-3"> Código (Regalo/Referido) </span>
                                             <span class="body1 pr-3">ALO4577</span>
