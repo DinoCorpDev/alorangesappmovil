@@ -10,7 +10,7 @@
             shrink-on-scroll
             :fixed="headerFixed"
         >
-            <v-container class="pa-0 fill-height d-flex justify-space-between" fluid>
+            <v-container class="fill-height d-flex justify-space-between" fluid>
                 <router-link :to="{ name: 'mobileHome' }" class="layout-navbar-auth-brand">
                     <LogoAloranges class="d-none d-md-flex" />
                     <LogoAlorange class="d-flex d-md-none" />
@@ -25,7 +25,7 @@
                     <div class="layout-navbar-auth-nav">
                         <DoubleButton v-if="!userIsLoggedIn" />
                         <div class="d-flex d-lg-none" v-if="userIsLoggedIn">
-                            <CustomButton v-if="userIsLoggedIn" @click.stop="toggleMenu" color="orange3">
+                            <CustomButton v-if="userIsLoggedIn" @click.stop="toggleMenu" color="blackOrange">
                                 <BurgerMenu />
                             </CustomButton>
                         </div>

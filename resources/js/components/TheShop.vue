@@ -72,6 +72,9 @@ export default {
     mounted() {
         this.checkIfMobile();
         window.addEventListener('resize', this.checkIfMobile); // Escucha cambios de tamaño
+        // if (!this.isAuthenticated && window.location.pathname !== '/user/login') {
+        //     window.location.href = '/user/login';
+        // }
     },
     computed: {
         ...mapGetters("auth", ["isAuthenticated"]),

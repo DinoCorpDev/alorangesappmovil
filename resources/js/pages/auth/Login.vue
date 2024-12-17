@@ -1,20 +1,20 @@
 <template>
     <div class="login d-flex flex-column h-100" style="background-color:#ffefdf">
         <v-container class="flex-grow-1 pa-0" fluid>
-            <v-row class="wrap" no-gutters style="background-color:#ffefdf">
-                <v-col cols="12" lg="12" class="pt-lg-0 text-xs-center justify-center title white--text font-weight-bold">
+            <v-row class="wrap" no-gutters style="background-color:#ffefdf; margin-top: 15%">
+                <v-col cols="12" lg="12" class="pt-lg-0 text-xs-center justify-center title white--text font-weight-bold mt-5">
                     <LogoAloranges style="margin-left: 14%;"class="d-md-flex" />
                 </v-col>
                 <v-col cols="12" lg="12" class="pt-lg-0">
                     <div class="login-content h-100 pa-lg-5 pa-3 pt-lg-8">
                         <div class="inputs mb-8">
-                            <div class="mt-lg-6">
-                                <h1 class="login-title">Inicio de sesión</h1>
+                            <div class="mt-lg-6 text-center">
+                                <h1 class="login-title">Bienvenido</h1>
                                 <v-divider class="my-lg-4 my-2" />
                             </div>
                             <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
                                 <div class="form-group mb-6">
-                                    <label class="black--text">Usuario registrado</label>
+                                    <label class="">Usuario registrado</label>
                                     <CustomInput
                                         placeholder="Correo electrónico o número de teléfono"
                                         v-model="form.email"
@@ -24,7 +24,7 @@
                                     />
                                 </div>
                                 <div class="form-group mb-6">
-                                    <label class="black--text">Escribir contraseña</label>
+                                    <label class="">Escribir contraseña</label>
                                     <!-- <CustomInput
                                         placeholder="Contraseña"
                                         v-model="form.password"
@@ -49,7 +49,7 @@
                                     ></v-text-field>
                                 </div>
                                 <div class="d-flex">
-                                <p class="black--text" style="font-size: 13px; margin-right: 15px;">¿Has olvidado tu contraseña?</p>
+                                <p class="" style="font-size: 13px; margin-right: 55px;">¿Has olvidado tu contraseña?</p>
                                     
                                     <a @click="showModalRecuperarPass" class="login-link">
                                         <b>Ir a recuperar contraseña</b>
@@ -68,16 +68,23 @@
                                     style="width: 100%"
                                 />
                             </v-form>
+                            <div class="text-center">
+                                <strong class=" link-forgot" style="font-size: 13px; margin-right: 15px;">¿No tienes ninguna cuenta?</strong>
+                            </div>
                             <div class="d-flex">
-                                <p class="black--text link-forgot" style="font-size: 13px; margin-right: 15px;">¿No tienes ninguna cuenta?</p>
-                                    
-                                    <a href="/user/registration" class="login-link">
-                                        <b>Registrarse</b>
-                                    </a>
+                                    <CustomButton
+                                        :href="'/user/registration'"
+                                        type="button"
+                                        text="Registrarse"
+                                        block
+                                        class="mt-4 mb-8"
+                                        color="white"
+                                        style="width: 100%"
+                                    />
                             </div>
                             
                                 
-                            <!-- <a @click="showModalRegister" class="black--text link-custom">
+                            <!-- <a @click="showModalRegister" class=" link-custom">
                                 ¿No tienes ninguna cuenta?
                             </a>
                             <CustomButton
@@ -88,12 +95,12 @@
                                 text="Registrarse"
                                 @click="showModalRegister"
                             /> -->
-                            <p class="black--text link-custom1">
+                            <!-- <p class=" link-custom1">
                                 Al registrarte, aceptas los <b>Términos de servicios</b> y la
                                 <b>Política de privacidad</b>, incluida la politica de <b>Uso de Cookies</b>
-                            </p>
+                            </p> -->
                         </div>
-                        <AuthFooter />
+                        <!-- <AuthFooter /> -->
                     </div>
                 </v-col>
             </v-row>

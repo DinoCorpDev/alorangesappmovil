@@ -29,7 +29,7 @@
                     v-if="!userIsLoggedIn"
                     color="orange"
                     text="Iniciar Sesión"
-                    @click="showLoginDialog(true)"
+                    :href="'user/login'"
                 />
                 <DoubleButton v-else />
                 <div style="display: none;">

@@ -4,7 +4,7 @@
             v-if="!userIsLoggedIn"
             color="white"
             class="double-button"
-            @click="showLoginDialog(true)"
+            @click="redirectToLogin"
             >
             <div class="d-none d-sm-flex justify-center align-center">
                 <span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
@@ -85,6 +85,9 @@ export default {
             this.headerFixed = currentScroll >= this.scrollThreshold;
             this.logoLarge = windowWidth < 960 ? false : this.headerFixed;
         }*/
+        redirectToLogin() {
+            window.location.href = '/user/login';
+        }
     }
 };
 </script>

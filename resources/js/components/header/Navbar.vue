@@ -24,7 +24,7 @@
                     v-if="!userIsLoggedIn"
                     color="orange"
                     text="Iniciar Sesión"
-                    @click="showLoginDialog(true)"
+                    @click="redirectToLogin"
                 />
                 <DoubleButton v-else />
                 <div style="display: none;">
@@ -78,6 +78,9 @@ export default {
 
             this.headerFixed = currentScroll >= this.scrollThreshold;
             this.logoLarge = windowWidth < 960 ? false : this.headerFixed;
+        },
+        redirectToLogin() {
+            window.location.href = 'user/login';
         }
     }
 };

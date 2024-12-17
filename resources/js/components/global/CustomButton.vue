@@ -424,5 +424,11 @@ export default {
             color: #f5f5f5;
         }
     }
+
+    &.blackOrange{
+        color: black;
+        background-color: #ffefdf !important;
+        border: 1px solid #ffefdf !important;
+    }
 }
 </style>
