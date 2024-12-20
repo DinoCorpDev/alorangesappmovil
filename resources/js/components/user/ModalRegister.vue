@@ -8,7 +8,7 @@
                 style="background-color: #ffefdf; color: white; position: relative; padding: 12px 0; min-height: 56px;"
                 class="text-xs-center justify-center title white--text font-weight-bold"
             >
-                <span style="margin-left: 40%; color: black;">Registro</span>
+                <span v-if="!registerNotification" style="margin-left: 40%; color: black;">Registro</span>
             </div>
   
             <v-form
@@ -750,15 +750,7 @@
                     align="center"
                     v-if="registerNotification"
                 >
-                    <img src="/public/assets/img/checked.png" alt="Checkeado">
-                    <!-- <i class="las la-check" style="color: green; font-size: 80px"></i> -->
-                    <br /><br />
-
-                    <h5 align="center"><b>¡Gracias por registrarse!</b></h5>
-                    <br /><br />
-                    <p class="black--text">
-                        Hemos enviado una notificación de confirmación a su dirección de correo electrónico registrado.
-                    </p>
+                    <VerifyAccount :email="form.email"/>
                 </div>
             </v-form>
 
@@ -826,6 +818,7 @@ import SelectCustom from "../../components/global/SelectCustom.vue";
 import snackbar from "../../components/inc/SnackBar";
 import ArrowUpload from "../../components/icons/ArrowUpload.vue";
 import LogoAloranges from "../../components/icons/LogoAlorange.vue";
+import VerifyAccount from "../../components/auth/VerifyAccount.vue";
 
 // Custom validators
 const isTrue = value => value === true;
@@ -843,7 +836,8 @@ export default {
         SelectCustom,
         VueTelInput,
         snackbar,
-        LogoAloranges
+        LogoAloranges,
+        VerifyAccount
     },
     data() {
         return {

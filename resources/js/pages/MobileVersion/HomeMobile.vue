@@ -1,6 +1,6 @@
 <template>
     <v-container style="background-color: white">
-        <v-row class="center-items ma-2 ma-sm-6">
+        <v-row v-if="!showRecuperarPass" class="center-items ma-2 ma-sm-6">
             <v-col col="12" sm="12" md="12" class="bg-green-ligth border-style-banner">
                 <CarouselSpaces
                     title=""
@@ -9,8 +9,8 @@
                 />
             </v-col>
         </v-row>
-        <RecuperarPassCodigo v-model="showRecuperarPass" :email="this.$route.query.email" />
-        <VerifyAccount v-model="showVerifyAccount" />
+        <RecuperarPassCodigo v-if="showRecuperarPass" :email="this.$route.query.email" />
+        <!-- <VerifyAccount v-model="showVerifyAccount" /> -->
     </v-container>
 </template>
 

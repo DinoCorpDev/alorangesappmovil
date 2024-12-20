@@ -179,7 +179,7 @@ export default {
             this["auth/logout"]();
             this.resetCart();
             this.resetWishlist();
-            this.$router.push({ name: "Home2" }).catch(() => {
+            this.$router.push({ name: "LogoutSuccess" }).catch(() => {
                 console.log("Error while redirecting to home");
             });
         },

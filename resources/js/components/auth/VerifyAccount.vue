@@ -1,15 +1,10 @@
 <template>
-    <v-dialog content-class="modal-register" v-model="showVerifyAccount">
+    <div content-class="modal-register">
         
-        <v-card class="modal-register-card">
-            <v-card-title style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="justify-center text-xs-left justify-left title mb-2">
+        <div class="modal-register-card">
+            <p style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="justify-center text-xs-left justify-left title mb-2">
                 Código de verificación
-                <button @click="closeVerify" class="esc-button">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15128 1.15128C1.61991 0.682647 2.3797 0.682647 2.84833 1.15128L7.9998 6.30275L13.1513 1.15128C13.6199 0.682647 14.3797 0.682647 14.8483 1.15128C15.317 1.61991 15.317 2.3797 14.8483 2.84833L9.69686 7.9998L14.8483 13.1513C15.317 13.6199 15.317 14.3797 14.8483 14.8483C14.3797 15.317 13.6199 15.317 13.1513 14.8483L7.9998 9.69686L2.84833 14.8483C2.3797 15.317 1.61991 15.317 1.15128 14.8483C0.682647 14.3797 0.682647 13.6199 1.15128 13.1513L6.30275 7.9998L1.15128 2.84833C0.682647 2.3797 0.682647 1.61991 1.15128 1.15128Z" fill="white"/>
-                    </svg>
-                </button>
-            </v-card-title>
+            </p>
 
 
             <div class="pa-5 border overflow-hidden shadow-light">
@@ -119,8 +114,8 @@
                     >
                 </div>
             </v-card-actions>
-        </v-card>
-    </v-dialog>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -209,10 +204,10 @@ export default {
         },
         showVerifyAccount: {
             get() {
-                return this.value;
+                return true;
             },
             set(value) {
-                this.$emit("input", value);
+                this.$emit("input", true);
             }
         }
     },

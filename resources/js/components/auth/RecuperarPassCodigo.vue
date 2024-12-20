@@ -1,5 +1,5 @@
 <template>
-    <v-dialog content-class="modal-register" v-model="showRecuperarPass">
+    <div content-class="modal-register">
         <v-card class="modal-register-card">
             <v-card-title v-if="numberPag == 1" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
                 Código de verificación
@@ -118,7 +118,7 @@
                 />
             </v-card-actions>
         </v-card>
-    </v-dialog>
+    </div>
 </template>
 
 <script>
@@ -225,7 +225,7 @@ export default {
             this.loading = true;
             const res = await this.call_api("post", "auth/password/reset", this.form);
             if (res.data.success) {
-                this.$router.push({ name: "Home2" });
+                window.location.href="/user/login"
                 this.snack({
                     message: res.data.message
                 });

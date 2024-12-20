@@ -1,7 +1,7 @@
 <template>
     <div class="login d-flex flex-column h-100" style="background-color:#ffefdf">
         <v-container class="flex-grow-1 pa-0" fluid>
-            <v-row class="wrap" no-gutters style="background-color:#ffefdf; margin-top: 15%">
+            <v-row class="wrap" no-gutters style="background-color:#ffefdf; margin-top: 15%" v-if="!showRecuperarPass">
                 <v-col cols="12" lg="12" class="pt-lg-0 text-xs-center justify-center title white--text font-weight-bold mt-5">
                     <LogoAloranges style="margin-left: 14%;"class="d-md-flex" />
                 </v-col>
@@ -105,7 +105,7 @@
                 </v-col>
             </v-row>
 
-            <RecuperarPass v-model="showRecuperarPass" />
+            <RecuperarPass v-if="showRecuperarPass" />
         </v-container>
     </div>
 </template>
@@ -209,7 +209,7 @@ export default {
                     this.fetchWislistProducts();
                     this.fetchProductQuerries();
                     this.fetchCartProducts();
-                    this.$router.push(this.$route.query.redirect || { name: "Cart" });
+                    this.$router.push(this.$route.query.redirect || { name: "LoginSuccess" });
                 } else {
                     if (this.authSettings.customer_login_with == "email") {
                         this.$router.push({

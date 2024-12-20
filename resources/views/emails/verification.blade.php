@@ -301,13 +301,13 @@
                                                             </tr>
                                                         @endif
                                                         @if ($array['subject'] == 'Email Verification')
-                                                            <td class="center pb10"
+                                                            <!-- <td class="center pb10"
                                                                 style="text-align:center; padding-bottom:10px; padding-top: 25px">
                                                                 <a href="{{ url('/?modal=VerifyAccount') }}" style="background-color: #f58633; border-radius: 100px; border: none; padding: 15px 20px; color:white; font-family:'Montserrat', Arial,sans-serif; font-size:14px; text-decoration:none; text-align:center;">
                                                                     Ingresar código
                                                                 </a>
                                                                 
-                                                            </td>
+                                                            </td> -->
                                                         @endif
                                                         @if (!empty($array['link']))
                                                             <tr>

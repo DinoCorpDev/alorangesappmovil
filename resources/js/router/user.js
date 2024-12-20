@@ -1,4 +1,6 @@
 let Cart = () => import("../pages/user/Cart");
+let LoginSuccess = () => import("../pages/user/LoginSuccess");
+let LogoutSuccess = () => import("../pages/user/LogoutSuccess");
 let Invoices = () => import("../pages/user/Invoices");
 let InvoicesDetails = () => import("../pages/user/InvoicesDetails");
 let DashBoard = () => import("../pages/user/Dashboard");
@@ -36,6 +38,16 @@ export default [
                 component: Cart,
                 name: "Cart",
                 meta: { requiresAuth: true }
+            },
+            {
+                path: "loginSuccess",
+                component: LoginSuccess,
+                name:"LoginSuccess",
+            },
+            {
+                path: "logoutSuccess",
+                component: LogoutSuccess,
+                name:"LogoutSuccess",
             },
             {
                 path: "invoices",
