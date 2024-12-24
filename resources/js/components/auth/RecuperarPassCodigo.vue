@@ -1,126 +1,119 @@
 <template>
-    <div content-class="modal-register">
-        <v-card class="modal-register-card">
-            <v-card-title v-if="numberPag == 1" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
-                Código de verificación
-            </v-card-title>
-            <v-card-title v-if="numberPag == 2" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
-                Elige una contraseña nueva
-            </v-card-title>
-            <div class="forgot-password d-flex flex-column h-100">
-                <v-stepper v-model="numberPag">
-                    <v-stepper-header class="d-none">
-                        <v-stepper-step
-                            :class="numberPag > 1 ? 'v-stepper__step--complete' : ''"
-                            class="modal-register-step"
-                            step="1"
-                        />
+    <div class="register-form">
+        <v-card-title v-if="numberPag == 1" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
+            Código de verificación
+        </v-card-title>
+        <v-card-title v-if="numberPag == 2" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
+            Elige una contraseña nueva
+        </v-card-title>
+        <div class="forgot-password d-flex flex-column h-100">
+            <v-stepper v-model="numberPag">
+                <v-stepper-header class="d-none">
+                    <v-stepper-step
+                        :class="numberPag > 1 ? 'v-stepper__step--complete' : ''"
+                        class="modal-register-step"
+                        step="1"
+                    />
+                    <v-divider :class="numberPag > 1 ? 'step-active' : ''" />
+                    <v-stepper-step
+                        :class="numberPag > 2 ? 'v-stepper__step--complete' : ''"
+                        class="modal-register-step"
+                        step="2"
+                    />
+                </v-stepper-header>
 
-                        <v-divider :class="numberPag > 1 ? 'step-active' : ''" />
-
-                        <v-stepper-step
-                            :class="numberPag > 2 ? 'v-stepper__step--complete' : ''"
-                            class="modal-register-step"
-                            step="2"
-                        />
-                    </v-stepper-header>
-
-
-                    <v-stepper-items>
-                        <v-stepper-content step="1">
-                            <v-container class="">
-                                <div class="forgot-password-content">
-                                    <p>
-                                        Digita el código que enviamos a tu cuenta asociada par cambiar la contraseña.
-                                    </p>
-                                    <div class="inputs mb-4">
-                                        <label class="black--text">Código</label>
-                                        <CustomInput
-                                            v-model="form.code"
-                                            length="6"
-                                            block
-                                            type="number"
-                                            :error-messages="codeErrors"
-                                            placeholder="Ingresar código de seguridad"
-                                            class="place-holder"
-                                            hide-details="auto"
-                                            :disabled="loading"
-                                            required
-                                        ></CustomInput>
-                                    </div>
+                <v-stepper-items>
+                    <v-stepper-content step="1">
+                        <v-container>
+                            <div class="forgot-password-content">
+                                <p>
+                                    Digita el código que enviamos a tu cuenta asociada para cambiar la contraseña.
+                                </p>
+                                <div class="inputs mb-4">
+                                    <label class="black--text">Código</label>
+                                    <CustomInput
+                                        v-model="form.code"
+                                        length="6"
+                                        block
+                                        type="number"
+                                        :error-messages="codeErrors"
+                                        placeholder="Ingresar código de seguridad"
+                                        class="place-holder"
+                                        hide-details="auto"
+                                        :disabled="loading"
+                                        required
+                                    ></CustomInput>
                                 </div>
-                            </v-container>
-                        </v-stepper-content>
+                            </div>
+                        </v-container>
+                    </v-stepper-content>
 
-                        <v-stepper-content step="2">
-                            <v-container class="d-flex flex-grow-1">
-                                <div class="forgot-password-content">
-                                    <p>
-                                        Asegurate de que tu contraseña tenga 8 caracteres o mas. Intenta que incluya
-                                        números, letras y signos de putuacion para que sea una <b>contraseña segura.</b>
-                                    </p>
-                                    <p>
-                                        Una vez que cambies tu contraseña, se cerrarán todas tus sesiones activas de
-                                        Aloranges.
-                                    </p>
-                                    <div class="inputs mb-4">
-                                        <label class="black--text">Introduce una contraseña nueva</label>
-                                        <v-text-field
-                                            :type="passwordShow ? 'text' : 'password'"
-                                            placeholder="Contraseña"
-                                            v-model="form.password"
-                                            :error-messages="passwordErrors"
-                                            :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
-                                            class="input-group--focused place-holder"
-                                            @click:append="passwordShow = !passwordShow"
-                                            hide-details="auto"
-                                            required
-                                            dense
-                                            outlined
-                                        />
-                                    </div>
-
-                                    <div class="inputs mb-2">
-                                        <label class="black--text">Confirma tu contraseña</label>
-                                        <v-text-field
-                                            :type="passwordShow ? 'text' : 'password'"
-                                            placeholder="Contraseña"
-                                            :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
-                                            class="input-group--focused place-holder"
-                                            @click:append="passwordShow = !passwordShow"
-                                            v-model="form.confirmPassword"
-                                            :error-messages="confirmPasswordErrors"
-                                            hide-details="auto"
-                                            required
-                                            dense
-                                            outlined
-                                        />
-                                    </div>
+                    <v-stepper-content step="2">
+                        <v-container class="d-flex flex-grow-1">
+                            <div class="forgot-password-content">
+                                <p>
+                                    Asegúrate de que tu contraseña tenga 8 caracteres o más. Intenta que incluya
+                                    números, letras y signos de puntuación para que sea una <b>contraseña segura.</b>
+                                </p>
+                                <p>
+                                    Una vez que cambies tu contraseña, se cerrarán todas tus sesiones activas de
+                                    Aloranges.
+                                </p>
+                                <div class="inputs mb-4">
+                                    <label class="black--text">Introduce una contraseña nueva</label>
+                                    <v-text-field
+                                        :type="passwordShow ? 'text' : 'password'"
+                                        placeholder="Contraseña"
+                                        v-model="form.password"
+                                        :error-messages="passwordErrors"
+                                        :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
+                                        class="input-group--focused place-holder"
+                                        @click:append="passwordShow = !passwordShow"
+                                        hide-details="auto"
+                                        required
+                                        dense
+                                        outlined
+                                    />
                                 </div>
-                            </v-container>
-                        </v-stepper-content>
-                    </v-stepper-items>
-                </v-stepper>
-            </div>
 
-            <v-card-actions class="pa-5 d-block">
-                <CustomButton v-if="numberPag < 2" text="Continuar" color="orange" block type="button" @click.stop="after" />
+                                <div class="inputs mb-2">
+                                    <label class="black--text">Confirma tu contraseña</label>
+                                    <v-text-field
+                                        :type="passwordShow ? 'text' : 'password'"
+                                        placeholder="Contraseña"
+                                        :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
+                                        class="input-group--focused place-holder"
+                                        @click:append="passwordShow = !passwordShow"
+                                        v-model="form.confirmPassword"
+                                        :error-messages="confirmPasswordErrors"
+                                        hide-details="auto"
+                                        required
+                                        dense
+                                        outlined
+                                    />
+                                </div>
+                            </div>
+                        </v-container>
+                    </v-stepper-content>
+                </v-stepper-items>
+            </v-stepper>
+        </div>
 
-                <CustomButton
-                    v-if="numberPag == 2"
-                    text="Cambiar Contraseña"
-                    color="orange"
-                    block
-                    type="submit"
-                    @click="resetPassword"
-                    :disabled="loadingregister"
-                    :loadingregister="loadingregister"
-                />
-            </v-card-actions>
-        </v-card>
+        <v-card-actions class="pa-5 d-block">
+            <CustomButton v-if="numberPag < 2" text="Continuar" color="orange" block type="button" @click.stop="after" />
+            <CustomButton
+                v-if="numberPag == 2"
+                text="Cambiar Contraseña"
+                color="orange"
+                block
+                type="submit"
+                @click="resetPassword"
+                :disabled="loadingregister"
+                :loadingregister="loadingregister"
+            />
+        </v-card-actions>
     </div>
 </template>
-
 <script>
 import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
 

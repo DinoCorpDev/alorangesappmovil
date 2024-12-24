@@ -1,195 +1,139 @@
 <template>
-    <div content-class="modal-register">
-        <v-card class="modal-register-card">
-            <v-card-title v-if="numberPag == 1" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
-                ¿Olvidó su contraseña?
-            </v-card-title>
-            <v-card-title v-if="numberPag == 3" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
-                ¿A dónde debemos enviar el código de confirmación?
-            </v-card-title>
-            <v-card-title v-if="numberPag == 2" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
-                Confirma tu nombre de usuario
-            </v-card-title>
-            <div class="forgot-password d-flex flex-column h-100">
-                <v-stepper v-model="numberPag">
-                    <v-stepper-header class="d-none">
-                        <v-stepper-step
-                            :class="numberPag > 1 ? 'v-stepper__step--complete' : ''"
-                            class="modal-register-step"
-                            step="1"
-                        />
-
-                        <v-divider :class="numberPag > 1 ? 'step-active' : ''" />
-
-                        <v-stepper-step
-                            :class="numberPag > 2 ? 'v-stepper__step--complete' : ''"
-                            class="modal-register-step"
-                            step="2"
-                        />
-
-                        <v-divider :class="numberPag > 2 ? 'step-active' : ''" />
-
-                        <v-stepper-step class="modal-register-step" step="3" />
-                    </v-stepper-header>
-
-                    <v-divider class="modal-register-subheader" />
-
-                    <v-stepper-items>
-                        <v-stepper-content step="1">
-                            <v-container class="d-flex flex-grow-1 pa-0">
-                                <div class="">
-                                    <p>
-                                        Introduce el correo electrónico asociado a tu cuenta para
-                                        poder cambiar tu contraseña.
-                                    </p>
-                                    <!-- <p>
-                                        Introduce el correo electrónico o número de teléfono asociados a tu cuenta para
-                                        poder cambiar tu contraseña.
-                                    </p> -->
-                                    <div class="inputs mb-5">
-                                        <label class="black--text text-uppercase"
-                                            >Correo electrónico</label
-                                        >
-                                        <!-- <label class="black--text text-uppercase"
-                                            >Correo electrónico o número de teléfono</label
-                                        > -->
-                                        <CustomInput
-                                            placeholder="Correo electrónico"
-                                            class="place-holder"
-                                            type="email"
-                                            v-model="form.email"
-                                            :error-messages="emailErrors"
-                                            hide-details="auto"
-                                            required
-                                        />
-                                        <!-- <CustomInput
-                                            placeholder="Correo electrónico o número de teléfono"
-                                            class="place-holder"
-                                            type="email"
-                                            v-model="form.email"
-                                            :error-messages="emailErrors"
-                                            hide-details="auto"
-                                            required
-                                        /> -->
-                                    </div>
-                                </div>
-                            </v-container>
-                        </v-stepper-content>
-                    </v-stepper-items>
-                    <v-stepper-items>
-                        <v-stepper-content step="2">
-                            <v-container class="d-flex flex-grow-1 pa-0">
-                                <div class="">
-                                    <p>
-                                        Confirma tu identida introduciendo el nombre de usuario asociado a tu cuenta de
-                                        © Alorange.
-                                    </p>
-                                    <v-row>
-                                        <v-col cols="12" md="6" class="inputs mb-5">
-                                            <label class="black--text text-uppercase">PRIMER NOMBRE</label>
-                                            <CustomInput
-                                                placeholder="Ingresar primer nombre"
-                                                class="place-holder"
-                                                type="text"
-                                                v-model="form.first_name"
-                                                :error-messages="firstNameErrors"
-                                                hide-details="auto"
-                                                required
-                                            />
-                                        </v-col>
-                                        <v-col cols="12" md="6" class="inputs mb-5">
-                                            <label class="black--text text-uppercase">PRIMER APELLIDO</label>
-                                            <CustomInput
-                                                placeholder="Ingresar primer apellido"
-                                                class="place-holder"
-                                                type="text"
-                                                v-model="form.first_lastname"
-                                                :error-messages="firstLastNameErrors"
-                                                hide-details="auto"
-                                                required
-                                            />
-                                        </v-col>
-                                    </v-row>
-                                </div>
-                            </v-container>
-                        </v-stepper-content>
-                    </v-stepper-items>
-                    <v-stepper-items>
-                        <v-stepper-content step="3">
-                            <v-container class="d-flex flex-grow-1 pa-0">
-                                <div class="">
-                                    <p>
-                                        Antes de permitirte cambiar tu contraseña, tenemos que asegurarnos de que
-                                        realmente eres tú.
-                                    </p>
-                                    <p>Empieza por seleccionar adónde enviaremos un código de confirmación.</p>
-                                    <v-row class="mb-2">
-                                        <v-col cols="12" sm="12">
-                                            <CustomCheckbox
-                                                inputValue="Natural"
-                                                label="Enviar un correo electrónico a ******@*****.*om"
-                                                name="personType"
-                                                type="radio"
-                                            />
-                                        </v-col>
-                                        <!-- <v-col cols="12" sm="12">
-                                            <CustomCheckbox
-                                                inputValue="Juridical"
-                                                label="Enviar un mensaje de texto al ***********"
-                                                name="personType"
-                                                type="radio"
-                                                disabled
-                                            />
-                                        </v-col> -->
-                                    </v-row>
-                                    <p>Comunícate con el <b>Soporte de © Alorange</b> si no tienes acceso.</p>
-                                </div>
-                            </v-container>
-                        </v-stepper-content>
-                    </v-stepper-items>
-                </v-stepper>
-            </div>
-
-            <v-card-actions class="pa-5 d-flex">
-                <CustomButton
-                    v-if="numberPag < 3"
-                    text="siguiente"
-                    color="orange"
-                    type="button"
-                    class="mb-2 ml-2"
-                    @click.stop="after"
-                />
-                <CustomButton
-                    v-if="numberPag == 3"
-                    text="Enviar código"
-                    color="orange"
-                    type="submit"
-                    class="mb-2"
-                    @click.stop="resetPassword"
-                    :disabled="loadingregister"
-                    :loadingregister="loadingregister"
-                />
-                <CustomButton text="Cancelar" color="orange2" type="button" class="ml-2 mb-2" @click="cerrarModal" />
-            </v-card-actions>
-        </v-card>
-        <v-dialog v-model="userNotFound" width="500">
-            <v-card>
-                <i class="las la-times" style="color: grey; font-size: 20px; right: 0;" @click="userNotFound = false"></i>
-                <div align="center" style="height: 300px; margin-top: 50px; margin-right: 20px; margin-left: 20px">
-                    
-                    <br /><br />
-
-                    <h4 align="center">¡ERROR!</h4>
-                    <br />
-                    <i class="las la-times" style="color: red; font-size: 80px"></i>
-                    <br />
-                    <p>
-                        Los campos no coinciden.
-                    </p>
+    <div class="stepper-container" style="background-color: #ffefdf;">
+      <!-- Títulos dinámicos según el paso -->
+      <div v-if="numberPag === 1" class="text-center justify-center title white--text font-weight-bold"
+           style="background-color: #ffefdf; padding: 12px 0;">
+        <p style="color: black;" @click="showForm"><strong><- ¿Olvidó su contraseña?</strong></p>
+      </div>
+      <div v-if="numberPag === 2" class="text-center justify-center title white--text font-weight-bold"
+           style="background-color: #ffefdf; padding: 12px 0;">
+           <p style="color: black;" @click="showForm"><strong><- ¿Confirma tu nombre de usuario</strong></p>
+      </div>
+      <div v-if="numberPag === 3" class="text-center justify-center title white--text font-weight-bold"
+           style="background-color: #ffefdf; padding: 12px 0;">
+           <p style="color: black;" @click="showForm"><strong><- ¿A dónde debemos enviar el código de confirmación?</strong></p>
+      </div>
+  
+      <div class="forgot-password d-flex flex-column h-200" style="background-color: #ffefdf;">
+        <v-stepper v-model="numberPag">
+          <v-stepper-header class="d-none">
+            <!-- Pasos del formulario -->
+            <v-stepper-step :class="{'v-stepper__step--complete': numberPag > 1}" class="step" step="1" />
+            <v-divider :class="{'step-active': numberPag > 1}" />
+            <v-stepper-step :class="{'v-stepper__step--complete': numberPag > 2}" class="step" step="2" />
+            <v-divider :class="{'step-active': numberPag > 2}" />
+            <v-stepper-step class="step" step="3" />
+          </v-stepper-header>
+  
+          <v-stepper-items>
+            <!-- Paso 1: Correo electrónico -->
+            <v-stepper-content style="background-color: #ffefdf;" step="1">
+              <v-container style="background-color: #ffefdf;">
+                <div>
+                  <p style="margin-top: 14%; margin-bottom: 14%;">Introduce el correo electrónico asociado a tu cuenta para poder cambiar tu contraseña.</p>
+                  <div class="inputs mb-5">
+                    <label class="black--text text-uppercase">Correo electrónico</label>
+                    <CustomInput
+                      placeholder="Correo electrónico"
+                      class="place-holder"
+                      type="email"
+                      v-model="form.email"
+                      :error-messages="emailErrors"
+                      hide-details="auto"
+                      required
+                    />
+                  </div>
                 </div>
-                
-            </v-card>
-        </v-dialog>
+              </v-container>
+            </v-stepper-content>
+  
+            <!-- Paso 2: Confirmación de usuario -->
+            <v-stepper-content style="background-color: #ffefdf;" step="2">
+              <v-container style="background-color: #ffefdf;">
+                <div>
+                  <p style="margin-top: 14%; margin-bottom: 14%;">Confirma tu identidad introduciendo el nombre de usuario asociado a tu cuenta de © Alorange.</p>
+                  <v-row>
+                    <v-col cols="12" md="6" class="inputs mb-5">
+                      <label class="black--text text-uppercase">PRIMER NOMBRE</label>
+                      <CustomInput
+                        placeholder="Ingresar primer nombre"
+                        class="place-holder"
+                        type="text"
+                        v-model="form.first_name"
+                        :error-messages="firstNameErrors"
+                        hide-details="auto"
+                        required
+                      />
+                    </v-col>
+                    <v-col cols="12" md="6" class="inputs mb-5">
+                      <label class="black--text text-uppercase">PRIMER APELLIDO</label>
+                      <CustomInput
+                        placeholder="Ingresar primer apellido"
+                        class="place-holder"
+                        type="text"
+                        v-model="form.first_lastname"
+                        :error-messages="firstLastNameErrors"
+                        hide-details="auto"
+                        required
+                      />
+                    </v-col>
+                  </v-row>
+                </div>
+              </v-container>
+            </v-stepper-content>
+  
+            <!-- Paso 3: Selección de método de confirmación -->
+            <v-stepper-content style="background-color: #ffefdf;" step="3">
+              <v-container style="background-color: #ffefdf;">
+                <div>
+                  <p style="margin-top: 1%; margin-bottom: 15%;">Antes de permitirte cambiar tu contraseña, tenemos que asegurarnos de que realmente eres tú.</p>
+                  <p>Empieza por seleccionar adónde enviaremos un código de confirmación.</p>
+                  <v-row class="mb-2">
+                    <v-col cols="12">
+                      <CustomCheckbox
+                        inputValue="Natural"
+                        label="Enviar un correo electrónico a ******@*****.*om"
+                        name="personType"
+                        type="radio"
+                      />
+                    </v-col>
+                  </v-row>
+                  <p>Comunícate con el <b>Soporte de © Alorange</b> si no tienes acceso.</p>
+                </div>
+              </v-container>
+            </v-stepper-content>
+          </v-stepper-items>
+        </v-stepper>
+      </div>
+  
+      <!-- Acciones del formulario -->
+      <div class="actions pa-5 d-flex">
+        <CustomButton
+          v-if="numberPag < 3"
+          text="Siguiente"
+          color="orange"
+          type="button"
+          class="mb-2 ml-2"
+          @click.stop="after"
+        />
+        <CustomButton
+          v-if="numberPag === 3"
+          text="Enviar código"
+          color="orange"
+          type="submit"
+          class="mb-2"
+          @click.stop="resetPassword"
+          :disabled="loadingregister"
+          :loadingregister="loadingregister"
+        />
+        <CustomButton
+          text="Cancelar"
+          color="orange2"
+          type="button"
+          class="ml-2 mb-2"
+          @click="cerrarModal"
+        />
+      </div>
     </div>
 </template>
 
@@ -204,7 +148,10 @@ const isTrue = value => value === true;
 
 export default {
     props: {
-        value: Boolean
+        value: Boolean,
+        showForm: {
+            type: Function,
+        },
     },
 
     data: () => ({

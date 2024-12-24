@@ -105,7 +105,7 @@
                 </v-col>
             </v-row>
 
-            <RecuperarPass v-if="showRecuperarPass" />
+            <RecuperarPass v-if="showRecuperarPass" :showForm="hideModalRecuperarPass" />
         </v-container>
     </div>
 </template>
@@ -237,6 +237,9 @@ export default {
         async showModalRecuperarPass() {
             this.showLoginDialog(false);
             return (this.showRecuperarPass = true);
+        },
+        async hideModalRecuperarPass() {
+            return this.showRecuperarPass = false;
         }
     }
 };

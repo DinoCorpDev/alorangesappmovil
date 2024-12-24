@@ -79,7 +79,7 @@ export default {
 
         &:not(.v-input--has-state) {
             .v-input__slot fieldset {
-                color: #dfdfdf;
+                color: white;
             }
         }
     }
@@ -89,10 +89,10 @@ export default {
     .v-input {
         &::v-deep {
             .v-input__slot {
-                background: #f5f5f5;
+                background: white;
 
                 &:hover {
-                    background: #dfdfdf;
+                    background: white;
                 }
             }
         }
@@ -103,7 +103,7 @@ export default {
                     .v-input__slot {
                         &:hover,
                         fieldset {
-                            border-color: #f5f5f5;
+                            border-color: white;
                         }
                     }
                 }
