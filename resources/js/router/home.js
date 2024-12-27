@@ -109,7 +109,7 @@ export default [
     },
     {
         path: "/",
-        component: Login,
+        component: Home2,
         name: "Home2",
         meta: { requiresAuth: false }
     },
