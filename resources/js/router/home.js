@@ -23,7 +23,7 @@ let ShopCafeteria = () => import("../pages/shop/ShopCafeteria");
 let ShopShowApi = () => import("../pages/shop/ShopShowApi.vue");
 let ShopSeguridadIndustrial = ()=> import("../pages/shop/ShopSeguridadIndustrial.vue");
 let ShopTecnologia = ()=> import("../pages/shop/ShopTecnologia.vue");
-
+let Login = () => import("../pages/auth/Login");
 
 export default [
     {
@@ -109,7 +109,7 @@ export default [
     },
     {
         path: "/",
-        component: Home2,
+        component: Login,
         name: "Home2",
         meta: { requiresAuth: false }
     },
