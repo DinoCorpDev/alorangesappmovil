@@ -5,10 +5,18 @@
                 <LogoAloranges style="margin-left: 14%;"class="d-md-flex" />
             </v-col>
             <div
-                style="background-color: #ffefdf; color: white; position: relative; padding: 12px 0; min-height: 56px;"
-                class="text-xs-center justify-center title white--text font-weight-bold"
+                style="background-color: #ffefdf; color: black; position: relative; padding: 12px 0; min-height: 56px; margin-left:34%"
+                class="d-flex align-items-center justify-content-center"
             >
-                <span v-if="!registerNotification" style="margin-left: 40%; color: black;">Registro</span>
+                <!-- Flecha de retroceso -->
+                <a 
+                    href="/user/login" 
+                    style="color: black; font-size: 20px; text-decoration: none; margin-right: 10px; margin-top:-2%"
+                >
+                    &#8592; <!-- Flecha izquierda como símbolo -->
+                </a>
+                <!-- Texto de registro -->
+                <span v-if="!registerNotification" style="font-weight: bold;">Registro</span>
             </div>
   
             <v-form
