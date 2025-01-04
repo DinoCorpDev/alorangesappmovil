@@ -1,7 +1,16 @@
 <template>
     <div class="register-form">
         <v-card-title v-if="numberPag == 1" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
+            <div class="d-flex align-items-center justify-content-center">
+                <!-- Flecha de retroceso -->
+                <a  
+                    @click.stop="redirectLogin"
+                    style="color: black; font-size: 20px; text-decoration: none; margin-right: 10px; margin-top:-2%;"
+                >
+                    &#8592; <!-- Flecha izquierda como símbolo -->
+                </a>
             Código de verificación
+            </div>
         </v-card-title>
         <v-card-title v-if="numberPag == 2" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
             Elige una contraseña nueva
@@ -207,6 +216,9 @@ export default {
         },
         async before() {
             return (this.numberPag -= 1);
+        },
+        redirectLogin(){
+            window.location.href = "/user/login";
         },
         async resetPassword() {
             this.$v.form.$touch();
