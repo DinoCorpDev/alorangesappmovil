@@ -12,7 +12,7 @@ const loadState = () => ({
     showConversationDialog: false,
     cartDialogProductSlug: null,
     accessToken: localStorage.getItem("shopAccessToken") || null,
-    currentUser: {},
+    currentUser: JSON.parse(localStorage.getItem("currentUser")) || {},
     sociaLoginStatus: null,
     authSettings: shopSetting.authSettings
 });
@@ -93,12 +93,16 @@ export default {
         logout(state) {
             localStorage.removeItem("shopAccessToken");
             const newState = loadState();
+            state.currentUser = {};
+            localStorage.removeItem("currentUser");
             Object.keys(newState).forEach(key => {
                 state[key] = newState[key];
             });
+            
         },
         setUser(state, data) {
             state.currentUser = data;
+            localStorage.setItem("currentUser", JSON.stringify(data));
         },
         setSociaLoginStatus(state, status) {
             state.sociaLoginStatus = status;

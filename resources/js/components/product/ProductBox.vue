@@ -11,7 +11,7 @@
                     block
                     color="orange"
                     text="Ver Detalles"
-                    :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }"
+                    :to="{ name: 'ProductDetails', params: { slug: productDetails.slug, back: 'productBox' } }"
                 />.
             </div>
         </div>

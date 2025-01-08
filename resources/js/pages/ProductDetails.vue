@@ -1,5 +1,11 @@
 <template>
     <v-container fluid class="product-details">
+        <CustomButton
+            :text="backTo == 'productBox' ? 'VOLVER A PRODUCTOS' : backTo == 'productCart' ? 'VOLVER A CARRITO' : ''"
+            color="orange"
+            class="my-2"
+            :to="backTo == 'productCart' ? { name: 'Cart' } : { name: 'Shop' }"
+        />
         <v-row tag="main" class="mb-6 pa-1 pa-sm-5">
             <v-col cols="12" lg="12">
                 <AddToCart :is-loading="detailsLoading" :product-details="productDetails" :products="moreProducts" />
@@ -38,7 +44,8 @@ export default {
         footerProducts: [],
         tab: null,
         relatedProducts: [{}, {}, {}, {}, {}],
-        rating: 0
+        rating: 0,
+        backTo: ""
     }),
     components: {
         AddToCart,
@@ -48,6 +55,16 @@ export default {
         MapPinIcon,
         SyncIcon,
         ToolsIcon
+    },
+    mounted() {
+        const back = this.$route.params.back;
+        if (back) {
+            this.backTo = back;
+            localStorage.setItem("backTo", back);
+        } else {
+            // Recuperar valor de localStorage si no hay parámetro
+            this.backTo = localStorage.getItem("backTo") || "";
+        }
     },
     methods: {
         async getDetails() {
@@ -62,10 +79,10 @@ export default {
                 this.getMoreProducts2(this.productDetails?.id);
                 this.getRelatedProducts(this.productDetails.id);
                 const newItems = [
-                    { text: 'Home', href: '/', disabled: false },
-                    { text: 'Tienda', href: '/Shop', disabled: true }
+                    { text: "Home", href: "/", disabled: false },
+                    { text: "Tienda", href: "/Shop", disabled: true }
                 ];
-                this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
+                this.$store.dispatch("breadcrumb/setBreadcrumbItems", newItems);
             } else {
                 this.snack({
                     message: res.data.message,
@@ -85,7 +102,7 @@ export default {
             }
         },
         async getMoreProducts(id) {
-             //const res = await this.call_api("get", `product/random/9999/${id}`);
+            //const res = await this.call_api("get", `product/random/9999/${id}`);
             const res = await this.call_api("get", `product/search?category_slug=${id}`);
 
             if (res.data.success) {
@@ -228,7 +245,6 @@ export default {
 
     @media (min-width: 1264px) {
         main {
-            
             overflow: hidden;
         }
     }
@@ -276,7 +292,6 @@ export default {
         overflow-x: hidden;
         padding-right: 8px;
         min-height: 50px;
-
     }
 
     &-list-box {
