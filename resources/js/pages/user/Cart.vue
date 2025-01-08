@@ -2223,6 +2223,7 @@ import TotalPago from "../../components/global/TotalPago.vue";
 import { forEach } from "lodash";
 
 export default {
+    name:"Cart",
     components: {
         AddressDialog,
         CustomButton,

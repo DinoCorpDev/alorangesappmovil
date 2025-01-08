@@ -121,7 +121,7 @@
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <button v-bind="attrs" v-on="on">
-                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }">
+                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug, back: 'productCart' } }">
                                     <EyeIcon />
                                 </router-link>
                             </button>
@@ -156,7 +156,7 @@
                                 </button>
                             </v-list-item>
                             <v-list-item>
-                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }">
+                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug, back: 'productCart' } }">
                                     <EyeIcon />
                                 </router-link>
                             </v-list-item>
@@ -181,7 +181,7 @@
                                 </button>
                             </v-list-item>
                             <v-list-item>
-                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug } }">
+                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug, back: 'productCart' }}">
                                     <EyeIcon />
                                 </router-link>
                             </v-list-item>
