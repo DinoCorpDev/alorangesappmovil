@@ -9,12 +9,11 @@
                     <div class="login-content h-100 pa-lg-5 pa-3 pt-lg-8">
                         <div class="inputs mb-8">
                             <div class="mt-lg-6 text-center">
-                                <h1 class="login-title">Bienvenido</h1>
-                                <v-divider class="my-lg-4 my-2" />
+                                <h1 class="login-title pb-5">Bienvenido</h1>
                             </div>
                             <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
                                 <div class="form-group mb-6">
-                                    <label class="">Usuario registrado</label>
+                                    <label>Usuario registrado</label>
                                     <CustomInput
                                         placeholder="Correo electrónico o número de teléfono"
                                         v-model="form.email"
@@ -24,23 +23,14 @@
                                     />
                                 </div>
                                 <div class="form-group mb-6">
-                                    <label class="">Escribir contraseña</label>
-                                    <!-- <CustomInput
-                                        placeholder="Contraseña"
-                                        v-model="form.password"
-                                        type="password"
-                                        :error-messages="passwordErrors"
-                                        :append-icon="passwordShow ? 'las la-eye' : 'las la-eye-slash'"
-                                        @click:append="passwordShow = !passwordShow"
-                                        required
-                                    /> -->
+                                    <label>Escribir contraseña</label>
                                     <v-text-field
                                         v-model="form.password"
                                         placeholder="Contraseña"
                                         :error-messages="passwordErrors"
                                         :type="passwordShow ? 'text' : 'password'"
                                         :append-icon="passwordShow ? 'las la-eye-slash' : 'las la-eye'"
-                                        class="input-group--focused place-holder"
+                                        class="input-group--focused"
                                         hide-details="auto"
                                         required
                                         dense
@@ -300,15 +290,7 @@ export default {
         .v-input__control,
         .v-input__slot {
             min-height: 38px;
-        }
-
-        ::placeholder {
-            visibility: hidden;
-        }
-
-        :hover::placeholder {
-            visibility: visible;
-            font-style: italic;
+            background: white !important;
         }
         &:not(.v-input--has-state) {
             .v-input__slot fieldset {
@@ -331,9 +313,8 @@ export default {
 .form-group {
     label {
         font-family: "Overpass", sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.4px;
-        text-transform: uppercase;
+        font-size: 16px;
+        color: black;
     }
 }
 

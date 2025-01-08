@@ -62,7 +62,6 @@ export default {
             this.backTo = back;
             localStorage.setItem("backTo", back);
         } else {
-            // Recuperar valor de localStorage si no hay parámetro
             this.backTo = localStorage.getItem("backTo") || "";
         }
     },

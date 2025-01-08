@@ -75,6 +75,7 @@ export default {
         .v-input__control,
         .v-input__slot {
             min-height: 38px;
+            background-color: white !important;
         }
 
         &:not(.v-input--has-state) {

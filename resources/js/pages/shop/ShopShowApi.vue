@@ -112,15 +112,15 @@ export default {
         resultadoFiltroBotones: [],
         activeButton: null,
         swiperOptions: {
-            slidesPerView: 2,
+            slidesPerView: 2.5,
             centeredSlides: false,
             spaceBetween: 12,
             breakpoints: {
                 600: {
-                    slidesPerView: 4
+                    slidesPerView: 3.5
                 },
                 960: {
-                    slidesPerView: 6,
+                    slidesPerView: 4.5,
                     spaceBetween: 20
                 }
             }

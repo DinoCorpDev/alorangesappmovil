@@ -78,13 +78,6 @@ export default {
     .swiper-button-next {
         left: 51%;
         border-radius: 100px;
-        // @media (min-width: 600px) {
-        //     right: 20%;
-        // }
-
-        // @media (min-width: 960px) {
-        //     right: 37%;
-        // }
     }
 
     &::v-deep {
