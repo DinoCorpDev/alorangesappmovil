@@ -1,9 +1,13 @@
 <template>
-    <div class="login d-flex flex-column h-100" style="background-color:#ffefdf">
+    <div class="login d-flex flex-column h-100" style="background-color: #ffefdf">
         <v-container class="flex-grow-1 pa-0" fluid>
-            <v-row class="wrap" no-gutters style="background-color:#ffefdf; margin-top: 15%" v-if="!showRecuperarPass">
-                <v-col cols="12" lg="12" class="pt-lg-0 text-xs-center justify-center title white--text font-weight-bold mt-5">
-                    <LogoAloranges style="margin-left: 14%;"class="d-md-flex" />
+            <v-row class="wrap" no-gutters style="background-color: #ffefdf; margin-top: 15%" v-if="!showRecuperarPass">
+                <v-col
+                    cols="12"
+                    lg="12"
+                    class="pt-lg-0 text-xs-center justify-center title white--text font-weight-bold mt-5"
+                >
+                    <LogoAloranges style="margin-left: 14%" class="d-md-flex" />
                 </v-col>
                 <v-col cols="12" lg="12" class="pt-lg-0">
                     <div class="login-content h-100 pa-lg-5 pa-3 pt-lg-8">
@@ -39,8 +43,9 @@
                                     ></v-text-field>
                                 </div>
                                 <div class="d-flex">
-                                <p class="" style="font-size: 13px; margin-right: 55px;">¿Has olvidado tu contraseña?</p>
-                                    
+                                    <p class="" style="font-size: 13px; margin-right: 55px">
+                                        ¿Has olvidado tu contraseña?
+                                    </p>
                                     <a @click="showModalRecuperarPass" class="login-link">
                                         <b>Ir a recuperar contraseña</b>
                                     </a>
@@ -59,22 +64,23 @@
                                 />
                             </v-form>
                             <div class="text-center">
-                                <strong class=" link-forgot" style="font-size: 13px; margin-right: 15px;">¿No tienes ninguna cuenta?</strong>
+                                <strong class="link-forgot" style="font-size: 13px; margin-right: 15px">
+                                    ¿No tienes ninguna cuenta?
+                                </strong>
                             </div>
                             <div class="d-flex">
-                                    <CustomButton
-                                        :href="'/user/registration'"
-                                        type="button"
-                                        text="Registrarse"
-                                        block
-                                        class="mt-4 mb-8"
-                                        color="white"
-                                        style="width: 100%"
-                                    />
+                                <CustomButton
+                                    :href="'/user/registration'"
+                                    type="button"
+                                    text="Registrarse"
+                                    block
+                                    class="mt-4 mb-8"
+                                    color="white"
+                                    style="width: 100%"
+                                />
                             </div>
-                            
-                                
-                            <!-- <a @click="showModalRegister" class=" link-custom">
+
+                            <!-- <a @click="showModalRegister" class="link-custom">
                                 ¿No tienes ninguna cuenta?
                             </a>
                             <CustomButton
@@ -85,7 +91,7 @@
                                 text="Registrarse"
                                 @click="showModalRegister"
                             /> -->
-                            <!-- <p class=" link-custom1">
+                            <!-- <p class="link-custom1">
                                 Al registrarte, aceptas los <b>Términos de servicios</b> y la
                                 <b>Política de privacidad</b>, incluida la politica de <b>Uso de Cookies</b>
                             </p> -->
@@ -139,7 +145,7 @@ export default {
             {
                 src: "/public/assets/img/login2.png",
                 type: "image"
-            },
+            }
         ]
     }),
     validations: {
@@ -229,15 +235,14 @@ export default {
             return (this.showRecuperarPass = true);
         },
         async hideModalRecuperarPass() {
-            return this.showRecuperarPass = false;
+            return (this.showRecuperarPass = false);
         }
     }
 };
 </script>
 
 <style lang="scss">
-
-*{
+* {
     &::-webkit-scrollbar {
         width: 3px;
     }
@@ -256,7 +261,6 @@ export default {
         background: #5a5a5a;
     }
 }
-
 </style>
 
 <style lang="scss" scoped>
@@ -358,10 +362,10 @@ export default {
         }
     }
 }
-.login-link{
+.login-link {
     font-size: 13px;
     color: #f58634;
-    &:hover{
+    &:hover {
         color: #fbd6bb;
     }
 }

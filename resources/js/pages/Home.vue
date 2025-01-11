@@ -11,8 +11,8 @@
                 show-arrows-on-hover
             >
                 <template v-slot:prev="{ on, attrs }">
-                    <v-btn v-bind="attrs" v-on="on"
-                        ><svg
+                    <v-btn v-bind="attrs" v-on="on">
+                        <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                             role="img"
@@ -20,12 +20,13 @@
                             class="v-icon__svg"
                             style="font-size: 36px; height: 36px; width: 36px"
                         >
-                            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path></svg
-                    ></v-btn>
+                            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+                        </svg>
+                    </v-btn>
                 </template>
                 <template v-slot:next="{ on, attrs }">
-                    <v-btn v-bind="attrs" v-on="on"
-                        ><svg
+                    <v-btn v-bind="attrs" v-on="on">
+                        <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                             role="img"
@@ -33,8 +34,9 @@
                             class="v-icon__svg"
                             style="font-size: 3px; height: 36px; width: 36px"
                         >
-                            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg
-                    ></v-btn>
+                            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                        </svg>
+                    </v-btn>
                 </template>
                 <v-carousel-item
                     v-for="(item, i) in items"
@@ -90,47 +92,45 @@
         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" class="v-icon__svg" style="font-size: 36px; height: 36px; width: 36px;"><path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path></svg> -->
         <v-row class="ma-10">
             <v-col cols="12" sm="6" class="pr-6">
-                
-                <a href="#" class="categories-items"
-                    >
-                    <div class="top-product"><v-img src="/public/assets/img/papeleria.png" contain max-width="350" /></div>
+                <a href="#" class="categories-items">
+                    <div class="top-product">
+                        <v-img src="/public/assets/img/papeleria.png" contain max-width="350" />
+                    </div>
                     <div class="bottom-product">
                         <h4 class="pl-5"><strong>PAPELERÍA</strong></h4>
-                    </div></a
-                >
+                    </div>
+                </a>
             </v-col>
 
             <v-col cols="12" sm="6" class="pl-6">
-                
-                <a href="#" class="categories-items"
-                    >
+                <a href="#" class="categories-items">
                     <div class="top-product"><v-img src="/public/assets/img/aseo.png" contain max-width="350" /></div>
                     <div class="bottom-product">
                         <h4 class="pl-5"><strong>ASEO</strong></h4>
-                    </div></a
-                >
+                    </div>
+                </a>
             </v-col>
 
             <v-col cols="12" sm="6" class="pr-6 pt-12">
-                
-                <a href="#" class="categories-items"
-                    >
-                    <div class="top-product"><v-img src="/public/assets/img/cafeteria.png" contain max-width="350" /></div>
+                <a href="#" class="categories-items">
+                    <div class="top-product">
+                        <v-img src="/public/assets/img/cafeteria.png" contain max-width="350" />
+                    </div>
                     <div class="bottom-product">
                         <h4><strong class="pl-5">CAFETERÍA</strong></h4>
-                    </div></a
-                >
+                    </div>
+                </a>
             </v-col>
 
             <v-col cols="12" sm="6" class="pl-6 pt-12">
-                
-                <a href="#" class="categories-items"
-                    >
-                    <div class="top-product"><v-img src="/public/assets/img/botiquin.png" contain max-width="350" /></div>
+                <a href="#" class="categories-items">
+                    <div class="top-product">
+                        <v-img src="/public/assets/img/botiquin.png" contain max-width="350" />
+                    </div>
                     <div class="bottom-product">
                         <h4 class="pl-5"><strong>BOTIQUÍN</strong></h4>
-                    </div></a
-                >
+                    </div>
+                </a>
             </v-col>
         </v-row>
         <v-row>
@@ -187,7 +187,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("app", ["userLanguageObj", "allLanguages"]),
+        ...mapGetters("app", ["userLanguageObj", "allLanguages"])
     },
     mounted() {
         this.$vuetify.theme.dark = true;
@@ -202,9 +202,10 @@ export default {
         ...mapActions("app", ["setLanguage"]),
         updateBreadcrumb() {
             const newItems = [
-                { text: 'Home', href: '/', disabled: true },
+                // prettier-ignore
+                { text: "Home", href: "/", disabled: true }
             ];
-            this.$store.dispatch('breadcrumb/setBreadcrumbItems', newItems);
+            this.$store.dispatch("breadcrumb/setBreadcrumbItems", newItems);
         },
         agree() {
             if (this.$i18n.locale !== this.selectedCode) {
@@ -408,8 +409,8 @@ export default {
     border-bottom-right-radius: 8px;
     transition: ease 0.2s;
 }
-.categories-items:hover{
-    & .bottom-product{
+.categories-items:hover {
+    & .bottom-product {
         background-color: #f58634;
         color: white;
         cursor: pointer;
