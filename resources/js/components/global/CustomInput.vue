@@ -10,9 +10,8 @@
         @blur="$emit('blur', $event)"
         @input="$emit('input', $event)"
         @change="limitDigits"
-        flat
+        dense
         outlined
-        solo
     />
 </template>
 
@@ -44,21 +43,21 @@ export default {
             type: String,
             default: ""
         },
-        maxlength:{
+        maxlength: {
             type: String,
             default: "1000"
         },
-        card:{
+        card: {
             type: String,
             default: ""
         }
     },
     methods: {
         limitDigits() {
-            if (this.props.card == 'numberCard') {
+            if (this.props.card == "numberCard") {
                 if (this.props.value.length > 3) {
                     this.props.value = this.props.value.slice(0, 3);
-                }   
+                }
             }
         }
     }
@@ -67,15 +66,9 @@ export default {
 
 <style lang="scss" scoped>
 .v-input {
-    font-family: "Roboto", sans-serif;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-
     &::v-deep {
-        .v-input__control,
         .v-input__slot {
-            min-height: 38px;
-            background-color: white !important;
+            background: #ffffff;
         }
 
         &:not(.v-input--has-state) {
@@ -84,28 +77,14 @@ export default {
             }
         }
     }
-}
 
-.theme--light {
-    .v-input {
+    &.v-text-field--outlined {
         &::v-deep {
-            .v-input__slot {
-                background: white;
-
-                &:hover {
-                    background: white;
-                }
-            }
-        }
-
-        &.v-text-field--outlined {
-            &::v-deep {
-                &:not(.v-input--has-state) {
-                    .v-input__slot {
-                        &:hover,
-                        fieldset {
-                            border-color: white;
-                        }
+            &:not(.v-input--has-state) {
+                .v-input__slot {
+                    &:hover,
+                    fieldset {
+                        border-color: white;
                     }
                 }
             }
