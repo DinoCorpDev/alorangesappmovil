@@ -4,17 +4,19 @@
             <!-- <NavbarMobile display="position: fixed; top: 0px" v-if="$route.meta.hasHeader && $route.name == 'Home2'  && $route.name != 'Login' && $route.name != 'Registration'" /> -->
             <NavbarAuthMobile v-if="$route.name != 'Login' && $route.name != 'Registration'" @toggleMenu="toggleMenu" />
         </div>
-        
+
         <v-main class="aiz-main-wrap">
             <div v-if="!isMobile">
                 <Breadcrumb />
             </div>
-            
+
             <!-- prettier-ignore -->
             <v-navigation-drawer v-model="userNavDrawerActive" fixed temporary right style="z-index: 999">
                 <SideMenu class="pa-3" />
             </v-navigation-drawer>
-            <router-view :key="['ShopDetails','ShopCoupons','ShopProducts'].includes($route.name) ? null : $route.path"></router-view>
+            <router-view
+                :key="['ShopDetails', 'ShopCoupons', 'ShopProducts'].includes($route.name) ? null : $route.path"
+            ></router-view>
         </v-main>
 
         <Footer v-if="$route.meta.hasFooter && !isMobile" :class="[{ 'd-none': routerLoading }]" />
@@ -42,15 +44,14 @@ import SideMenu from "./user/SideMenu";
 export default {
     metaInfo() {
         return {
-            title: this.appMetaTitle,
-            
+            title: this.appMetaTitle
         };
     },
-    data(){
-        return{
+    data() {
+        return {
             userNavDrawerActive: false,
-            isMobile: false,
-        }
+            isMobile: false
+        };
     },
     components: {
         AddToCartDialog,
@@ -71,7 +72,7 @@ export default {
     },
     mounted() {
         this.checkIfMobile();
-        window.addEventListener('resize', this.checkIfMobile); // Escucha cambios de tamaño
+        window.addEventListener("resize", this.checkIfMobile); // Escucha cambios de tamaño
     },
     computed: {
         ...mapGetters("auth", ["isAuthenticated"]),
@@ -90,7 +91,7 @@ export default {
                 this.$vuetify.rtl = false;
             }
         },
-        toggleMenu(){
+        toggleMenu() {
             this.userNavDrawerActive = !this.userNavDrawerActive;
         },
         async getTempCartData() {
@@ -111,7 +112,7 @@ export default {
         },
         checkIfMobile() {
             this.isMobile = window.innerWidth <= 768; // Cambia el umbral según tus necesidades
-        },
+        }
     },
     async created() {
         this.changeRTL();

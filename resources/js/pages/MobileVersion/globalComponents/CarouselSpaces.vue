@@ -6,7 +6,6 @@
                     <strong>{{ title }}</strong>
                 </h2>
             </v-col>
-
             <v-col cols="12" class="d-none d-sm-block">
                 <div class="wrapper-arrows">
                     <div class="wrap-arrow mr-3">
@@ -21,40 +20,23 @@
         <div class="image-container d-block d-sm-none">
             <v-row>
                 <v-col
-                    style="display: flex; justify-content: center; align-items: center"
-                    cols="6"
+                    v-if="spaces.length"
                     v-for="space in spaces"
-                    :key="`slide-space-${space.id}`"
+                    cols="6"
+                    :key="`slide-space-${space.title}`"
                 >
-                <a 
-                    :href="space.url" 
-                    @click="debugUrl(space.url)"
-                    :style="{
-                        marginBottom: space.marginbottom || '0px', 
-                        marginLeft: space.marginLeft || '0px'
-                    }">
-                    <img 
-                        class="images-responsive" 
-                        :src="space.img" 
-                        :alt="space.title" />
-                    <p 
-                        :style="{
-                            fontSize: '24px', 
-                            textAlign: 'center', 
-                            margin: '0', 
-                            fontWeight: '700', 
-                            marginRight: space.marginTextRigh || '0px', 
-                            color: 'black'
-                        }">
-                        {{ space.title }}
-                    </p>
-                </a>
+                    <a :href="space.url" @click="debugUrl(space.url)" class="category">
+                        <img :src="space.img" :alt="space.title" class="mb-3"/>
+                        <p class="space-title mb-0">
+                            {{ space.title }}
+                        </p>
+                    </a>
                 </v-col>
             </v-row>
         </div>
         <div class="d-none d-sm-block">
             <swiper :options="swiperOptions">
-                <swiper-slide v-for="space in spaces" :key="`slide-space-${space.id}`">
+                <swiper-slide v-for="space in spaces" :key="`slide-space-${space.title}`">
                     <space-item class="bg-trasnparent" :data="space" />
                 </swiper-slide>
             </swiper>
@@ -84,7 +66,7 @@ export default {
             default: () => []
         }
     },
-    methods:{
+    methods: {
         debugUrl(url) {
             window.location.href = url;
         }
@@ -124,6 +106,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.category {
+    font-size: 'Causten';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.space-title {
+    color: #25292e;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 1.3;
+}
 .wrapper-arrows {
     width: 100%;
     display: flex;
