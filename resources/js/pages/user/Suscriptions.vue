@@ -32,7 +32,6 @@
 
 <script>
 import SuscriptionHistory from "../../components/global/SuscriptionHistory.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     data: () => ({
@@ -44,7 +43,6 @@ export default {
     }),
     components: {
         SuscriptionHistory,
-        CustomButton
     },
     computed: {
         headers() {

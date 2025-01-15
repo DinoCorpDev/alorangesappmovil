@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import CustomButton from "../global/CustomButton.vue";
-
 export default {
     name: "ShopActionCard",
     props: {
@@ -46,9 +44,6 @@ export default {
             default: "horizontal"
         }
     },
-    components: {
-        CustomButton
-    }
 };
 </script>
 

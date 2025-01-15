@@ -54,7 +54,7 @@
                         <div v-bind="attrs" v-on="on">
                             <custom-button
                                 v-if="icon3"
-                                plain 
+                                plain
                                 :to="{ name: 'OrderDetails', params: { code: order } }"
                             >
                             <Ojo />
@@ -87,7 +87,7 @@
                                     >
                                         <Compartir /><p class="mb-0 pl-1">Compartir</p>
                                     </custom-button>
-                                    
+
                                 </v-list-item-action>
                             </v-list-item>
 
@@ -95,7 +95,7 @@
                                 <v-list-item-action class="mr-0">
                                     <custom-button
                                         v-if="icon3"
-                                        plain 
+                                        plain
                                         :to="{ name: 'OrderDetails', params: { code: order } }"
                                     >
                                     <Ojo /><p class="mb-0 pl-2">Favorito</p>
@@ -111,13 +111,11 @@
 </template>
 
 <script>
-import CustomButton from "./CustomButton.vue";
 import Compartir from "../../components/icons/Compartir.vue";
 import Ojo from "../../components/icons/Ojo.vue";
 
 export default {
     components: {
-        CustomButton,
         Compartir,
         Ojo
     },

@@ -58,8 +58,6 @@
 </template>
 
 <script>
-import CustomButton from "./CustomButton.vue";
-
 export default {
     name: "Carousel",
     props: {
@@ -91,9 +89,6 @@ export default {
             type: Array,
             default: () => ["Instalaciones", "Mantenimiento", "Planes"]
         }
-    },
-    components: {
-        CustomButton
     },
     data() {
         return {
@@ -191,7 +186,7 @@ export default {
                 width: 70%;
                 height: auto;
             }
-            
+
             object-fit: cover;
             object-position: center;
 

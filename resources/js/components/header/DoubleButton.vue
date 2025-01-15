@@ -15,12 +15,12 @@
                     <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
                     <span class="status-indicator" :class="{ active: userShortName }"></span>
                 </div>
-            </div> 
+            </div>
             <div class="d-block d-sm-none">
                 <Profile class="mr-2 mr-sm-3" />
             </div>
         </CustomButton>
-        
+
         <CustomButton
             v-else
             color="white"
@@ -47,15 +47,11 @@
 <script>
 import { mapGetters, mapActions, mapMutations } from "vuex";
 
-import CustomButton from "../global/CustomButton.vue";
-
 import ShopCartIcon from "../icons/ShopCart.vue";
 import Profile from "../icons/ProfileIcon.vue";
 
 export default {
     components: {
-        CustomButton,
-
         // Icons
         ShopCartIcon,
         Profile

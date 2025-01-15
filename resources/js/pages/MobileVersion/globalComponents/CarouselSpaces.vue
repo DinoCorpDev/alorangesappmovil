@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import SpaceItem from "../../../components/global/SpaceItem.vue";
+import SpaceItem from "@components/global/SpaceItem.vue";
 
 export default {
     name: "CarouselSpaces",

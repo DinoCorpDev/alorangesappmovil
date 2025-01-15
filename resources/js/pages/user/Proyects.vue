@@ -38,7 +38,6 @@
 <script>
 import ProyectHistory from "../../components/global/ProyectHistory.vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
-import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     data: () => ({
@@ -50,7 +49,6 @@ export default {
     }),
     components: {
         ProyectHistory,
-        CustomButton
     },
     async created() {
         await this.getUser();

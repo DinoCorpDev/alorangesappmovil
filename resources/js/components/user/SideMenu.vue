@@ -44,7 +44,7 @@
                     </v-col>
                 </v-row>
             </div>
-            
+
             <!-- <CustomButton class="d-none d-sm-flex d-lg-none" block color="white" @click="logout">
                 {{ $t("Cerrar sesión") }}
             </CustomButton> -->
@@ -140,11 +140,9 @@
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import UserMenu from "./UserMenu.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     components: {
-        CustomButton,
         UserMenu
     },
     data: () => ({

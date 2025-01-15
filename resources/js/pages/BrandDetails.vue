@@ -77,7 +77,6 @@
 <script>
 import { productsSeeder, sliderSeeder } from "../seeders/products.js";
 
-import CustomButton from "../components/global/CustomButton.vue";
 import ProductBox from "../components/product/ProductBox.vue";
 import ShopActionCard from "../components/shop/ShopActionCard.vue";
 import ProductsGrid from "../components/global/ProductsGrid.vue";
@@ -85,7 +84,6 @@ import ProductsGrid from "../components/global/ProductsGrid.vue";
 export default {
     name: "BrandDetails",
     components: {
-        CustomButton,
         ProductBox,
         ProductsGrid,
         ShopActionCard

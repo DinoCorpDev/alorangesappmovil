@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import CustomButton from "../global/CustomButton.vue";
 import ProductBox from "../product/ProductBox.vue";
 import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 
@@ -49,7 +48,6 @@ export default {
         to: { type: [String, Object] }
     },
     components: {
-        CustomButton,
         ProductBox,
         ShopActionCard
     },

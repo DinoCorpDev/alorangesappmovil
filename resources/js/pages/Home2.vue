@@ -176,7 +176,6 @@ import { sliderSeeder } from "../seeders/products";
 import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vue";
 import Carousel from "../components/global/Carousel.vue";
 import CarouselActions from "../components/global/CarouselActions.vue";
-import CustomButton from "../components/global/CustomButton.vue";
 import LayoutNavbar from "../components/header/Navbar.vue";
 import PolygonElement from "../components/global/PolygonElement.vue";
 import PortfolioCard from "../components/global/PortfolioCard.vue";
@@ -194,7 +193,6 @@ export default {
         BannerCategoryProduct,
         Carousel,
         CarouselActions,
-        CustomButton,
         LayoutNavbar,
         PolygonElement,
         PortfolioCard,

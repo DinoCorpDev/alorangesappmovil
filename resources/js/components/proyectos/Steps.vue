@@ -146,14 +146,9 @@
 </template>
 
 <script>
-import CustomButton from "../global/CustomButton.vue";
-
 export default {
     props: {
         orderDetails: { type: Object, default: {} }
-    },
-    components: {
-        CustomButton
     },
     data: () => ({}),
     computed: {

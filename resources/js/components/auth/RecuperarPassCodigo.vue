@@ -3,7 +3,7 @@
         <v-card-title v-if="numberPag == 1" style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="text-xs-center justify-center title white--text font-weight-bold">
             <div class="d-flex align-items-center justify-content-center">
                 <!-- Flecha de retroceso -->
-                <a  
+                <a
                     @click.stop="redirectLogin"
                     style="color: black; font-size: 20px; text-decoration: none; margin-right: 10px; margin-top:-2%;"
                 >
@@ -126,7 +126,6 @@
 <script>
 import { required, email, minLength, sameAs, requiredIf } from "vuelidate/lib/validators";
 
-import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 
 // Custom validators
@@ -151,7 +150,6 @@ export default {
         passwordShow: false
     }),
     components: {
-        CustomButton,
         CustomInput
     },
     validations: {

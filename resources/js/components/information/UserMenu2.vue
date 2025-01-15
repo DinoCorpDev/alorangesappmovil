@@ -72,11 +72,8 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import CustomButton from "../../components/global/CustomButton.vue";
+
 export default {
-    components: {
-        CustomButton
-    },
     computed: {
         ...mapGetters("app", ["generalSettings", "getUnseenProductQuerries"]),
         routes() {

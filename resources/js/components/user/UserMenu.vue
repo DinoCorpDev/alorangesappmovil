@@ -1,6 +1,5 @@
 <template>
     <div class="user-nav">
-
         <div class="user-nav-buttons top mt-8 mb-8 mb-sm-0">
             <template v-for="item in userNavLinks.purchase">
                 <CustomButton
@@ -29,24 +28,19 @@
 <script>
 import { mapState } from "vuex";
 
-import CustomButton from "../../components/global/CustomButton.vue";
-
 export default {
-    components: {
-        CustomButton
-    },
     data() {
         return {
             userNavLinks: {
                 purchase: [
                     { label: "Carrito", link: "Cart" },
                     { label: "Mi lista", link: "Wishlist" },
-                    { label: "Facturas", link: "PurchaseHistory" },
+                    { label: "Facturas", link: "PurchaseHistory" }
                     //{ label: "Suscripciones", link: "Suscriptions" },
                     //{ label: "Proyectos", link: "Proyects" }
                 ],
                 user: [
-                    { label: "Perfil", link: "Profile" },
+                    { label: "Perfil", link: "Profile" }
                     //{ label: "Notificaciones", link: "NotificationAll" }
                 ]
             }

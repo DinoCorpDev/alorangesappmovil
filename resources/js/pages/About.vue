@@ -35,12 +35,10 @@
 
 <script>
 import CarouselDescription from "../components/global/CarouselDescription.vue";
-import CustomButton from "../components/global/CustomButton.vue";
 
 export default {
     components: {
         CarouselDescription,
-        CustomButton
     },
     data() {
         return {

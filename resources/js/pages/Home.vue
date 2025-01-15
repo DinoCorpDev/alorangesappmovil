@@ -146,7 +146,6 @@ import { mapGetters, mapActions } from "vuex";
 import { sliderSeeder } from "../seeders/products";
 
 // import Carousel from "../components/global/Carousel.vue";
-import CustomButton from "../components/global/CustomButton.vue";
 import LayoutNavbar from "../components/header/Navbar.vue";
 import CustomInput from "../components/global/CustomInput.vue";
 import CarouselBrands from "../components/global/CarouselBrands.vue";
@@ -154,7 +153,6 @@ import CarouselBrands from "../components/global/CarouselBrands.vue";
 export default {
     components: {
         // Carousel,
-        CustomButton,
         LayoutNavbar,
         CustomInput,
         CarouselBrands

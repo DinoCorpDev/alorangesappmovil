@@ -44,7 +44,6 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 
-import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
 import LogoAloranges from "../icons/LogoIconoAloranges.vue";
 import LogoAlorange from "../icons/LogoIconoAloranges.vue";
@@ -55,7 +54,6 @@ import SearchInput from "../global/SearchInput.vue";
 export default {
     name: "LayoutNavbarMobile",
     components: {
-        CustomButton,
         DoubleButton,
         LogoAlorange,
         LogoAloranges,
