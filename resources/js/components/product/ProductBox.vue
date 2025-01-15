@@ -77,7 +77,6 @@
 <script>
 import { mapActions, mapMutations, mapGetters } from "vuex";
 
-import CustomButton from "../global/CustomButton.vue";
 import FavoriteIcon from "../icons/Favorite.vue";
 import Cart from "../icons/CartIconSmall.vue";
 import WishIcon from "../icons/WishIcon.vue";
@@ -85,7 +84,6 @@ import WishIcon from "../icons/WishIcon.vue";
 export default {
     name: "ProductBox",
     components: {
-        CustomButton,
         WishIcon,
         Cart,
         FavoriteIcon

@@ -27,7 +27,7 @@
             </template>
 
             <template v-if="productCartType == 'wishlist'">
-                
+
                 <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
                     {{ formatearMoneda(productDetails.base_discounted_price) }}
                 </span>
@@ -40,7 +40,7 @@
             </template>
 
             <template v-if="productCartType == 'purchase-history'">
-                
+
                 <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
                     {{ formatearMoneda(productDetails.price) }}
                 </span>
@@ -52,7 +52,7 @@
         </div>
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-none d-md-flex">
-                 <template v-if="productCartType == 'checkout' || productCartType == 'bill'"> 
+                 <template v-if="productCartType == 'checkout' || productCartType == 'bill'">
                 <!-- <template v-if="productDetails.regular_price"> -->
                     <v-tooltip bottom color="black" v-if="productCartType != 'bill'">
                         <template v-slot:activator="{ on, attrs }">
@@ -117,7 +117,7 @@
                         </template>
                         <span>Eliminar de favoritos</span>
                     </v-tooltip>
-                    
+
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <button v-bind="attrs" v-on="on">
@@ -128,7 +128,7 @@
                         </template>
                         <span>Ver detalles</span>
                     </v-tooltip>
-                    
+
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <button @click="addCart()" v-bind="attrs" v-on="on">
@@ -137,7 +137,7 @@
                         </template>
                         <span>Agregar a carrito</span>
                     </v-tooltip>
-                    
+
                 </template>
             </div>
             <div class="d-md-none">
@@ -201,8 +201,6 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 
-import CustomButton from "../../components/global/CustomButton.vue";
-
 import AddCartIcon from "../../components/icons/AddCartIcon.vue";
 import EllipsisIcon from "../../components/icons/EllipsisIcon.vue";
 import EyeIcon from "../../components/icons/EyeIcon.vue";
@@ -212,7 +210,6 @@ import TrashIcon from "../../components/icons/TrashIcon.vue";
 export default {
     name: "ProductCart",
     components: {
-        CustomButton,
         AddCartIcon,
         EllipsisIcon,
         EyeIcon,
@@ -289,7 +286,7 @@ export default {
                         color: "red"
                     });
                 })
-                
+
         },
         formatearMoneda(valor) {
             return valor.toLocaleString('es-CO', {

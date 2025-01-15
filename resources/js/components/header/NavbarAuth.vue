@@ -109,7 +109,7 @@
                             </v-dialog>
                         </div>
                         <!-- MODAL LOGOUT END -->
-                        
+
                     </div>
                 </div>
             </v-container>
@@ -120,7 +120,6 @@
 <script>
 import { mapGetters, mapState } from "vuex";
 
-import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
 import Cart from "../icons/CartIcon.vue";
 import BurgerMenu from "../icons/BurgerMenu.vue";
@@ -136,7 +135,6 @@ import SideMenu from "../user/SideMenu";
 export default {
     name: "LayoutNavbarAuth",
     components: {
-        CustomButton,
         DoubleButton,
         LogoAloranges,
         LogoAlorange,

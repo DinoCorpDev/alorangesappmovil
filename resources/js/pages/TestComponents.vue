@@ -94,7 +94,6 @@ import BannerCategoryProduct from "../components/global/BannerCategoryProduct.vu
 import Carousel from "../components/global/Carousel.vue";
 import PresentationBanner from "../components/global/PresentationBanner.vue";
 import CarouselActions from "../components/global/CarouselActions.vue";
-import CustomButton from "../components/global/CustomButton.vue";
 import SelectCustom from "../components/global/SelectCustom.vue";
 import PolygonElement from "../components/global/PolygonElement.vue";
 import ShopActionCard from "../components/shop/ShopActionCard.vue";
@@ -105,7 +104,6 @@ export default {
         Carousel,
         PresentationBanner,
         CarouselActions,
-        CustomButton,
         SelectCustom,
         PolygonElement,
         ShopActionCard

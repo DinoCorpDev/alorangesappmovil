@@ -12,13 +12,7 @@
                 </div> -->
             </v-col>
             <v-col cols="12" lg="9" class="user-layout-content" style="background-color: #fafcfc">
-                <v-container>
-                    <v-row>
-                        <v-col cols="12" lg="12">
-                            <router-view />
-                        </v-col>
-                    </v-row>
-                </v-container>
+                <router-view />
             </v-col>
         </v-row>
         <v-navigation-drawer v-model="userNavDrawerActive" fixed temporary right style="z-index: 999">
@@ -30,13 +24,11 @@
 <script>
 import { mapGetters, mapState } from "vuex";
 
-import CustomButton from "../../components/global/CustomButton.vue";
 import SideMenu from "./SideMenu";
 import BarsIcon from "../icons/BarsIcon.vue";
 
 export default {
     components: {
-        CustomButton,
         SideMenu,
         BarsIcon
     },
@@ -49,8 +41,8 @@ export default {
         ...mapGetters("auth", ["currentUser"]),
         ...mapState("app", ["previewAvatar"])
     },
-    methods:{
-        showMenu(){
+    methods: {
+        showMenu() {
             this.userNavDrawerActive = !this.userNavDrawerActive;
         }
     }

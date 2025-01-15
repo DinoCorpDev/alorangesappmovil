@@ -26,8 +26,6 @@
 </template>
 
 <script>
-import CustomButton from "./CustomButton.vue";
-
 export default {
     name: "PortfolioCard",
     props: {
@@ -42,9 +40,6 @@ export default {
             type: [String, Object]
         }
     },
-    components: {
-        CustomButton
-    }
 };
 </script>
 

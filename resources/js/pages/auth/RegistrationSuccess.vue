@@ -22,13 +22,11 @@
 
 <script>
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 
 export default {
     components: {
         CarouselDescription,
-        CustomButton,
         CustomInput
     }
 };

@@ -70,8 +70,8 @@
 
             <!-- <div class="add-to-cart-list-box pa-4 mb-3">
                 <h5>Detalle</h5>
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam.
                 </p>
             </div> -->
@@ -112,7 +112,6 @@
 import { mapGetters, mapActions, mapMutations } from "vuex";
 import ProductGallery from "../product/ProductGallery.vue";
 import ProductBoxShort from "../product/ProductBoxShort.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 import FavoriteIcon from "../../components/icons/Favorite.vue";
 import WishIcon from "../../components/icons/WishIcon.vue";
 
@@ -149,7 +148,6 @@ export default {
         ProductBoxShort,
         FavoriteIcon,
         WishIcon,
-        CustomButton
     },
     computed: {
         ...mapGetters("wishlist", ["isThisWishlisted"]),

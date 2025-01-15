@@ -183,7 +183,6 @@ import { required, requiredIf, email, minLength, sameAs } from "vuelidate/lib/va
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import { VueTelInput } from "vue-tel-input";
 
-import CustomButton from "../global/CustomButton.vue";
 import CustomInput from "../global/CustomInput.vue";
 import SelectCustom from "../global/SelectCustom.vue";
 
@@ -194,7 +193,6 @@ export default {
     },
     components: {
         VueTelInput,
-        CustomButton,
         CustomInput,
         SelectCustom
     },

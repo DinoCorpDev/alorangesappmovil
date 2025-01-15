@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import CustomButton from "./CustomButton.vue";
 export default {
     name: "BannerCategoryProduct",
     props: {
@@ -50,9 +49,6 @@ export default {
             default: () => ["Preámbulo"]
         }
     },
-    components: {
-        CustomButton
-    }
 };
 </script>
 

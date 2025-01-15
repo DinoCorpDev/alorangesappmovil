@@ -4,7 +4,7 @@
             <div class="product-box-cart-info">
                 <p class="product-box-cart-brand-name mb-0">CDD0097{{ order }}</p>
                 <h6 class="product-box-cart-name">NOMBRE DE LA COLECCION</h6>
-            </div>     
+            </div>
         </div>
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-md-flex">
@@ -42,7 +42,7 @@
                         <div v-bind="attrs" v-on="on">
                             <custom-button
                                 v-if="icon3"
-                                plain 
+                                plain
                                 :to="{ name: 'OrderDetails', params: { code: order } }"
                             >
                             <Favorito />
@@ -57,14 +57,12 @@
 </template>
 
 <script>
-import CustomButton from "./CustomButton.vue";
 import Favorito from "../../components/icons/Favorito.vue";
 import Compartir from "../../components/icons/Compartir.vue";
 import Ojo from "../../components/icons/Ojo.vue";
 
 export default {
     components: {
-        CustomButton,
         Favorito,
         Compartir,
         Ojo

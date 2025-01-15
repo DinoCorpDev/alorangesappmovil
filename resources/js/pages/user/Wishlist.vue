@@ -1,49 +1,61 @@
 <template>
-    <v-row class="wishlist d-flex align-center">
-        <template v-if="getWislistProducts.length === 0">
-            <div class="emptycart d-flex justify-center" style="width: 100%;">
-                <div class="cuadro-emptycart">
-                    <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
-                    <p class="text-cartempty">AUN NO HAY PRODUCTOS EN MI LISTA</p>
-                    <CustomButton text="IR A PRODUCTOS" color="orange" class="mt-2" :to="{ name: 'Shop' }" />
-                </div>
-            </div>
-        </template>
-        <template v-else>
-            <h5 class="mb-5 mt-1" style="font-size: 25px; font-weight: 400; text-align: left;">Lista de deseos </h5>
-            <div class="cart-table-header mb-2" style="width: 100%">
-                <div style="padding-left: 4%">Productos</div>
-                <div>Precio</div>
-                <div class="d-none d-md-flex"><span class="pl-2">Cantidad</span></div>
-                <div class="d-flex d-md-none">Cant</div>
-                <div class="d-none d-sm-flex"><span class="pl-3">Opciones</span></div>
-                <div class="d-flex d-sm-none">Opc</div>
-            </div>
-            <v-row no-gutters class="car-items" style="overflow-y: auto; max-height: 450px">
-                <v-col cols="12" v-for="(product, i) in getWislistProducts" :key="i">
-                    <ProductCart :product-details="product" :product-cart-type="'wishlist'" :is-loading="!wislistLoaded" />
-                </v-col>
-            </v-row>
-        </template>
-    </v-row>
+    <div>
+        <UserLayoutTitle>Mi lista</UserLayoutTitle>
+        <v-row class="wishlist">
+            <v-col cols="12">
+                <template v-if="getWislistProducts.length === 0">
+                    <div class="emptycart d-flex justify-center" style="width: 100%">
+                        <div class="cuadro-emptycart">
+                            <v-img class="img-cartempty mb-6" src="/public/assets/img/iconoFavoritos.png" />
+                            <p class="text-cartempty">
+                                Aún no hay productos <br />
+                                en tu lista de deseos
+                            </p>
+                            <CustomButton text="Ir a la Tienda" color="orange" class="mt-2" :to="{ name: 'Shop' }" />
+                        </div>
+                    </div>
+                </template>
+                <template v-else>
+                    <h5 class="mb-5" style="font-size: 18px; font-weight: 600; text-align: left">Lista de deseos</h5>
+                    <div class="cart-table-header mb-2" style="width: 100%">
+                        <div style="padding-left: 4%">Productos</div>
+                        <div>Precio</div>
+                        <div class="d-none d-md-flex"><span class="pl-2">Cantidad</span></div>
+                        <div class="d-flex d-md-none">Cant</div>
+                        <div class="d-none d-sm-flex"><span class="pl-3">Opciones</span></div>
+                        <div class="d-flex d-sm-none">Opc</div>
+                    </div>
+                    <v-row no-gutters class="car-items" style="overflow-y: auto; max-height: 450px">
+                        <v-col cols="12" v-for="(product, i) in getWislistProducts" :key="i">
+                            <ProductCart
+                                :product-details="product"
+                                :product-cart-type="'wishlist'"
+                                :is-loading="!wislistLoaded"
+                            />
+                        </v-col>
+                    </v-row>
+                </template>
+            </v-col>
+        </v-row>
+    </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 
-import CustomButton from "../../components/global/CustomButton.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
 import ProductBrand from "../../components/global/ProductBrand.vue";
 import ProfileAddress from "../../components/icons/ProfileAddress.vue";
 import ProductBoxShort from "../../components/product/ProductBoxShort.vue";
+import UserLayoutTitle from '@components/user/UserLayoutTitle.vue';
 
 export default {
     components: {
-        CustomButton,
         ProductCart,
         ProductBrand,
         ProfileAddress,
-        ProductBoxShort
+        ProductBoxShort,
+        UserLayoutTitle
     },
     data: () => ({
         currentPage: 1,
@@ -52,9 +64,7 @@ export default {
     }),
     computed: {
         ...mapGetters("wishlist", ["wislistLoaded", "getWislistProducts", "getWisListServices", "getWisListBrands"])
-    },
-    mounted() {}
-    
+    }
 };
 </script>
 
@@ -62,6 +72,7 @@ export default {
 .car-items {
     gap: 0.5rem;
 }
+
 .cart {
     &-table {
         &-header {

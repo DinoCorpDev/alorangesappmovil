@@ -1,656 +1,1032 @@
 <template>
-    <div class="px-0 px-sm-5 py-3">
-        <!-- <address-dialog
+    <div>
+        <UserLayoutTitle>Mi perfil</UserLayoutTitle>
+        <div class="px-0 px-sm-5 py-3">
+            <!-- <address-dialog
             :typeAddress="typeAddress"
             :show="addDialogShow"
             @close="addressDialogClosed"
             :old-address="addressSelectedForEdit"
         /> -->
-        <profile-dialog :show="profileDialogShow" @close="profileDialogClosed" :old-profile="profileSelectedForEdit" />
-        <password-dialog
-            :show="passwordDialogShow"
-            @close="passwordDialogClosed"
-            :old-password="passwordSelectedForEdit"
-        />
-        <factory-dialog :show="factoryDialogShow" @close="factoryDialogClosed" :old-factory="factorySelectedForEdit" />
-        <v-row>
-            <!-- USUARIO PRINCIPAL---------------------------------------------------------------------->
+            <profile-dialog
+                :show="profileDialogShow"
+                @close="profileDialogClosed"
+                :old-profile="profileSelectedForEdit"
+            />
+            <password-dialog
+                :show="passwordDialogShow"
+                @close="passwordDialogClosed"
+                :old-password="passwordSelectedForEdit"
+            />
+            <factory-dialog
+                :show="factoryDialogShow"
+                @close="factoryDialogClosed"
+                :old-factory="factorySelectedForEdit"
+            />
+            <v-row>
+                <!-- USUARIO PRINCIPAL---------------------------------------------------------------------->
 
-            <v-col cols="12" md="6">
-                <h5 class="fw-600">Información</h5>
-                <v-divider class="my-4" />
-                <v-card
-                    elevation="0"
-                    class="mb-6 form-border rounded-lg pa-5"
-                    style="background: transparent; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2)"
-                    v-if="!editarUser"
-                >
-                    <v-row>
-                        <v-col style="display: flex; place-items: center">
-                            <h5 class="fw-600" style="display: inline">Usuario principal</h5>
-                        </v-col>
+                <v-col cols="12" md="6">
+                    <h5 class="fw-600">Información</h5>
+                    <v-divider class="my-4" />
+                    <v-card
+                        elevation="0"
+                        class="mb-6 form-border rounded-lg pa-5"
+                        style="background: transparent; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2)"
+                        v-if="!editarUser"
+                    >
+                        <v-row>
+                            <v-col style="display: flex; place-items: center">
+                                <h5 class="fw-600" style="display: inline">Usuario principal</h5>
+                            </v-col>
 
-                        <v-col class="text-end" style="display: flex; align-items: center; justify-content: right">
-                            <div style="margin-right: 15px; margin-top: 3px">
-                                <!-- <v-tooltip bottom color="black">
+                            <v-col class="text-end" style="display: flex; align-items: center; justify-content: right">
+                                <div style="margin-right: 15px; margin-top: 3px">
+                                    <!-- <v-tooltip bottom color="black">
                                     <template v-slot:activator="{ on, attrs }">
                                         <i class="las la-star" v-bind="attrs" v-on="on" style="font-size: 25px"> </i>
                                     </template>
                                     <span>Favorito</span>
                                 </v-tooltip> -->
-                            </div>
-                            <i
-                                class="las la-eye-slash"
-                                style="font-size: 25px"
-                                v-if="mostrarDatos"
-                                @click="ocultarDatosUsuario"
-                            ></i>
-                            <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
-                        </v-col>
-                    </v-row>
+                                </div>
+                                <i
+                                    class="las la-eye-slash"
+                                    style="font-size: 25px"
+                                    v-if="mostrarDatos"
+                                    @click="ocultarDatosUsuario"
+                                ></i>
+                                <i class="las la-eye" style="font-size: 25px" @click="mostrarDatosUsuario" v-else></i>
+                            </v-col>
+                        </v-row>
+                        <v-divider class="my-4" />
+
+                        <div v-if="mostrarDatos">
+                            <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                            <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                            <v-row>
+                                <v-col class="text-start usuario-lineado">
+                                    <label class="profile-label">Correo electroníco</label>
+                                </v-col>
+
+                                <v-col class="text-end usuario-lineado">
+                                    {{ currentUser.email || "--" }}
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="text-start usuario-lineado">
+                                    <label class="profile-label">Tipo de persona</label>
+                                </v-col>
+
+                                <v-col class="text-end usuario-lineado">
+                                    {{ currentUser.personType || "--" }}
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="text-start usuario-lineado">
+                                    <label class="profile-label">Nombre completo</label>
+                                </v-col>
+
+                                <v-col class="text-end usuario-lineado">
+                                    {{ currentUser.name || "--" }}
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="text-start usuario-lineado">
+                                    <label class="profile-label">Tipo de documento</label>
+                                </v-col>
+
+                                <v-col class="text-end usuario-lineado">
+                                    {{ currentUser.documentType || "--" }}
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="text-start">
+                                    <label class="profile-label">Número de documento</label>
+                                </v-col>
+
+                                <v-col class="text-end">
+                                    {{ currentUser.documentNumber || "--" }}
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <div v-else>
+                            <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                            <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                            <v-row>
+                                <v-col cols="6" class="text-start usuario-lineado">
+                                    <label class="profile-label">Correo electroníco</label>
+                                </v-col>
+                                <v-col cols="6" class="text-end usuario-lineado">******@******.*** </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="text-start usuario-lineado">
+                                    <label class="profile-label">Tipo de persona</label>
+                                </v-col>
+                                <v-col class="text-end usuario-lineado"> {{ currentUser.personType || "--" }} </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="text-start usuario-lineado">
+                                    <label class="profile-label">Nombre completo</label>
+                                </v-col>
+                                <v-col class="text-end usuario-lineado">***** ***** ******</v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="text-start usuario-lineado">
+                                    <label class="profile-label">Tipo de documento</label>
+                                </v-col>
+                                <v-col class="text-end usuario-lineado">
+                                    {{ currentUser.documentType || "--" }}
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="text-start">
+                                    <label class="profile-label">Número de documento</label>
+                                </v-col>
+                                <v-col class="text-end"> *********** </v-col>
+                            </v-row>
+                        </div>
+                        <v-row>
+                            <v-col>
+                                <custom-button color="white" style="width: 33%" text="Editar" @click="editProfile()" />
+                            </v-col>
+                        </v-row>
+                    </v-card>
+
+                    <v-card elevation="0" class="mb-6 rounded-lg pa-5" style="background-color: white" v-else>
+                        <h5 class="fw-600 mb-4">Editar usuario principal</h5>
+
+                        <v-divider class="mb-4" />
+
+                        <v-form class="inputs" ref="loginForm" lazy-validation>
+                            <v-row>
+                                <v-col cols="12" md="6" style="display: grid; align-items: end">
+                                    <span class="black--text body-2">Primer Nombre</span>
+                                    <custom-input
+                                        class="place-holder"
+                                        placeholder="Ingresar nombre"
+                                        v-model="formUser.firstName"
+                                        :error-messages="firstNameErrors"
+                                        @blur="$v.formUser.firstName.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2"> Segundo Nombre (Opcional) </span>
+                                    <custom-input
+                                        class="place-holder"
+                                        placeholder="Ingresar segundo nombre"
+                                        v-model="formUser.secondName"
+                                    />
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2">Primer Apellido</span>
+                                    <custom-input
+                                        class="place-holder"
+                                        placeholder="Ingresar primer apellido"
+                                        v-model="formUser.firstLastname"
+                                        :error-messages="firstLastnameErrors"
+                                        @blur="$v.formUser.firstLastname.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                                <v-col cols="12" md="6">
+                                    <span class="black--text body-2">Segundo Apellido</span>
+                                    <custom-input
+                                        class="place-holder"
+                                        placeholder="Ingresar segundo apellido"
+                                        v-model="formUser.secondLastname"
+                                        :error-messages="secondLastnameErrors"
+                                        @blur="$v.formUser.secondLastname.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="12">
+                                    <span class="black--text body-2">Documento</span>
+                                    <select-custom
+                                        placeholder="Seleccionar tipo de documento"
+                                        class="select-placeholder"
+                                        :items="documentTypes"
+                                        v-model="formUser.documentType"
+                                        :error-messages="documentTypeErrors"
+                                        @blur="$v.formUser.documentType.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                                <v-col cols="12" md="12">
+                                    <span class="black--text body-2">Numero de Documento</span>
+                                    <custom-input
+                                        class="place-holder"
+                                        placeholder="Ingresar número de documento"
+                                        v-model="formUser.documentNumber"
+                                        :error-messages="documentNumberErrors"
+                                        @blur="$v.formUser.documentNumber.$touch()"
+                                        required
+                                    />
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="12">
+                                    <span class="black--text body-2">
+                                        {{ $t("Contraseña") }}
+                                    </span>
+                                    <v-text-field
+                                        v-model="formUser.oldPassword"
+                                        placeholder="Ingresar contraseña"
+                                        :error-messages="oldPasswordErrors"
+                                        @blur="$v.formUser.oldPassword.$touch()"
+                                        :type="oldpasswordShow ? 'text' : 'password'"
+                                        :append-icon="oldpasswordShow ? 'las la-eye' : 'las la-eye-slash'"
+                                        class="input-group--focused place-holder"
+                                        hide-details="auto"
+                                        required
+                                        dense
+                                        outlined
+                                        @click:append="oldpasswordShow = !oldpasswordShow"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="4">
+                                    <custom-button
+                                        block
+                                        class="mt-5"
+                                        text="< Cancelar"
+                                        @click="editarUser = false"
+                                        color="white"
+                                    />
+                                </v-col>
+                                <v-col></v-col>
+                                <v-col cols="4" style="display: grid; align-items: end">
+                                    <div class="">
+                                        <v-dialog v-model="dialog" width="500" class="grey lighten-4 rounded-lg">
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <custom-button
+                                                    block
+                                                    color="orange"
+                                                    text="Guardar >"
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                />
+                                            </template>
+
+                                            <v-card>
+                                                <v-card-title class="text-h5 grey lighten-4">
+                                                    ¿Deseas editar esta información?
+                                                </v-card-title>
+                                                <div class="grey lighten-4" style="width: 100%">
+                                                    <v-divider class="mx-5 pb-4" />
+                                                </div>
+                                                <v-card-text class="grey lighten-4" style="color: black">
+                                                    Si decides editar esta información podrías perder la garantía a los
+                                                    productos vinculados a procesos de garantía, servicios y
+                                                    facturaciones.
+                                                </v-card-text>
+
+                                                <v-card-actions class="pb-5 grey lighten-4" style="display: block">
+                                                    <v-spacer></v-spacer>
+                                                    <custom-button
+                                                        text="NO"
+                                                        width="100"
+                                                        color="white"
+                                                        @click="dialog = false"
+                                                    />
+                                                    <custom-button
+                                                        text="EDITAR"
+                                                        width="100"
+                                                        color="orange"
+                                                        @click.stop="updateInfoUser"
+                                                        :disabled="infoUpdateLoading"
+                                                        :loading="infoUpdateLoading"
+                                                    />
+                                                </v-card-actions>
+                                            </v-card>
+                                        </v-dialog>
+                                    </div>
+                                </v-col>
+                            </v-row>
+                        </v-form>
+                    </v-card>
+                </v-col>
+
+                <v-col cols="12" md="6" v-if="currentUser.personType !== 'Natural'">
+                    <h5 class="fw-600">Empresas</h5>
                     <v-divider class="my-4" />
-
-                    <div v-if="mostrarDatos">
-                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                        <v-row>
-                            <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">Correo electroníco</label>
-                            </v-col>
-
-                            <v-col class="text-end usuario-lineado">
-                                {{ currentUser.email || "--" }}
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">Tipo de persona</label>
-                            </v-col>
-
-                            <v-col class="text-end usuario-lineado">
-                                {{ currentUser.personType || "--" }}
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">Nombre completo</label>
-                            </v-col>
-
-                            <v-col class="text-end usuario-lineado">
-                                {{ currentUser.name || "--" }}
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">Tipo de documento</label>
-                            </v-col>
-
-                            <v-col class="text-end usuario-lineado">
-                                {{ currentUser.documentType || "--" }}
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start">
-                                <label class="profile-label">Número de documento</label>
-                            </v-col>
-
-                            <v-col class="text-end">
-                                {{ currentUser.documentNumber || "--" }}
-                            </v-col>
-                        </v-row>
-                    </div>
-                    <div v-else>
-                        <input type="email" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                        <input type="password" name="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
-                        <v-row>
-                            <v-col cols="6" class="text-start usuario-lineado">
-                                <label class="profile-label">Correo electroníco</label>
-                            </v-col>
-                            <v-col cols="6" class="text-end usuario-lineado">******@******.*** </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">Tipo de persona</label>
-                            </v-col>
-                            <v-col class="text-end usuario-lineado"> {{ currentUser.personType || "--" }} </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">Nombre completo</label>
-                            </v-col>
-                            <v-col class="text-end usuario-lineado">***** ***** ******</v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start usuario-lineado">
-                                <label class="profile-label">Tipo de documento</label>
-                            </v-col>
-                            <v-col class="text-end usuario-lineado">
-                                {{ currentUser.documentType || "--" }}
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col class="text-start">
-                                <label class="profile-label">Número de documento</label>
-                            </v-col>
-                            <v-col class="text-end"> *********** </v-col>
-                        </v-row>
-                    </div>
-                    <v-row>
-                        <v-col>
-                            <custom-button color="white" style="width: 33%" text="Editar" @click="editProfile()" />
-                        </v-col>
-                    </v-row>
-                </v-card>
-
-                <v-card elevation="0" class="mb-6 rounded-lg pa-5" style="background-color: white" v-else>
-                    <h5 class="fw-600 mb-4">Editar usuario principal</h5>
-
-                    <v-divider class="mb-4" />
-
-                    <v-form class="inputs" ref="loginForm" lazy-validation>
-                        <v-row>
-                            <v-col cols="12" md="6" style="display: grid; align-items: end">
-                                <span class="black--text body-2">Primer Nombre</span>
-                                <custom-input
-                                    class="place-holder"
-                                    placeholder="Ingresar nombre"
-                                    v-model="formUser.firstName"
-                                    :error-messages="firstNameErrors"
-                                    @blur="$v.formUser.firstName.$touch()"
-                                    required
-                                />
-                            </v-col>
-                            <v-col cols="12" md="6">
-                                <span class="black--text body-2"> Segundo Nombre (Opcional) </span>
-                                <custom-input
-                                    class="place-holder"
-                                    placeholder="Ingresar segundo nombre"
-                                    v-model="formUser.secondName"
-                                />
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col cols="12" md="6">
-                                <span class="black--text body-2">Primer Apellido</span>
-                                <custom-input
-                                    class="place-holder"
-                                    placeholder="Ingresar primer apellido"
-                                    v-model="formUser.firstLastname"
-                                    :error-messages="firstLastnameErrors"
-                                    @blur="$v.formUser.firstLastname.$touch()"
-                                    required
-                                />
-                            </v-col>
-                            <v-col cols="12" md="6">
-                                <span class="black--text body-2">Segundo Apellido</span>
-                                <custom-input
-                                    class="place-holder"
-                                    placeholder="Ingresar segundo apellido"
-                                    v-model="formUser.secondLastname"
-                                    :error-messages="secondLastnameErrors"
-                                    @blur="$v.formUser.secondLastname.$touch()"
-                                    required
-                                />
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col cols="12" md="12">
-                                <span class="black--text body-2">Documento</span>
-                                <select-custom
-                                    placeholder="Seleccionar tipo de documento"
-                                    class="select-placeholder"
-                                    :items="documentTypes"
-                                    v-model="formUser.documentType"
-                                    :error-messages="documentTypeErrors"
-                                    @blur="$v.formUser.documentType.$touch()"
-                                    required
-                                />
-                            </v-col>
-                            <v-col cols="12" md="12">
-                                <span class="black--text body-2">Numero de Documento</span>
-                                <custom-input
-                                    class="place-holder"
-                                    placeholder="Ingresar número de documento"
-                                    v-model="formUser.documentNumber"
-                                    :error-messages="documentNumberErrors"
-                                    @blur="$v.formUser.documentNumber.$touch()"
-                                    required
-                                />
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col cols="12" md="12">
-                                <span class="black--text body-2">
-                                    {{ $t("Contraseña") }}
-                                </span>
-                                <v-text-field
-                                    v-model="formUser.oldPassword"
-                                    placeholder="Ingresar contraseña"
-                                    :error-messages="oldPasswordErrors"
-                                    @blur="$v.formUser.oldPassword.$touch()"
-                                    :type="oldpasswordShow ? 'text' : 'password'"
-                                    :append-icon="oldpasswordShow ? 'las la-eye' : 'las la-eye-slash'"
-                                    class="input-group--focused place-holder"
-                                    hide-details="auto"
-                                    required
-                                    dense
-                                    outlined
-                                    @click:append="oldpasswordShow = !oldpasswordShow"
-                                ></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col cols="4">
-                                <custom-button
-                                    block
-                                    class="mt-5"
-                                    text="< Cancelar"
-                                    @click="editarUser = false"
-                                    color="white"
-                                />
-                            </v-col>
-                            <v-col></v-col>
-                            <v-col cols="4" style="display: grid; align-items: end">
-                                <div class="">
-                                    <v-dialog v-model="dialog" width="500" class="grey lighten-4 rounded-lg">
+                    <div v-for="(emp, i) in empresas" :key="i">
+                        <div v-if="emp.editar == false">
+                            <div v-if="emp.mostrarDatos">
+                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                                    <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
+                                    <div style="width: auto; display: inline; float: right">
+                                        <!-- <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
+                                            <i
+                                                v-if="emp.favorite == 1"
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="font-size: 25px; margin-right: 15px"
+                                                v-on:click="offFavoriteEmp(emp)"
+                                            >
+                                            </i>
+
+                                            <i
+                                                v-else
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="color: #cbc2c2f2; font-size: 25px; margin-right: 15px"
+                                                v-on:click="activeFavoriteEmp(emp)"
+                                            >
+                                            </i>
+                                        </template>
+                                        <span>Favorito</span>
+                                    </v-tooltip> -->
+                                        <i
+                                            class="las la-eye-slash"
+                                            style="font-size: 25px"
+                                            v-if="emp.mostrarDatos"
+                                            @click="ocultarDatosEmpresa(emp)"
+                                        ></i>
+                                        <i
+                                            class="las la-eye"
+                                            style="font-size: 25px"
+                                            @click="mostrarDatosEmpresa(emp)"
+                                            v-else
+                                        ></i>
+                                    </div>
+                                    <v-divider class="my-4" />
+
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Correo electroníco</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">{{ emp.company_razon || "--" }} </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Tipo de persona</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado"> {{ emp.person_type || "--" }} </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Nombre representante</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">{{
+                                            emp.first_name + " " + emp.first_lastname || "--"
+                                        }}</v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Tipo de documento</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">
+                                            {{ emp.document_type || "--" }}
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Número de documento</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">
+                                            {{ emp.document_number || "--" }}
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Razón social</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">
+                                            {{ emp.company_razon || "--" }}
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Entidad comercial</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">
+                                            {{ emp.company_type || "--" }}
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Número de NIT</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">
+                                            {{ emp.document_number || "--" }}
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Correo electrónico (facturación)</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">
+                                            {{ emp.company_email || "--" }}
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start pb-5">
+                                            <label class="profile-label">Teléfono/Celular (área contrable)</label>
+                                        </v-col>
+                                        <v-col class="text-end pb-5">
+                                            {{ emp.company_phone || "--" }}
+                                        </v-col>
+                                    </v-row>
+                                    <custom-button
+                                        class="mr-3"
+                                        color="white"
+                                        style="width: 33%"
+                                        text="Editar"
+                                        @click="editEmpresa(emp)"
+                                    />
+                                </v-card>
+                            </div>
+
+                            <div v-else>
+                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                                    <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
+                                    <div style="width: auto; display: inline; float: right">
+                                        <!-- <v-tooltip bottom color="black">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <i
+                                                v-if="emp.favorite == 1"
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="font-size: 25px; margin-right: 15px"
+                                                v-on:click="offFavoriteEmp(emp)"
+                                            >
+                                            </i>
+
+                                            <i
+                                                v-else
+                                                class="las la-star"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                style="color: #cbc2c2f2; font-size: 25px; margin-right: 15px"
+                                                v-on:click="activeFavoriteEmp(emp)"
+                                            >
+                                            </i>
+                                        </template>
+                                        <span>Favorito</span>
+                                    </v-tooltip> -->
+                                        <i
+                                            class="las la-eye-slash"
+                                            v-if="emp.mostrarDatos"
+                                            @click="ocultarDatosEmpresa(emp)"
+                                            style="font-size: 25px"
+                                        ></i>
+                                        <i
+                                            class="las la-eye"
+                                            @click="mostrarDatosEmpresa(emp)"
+                                            style="font-size: 25px"
+                                            v-else
+                                        ></i>
+                                    </div>
+                                    <v-divider class="my-4" />
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Correo electrónico</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">******@*******.*****</v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Tipo de persona</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado"> {{ emp.person_type || "--" }} </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Nombre representante</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">********* **********</v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Tipo de documento</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">
+                                            {{ emp.document_type || "--" }}
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Número de documento</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado"> ************ </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Razón social</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado"> ************** </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Entidad comercial</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado">
+                                            {{ emp.company_type || "--" }}
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Número de NIT</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado"> ************* </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start usuario-lineado">
+                                            <label class="profile-label">Correo electrónico (facturación)</label>
+                                        </v-col>
+                                        <v-col class="text-end usuario-lineado"> *******@*****.**** </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="text-start pb-5">
+                                            <label class="profile-label">Teléfono/celular (área contable)</label>
+                                        </v-col>
+                                        <v-col class="text-end pb-5"> ********** </v-col>
+                                    </v-row>
+
+                                    <custom-button
+                                        class="mr-3"
+                                        color="white"
+                                        style="width: 33%"
+                                        text="Editar"
+                                        @click="editEmpresa(emp)"
+                                    />
+                                </v-card>
+                            </div>
+                        </div>
+
+                        <div v-if="emp?.editar == true">
+                            <v-card elevation="0" class="mb-6 rounded-lg pa-5" style="background-color: white">
+                                <h5 class="fw-600">Editar Empresa</h5>
+                                <v-divider class="ma-4" />
+                                <v-form :validator="$v.emp" autocomplete="chrome-off">
+                                    <v-row>
+                                        <v-col cols="12" sm="6" style="display: grid; align-items: end">
+                                            <span class="black--text body-2">Primer Nombre *</span>
+                                            <CustomInput
+                                                class="place-holder"
+                                                placeholder="Ingresar nombre"
+                                                v-model="emp.first_name"
+                                                required
+                                            />
+                                        </v-col>
+                                        <v-col cols="12" sm="6">
+                                            <span class="black--text body-2"> Segundo Nombre (Opcional) </span>
+                                            <CustomInput
+                                                class="place-holder"
+                                                v-model="emp.second_name"
+                                                placeholder="Ingresar segundo nombre"
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12" sm="6">
+                                            <span class="black--text body-2"> Primer Apellido *</span>
+                                            <CustomInput
+                                                class="place-holder"
+                                                placeholder="Ingresar primer apellido"
+                                                v-model="emp.first_lastname"
+                                                required
+                                            />
+                                        </v-col>
+                                        <v-col cols="12" sm="6">
+                                            <span class="black--text body-2"> Segundo Apellido *</span>
+                                            <CustomInput
+                                                class="place-holder"
+                                                placeholder="Ingresar segundo apellido"
+                                                v-model="emp.second_lastname"
+                                                required
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <span class="black--text body-2"> Documento (Representante) *</span>
+                                            <SelectCustom
+                                                class="select-style"
+                                                placeholder="Seleccionar tipo de documento"
+                                                :items="documentTypes"
+                                                v-model="emp.document_type"
+                                                required
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <span class="black--text body-2">Numero de Documento *</span>
+                                            <CustomInput
+                                                class="place-holder"
+                                                placeholder="Ingresar número de documento"
+                                                v-model="emp.document_number"
+                                                required
+                                            />
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <span class="black--text body-2">Razón Social de la Empresa *</span>
+                                            <CustomInput
+                                                placeholder="Ingrese razón social de la empresa"
+                                                class="place-holder"
+                                                v-model="emp.company_razon"
+                                                required
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <span class="black--text body-2">Entidad Comercial *</span>
+                                            <SelectCustom
+                                                class="select-style"
+                                                placeholder="Seleccione entidad comercial"
+                                                :items="companyTypes"
+                                                v-model="emp.company_type"
+                                                required
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <span class="black--text body-2">Numero de NIT *</span>
+                                            <CustomInput
+                                                class="place-holder"
+                                                placeholder="Indicar número de documento"
+                                                v-model="emp.company_document_number"
+                                                required
+                                            />
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="12" md="12">
+                                            <span class="black--text body-2"
+                                                >{{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }} *</span
+                                            >
+
+                                            <div class="input-group">
+                                                <CustomInput
+                                                    class="place-holder"
+                                                    placeholder="Ingresar correo electrónico o teléfono"
+                                                    type="email"
+                                                    v-model="emp.company_email"
+                                                    required
+                                                />
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="12" md="12">
+                                            <span class="black--text body-2">Teléfono / Celular (Área Contable) *</span>
+                                            <v-row>
+                                                <v-col cols="12">
+                                                    <vue-tel-input
+                                                        placeholder="Ingresar teléfono / celular"
+                                                        v-model="emp.company_phone"
+                                                        v-bind="mobileInputProps"
+                                                        :onlyCountries="availableCountries"
+                                                        class="place-holder"
+                                                    >
+                                                        <template slot="arrow-icon">
+                                                            <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                                        </template>
+                                                    </vue-tel-input>
+                                                </v-col>
+                                            </v-row>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="12" md="6">
+                                            <span class="black--text body-2">
+                                                {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }} *
+                                            </span>
+
+                                            <div class="input-group">
+                                                <SelectCustom
+                                                    class="select-style"
+                                                    placeholder="Seleccione actividad economica"
+                                                    :items="codigoCiiuTypes"
+                                                    v-model="emp.companyActividads"
+                                                    :multiple="true"
+                                                    required
+                                                />
+                                            </div>
+                                        </v-col>
+
+                                        <v-col cols="12" md="6" style="display: grid; align-items: end">
+                                            <span class="black--text body-2">REGIMEN FISCAL *</span>
+
+                                            <div class="input-group">
+                                                <SelectCustom
+                                                    class="select-style"
+                                                    placeholder="Seleccione regimen fiscal"
+                                                    :items="regimenTypes"
+                                                    v-model="emp.regimenFiscals"
+                                                    :multiple="true"
+                                                    required
+                                                />
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <span class="black--text body-2">RESPONSABILIDAD TRIBUTARIA *</span>
+                                            <SelectCustom
+                                                class="select-style"
+                                                placeholder="Seleccione responsabilidad tributaria"
+                                                :items="responsabilidadTypes"
+                                                v-model="emp.responsabilidadTributs"
+                                                :multiple="true"
+                                                required
+                                            />
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="12" class="texto-upload">
+                                            <span class="black--text body-2"> DOCUMENTO (ARCHIVO) </span>
+                                        </v-col>
+                                        <v-col cols="10" class="area-upload">
+                                            <v-file-input
+                                                placeholder="SUBIR DOCUMENTO"
+                                                class="form-control upload"
+                                                v-model="emp.filedocumento"
+                                                accept="application/pdf"
+                                            >
+                                                <template v-slot:label>
+                                                    <ArrowUpload />
+                                                    <p class="subir-documento">SUBIR DOCUMENTO</p>
+                                                </template>
+                                            </v-file-input>
+                                        </v-col>
+                                        <v-col cols="2" class="icono-documento">
+                                            <v-tooltip bottom color="black">
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <i
+                                                        class="las la-exclamation-circle icon-tooltip-dos"
+                                                        v-bind="attrs"
+                                                        v-on="on"
+                                                        style="font-size: 30px; transform: rotate(180deg)"
+                                                    ></i>
+                                                </template>
+                                                <span>&bullet; Documentos en formato PDF</span>
+                                                <br />
+                                                <span>&bullet; Ambas caras de ID ampliadas al 150</span>
+                                                <br />
+                                                <span>&bullet; Documento legible y en color</span>
+                                            </v-tooltip>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="12" class="texto-upload">
+                                            <span class="black--text body-2">
+                                                Numero de CAMARA DE COMERCIO (ARCHIVO)
+                                            </span>
+                                        </v-col>
+                                        <v-col cols="10" class="area-upload">
+                                            <!-- REVISAR--------------------------------- -->
+                                            <v-file-input
+                                                class="form-control upload"
+                                                v-model="emp.filecamara"
+                                                accept="application/pdf"
+                                                single-line
+                                            >
+                                                <template v-slot:label>
+                                                    <ArrowUpload />
+                                                    <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                                </template>
+                                            </v-file-input>
+
+                                            <!-- REVISAR--------------------------------- -->
+                                        </v-col>
+                                        <v-col cols="2" class="icono-documento">
+                                            <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
+                                            <v-tooltip bottom color="black">
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <i
+                                                        class="las la-exclamation-circle icon-tooltip-dos"
+                                                        v-bind="attrs"
+                                                        v-on="on"
+                                                        style="font-size: 30px; transform: rotate(180deg)"
+                                                    ></i>
+                                                </template>
+                                                <span>&bullet; Documentos en formato PDF</span>
+                                                <br />
+                                                <span>&bullet; Cámara de comercio no mayor a 90 días</span>
+                                            </v-tooltip>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="12" class="texto-upload">
+                                            <span class="black--text body-2"> RUT (ARCHIVO) kjjkbhjbbjhb </span>
+                                        </v-col>
+                                        <v-col cols="10" class="area-upload">
+                                            <v-file-input
+                                                placeholder="SUBIR DOCUMENTO"
+                                                class="form-control upload"
+                                                v-model="emp.filerut"
+                                                accept="application/pdf"
+                                            >
+                                                <template v-slot:label>
+                                                    <ArrowUpload />
+                                                    <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                                </template>
+                                            </v-file-input>
+                                        </v-col>
+                                        <v-col cols="2" class="icono-documento">
+                                            <v-tooltip bottom color="black">
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <i
+                                                        class="las la-exclamation-circle icon-tooltip-dos"
+                                                        v-bind="attrs"
+                                                        v-on="on"
+                                                        style="font-size: 30px; transform: rotate(180deg)"
+                                                    ></i>
+                                                </template>
+                                                <span>&bullet; Documentos en formato PDF</span>
+                                                <br />
+                                                <span>&bullet; RUT actualizado</span>
+                                            </v-tooltip>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col cols="4" md="4">
                                             <custom-button
                                                 block
-                                                color="orange"
-                                                text="Guardar >"
-                                                v-bind="attrs"
-                                                v-on="on"
+                                                class="mt-4"
+                                                text="< Cancelar"
+                                                type="button"
+                                                color="white"
+                                                @click="cancelEditEmpresa(emp)"
                                             />
-                                        </template>
-
-                                        <v-card>
-                                            <v-card-title class="text-h5 grey lighten-4">
-                                                ¿Deseas editar esta información?
-                                            </v-card-title>
-                                            <div class="grey lighten-4" style="width: 100%">
-                                                <v-divider class="mx-5 pb-4" />
-                                            </div>
-                                            <v-card-text class="grey lighten-4" style="color: black">
-                                                Si decides editar esta información podrías perder la garantía a los
-                                                productos vinculados a procesos de garantía, servicios y facturaciones.
-                                            </v-card-text>
-
-                                            <v-card-actions class="pb-5 grey lighten-4" style="display: block">
-                                                <v-spacer></v-spacer>
-                                                <custom-button
-                                                    text="NO"
-                                                    width="100"
-                                                    color="white"
-                                                    @click="dialog = false"
-                                                />
-                                                <custom-button
-                                                    text="EDITAR"
-                                                    width="100"
-                                                    color="orange"
-                                                    @click.stop="updateInfoUser"
-                                                    :disabled="infoUpdateLoading"
-                                                    :loading="infoUpdateLoading"
-                                                />
-                                            </v-card-actions>
-                                        </v-card>
-                                    </v-dialog>
-                                </div>
-                            </v-col>
-                        </v-row>
-                    </v-form>
-                </v-card>
-            </v-col>
-
-            <v-col cols="12" md="6" v-if="currentUser.personType !== 'Natural'">
-                <h5 class="fw-600">Empresas</h5>
-                <v-divider class="my-4" />
-                <div v-for="(emp, i) in empresas" :key="i">
-                    <div v-if="emp.editar == false">
-                        <div v-if="emp.mostrarDatos">
-                            <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                                <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
-                                <div style="width: auto; display: inline; float: right">
-                                    <!-- <v-tooltip bottom color="black">
-                                        <template v-slot:activator="{ on, attrs }">
-                                            <i
-                                                v-if="emp.favorite == 1"
-                                                class="las la-star"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                style="font-size: 25px; margin-right: 15px"
-                                                v-on:click="offFavoriteEmp(emp)"
-                                            >
-                                            </i>
-
-                                            <i
-                                                v-else
-                                                class="las la-star"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                style="color: #cbc2c2f2; font-size: 25px; margin-right: 15px"
-                                                v-on:click="activeFavoriteEmp(emp)"
-                                            >
-                                            </i>
-                                        </template>
-                                        <span>Favorito</span>
-                                    </v-tooltip> -->
-                                    <i
-                                        class="las la-eye-slash"
-                                        style="font-size: 25px"
-                                        v-if="emp.mostrarDatos"
-                                        @click="ocultarDatosEmpresa(emp)"
-                                    ></i>
-                                    <i
-                                        class="las la-eye"
-                                        style="font-size: 25px"
-                                        @click="mostrarDatosEmpresa(emp)"
-                                        v-else
-                                    ></i>
-                                </div>
-                                <v-divider class="my-4" />
-
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Correo electroníco</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">{{ emp.company_razon || "--" }} </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Tipo de persona</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado"> {{ emp.person_type || "--" }} </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Nombre representante</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">{{
-                                        emp.first_name + " " + emp.first_lastname || "--"
-                                    }}</v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Tipo de documento</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">
-                                        {{ emp.document_type || "--" }}
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Número de documento</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">
-                                        {{ emp.document_number || "--" }}
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Razón social</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">
-                                        {{ emp.company_razon || "--" }}
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Entidad comercial</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">
-                                        {{ emp.company_type || "--" }}
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Número de NIT</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">
-                                        {{ emp.document_number || "--" }}
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Correo electrónico (facturación)</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">
-                                        {{ emp.company_email || "--" }}
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start pb-5">
-                                        <label class="profile-label">Teléfono/Celular (área contrable)</label>
-                                    </v-col>
-                                    <v-col class="text-end pb-5">
-                                        {{ emp.company_phone || "--" }}
-                                    </v-col>
-                                </v-row>
-                                <custom-button
-                                    class="mr-3"
-                                    color="white"
-                                    style="width: 33%"
-                                    text="Editar"
-                                    @click="editEmpresa(emp)"
-                                />
-                            </v-card>
-                        </div>
-
-                        <div v-else>
-                            <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                                <h5 class="fw-600" style="display: inline">{{ emp.company_razon }}</h5>
-                                <div style="width: auto; display: inline; float: right">
-                                    <!-- <v-tooltip bottom color="black">
-                                        <template v-slot:activator="{ on, attrs }">
-                                            <i
-                                                v-if="emp.favorite == 1"
-                                                class="las la-star"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                style="font-size: 25px; margin-right: 15px"
-                                                v-on:click="offFavoriteEmp(emp)"
-                                            >
-                                            </i>
-
-                                            <i
-                                                v-else
-                                                class="las la-star"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                style="color: #cbc2c2f2; font-size: 25px; margin-right: 15px"
-                                                v-on:click="activeFavoriteEmp(emp)"
-                                            >
-                                            </i>
-                                        </template>
-                                        <span>Favorito</span>
-                                    </v-tooltip> -->
-                                    <i
-                                        class="las la-eye-slash"
-                                        v-if="emp.mostrarDatos"
-                                        @click="ocultarDatosEmpresa(emp)"
-                                        style="font-size: 25px"
-                                    ></i>
-                                    <i
-                                        class="las la-eye"
-                                        @click="mostrarDatosEmpresa(emp)"
-                                        style="font-size: 25px"
-                                        v-else
-                                    ></i>
-                                </div>
-                                <v-divider class="my-4" />
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Correo electrónico</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">******@*******.*****</v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Tipo de persona</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado"> {{ emp.person_type || "--" }} </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Nombre representante</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">********* **********</v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Tipo de documento</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">
-                                        {{ emp.document_type || "--" }}
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Número de documento</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado"> ************ </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Razón social</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado"> ************** </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Entidad comercial</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado">
-                                        {{ emp.company_type || "--" }}
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Número de NIT</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado"> ************* </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start usuario-lineado">
-                                        <label class="profile-label">Correo electrónico (facturación)</label>
-                                    </v-col>
-                                    <v-col class="text-end usuario-lineado"> *******@*****.**** </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="text-start pb-5">
-                                        <label class="profile-label">Teléfono/celular (área contable)</label>
-                                    </v-col>
-                                    <v-col class="text-end pb-5"> ********** </v-col>
-                                </v-row>
-
-                                <custom-button
-                                    class="mr-3"
-                                    color="white"
-                                    style="width: 33%"
-                                    text="Editar"
-                                    @click="editEmpresa(emp)"
-                                />
+                                        </v-col>
+                                        <v-col
+                                            cols="4"
+                                            md="4"
+                                            style="
+                                                display: flex;
+                                                align-items: end;
+                                                justify-content: center;
+                                                padding-left: 23px;
+                                            "
+                                        >
+                                            <CustomButtonR
+                                                class="mr-3 boton-redondo"
+                                                text="Eliminar"
+                                                @click="deleteEmpresa(emp?.id)"
+                                            />
+                                        </v-col>
+                                        <v-col cols="4" md="4">
+                                            <custom-button
+                                                block
+                                                class="mt-4"
+                                                text="Guardar >"
+                                                type="submit"
+                                                color="white"
+                                                @click="saveEditEmpresa(emp)"
+                                                :disabled="infoUpdateLoading"
+                                                :loading="infoUpdateLoading"
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                </v-form>
                             </v-card>
                         </div>
                     </div>
 
-                    <div v-if="emp?.editar == true">
-                        <v-card elevation="0" class="mb-6 rounded-lg pa-5" style="background-color: white">
-                            <h5 class="fw-600">Editar Empresa</h5>
-                            <v-divider class="ma-4" />
-                            <v-form :validator="$v.emp" autocomplete="chrome-off">
+                    <div v-if="addEmpresa">
+                        <v-card
+                            elevation="0"
+                            class="mb-6 form-border rounded-lg pa-5"
+                            style="background-color: white; border-color: #fafcfc"
+                        >
+                            <h5 class="fw-600">Añadir Empresa</h5>
+                            <v-divider class="my-4" />
+                            <v-form :validator="$v.formEmpresa" autocomplete="chrome-off">
                                 <v-row>
                                     <v-col cols="12" sm="6" style="display: grid; align-items: end">
-                                        <span class="black--text body-2">Primer Nombre *</span>
+                                        <span class="black--text body-2">Primer Nombre</span>
+
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Ingresar nombre"
-                                            v-model="emp.first_name"
+                                            v-model="formEmpresa.firstName"
+                                            :error-messages="companyFirstNameErrors"
+                                            @blur="$v.formEmpresa.firstName.$touch()"
                                             required
                                         />
                                     </v-col>
                                     <v-col cols="12" sm="6">
-                                        <span class="black--text body-2"> Segundo Nombre (Opcional) </span>
+                                        <span class="black--text body-2">Segundo Nombre (Opcional) </span>
                                         <CustomInput
                                             class="place-holder"
-                                            v-model="emp.second_name"
+                                            v-model="formEmpresa.secondName"
                                             placeholder="Ingresar segundo nombre"
                                         />
                                     </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12" sm="6">
-                                        <span class="black--text body-2"> Primer Apellido *</span>
+                                        <span class="black--text body-2">Primer Apellido </span>
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Ingresar primer apellido"
-                                            v-model="emp.first_lastname"
+                                            v-model="formEmpresa.firstLastname"
+                                            :error-messages="companyFirstLastnameErrors"
+                                            @blur="$v.formEmpresa.firstLastname.$touch()"
                                             required
                                         />
                                     </v-col>
                                     <v-col cols="12" sm="6">
-                                        <span class="black--text body-2"> Segundo Apellido *</span>
+                                        <span class="black--text body-2">Segundo Apellido </span>
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Ingresar segundo apellido"
-                                            v-model="emp.second_lastname"
+                                            v-model="formEmpresa.secondLastname"
+                                            :error-messages="companySecondLastnameErrors"
+                                            @blur="$v.formEmpresa.secondLastname.$touch()"
                                             required
                                         />
                                     </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2"> Documento (Representante) *</span>
+                                        <span class="black--text body-2">Documento (Representante) </span>
                                         <SelectCustom
                                             class="select-style"
                                             placeholder="Seleccionar tipo de documento"
                                             :items="documentTypes"
-                                            v-model="emp.document_type"
+                                            v-model="formEmpresa.documentType"
+                                            :error-messages="companyPersonDocumentTypeErrors"
+                                            @blur="$v.formEmpresa.documentType.$touch()"
                                             required
                                         />
                                     </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2">Numero de Documento *</span>
+                                        <span class="black--text body-2">Numero de Documento</span>
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Ingresar número de documento"
-                                            v-model="emp.document_number"
+                                            v-model="formEmpresa.documentNumber"
+                                            :error-messages="companyPersonDocumentNumberErrors"
+                                            @blur="$v.formEmpresa.documentNumber.$touch()"
                                             required
                                         />
                                     </v-col>
                                 </v-row>
-
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2">Razón Social de la Empresa *</span>
+                                        <span class="black--text body-2">Razón Social de la Empresa</span>
                                         <CustomInput
                                             placeholder="Ingrese razón social de la empresa"
                                             class="place-holder"
-                                            v-model="emp.company_razon"
+                                            v-model="formEmpresa.companyRazon"
+                                            :error-messages="companyRazonErrors"
+                                            @blur="$v.formEmpresa.companyRazon.$touch()"
                                             required
                                         />
                                     </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2">Entidad Comercial *</span>
+                                        <span class="black--text body-2">Entidad Comercial</span>
                                         <SelectCustom
                                             class="select-style"
                                             placeholder="Seleccione entidad comercial"
                                             :items="companyTypes"
-                                            v-model="emp.company_type"
+                                            v-model="formEmpresa.companyType"
+                                            :error-messages="companyTypeErrors"
+                                            @blur="$v.formEmpresa.companyType.$touch()"
                                             required
                                         />
                                     </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2">Numero de NIT *</span>
+                                        <span class="black--text body-2">Numero de NIT </span>
                                         <CustomInput
                                             class="place-holder"
                                             placeholder="Indicar número de documento"
-                                            v-model="emp.company_document_number"
+                                            v-model="formEmpresa.companyDocumentNumber"
+                                            :error-messages="companyDocumentNumberErrors"
+                                            @blur="$v.formEmpresa.companyDocumentNumber.$touch()"
                                             required
                                         />
                                     </v-col>
@@ -658,16 +1034,18 @@
 
                                 <v-row>
                                     <v-col cols="12" md="12">
-                                        <span class="black--text body-2"
-                                            >{{ $t("CORREO ELECTRÓNICO O NÚMERO DE TELÉFONO") }} *</span
-                                        >
+                                        <span class="black--text body-2">
+                                            {{ $t("Correo electroníco o número de teléfono") }}
+                                        </span>
 
                                         <div class="input-group">
                                             <CustomInput
                                                 class="place-holder"
                                                 placeholder="Ingresar correo electrónico o teléfono"
                                                 type="email"
-                                                v-model="emp.company_email"
+                                                v-model="formEmpresa.companyEmail"
+                                                :error-messages="companyEmailErrors"
+                                                @blur="$v.formEmpresa.companyEmail.$touch()"
                                                 required
                                             />
                                         </div>
@@ -676,20 +1054,53 @@
 
                                 <v-row>
                                     <v-col cols="12" md="12">
-                                        <span class="black--text body-2">Teléfono / Celular (Área Contable) *</span>
+                                        <span class="black--text body-2">Teléfono / Celular (Área Contable)</span>
                                         <v-row>
                                             <v-col cols="12">
                                                 <vue-tel-input
                                                     placeholder="Ingresar teléfono / celular"
-                                                    v-model="emp.company_phone"
+                                                    v-model="formEmpresa.companyPhone"
                                                     v-bind="mobileInputProps"
                                                     :onlyCountries="availableCountries"
+                                                    @blur="$v.formEmpresa.companyPhone.$touch()"
+                                                    :class="{
+                                                        'error--text':
+                                                            $v.formEmpresa.companyPhone.$error ||
+                                                            formEmpresa.showInvalidPhone
+                                                    }"
                                                     class="place-holder"
                                                 >
                                                     <template slot="arrow-icon">
                                                         <span class="vti__dropdown-arrow">&nbsp;▼</span>
                                                     </template>
                                                 </vue-tel-input>
+                                                <div
+                                                    class="v-text-field__details mt-2 pl-3"
+                                                    v-if="$v.formEmpresa.companyPhone.$error"
+                                                >
+                                                    <div class="v-messages theme--light error--text" role="alert">
+                                                        <div class="v-messages__wrapper">
+                                                            <div class="v-messages__message">
+                                                                {{ $t("*Este campo es obligatorio") }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="v-text-field__details mt-2 pl-3"
+                                                    v-if="
+                                                        !$v.formEmpresa.companyPhone.$error &&
+                                                        formEmpresa.showInvalidPhone
+                                                    "
+                                                >
+                                                    <div class="v-messages theme--light error--text" role="alert">
+                                                        <div class="v-messages__wrapper">
+                                                            <div class="v-messages__message">
+                                                                {{ $t("phone_number_must_be_valid") }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </v-col>
                                         </v-row>
                                     </v-col>
@@ -698,7 +1109,7 @@
                                 <v-row>
                                     <v-col cols="12" md="6">
                                         <span class="black--text body-2">
-                                            {{ $t("ACTIVIDAD ECONOMICA (CÓDIGO CIIU)") }} *
+                                            {{ $t("ACTIVIDAD ECONOMICA (Código CIIU)") }}
                                         </span>
 
                                         <div class="input-group">
@@ -706,23 +1117,27 @@
                                                 class="select-style"
                                                 placeholder="Seleccione actividad economica"
                                                 :items="codigoCiiuTypes"
-                                                v-model="emp.companyActividads"
+                                                v-model="formEmpresa.companyActividad"
+                                                :error-messages="companyActividadErrors"
                                                 :multiple="true"
+                                                @blur="$v.formEmpresa.companyActividad.$touch()"
                                                 required
                                             />
                                         </div>
                                     </v-col>
 
                                     <v-col cols="12" md="6" style="display: grid; align-items: end">
-                                        <span class="black--text body-2">REGIMEN FISCAL *</span>
+                                        <span class="black--text body-2">Regimen fiscal</span>
 
                                         <div class="input-group">
                                             <SelectCustom
                                                 class="select-style"
                                                 placeholder="Seleccione regimen fiscal"
                                                 :items="regimenTypes"
-                                                v-model="emp.regimenFiscals"
+                                                v-model="formEmpresa.regimenFiscal"
                                                 :multiple="true"
+                                                :error-messages="regimenFiscalErrors"
+                                                @blur="$v.formEmpresa.regimenFiscal.$touch()"
                                                 required
                                             />
                                         </div>
@@ -731,13 +1146,15 @@
 
                                 <v-row>
                                     <v-col cols="12">
-                                        <span class="black--text body-2">RESPONSABILIDAD TRIBUTARIA *</span>
+                                        <span class="black--text body-2">Responsabilidad tributaria </span>
                                         <SelectCustom
                                             class="select-style"
                                             placeholder="Seleccione responsabilidad tributaria"
                                             :items="responsabilidadTypes"
-                                            v-model="emp.responsabilidadTributs"
+                                            v-model="formEmpresa.responsabilidadTribut"
                                             :multiple="true"
+                                            :error-messages="responsabilidadTributErrors"
+                                            @blur="$v.form.responsabilidadTribut.$touch()"
                                             required
                                         />
                                     </v-col>
@@ -745,22 +1162,24 @@
 
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
-                                        <span class="black--text body-2"> DOCUMENTO (ARCHIVO) </span>
+                                        <span class="black--text body-2">Documento (ARCHIVO) </span>
                                     </v-col>
-                                    <v-col cols="10" class="area-upload">
+
+                                    <v-col cols="11" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
                                             class="form-control upload"
-                                            v-model="emp.filedocumento"
+                                            v-model="formEmpresa.filedocumento"
                                             accept="application/pdf"
                                         >
                                             <template v-slot:label>
                                                 <ArrowUpload />
-                                                <p class="subir-documento">SUBIR DOCUMENTO</p>
+                                                <span class="subir-documento">Subir documento</span>
                                             </template>
                                         </v-file-input>
                                     </v-col>
-                                    <v-col cols="2" class="icono-documento">
+
+                                    <v-col cols="1" class="icono-documento">
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }">
                                                 <i
@@ -781,25 +1200,25 @@
 
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
-                                        <span class="black--text body-2"> Numero de CAMARA DE COMERCIO (ARCHIVO) </span>
+                                        <span class="black--text body-2"> Numero de Camara de comercio (ARCHIVO) </span>
                                     </v-col>
-                                    <v-col cols="10" class="area-upload">
+                                    <v-col cols="11" class="area-upload">
                                         <!-- REVISAR--------------------------------- -->
                                         <v-file-input
                                             class="form-control upload"
-                                            v-model="emp.filecamara"
+                                            v-model="formEmpresa.filecamara"
                                             accept="application/pdf"
                                             single-line
                                         >
                                             <template v-slot:label>
                                                 <ArrowUpload />
-                                                <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                                <span class="subir-documento">Subir documento</span>
                                             </template>
                                         </v-file-input>
 
                                         <!-- REVISAR--------------------------------- -->
                                     </v-col>
-                                    <v-col cols="2" class="icono-documento">
+                                    <v-col cols="1" class="icono-documento">
                                         <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }">
@@ -819,22 +1238,22 @@
 
                                 <v-row>
                                     <v-col cols="12" class="texto-upload">
-                                        <span class="black--text body-2"> RUT (ARCHIVO) kjjkbhjbbjhb </span>
+                                        <span class="black--text body-2"> RUT (ARCHIVO) </span>
                                     </v-col>
-                                    <v-col cols="10" class="area-upload">
+                                    <v-col cols="11" class="area-upload">
                                         <v-file-input
                                             placeholder="SUBIR DOCUMENTO"
                                             class="form-control upload"
-                                            v-model="emp.filerut"
+                                            v-model="formEmpresa.filerut"
                                             accept="application/pdf"
                                         >
                                             <template v-slot:label>
                                                 <ArrowUpload />
-                                                <span class="subir-documento">SUBIR DOCUMENTO</span>
+                                                <span class="subir-documento">Subir documento</span>
                                             </template>
                                         </v-file-input>
                                     </v-col>
-                                    <v-col cols="2" class="icono-documento">
+                                    <v-col cols="1" class="icono-documento">
                                         <v-tooltip bottom color="black">
                                             <template v-slot:activator="{ on, attrs }">
                                                 <i
@@ -859,33 +1278,17 @@
                                             text="< Cancelar"
                                             type="button"
                                             color="white"
-                                            @click="cancelEditEmpresa(emp)"
+                                            @click="cancelAddEmpresa()"
                                         />
                                     </v-col>
-                                    <v-col
-                                        cols="4"
-                                        md="4"
-                                        style="
-                                            display: flex;
-                                            align-items: end;
-                                            justify-content: center;
-                                            padding-left: 23px;
-                                        "
-                                    >
-                                        <CustomButtonR
-                                            class="mr-3 boton-redondo"
-                                            text="Eliminar"
-                                            @click="deleteEmpresa(emp?.id)"
-                                        />
-                                    </v-col>
-                                    <v-col cols="4" md="4">
+                                    <v-col cols="4" md="4" style="margin-left: 33%">
                                         <custom-button
                                             block
                                             class="mt-4"
                                             text="Guardar >"
                                             type="submit"
-                                            color="white"
-                                            @click="saveEditEmpresa(emp)"
+                                            color="orange"
+                                            @click="saveAddEmpresa()"
                                             :disabled="infoUpdateLoading"
                                             :loading="infoUpdateLoading"
                                         />
@@ -894,431 +1297,47 @@
                             </v-form>
                         </v-card>
                     </div>
-                </div>
 
-                <div v-if="addEmpresa">
-                    <v-card
-                        elevation="0"
-                        class="mb-6 form-border rounded-lg pa-5"
-                        style="background-color: white; border-color: #fafcfc"
-                    >
-                        <h5 class="fw-600">Añadir Empresa</h5>
-                        <v-divider class="my-4" />
-                        <v-form :validator="$v.formEmpresa" autocomplete="chrome-off">
-                            <v-row>
-                                <v-col cols="12" sm="6" style="display: grid; align-items: end">
-                                    <span class="black--text body-2">Primer Nombre</span>
-
-                                    <CustomInput
-                                        class="place-holder"
-                                        placeholder="Ingresar nombre"
-                                        v-model="formEmpresa.firstName"
-                                        :error-messages="companyFirstNameErrors"
-                                        @blur="$v.formEmpresa.firstName.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                                <v-col cols="12" sm="6">
-                                    <span class="black--text body-2">Segundo Nombre (Opcional) </span>
-                                    <CustomInput
-                                        class="place-holder"
-                                        v-model="formEmpresa.secondName"
-                                        placeholder="Ingresar segundo nombre"
-                                    />
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12" sm="6">
-                                    <span class="black--text body-2">Primer Apellido </span>
-                                    <CustomInput
-                                        class="place-holder"
-                                        placeholder="Ingresar primer apellido"
-                                        v-model="formEmpresa.firstLastname"
-                                        :error-messages="companyFirstLastnameErrors"
-                                        @blur="$v.formEmpresa.firstLastname.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                                <v-col cols="12" sm="6">
-                                    <span class="black--text body-2">Segundo Apellido </span>
-                                    <CustomInput
-                                        class="place-holder"
-                                        placeholder="Ingresar segundo apellido"
-                                        v-model="formEmpresa.secondLastname"
-                                        :error-messages="companySecondLastnameErrors"
-                                        @blur="$v.formEmpresa.secondLastname.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12">
-                                    <span class="black--text body-2">Documento (Representante) </span>
-                                    <SelectCustom
-                                        class="select-style"
-                                        placeholder="Seleccionar tipo de documento"
-                                        :items="documentTypes"
-                                        v-model="formEmpresa.documentType"
-                                        :error-messages="companyPersonDocumentTypeErrors"
-                                        @blur="$v.formEmpresa.documentType.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12">
-                                    <span class="black--text body-2">Numero de Documento</span>
-                                    <CustomInput
-                                        class="place-holder"
-                                        placeholder="Ingresar número de documento"
-                                        v-model="formEmpresa.documentNumber"
-                                        :error-messages="companyPersonDocumentNumberErrors"
-                                        @blur="$v.formEmpresa.documentNumber.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12">
-                                    <span class="black--text body-2">Razón Social de la Empresa</span>
-                                    <CustomInput
-                                        placeholder="Ingrese razón social de la empresa"
-                                        class="place-holder"
-                                        v-model="formEmpresa.companyRazon"
-                                        :error-messages="companyRazonErrors"
-                                        @blur="$v.formEmpresa.companyRazon.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12">
-                                    <span class="black--text body-2">Entidad Comercial</span>
-                                    <SelectCustom
-                                        class="select-style"
-                                        placeholder="Seleccione entidad comercial"
-                                        :items="companyTypes"
-                                        v-model="formEmpresa.companyType"
-                                        :error-messages="companyTypeErrors"
-                                        @blur="$v.formEmpresa.companyType.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12">
-                                    <span class="black--text body-2">Numero de NIT </span>
-                                    <CustomInput
-                                        class="place-holder"
-                                        placeholder="Indicar número de documento"
-                                        v-model="formEmpresa.companyDocumentNumber"
-                                        :error-messages="companyDocumentNumberErrors"
-                                        @blur="$v.formEmpresa.companyDocumentNumber.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                            </v-row>
-
-                            <v-row>
-                                <v-col cols="12" md="12">
-                                    <span class="black--text body-2">
-                                        {{ $t("Correo electroníco o número de teléfono") }}
-                                    </span>
-
-                                    <div class="input-group">
-                                        <CustomInput
-                                            class="place-holder"
-                                            placeholder="Ingresar correo electrónico o teléfono"
-                                            type="email"
-                                            v-model="formEmpresa.companyEmail"
-                                            :error-messages="companyEmailErrors"
-                                            @blur="$v.formEmpresa.companyEmail.$touch()"
-                                            required
-                                        />
-                                    </div>
-                                </v-col>
-                            </v-row>
-
-                            <v-row>
-                                <v-col cols="12" md="12">
-                                    <span class="black--text body-2">Teléfono / Celular (Área Contable)</span>
-                                    <v-row>
-                                        <v-col cols="12">
-                                            <vue-tel-input
-                                                placeholder="Ingresar teléfono / celular"
-                                                v-model="formEmpresa.companyPhone"
-                                                v-bind="mobileInputProps"
-                                                :onlyCountries="availableCountries"
-                                                @blur="$v.formEmpresa.companyPhone.$touch()"
-                                                :class="{
-                                                    'error--text':
-                                                        $v.formEmpresa.companyPhone.$error ||
-                                                        formEmpresa.showInvalidPhone
-                                                }"
-                                                class="place-holder"
-                                            >
-                                                <template slot="arrow-icon">
-                                                    <span class="vti__dropdown-arrow">&nbsp;▼</span>
-                                                </template>
-                                            </vue-tel-input>
-                                            <div
-                                                class="v-text-field__details mt-2 pl-3"
-                                                v-if="$v.formEmpresa.companyPhone.$error"
-                                            >
-                                                <div class="v-messages theme--light error--text" role="alert">
-                                                    <div class="v-messages__wrapper">
-                                                        <div class="v-messages__message">
-                                                            {{ $t("*Este campo es obligatorio") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="v-text-field__details mt-2 pl-3"
-                                                v-if="
-                                                    !$v.formEmpresa.companyPhone.$error && formEmpresa.showInvalidPhone
-                                                "
-                                            >
-                                                <div class="v-messages theme--light error--text" role="alert">
-                                                    <div class="v-messages__wrapper">
-                                                        <div class="v-messages__message">
-                                                            {{ $t("phone_number_must_be_valid") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </v-col>
-                                    </v-row>
-                                </v-col>
-                            </v-row>
-
-                            <v-row>
-                                <v-col cols="12" md="6">
-                                    <span class="black--text body-2">
-                                        {{ $t("ACTIVIDAD ECONOMICA (Código CIIU)") }}
-                                    </span>
-
-                                    <div class="input-group">
-                                        <SelectCustom
-                                            class="select-style"
-                                            placeholder="Seleccione actividad economica"
-                                            :items="codigoCiiuTypes"
-                                            v-model="formEmpresa.companyActividad"
-                                            :error-messages="companyActividadErrors"
-                                            :multiple="true"
-                                            @blur="$v.formEmpresa.companyActividad.$touch()"
-                                            required
-                                        />
-                                    </div>
-                                </v-col>
-
-                                <v-col cols="12" md="6" style="display: grid; align-items: end">
-                                    <span class="black--text body-2">Regimen fiscal</span>
-
-                                    <div class="input-group">
-                                        <SelectCustom
-                                            class="select-style"
-                                            placeholder="Seleccione regimen fiscal"
-                                            :items="regimenTypes"
-                                            v-model="formEmpresa.regimenFiscal"
-                                            :multiple="true"
-                                            :error-messages="regimenFiscalErrors"
-                                            @blur="$v.formEmpresa.regimenFiscal.$touch()"
-                                            required
-                                        />
-                                    </div>
-                                </v-col>
-                            </v-row>
-
-                            <v-row>
-                                <v-col cols="12">
-                                    <span class="black--text body-2">Responsabilidad tributaria </span>
-                                    <SelectCustom
-                                        class="select-style"
-                                        placeholder="Seleccione responsabilidad tributaria"
-                                        :items="responsabilidadTypes"
-                                        v-model="formEmpresa.responsabilidadTribut"
-                                        :multiple="true"
-                                        :error-messages="responsabilidadTributErrors"
-                                        @blur="$v.form.responsabilidadTribut.$touch()"
-                                        required
-                                    />
-                                </v-col>
-                            </v-row>
-
-                            <v-row>
-                                <v-col cols="12" class="texto-upload">
-                                    <span class="black--text body-2">Documento (ARCHIVO) </span>
-                                </v-col>
-
-                                <v-col cols="11" class="area-upload">
-                                    <v-file-input
-                                        placeholder="SUBIR DOCUMENTO"
-                                        class="form-control upload"
-                                        v-model="formEmpresa.filedocumento"
-                                        accept="application/pdf"
-                                    >
-                                        <template v-slot:label>
-                                            <ArrowUpload />
-                                            <span class="subir-documento">Subir documento</span>
-                                        </template>
-                                    </v-file-input>
-                                </v-col>
-
-                                <v-col cols="1" class="icono-documento">
-                                    <v-tooltip bottom color="black">
-                                        <template v-slot:activator="{ on, attrs }">
-                                            <i
-                                                class="las la-exclamation-circle icon-tooltip-dos"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                style="font-size: 30px; transform: rotate(180deg)"
-                                            ></i>
-                                        </template>
-                                        <span>&bullet; Documentos en formato PDF</span>
-                                        <br />
-                                        <span>&bullet; Ambas caras de ID ampliadas al 150</span>
-                                        <br />
-                                        <span>&bullet; Documento legible y en color</span>
-                                    </v-tooltip>
-                                </v-col>
-                            </v-row>
-
-                            <v-row>
-                                <v-col cols="12" class="texto-upload">
-                                    <span class="black--text body-2"> Numero de Camara de comercio (ARCHIVO) </span>
-                                </v-col>
-                                <v-col cols="11" class="area-upload">
-                                    <!-- REVISAR--------------------------------- -->
-                                    <v-file-input
-                                        class="form-control upload"
-                                        v-model="formEmpresa.filecamara"
-                                        accept="application/pdf"
-                                        single-line
-                                    >
-                                        <template v-slot:label>
-                                            <ArrowUpload />
-                                            <span class="subir-documento">Subir documento</span>
-                                        </template>
-                                    </v-file-input>
-
-                                    <!-- REVISAR--------------------------------- -->
-                                </v-col>
-                                <v-col cols="1" class="icono-documento">
-                                    <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
-                                    <v-tooltip bottom color="black">
-                                        <template v-slot:activator="{ on, attrs }">
-                                            <i
-                                                class="las la-exclamation-circle icon-tooltip-dos"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                style="font-size: 30px; transform: rotate(180deg)"
-                                            ></i>
-                                        </template>
-                                        <span>&bullet; Documentos en formato PDF</span>
-                                        <br />
-                                        <span>&bullet; Cámara de comercio no mayor a 90 días</span>
-                                    </v-tooltip>
-                                </v-col>
-                            </v-row>
-
-                            <v-row>
-                                <v-col cols="12" class="texto-upload">
-                                    <span class="black--text body-2"> RUT (ARCHIVO) </span>
-                                </v-col>
-                                <v-col cols="11" class="area-upload">
-                                    <v-file-input
-                                        placeholder="SUBIR DOCUMENTO"
-                                        class="form-control upload"
-                                        v-model="formEmpresa.filerut"
-                                        accept="application/pdf"
-                                    >
-                                        <template v-slot:label>
-                                            <ArrowUpload />
-                                            <span class="subir-documento">Subir documento</span>
-                                        </template>
-                                    </v-file-input>
-                                </v-col>
-                                <v-col cols="1" class="icono-documento">
-                                    <v-tooltip bottom color="black">
-                                        <template v-slot:activator="{ on, attrs }">
-                                            <i
-                                                class="las la-exclamation-circle icon-tooltip-dos"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                style="font-size: 30px; transform: rotate(180deg)"
-                                            ></i>
-                                        </template>
-                                        <span>&bullet; Documentos en formato PDF</span>
-                                        <br />
-                                        <span>&bullet; RUT actualizado</span>
-                                    </v-tooltip>
-                                </v-col>
-                            </v-row>
-
-                            <v-row>
-                                <v-col cols="4" md="4">
-                                    <custom-button
-                                        block
-                                        class="mt-4"
-                                        text="< Cancelar"
-                                        type="button"
-                                        color="white"
-                                        @click="cancelAddEmpresa()"
-                                    />
-                                </v-col>
-                                <v-col cols="4" md="4" style="margin-left: 33%">
-                                    <custom-button
-                                        block
-                                        class="mt-4"
-                                        text="Guardar >"
-                                        type="submit"
-                                        color="orange"
-                                        @click="saveAddEmpresa()"
-                                        :disabled="infoUpdateLoading"
-                                        :loading="infoUpdateLoading"
-                                    />
-                                </v-col>
-                            </v-row>
-                        </v-form>
+                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-if="addEmpresa == false">
+                        <v-row>
+                            <v-col cols="3" style="display: flex; place-items: center">
+                                <EmpresasIcon />
+                            </v-col>
+                            <v-col cols="9" style="display: flex; place-items: center">
+                                <p class="mb-0">
+                                    Realiza las compras como persona juridica agregando los datos de facturación como
+                                    empresa.
+                                </p>
+                            </v-col>
+                            <CustomButton
+                                class="mb-4"
+                                color="white"
+                                @click="addEmpresa = true"
+                                text="Añadir mi Empresa"
+                            />
+                        </v-row>
                     </v-card>
-                </div>
+                </v-col>
+            </v-row>
 
-                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-if="addEmpresa == false">
-                    <v-row>
-                        <v-col cols="3" style="display: flex; place-items: center">
-                            <EmpresasIcon />
-                        </v-col>
-                        <v-col cols="9" style="display: flex; place-items: center">
-                            <p class="mb-0">
-                                Realiza las compras como persona juridica agregando los datos de facturación como
-                                empresa.
-                            </p>
-                        </v-col>
-                        <CustomButton class="mb-4" color="white" @click="addEmpresa = true" text="Añadir mi Empresa" />
-                    </v-row>
-                </v-card>
-            </v-col>
-        </v-row>
+            <!-- DIRECCIONES ----------------------------------------------------------------------------->
 
-        <!-- DIRECCIONES ----------------------------------------------------------------------------->
+            <v-row>
+                <v-col cols="12" class="pb-0">
+                    <h5 class="fw-600">Direcciones</h5>
+                    <v-divider class="my-4" />
+                </v-col>
+            </v-row>
 
-        <v-row>
-            <v-col cols="12" class="pb-0">
-                <h5 class="fw-600">Direcciones</h5>
-                <v-divider class="my-4" />
-            </v-col>
-        </v-row>
-
-        <v-row>
-            <v-col cols="12" md="6" class="pt-0" v-for="(otherAdd, i) in otherAdress" :key="i">
-                <div>
-                    <div v-if="otherAdd?.editar == false">
-                        <div v-if="otherAdd.mostrarDatos">
-                            <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                                <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
-                                <div style="width: auto; display: inline; float: right">
-                                    <!-- <v-tooltip bottom color="black">
+            <v-row>
+                <v-col cols="12" md="6" class="pt-0" v-for="(otherAdd, i) in otherAdress" :key="i">
+                    <div>
+                        <div v-if="otherAdd?.editar == false">
+                            <div v-if="otherAdd.mostrarDatos">
+                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                                    <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
+                                    <div style="width: auto; display: inline; float: right">
+                                        <!-- <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
                                                 v-if="otherAdd.favorite == 1"
@@ -1342,74 +1361,74 @@
                                         </template>
                                         <span>Favorito</span>
                                     </v-tooltip> -->
-                                    <i
-                                        class="las la-eye-slash"
-                                        v-if="otherAdd.mostrarDatos"
-                                        @click="ocultarDatosDirection(otherAdd)"
-                                        style="font-size: 25px"
-                                    ></i>
-                                    <i
-                                        class="las la-eye"
-                                        @click="mostrarDatosDirection(otherAdd)"
-                                        style="font-size: 25px"
-                                        v-else
-                                    ></i>
-                                </div>
-                                <v-divider class="my-4" />
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">País</span>
-                                    <span class="body1 text-right">{{ otherAdd?.country }}</span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Dirección</span>
-                                    <span class="body1 text-right">{{ otherAdd?.address }}</span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Dirección adicional</span>
-                                    <span class="body1 text-right">{{ otherAdd?.details }}</span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Codigo Postal</span>
-                                    <span class="body1">{{ otherAdd?.postal_code }}</span>
-                                </div>
-                                <!-- localidad -->
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Departamento</span>
-                                    <span class="body1">{{ otherAdd?.state }}</span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Municipio</span>
-                                    <span class="body1">{{ otherAdd?.city }}</span>
-                                </div>
-                                <!-- <div class="d-flex justify-space-between mb-2">
+                                        <i
+                                            class="las la-eye-slash"
+                                            v-if="otherAdd.mostrarDatos"
+                                            @click="ocultarDatosDirection(otherAdd)"
+                                            style="font-size: 25px"
+                                        ></i>
+                                        <i
+                                            class="las la-eye"
+                                            @click="mostrarDatosDirection(otherAdd)"
+                                            style="font-size: 25px"
+                                            v-else
+                                        ></i>
+                                    </div>
+                                    <v-divider class="my-4" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">País</span>
+                                        <span class="body1 text-right">{{ otherAdd?.country }}</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Dirección</span>
+                                        <span class="body1 text-right">{{ otherAdd?.address }}</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Dirección adicional</span>
+                                        <span class="body1 text-right">{{ otherAdd?.details }}</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Codigo Postal</span>
+                                        <span class="body1">{{ otherAdd?.postal_code }}</span>
+                                    </div>
+                                    <!-- localidad -->
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Departamento</span>
+                                        <span class="body1">{{ otherAdd?.state }}</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Municipio</span>
+                                        <span class="body1">{{ otherAdd?.city }}</span>
+                                    </div>
+                                    <!-- <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 fw-600">Localidad</span>
                                     <span class="body1">{{ otherAdd?.localidad }}</span>
                                 </div> -->
 
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Barrio</span>
-                                    <span class="body1">
-                                        {{ otherAdd?.neighborhood ? otherAdd?.neighborhood : "--" }}
-                                    </span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Telefono / Movil</span>
-                                    <span class="body1">{{ otherAdd?.phone }}</span>
-                                </div>
-                                <custom-button
-                                    class="mr-3"
-                                    color="white"
-                                    style="width: 33%"
-                                    text="Editar"
-                                    @click="editDirection(otherAdd)"
-                                />
-                            </v-card>
-                        </div>
-                        <div v-else>
-                            <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                                <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
-                                <div style="width: auto; display: inline; float: right">
-                                    <!-- <v-tooltip bottom color="black">
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Barrio</span>
+                                        <span class="body1">
+                                            {{ otherAdd?.neighborhood ? otherAdd?.neighborhood : "--" }}
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Telefono / Movil</span>
+                                        <span class="body1">{{ otherAdd?.phone }}</span>
+                                    </div>
+                                    <custom-button
+                                        class="mr-3"
+                                        color="white"
+                                        style="width: 33%"
+                                        text="Editar"
+                                        @click="editDirection(otherAdd)"
+                                    />
+                                </v-card>
+                            </div>
+                            <div v-else>
+                                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                                    <h5 class="fw-600 text-capitalize" style="display: inline">{{ otherAdd?.name }}</h5>
+                                    <div style="width: auto; display: inline; float: right">
+                                        <!-- <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }">
                                             <i
                                                 v-if="otherAdd.favorite == 1"
@@ -1433,140 +1452,140 @@
                                         </template>
                                         <span>Favorito</span>
                                     </v-tooltip> -->
-                                    <i
-                                        class="las la-eye-slash"
-                                        v-if="otherAdd.mostrarDatos"
-                                        @click="ocultarDatosDirection(otherAdd)"
-                                        style="font-size: 25px"
-                                    ></i>
-                                    <i
-                                        class="las la-eye"
-                                        @click="mostrarDatosDirection(otherAdd)"
-                                        style="font-size: 25px"
-                                        v-else
-                                    ></i>
-                                </div>
-                                <v-divider class="my-4" />
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">País</span>
-                                    <span class="body1 text-right">********</span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Dirección</span>
-                                    <span class="body1 text-right">******** ***** *****</span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Dirección adicional</span>
-                                    <span class="body1 text-right">******** *****</span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Codigo Postal</span>
-                                    <span class="body1">******</span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Departamento</span>
-                                    <span class="body1">*******</span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Municipio</span>
-                                    <span class="body1">*********</span>
-                                </div>
-                                <!-- <div class="d-flex justify-space-between mb-2">
+                                        <i
+                                            class="las la-eye-slash"
+                                            v-if="otherAdd.mostrarDatos"
+                                            @click="ocultarDatosDirection(otherAdd)"
+                                            style="font-size: 25px"
+                                        ></i>
+                                        <i
+                                            class="las la-eye"
+                                            @click="mostrarDatosDirection(otherAdd)"
+                                            style="font-size: 25px"
+                                            v-else
+                                        ></i>
+                                    </div>
+                                    <v-divider class="my-4" />
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">País</span>
+                                        <span class="body1 text-right">********</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Dirección</span>
+                                        <span class="body1 text-right">******** ***** *****</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Dirección adicional</span>
+                                        <span class="body1 text-right">******** *****</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Codigo Postal</span>
+                                        <span class="body1">******</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Departamento</span>
+                                        <span class="body1">*******</span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Municipio</span>
+                                        <span class="body1">*********</span>
+                                    </div>
+                                    <!-- <div class="d-flex justify-space-between mb-2">
                                     <span class="subtitle1 fw-600">Localidad</span>
                                     <span class="body1">**********</span>
                                 </div> -->
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Barrio</span>
-                                    <span class="body1"> *********** </span>
-                                </div>
-                                <div class="d-flex justify-space-between mb-2">
-                                    <span class="subtitle1 fw-600">Telefono / Movil</span>
-                                    <span class="body1">**********</span>
-                                </div>
-                                <custom-button
-                                    class="mr-3"
-                                    color="white"
-                                    style="width: 33%"
-                                    text="Editar"
-                                    @click="editDirection(otherAdd)"
-                                />
-                            </v-card>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Barrio</span>
+                                        <span class="body1"> *********** </span>
+                                    </div>
+                                    <div class="d-flex justify-space-between mb-2">
+                                        <span class="subtitle1 fw-600">Telefono / Movil</span>
+                                        <span class="body1">**********</span>
+                                    </div>
+                                    <custom-button
+                                        class="mr-3"
+                                        color="white"
+                                        style="width: 33%"
+                                        text="Editar"
+                                        @click="editDirection(otherAdd)"
+                                    />
+                                </v-card>
+                            </div>
                         </div>
-                    </div>
 
-                    <div v-if="otherAdd?.editar == true">
-                        <v-card elevation="0" class="mb-6 rounded-lg pa-5" style="background: white">
-                            <h5 class="fw-600">Editar Dirección</h5>
-                            <v-divider class="ma-4" />
-                            <v-form :validator="$v.otherAdd" autocomplete="chrome-off">
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Nombre de dirección (Casa / oficina)</div>
-                                    <CustomInput
-                                        v-model="otherAdd.name"
-                                        required
-                                        class="place-holder"
-                                        placeholder="Ingresar casa / oficina"
-                                    />
-                                </div>
+                        <div v-if="otherAdd?.editar == true">
+                            <v-card elevation="0" class="mb-6 rounded-lg pa-5" style="background: white">
+                                <h5 class="fw-600">Editar Dirección</h5>
+                                <v-divider class="ma-4" />
+                                <v-form :validator="$v.otherAdd" autocomplete="chrome-off">
+                                    <div class="mb-3">
+                                        <div class="mb-1 fs-13 fw-500">Nombre de dirección (Casa / oficina)</div>
+                                        <CustomInput
+                                            v-model="otherAdd.name"
+                                            required
+                                            class="place-holder"
+                                            placeholder="Ingresar casa / oficina"
+                                        />
+                                    </div>
 
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Dirección (calle / carrera)</div>
-                                    <CustomInput
-                                        v-model="otherAdd.address"
-                                        required
-                                        class="place-holder"
-                                        placeholder="Ingresar calle / carrera"
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Código postal</div>
-                                    <CustomInput
-                                        v-model="otherAdd.postal_code"
-                                        required
-                                        class="place-holder"
-                                        placeholder="Ingresar calle / carrera"
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">País</div>
-                                    <SelectCustom
-                                        placeholder="Seleccione país"
-                                        class="select-style"
-                                        :items="countries"
-                                        @input="countryChanged"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.country"
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Departamento</div>
-                                    <SelectCustom
-                                        placeholder="Seleccione departamento"
-                                        class="select-style"
-                                        :items="filteredStates"
-                                        @input="stateChanged"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.state"
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Ciudad</div>
-                                    <SelectCustom
-                                        placeholder="Seleccione ciudad"
-                                        class="select-style"
-                                        :items="filteredCities"
-                                        item-text="name"
-                                        item-value="id"
-                                        required
-                                        v-model="otherAdd.city"
-                                    />
-                                </div>
-                                <v-row>
-                                    <!-- <v-col cols="12" sm="6">
+                                    <div class="mb-3">
+                                        <div class="mb-1 fs-13 fw-500">Dirección (calle / carrera)</div>
+                                        <CustomInput
+                                            v-model="otherAdd.address"
+                                            required
+                                            class="place-holder"
+                                            placeholder="Ingresar calle / carrera"
+                                        />
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="mb-1 fs-13 fw-500">Código postal</div>
+                                        <CustomInput
+                                            v-model="otherAdd.postal_code"
+                                            required
+                                            class="place-holder"
+                                            placeholder="Ingresar calle / carrera"
+                                        />
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="mb-1 fs-13 fw-500">País</div>
+                                        <SelectCustom
+                                            placeholder="Seleccione país"
+                                            class="select-style"
+                                            :items="countries"
+                                            @input="countryChanged"
+                                            item-text="name"
+                                            item-value="id"
+                                            required
+                                            v-model="otherAdd.country"
+                                        />
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="mb-1 fs-13 fw-500">Departamento</div>
+                                        <SelectCustom
+                                            placeholder="Seleccione departamento"
+                                            class="select-style"
+                                            :items="filteredStates"
+                                            @input="stateChanged"
+                                            item-text="name"
+                                            item-value="id"
+                                            required
+                                            v-model="otherAdd.state"
+                                        />
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="mb-1 fs-13 fw-500">Ciudad</div>
+                                        <SelectCustom
+                                            placeholder="Seleccione ciudad"
+                                            class="select-style"
+                                            :items="filteredCities"
+                                            item-text="name"
+                                            item-value="id"
+                                            required
+                                            v-model="otherAdd.city"
+                                        />
+                                    </div>
+                                    <v-row>
+                                        <!-- <v-col cols="12" sm="6">
                                         <span class="black--text body-2">Localidad</span>
                                         <SelectCustom
                                             placeholder="Seleccione localidad"
@@ -1576,183 +1595,190 @@
                                             v-model="otherAdd.localidad"
                                         />
                                     </v-col> -->
-                                    <v-col cols="12" sm="12">
-                                        <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
-                                        <CustomInput
-                                            v-model="otherAdd.neighborhood"
-                                            class="place-holder"
-                                            placeholder="Ingresar barrio"
-                                        />
-                                    </v-col>
-                                </v-row>
-
-                                <div class="mb-3"></div>
-                                <div class="mb-3">
-                                    <div class="mb-1 fs-13 fw-500">Número de teléfono</div>
-                                    <v-row>
-                                        <v-col cols="12">
-                                            <vue-tel-input
-                                                v-model="otherAdd.phone"
-                                                v-bind="mobileInputProps"
-                                                :onlyCountries="availableCountries"
-                                                @validate="phoneValidate"
-                                                @blur="$v.formDirection.phone.$touch()"
-                                                :class="{
-                                                    'error--text':
-                                                        $v.formDirection.phone.$error || formDirection.showInvalidPhone
-                                                }"
-                                            >
-                                                <template slot="arrow-icon">
-                                                    <span class="vti__dropdown-arrow">&nbsp;▼</span>
-                                                </template>
-                                            </vue-tel-input>
-                                            <div
-                                                class="v-text-field__details mt-2 pl-3"
-                                                v-if="$v.formDirection.phone.$error"
-                                            >
-                                                <div class="v-messages theme--light error--text" role="alert">
-                                                    <div class="v-messages__wrapper">
-                                                        <div class="v-messages__message">
-                                                            {{ $t("*Este campo es obligatorio") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="v-text-field__details mt-2 pl-3"
-                                                v-if="!$v.formDirection.phone.$error && formDirection.showInvalidPhone"
-                                            >
-                                                <div class="v-messages theme--light error--text" role="alert">
-                                                    <div class="v-messages__wrapper">
-                                                        <div class="v-messages__message">
-                                                            {{ $t("phone_number_must_be_valid") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </v-col>
-                                    </v-row>
-
-                                    <v-row>
-                                        <v-col cols="4" md="4">
-                                            <custom-button
-                                                block
-                                                class="mt-4"
-                                                text="< Cancelar"
-                                                type="button"
-                                                color="white"
-                                                @click="cancelEditAddress(otherAdd)"
-                                            />
-                                        </v-col>
-                                        <v-col
-                                            cols="4"
-                                            md="4"
-                                            style="display: flex; align-items: end; justify-content: center"
-                                        >
-                                            <CustomButtonR
-                                                class="mr-3 boton-redondo"
-                                                text="Eliminar"
-                                                @click="deleteAddress(otherAdd?.id)"
-                                            />
-                                        </v-col>
-                                        <v-col cols="4" md="4">
-                                            <custom-button
-                                                block
-                                                class="mt-4"
-                                                text="Guardar >"
-                                                type="button"
-                                                color="orange"
-                                                @click="saveEditAddress(otherAdd)"
-                                                :disabled="infoUpdateLoading"
-                                                :loading="infoUpdateLoading"
+                                        <v-col cols="12" sm="12">
+                                            <div class="mb-1 fs-13 fw-500">Barrio ( Opcional )</div>
+                                            <CustomInput
+                                                v-model="otherAdd.neighborhood"
+                                                class="place-holder"
+                                                placeholder="Ingresar barrio"
                                             />
                                         </v-col>
                                     </v-row>
-                                </div>
-                            </v-form>
-                        </v-card>
+
+                                    <div class="mb-3"></div>
+                                    <div class="mb-3">
+                                        <div class="mb-1 fs-13 fw-500">Número de teléfono</div>
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <vue-tel-input
+                                                    v-model="otherAdd.phone"
+                                                    v-bind="mobileInputProps"
+                                                    :onlyCountries="availableCountries"
+                                                    @validate="phoneValidate"
+                                                    @blur="$v.formDirection.phone.$touch()"
+                                                    :class="{
+                                                        'error--text':
+                                                            $v.formDirection.phone.$error ||
+                                                            formDirection.showInvalidPhone
+                                                    }"
+                                                >
+                                                    <template slot="arrow-icon">
+                                                        <span class="vti__dropdown-arrow">&nbsp;▼</span>
+                                                    </template>
+                                                </vue-tel-input>
+                                                <div
+                                                    class="v-text-field__details mt-2 pl-3"
+                                                    v-if="$v.formDirection.phone.$error"
+                                                >
+                                                    <div class="v-messages theme--light error--text" role="alert">
+                                                        <div class="v-messages__wrapper">
+                                                            <div class="v-messages__message">
+                                                                {{ $t("*Este campo es obligatorio") }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="v-text-field__details mt-2 pl-3"
+                                                    v-if="
+                                                        !$v.formDirection.phone.$error && formDirection.showInvalidPhone
+                                                    "
+                                                >
+                                                    <div class="v-messages theme--light error--text" role="alert">
+                                                        <div class="v-messages__wrapper">
+                                                            <div class="v-messages__message">
+                                                                {{ $t("phone_number_must_be_valid") }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </v-col>
+                                        </v-row>
+
+                                        <v-row>
+                                            <v-col cols="4" md="4">
+                                                <custom-button
+                                                    block
+                                                    class="mt-4"
+                                                    text="< Cancelar"
+                                                    type="button"
+                                                    color="white"
+                                                    @click="cancelEditAddress(otherAdd)"
+                                                />
+                                            </v-col>
+                                            <v-col
+                                                cols="4"
+                                                md="4"
+                                                style="display: flex; align-items: end; justify-content: center"
+                                            >
+                                                <CustomButtonR
+                                                    class="mr-3 boton-redondo"
+                                                    text="Eliminar"
+                                                    @click="deleteAddress(otherAdd?.id)"
+                                                />
+                                            </v-col>
+                                            <v-col cols="4" md="4">
+                                                <custom-button
+                                                    block
+                                                    class="mt-4"
+                                                    text="Guardar >"
+                                                    type="button"
+                                                    color="orange"
+                                                    @click="saveEditAddress(otherAdd)"
+                                                    :disabled="infoUpdateLoading"
+                                                    :loading="infoUpdateLoading"
+                                                />
+                                            </v-col>
+                                        </v-row>
+                                    </div>
+                                </v-form>
+                            </v-card>
+                        </div>
                     </div>
-                </div>
-            </v-col>
-            <!-- ----------------------------------------------------------- -->
+                </v-col>
+                <!-- ----------------------------------------------------------- -->
 
-            <v-col cols="12" md="6" class="pt-0" v-if="addDialogShow">
-                <div
-                    class="form"
-                    style="
-                        border: 1px solid #d5d6d9;
-                        box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1), 2px 2px 5px rgba(0, 0, 0, 0.2);
-                        border-radius: 10px;
-                        padding: 10px;
-                    "
-                >
-                    <AddressDialog
-                        :typeAddress="typeAddress"
-                        :show="addDialogShow"
-                        @close="addressDialogClosed"
-                        :old-address="addressSelectedForEdit"
-                    />
-                </div>
-            </v-col>
-        </v-row>
-
-        <!-- ------------------------------------- -->
-        <v-row>
-            <v-col cols="12" md="6">
-                <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
-                    <v-row>
-                        <v-col cols="3" style="display: flex; place-items: center">
-                            <ProfileAddress />
-                        </v-col>
-
-                        <v-col cols="9" style="display: flex; place-items: center">
-                            <p class="mb-0">
-                                Puedes registrar otras direcciones para los envios de facturacion, entregas de productos
-                                y solicitudes de servicio.
-                            </p>
-                        </v-col>
-                        <CustomButton
-                            v-if="!addDialogShow"
-                            class="mb-4"
-                            color="white"
-                            text="Añadir Dirección"
-                            @click="openAdress('shipping')"
+                <v-col cols="12" md="6" class="pt-0" v-if="addDialogShow">
+                    <div
+                        class="form"
+                        style="
+                            border: 1px solid #d5d6d9;
+                            box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1), 2px 2px 5px rgba(0, 0, 0, 0.2);
+                            border-radius: 10px;
+                            padding: 10px;
+                        "
+                    >
+                        <AddressDialog
+                            :typeAddress="typeAddress"
+                            :show="addDialogShow"
+                            @close="addressDialogClosed"
+                            :old-address="addressSelectedForEdit"
                         />
-                    </v-row>
-                </v-card>
-            </v-col>
-        </v-row>
+                    </div>
+                </v-col>
+            </v-row>
 
-        <!-- CAMBIAR CONTRASEÑA ---------------------------------------------------------------------->
+            <!-- ------------------------------------- -->
+            <v-row>
+                <v-col cols="12" md="6">
+                    <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
+                        <v-row>
+                            <v-col cols="3" style="display: flex; place-items: center">
+                                <ProfileAddress />
+                            </v-col>
 
-        <v-row>
-            <v-col cols="12" md="6">
-                <h5 class="fw-600" style="width: 100%">Contraseña</h5>
-                <v-divider class="my-4" />
-                <v-row v-if="changePassword" class="pt-3" style="display: flex; justify-content: center">
-                    <v-card elevation="0" class="mb-6 rounded-lg py-1 pb-5 px-5" style="width: 95%; background: white">
-                        <v-col cols="12" class="pb-0">
-                            <h5 class="fw-600">Cambiar contraseña</h5>
-                            <v-divider class="my-4" />
-                        </v-col>
-                        <v-col cols="12" md="12" class="pt-0">
-                            <span class="black--text body-2">Contraseña actual </span>
-                            <v-text-field
-                                v-model="formContrasena.oldPassword"
-                                placeholder="Ingresar contraseña"
-                                :error-messages="olddPasswordErrors"
-                                @blur="$v.formContrasena.oldPassword.$touch()"
-                                :type="passwordOldShow ? 'text' : 'password'"
-                                :append-icon="passwordOldShow ? 'las la-eye' : 'las la-eye-slash'"
-                                class="input-group--focused place-holder borde-none"
-                                hide-details="auto"
-                                required
-                                dense
-                                outlined
-                                @click:append="passwordOldShow = !passwordOldShow"
-                                style="background: #f5f5f5"
-                            ></v-text-field>
-                            <!-- <CustomInput
+                            <v-col cols="9" style="display: flex; place-items: center">
+                                <p class="mb-0">
+                                    Puedes registrar otras direcciones para los envios de facturacion, entregas de
+                                    productos y solicitudes de servicio.
+                                </p>
+                            </v-col>
+                            <CustomButton
+                                v-if="!addDialogShow"
+                                class="mb-4"
+                                color="white"
+                                text="Añadir Dirección"
+                                @click="openAdress('shipping')"
+                            />
+                        </v-row>
+                    </v-card>
+                </v-col>
+            </v-row>
+
+            <!-- CAMBIAR CONTRASEÑA ---------------------------------------------------------------------->
+
+            <v-row>
+                <v-col cols="12" md="6">
+                    <h5 class="fw-600" style="width: 100%">Contraseña</h5>
+                    <v-divider class="my-4" />
+                    <v-row v-if="changePassword" class="pt-3" style="display: flex; justify-content: center">
+                        <v-card
+                            elevation="0"
+                            class="mb-6 rounded-lg py-1 pb-5 px-5"
+                            style="width: 95%; background: white"
+                        >
+                            <v-col cols="12" class="pb-0">
+                                <h5 class="fw-600">Cambiar contraseña</h5>
+                                <v-divider class="my-4" />
+                            </v-col>
+                            <v-col cols="12" md="12" class="pt-0">
+                                <span class="black--text body-2">Contraseña actual </span>
+                                <v-text-field
+                                    v-model="formContrasena.oldPassword"
+                                    placeholder="Ingresar contraseña"
+                                    :error-messages="olddPasswordErrors"
+                                    @blur="$v.formContrasena.oldPassword.$touch()"
+                                    :type="passwordOldShow ? 'text' : 'password'"
+                                    :append-icon="passwordOldShow ? 'las la-eye' : 'las la-eye-slash'"
+                                    class="input-group--focused place-holder borde-none"
+                                    hide-details="auto"
+                                    required
+                                    dense
+                                    outlined
+                                    @click:append="passwordOldShow = !passwordOldShow"
+                                    style="background: #f5f5f5"
+                                ></v-text-field>
+                                <!-- <CustomInput
                                 v-model="formContrasena.oldPassword"
                                 placeholder="Ingresar contraseña"
                                 :error-messages="olddPasswordErrors"
@@ -1767,90 +1793,90 @@
                                 @click:append="passwordOldShow = !passwordOldShow"
                                 style="background: #f5f5f5"
                             /> -->
-                        </v-col>
-                        <v-col cols="12" md="12">
-                            <span class="black--text body-2">Nueva contraseña </span>
-                            <v-text-field
-                                v-model="formContrasena.newPassword"
-                                placeholder="Ingresar contraseña"
-                                :error-messages="newPasswordErrors"
-                                @blur="$v.formContrasena.newPassword.$touch()"
-                                :type="passwordNewShow ? 'text' : 'password'"
-                                :append-icon="passwordNewShow ? 'las la-eye' : 'las la-eye-slash'"
-                                class="input-group--focused place-holder borde-none"
-                                hide-details="auto"
-                                required
-                                dense
-                                outlined
-                                @click:append="passwordNewShow = !passwordNewShow"
-                                style="background: #f5f5f5"
-                            >
-                            </v-text-field>
-                        </v-col>
-
-                        <v-col cols="12" md="12">
-                            <span class="black--text body-2">Repetir nueva contraseña </span>
-                            <v-text-field
-                                v-model="formContrasena.reptyPassword"
-                                placeholder="Ingresar contraseña"
-                                :error-messages="reptyPasswordErrors"
-                                @blur="$v.formContrasena.reptyPassword.$touch()"
-                                :type="passwordReptyShow ? 'text' : 'password'"
-                                :append-icon="passwordReptyShow ? 'las la-eye' : 'las la-eye-slash'"
-                                class="input-group--focused place-holder borde-none"
-                                hide-details="auto"
-                                required
-                                dense
-                                outlined
-                                @click:append="passwordReptyShow = !passwordReptyShow"
-                                style="background: #f5f5f5"
-                            ></v-text-field>
-                        </v-col>
-
-                        <v-row>
-                            <v-col cols="4" md="4">
-                                <custom-button
-                                    block
-                                    class="mt-4"
-                                    text="< Cancelar"
-                                    type="button"
-                                    color="white"
-                                    @click="cancelChangePassword()"
-                                />
                             </v-col>
-                            <v-col cols="4" md="4" style="margin-left: 33%">
-                                <custom-button
-                                    block
-                                    class="mt-4"
-                                    text="Guardar >"
-                                    type="submit"
-                                    color="orange"
-                                    @click="saveChangePassword()"
-                                    :disabled="infoUpdateLoading"
-                                    :loading="infoUpdateLoading"
-                                />
+                            <v-col cols="12" md="12">
+                                <span class="black--text body-2">Nueva contraseña </span>
+                                <v-text-field
+                                    v-model="formContrasena.newPassword"
+                                    placeholder="Ingresar contraseña"
+                                    :error-messages="newPasswordErrors"
+                                    @blur="$v.formContrasena.newPassword.$touch()"
+                                    :type="passwordNewShow ? 'text' : 'password'"
+                                    :append-icon="passwordNewShow ? 'las la-eye' : 'las la-eye-slash'"
+                                    class="input-group--focused place-holder borde-none"
+                                    hide-details="auto"
+                                    required
+                                    dense
+                                    outlined
+                                    @click:append="passwordNewShow = !passwordNewShow"
+                                    style="background: #f5f5f5"
+                                >
+                                </v-text-field>
                             </v-col>
-                        </v-row>
+
+                            <v-col cols="12" md="12">
+                                <span class="black--text body-2">Repetir nueva contraseña </span>
+                                <v-text-field
+                                    v-model="formContrasena.reptyPassword"
+                                    placeholder="Ingresar contraseña"
+                                    :error-messages="reptyPasswordErrors"
+                                    @blur="$v.formContrasena.reptyPassword.$touch()"
+                                    :type="passwordReptyShow ? 'text' : 'password'"
+                                    :append-icon="passwordReptyShow ? 'las la-eye' : 'las la-eye-slash'"
+                                    class="input-group--focused place-holder borde-none"
+                                    hide-details="auto"
+                                    required
+                                    dense
+                                    outlined
+                                    @click:append="passwordReptyShow = !passwordReptyShow"
+                                    style="background: #f5f5f5"
+                                ></v-text-field>
+                            </v-col>
+
+                            <v-row>
+                                <v-col cols="4" md="4">
+                                    <custom-button
+                                        block
+                                        class="mt-4"
+                                        text="< Cancelar"
+                                        type="button"
+                                        color="white"
+                                        @click="cancelChangePassword()"
+                                    />
+                                </v-col>
+                                <v-col cols="4" md="4" style="margin-left: 33%">
+                                    <custom-button
+                                        block
+                                        class="mt-4"
+                                        text="Guardar >"
+                                        type="submit"
+                                        color="orange"
+                                        @click="saveChangePassword()"
+                                        :disabled="infoUpdateLoading"
+                                        :loading="infoUpdateLoading"
+                                    />
+                                </v-col>
+                            </v-row>
+                        </v-card>
+                    </v-row>
+
+                    <v-card
+                        elevation="0"
+                        class="mb-6 rounded-lg pa-5"
+                        style="background-color: transparent"
+                        v-if="!changePassword"
+                    >
+                        <CustomButton block color="white" text="Cambiar Contraseña" @click="cambiarContrasena()" />
                     </v-card>
-                </v-row>
-
-                <v-card
-                    elevation="0"
-                    class="mb-6 rounded-lg pa-5"
-                    style="background-color: transparent"
-                    v-if="!changePassword"
-                >
-                    <CustomButton block color="white" text="Cambiar Contraseña" @click="cambiarContrasena()" />
-                </v-card>
-            </v-col>
-        </v-row>
+                </v-col>
+            </v-row>
+        </div>
     </div>
 </template>
 
 <script>
 import { required, requiredIf, email, minLength, sameAs, helpers } from "vuelidate/lib/validators";
 import { mapActions, mapGetters, mapMutations } from "vuex";
-import CustomButton from "../../components/global/CustomButton.vue";
 import { VueTelInput } from "vue-tel-input";
 import AddressDialog from "../../components/address/AddressDialog.vue";
 import ProfileDialog from "../../components/user/ProfileDialog.vue";
@@ -1864,6 +1890,7 @@ import SelectCustom from "../../components/global/SelectCustom.vue";
 import ArrowUpload from "../../components/icons/ArrowUpload.vue";
 import ProfileAddress from "../../components/icons/ProfileAddress.vue";
 import EmpresasIcon from "../../components/icons/EmpresasIcon.vue";
+import UserLayoutTitle from '@components/user/UserLayoutTitle.vue';
 
 const passwordStrong = helpers.regex(
     "passwordStrong",
@@ -2038,14 +2065,14 @@ export default {
         ProfileDialog,
         PasswordDialog,
         FactoryDialog,
-        CustomButton,
         CustomInput,
         CustomCheckbox,
         SelectCustom,
         ArrowUpload,
         ProfileAddress,
         EmpresasIcon,
-        CustomButtonR
+        CustomButtonR,
+        UserLayoutTitle
     },
     validations: {
         form: {

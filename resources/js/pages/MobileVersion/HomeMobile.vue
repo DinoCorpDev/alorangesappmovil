@@ -15,9 +15,9 @@ import { mapGetters, mapActions } from "vuex";
 import { sliderSeeder } from "../../seeders/products";
 
 import CarouselSpaces from "./globalComponents/CarouselSpaces.vue";
-import RecuperarPassCodigo from "../../components/auth/RecuperarPassCodigo.vue";
-import VerifyAccount from "../../components/auth/VerifyAccount.vue";
-import SearchInput from "../../components/global/SearchInput.vue";
+import RecuperarPassCodigo from "@components/auth/RecuperarPassCodigo.vue";
+import VerifyAccount from "@components/auth/VerifyAccount.vue";
+import SearchInput from "@components/global/SearchInput.vue";
 
 export default {
     components: {
@@ -106,8 +106,6 @@ export default {
         }
     },
     mounted() {
-        this.$vuetify.theme.dark = true;
-
         this.selectedCode = this.userLanguageObj.code;
 
         this.scrollToCenter();

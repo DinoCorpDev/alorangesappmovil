@@ -28,12 +28,10 @@
 <script>
 import { mapGetters, mapState } from "vuex";
 import UserMenu2 from "./UserMenu2";
-import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     components: {
         UserMenu2,
-        CustomButton
     },
     data: () => ({}),
     computed: {

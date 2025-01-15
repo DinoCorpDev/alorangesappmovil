@@ -826,7 +826,6 @@ export default {
     },
     data() {
         return {
-            showRegister: true,
             registerNotification: false,
             mobileInputProps: {
                 inputOptions: {
@@ -1158,14 +1157,6 @@ export default {
             !this.$v.form.filerut.requiredIf && errors.push(this.$i18n.t("*Este campo es obligatorio"));
             return errors;
         },
-        showRegister: {
-            get() {
-                return this.value;
-            },
-            set(value) {
-                this.$emit("input", value);
-            }
-        }
     },
     created() {
         this.resetData();
@@ -1178,9 +1169,6 @@ export default {
     methods: {
         ...mapActions("auth", ["login"]),
         ...mapMutations("auth", ["updateChatWindow", "showLoginDialog"]),
-        closeRegister() {
-            this.showRegister = false;
-        },
         phoneValidate(phone) {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;
@@ -1261,7 +1249,6 @@ export default {
 
                 this.resetData();
                 this.registerNotification = true;
-                //this.showRegister = false;
             } else {
                 this.snack({
                     message: res.data.message,
@@ -1329,7 +1316,6 @@ export default {
 
                 this.resetData();
                 this.registerNotification = true;
-                //this.showRegister = false;
             } else {
                 this.snack({
                     message: res.data.message,

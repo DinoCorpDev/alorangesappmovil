@@ -19,7 +19,6 @@
 
 <script>
 import AddToCart from "../components/product/AddToCart.vue";
-import CustomButton from "../components/global/CustomButton.vue";
 import ProductsGrid from "../components/global/ProductsGrid.vue";
 
 import CubesIcon from "../components/icons/Cubes.vue";
@@ -49,7 +48,6 @@ export default {
     }),
     components: {
         AddToCart,
-        CustomButton,
         ProductsGrid,
         CubesIcon,
         MapPinIcon,

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <UserLayoutTitle>Carrito de compras</UserLayoutTitle>
         <v-stepper elevation="0" v-model="numberPag">
             <v-stepper-header v-if="cartProducts.length > 0">
                 <v-stepper-step
@@ -281,9 +282,12 @@
                             <div class="emptycart">
                                 <div class="cuadro-emptycart">
                                     <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/facturas.svg" />
-                                    <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
+                                    <p class="text-cartempty">
+                                        Aún no hay productos <br/>
+                                        en la lista de pedidos
+                                    </p>
                                     <CustomButton
-                                        text="IR A PRODUCTOS"
+                                        text="Ir a la Tienda"
                                         color="orange"
                                         class="mt-2"
                                         :to="{ name: 'Shop' }"
@@ -472,12 +476,12 @@
                                                 {{ currentUser.phone || "--" }}
                                             </span>
                                         </div>
-                                        <!-- <CustomButton 
+                                        <!-- <CustomButton
                                             class="mr-3 ml-3"
                                             style="width: 136px"
                                             color="grey"
-                                            text="EDITAR" 
-                                            @click="editProfile()" 
+                                            text="EDITAR"
+                                            @click="editProfile()"
                                         /> -->
                                     </div>
                                     <!-- <h5 class="fw-600">Costo logístico</h5>
@@ -953,7 +957,7 @@
                                         </div>
                                         <div class="pt-4">
                                             <label>Mes / año de expiración</label>
-                                            <div class="d-flex justify-content-between">            
+                                            <div class="d-flex justify-content-between">
                                                 <CustomInput class="col-md-3" placeholder="01" card="numberCard" maxlength="2" v-model="formCard.exp_month" />
                                                 <CustomInput placeholder="29" card="numberCard" maxlength="2" v-model="formCard.exp_year" />
                                             </div>
@@ -967,7 +971,7 @@
                                         </div>
                                     </div>
                                     <div v-if="pick === 4">
-                                        
+
                                         <p>
                                             Despachamos el producto una vez que se envíe la transferencia y el
                                             comprobante por WhatsApp
@@ -1544,8 +1548,8 @@
                             </div>
                             <v-row style="max-height: 450px; overflow-y: auto">
                                 <!-- <v-col cols="12" v-for="(product, i) in cartItems" :key="i"> -->
-                                <v-col cols="12" v-for="(product, i) in cartItemsTwo" :key="i"> 
-                                    
+                                <v-col cols="12" v-for="(product, i) in cartItemsTwo" :key="i">
+
                                     <ProductCart
                                         :productDetails="product"
                                         productCartType="bill"
@@ -2076,7 +2080,7 @@
                                         </div>
                                     </div>
                                 </v-col>
-                                
+
                             </v-row>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -2204,7 +2208,6 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 
 import AddressDialog from "../../components/address/AddressDialog.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import Order from "../../components/global/Order.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
@@ -2221,12 +2224,12 @@ import CustomFavorite from "../../components/icons/CustomFavorite.vue";
 import Flecha from "../../components/icons/Flecha.vue";
 import TotalPago from "../../components/global/TotalPago.vue";
 import { forEach } from "lodash";
+import UserLayoutTitle from '@components/user/UserLayoutTitle.vue';
 
 export default {
     name:"Cart",
     components: {
         AddressDialog,
-        CustomButton,
         CustomInput,
         Order,
         ProductCart,
@@ -2241,7 +2244,8 @@ export default {
         Cubo,
         TypePayment,
         CustomFavorite,
-        Flecha
+        Flecha,
+        UserLayoutTitle
     },
     data() {
         return {
@@ -2363,7 +2367,7 @@ export default {
         },
         openWindow(url){
             window.open(url, '_blank', 'noopener,noreferrer');
-            this.numberPag = 4;  
+            this.numberPag = 4;
         },
         updateBreadcrumb() {
             const formattedName = this.capitalizeWords(this.currentUser.name);
@@ -2382,7 +2386,7 @@ export default {
                         color: "red"
                     });
             }
-            
+
         },
         capitalizeWords(name) {
             return name.replace(/\b\w/g, char => char.toUpperCase());
@@ -2662,7 +2666,7 @@ export default {
                             if(idTransaction){
                                 let dataToTransaction = {
                                     id: idTransaction,
-                                };   
+                                };
                                 let resultURL = await this.verifyStatusPayment(dataToTransaction);
                                 if (typeof resultURL === 'string') {
                                     this.urlPagoPSE = resultURL;
@@ -2670,13 +2674,13 @@ export default {
                                     const res = await this.call_api("post", "checkout/order/store", formData);
                                     this.dataCheckout = res.data;
                                 }
-                            }                            
+                            }
                         } catch (error) {
                             this.snack({
                                 message: 'Algo ha salido mal, intenta nuevamente mas tarde',
                                 color: "red"
-                            });  
-                            console.log(error); 
+                            });
+                            console.log(error);
                         }
                     }else if(this.pick === 5){
                         if(this.isEfectivo == false && this.isDatafono == false){
@@ -2691,7 +2695,7 @@ export default {
                             const res = await this.call_api("post", "checkout/order/store", formData);
                             this.dataCheckout = res.data;
                             this.numberPag = 4;
-                        }   
+                        }
                     }
                     else{
                         let formData = this.processToSendStore(referenceToPayment);

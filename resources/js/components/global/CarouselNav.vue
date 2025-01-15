@@ -58,7 +58,6 @@
 
 <script>
 import Carousel from "./Carousel";
-import CustomButton from "./CustomButton.vue";
 
 export default {
     name: "CarouselNav",
@@ -109,7 +108,6 @@ export default {
     },
     components: {
         Carousel,
-        CustomButton
     },
     computed: {
         aspectRatio() {

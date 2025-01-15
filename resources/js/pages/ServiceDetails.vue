@@ -498,7 +498,6 @@
 <script>
 import AddToCart from "../components/product/AddToCart.vue";
 import Carousel from "../components/global/Carousel.vue";
-import CustomButton from "../components/global/CustomButton.vue";
 import ServiceBox from "../components/product/ProductBox.vue";
 
 export default {
@@ -526,7 +525,6 @@ export default {
     components: {
         AddToCart,
         Carousel,
-        CustomButton,
         ServiceBox
     },
     methods: {

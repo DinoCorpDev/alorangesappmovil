@@ -12,7 +12,7 @@
                         placeholder="Nombre de la dirección"
                     />
                 </div>
-                
+
                 <div class="mb-3">
                     <div class="mb-1 fs-13 fw-500"> Dirección</div>
                    <CustomInput
@@ -142,7 +142,7 @@
                         @click.stop="addNewAddress"
                         :loading="adding"
                         :disabled="adding"
-                        />
+                    />
                 </div>
             </v-form>
         </div>
@@ -156,7 +156,6 @@ import { mapMutations, mapGetters, mapActions } from "vuex";
 import CustomInput from "../../components/global/CustomInput.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
 import snackbar from "../../components/inc/SnackBar";
-import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     props: {
@@ -167,7 +166,6 @@ export default {
     components: {
         SelectCustom,
         CustomInput,
-        CustomButton,
         VueTelInput,
         snackbar
     },
@@ -306,7 +304,7 @@ export default {
         },
         async addNewAddress() {
             this.$v.form.$touch();
-        
+
             if (this.$v.form.$anyError) {
                 return;
             }
@@ -371,10 +369,10 @@ export default {
         },
         async updateAddress() {
             this.$v.form.$touch();
-            
+
             if (this.$v.form.$anyError) {
-                return; 
-            } 
+                return;
+            }
 
             this.adding = true;
 

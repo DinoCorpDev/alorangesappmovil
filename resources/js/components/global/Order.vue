@@ -54,12 +54,10 @@
                 </div>
             </v-col>
         </v-row>
-
     </div>
 </template>
 
 <script>
-import CustomButton from "./CustomButton.vue";
 import Compartir from "../../components/icons/Compartir.vue";
 import Imprimir from "../../components/icons/Imprimir.vue";
 import Descargar from "../../components/icons/Descargar.vue";
@@ -74,7 +72,6 @@ export default {
       ],
     }),
     components: {
-        CustomButton,
         Compartir,
         Imprimir,
         Descargar,
@@ -86,12 +83,12 @@ export default {
         month: String,
         year: [String, Number],
         descriptionStatus: String,
-        
+
     },
     methods:{
         printWindow(){
             window.print();
-        }   
+        }
     }
 };
 </script>
@@ -130,6 +127,6 @@ export default {
     display: flex;
     gap: 44px;
     align-items: center;
-    justify-content: flex-end;    
+    justify-content: flex-end;
 }
 </style>

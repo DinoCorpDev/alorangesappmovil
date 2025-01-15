@@ -60,13 +60,11 @@
 import { required, email } from "vuelidate/lib/validators";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 
-import CustomButton from "@components/global/CustomButton.vue";
 import CustomInput from "@components/global/CustomInput.vue";
 import RecuperarPass from "@components/auth/RecuperarPass.vue";
 
 export default {
     components: {
-        CustomButton,
         CustomInput,
         RecuperarPass
     },

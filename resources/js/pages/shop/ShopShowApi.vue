@@ -74,11 +74,11 @@
                                 :options="swiperOptions"
                             >
                                 <!-- <swiper
-                                :slides-per-view="4"    
-                                :space-between="30"     
-                                :loop="true"            
-                                :pagination="{ clickable: true }" 
-                                :navigation="true"   
+                                :slides-per-view="4"
+                                :space-between="30"
+                                :loop="true"
+                                :pagination="{ clickable: true }"
+                                :navigation="true"
                             > -->
                                 <swiper-slide v-for="item in product" :key="`carousel-products-slide-${item.id}`">
                                     <ProductBox boxStyle="two" :productDetails="item" />
@@ -97,7 +97,6 @@
 import Carousel from "../../components/global/Carousel";
 import CarouselActions from "../../components/global/CarouselActions.vue";
 import CarouselPortfolio from "../../components/global/CarouselPortfolio.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 import CarouselSwiper from "../../components/global/CarouselSwiper.vue";
 import ProductBox from "../../components/product/ProductBox.vue";
 import ShopActionCard from "../../components/shop/ShopActionCard.vue";
@@ -136,7 +135,6 @@ export default {
         Carousel,
         CarouselActions,
         CarouselPortfolio,
-        CustomButton,
         ProductBox,
         ShopActionCard,
         ContactDialog,
@@ -259,7 +257,7 @@ export default {
 }
 .banner-principal {
     height: 400px;
-    @media (max-width: 600px) 
+    @media (max-width: 600px)
     {
         height: 130px;
     }

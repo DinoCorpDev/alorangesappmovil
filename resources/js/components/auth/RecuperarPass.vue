@@ -13,7 +13,7 @@
            style="background-color: #ffefdf; padding: 12px 0;">
            <p style="color: black;" @click="showForm"><strong><- ¿A dónde debemos enviar el código de confirmación?</strong></p>
       </div>
-  
+
       <div class="forgot-password d-flex flex-column h-200" style="background-color: #ffefdf;">
         <v-stepper v-model="numberPag">
           <v-stepper-header class="d-none">
@@ -24,7 +24,7 @@
             <v-divider :class="{'step-active': numberPag > 2}" />
             <v-stepper-step class="step" step="3" />
           </v-stepper-header>
-  
+
           <v-stepper-items>
             <!-- Paso 1: Correo electrónico -->
             <v-stepper-content style="background-color: #ffefdf;" step="1">
@@ -46,7 +46,7 @@
                 </div>
               </v-container>
             </v-stepper-content>
-  
+
             <!-- Paso 2: Confirmación de usuario -->
             <v-stepper-content style="background-color: #ffefdf;" step="2">
               <v-container style="background-color: #ffefdf;">
@@ -81,7 +81,7 @@
                 </div>
               </v-container>
             </v-stepper-content>
-  
+
             <!-- Paso 3: Selección de método de confirmación -->
             <v-stepper-content style="background-color: #ffefdf;" step="3">
               <v-container style="background-color: #ffefdf;">
@@ -105,7 +105,7 @@
           </v-stepper-items>
         </v-stepper>
       </div>
-  
+
       <!-- Acciones del formulario -->
       <div class="actions pa-5 d-flex">
         <CustomButton
@@ -140,7 +140,6 @@
 <script>
 import { required, email } from "vuelidate/lib/validators";
 import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 
 // Custom validators
@@ -162,7 +161,6 @@ export default {
         userNotFound: false
     }),
     components: {
-        CustomButton,
         CustomInput,
         CustomCheckbox
     },

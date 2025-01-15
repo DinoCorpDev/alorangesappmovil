@@ -17,11 +17,7 @@
                 </router-link>
 
                 <div class="header-actions">
-                    <SearchInput
-                        :showInput="true"
-                        :placeholder="'Escribe lo que buscas'"
-                        style="max-width: 500px;"
-                    />
+                    <SearchInput :showInput="true" :placeholder="'Escribe lo que buscas'" style="max-width: 500px" />
                     <div class="layout-navbar-auth-nav">
                         <DoubleButton v-if="!userIsLoggedIn" />
                         <div class="d-flex d-lg-none" v-if="userIsLoggedIn">
@@ -29,8 +25,8 @@
                                 <BurgerMenu />
                             </CustomButton>
                         </div>
-                        <div style="display: none;">
-                            <ToggleMenu  />
+                        <div style="display: none">
+                            <ToggleMenu />
                         </div>
                         <!-- MODAL LOGOUT START -->
                         <div class="d-none d-lg-flex" v-if="userIsLoggedIn">
@@ -54,8 +50,8 @@
                                                 align-items: center;
                                             "
                                         >
-                                        <LogoAlorange />
-                                        <h3
+                                            <LogoAlorange />
+                                            <h3
                                                 class="pa-12"
                                                 style="
                                                     font-size: 35px;
@@ -100,7 +96,6 @@
                             </v-dialog>
                         </div>
                         <!-- MODAL LOGOUT END -->
-                        
                     </div>
                 </div>
             </v-container>
@@ -111,7 +106,6 @@
 <script>
 import { mapGetters, mapState } from "vuex";
 
-import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
 import Cart from "../icons/CartIcon.vue";
 import BurgerMenu from "../icons/BurgerMenu.vue";
@@ -127,7 +121,6 @@ import SideMenu from "../user/SideMenu";
 export default {
     name: "LayoutNavbarAuthMobile",
     components: {
-        CustomButton,
         DoubleButton,
         LogoAloranges,
         LogoAlorange,
@@ -143,14 +136,11 @@ export default {
         return {
             headerFixed: false,
             logoLarge: false,
-            scrollThreshold: 70,
-            dialogResposive: false,
-            userNavDrawerActive: false
+            scrollThreshold: 70
         };
     },
     computed: {
-        ...mapGetters("auth", ["userShortName"]),
-        ...mapGetters("auth", ["userIsLoggedIn"]),
+        ...mapGetters("auth", ["userShortName", "userIsLoggedIn"]),
         breadcrumbItems() {
             return this.$store.getters["breadcrumb/breadcrumbItems"];
         }
@@ -158,6 +148,10 @@ export default {
     mounted() {
         window.addEventListener("resize", this.handleScroll);
         window.addEventListener("scroll", this.handleScroll, { passive: true });
+    },
+    beforeDestroy() {
+        window.removeEventListener("scroll", this.handleScroll);
+        window.removeEventListener("resize", this.handleScroll);
     },
     methods: {
         handleScroll() {
@@ -176,8 +170,8 @@ export default {
                 console.log("Error while redirecting to home");
             });
         },
-        toggleMenu(){
-            this.$emit('toggleMenu');
+        toggleMenu() {
+            this.$emit("toggleMenu");
         }
     }
 };
@@ -202,6 +196,7 @@ export default {
         flex-wrap: nowrap;
     }
 }
+
 .logout-icon {
     border: none !important;
     background-color: transparent !important;
@@ -218,6 +213,7 @@ export default {
         background-color: transparent !important;
     }
 }
+
 .logout-icon-esc {
     border: none !important;
     background-color: transparent !important;
@@ -227,6 +223,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
 .layout-navbar-auth {
     min-height: 60px;
     z-index: 10;
@@ -280,17 +277,18 @@ export default {
         }
     }
 }
+
 ::v-deep {
-        .v-overlay--active {
-            .v-overlay__scrim {
-                backdrop-filter: blur(30px);
-                background-color: rgba(0, 0, 0, 0.15) !important;
-                opacity: 1 !important;
-            }
+    .v-overlay--active {
+        .v-overlay__scrim {
+            backdrop-filter: blur(30px);
+            background-color: rgba(0, 0, 0, 0.15) !important;
+            opacity: 1 !important;
         }
     }
+}
 
-    .v-navigation-drawer {
-        box-shadow: none;
-    }
+.v-navigation-drawer {
+    box-shadow: none;
+}
 </style>

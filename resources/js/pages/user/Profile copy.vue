@@ -128,7 +128,7 @@
 
                  <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-else>
                     <h5 class="fw-600">Editar usuario principal</h5>
-                    
+
                     <v-form class="inputs" ref="loginForm" lazy-validation>
                         <v-row>
                             <v-col cols="12" md="6">
@@ -267,7 +267,7 @@
                                         required
                                     />
                                 </div>
-                                
+
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("address") }}</div>
                                 <CustomInput
@@ -289,7 +289,7 @@
                                 <div class="mb-3">
                                     <div class="mb-1 fs-13 fw-500">{{ $t("country") }}</div>
                                     <SelectCustom
-                                        :items="countries"    
+                                        :items="countries"
                                         @input="countryChanged"
                                         item-text="name"
                                         item-value="id"
@@ -411,7 +411,7 @@
                                     required
                                 />
                             </div>
-                            
+
                             <div class="mb-3">
                                 <div class="mb-1 fs-13 fw-500">{{ $t("address") }}</div>
                             <CustomInput
@@ -567,12 +567,12 @@
                     <v-divider class="my-4" />
                     <CustomButton block color="grey" text="Cambiar Contraseña" @click="editPassword()" />
                 </v-card>
-            </v-col>        
+            </v-col>
             <v-col cols="12" md="6">
                 <h5 class="fw-600">Empresas</h5>
                 <v-divider class="my-4" />
                 <div  v-for="(emp, i) in empresas" :key="i">
-                    
+
                     <div v-if="emp.editar == false">
                         <div v-if="emp.mostrarDatos">
                             <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5">
@@ -581,7 +581,7 @@
                                 <i class="las la-eye-slash" v-if="emp.mostrarDatos" @click="ocultarDatosEmpresa(emp)"></i>
                                 <i class="las la-eye" @click="mostrarDatosEmpresa(emp)" v-else></i>
                                 <v-divider class="my-4" />
-                                
+
                                 <v-row>
                                     <v-col class="text-start">
                                         <label class="profile-label">CORREO ELECTRONICO</label>
@@ -761,7 +761,7 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
 
                 <div v-if="addEmpresa">
@@ -782,7 +782,7 @@
                                 </v-col>
                                 <v-col cols="12" sm="6">
                                     <span class="black--text body-2 text-uppercase"> Segundo Nombre (Opcional) </span>
-                                    <CustomInput 
+                                    <CustomInput
                                     class="place-holder"
                                     v-model="formEmpresa.secondName"
                                     placeholder="Ingresar segundo nombre"
@@ -911,7 +911,7 @@
                                             v-model="formEmpresa.companyEmail"
                                             :error-messages="companyEmailErrors"
                                             @blur="$v.formEmpresa.companyEmail.$touch()"
-                                            required 
+                                            required
                                         />
                                     </div>
 
@@ -978,7 +978,7 @@
                                             v-model="formEmpresa.companyActividad"
                                             :error-messages="companyActividadErrors"
                                             @blur="$v.formEmpresa.companyActividad.$touch()"
-                                            required 
+                                            required
                                         />
                                     </div>
 
@@ -1007,8 +1007,8 @@
                                 <v-col cols="1" class="icono-documento">
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }" >
-                                            
-                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+
+                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i>
                                         </template>
                                         <span>&bullet; Documentos en formato PDF</span>
                                         <br>
@@ -1029,13 +1029,13 @@
 
                                     <!-- REVISAR--------------------------------- -->
                                     <v-file-input
-                                        
+
                                         class="form-control upload"
                                         v-model="formEmpresa.filecamara"
                                         accept="application/pdf"
                                         single-line
                                     >
-                                    
+
                                         <template v-slot:label>
                                             <ArrowUpload />
                                             <span>SUBIR DOCUMENTO</span>
@@ -1050,8 +1050,8 @@
                                     <!--<i class="las la-exclamation-circle icon-tooltip-dos" style="font-size: 35px; transform: rotate(180deg);" data-title=" - Documentos en formato PDF.\n- RUT actualizado"></i>-->
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }" >
-                                            
-                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+
+                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i>
                                         </template>
                                         <span>&bullet; Documentos en formato PDF</span>
                                         <br>
@@ -1085,8 +1085,8 @@
 
                                     <v-tooltip bottom color="black">
                                         <template v-slot:activator="{ on, attrs }" >
-                                            
-                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i> 
+
+                                            <i class="las la-exclamation-circle icon-tooltip-dos" v-bind="attrs" v-on="on" style="font-size: 30px; transform: rotate(180deg);"></i>
                                         </template>
                                         <span>&bullet; Documentos en formato PDF</span>
                                         <br>
@@ -1122,7 +1122,7 @@
                         </v-form>
                     </v-card>
                 </div>
-                
+
                 <v-card elevation="0" class="mb-6 form-border rounded-lg pa-5" v-if="addEmpresa == false">
                     <p class="mb-0">
                         Realiza las compras como persona juridica agregando los datos de facturación como empresa.
@@ -1157,7 +1157,6 @@
 <script>
 import { required, requiredIf, email, minLength, sameAs } from "vuelidate/lib/validators";
 import { mapActions, mapGetters, mapMutations } from "vuex";
-import CustomButton from "../../components/global/CustomButton.vue";
 import { VueTelInput } from "vue-tel-input";
 import AddressDialog from "../../components/address/AddressDialog.vue";
 import ProfileDialog from "../../components/user/ProfileDialog.vue";
@@ -1282,7 +1281,6 @@ export default {
         ProfileDialog,
         PasswordDialog,
         FactoryDialog,
-        CustomButton,
         CustomInput,
         CustomCheckbox,
         SelectCustom,
@@ -1601,7 +1599,7 @@ export default {
         },
         async saveAddress() {
             this.$v.formDirection.$touch();
-        
+
             if (this.$v.formDirection.$anyError) {
                 return;
             }
@@ -1691,7 +1689,7 @@ export default {
             this.formUser.firstLastname = this.currentUser.firstLastname;
             this.formUser.secondLastname = this.currentUser.secondLastname;
             this.formUser.documentType = this.currentUser.documentType;
-            this.formUser.documentNumber = this.currentUser.documentNumber;                
+            this.formUser.documentNumber = this.currentUser.documentNumber;
         },
         editPassword() {
             this.passwordSelectedForEdit = this.currentUser;
@@ -1830,13 +1828,13 @@ export default {
         ocultarDatosEmpresa(emp){
             emp.mostrarDatos = false;
         },
-        
+
         async saveAddEmpresa(){
             this.$v.formEmpresa.$touch();
-        
+
             if (this.$v.formEmpresa.$anyError) {
                 return;
-            } 
+            }
 
             this.infoUpdateLoading = true;
 
