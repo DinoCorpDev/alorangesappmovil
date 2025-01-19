@@ -36,7 +36,7 @@
         </div>
         <div class="product-box-footer pt-0 d-flex">
             <CustomButton color="orange" @click="addCart()" :loading="actionLoading" :disabled="actionLoading">
-                Añadir <Cart class="ml-1" />
+                Añadir <Cart />
             </CustomButton>
             <template v-if="isThisWishlisted(productDetails.id)">
                 <v-tooltip bottom color="black">
@@ -136,9 +136,9 @@ export default {
             }
         },
         formatearMoneda(valor) {
-            return valor.toLocaleString('es-CO', {
-                style: 'currency',
-                currency: 'COP',
+            return valor.toLocaleString("es-CO", {
+                style: "currency",
+                currency: "COP",
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0
             });
@@ -175,32 +175,24 @@ export default {
         @media (min-width: 600px) {
             padding: 0.65rem 0.7rem;
         }
+
         &::v-deep {
             .icon {
                 line-height: 0.5;
 
-                @media (max-width: 600px) {
-                    svg {
-                        height: 32px;
-                        width: 32px;
-                    }
+                svg {
+                    height: 24px;
+                    width: 24px;
                 }
 
                 path {
-                    fill: #040405;
-                    opacity: 0.5;
+                    fill: #f38637;
+                    opacity: 1;
                 }
 
                 &:hover {
                     path {
                         opacity: 0.8;
-                    }
-                }
-
-                &.active {
-                    path {
-                        fill: #f38637;
-                        opacity: 1;
                     }
                 }
             }
@@ -212,6 +204,7 @@ export default {
         cursor: pointer;
         padding: 10px 10px 0px 10px;
         background: transparent;
+
         &::after {
             content: "";
             display: block;
@@ -258,14 +251,26 @@ export default {
     }
 
     &-footer {
-        // .v-btn {
-        //     @media (max-width: 600px) {
-        //         font-size: 11px;
-        //         height: 30px !important;
-        //     }
-        // }
-        display: flex;
-        justify-content: space-between
+        justify-content: space-between;
+        gap: 0.5rem;
+
+        .v-btn {
+            font-size: 12px;
+            font-weight: 500;
+            height: 32px !important;
+            flex: 1;
+
+            &::v-deep {
+                .v-btn__content {
+                    gap: 0.25rem;
+                }
+            }
+
+            svg {
+                width: 15px;
+                margin-bottom: 3px;
+            }
+        }
     }
 
     &-reference {
@@ -293,10 +298,9 @@ export default {
 
     &-price {
         display: block;
-        font-family: "Roboto", sans-serif;
-        font-size: 18px;
-        line-height: 24px;
-        letter-spacing: 0;
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: 600;
 
         &.discounted {
             font-size: var(--font-size-body1);

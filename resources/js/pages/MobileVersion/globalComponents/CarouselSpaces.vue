@@ -26,7 +26,7 @@
                     :key="`slide-space-${space.title}`"
                 >
                     <a :href="space.url" @click="debugUrl(space.url)" class="category">
-                        <img :src="space.img" :alt="space.title" class="mb-3"/>
+                        <img :src="space.img" :alt="space.title" class="img-fluid mb-3"/>
                         <p class="space-title mb-0">
                             {{ space.title }}
                         </p>

@@ -1875,14 +1875,13 @@
 </template>
 
 <script>
-import { required, requiredIf, email, minLength, sameAs, helpers } from "vuelidate/lib/validators";
+import { required, minLength, sameAs, helpers } from "vuelidate/lib/validators";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import { VueTelInput } from "vue-tel-input";
 import AddressDialog from "../../components/address/AddressDialog.vue";
 import ProfileDialog from "../../components/user/ProfileDialog.vue";
 import PasswordDialog from "../../components/user/PasswordDialog.vue";
 import FactoryDialog from "../../components/user/FactoryDialog.vue";
-import store from "../../store/store";
 import CustomButtonR from "../../components/global/CustomButtonRegister.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
@@ -1890,7 +1889,7 @@ import SelectCustom from "../../components/global/SelectCustom.vue";
 import ArrowUpload from "../../components/icons/ArrowUpload.vue";
 import ProfileAddress from "../../components/icons/ProfileAddress.vue";
 import EmpresasIcon from "../../components/icons/EmpresasIcon.vue";
-import UserLayoutTitle from '@components/user/UserLayoutTitle.vue';
+import UserLayoutTitle from "@components/user/UserLayoutTitle.vue";
 
 const passwordStrong = helpers.regex(
     "passwordStrong",

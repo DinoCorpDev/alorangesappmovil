@@ -238,11 +238,10 @@ class AddressController extends Controller
         $array = array();
         $localidad = Localidad::where('state_id', $state_id)->orderBy('localidad', 'asc')->get();
 
-        foreach($localidad as $l){
-            $arr = [ "text" => $l->localidad, "value" => $l->id ];
+        foreach ($localidad as $l) {
+            $arr = ["text" => $l->localidad, "value" => $l->id];
             array_push($array, $arr);
         }
-
 
         return response()->json([
             'success' => true,
@@ -258,7 +257,8 @@ class AddressController extends Controller
         ]);
     }
 
-    public function setFavorite(Request $request){
+    public function setFavorite(Request $request)
+    {
         $address = Address::findOrFail($request->id);
         if (auth('api')->user()->id != $address->user_id) {
             return response()->json(null, 401);
@@ -267,16 +267,16 @@ class AddressController extends Controller
         $address->favorite = $request->favorite;
         $address->update();
 
-        if($request->favorite == 1)
+        if ($request->favorite == 1) {
             return response()->json([
                 'success' => true,
                 'message' => translate('Address has been successfully placed as a favorite.'),
             ]);
-        else
+        } else {
             return response()->json([
                 'success' => true,
                 'message' => translate('Address has been successfully removed as a favorite.'),
             ]);
-
+        }
     }
 }
