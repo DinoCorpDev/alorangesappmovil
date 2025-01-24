@@ -2181,7 +2181,7 @@
                                     <CustomButton
                                         text="Ir a la Tienda"
                                         color="orange"
-                                        :to="{ name: 'Shop' }"
+                                        @click="goToStore"
                                     />
                                 </v-col>
                             </v-row>
@@ -2399,6 +2399,7 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["getUser"]),
+        ...mapActions("cart", ["resetCart"]),
         toggleCheckbox(option) {
             if (option === "first") {
                 this.isCredit = true;
@@ -2786,6 +2787,10 @@ export default {
                 }
             };
             const res = await this.call_api("post", "payment/image", formData, config);
+        },
+        goToStore() {
+            this.resetCart();
+            this.$router.push({ name: "Shop" });
         }
     },
     async created() {
