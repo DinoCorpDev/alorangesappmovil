@@ -6,9 +6,9 @@
         </div>
         
         <v-main class="aiz-main-wrap">
-            <div v-if="!isMobile">
+            <!-- <div v-if="!isMobile">
                 <Breadcrumb />
-            </div>
+            </div> -->
             
             <!-- prettier-ignore -->
             <v-navigation-drawer v-model="userNavDrawerActive" fixed temporary right style="z-index: 999">
@@ -17,7 +17,7 @@
             <router-view :key="['ShopDetails','ShopCoupons','ShopProducts'].includes($route.name) ? null : $route.path"></router-view>
         </v-main>
 
-        <Footer v-if="$route.meta.hasFooter && !isMobile" :class="[{ 'd-none': routerLoading }]" />
+        <!-- <Footer v-if="$route.meta.hasFooter && !isMobile" :class="[{ 'd-none': routerLoading }]" /> -->
 
         <AddToCartDialog />
         <LoginDialog v-if="!isAuthenticated" />

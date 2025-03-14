@@ -214,20 +214,20 @@ export default {
             //             return (cartProduct.qty = cartProduct.qty + product.qty);
             //     });
             // } else {
-                product.selected = true;
-                product.max_qty = product.max_qty > 0 ? product.max_qty : Infinity;
-                state.cartProducts.push(product);
+            product.selected = true;
+            product.max_qty = product.max_qty > 0 ? product.max_qty : Infinity;
+            state.cartProducts.push(product);
             // }
         },
-        updateQuantity(state, { type, cart_id }) {
+        updateQuantity(state, { type, cart_id, qty }) {
             let item = state.cartProducts.find(cartProduct => cartProduct.cart_id === cart_id);
             if (type == "plus") {
                 state.cartProducts.map(cartProduct => {
-                    if (cartProduct.cart_id === cart_id) return (cartProduct.qty = cartProduct.qty + 1);
+                    if (cartProduct.cart_id === cart_id) return (cartProduct.qty = qty);
                 });
             } else if (type == "minus" && item.qty > item.min_qty) {
                 state.cartProducts.map(cartProduct => {
-                    if (cartProduct.cart_id === cart_id) return (cartProduct.qty = cartProduct.qty - 1);
+                    if (cartProduct.cart_id === cart_id) return (cartProduct.qty = qty);
                 });
             } else {
                 let index = state.cartProducts.map(cartProduct => cartProduct.cart_id).indexOf(item.cart_id);
@@ -352,7 +352,7 @@ export default {
                 dispatch("proccessCoupon");
             }
         },
-        async updateQuantity({ commit, getters, dispatch }, { type, cart_id }) {
+        async updateQuantity({ commit, getters, dispatch }, { type, cart_id, qty }) {
             let cartItem = getters.findCartItemByCartId(cart_id);
 
             if (type == "plus" && cartItem.qty + 1 > cartItem.max_qty) {
@@ -370,7 +370,7 @@ export default {
             });
 
             if (res.data.success) {
-                commit("updateQuantity", { type, cart_id });
+                commit("updateQuantity", { type, cart_id, qty });
                 commit("updateCartShops");
                 dispatch("proccessCoupon");
             } else {

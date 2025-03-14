@@ -2,12 +2,12 @@
     <div>
         <v-row class="pt-2 pt-md-10 pl-0 pl-md-10 pr-2 pr-md-10">
             <v-col cols="12">
-                <h2>
+                <h2 style="color: black;">
                     <strong>{{ title }}</strong>
                 </h2>
             </v-col>
 
-            <v-col cols="12" class="d-none d-sm-block">
+            <!-- <v-col cols="12" class="d-none d-sm-block">
                 <div class="wrapper-arrows">
                     <div class="wrap-arrow mr-3">
                         <div class="prev-button-orange" slot="button-prev"></div>
@@ -16,12 +16,12 @@
                         <div class="next-button-orange" slot="button-next"></div>
                     </div>
                 </div>
-            </v-col>
+            </v-col> -->
         </v-row>
-        <div class="image-container d-block d-sm-none">
+        <div class="image-container d-block">
             <v-row>
                 <v-col
-                    style="display: flex; justify-content: center; align-items: center"
+                    style="display: flex; justify-content: center; align-items: start"
                     cols="6"
                     v-for="space in spaces"
                     :key="`slide-space-${space.id}`"
@@ -29,10 +29,8 @@
                 <a 
                     :href="space.url" 
                     @click="debugUrl(space.url)"
-                    :style="{
-                        marginBottom: space.marginbottom || '0px', 
-                        marginLeft: space.marginLeft || '0px'
-                    }">
+                    class="d-flex flex-column align-center justify-center"
+                    >
                     <img 
                         class="images-responsive" 
                         :src="space.img" 
@@ -42,8 +40,7 @@
                             fontSize: '24px', 
                             textAlign: 'center', 
                             margin: '0', 
-                            fontWeight: '700', 
-                            marginRight: space.marginTextRigh || '0px', 
+                            fontWeight: '700',
                             color: 'black'
                         }">
                         {{ space.title }}
@@ -52,13 +49,13 @@
                 </v-col>
             </v-row>
         </div>
-        <div class="d-none d-sm-block">
+        <!-- <div class="d-none d-sm-block">
             <swiper :options="swiperOptions">
                 <swiper-slide v-for="space in spaces" :key="`slide-space-${space.id}`">
                     <space-item class="bg-trasnparent" :data="space" />
                 </swiper-slide>
             </swiper>
-        </div>
+        </div> -->
     </div>
 </template>
 

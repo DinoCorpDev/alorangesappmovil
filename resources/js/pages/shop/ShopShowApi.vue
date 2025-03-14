@@ -56,6 +56,10 @@
                 </div>
             </div>
         </v-container>
+        <div v-if="isLoading" class="w-100 d-flex flex-column justify-center align-center">
+            <loadingSpinner />
+            <span style="font-size: 18px;">Cargando...</span>
+        </div>
         <v-row tag="section" class="mb-6">
             <v-col cols="12" v-for="(product, key) in productsSeeder" :key="product.id">
                 <v-row class="mb-3">
@@ -104,10 +108,12 @@ import ShopActionCard from "../../components/shop/ShopActionCard.vue";
 import ContactDialog from "../../pages/shop/ContactDialog.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import Mixin from "../../utils/mixin";
+import loadingSpinner from './loadingSpinner.vue';
 
 export default {
     name: "ShopShowApi",
     data: () => ({
+        isLoading: false,
         productsSeeder: [],
         resultadoFiltroBotones: [],
         activeButton: null,
@@ -140,7 +146,8 @@ export default {
         ProductBox,
         ShopActionCard,
         ContactDialog,
-        CarouselSwiper
+        CarouselSwiper,
+        loadingSpinner
     },
     mounted() {
         this.getProducts();
@@ -151,8 +158,10 @@ export default {
     },
     methods: {
         async getProducts() {
+            this.isLoading = true;
             const res = await Mixin.methods.call_api("get", `product/search?category_slug=${this.category}`);
             if (res.data.success) {
+                this.isLoading = false;
                 this.isList = false;
                 // category_slug;
                 // keyword;

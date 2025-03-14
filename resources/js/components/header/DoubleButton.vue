@@ -6,7 +6,7 @@
             class="double-button"
             @click="redirectToLogin"
             >
-            <div class="d-none d-sm-flex justify-center align-center">
+            <!-- <div class="d-none d-sm-flex justify-center align-center">
                 <span class="double-button-label mr-2 mr-sm-3 pr-2 pr-sm-3">
                 {{ "Iniciar sesión" }}
                 </span>
@@ -15,9 +15,9 @@
                     <span class="mr-2 mr-sm-3">{{ getCartCount }}</span>
                     <span class="status-indicator" :class="{ active: userShortName }"></span>
                 </div>
-            </div> 
-            <div class="d-block d-sm-none">
-                <Profile class="mr-2 mr-sm-3" />
+            </div>  -->
+            <div class="d-block">
+                <Profile />
             </div>
         </CustomButton>
         

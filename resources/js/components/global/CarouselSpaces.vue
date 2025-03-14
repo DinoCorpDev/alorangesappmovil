@@ -3,7 +3,7 @@
         <v-row class="pt-2 pt-md-10 pl-0 pl-md-10 pr-2 pr-md-10">
             <v-col cols="6">
                 <h2>
-                    <strong>{{ title }}</strong>
+                    <strong>{{ title }} dcsdcsdc</strong>
                 </h2>
             </v-col>
 

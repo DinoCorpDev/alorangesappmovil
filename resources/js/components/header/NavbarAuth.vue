@@ -15,7 +15,6 @@
                     <LogoAloranges class="d-none d-md-flex" />
                     <LogoAlorange class="d-flex d-md-none" />
                 </router-link>
-
                 <SearchInput
                     class="d-none d-sm-flex"
                     :showInput="false"

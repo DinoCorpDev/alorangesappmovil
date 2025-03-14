@@ -10,7 +10,7 @@
             shrink-on-scroll
             :fixed="headerFixed"
         >
-            <v-container class="fill-height d-flex justify-space-between" fluid>
+            <v-container class="fill-height d-flex justify-space-between px-1 px-sm-2" fluid>
                 <router-link :to="{ name: 'mobileHome' }" class="layout-navbar-auth-brand">
                     <LogoAloranges class="d-none d-md-flex" />
                     <LogoAlorange class="d-flex d-md-none" />
@@ -24,7 +24,7 @@
                     />
                     <div class="layout-navbar-auth-nav">
                         <DoubleButton v-if="!userIsLoggedIn" />
-                        <div class="d-flex d-lg-none" v-if="userIsLoggedIn">
+                        <div v-if="userIsLoggedIn">
                             <CustomButton v-if="userIsLoggedIn" @click.stop="toggleMenu" color="blackOrange">
                                 <BurgerMenu />
                             </CustomButton>
@@ -33,7 +33,7 @@
                             <ToggleMenu  />
                         </div>
                         <!-- MODAL LOGOUT START -->
-                        <div class="d-none d-lg-flex" v-if="userIsLoggedIn">
+                        <!-- <div class="d-none d-lg-flex" v-if="userIsLoggedIn">
                             <v-dialog transition="dialog-top-transition" max-width="600">
                                 <template v-slot:activator="dialog">
                                     <button
@@ -98,7 +98,7 @@
                                     </v-card>
                                 </template>
                             </v-dialog>
-                        </div>
+                        </div> -->
                         <!-- MODAL LOGOUT END -->
                         
                     </div>
@@ -231,15 +231,24 @@ export default {
     min-height: 60px;
     z-index: 10;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 6px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;
-    @media (max-width: 960px) {
+    @media (max-width: 760px) {
         max-height: 60px;
+        min-height: 60px;
     }
-
+    @media (min-width: 761px) {
+        max-height: 80px;
+        min-height: 80px;
+    }
+    @media (min-width: 1000px) {
+        max-height: 90px;
+        min-height: 90px;
+    }
     &::v-deep {
         .v-toolbar__content {
             min-height: 60px;
             padding: 0 12px;
-
+            padding-left: 0;
+            padding-right: 0;
             @media (max-width: 960px) {
                 max-height: 60px;
             }

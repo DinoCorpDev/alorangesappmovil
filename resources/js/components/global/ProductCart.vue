@@ -19,15 +19,23 @@
                     {{ formatearMoneda(productDetails.regular_price * productDetails.qty) }}
                 </del> -->
 
-                {{ formatearMoneda(productDetails.regular_price ? productDetails.regular_price * productDetails.qty : productDetails.base_price * cartQuantity) }}
+                {{
+                    formatearMoneda(
+                        productDetails.regular_price
+                            ? productDetails.regular_price * productDetails.qty
+                            : productDetails.base_price * cartQuantity
+                    )
+                }}
             </template>
             <template v-if="productCartType == 'bill'">
-
-                {{ formatearMoneda(productDetails.regular_price ? productDetails.regular_price : productDetails.base_price) }}
+                {{
+                    formatearMoneda(
+                        productDetails.regular_price ? productDetails.regular_price : productDetails.base_price
+                    )
+                }}
             </template>
 
             <template v-if="productCartType == 'wishlist'">
-                
                 <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
                     {{ formatearMoneda(productDetails.base_discounted_price) }}
                 </span>
@@ -40,20 +48,25 @@
             </template>
 
             <template v-if="productCartType == 'purchase-history'">
-                
                 <span class="product-box-cart-price" :class="{ discounted: inDiscount }">
                     {{ formatearMoneda(productDetails.price) }}
                 </span>
             </template>
         </div>
-        <div class="product-box-cart-quantity">
-            <vue-numeric-input v-if="productCartType == 'bill'" disabled v-model="cartQuantity" :step="1" align="center" />
-            <vue-numeric-input v-else v-model="cartQuantity" :min="1" :max="maxCartLimit" :step="1" align="center" />
+        <div class="product-box-cart-quantity px-sm-0 px-md-2">
+            <vue-numeric-input
+                v-if="productCartType == 'bill'"
+                disabled
+                v-model="cartQuantity"
+                :step="1"
+                align="center"
+            />
+            <vue-numeric-input v-else v-model="cartQuantity" :min="0" :max="maxCartLimit" :step="1" align="center" />
         </div>
         <div class="product-box-cart-actions">
             <div class="product-box-cart-actions-icons d-none d-md-flex">
-                 <template v-if="productCartType == 'checkout' || productCartType == 'bill'"> 
-                <!-- <template v-if="productDetails.regular_price"> -->
+                <template v-if="productCartType == 'checkout' || productCartType == 'bill'">
+                    <!-- <template v-if="productDetails.regular_price"> -->
                     <v-tooltip bottom color="black" v-if="productCartType != 'bill'">
                         <template v-slot:activator="{ on, attrs }">
                             <button @click="removeFromCart(productDetails.cart_id)" v-bind="attrs" v-on="on">
@@ -66,7 +79,12 @@
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <button v-bind="attrs" v-on="on">
-                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug, back: 'productCart' } }">
+                                <router-link
+                                    :to="{
+                                        name: 'ProductDetails',
+                                        params: { slug: productDetails.slug, back: 'productCart' }
+                                    }"
+                                >
                                     <EyeIcon />
                                 </router-link>
                             </button>
@@ -108,7 +126,7 @@
                 </template>
 
                 <template v-if="productCartType == 'wishlist'">
-                <!-- <template v-if="productDetails.base_price"> -->
+                    <!-- <template v-if="productDetails.base_price"> -->
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <button @click="removeFromWishlist(productDetails.id)" v-bind="attrs" v-on="on">
@@ -117,18 +135,23 @@
                         </template>
                         <span>Eliminar de favoritos</span>
                     </v-tooltip>
-                    
+
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <button v-bind="attrs" v-on="on">
-                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug, back: 'productCart' } }">
+                                <router-link
+                                    :to="{
+                                        name: 'ProductDetails',
+                                        params: { slug: productDetails.slug, back: 'productCart' }
+                                    }"
+                                >
                                     <EyeIcon />
                                 </router-link>
                             </button>
                         </template>
                         <span>Ver detalles</span>
                     </v-tooltip>
-                    
+
                     <v-tooltip bottom color="black">
                         <template v-slot:activator="{ on, attrs }">
                             <button @click="addCart()" v-bind="attrs" v-on="on">
@@ -137,7 +160,6 @@
                         </template>
                         <span>Agregar a carrito</span>
                     </v-tooltip>
-                    
                 </template>
             </div>
             <div class="d-md-none">
@@ -156,7 +178,12 @@
                                 </button>
                             </v-list-item>
                             <v-list-item>
-                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug, back: 'productCart' } }">
+                                <router-link
+                                    :to="{
+                                        name: 'ProductDetails',
+                                        params: { slug: productDetails.slug, back: 'productCart' }
+                                    }"
+                                >
                                     <EyeIcon />
                                 </router-link>
                             </v-list-item>
@@ -181,11 +208,16 @@
                                 </button>
                             </v-list-item>
                             <v-list-item>
-                                <router-link :to="{ name: 'ProductDetails', params: { slug: productDetails.slug, back: 'productCart' }}">
+                                <router-link
+                                    :to="{
+                                        name: 'ProductDetails',
+                                        params: { slug: productDetails.slug, back: 'productCart' }
+                                    }"
+                                >
                                     <EyeIcon />
                                 </router-link>
                             </v-list-item>
-                            <v-list-item >
+                            <v-list-item>
                                 <button @click="addCart()">
                                     <AddCartIcon />
                                 </button>
@@ -261,40 +293,47 @@ export default {
         cartQuantity: {
             // if new value is greater than max limit then set it to max limit then updateQuantity
             handler(newVal, oldVal) {
+                let qty = newVal;
+                if (qty <= 0) {
+                    this.removeFromCart(this.productDetails.cart_id);
+                }
+
+                console.log("newVal:", newVal, "qty:", qty);
                 if (newVal > oldVal) {
-                    this.updateQuantity({ type: "plus", cart_id: this.productDetails.cart_id });
+                    this.updateQuantity({ type: "plus", cart_id: this.productDetails.cart_id, qty: qty });
                 } else if (newVal < oldVal && newVal > 0) {
-                    this.updateQuantity({ type: "minus", cart_id: this.productDetails.cart_id });
+                    this.updateQuantity({ type: "minus", cart_id: this.productDetails.cart_id, qty: qty });
                 }
             }
         }
     },
     methods: {
-        ...mapActions("cart", ["updateQuantity", "toggleCartItem", "removeFromCart", "addToCart", "updateQuantity"]),
+        ...mapActions("cart", ["updateQuantity", "toggleCartItem", "removeFromCart", "addToCart"]),
         ...mapActions("wishlist", ["addNewWishlist", "removeFromWishlist"]),
         addCart() {
             this.addToCart({
-                    product_id: this.productDetails,
-                    qty: this.cartQuantity
-                }).then(() => {
+                product_id: this.productDetails,
+                qty: this.cartQuantity
+            })
+                .then(() => {
                     this.snack({
                         message: this.$i18n.t("Producto agregado al carrito"),
                         color: "green"
                     });
                     // this.removeFromWishlist(this.productDetails.id);
-                }).catch((error) => {
+                })
+                .catch(error => {
                     console.error("Error al agregar al carrito:", error);
                     this.snack({
                         message: this.$i18n.t("Error agregando el producto"),
                         color: "red"
                     });
-                })
-                
+                });
         },
         formatearMoneda(valor) {
-            return valor.toLocaleString('es-CO', {
-                style: 'currency',
-                currency: 'COP',
+            return valor.toLocaleString("es-CO", {
+                style: "currency",
+                currency: "COP",
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0
             });

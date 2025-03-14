@@ -1,9 +1,14 @@
 <template>
     <div class="login d-flex flex-column h-100" style="background-color:#ffefdf">
         <v-container class="flex-grow-1 pa-0" fluid>
-            <v-row class="wrap" no-gutters style="background-color:#ffefdf; margin-top: 15%" v-if="!showRecuperarPass">
-                <v-col cols="12" lg="12" class="pt-lg-0 text-xs-center justify-center title white--text font-weight-bold mt-5">
-                    <LogoAloranges style="margin-left: 14%;"class="d-md-flex" />
+            <div class="pl-5 pt-4">
+                <router-link :to="{ name: 'mobileHome' }" class="back-to-home">
+                    &#8592; Volver
+                </router-link>
+            </div>
+            <v-row class="wrap" no-gutters style="background-color:#ffefdf; margin-top: 10%" v-if="!showRecuperarPass">
+                <v-col cols="12" lg="12" class="d-flex pt-lg-0 text-xs-center justify-center title white--text font-weight-bold mt-5">
+                    <LogoAloranges class="d-md-flex" />
                 </v-col>
                 <v-col cols="12" lg="12" class="pt-lg-0">
                     <div class="login-content h-100 pa-lg-5 pa-3 pt-lg-8">
@@ -364,5 +369,9 @@ export default {
     &:hover{
         color: #fbd6bb;
     }
+}
+.back-to-home{
+    font-size: 20px;
+    color: #000;
 }
 </style>
