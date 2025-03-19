@@ -2,7 +2,6 @@
     <div class="layout-navbar-nav">
         <CustomButton
             v-if="!userIsLoggedIn"
-            color="white"
             class="double-button"
             @click="redirectToLogin"
             >
@@ -16,8 +15,8 @@
                     <span class="status-indicator" :class="{ active: userShortName }"></span>
                 </div>
             </div> -->
-            <div class="d-block d-sm-none">
-                <Profile class="mr-2 mr-sm-3" />
+            <div class="d-block">
+                <Profile />
             </div>
         </CustomButton>
 
@@ -91,6 +90,8 @@ export default {
 <style lang="scss" scoped>
 .double-button {
     padding: 0 10px !important;
+    background-color: #ffefde !important;
+    border: none !important;
 
     @media (min-width: 960px) {
         padding: 0 14px !important;

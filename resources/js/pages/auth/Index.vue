@@ -2,7 +2,9 @@
     <v-container class="auth h-100" fluid>
         <v-row>
             <v-col cols="12" class="text-center">
-                <LogoAloranges />
+                <router-link :to="{ name: 'MobileHome' }" class="layout-navbar-brand">
+                    <LogoAloranges />
+                </router-link>
             </v-col>
         </v-row>
         <v-row>
