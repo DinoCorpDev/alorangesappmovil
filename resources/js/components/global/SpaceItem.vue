@@ -28,8 +28,6 @@
 
 
 <script>
-import CustomButton from "./CustomButton.vue";
-
 export default {
   name: "ProductItem",
   props: {

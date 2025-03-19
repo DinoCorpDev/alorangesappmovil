@@ -75,12 +75,10 @@
 <script>
 import { mapGetters, mapState } from "vuex";
 
-import CustomButton from "../../components/global/CustomButton.vue";
 import SideMenu2 from "./SideMenu2";
 
 export default {
     components: {
-        CustomButton,
         SideMenu2
     },
     data: () => ({

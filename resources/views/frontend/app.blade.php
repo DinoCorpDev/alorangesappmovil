@@ -36,7 +36,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ mix('web-assets/css/app.css') }}" rel="stylesheet">
@@ -47,6 +46,34 @@
         :root {
             --primary: {{ get_setting('base_color', '#e62d04') }};
             --soft-primary: {{ hex2rgba(get_setting('base_color', '#e62d04'), 0.15) }};
+        }
+
+        @font-face {
+            font-family: 'Causten';
+            src: url("{{ static_asset('assets/fonts/Causten-Regular.woff2') }}") format("woff2");
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Causten';
+            src: url("{{ static_asset('assets/fonts/Causten-Medium.woff2') }}") format("woff2");
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Causten';
+            src: url("{{ static_asset('assets/fonts/Causten-SemiBold.woff2') }}") format("woff2");
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Causten';
+            src: url("{{ static_asset('assets/fonts/Causten-Bold.woff2') }}") format("woff2");
+            font-weight: 700;
+            font-style: normal;
         }
     </style>
 

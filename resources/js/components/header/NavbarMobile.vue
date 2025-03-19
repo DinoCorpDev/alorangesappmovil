@@ -12,18 +12,19 @@
         <v-container class="pa-0 fill-height justify-space-between" fluid>
             <router-link :to="{ name: 'MobileHome' }" class="layout-navbar-brand">
                 <LogoAloranges :large="logoLarge" class="d-none d-sm-block" />
-                <!-- <img src="./Logo Aloranges.png" alt="" class="d-block d-sm-none"> -->
-                <LogoAlorange class="d-block d-sm-none" style="max-width: 175px; height: auto;"/>
+                <!-- <img src="./Logo Aloranges.png" alt="" class="d-block d-sm-none" /> -->
+                <LogoAlorange class="d-block d-sm-none" style="max-width: 175px; height: auto" />
             </router-link>
             <div class="layout-navbar-nav">
                 <!-- <SearchInput
                     :showInput="true"
                     :placeholder="'Escribe lo que buscas'"
-                    style="max-width: 500px; width: 125px;"
+                    style="max-width: 500px; width: 125px"
                 /> -->
                 <!-- <CustomButton color="orange2" icon="la-store-alt" text="Ir a tienda" :to="{ name: 'Shop' }" /> -->
                 <!-- <CustomButton color="orange3" :to="{ name: 'Shop' }">
-                    <span class="d-none d-sm-flex">Tienda</span><Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px"/> 
+                    <span class="d-none d-sm-flex">Tienda</span>
+                    <Cart class="cart-icon ml-sm-2" style="margin-bottom: 4px" />
                 </CustomButton> -->
                 <CustomButton
                     v-if="!userIsLoggedIn"
@@ -32,10 +33,9 @@
                     :href="'user/login'"
                 />
                 <DoubleButton v-else />
-                <div style="display: none;">
-                    <ToggleMenu  />
+                <div style="display: none">
+                    <ToggleMenu />
                 </div>
-                
             </div>
         </v-container>
     </v-app-bar>
@@ -44,7 +44,6 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 
-import CustomButton from "../global/CustomButton.vue";
 import DoubleButton from "./DoubleButton.vue";
 import LogoAloranges from "../icons/LogoIconoAloranges.vue";
 import LogoAlorange from "../icons/LogoIconoAloranges.vue";
@@ -55,7 +54,6 @@ import SearchInput from "../global/SearchInput.vue";
 export default {
     name: "LayoutNavbarMobile",
     components: {
-        CustomButton,
         DoubleButton,
         LogoAlorange,
         LogoAloranges,
@@ -98,7 +96,7 @@ export default {
 .layout-navbar {
     min-height: 60px;
     z-index: 10;
-    background-color: #FFEFDE !important;
+    background-color: #ffefde !important;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 6px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;
     @media (max-width: 600px) {
         max-height: 60px;

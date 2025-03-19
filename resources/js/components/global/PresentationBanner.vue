@@ -40,7 +40,6 @@
 
 <script>
 import Carousel from "./Carousel";
-import CustomButton from "./CustomButton.vue";
 
 export default {
     name: "PresentationBanner",
@@ -64,10 +63,6 @@ export default {
             presetationBannerLogoUrl: "/public/assets/img/presentation-banner-logo.png"
         };
     },
-    components: {
-        Carousel,
-        CustomButton
-    }
 };
 </script>
 
@@ -103,7 +98,7 @@ export default {
             letter-spacing: 0.25px;
             font-weight: 600;
         }
-        
+
     }
 
     &-description{

@@ -390,7 +390,6 @@ import { required, requiredIf, email, minLength, sameAs } from "vuelidate/lib/va
 
 import AuthFooter from "./AuthFooter.vue";
 import CarouselDescription from "../../components/global/CarouselDescription.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 import CustomCheckbox from "../../components/global/CustomCheckbox.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import SelectCustom from "../../components/global/SelectCustom.vue";
@@ -403,7 +402,6 @@ export default {
     components: {
         AuthFooter,
         CarouselDescription,
-        CustomButton,
         CustomCheckbox,
         CustomInput,
         SelectCustom,

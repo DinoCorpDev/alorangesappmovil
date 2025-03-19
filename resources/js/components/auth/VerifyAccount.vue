@@ -1,6 +1,6 @@
 <template>
     <div content-class="modal-register">
-        
+
         <div class="modal-register-card">
             <p style="background-color: #f58634; color:white; position: relative; padding: 12px 0;" class="justify-center text-xs-left justify-left title mb-2">
                 Código de verificación
@@ -11,7 +11,7 @@
                 <p>
                     Digita tu correo electrónico y el código de verificación que te hemos enviado para poder verficar la cuenta.
                 </p>
-                
+
                 <v-form ref="loginForm" lazy-validation @submit.prevent="verifyAccount()">
                     <div
                         v-if="
@@ -91,7 +91,7 @@
 
             <v-card-actions class="d-block">
                 <div class="d-flex align-center justify-space-between" style="gap: 5rem;">
-                    
+
                     <CustomButton
                         block
                         class="mb-2"
@@ -121,7 +121,6 @@
 <script>
 import { required, requiredIf, email } from "vuelidate/lib/validators";
 import { VueTelInput } from "vue-tel-input";
-import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
@@ -157,7 +156,6 @@ export default {
     }),
     components: {
         VueTelInput,
-        CustomButton,
         CustomInput
     },
     validations: {
@@ -224,7 +222,7 @@ export default {
         ...mapActions("cart", ["fetchCartProducts"]),
         closeVerify(){
             this.showVerifyAccount = false;
-        }, 
+        },
         phoneValidate(phone) {
             this.form.invalidPhone = phone.valid ? false : true;
             if (phone.valid) this.form.showInvalidPhone = false;

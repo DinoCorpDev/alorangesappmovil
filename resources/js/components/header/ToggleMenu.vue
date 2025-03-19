@@ -115,7 +115,6 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 
-import CustomButton from "../global/CustomButton.vue";
 import CustomCheckbox from "../global/CustomCheckbox.vue";
 
 import MenuIcon from "../icons/Menu.vue";
@@ -128,7 +127,6 @@ import RightArrowIcon from "../icons/RightArrowIcon.vue";
 
 export default {
     components: {
-        CustomButton,
         CustomCheckbox,
 
         MenuIcon,

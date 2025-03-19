@@ -24,7 +24,7 @@
                     style="display: flex; justify-content: center; align-items: start"
                     cols="6"
                     v-for="space in spaces"
-                    :key="`slide-space-${space.id}`"
+                    :key="`slide-space-${space.title}`"
                 >
                 <a 
                     :href="space.url" 
@@ -51,7 +51,7 @@
         </div>
         <!-- <div class="d-none d-sm-block">
             <swiper :options="swiperOptions">
-                <swiper-slide v-for="space in spaces" :key="`slide-space-${space.id}`">
+                <swiper-slide v-for="space in spaces" :key="`slide-space-${space.title}`">
                     <space-item class="bg-trasnparent" :data="space" />
                 </swiper-slide>
             </swiper>
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import SpaceItem from "../../../components/global/SpaceItem.vue";
+import SpaceItem from "@components/global/SpaceItem.vue";
 
 export default {
     name: "CarouselSpaces",
@@ -81,7 +81,7 @@ export default {
             default: () => []
         }
     },
-    methods:{
+    methods: {
         debugUrl(url) {
             window.location.href = url;
         }
@@ -121,6 +121,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.category {
+    font-size: 'Causten';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.space-title {
+    color: #25292e;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 1.3;
+}
 .wrapper-arrows {
     width: 100%;
     display: flex;

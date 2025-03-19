@@ -16,7 +16,7 @@
                         <select-custom
                             :items="companyTypes"
                             v-model="form.companyType"
-                         
+
                             @blur="$v.form.companyType.$touch()"
                             required
                         />
@@ -28,7 +28,7 @@
                         <select-custom
                             :items="documentTypes"
                             v-model="form.companyDocumentType"
-                       
+
                             @blur="$v.form.companyDocumentType.$touch()"
                             required
                         />
@@ -40,7 +40,7 @@
                         </span>
                         <custom-input
                             v-model="form.companyDocumentNumber"
-                       
+
                             @blur="$v.form.companyDocumentNumber.$touch()"
                             required
                         />
@@ -71,7 +71,6 @@ import { mapActions, mapGetters, mapMutations } from "vuex";
 import { required, requiredIf, email, minLength, sameAs } from "vuelidate/lib/validators";
 import { VueTelInput } from "vue-tel-input";
 
-import CustomButton from "../global/CustomButton.vue";
 import CustomInput from "../global/CustomInput.vue";
 import SelectCustom from "../global/SelectCustom.vue";
 
@@ -82,7 +81,6 @@ export default {
     },
     components: {
         VueTelInput,
-        CustomButton,
         CustomInput,
         SelectCustom
     },
@@ -263,7 +261,7 @@ export default {
             this.closeDialog();
         },
         async processOldProfile(oldVal) {
-            let oldProfile = { ...oldVal };            
+            let oldProfile = { ...oldVal };
         },
         closeDialog() {
             this.isVisible = false;

@@ -36,13 +36,8 @@
 </template>
 
 <script>
-import CustomButton from "../../components/global/CustomButton.vue";
-
 export default {
     name: "Notification",
-    components: {
-        CustomButton
-    },
     props: {
         id: {
             type: String,

@@ -33,8 +33,8 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $order = new OrderCollection(CombinedOrder::where('user_id', auth('api')->user()->id)->latest()->paginate(12)); 
-        foreach ($order as $key => $item) {    
+        $order = new OrderCollection(CombinedOrder::where('user_id', auth('api')->user()->id)->latest()->paginate(12));
+        foreach ($order as $key => $item) {
             $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($item['code']);
             foreach ($item['orders'] as $key => $itemOrdes) {
                 $itemOrdes['payment_status'] = $wompiResult;
@@ -43,7 +43,8 @@ class OrderController extends Controller
         return $order;
     }
 
-    public function getResultTransactionPSE($reference){
+    public function getResultTransactionPSE($reference)
+    {
         try {
             $wompiResult = (new WompiServices)->wompiGetTransactionFacturas($reference);
             return $wompiResult;
@@ -83,7 +84,7 @@ class OrderController extends Controller
         if (!empty($wompiResultTransaction['data'])) {
             $order->orders[0]['manual_payment'] = $wompiResultTransaction['data'][0];
         }
-        
+
         if ($order) {
             if (auth('api')->user()->id == $order->user_id) {
                 $order_updates = OrderUpdate::where('order_id', $order->id)->get();
@@ -242,7 +243,7 @@ class OrderController extends Controller
         $cartItems = Cart::whereIn('id', $cart_item_ids)->with(['variation.product'])->get();
 
         $shippingAddress = Address::find($request->shipping_address_id);
-        $billingAddress = Address::find($request->billing_address_id); 
+        $billingAddress = Address::find($request->billing_address_id);
         $shippingCity = City::with('zone')->find($shippingAddress->city_id);
         $user = auth('api')->user();
 

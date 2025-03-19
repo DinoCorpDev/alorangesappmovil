@@ -1,107 +1,58 @@
 <template>
-    <div class="login d-flex flex-column h-100" style="background-color:#ffefdf">
-        <v-container class="flex-grow-1 pa-0" fluid>
-            <div class="pl-5 pt-4">
-                <router-link :to="{ name: 'mobileHome' }" class="back-to-home">
-                    &#8592; Volver
-                </router-link>
+    <div>
+        <div class="login" v-if="!showRecuperarPass">
+            <div class="auth-title">
+                <h1>Bienvenido</h1>
             </div>
-            <v-row class="wrap" no-gutters style="background-color:#ffefdf; margin-top: 10%" v-if="!showRecuperarPass">
-                <v-col cols="12" lg="12" class="d-flex pt-lg-0 text-xs-center justify-center title white--text font-weight-bold mt-5">
-                    <LogoAloranges class="d-md-flex" />
-                </v-col>
-                <v-col cols="12" lg="12" class="pt-lg-0">
-                    <div class="login-content h-100 pa-lg-5 pa-3 pt-lg-8">
-                        <div class="inputs mb-8">
-                            <div class="mt-lg-6 text-center">
-                                <h1 class="login-title pb-5">Bienvenido</h1>
-                            </div>
-                            <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
-                                <div class="form-group mb-6">
-                                    <label>Usuario registrado</label>
-                                    <CustomInput
-                                        placeholder="Correo electrónico o número de teléfono"
-                                        v-model="form.email"
-                                        type="text"
-                                        :error-messages="emailErrors"
-                                        required
-                                    />
-                                </div>
-                                <div class="form-group mb-6">
-                                    <label>Escribir contraseña</label>
-                                    <v-text-field
-                                        v-model="form.password"
-                                        placeholder="Contraseña"
-                                        :error-messages="passwordErrors"
-                                        :type="passwordShow ? 'text' : 'password'"
-                                        :append-icon="passwordShow ? 'las la-eye-slash' : 'las la-eye'"
-                                        class="input-group--focused"
-                                        hide-details="auto"
-                                        required
-                                        dense
-                                        outlined
-                                        @click:append="passwordShow = !passwordShow"
-                                    ></v-text-field>
-                                </div>
-                                <div class="d-flex">
-                                <p class="" style="font-size: 13px; margin-right: 55px;">¿Has olvidado tu contraseña?</p>
-                                    
-                                    <a @click="showModalRecuperarPass" class="login-link">
-                                        <b>Ir a recuperar contraseña</b>
-                                    </a>
-                                </div>
+            <v-form ref="loginForm" lazy-validation @submit.prevent="login()">
+                <div class="form-group mb-6">
+                    <label>Usuario registrado</label>
+                    <CustomInput
+                        placeholder="Correo electrónico o número de teléfono"
+                        v-model="form.email"
+                        type="text"
+                        :error-messages="emailErrors"
+                        required
+                    />
+                </div>
+                <div class="form-group mb-6">
+                    <label>Escribir contraseña</label>
+                    <v-text-field
+                        v-model="form.password"
+                        placeholder="Contraseña"
+                        :error-messages="passwordErrors"
+                        :type="passwordShow ? 'text' : 'password'"
+                        :append-icon="passwordShow ? 'las la-eye-slash' : 'las la-eye'"
+                        hide-details="auto"
+                        required
+                        dense
+                        outlined
+                        @click:append="passwordShow = !passwordShow"
+                    />
+                </div>
+                <div class="d-flex justify-space-between mb-4">
+                    <span>¿Has olvidado tu contraseña?</span>
+                    <a @click="showModalRecuperarPass" class="auth-link"> Ir a recuperar contraseña </a>
+                </div>
+                <div class="d-flex mb-8">
+                    <CustomButton
+                        :disabled="loading"
+                        :loading="loading"
+                        text="Iniciar Sesión"
+                        block
+                        color="orange"
+                        type="submit"
+                        @click="login"
+                    />
+                </div>
+            </v-form>
+            <div class="text-center mb-2">¿No tienes una cuenta?</div>
+            <div class="d-flex">
+                <CustomButton :href="'/user/registration'" type="button" text="Registrarse" block color="white" />
+            </div>
+        </div>
 
-                                <CustomButton
-                                    :disabled="loading"
-                                    :loading="loading"
-                                    text="Iniciar sesión"
-                                    block
-                                    class="mt-4 mb-8"
-                                    color="orange"
-                                    type="submit"
-                                    @click="login"
-                                    style="width: 100%"
-                                />
-                            </v-form>
-                            <div class="text-center">
-                                <strong class=" link-forgot" style="font-size: 13px; margin-right: 15px;">¿No tienes ninguna cuenta?</strong>
-                            </div>
-                            <div class="d-flex">
-                                    <CustomButton
-                                        :href="'/user/registration'"
-                                        type="button"
-                                        text="Registrarse"
-                                        block
-                                        class="mt-4 mb-8"
-                                        color="white"
-                                        style="width: 100%"
-                                    />
-                            </div>
-                            
-                                
-                            <!-- <a @click="showModalRegister" class=" link-custom">
-                                ¿No tienes ninguna cuenta?
-                            </a>
-                            <CustomButton
-                                block
-                                light
-                                color="grey"
-                                class="mt-4 mb-4"
-                                text="Registrarse"
-                                @click="showModalRegister"
-                            /> -->
-                            <!-- <p class=" link-custom1">
-                                Al registrarte, aceptas los <b>Términos de servicios</b> y la
-                                <b>Política de privacidad</b>, incluida la politica de <b>Uso de Cookies</b>
-                            </p> -->
-                        </div>
-                        <!-- <AuthFooter /> -->
-                    </div>
-                </v-col>
-            </v-row>
-
-            <RecuperarPass v-if="showRecuperarPass" :showForm="hideModalRecuperarPass" />
-        </v-container>
+        <RecuperarPass v-if="showRecuperarPass" :showForm="hideModalRecuperarPass" />
     </div>
 </template>
 
@@ -109,23 +60,13 @@
 import { required, email } from "vuelidate/lib/validators";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 
-import AuthFooter from "./AuthFooter.vue";
-import ArrowForget from "../../components/icons/ArrowForget.vue";
-import CarouselLogin from "../../components/global/CarouselLogin.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
-import CustomInput from "../../components/global/CustomInput.vue";
-import RecuperarPass from "../../components/auth/RecuperarPass.vue";
-import LogoAloranges from "../../components/icons/LogoAlorange.vue";
+import CustomInput from "@components/global/CustomInput.vue";
+import RecuperarPass from "@components/auth/RecuperarPass.vue";
 
 export default {
     components: {
-        AuthFooter,
-        CarouselLogin,
-        CustomButton,
         CustomInput,
-        RecuperarPass,
-        ArrowForget,
-        LogoAloranges
+        RecuperarPass
     },
     data: () => ({
         form: {
@@ -135,17 +76,7 @@ export default {
         loading: false,
         showRegister: false,
         passwordShow: false,
-        showRecuperarPass: false,
-        sliderItems: [
-            {
-                src: "/public/assets/img/login1.png",
-                type: "image"
-            },
-            {
-                src: "/public/assets/img/login2.png",
-                type: "image"
-            },
-        ]
+        showRecuperarPass: false
     }),
     validations: {
         form: {
@@ -225,153 +156,13 @@ export default {
             }
             this.loading = false;
         },
-        async showModalRegister() {
-            this.showLoginDialog(false);
-            return (this.showRegister = true);
-        },
         async showModalRecuperarPass() {
             this.showLoginDialog(false);
             return (this.showRecuperarPass = true);
         },
         async hideModalRecuperarPass() {
-            return this.showRecuperarPass = false;
+            return (this.showRecuperarPass = false);
         }
     }
 };
 </script>
-
-<style lang="scss">
-
-*{
-    &::-webkit-scrollbar {
-        width: 3px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: #b5b5b5;
-        border-radius: 1px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: rgba(#5a5a5a, 0.8);
-        border-radius: 1px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background: #5a5a5a;
-    }
-}
-
-</style>
-
-<style lang="scss" scoped>
-.login {
-    /* width */
-    &-title {
-        font-size: 24px;
-        font-weight: 500;
-        letter-spacing: 0;
-        line-height: 30px;
-
-        @media (max-width: 600px) {
-            font-size: 17px;
-            line-height: 20px;
-        }
-    }
-
-    &-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-}
-
-.v-input {
-    font-family: "Roboto", sans-serif;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-
-    &::v-deep {
-        .v-input__control,
-        .v-input__slot {
-            min-height: 38px;
-            background: white !important;
-        }
-        &:not(.v-input--has-state) {
-            .v-input__slot fieldset {
-                color: #dfdfdf;
-            }
-        }
-    }
-}
-
-.wrap {
-    background-color: #fafcfc;
-    border-radius: 10px;
-}
-
-.v-divider {
-    border-color: #e4e4e4 !important;
-    height: 2px;
-}
-
-.form-group {
-    label {
-        font-family: "Overpass", sans-serif;
-        font-size: 16px;
-        color: black;
-    }
-}
-
-.link-custom {
-    font-size: var(--font-size-caption);
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-}
-.link-custom1 {
-    font-size: var(--font-size-caption);
-    letter-spacing: 0.4px;
-}
-.link-forgot {
-    font-size: var(--font-size-caption);
-    letter-spacing: 0.4px;
-}
-
-.theme--light {
-    .v-input {
-        &::v-deep {
-            .v-input__slot {
-                background: #f5f5f5;
-
-                &:hover {
-                    background: #dfdfdf;
-                }
-            }
-        }
-
-        &.v-text-field--outlined {
-            &::v-deep {
-                &:not(.v-input--has-state) {
-                    .v-input__slot {
-                        &:hover,
-                        fieldset {
-                            border-color: #f5f5f5;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-.login-link{
-    font-size: 13px;
-    color: #f58634;
-    &:hover{
-        color: #fbd6bb;
-    }
-}
-.back-to-home{
-    font-size: 20px;
-    color: #000;
-}
-</style>

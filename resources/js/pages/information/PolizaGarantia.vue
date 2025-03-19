@@ -74,16 +74,6 @@
     </v-container>
 </template>
 
-<script>
-import CustomButton from "../../components/global/CustomButton.vue";
-
-export default {
-    components: {
-        CustomButton
-    }
-};
-</script>
-
 <style lang="scss" scoped>
 .data-notification {
     // display: flex;

@@ -30,13 +30,11 @@
 <script>
 import { mapGetters, mapState } from "vuex";
 
-import CustomButton from "../../components/global/CustomButton.vue";
 import SideMenu from "./SideMenu";
 import BarsIcon from "../icons/BarsIcon.vue";
 
 export default {
     components: {
-        CustomButton,
         SideMenu,
         BarsIcon
     },
@@ -49,8 +47,8 @@ export default {
         ...mapGetters("auth", ["currentUser"]),
         ...mapState("app", ["previewAvatar"])
     },
-    methods:{
-        showMenu(){
+    methods: {
+        showMenu() {
             this.userNavDrawerActive = !this.userNavDrawerActive;
         }
     }

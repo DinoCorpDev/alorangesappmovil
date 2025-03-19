@@ -233,8 +233,6 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 
-import CustomButton from "../../components/global/CustomButton.vue";
-
 import AddCartIcon from "../../components/icons/AddCartIcon.vue";
 import EllipsisIcon from "../../components/icons/EllipsisIcon.vue";
 import EyeIcon from "../../components/icons/EyeIcon.vue";
@@ -244,7 +242,6 @@ import TrashIcon from "../../components/icons/TrashIcon.vue";
 export default {
     name: "ProductCart",
     components: {
-        CustomButton,
         AddCartIcon,
         EllipsisIcon,
         EyeIcon,

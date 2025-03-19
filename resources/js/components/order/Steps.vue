@@ -178,7 +178,6 @@
 </template>
 
 <script>
-import CustomButton from "../global/CustomButton.vue";
 import moment from "moment";
 import "moment/locale/es";
 moment.locale("es");
@@ -194,9 +193,6 @@ export default {
         orderDetails: { type: Object, default: {} },
         actualizacionesEnvio: [],
         actualizacionesServicio: []
-    },
-    components: {
-        CustomButton
     },
     data() {
         return {

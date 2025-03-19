@@ -33,14 +33,12 @@
 </template>
 
 <script>
-import CustomButton from "./CustomButton.vue";
 import FavoriteIcon from "../icons/Favorite.vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
     name: "CardBrand",
     components: {
-        CustomButton,
         FavoriteIcon
     },
     computed: {

@@ -15,13 +15,13 @@
         v-bind="$attrs"
         v-on="$listeners"
         @click.stop="$emit('click')"
-        class="text-uppercase justify-content-center align-items-center flex-direction-column"
+        class="justify-content-center align-items-center flex-direction-column"
         depressed
     >
         <i v-if="icon && iconPosition == 'left'" :class="`las ${icon} ${text ? 'mr-3' : ''}`"></i>
         <template v-if="text">
-            <span :class="textClass">{{ text }}</span></template
-        >
+            <span :class="textClass">{{ text }}</span>
+        </template>
         <slot v-else />
         <i v-if="icon && iconPosition == 'right'" :class="`las ${icon} ${text ? 'ml-3' : ''}`"></i>
     </v-btn>
@@ -87,11 +87,11 @@ export default {
 
 <style lang="scss" scoped>
 .v-btn {
-    font-size: var(--font-size-btn);
-    font-weight: 600;
+    font-size: 16px;
     letter-spacing: 0;
     transition: all 0.2s ease-in-out;
     min-width: 10px !important;
+    text-transform: none;
 
     @media (max-width: 959px) {
         padding: 0 12px !important;
@@ -266,7 +266,6 @@ export default {
                 color: #000;
                 background-color: rgba(#fcd6ba, 0.8) !important;
             }
-            
         }
 
         &:focus,
@@ -383,8 +382,8 @@ export default {
 
     &.white {
         color: #f58634;
-        background-color: #fafcfb!important;
-        border: 1px solid #f58634 !important;    
+        background-color: #fafcfb !important;
+        border: 1px solid #f58634 !important;
         &:hover {
             color: #fcd6ba;
             @media (min-width: 600px) {
@@ -425,7 +424,7 @@ export default {
         }
     }
 
-    &.blackOrange{
+    &.blackOrange {
         color: black;
         background-color: #ffefdf !important;
         border: 1px solid #ffefdf !important;

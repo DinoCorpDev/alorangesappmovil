@@ -1,5 +1,6 @@
 <template>
     <div>
+        <UserLayoutTitle>Carrito de compras</UserLayoutTitle>
         <v-stepper elevation="0" v-model="numberPag">
             <v-stepper-header v-if="cartProducts.length > 0">
                 <v-stepper-step
@@ -50,7 +51,14 @@
                         </div>
                         <v-row no-gutters class="car-items" style="overflow-y: auto; max-height: 450px">
                             <v-col cols="12" v-for="(product, i) in cartProducts" :key="i">
-                                <ProductCart style="box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 6px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;" :productDetails="product" productCartType="checkout" />
+                                <ProductCart
+                                    style="
+                                        box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 6px 0px,
+                                            rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;
+                                    "
+                                    :productDetails="product"
+                                    productCartType="checkout"
+                                />
                             </v-col>
                         </v-row>
 
@@ -140,9 +148,9 @@
                                         </span>
                                     </v-col>
                                     <v-col cols="6" md="4" class="seguimiento py-0">
-                                        <span class="body2 font-weight-bold" style="font-size: 15px"
-                                            >000.000.000 COP</span
-                                        >
+                                        <span class="body2 font-weight-bold" style="font-size: 15px">
+                                            000.000.000 COP
+                                        </span>
                                     </v-col>
                                 </v-row>
                                 <v-row style="justify-content: center">
@@ -193,9 +201,9 @@
                                         </span>
                                     </v-col>
                                     <v-col cols="6" md="4" class="seguimiento py-0">
-                                        <span class="body2 font-weight-bold" style="font-size: 15px"
-                                            >000.000.000 COP</span
-                                        >
+                                        <span class="body2 font-weight-bold" style="font-size: 15px">
+                                            000.000.000 COP
+                                        </span>
                                     </v-col>
                                 </v-row>
                                 <v-row style="justify-content: center">
@@ -263,9 +271,9 @@
                                         </span>
                                     </v-col>
                                     <v-col cols="6" md="4" class="seguimiento py-0">
-                                        <span class="body2 font-weight-bold" style="font-size: 15px"
-                                            >000.000.000 COP</span
-                                        >
+                                        <span class="body2 font-weight-bold" style="font-size: 15px">
+                                            000.000.000 COP
+                                        </span>
                                     </v-col>
                                 </v-row>
                                 <v-row>
@@ -281,9 +289,12 @@
                             <div class="emptycart">
                                 <div class="cuadro-emptycart">
                                     <v-img class="img-cartempty mb-6" src="/public/assets/img/icons/facturas.svg" />
-                                    <p class="text-cartempty">AUN NO HAY PRODUCTOS EN LA LISTA DE PEDIDOS</p>
+                                    <p class="text-cartempty">
+                                        Aún no hay productos <br />
+                                        en la lista de pedidos
+                                    </p>
                                     <CustomButton
-                                        text="IR A PRODUCTOS"
+                                        text="Ir a la Tienda"
                                         color="orange"
                                         class="mt-2"
                                         :to="{ name: 'Shop' }"
@@ -472,12 +483,12 @@
                                                 {{ currentUser.phone || "--" }}
                                             </span>
                                         </div>
-                                        <!-- <CustomButton 
+                                        <!-- <CustomButton
                                             class="mr-3 ml-3"
                                             style="width: 136px"
                                             color="grey"
-                                            text="EDITAR" 
-                                            @click="editProfile()" 
+                                            text="EDITAR"
+                                            @click="editProfile()"
                                         /> -->
                                     </div>
                                     <!-- <h5 class="fw-600">Costo logístico</h5>
@@ -573,11 +584,7 @@
                                         <CustomButton text="< Volver" color="white" @click="numberPag = 1" />
                                     </div>
                                 </v-col>
-                                <v-col
-                                    cols="12"
-                                    md="8"
-                                    class="d-flex justify-center align-center gap pl-0 pl-md-3"
-                                >
+                                <v-col cols="12" md="8" class="d-flex justify-center align-center gap pl-0 pl-md-3">
                                     <total :total="priceTotal" />
                                     <v-divider vertical></v-divider>
                                     <div class="icono-exclamacion d-flex">
@@ -916,23 +923,37 @@
                                             />
                                         </div>
                                         <div v-if="urlPagoPSE !== null" class="pt-4">
-                                            <p v-if="isLinkVisible">{{urlPagoPSE}}</p>
-                                            <CustomButton @click="openWindow(urlPagoPSE)" class="mb-4" block color="white" text="Click aqui para dirigirte al banco"/>
+                                            <p v-if="isLinkVisible">{{ urlPagoPSE }}</p>
+                                            <CustomButton
+                                                @click="openWindow(urlPagoPSE)"
+                                                class="mb-4"
+                                                block
+                                                color="white"
+                                                text="Click aqui para dirigirte al banco"
+                                            />
                                         </div>
                                     </div>
                                     <div v-if="pick === 2" class="data-payments">
                                         <div class="d-flex justify-content-between">
                                             <div class="mr-5">
-                                                <input type="checkbox" class="form-check-input" :checked="isCredit" id="isCredit"  @change="toggleCheckbox('first')"/>
-                                                <label class="form-check-label" for="isCredit">
-                                                    Tarjeta Credito
-                                                </label>
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check-input"
+                                                    :checked="isCredit"
+                                                    id="isCredit"
+                                                    @change="toggleCheckbox('first')"
+                                                />
+                                                <label class="form-check-label" for="isCredit"> Tarjeta Credito </label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" class="form-check-input" :checked="isDebit" id="isDebit"  @change="toggleCheckbox('second')"/>
-                                                <label class="form-check-label" for="isDebit">
-                                                    Tarjeta Debito
-                                                </label>
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check-input"
+                                                    :checked="isDebit"
+                                                    id="isDebit"
+                                                    @change="toggleCheckbox('second')"
+                                                />
+                                                <label class="form-check-label" for="isDebit"> Tarjeta Debito </label>
                                             </div>
                                         </div>
                                         <div class="pt-4">
@@ -945,7 +966,10 @@
                                         </div>
                                         <div class="pt-4">
                                             <label>Nombre del titular</label>
-                                            <CustomInput placeholder="Nombre del titular" v-model="formCard.card_holder" />
+                                            <CustomInput
+                                                placeholder="Nombre del titular"
+                                                v-model="formCard.card_holder"
+                                            />
                                         </div>
                                         <div class="pt-4">
                                             <label>Numero de CVC</label>
@@ -953,9 +977,20 @@
                                         </div>
                                         <div class="pt-4">
                                             <label>Mes / año de expiración</label>
-                                            <div class="d-flex justify-content-between">            
-                                                <CustomInput class="col-md-3" placeholder="01" card="numberCard" maxlength="2" v-model="formCard.exp_month" />
-                                                <CustomInput placeholder="29" card="numberCard" maxlength="2" v-model="formCard.exp_year" />
+                                            <div class="d-flex justify-content-between">
+                                                <CustomInput
+                                                    class="col-md-3"
+                                                    placeholder="01"
+                                                    card="numberCard"
+                                                    maxlength="2"
+                                                    v-model="formCard.exp_month"
+                                                />
+                                                <CustomInput
+                                                    placeholder="29"
+                                                    card="numberCard"
+                                                    maxlength="2"
+                                                    v-model="formCard.exp_year"
+                                                />
                                             </div>
                                         </div>
                                         <div class="pt-4" v-if="isCredit">
@@ -967,13 +1002,12 @@
                                         </div>
                                     </div>
                                     <div v-if="pick === 4">
-                                        
                                         <p>
                                             Despachamos el producto una vez que se envíe la transferencia y el
                                             comprobante por WhatsApp
                                         </p>
                                         <v-img
-                                            style="width: 500px; height: auto;"
+                                            style="width: 500px; height: auto"
                                             src="/public/assets/img/pago-contraentrega.svg"
                                             alt="Transferencia"
                                         />
@@ -998,13 +1032,25 @@
                                         <p>Solo pagas por el producto cuando te lo entregamos en tu domicilio.</p>
                                         <div class="d-flex justify-content-between">
                                             <div class="mr-5">
-                                                <input type="checkbox" class="form-check-input" :checked="isEfectivo" id="isCredit"  @change="toggleCheckboxcontraentrega('first')"/>
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check-input"
+                                                    :checked="isEfectivo"
+                                                    id="isCredit"
+                                                    @change="toggleCheckboxcontraentrega('first')"
+                                                />
                                                 <label class="form-check-label" for="isCredit">
                                                     Pago con Efectivo
                                                 </label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" class="form-check-input" :checked="isDatafono" id="isDebit"  @change="toggleCheckboxcontraentrega('second')"/>
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check-input"
+                                                    :checked="isDatafono"
+                                                    id="isDebit"
+                                                    @change="toggleCheckboxcontraentrega('second')"
+                                                />
                                                 <label class="form-check-label" for="isDebit">
                                                     Pago con Datafono
                                                 </label>
@@ -1021,10 +1067,7 @@
                         </v-col>
                         <v-col cols="12" order="3" order-md="3" order-sm="3" class="d-flex justify-space-between">
                             <v-row class="barra-inferior">
-                                <v-col
-                                    cols="2"
-                                    class="d-none d-md-flex justify-center justify-md-center align-center"
-                                >
+                                <v-col cols="2" class="d-none d-md-flex justify-center justify-md-center align-center">
                                     <div v-if="mostrarDetalles == false">
                                         <CustomButton text="< Volver" color="white" @click="numberPag = 2" />
                                     </div>
@@ -1544,8 +1587,7 @@
                             </div>
                             <v-row style="max-height: 450px; overflow-y: auto">
                                 <!-- <v-col cols="12" v-for="(product, i) in cartItems" :key="i"> -->
-                                <v-col cols="12" v-for="(product, i) in cartItemsTwo" :key="i"> 
-                                    
+                                <v-col cols="12" v-for="(product, i) in cartItemsTwo" :key="i">
                                     <ProductCart
                                         :productDetails="product"
                                         productCartType="bill"
@@ -1961,7 +2003,8 @@
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 bold pl-3">Municipio</span>
                                                 <span class="body1 pr-3">{{
-                                                    selectedAddressEnvio?.city | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                    selectedAddressEnvio?.city
+                                                        | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                             <div class="d-flex justify-space-between mb-2">
@@ -1971,13 +2014,13 @@
                                             <div class="d-flex justify-space-between mb-2">
                                                 <span class="subtitle1 bold pl-3">Telefono / Movil</span>
                                                 <span class="body1 pr-3">{{
-                                                    selectedAddressEnvio?.phone | filtroParaOcultarInfo(mostrarDatosEnvio)
+                                                    selectedAddressEnvio?.phone
+                                                        | filtroParaOcultarInfo(mostrarDatosEnvio)
                                                 }}</span>
                                             </div>
                                         </div>
 
                                         <div
-                                            class=""
                                             v-if="
                                                 Object.entries(addressPrincipal).length !== 0 &&
                                                 useDefaultAddress2 == true
@@ -2076,7 +2119,6 @@
                                         </div>
                                     </div>
                                 </v-col>
-                                
                             </v-row>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -2114,7 +2156,9 @@
                                     <div class="form mt-4" style="background-color: #f1f1f1">
                                         <h5 class="fw-600 mb-5">Medio de pago</h5>
                                         <div class="d-flex justify-space-between mb-2">
-                                            <span v-if="pick == 4" class="subtitle1 bold pl-3">Transferencia bancaria</span>
+                                            <span v-if="pick == 4" class="subtitle1 bold pl-3">
+                                                Transferencia bancaria
+                                            </span>
                                             <span v-else-if="pick == 5" class="subtitle1 bold pl-3">Contraentrega</span>
                                             <span v-else-if="pick == 2" class="subtitle1 bold pl-3">
                                                 <p v-if="isCredit">Tarjeta Credito</p>
@@ -2132,6 +2176,13 @@
                                             <span class="body1 pr-3">ALO4577</span>
                                         </div>
                                     </div>
+                                </v-col>
+                                <v-col cols="12" class="text-center">
+                                    <CustomButton
+                                        text="Ir a la Tienda"
+                                        color="orange"
+                                        @click="goToStore"
+                                    />
                                 </v-col>
                             </v-row>
                         </v-col>
@@ -2182,11 +2233,18 @@
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <td>Haz clic en Privacidad y seguridad y luego Configuración de sitios y luego Ventanas emergentes y redirecciones.</td>
+                                <td>
+                                    Haz clic en Privacidad y seguridad y luego Configuración de sitios y luego Ventanas
+                                    emergentes y redirecciones.
+                                </td>
                             </tr>
                             <tr>
                                 <td>4</td>
-                                <td>Elige la opción que quieras definir como predeterminada o elige la opción de añadir en la sección "Puede enviar ventanas emergentes y usar redirecciones" y agrega la url https://webapp.aloranges.com/</td>
+                                <td>
+                                    Elige la opción que quieras definir como predeterminada o elige la opción de añadir
+                                    en la sección "Puede enviar ventanas emergentes y usar redirecciones" y agrega la
+                                    url https://webapp.aloranges.com/
+                                </td>
                             </tr>
                         </tbody>
                     </v-table>
@@ -2204,7 +2262,6 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 
 import AddressDialog from "../../components/address/AddressDialog.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import Order from "../../components/global/Order.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
@@ -2220,13 +2277,12 @@ import Cubo from "../../components/icons/Cubo.vue";
 import CustomFavorite from "../../components/icons/CustomFavorite.vue";
 import Flecha from "../../components/icons/Flecha.vue";
 import TotalPago from "../../components/global/TotalPago.vue";
-import { forEach } from "lodash";
+import UserLayoutTitle from "@components/user/UserLayoutTitle.vue";
 
 export default {
-    name:"Cart",
+    name: "Cart",
     components: {
         AddressDialog,
-        CustomButton,
         CustomInput,
         Order,
         ProductCart,
@@ -2241,11 +2297,11 @@ export default {
         Cubo,
         TypePayment,
         CustomFavorite,
-        Flecha
+        Flecha,
+        UserLayoutTitle
     },
     data() {
         return {
-            langSelectItems: ["COLOMBIA", "DEUTSCHLAND", "ENGLAND"],
             step: 1,
             numberPag: 1,
             darkBoxes: true,
@@ -2285,19 +2341,19 @@ export default {
                 { text: "Natural", value: 0 },
                 { text: "Juridico", value: 1 }
             ],
-            personTypeSelected:"",
-            bancoSelected:"",
-            formCard:{},
+            personTypeSelected: "",
+            bancoSelected: "",
+            formCard: {},
             dialogPSEModal: false,
-            urlPagoPSE:null,
-            isCredit:true,
-            isDebit:false,
+            urlPagoPSE: null,
+            isCredit: true,
+            isDebit: false,
             dialogTutorial: false,
-            dialogPSEPaymentModal:false,
-            referenceToPayment:null,
-            isEfectivo:false,
-            isDatafono:false,
-            isLinkVisible:false,
+            dialogPSEPaymentModal: false,
+            referenceToPayment: null,
+            isEfectivo: false,
+            isDatafono: false,
+            isLinkVisible: false
         };
     },
     computed: {
@@ -2335,35 +2391,36 @@ export default {
                 this.updateBreadcrumb();
             }
         },
-        numberPag(newVal){
-            if(newVal == 2){
+        numberPag(newVal) {
+            if (newVal == 2) {
                 this.cartItemsTwo = [...this.$store.state.cart.cartProducts];
             }
         }
     },
     methods: {
         ...mapActions("auth", ["getUser"]),
-        toggleCheckbox(option){
-            if (option === 'first') {
+        ...mapActions("cart", ["resetCart"]),
+        toggleCheckbox(option) {
+            if (option === "first") {
                 this.isCredit = true;
                 this.isDebit = false;
-            }else if(option === 'second'){
+            } else if (option === "second") {
                 this.isCredit = false;
                 this.isDebit = true;
             }
         },
-        toggleCheckboxcontraentrega(option){
-            if (option === 'first') {
-                this.isEfectivo=true;
-                this.isDatafono=false;
-            }else if(option === 'second'){
-                this.isEfectivo=false;
-                this.isDatafono=true;
+        toggleCheckboxcontraentrega(option) {
+            if (option === "first") {
+                this.isEfectivo = true;
+                this.isDatafono = false;
+            } else if (option === "second") {
+                this.isEfectivo = false;
+                this.isDatafono = true;
             }
         },
-        openWindow(url){
-            window.open(url, '_blank', 'noopener,noreferrer');
-            this.numberPag = 4;  
+        openWindow(url) {
+            window.open(url, "_blank", "noopener,noreferrer");
+            this.numberPag = 4;
         },
         updateBreadcrumb() {
             const formattedName = this.capitalizeWords(this.currentUser.name);
@@ -2373,16 +2430,15 @@ export default {
             ];
             this.$store.dispatch("breadcrumb/setBreadcrumbItems", newItems);
         },
-        goStepThree(){
-            if(this.selectedAddressEnvio.name){
+        goStepThree() {
+            if (this.selectedAddressEnvio.name) {
                 this.numberPag = 3;
-            }else{
+            } else {
                 this.snack({
-                        message: "Seleccione una dirección de envio",
-                        color: "red"
-                    });
+                    message: "Seleccione una dirección de envio",
+                    color: "red"
+                });
             }
-            
         },
         capitalizeWords(name) {
             return name.replace(/\b\w/g, char => char.toUpperCase());
@@ -2396,7 +2452,6 @@ export default {
         toggleDatosFacturacion() {
             this.mostrarDatosFacturacion = !this.mostrarDatosFacturacion;
         },
-
         mostrarDetalle() {
             this.mostrarDetalles = true;
         },
@@ -2409,8 +2464,6 @@ export default {
         ocultarDetalleFinal() {
             this.mostrarDetallesFinal = false;
         },
-
-        filtradoParaInfo(cadena) {},
         changeAddress(event, direccionCambiar) {
             if (direccionCambiar === 0) {
                 // Direccion de envio
@@ -2520,31 +2573,31 @@ export default {
             this.profileDialogShow = false;
             this.getUser();
         },
-        async wompiBanks(){
-            let result = await this.call_api('GET','product/payment-wompi-banks');
+        async wompiBanks() {
+            let result = await this.call_api("GET", "product/payment-wompi-banks");
             result.data.banks.data.forEach(element => {
-                this.selectBancos.push(
-                    { text: element.financial_institution_name, value: element.financial_institution_code }
-                )
+                this.selectBancos.push({
+                    text: element.financial_institution_name,
+                    value: element.financial_institution_code
+                });
             });
         },
-        async verifyStatusPayment(dataToTransaction){
-            let resultApi = await this.call_api('POST','product/transaction-wompi',dataToTransaction);
-            if(resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url){
+        async verifyStatusPayment(dataToTransaction) {
+            let resultApi = await this.call_api("POST", "product/transaction-wompi", dataToTransaction);
+            if (resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url) {
                 return resultApi.data.TransactionResult.data.payment_method.extra.async_payment_url;
                 //window.location.href = this.urlPagoPSE;
-            }else{
+            } else {
                 this.verifyStatusPayment(dataToTransaction);
             }
         },
-
-        closePSEModal(){
+        closePSEModal() {
             this.dialogPSEModal = false;
         },
-        processToSendStore(referenceToPayment){
+        processToSendStore(referenceToPayment) {
             const shippingAddressId = this.selectedAddressEnvio.id;
             const billingAddressId = this.userData.id;
-            let metodoPagoContraentregra = this.isEfectivo ? 'Efectivo' : 'Datafono'
+            let metodoPagoContraentregra = this.isEfectivo ? "Efectivo" : "Datafono";
             let formData = new FormData();
             formData.append("shipping_address_id", shippingAddressId);
             formData.append("billing_address_id", billingAddressId);
@@ -2561,13 +2614,13 @@ export default {
             });
             return formData;
         },
-        async verifyPaymentPSEStatus(){
-            try{
-                let result = await this.call_api('POST',`checkout/order/resultPse/${this.referenceToPayment}`);
+        async verifyPaymentPSEStatus() {
+            try {
+                let result = await this.call_api("POST", `checkout/order/resultPse/${this.referenceToPayment}`);
                 return result;
-            }catch(error){
+            } catch (error) {
                 this.snack({
-                    message: 'Algo ha salido mal, Revisa la factura',
+                    message: "Algo ha salido mal, Revisa la factura",
                     color: "red"
                 });
                 console.log(error);
@@ -2585,115 +2638,130 @@ export default {
                 let result;
                 if (this.priceTotal > 0) {
                     this.checkoutLoading = true;
-                    if(this.pick === 2){
+                    if (this.pick === 2) {
                         let totalPrice = this.priceTotal.toString();
-                        let mountToPass = parseInt( totalPrice.replace(/[^\w\s]/gi, '') );
+                        let mountToPass = parseInt(totalPrice.replace(/[^\w\s]/gi, ""));
                         let total = parseInt(`${mountToPass}00`);
                         let data = {
                             mount: total,
-                            currency: 'COP',
+                            currency: "COP",
                             reference: referenceToPayment,
                             customer_email: this.userData.email,
                             customer_data: {
-                                phone_number: this.userData.phone ? this.userData.phone : this.addressPrincipal.phone ? this.addressPrincipal.phone : '+573007819686',
+                                phone_number: this.userData.phone
+                                    ? this.userData.phone
+                                    : this.addressPrincipal.phone
+                                    ? this.addressPrincipal.phone
+                                    : "+573007819686",
                                 full_name: this.userData.name,
                                 legal_id: this.userData.documentNumber,
-                                legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''),
+                                legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, "")
                             },
-                            shipping_address:{
+                            shipping_address: {
                                 address_line_1: this.selectedAddressEnvio.address,
                                 country: "CO",
                                 region: this.selectedAddressEnvio.state,
                                 city: this.selectedAddressEnvio.city,
                                 name: this.userData.name,
-                                phone_number: this.userData.phone ? this.userData.phone : this.addressPrincipal.phone ? this.addressPrincipal.phone : '+573007819686',
+                                phone_number: this.userData.phone
+                                    ? this.userData.phone
+                                    : this.addressPrincipal.phone
+                                    ? this.addressPrincipal.phone
+                                    : "+573007819686",
                                 postal_code: this.selectedAddressEnvio.postal_code
                             },
-                            cardData: this.formCard,
+                            cardData: this.formCard
                         };
-                        result = await this.call_api('POST','product/payment-card-wompi',data);
-                        if(result.data.success){
+                        result = await this.call_api("POST", "product/payment-card-wompi", data);
+                        if (result.data.success) {
                             let formData = this.processToSendStore(this.referenceToPayment);
                             const res = await this.call_api("post", "checkout/order/store", formData);
                             this.numberPag = 4;
                             this.dataCheckout = res.data;
-                        }else{
+                        } else {
                             this.snack({
-                                message: 'Algo ha salido mal, Revisa la información e intenta nuevamente',
+                                message: "Algo ha salido mal, Revisa la información e intenta nuevamente",
                                 color: "red"
                             });
                         }
-                    }else if (this.pick === 1){
+                    } else if (this.pick === 1) {
                         let totalPrice = this.priceTotal.toString();
-                        let mountToPass = parseInt( totalPrice.replace(/[^\w\s]/gi, '') );
+                        let mountToPass = parseInt(totalPrice.replace(/[^\w\s]/gi, ""));
                         let total = parseInt(`${mountToPass}00`);
                         let data = {
                             mount: total,
-                            currency: 'COP',
+                            currency: "COP",
                             reference: referenceToPayment,
                             customer_email: this.userData.email,
                             customer_data: {
-                                phone_number: this.userData.phone ? this.userData.phone : this.addressPrincipal.phone ? this.addressPrincipal.phone : '+573007819686',
+                                phone_number: this.userData.phone
+                                    ? this.userData.phone
+                                    : this.addressPrincipal.phone
+                                    ? this.addressPrincipal.phone
+                                    : "+573007819686",
                                 full_name: this.userData.name,
                                 legal_id: this.userData.documentNumber,
-                                legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''),
+                                legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, "")
                             },
-                            shipping_address:{
+                            shipping_address: {
                                 address_line_1: this.selectedAddressEnvio.address,
                                 country: "CO",
                                 region: this.selectedAddressEnvio.state,
                                 city: this.selectedAddressEnvio.city,
                                 name: this.userData.name,
-                                phone_number: this.userData.phone ? this.userData.phone : this.addressPrincipal.phone ? this.addressPrincipal.phone : '+573007819686',
+                                phone_number: this.userData.phone
+                                    ? this.userData.phone
+                                    : this.addressPrincipal.phone
+                                    ? this.addressPrincipal.phone
+                                    : "+573007819686",
                                 postal_code: this.selectedAddressEnvio.postal_code
                             },
                             payment_method: {
                                 type: "PSE",
                                 user_type: this.personTypeSelected, // Tipo de persona, natural (0) o jurídica (1)
-                                user_legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ''), // Tipo de documento, CC o NIT
+                                user_legal_id_type: this.userData.documentType.replace(/[^\w\s]/gi, ""), // Tipo de documento, CC o NIT
                                 user_legal_id: this.userData.documentNumber, // Número de documento
                                 financial_institution_code: this.bancoSelected, // Código (`code`) de la institución financiera
-                                payment_description: 'Pago de productos de aloranges',
-                            },
-                        }
+                                payment_description: "Pago de productos de aloranges"
+                            }
+                        };
                         try {
-                            result = await this.call_api('POST','product/payment-wompi-pse',data);
+                            result = await this.call_api("POST", "product/payment-wompi-pse", data);
                             let idTransaction = result.data.PaymentResult.data.id;
-                            if(idTransaction){
+                            if (idTransaction) {
                                 let dataToTransaction = {
-                                    id: idTransaction,
-                                };   
+                                    id: idTransaction
+                                };
                                 let resultURL = await this.verifyStatusPayment(dataToTransaction);
-                                if (typeof resultURL === 'string') {
+                                if (typeof resultURL === "string") {
                                     this.urlPagoPSE = resultURL;
                                     let formData = this.processToSendStore(referenceToPayment);
                                     const res = await this.call_api("post", "checkout/order/store", formData);
                                     this.dataCheckout = res.data;
                                 }
-                            }                            
+                            }
                         } catch (error) {
                             this.snack({
-                                message: 'Algo ha salido mal, intenta nuevamente mas tarde',
+                                message: "Algo ha salido mal, intenta nuevamente mas tarde",
                                 color: "red"
-                            });  
-                            console.log(error); 
+                            });
+                            console.log(error);
                         }
-                    }else if(this.pick === 5){
-                        if(this.isEfectivo == false && this.isDatafono == false){
+                    } else if (this.pick === 5) {
+                        if (this.isEfectivo == false && this.isDatafono == false) {
                             this.snack({
                                 message: 'Debe elegir un medio de pago "Pago con Efectivo" o "Pago con Datafono" ',
                                 color: "red"
                             });
 
                             this.checkoutLoading = false;
-                        }else{
+                        } else {
                             let formData = this.processToSendStore(referenceToPayment);
                             const res = await this.call_api("post", "checkout/order/store", formData);
                             this.dataCheckout = res.data;
                             this.numberPag = 4;
-                        }   
-                    }
-                    else{
+                        }
+                    } else {
                         let formData = this.processToSendStore(referenceToPayment);
                         const res = await this.call_api("post", "checkout/order/store", formData);
                         this.dataCheckout = res.data;
@@ -2719,6 +2787,10 @@ export default {
                 }
             };
             const res = await this.call_api("post", "payment/image", formData, config);
+        },
+        goToStore() {
+            this.resetCart();
+            this.$router.push({ name: "Shop" });
         }
     },
     async created() {
@@ -2747,10 +2819,10 @@ export default {
     //     box-shadow: none;
     // }
 
-     .v-stepper__content {
+    .v-stepper__content {
         padding: 24px 0px 16px !important;
-         //padding: 0;
-     }
+        //padding: 0;
+    }
 
     // .v-stepper__step__step {
     //     display: none;
@@ -3310,7 +3382,7 @@ export default {
     font-size: 18px; /* Tamaño del texto */
     color: #333; /* Color del texto */
 }
-h5{
-    font-size: 25px
+h5 {
+    font-size: 25px;
 }
 </style>

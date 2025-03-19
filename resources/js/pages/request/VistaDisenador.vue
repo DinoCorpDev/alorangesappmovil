@@ -170,12 +170,10 @@
 
 <script>
 import SelectCustom from "../../components/global/SelectCustom.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 
 export default {
     components: {
         SelectCustom,
-        CustomButton
     },
     data() {
         return {

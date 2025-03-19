@@ -149,9 +149,8 @@ export default {
     }
 
     &.bordered {
-        padding-left: 40px;
-        // border: 1px solid;
-        border-radius: 5px;
+        padding-left: 2.125rem;
+        border-radius: 4px;
 
         &-checkmark {
             margin-left: 5px;
@@ -167,8 +166,8 @@ export default {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        height: 24px;
-        width: 24px;
+        height: 20px;
+        width: 20px;
         border-radius: 5px;
         border: 1px solid #7e8693;
         background-color: #f5f5f5;
@@ -205,8 +204,6 @@ export default {
     }
 
     &-label {
-        font-family: "Roboto", sans-serif;
-        font-size: var(--font-size-body1);
         cursor: pointer;
         color: black;
 

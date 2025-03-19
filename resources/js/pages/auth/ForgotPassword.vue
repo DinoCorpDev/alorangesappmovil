@@ -41,8 +41,6 @@
 
 <script>
 import { required, email } from "vuelidate/lib/validators";
-
-import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 
 export default {
@@ -51,7 +49,6 @@ export default {
         loading: false
     }),
     components: {
-        CustomButton,
         CustomInput
     },
     validations: {

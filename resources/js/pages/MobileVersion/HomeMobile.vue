@@ -2,11 +2,7 @@
     <v-container style="background-color: white">
         <v-row v-if="!showRecuperarPass" class="center-items ma-2 ma-sm-6">
             <v-col col="12" sm="12" md="12" class="bg-green-ligth border-style-banner">
-                <CarouselSpaces
-                    title=""
-                    img="/public/assets/img/home/icon-be-there.svg"
-                    :spaces="itemsArray"
-                />
+                <CarouselSpaces title="" img="/public/assets/img/home/icon-be-there.svg" :spaces="itemsArray" />
             </v-col>
         </v-row>
         <RecuperarPassCodigo v-if="showRecuperarPass" :email="this.$route.query.email" />
@@ -19,9 +15,9 @@ import { mapGetters, mapActions } from "vuex";
 import { sliderSeeder } from "../../seeders/products";
 
 import CarouselSpaces from "./globalComponents/CarouselSpaces.vue";
-import RecuperarPassCodigo from "../../components/auth/RecuperarPassCodigo.vue";
-import VerifyAccount from "../../components/auth/VerifyAccount.vue";
-import SearchInput from "../../components/global/SearchInput.vue";
+import RecuperarPassCodigo from "@components/auth/RecuperarPassCodigo.vue";
+import VerifyAccount from "@components/auth/VerifyAccount.vue";
+import SearchInput from "@components/global/SearchInput.vue";
 
 export default {
     components: {
@@ -45,54 +41,44 @@ export default {
                     title: "Aseo",
                     img: "/public/assets/img/AseoMobile.png",
                     description: "Aseo",
-                    url:"/shop/aseo"
+                    url: "/shop/aseo"
                 },
                 {
-                    marginbottom: '30px',
                     title: "Cafeteria",
                     img: "/public/assets/img/CafeteriaMobile.png",
                     description: "Cafeteria",
-                    url:"/shop/cafeteria"
+                    url: "/shop/cafeteria"
                 },
                 {
-                    marginLeft: '43px',
-                    marginTextRigh:'49px', 
                     title: "Seguridad industrial",
                     img: "/public/assets/img/SeguridadIndMobile.png",
                     description: "Seguridad ind",
-                    url:"/shop/seguridad-industrial"
+                    url: "/shop/seguridad-industrial"
                 },
                 {
-                    marginbottom: '30px',
                     title: "Cartonería",
                     img: "/public/assets/img/CartoneriaMobile.png",
                     description: "Cartoneria",
-                    url:"/shop/cartoneria"
+                    url: "/shop/cartoneria"
                 },
                 {
-                    marginLeft: '43px',
-                    marginTextRigh:'49px', 
                     title: "Accesorios de oficina",
                     img: "/public/assets/img/AccesoriosOffMobile.png",
                     description: "Tecnologia",
-                    url:"/shop/tecnologia",
+                    url: "/shop/tecnologia"
                 },
                 {
-                    marginLeft: '43px',
-                    marginTextRigh:'49px', 
                     title: "Botiqueria",
                     img: "/public/assets/img/BotiqueriaMobile.png",
                     description: "Botiqueria",
-                    url:"#",
+                    url: "#"
                 },
                 {
-                    marginLeft: '43px',
-                    marginTextRigh:'49px', 
                     title: "Uniformes",
                     img: "/public/assets/img/DotacionMobile.png",
                     description: "Dotación",
-                    url:"#",
-                },
+                    url: "#"
+                }
             ],
             selectedCode: null,
             sliderSeeder,
@@ -101,7 +87,7 @@ export default {
                     src: "/public/assets/img/home/banner-home.png",
                     type: "image"
                 }
-            ],
+            ]
         };
     },
     computed: {
@@ -120,8 +106,6 @@ export default {
         }
     },
     mounted() {
-        this.$vuetify.theme.dark = true;
-
         this.selectedCode = this.userLanguageObj.code;
 
         this.scrollToCenter();
@@ -147,7 +131,7 @@ export default {
 </script>
 
 <style lang="scss">
-body{
+body {
     overflow-x: hidden;
     margin: 0;
 }

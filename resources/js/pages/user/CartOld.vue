@@ -952,7 +952,6 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 
 import AddressDialog from "../../components/address/AddressDialog.vue";
-import CustomButton from "../../components/global/CustomButton.vue";
 import CustomInput from "../../components/global/CustomInput.vue";
 import Order from "../../components/global/Order.vue";
 import ProductCart from "../../components/global/ProductCart.vue";
@@ -965,7 +964,6 @@ import TypePayment from "../../components/global/TypePayment.vue";
 export default {
     components: {
         AddressDialog,
-        CustomButton,
         CustomInput,
         Order,
         ProductCart,

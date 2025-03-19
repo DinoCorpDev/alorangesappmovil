@@ -13,7 +13,7 @@
         :to="to"
         :width="width"
         @click.stop="$emit('click')"
-        class="text-uppercase justify-content-center align-items-center flex-direction-column"
+        class="justify-content-center align-items-center flex-direction-column"
         depressed
     >
         <i v-if="icon && iconPosition == 'left'" :class="`las ${icon} ${text ? 'mr-3' : ''}`"></i>
@@ -88,10 +88,10 @@ export default {
 
 <style lang="scss" scoped>
 .v-btn {
-    font-size: var(--font-size-btn);
-    font-weight: 600;
+    font-size: 16px;
     letter-spacing: 0;
     transition: all 0.2s ease-in-out;
+    text-transform: none;
 
     @media (max-width: 959px) {
         padding: 0 12px !important;

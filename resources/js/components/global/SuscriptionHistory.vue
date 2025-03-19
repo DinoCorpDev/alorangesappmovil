@@ -22,7 +22,7 @@
                     </template>
                     <span>Compartir</span>
                 </v-tooltip>
-                
+
                 <v-tooltip bottom color="black">
                     <template v-slot:activator="{ on, attrs }">
                         <div v-bind="attrs" v-on="on">
@@ -58,13 +58,11 @@
 </template>
 
 <script>
-import CustomButton from "./CustomButton.vue";
 import Compartir from "../../components/icons/Compartir.vue";
 import Ojo from "../../components/icons/Ojo.vue";
 
 export default {
     components: {
-        CustomButton,
         Compartir,
         Ojo
     },

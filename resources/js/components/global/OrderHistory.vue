@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import CustomButton from "./CustomButton.vue";
 import Compartir from "../../components/icons/Compartir.vue";
 import Ojo from "../../components/icons/Ojo.vue";
 import Imprimir from "../../components/icons/Imprimir.vue";
@@ -75,10 +74,9 @@ import Descargar from "../../components/icons/Descargar.vue";
 
 export default {
     components: {
-        CustomButton,
         Ojo,
         Compartir,
-        Imprimir, 
+        Imprimir,
         Descargar
     },
     props: {
