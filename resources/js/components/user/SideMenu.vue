@@ -13,25 +13,12 @@
                         </v-avatar>
 
                         <div class="avatar-upload" style="width: 10px; position: absolute; right: 0; bottom: 0">
-                            <v-tooltip bottom color="black">
-                                <template v-slot:activator="{ on, attrs }">
-                                    <custom-button
-                                        @click="changeAvatar"
-                                        style="min-width: 2px; background: transparent; padding: 0 !important"
-                                    >
-                                        <i class="las la-pen icono-avatar" v-bind="attrs" v-on="on"></i>
-                                    </custom-button>
-                                    <input
-                                        hidden
-                                        type="file"
-                                        ref="avatar-input"
-                                        id="avatar-input"
-                                        accept="image/png, image/jpg, image/jpeg"
-                                        @change="previewThumbnail"
-                                    />
-                                </template>
-                                <span>Editar avatar</span>
-                            </v-tooltip>
+                            <custom-button
+                                @click="changeAvatar"
+                                style="min-width: 2px; background: transparent; padding: 0 !important"
+                            >
+                                <i class="las la-pen icono-avatar" v-bind="attrs" v-on="on"></i>
+                            </custom-button>
                         </div>
                     </v-col>
 
@@ -44,85 +31,84 @@
                     </v-col>
                 </v-row>
             </div>
-
-            <!-- <CustomButton class="d-none d-sm-flex d-lg-none" block color="white" @click="logout">
-                {{ $t("Cerrar sesión") }}
-            </CustomButton> -->
         </div>
         <UserMenu class="mb-5" />
         <div>
-            <v-divider class=" d-flex my-5" style="border-color: #e4e4e4 !important; border-width: 2px 0 0" />
+            <v-divider class="d-flex my-5" style="border-color: #e4e4e4 !important; border-width: 2px 0 0" />
             <button class="logout-button d-flex" style="" @click="logout">
                 {{ $t("CERRAR SESIÓN") }}
             </button>
         </div>
 
         <div>
-            <v-divider class=" d-flex my-5" style="border-color: #e4e4e4 !important; border-width: 2px 0 0" />
+            <v-divider class="d-flex my-5" style="border-color: #e4e4e4 !important; border-width: 2px 0 0" />
             <button class="logout-button d-flex" style="" @click="deleteAccount">
                 {{ $t("ELIMINAR CUENTA") }}
             </button>
         </div>
 
-        <v-dialog v-model="dialogAvatar" activator="parent" persistent width="1000px">
+        <v-dialog v-model="dialogAvatar" activator="parent">
             <v-card>
-                <v-card-title>
+                <v-card-title class="d-flex justify-space-between">
                     <span class="text-h5">Cambiar Foto</span>
+                    <button @click="dialogAvatar = false">
+                        <i class="las la-times"></i>
+                    </button>
                 </v-card-title>
                 <v-divider class="d-none d-lg-block my-5" />
 
                 <v-container>
                     <v-row style="margin-left: 10px">
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" sm="6" md="3" class="d-flex justify-center">
                             <img
                                 @click="selectAvatar('Idovela_Diseñador.svg')"
                                 src="/public/avatars/Idovela_Diseñador.svg"
                                 class="border border-4 img-avatar"
                             />
                         </v-col>
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" sm="6" md="3" class="d-flex justify-center">
                             <img
                                 @click="selectAvatar('Idovela_Diseñadora.svg')"
                                 src="/public/avatars/Idovela_Diseñadora.svg"
                                 class="border border-4 img-avatar"
                             />
                         </v-col>
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" sm="6" md="3" class="d-flex justify-center">
                             <img
                                 @click="selectAvatar('Idovela_Ingeniero.svg')"
                                 src="/public/avatars/Idovela_Ingeniero.svg"
                                 class="border border-4 img-avatar"
                             />
                         </v-col>
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" sm="6" md="3" class="d-flex justify-center">
                             <img
                                 @click="selectAvatar('Idovela_Ingeniera.svg')"
                                 src="/public/avatars/Idovela_Ingeniera.svg"
                                 class="border border-4 img-avatar"
                             />
                         </v-col>
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" sm="6" md="3" class="d-flex justify-center">
                             <img
                                 @click="selectAvatar('Idovela_Mascota.svg')"
                                 src="/public/avatars/Idovela_Mascota.svg"
                                 class="border border-4 img-avatar"
                             />
                         </v-col>
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" sm="6" md="3" class="d-flex justify-center">
                             <img
                                 @click="selectAvatar('Idovela_Flor.svg')"
                                 src="/public/avatars/Idovela_Flor.svg"
                                 class="border border-4 img-avatar"
                             />
                         </v-col>
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" sm="6" md="3" class="d-flex justify-center">
                             <img
                                 @click="selectAvatar('Idovela_Arquitectura.svg')"
                                 src="/public/avatars/Idovela_Arquitectura.svg"
                                 class="border border-4 img-avatar"
                             />
                         </v-col>
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" sm="6" md="3" class="d-flex justify-center">
                             <img
                                 @click="selectAvatar('Idovela_Robot.svg')"
                                 src="/public/avatars/Idovela_Robot.svg"
@@ -184,7 +170,7 @@ export default {
 
         async deleteAccount() {
             if (window.confirm("¿Estás seguro de que deseas continuar?")) {
-                const res = await this.call_api("post", "user/delete-account/"+this.currentUser.id);
+                const res = await this.call_api("post", "user/delete-account/" + this.currentUser.id);
                 this["auth/logout"]();
                 this.$router.push({ name: "Home2" }).catch(() => {
                     console.log("Error while redirecting to home");
@@ -313,5 +299,8 @@ export default {
     cursor: pointer;
     border: 20px solid darkgray;
     border-radius: 50%;
+}
+.la-times{
+    font-size: 35px;
 }
 </style>
