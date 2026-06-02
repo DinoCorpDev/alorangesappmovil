@@ -21,6 +21,9 @@ function setI18nLanguage(lang, data) {
 }
 
 async function loadLanguageAsync(lang) {
+    if (!lang || lang === 'null') {
+        lang = "en";
+    }
     if (loadedLanguages.includes(lang)) {
         if (i18n.locale !== lang) setI18nLanguage(lang);
         return Promise.resolve();

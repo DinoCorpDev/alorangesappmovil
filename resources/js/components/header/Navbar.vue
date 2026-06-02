@@ -9,6 +9,7 @@
         shrink-on-scroll
         :fixed="headerFixed"
     >
+        <TopBar />
         <v-container class="pa-0 fill-height justify-space-between" fluid>
             <router-link :to="{ name: 'Home2' }" class="layout-navbar-brand">
                 <LogoAloranges :large="logoLarge" class="d-none d-sm-block" />
@@ -39,6 +40,7 @@ import LogoAloranges from "./LogoAloranges.vue";
 import LogoAlorange from "../icons/LogoAlorange.vue";
 import ToggleMenu from "./ToggleMenu.vue";
 import Cart from "../icons/CartIcon.vue";
+import TopBar from "./TopBar.vue";
 
 export default {
     name: "LayoutNavbar",
@@ -47,7 +49,8 @@ export default {
         LogoAlorange,
         LogoAloranges,
         Cart,
-        ToggleMenu
+        ToggleMenu,
+        TopBar
     },
     data() {
         return {

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <TopBar />
         <v-app-bar
             ref="layoutNavbar"
             class="layout-navbar-auth"
@@ -128,6 +129,7 @@ import LogoAloranges from "./LogoAloranges.vue";
 import LogoAlorange from "./LogoAlorange.vue";
 import SearchInput from "../global/SearchInput.vue";
 import ToggleMenu from "./ToggleMenu.vue";
+import TopBar from "./TopBar.vue";
 
 import SideMenu from "../user/SideMenu";
 
@@ -143,7 +145,8 @@ export default {
         SideMenu,
         SearchInput,
         Cart,
-        ToggleMenu
+        ToggleMenu,
+        TopBar
     },
     data() {
         return {
